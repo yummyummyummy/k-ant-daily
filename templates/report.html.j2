@@ -132,15 +132,42 @@
   .friend-row .flat { color: var(--muted); }
   .top-stories h2 { margin-top: 0; }
   .top-stories ol { margin: 0; padding-left: 20px; }
-  .top-stories li { padding: 8px 0; border-bottom: 1px dashed var(--border); }
+  .top-stories li { padding: 6px 0; border-bottom: 1px dashed var(--border); }
   .top-stories li:last-child { border-bottom: none; }
-  .top-stories .title { font-weight: 600; }
+  .top-stories details > summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center;
+    gap: 6px; flex-wrap: wrap; user-select: none; padding: 4px 0;
+  }
+  .top-stories details > summary::-webkit-details-marker { display: none; }
+  .top-stories details > summary::after {
+    content: "자세히 ▾"; font-size: 11px; color: var(--accent);
+    background: var(--bg); padding: 2px 8px; border-radius: 4px;
+    border: 1px solid var(--border); margin-left: auto;
+    white-space: nowrap; font-weight: 500;
+  }
+  .top-stories details[open] > summary::after { content: "접기 ▴"; }
+  .top-stories .title { font-weight: 600; flex: 1; min-width: 0; }
+  .top-stories .body { padding: 6px 0 4px; }
   .top-stories .why { color: var(--muted); font-size: 14px; margin-top: 2px; }
   .top-stories .sources { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
   .top-stories .sources a {
     font-size: 12px; color: var(--accent); text-decoration: none;
     background: var(--bg); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border);
   }
+
+  /* FOCUS: collapsible details toggle */
+  .focus-toggle { border: none; background: none; padding: 0; margin: 0; }
+  .focus-toggle > summary {
+    list-style: none; cursor: pointer; user-select: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--accent);
+    background: var(--bg); border: 1px solid var(--border); border-radius: 999px;
+    padding: 6px 14px; margin-top: 4px;
+  }
+  .focus-toggle > summary::-webkit-details-marker { display: none; }
+  .focus-toggle > summary::after { content: "▾"; font-size: 11px; }
+  .focus-toggle[open] > summary::after { content: "▴"; }
+  .focus-toggle .focus-body { padding-top: 12px; }
 
   /* IMPACT BADGES */
   .impact { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; vertical-align: middle; margin-left: 6px; }
@@ -307,16 +334,20 @@
     <ol>
       {% for ts in top_stories %}
       <li>
-        <div class="title">
-          <span>{{ ts.headline }}</span>
-          {% if ts.impact %}<span class="impact {{ ts.impact }}">{{ ts.impact_label or ts.impact }}</span>{% endif %}
-        </div>
-        {% if ts.why_it_matters %}<div class="why">{{ ts.why_it_matters }}</div>{% endif %}
-        {% if ts.sources %}
-        <div class="sources">
-          {% for src in ts.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
-        </div>
-        {% endif %}
+        <details>
+          <summary>
+            <span class="title">{{ ts.headline }}</span>
+            {% if ts.impact %}<span class="impact {{ ts.impact }}">{{ ts.impact_label or ts.impact }}</span>{% endif %}
+          </summary>
+          <div class="body">
+            {% if ts.why_it_matters %}<div class="why">{{ ts.why_it_matters }}</div>{% endif %}
+            {% if ts.sources %}
+            <div class="sources">
+              {% for src in ts.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </details>
       </li>
       {% endfor %}
     </ol>
@@ -350,23 +381,30 @@
       {% endif %}
     </div>
     {% endif %}
-    {% if focus.summary %}<p class="focus-summary">{{ focus.summary }}</p>{% endif %}
-    {% if focus.news_items %}
-    <ul class="news-items">
-      {% for n in focus.news_items %}
-      <li>
-        <div class="headline">
-          <a href="{{ n.url }}" target="_blank" rel="noopener">{{ n.title }}</a>
-          {% if n.impact %}<span class="impact {{ n.impact }}">{{ n.impact_label or n.impact }}</span>{% endif %}
-        </div>
-        <div class="meta">
-          {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
-          {% if n.source %}<span class="dot">·</span>{{ n.source }}{% endif %}
-        </div>
-        {% if n.summary %}<div class="summary">{{ n.summary }}</div>{% endif %}
-      </li>
-      {% endfor %}
-    </ul>
+    {% if focus.summary or focus.news_items %}
+    <details class="focus-toggle">
+      <summary>자세히 보기</summary>
+      <div class="focus-body">
+        {% if focus.summary %}<p class="focus-summary">{{ focus.summary }}</p>{% endif %}
+        {% if focus.news_items %}
+        <ul class="news-items">
+          {% for n in focus.news_items %}
+          <li>
+            <div class="headline">
+              <a href="{{ n.url }}" target="_blank" rel="noopener">{{ n.title }}</a>
+              {% if n.impact %}<span class="impact {{ n.impact }}">{{ n.impact_label or n.impact }}</span>{% endif %}
+            </div>
+            <div class="meta">
+              {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
+              {% if n.source %}<span class="dot">·</span>{{ n.source }}{% endif %}
+            </div>
+            {% if n.summary %}<div class="summary">{{ n.summary }}</div>{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </details>
     {% endif %}
   </section>
   {% endif %}

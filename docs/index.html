@@ -132,15 +132,42 @@
   .friend-row .flat { color: var(--muted); }
   .top-stories h2 { margin-top: 0; }
   .top-stories ol { margin: 0; padding-left: 20px; }
-  .top-stories li { padding: 8px 0; border-bottom: 1px dashed var(--border); }
+  .top-stories li { padding: 6px 0; border-bottom: 1px dashed var(--border); }
   .top-stories li:last-child { border-bottom: none; }
-  .top-stories .title { font-weight: 600; }
+  .top-stories details > summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center;
+    gap: 6px; flex-wrap: wrap; user-select: none; padding: 4px 0;
+  }
+  .top-stories details > summary::-webkit-details-marker { display: none; }
+  .top-stories details > summary::after {
+    content: "자세히 ▾"; font-size: 11px; color: var(--accent);
+    background: var(--bg); padding: 2px 8px; border-radius: 4px;
+    border: 1px solid var(--border); margin-left: auto;
+    white-space: nowrap; font-weight: 500;
+  }
+  .top-stories details[open] > summary::after { content: "접기 ▴"; }
+  .top-stories .title { font-weight: 600; flex: 1; min-width: 0; }
+  .top-stories .body { padding: 6px 0 4px; }
   .top-stories .why { color: var(--muted); font-size: 14px; margin-top: 2px; }
   .top-stories .sources { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
   .top-stories .sources a {
     font-size: 12px; color: var(--accent); text-decoration: none;
     background: var(--bg); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border);
   }
+
+  /* FOCUS: collapsible details toggle */
+  .focus-toggle { border: none; background: none; padding: 0; margin: 0; }
+  .focus-toggle > summary {
+    list-style: none; cursor: pointer; user-select: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--accent);
+    background: var(--bg); border: 1px solid var(--border); border-radius: 999px;
+    padding: 6px 14px; margin-top: 4px;
+  }
+  .focus-toggle > summary::-webkit-details-marker { display: none; }
+  .focus-toggle > summary::after { content: "▾"; font-size: 11px; }
+  .focus-toggle[open] > summary::after { content: "▴"; }
+  .focus-toggle .focus-body { padding-top: 12px; }
 
   /* IMPACT BADGES */
   .impact { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; vertical-align: middle; margin-left: 6px; }
@@ -292,25 +319,37 @@
     <h2>⭐ 오늘의 핵심</h2>
     <ol>
       <li>
-        <div class="title">
-          <span>SK하이닉스 +3.37% 신고가…엔비디아 납품 수혜</span>
-<span class="impact positive">호재</span>        </div>
-<div class="why">장중 116만원 신고가. 차세대 서버용 저전력 제품·엔비디아 양산 납품 기대가 반도체 섹터 투자심리를 견인.</div>        <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/011/0004612568" target="_blank" rel="noopener">서울경제</a><a href="https://n.news.naver.com/mnews/article/421/0008900613" target="_blank" rel="noopener">뉴스1</a>        </div>
+        <details>
+          <summary>
+            <span class="title">SK하이닉스 +3.37% 신고가…엔비디아 납품 수혜</span>
+<span class="impact positive">호재</span>          </summary>
+          <div class="body">
+<div class="why">장중 116만원 신고가. 차세대 서버용 저전력 제품·엔비디아 양산 납품 기대가 반도체 섹터 투자심리를 견인.</div>            <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/011/0004612568" target="_blank" rel="noopener">서울경제</a><a href="https://n.news.naver.com/mnews/article/421/0008900613" target="_blank" rel="noopener">뉴스1</a>            </div>
+          </div>
+        </details>
       </li>
       <li>
-        <div class="title">
-          <span>골드만삭스, 코스피 12개월 목표 7000→8000 상향</span>
-<span class="impact positive">호재</span>        </div>
-<div class="why">AI 반도체·산업재 초호황 근거로 외국계 IB 상단 재상향. 외국인 재유입 기대감.</div>        <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/014/0005510403" target="_blank" rel="noopener">파이낸셜뉴스</a><a href="https://n.news.naver.com/mnews/article/003/0013898419" target="_blank" rel="noopener">뉴시스</a>        </div>
+        <details>
+          <summary>
+            <span class="title">골드만삭스, 코스피 12개월 목표 7000→8000 상향</span>
+<span class="impact positive">호재</span>          </summary>
+          <div class="body">
+<div class="why">AI 반도체·산업재 초호황 근거로 외국계 IB 상단 재상향. 외국인 재유입 기대감.</div>            <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/014/0005510403" target="_blank" rel="noopener">파이낸셜뉴스</a><a href="https://n.news.naver.com/mnews/article/003/0013898419" target="_blank" rel="noopener">뉴시스</a>            </div>
+          </div>
+        </details>
       </li>
       <li>
-        <div class="title">
-          <span>올해 ETF 수익률 1위는 '건설' — 반도체·원유 제쳤다</span>
-<span class="impact positive">호재</span>        </div>
-<div class="why">중동 재건 기대감에 건설 ETF가 연초 대비 116% 급등. 삼성E&A·현대건설 등 대형 EPC 재조명.</div>        <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/018/0006260825" target="_blank" rel="noopener">이데일리</a><a href="https://n.news.naver.com/mnews/article/366/0001158051" target="_blank" rel="noopener">조선비즈</a>        </div>
+        <details>
+          <summary>
+            <span class="title">올해 ETF 수익률 1위는 '건설' — 반도체·원유 제쳤다</span>
+<span class="impact positive">호재</span>          </summary>
+          <div class="body">
+<div class="why">중동 재건 기대감에 건설 ETF가 연초 대비 116% 급등. 삼성E&A·현대건설 등 대형 EPC 재조명.</div>            <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/018/0006260825" target="_blank" rel="noopener">이데일리</a><a href="https://n.news.naver.com/mnews/article/366/0001158051" target="_blank" rel="noopener">조선비즈</a>            </div>
+          </div>
+        </details>
       </li>
     </ol>
   </section>
@@ -328,50 +367,55 @@
 (2026-04-19 (일)) · 전일(토) 17척 대비 감소, 평시의 절반 수준        <a href="https://www.aljazeera.com/news/2026/4/14/how-many-ships-have-passed-the-strait-of-hormuz-and-how-many-were-attacked" target="_blank" rel="noopener" style="color: var(--accent); margin-left: 4px;">(Al Jazeera / Kpler 데이터)</a>
       </span>
     </div>
-<p class="focus-summary">이란 혁명수비대(IRGC)가 4/18 밤부터 호르무즈 해협을 재봉쇄. 2주 휴전 만료가 4/21~22로 임박하며, 미 해군은 봉쇄를 돌파한 이란 국적선을 나포. 돌파구 없으면 전쟁 재개 경고까지 나온 상황. 한국 증시엔 유가·환율·해운 변동성 확대 요인.</p>    <ul class="news-items">
-      <li>
-        <div class="headline">
-          <a href="https://n.news.naver.com/mnews/article/009/0005668573" target="_blank" rel="noopener">자고 나면 뒤집히는 중동 정세…살얼음판 증시, 든든한 주도주는?</a>
-<span class="impact neutral">중립</span>        </div>
-        <div class="meta">
-<span class="time-ago">1시간 전</span><span class="dot">·</span>매일경제        </div>
-<div class="summary">미·이란 휴전 종료일을 앞두고 기대와 경계가 뒤섞이는 가운데 반도체·에너지·증권주에 쏠리는 자금 흐름 분석.</div>      </li>
-      <li>
-        <div class="headline">
-          <a href="https://n.news.naver.com/mnews/article/018/0006261960" target="_blank" rel="noopener">美·유럽 증시 하락 예고…亞는 AI 랠리에 공포 비껴갔다</a>
-<span class="impact negative">악재</span>        </div>
-        <div class="meta">
-<span class="time-ago">1시간 전</span><span class="dot">·</span>이데일리        </div>
-<div class="summary">미-이란 종전 협상 재개 기대와 군사적 긴장이 뒤섞여 미국 선물·유럽 지수 약세. 아시아는 AI 랠리로 방어.</div>      </li>
-      <li>
-        <div class="headline">
-          <a href="https://n.news.naver.com/mnews/article/001/0016030430" target="_blank" rel="noopener">[특징주] 미-이란 2차 협상 불확실성에 건설주 장초반 약세</a>
-<span class="impact negative">악재</span>        </div>
-        <div class="meta">
-<span class="time-ago">7시간 전</span><span class="dot">·</span>연합뉴스        </div>
-<div class="summary">삼성E&A·현대건설 등 중동 재건 수혜주가 장 초반 약세. 2차 협상 일정 미정의 불확실성이 단기 조정 요인.</div>      </li>
-      <li>
-        <div class="headline">
-          <a href="https://www.cnn.com/2026/04/19/world/live-news/iran-war-us-trump-hormuz" target="_blank" rel="noopener">Tehran vows retaliation after US seizes Iran-flagged vessel defying blockade</a>
-<span class="impact negative">악재</span>        </div>
-        <div class="meta">
-<span class="time-ago">19시간 전</span><span class="dot">·</span>CNN        </div>
-<div class="summary">트럼프 대통령, 미 해군이 일요일(4/19) 봉쇄 돌파 시도한 이란 국적 화물선 사격·나포 발표. 이란은 "신뢰 위반"이라며 보복 경고.</div>      </li>
-      <li>
-        <div class="headline">
-          <a href="https://www.npr.org/2026/04/19/nx-s1-5790378/iran-us-hormuz-closed-impossible" target="_blank" rel="noopener">U.S. seizes Iranian cargo ship in Strait of Hormuz</a>
-<span class="impact negative">악재</span>        </div>
-        <div class="meta">
-<span class="time-ago">21시간 전</span><span class="dot">·</span>NPR        </div>
-<div class="summary">미 해군 나포 관련 현장 상황 보도. 호르무즈 통과 선박 대부분이 U턴, LNG 탱커도 회항 잇따름.</div>      </li>
-      <li>
-        <div class="headline">
-          <a href="https://www.aljazeera.com/news/2026/4/18/iran-closes-strait-of-hormuz-again-over-us-blockade-of-its-ports" target="_blank" rel="noopener">Iran closes Strait of Hormuz again over US blockade of its ports</a>
-<span class="impact negative">악재</span>        </div>
-        <div class="meta">
-<span class="time-ago">1일 전</span><span class="dot">·</span>Al Jazeera        </div>
-<div class="summary">IRGC가 "미국이 이란 항구 봉쇄를 푸는 순간까진 호르무즈 개방 없다"며 재봉쇄 공식화. 휴전 합의 위반이라 주장.</div>      </li>
-    </ul>
+    <details class="focus-toggle">
+      <summary>자세히 보기</summary>
+      <div class="focus-body">
+<p class="focus-summary">이란 혁명수비대(IRGC)가 4/18 밤부터 호르무즈 해협을 재봉쇄. 2주 휴전 만료가 4/21~22로 임박하며, 미 해군은 봉쇄를 돌파한 이란 국적선을 나포. 돌파구 없으면 전쟁 재개 경고까지 나온 상황. 한국 증시엔 유가·환율·해운 변동성 확대 요인.</p>        <ul class="news-items">
+          <li>
+            <div class="headline">
+              <a href="https://n.news.naver.com/mnews/article/009/0005668573" target="_blank" rel="noopener">자고 나면 뒤집히는 중동 정세…살얼음판 증시, 든든한 주도주는?</a>
+<span class="impact neutral">중립</span>            </div>
+            <div class="meta">
+<span class="time-ago">1시간 전</span><span class="dot">·</span>매일경제            </div>
+<div class="summary">미·이란 휴전 종료일을 앞두고 기대와 경계가 뒤섞이는 가운데 반도체·에너지·증권주에 쏠리는 자금 흐름 분석.</div>          </li>
+          <li>
+            <div class="headline">
+              <a href="https://n.news.naver.com/mnews/article/018/0006261960" target="_blank" rel="noopener">美·유럽 증시 하락 예고…亞는 AI 랠리에 공포 비껴갔다</a>
+<span class="impact negative">악재</span>            </div>
+            <div class="meta">
+<span class="time-ago">1시간 전</span><span class="dot">·</span>이데일리            </div>
+<div class="summary">미-이란 종전 협상 재개 기대와 군사적 긴장이 뒤섞여 미국 선물·유럽 지수 약세. 아시아는 AI 랠리로 방어.</div>          </li>
+          <li>
+            <div class="headline">
+              <a href="https://n.news.naver.com/mnews/article/001/0016030430" target="_blank" rel="noopener">[특징주] 미-이란 2차 협상 불확실성에 건설주 장초반 약세</a>
+<span class="impact negative">악재</span>            </div>
+            <div class="meta">
+<span class="time-ago">7시간 전</span><span class="dot">·</span>연합뉴스            </div>
+<div class="summary">삼성E&A·현대건설 등 중동 재건 수혜주가 장 초반 약세. 2차 협상 일정 미정의 불확실성이 단기 조정 요인.</div>          </li>
+          <li>
+            <div class="headline">
+              <a href="https://www.cnn.com/2026/04/19/world/live-news/iran-war-us-trump-hormuz" target="_blank" rel="noopener">Tehran vows retaliation after US seizes Iran-flagged vessel defying blockade</a>
+<span class="impact negative">악재</span>            </div>
+            <div class="meta">
+<span class="time-ago">19시간 전</span><span class="dot">·</span>CNN            </div>
+<div class="summary">트럼프 대통령, 미 해군이 일요일(4/19) 봉쇄 돌파 시도한 이란 국적 화물선 사격·나포 발표. 이란은 "신뢰 위반"이라며 보복 경고.</div>          </li>
+          <li>
+            <div class="headline">
+              <a href="https://www.npr.org/2026/04/19/nx-s1-5790378/iran-us-hormuz-closed-impossible" target="_blank" rel="noopener">U.S. seizes Iranian cargo ship in Strait of Hormuz</a>
+<span class="impact negative">악재</span>            </div>
+            <div class="meta">
+<span class="time-ago">21시간 전</span><span class="dot">·</span>NPR            </div>
+<div class="summary">미 해군 나포 관련 현장 상황 보도. 호르무즈 통과 선박 대부분이 U턴, LNG 탱커도 회항 잇따름.</div>          </li>
+          <li>
+            <div class="headline">
+              <a href="https://www.aljazeera.com/news/2026/4/18/iran-closes-strait-of-hormuz-again-over-us-blockade-of-its-ports" target="_blank" rel="noopener">Iran closes Strait of Hormuz again over US blockade of its ports</a>
+<span class="impact negative">악재</span>            </div>
+            <div class="meta">
+<span class="time-ago">1일 전</span><span class="dot">·</span>Al Jazeera            </div>
+<div class="summary">IRGC가 "미국이 이란 항구 봉쇄를 푸는 순간까진 호르무즈 개방 없다"며 재봉쇄 공식화. 휴전 합의 위반이라 주장.</div>          </li>
+        </ul>
+      </div>
+    </details>
   </section>
 
   <section>
