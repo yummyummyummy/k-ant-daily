@@ -81,10 +81,9 @@ description: Generate and publish today's pre-market stock briefing
     "overall_impact": "positive|neutral|negative",
     "indicators_impact": "positive|neutral|negative",
     "overnight_impact": "positive|neutral|negative",
-    "summary": "...",
+    "summary": "오늘 장 전반 흐름 2~3문장 (top_stories 상단 노출)",
     "indicators": [{"name": "KOSPI", "value": "...", "change": "...", "impact": "..."}],
-    "overnight": [{"name": "S&P 500", "value": "...", "change": "...", "impact": "..."}],
-    "key_points": [{"point": "...", "detail": "...", "impact": "...", "sources": [...]}]
+    "overnight": [{"name": "S&P 500", "value": "...", "change": "...", "impact": "..."}]
   },
 
   "sectors": [
@@ -162,7 +161,7 @@ description: Generate and publish today's pre-market stock briefing
 - For deep_dive stocks, `deep_dive` 섹션 필수.
 - For no-material-news days, `recommendation: "hold"`, `confidence: "low"`, `rationale: "개별 뉴스 부재"` OK.
 - `news_sentiment`, `priced_in`, `overnight_signal`, `confidence` 는 **모든 종목에 필수**.
-- `top_stories`는 최대 3개.
+- `top_stories`는 최대 3개. 거시 경제 해석은 `top_stories` 안으로 녹여 넣고, 별도 `macro.key_points`는 쓰지 않는다.
 - `impact` 해석:
   - KOSPI +1% → `positive` (상승=호재)
   - USD/KRW 상승: 수출주 긍정/수입주 부담 → 종합 `neutral` 기본값

@@ -465,7 +465,17 @@
 
   {% if top_stories %}
   <section class="top-stories">
-    <h2>⭐ 오늘의 핵심</h2>
+    <h2>
+      ⭐ 오늘의 핵심
+      {% if macro.overall_impact %}
+      <span class="macro-mood {{ macro.overall_impact }}">
+        {% if macro.overall_impact == 'positive' %}🟢 한국 증시에 우호적
+        {% elif macro.overall_impact == 'negative' %}🔴 한국 증시에 부담
+        {% else %}🟡 중립/혼조{% endif %}
+      </span>
+      {% endif %}
+    </h2>
+    {% if macro.summary %}<p class="point-detail" style="margin: -4px 0 12px; font-size: 14px;">{{ macro.summary }}</p>{% endif %}
     <ol>
       {% for ts in top_stories %}
       <li>
@@ -600,45 +610,6 @@
     </div>
   </section>
   {% endif %}
-
-  <section>
-    <h2>
-      🌏 거시 경제
-      {% if macro.overall_impact %}
-      <span class="macro-mood {{ macro.overall_impact }}">
-        {% if macro.overall_impact == 'positive' %}🟢 한국 증시에 우호적
-        {% elif macro.overall_impact == 'negative' %}🔴 한국 증시에 부담
-        {% else %}🟡 중립/혼조{% endif %}
-      </span>
-      {% endif %}
-    </h2>
-    {% if macro.summary or macro.key_points %}
-    <details class="section-toggle">
-      <summary>자세히 보기</summary>
-      <div class="section-body">
-        {% if macro.summary %}<p class="summary">{{ macro.summary }}</p>{% endif %}
-        {% if macro.key_points %}
-        <ul class="points">
-          {% for pt in macro.key_points %}
-          <li>
-            <div class="point-title">
-              <span class="text">{{ pt.point }}</span>
-              {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
-            </div>
-            {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
-            {% if pt.sources %}
-            <div class="sources">
-              {% for src in pt.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
-            </div>
-            {% endif %}
-          </li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-      </div>
-    </details>
-    {% endif %}
-  </section>
 
   {% if sectors %}
   <section>
