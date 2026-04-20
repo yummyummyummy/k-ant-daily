@@ -137,12 +137,60 @@
     .friend-card { background: rgba(0,0,0,0.25); }
   }
   .coffee-banner.none .friend-card { background: var(--bg); border: 1px solid var(--border); }
-  .friend-card .owner { font-size: 11px; font-weight: 700; opacity: 0.75; letter-spacing: 0.02em; }
-  .friend-card .stock-name { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .friend-card .change { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .friend-card .stock-name { font-size: 13px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .friend-card .change { font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
   .friend-card .change.up { color: var(--pos); }
   .friend-card .change.down { color: var(--neg); }
   .friend-card .change.flat { opacity: 0.6; }
+  .friend-card .owners {
+    display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px;
+  }
+  .friend-card .owner-chip {
+    font-size: 10px; font-weight: 700;
+    background: rgba(0,0,0,0.1); border-radius: 999px;
+    padding: 1px 6px; white-space: nowrap;
+  }
+  @media (prefers-color-scheme: dark) {
+    .friend-card .owner-chip { background: rgba(255,255,255,0.12); }
+  }
+
+  /* MACRO / SECTOR collapse toggle (reuses focus-toggle styling) */
+  .section-toggle > summary {
+    list-style: none; cursor: pointer; user-select: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600; color: var(--accent);
+    background: var(--card); border: 1px solid var(--border); border-radius: 999px;
+    padding: 4px 12px; margin-top: 4px;
+  }
+  .section-toggle > summary::-webkit-details-marker { display: none; }
+  .section-toggle > summary::after { content: "▾"; font-size: 10px; }
+  .section-toggle[open] > summary::after { content: "▴"; }
+  .section-toggle .section-body { padding-top: 12px; }
+
+  /* SECTOR toggle — wider, fills the row */
+  .sector-toggle > summary {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    width: 100%; padding: 10px 14px; cursor: pointer; user-select: none;
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--fg); font-size: 14px; list-style: none;
+  }
+  .sector-toggle > summary::-webkit-details-marker { display: none; }
+  .sector-toggle > summary::after { content: "▾"; font-size: 11px; color: var(--muted); margin-left: auto; }
+  .sector-toggle[open] > summary::after { content: "▴"; }
+  .sector-toggle > summary .sector-name { font-weight: 600; }
+  .sector-toggle .section-body { padding: 10px 14px 2px; }
+
+  /* STOCK CARD owner chips (right-aligned on summary row) */
+  article.stock > details > summary { position: relative; padding-right: 30px; }
+  article.stock > details > summary::after { position: absolute; right: 12px; top: 14px; margin-left: 0; }
+  article.stock .owner-chips {
+    display: inline-flex; flex-wrap: wrap; gap: 3px; margin-left: auto;
+  }
+  article.stock .owner-chips .owner-chip {
+    font-size: 10px; font-weight: 700; color: var(--accent);
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 999px; padding: 2px 8px; white-space: nowrap;
+  }
   .top-stories h2 { margin-top: 0; }
   .top-stories ol { margin: 0; padding-left: 20px; }
   .top-stories li { padding: 6px 0; border-bottom: 1px dashed var(--border); }
@@ -320,14 +368,16 @@
   {% if friends_overview %}
     {% if coffee_buyer %}
     <div class="coffee-banner">
-      <div class="headline">☕ 오늘 커피는 <strong>{{ coffee_buyer.owner }}</strong>님이!</div>
+      <div class="headline">☕ 오늘 커피는 <strong>{{ coffee_buyer.owners | join('·') }}</strong>님이!</div>
       <div class="sub">{{ coffee_buyer.name }} {{ coffee_buyer.change_display }} — 친구 보유 종목 중 최고 상승</div>
       <div class="friend-cards">
         {% for f in friends_overview %}
         <div class="friend-card">
-          <div class="owner">👤 {{ f.owner }}</div>
           <div class="stock-name">{{ f.name }}</div>
           <div class="change {{ f.direction or 'flat' }}">{{ f.change_display }}</div>
+          <div class="owners">
+            {% for o in f.owners %}<span class="owner-chip">👤 {{ o }}</span>{% endfor %}
+          </div>
         </div>
         {% endfor %}
       </div>
@@ -339,9 +389,11 @@
       <div class="friend-cards">
         {% for f in friends_overview %}
         <div class="friend-card">
-          <div class="owner">👤 {{ f.owner }}</div>
           <div class="stock-name">{{ f.name }}</div>
           <div class="change {{ f.direction or 'flat' }}">{{ f.change_display }}</div>
+          <div class="owners">
+            {% for o in f.owners %}<span class="owner-chip">👤 {{ o }}</span>{% endfor %}
+          </div>
         </div>
         {% endfor %}
       </div>
@@ -498,24 +550,31 @@
       </span>
       {% endif %}
     </h2>
-    {% if macro.summary %}<p class="summary">{{ macro.summary }}</p>{% endif %}
-    {% if macro.key_points %}
-    <ul class="points">
-      {% for pt in macro.key_points %}
-      <li>
-        <div class="point-title">
-          <span class="text">{{ pt.point }}</span>
-          {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
-        </div>
-        {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
-        {% if pt.sources %}
-        <div class="sources">
-          {% for src in pt.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
-        </div>
+    {% if macro.summary or macro.key_points %}
+    <details class="section-toggle">
+      <summary>자세히 보기</summary>
+      <div class="section-body">
+        {% if macro.summary %}<p class="summary">{{ macro.summary }}</p>{% endif %}
+        {% if macro.key_points %}
+        <ul class="points">
+          {% for pt in macro.key_points %}
+          <li>
+            <div class="point-title">
+              <span class="text">{{ pt.point }}</span>
+              {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
+            </div>
+            {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
+            {% if pt.sources %}
+            <div class="sources">
+              {% for src in pt.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
+            </div>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
         {% endif %}
-      </li>
-      {% endfor %}
-    </ul>
+      </div>
+    </details>
     {% endif %}
   </section>
 
@@ -523,31 +582,35 @@
   <section>
     <h2>🏭 섹터 흐름</h2>
     {% for sec in sectors %}
-    <div style="margin-bottom: 16px;">
-      <div style="font-weight: 600; margin-bottom: 4px;">
-        {{ sec.name }}
-        {% if sec.impact %}<span class="impact {{ sec.impact }}">{{ sec.impact_label or sec.impact }}</span>{% endif %}
-        {% for s in sec.affected or [] %}<span class="sector-tag">{{ s }}</span>{% endfor %}
-      </div>
-      {% if sec.summary %}<div class="point-detail">{{ sec.summary }}</div>{% endif %}
-      {% if sec.key_points %}
-      <ul class="points">
-        {% for pt in sec.key_points %}
-        <li>
-          <div class="point-title">
-            <span class="text">{{ pt.point }}</span>
-            {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
-          </div>
-          {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
-          {% if pt.sources %}
-          <div class="sources">
-            {% for src in pt.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
-          </div>
+    <div style="margin-bottom: 10px;">
+      <details class="sector-toggle">
+        <summary>
+          <span class="sector-name">{{ sec.name }}</span>
+          {% if sec.impact %}<span class="impact {{ sec.impact }}">{{ sec.impact_label or sec.impact }}</span>{% endif %}
+          {% for s in sec.affected or [] %}<span class="sector-tag">{{ s }}</span>{% endfor %}
+        </summary>
+        <div class="section-body">
+          {% if sec.summary %}<div class="point-detail">{{ sec.summary }}</div>{% endif %}
+          {% if sec.key_points %}
+          <ul class="points">
+            {% for pt in sec.key_points %}
+            <li>
+              <div class="point-title">
+                <span class="text">{{ pt.point }}</span>
+                {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
+              </div>
+              {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
+              {% if pt.sources %}
+              <div class="sources">
+                {% for src in pt.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
+              </div>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
           {% endif %}
-        </li>
-        {% endfor %}
-      </ul>
-      {% endif %}
+        </div>
+      </details>
     </div>
     {% endfor %}
   </section>
@@ -559,7 +622,6 @@
     <article class="stock">
       <details>
         <summary>
-          {% if stock.owner %}<span class="owner-tag">👤 {{ stock.owner }}</span>{% endif %}
           <span class="name">{{ stock.name }}</span>
           <span class="code">{{ stock.code }}{% if stock.market %} · {{ stock.market }}{% endif %}</span>
           {% if stock.price_change_display %}
@@ -567,6 +629,11 @@
           {% endif %}
           {% if stock.recommendation %}
           <span class="rec {{ stock.recommendation }}">{{ stock.recommendation_label or stock.recommendation }}</span>
+          {% endif %}
+          {% if stock.owners %}
+          <span class="owner-chips">
+            {% for o in stock.owners %}<span class="owner-chip">👤 {{ o }}</span>{% endfor %}
+          </span>
           {% endif %}
         </summary>
         <div class="body">

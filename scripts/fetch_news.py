@@ -305,8 +305,10 @@ def main() -> int:
             "name": stock["name"],
             "market": stock.get("market", ""),
         }
-        if stock.get("owner"):
-            entry["owner"] = stock["owner"]
+        if stock.get("owners"):
+            entry["owners"] = stock["owners"]
+        elif stock.get("owner"):
+            entry["owners"] = [stock["owner"]]  # backward compat
         try:
             entry["quote"] = fetch_stock_quote(stock["code"])
         except Exception as e:

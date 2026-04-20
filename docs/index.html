@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2026-04-20 장전 브리핑 · k-ant-daily</title>
-<meta name="description" content="SK하이닉스 신고가 견인에 코스피 6200 회복, 그러나 이란 호르무즈 재봉쇄·휴전 D-2가 변수.">
+<meta name="description" content="SK하이닉스 신고가에 반도체 주도, 코아스템켐온·보로노이·셀리드 K바이오 동반 급등.">
 <link rel="canonical" href="https://yummyummyummy.github.io/k-ant-daily/2026-04-20.html">
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="2026-04-20 장전 브리핑">
-<meta property="og:description" content="SK하이닉스 신고가 견인에 코스피 6200 회복, 그러나 이란 호르무즈 재봉쇄·휴전 D-2가 변수.">
+<meta property="og:description" content="SK하이닉스 신고가에 반도체 주도, 코아스템켐온·보로노이·셀리드 K바이오 동반 급등.">
 <meta property="og:url" content="https://yummyummyummy.github.io/k-ant-daily/2026-04-20.html">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="k-ant-daily">
-<meta property="article:published_time" content="2026-04-20T17:30:00+09:00">
+<meta property="article:published_time" content="2026-04-20T17:45:00+09:00">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2026-04-20 장전 브리핑">
-<meta name="twitter:description" content="SK하이닉스 신고가 견인에 코스피 6200 회복, 그러나 이란 호르무즈 재봉쇄·휴전 D-2가 변수.">
+<meta name="twitter:description" content="SK하이닉스 신고가에 반도체 주도, 코아스템켐온·보로노이·셀리드 K바이오 동반 급등.">
 
 <style>
   :root {
@@ -137,12 +137,60 @@
     .friend-card { background: rgba(0,0,0,0.25); }
   }
   .coffee-banner.none .friend-card { background: var(--bg); border: 1px solid var(--border); }
-  .friend-card .owner { font-size: 11px; font-weight: 700; opacity: 0.75; letter-spacing: 0.02em; }
-  .friend-card .stock-name { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .friend-card .change { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .friend-card .stock-name { font-size: 13px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .friend-card .change { font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
   .friend-card .change.up { color: var(--pos); }
   .friend-card .change.down { color: var(--neg); }
   .friend-card .change.flat { opacity: 0.6; }
+  .friend-card .owners {
+    display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px;
+  }
+  .friend-card .owner-chip {
+    font-size: 10px; font-weight: 700;
+    background: rgba(0,0,0,0.1); border-radius: 999px;
+    padding: 1px 6px; white-space: nowrap;
+  }
+  @media (prefers-color-scheme: dark) {
+    .friend-card .owner-chip { background: rgba(255,255,255,0.12); }
+  }
+
+  /* MACRO / SECTOR collapse toggle (reuses focus-toggle styling) */
+  .section-toggle > summary {
+    list-style: none; cursor: pointer; user-select: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600; color: var(--accent);
+    background: var(--card); border: 1px solid var(--border); border-radius: 999px;
+    padding: 4px 12px; margin-top: 4px;
+  }
+  .section-toggle > summary::-webkit-details-marker { display: none; }
+  .section-toggle > summary::after { content: "▾"; font-size: 10px; }
+  .section-toggle[open] > summary::after { content: "▴"; }
+  .section-toggle .section-body { padding-top: 12px; }
+
+  /* SECTOR toggle — wider, fills the row */
+  .sector-toggle > summary {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    width: 100%; padding: 10px 14px; cursor: pointer; user-select: none;
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--fg); font-size: 14px; list-style: none;
+  }
+  .sector-toggle > summary::-webkit-details-marker { display: none; }
+  .sector-toggle > summary::after { content: "▾"; font-size: 11px; color: var(--muted); margin-left: auto; }
+  .sector-toggle[open] > summary::after { content: "▴"; }
+  .sector-toggle > summary .sector-name { font-weight: 600; }
+  .sector-toggle .section-body { padding: 10px 14px 2px; }
+
+  /* STOCK CARD owner chips (right-aligned on summary row) */
+  article.stock > details > summary { position: relative; padding-right: 30px; }
+  article.stock > details > summary::after { position: absolute; right: 12px; top: 14px; margin-left: 0; }
+  article.stock .owner-chips {
+    display: inline-flex; flex-wrap: wrap; gap: 3px; margin-left: auto;
+  }
+  article.stock .owner-chips .owner-chip {
+    font-size: 10px; font-weight: 700; color: var(--accent);
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 999px; padding: 2px 8px; white-space: nowrap;
+  }
   .top-stories h2 { margin-top: 0; }
   .top-stories ol { margin: 0; padding-left: 20px; }
   .top-stories li { padding: 6px 0; border-bottom: 1px dashed var(--border); }
@@ -313,33 +361,109 @@
 <main>
   <header>
     <h1>📰 2026-04-20 장전 브리핑</h1>
-    <p class="tldr">SK하이닉스 신고가 견인에 코스피 6200 회복, 그러나 이란 호르무즈 재봉쇄·휴전 D-2가 변수.</p>
-    <time>생성: 2026-04-20 17:30 KST · <a href="archive.html">아카이브</a></time>
+    <p class="tldr">SK하이닉스 신고가에 반도체 주도, 코아스템켐온·보로노이·셀리드 K바이오 동반 급등.</p>
+    <time>생성: 2026-04-20 17:45 KST · <a href="archive.html">아카이브</a></time>
   </header>
 
-    <div class="coffee-banner none">
-      <div class="headline">☕ 오늘 커피는 각자 사기</div>
-      <div class="sub">친구 보유 종목 중 상승 종목 없음</div>
+    <div class="coffee-banner">
+      <div class="headline">☕ 오늘 커피는 <strong>이정수</strong>님이!</div>
+      <div class="sub">코아스템켐온 +12.06% — 친구 보유 종목 중 최고 상승</div>
       <div class="friend-cards">
         <div class="friend-card">
-          <div class="owner">👤 이웅수</div>
-          <div class="stock-name">큐리옥스바이오시스템즈</div>
-          <div class="change down">-1.65%</div>
+          <div class="stock-name">코아스템켐온</div>
+          <div class="change up">+12.06%</div>
+          <div class="owners">
+<span class="owner-chip">👤 이정수</span>          </div>
         </div>
         <div class="friend-card">
-          <div class="owner">👤 장윤영</div>
+          <div class="stock-name">보로노이</div>
+          <div class="change up">+11.56%</div>
+          <div class="owners">
+<span class="owner-chip">👤 하우찬</span>          </div>
+        </div>
+        <div class="friend-card">
+          <div class="stock-name">셀리드</div>
+          <div class="change up">+7.73%</div>
+          <div class="owners">
+<span class="owner-chip">👤 이웅수</span><span class="owner-chip">👤 한윤근</span>          </div>
+        </div>
+        <div class="friend-card">
+          <div class="stock-name">SK하이닉스</div>
+          <div class="change up">+3.37%</div>
+          <div class="owners">
+<span class="owner-chip">👤 한윤근</span><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 장윤영</span><span class="owner-chip">👤 이영준</span>          </div>
+        </div>
+        <div class="friend-card">
+          <div class="stock-name">KODEX 코스닥150 레버리지</div>
+          <div class="change up">+1.55%</div>
+          <div class="owners">
+<span class="owner-chip">👤 한윤근</span><span class="owner-chip">👤 하우찬</span>          </div>
+        </div>
+        <div class="friend-card">
+          <div class="stock-name">알테오젠</div>
+          <div class="change up">+1.50%</div>
+          <div class="owners">
+<span class="owner-chip">👤 한윤근</span>          </div>
+        </div>
+        <div class="friend-card">
+          <div class="stock-name">한미반도체</div>
+          <div class="change up">+0.17%</div>
+          <div class="owners">
+<span class="owner-chip">👤 한윤근</span><span class="owner-chip">👤 장한솔</span>          </div>
+        </div>
+        <div class="friend-card">
+          <div class="stock-name">한화에어로스페이스</div>
+          <div class="change up">+0.14%</div>
+          <div class="owners">
+<span class="owner-chip">👤 한윤근</span>          </div>
+        </div>
+        <div class="friend-card">
+          <div class="stock-name">HD현대일렉트릭</div>
+          <div class="change flat">0.00%</div>
+          <div class="owners">
+<span class="owner-chip">👤 한윤근</span>          </div>
+        </div>
+        <div class="friend-card">
           <div class="stock-name">앱클론</div>
           <div class="change flat">0.00%</div>
+          <div class="owners">
+<span class="owner-chip">👤 오병호</span>          </div>
         </div>
         <div class="friend-card">
-          <div class="owner">👤 장한솔</div>
-          <div class="stock-name">삼성E&A</div>
-          <div class="change down">-0.50%</div>
-        </div>
-        <div class="friend-card">
-          <div class="owner">👤 한윤근</div>
           <div class="stock-name">SK이노베이션</div>
           <div class="change down">-0.46%</div>
+          <div class="owners">
+<span class="owner-chip">👤 한윤근</span>          </div>
+        </div>
+        <div class="friend-card">
+          <div class="stock-name">삼성E&A</div>
+          <div class="change down">-0.50%</div>
+          <div class="owners">
+<span class="owner-chip">👤 장한솔</span>          </div>
+        </div>
+        <div class="friend-card">
+          <div class="stock-name">삼성전자</div>
+          <div class="change down">-0.69%</div>
+          <div class="owners">
+<span class="owner-chip">👤 장윤영</span>          </div>
+        </div>
+        <div class="friend-card">
+          <div class="stock-name">에이비엘바이오</div>
+          <div class="change down">-0.80%</div>
+          <div class="owners">
+<span class="owner-chip">👤 우동희</span>          </div>
+        </div>
+        <div class="friend-card">
+          <div class="stock-name">HD한국조선해양</div>
+          <div class="change down">-1.55%</div>
+          <div class="owners">
+<span class="owner-chip">👤 오병호</span>          </div>
+        </div>
+        <div class="friend-card">
+          <div class="stock-name">큐리옥스바이오시스템즈</div>
+          <div class="change down">-1.65%</div>
+          <div class="owners">
+<span class="owner-chip">👤 이웅수</span><span class="owner-chip">👤 주황선</span>          </div>
         </div>
       </div>
     </div>
@@ -350,33 +474,33 @@
       <li>
         <details>
           <summary>
-            <span class="title">SK하이닉스 +3.37% 신고가…엔비디아 납품 수혜</span>
+            <span class="title">코아스템켐온 +12.06% — 루게릭병 치료제 '뉴로나타알' 허가 대기</span>
 <span class="impact positive">호재</span>          </summary>
           <div class="body">
-<div class="why">장중 116만원 신고가. 차세대 서버용 저전력 제품·엔비디아 양산 납품 기대가 반도체 섹터 투자심리를 견인.</div>            <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/011/0004612568" target="_blank" rel="noopener">서울경제</a><a href="https://n.news.naver.com/mnews/article/421/0008900613" target="_blank" rel="noopener">뉴스1</a>            </div>
+<div class="why">K바이오 재부상 흐름에 개별 호재. 관리종목 리스크 해소·국책과제 선정에 이어 루게릭 치료제 올해 성패 언급되며 급등.</div>            <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/008/0005322918" target="_blank" rel="noopener">머니투데이 — 루게릭병 22년, 올해 성패</a><a href="https://n.news.naver.com/mnews/article/018/0006238721" target="_blank" rel="noopener">이데일리 — 관리종목 리스크 해소</a>            </div>
           </div>
         </details>
       </li>
       <li>
         <details>
           <summary>
-            <span class="title">골드만삭스, 코스피 12개월 목표 7000→8000 상향</span>
+            <span class="title">보로노이 +11.56% — 'K바이오 다시 뜬다' 테마 주도</span>
 <span class="impact positive">호재</span>          </summary>
           <div class="body">
-<div class="why">AI 반도체·산업재 초호황 근거로 외국계 IB 상단 재상향. 외국인 재유입 기대감.</div>            <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/014/0005510403" target="_blank" rel="noopener">파이낸셜뉴스</a><a href="https://n.news.naver.com/mnews/article/003/0013898419" target="_blank" rel="noopener">뉴시스</a>            </div>
+<div class="why">정밀의학·키나아제 표적항암제 후발주자 랠리. K바이오 컴백 기사에 개별 수급까지 몰리며 10%대 급등.</div>            <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/009/0005668499" target="_blank" rel="noopener">매일경제 — K바이오 다시 뜬다, 보로노이 15% 상승</a>            </div>
           </div>
         </details>
       </li>
       <li>
         <details>
           <summary>
-            <span class="title">올해 ETF 수익률 1위는 '건설' — 반도체·원유 제쳤다</span>
+            <span class="title">SK하이닉스 +3.37% 신고가·골드만 코스피 8000 상향</span>
 <span class="impact positive">호재</span>          </summary>
           <div class="body">
-<div class="why">중동 재건 기대감에 건설 ETF가 연초 대비 116% 급등. 삼성E&A·현대건설 등 대형 EPC 재조명.</div>            <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/018/0006260825" target="_blank" rel="noopener">이데일리</a><a href="https://n.news.naver.com/mnews/article/366/0001158051" target="_blank" rel="noopener">조선비즈</a>            </div>
+<div class="why">116만원 신고가 경신. 골드만삭스가 이익 전망치를 220% 상향하며 코스피 8000 제시, 반도체 슈퍼사이클 내러티브 강화.</div>            <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/011/0004612662" target="_blank" rel="noopener">서울경제 — 골드만 이익 전망치 220% 상향</a><a href="https://n.news.naver.com/mnews/article/014/0005510403" target="_blank" rel="noopener">파이낸셜뉴스 — 코스피 8000 AI반도체 초호황</a>            </div>
           </div>
         </details>
       </li>
@@ -399,49 +523,49 @@
     <details class="focus-toggle">
       <summary>자세히 보기</summary>
       <div class="focus-body">
-<p class="focus-summary">이란 혁명수비대(IRGC)가 4/18 밤부터 호르무즈 해협을 재봉쇄. 2주 휴전 만료가 4/21~22로 임박하며, 미 해군은 봉쇄를 돌파한 이란 국적선을 나포. 돌파구 없으면 전쟁 재개 경고까지 나온 상황. 한국 증시엔 유가·환율·해운 변동성 확대 요인.</p>        <ul class="news-items">
+<p class="focus-summary">이란 IRGC가 4/18 밤부터 호르무즈 해협을 재봉쇄. 2주 휴전 만료가 4/21~22로 임박, 미 해군은 봉쇄 돌파 시도한 이란 국적선을 나포. 국내 증시엔 유가·환율·해운 변동성 요인이지만 반도체·바이오 랠리가 공포를 상쇄.</p>        <ul class="news-items">
           <li>
             <div class="headline">
-              <a href="https://n.news.naver.com/mnews/article/009/0005668573" target="_blank" rel="noopener">자고 나면 뒤집히는 중동 정세…살얼음판 증시, 든든한 주도주는?</a>
-<span class="impact neutral">중립</span>            </div>
+              <a href="https://n.news.naver.com/mnews/article/009/0005668599" target="_blank" rel="noopener">중동 리스크? 어지간한 걸론 안 흔들려 — 코스피 6200선 재탈환</a>
+<span class="impact positive">호재</span>            </div>
             <div class="meta">
 <span class="time-ago">1시간 전</span><span class="dot">·</span>매일경제            </div>
-<div class="summary">미·이란 휴전 종료일을 앞두고 기대와 경계가 뒤섞이는 가운데 반도체·에너지·증권주에 쏠리는 자금 흐름 분석.</div>          </li>
+<div class="summary">미-이란 휴전 만료 임박에도 실적 기대·AI 반도체 랠리가 공포를 흡수. 시장이 중동 변수에 내성 붙은 모습.</div>          </li>
           <li>
             <div class="headline">
-              <a href="https://n.news.naver.com/mnews/article/018/0006261960" target="_blank" rel="noopener">美·유럽 증시 하락 예고…亞는 AI 랠리에 공포 비껴갔다</a>
-<span class="impact negative">악재</span>            </div>
+              <a href="https://n.news.naver.com/mnews/article/119/0003082571" target="_blank" rel="noopener">중동 협상 변수에도 코스피·코스닥 강보합 마감</a>
+<span class="impact neutral">중립</span>            </div>
             <div class="meta">
-<span class="time-ago">1시간 전</span><span class="dot">·</span>이데일리            </div>
-<div class="summary">미-이란 종전 협상 재개 기대와 군사적 긴장이 뒤섞여 미국 선물·유럽 지수 약세. 아시아는 AI 랠리로 방어.</div>          </li>
+<span class="time-ago">1시간 전</span><span class="dot">·</span>데일리안            </div>
+<div class="summary">협상 불확실성 속에도 국내 증시는 강보합. AI·바이오 섹터 매수가 방어.</div>          </li>
           <li>
             <div class="headline">
               <a href="https://n.news.naver.com/mnews/article/001/0016030430" target="_blank" rel="noopener">[특징주] 미-이란 2차 협상 불확실성에 건설주 장초반 약세</a>
 <span class="impact negative">악재</span>            </div>
             <div class="meta">
 <span class="time-ago">7시간 전</span><span class="dot">·</span>연합뉴스            </div>
-<div class="summary">삼성E&A·현대건설 등 중동 재건 수혜주가 장 초반 약세. 2차 협상 일정 미정의 불확실성이 단기 조정 요인.</div>          </li>
+<div class="summary">삼성E&A·현대건설 등 중동 재건 수혜주가 장 초반 약세. 2차 협상 일정 미정이 단기 부담.</div>          </li>
           <li>
             <div class="headline">
               <a href="https://www.cnn.com/2026/04/19/world/live-news/iran-war-us-trump-hormuz" target="_blank" rel="noopener">Tehran vows retaliation after US seizes Iran-flagged vessel defying blockade</a>
 <span class="impact negative">악재</span>            </div>
             <div class="meta">
 <span class="time-ago">19시간 전</span><span class="dot">·</span>CNN            </div>
-<div class="summary">트럼프 대통령, 미 해군이 일요일(4/19) 봉쇄 돌파 시도한 이란 국적 화물선 사격·나포 발표. 이란은 "신뢰 위반"이라며 보복 경고.</div>          </li>
+<div class="summary">미 해군이 4/19 봉쇄를 돌파한 이란 국적선 사격·나포. 이란 "신뢰 위반" 보복 경고.</div>          </li>
           <li>
             <div class="headline">
               <a href="https://www.npr.org/2026/04/19/nx-s1-5790378/iran-us-hormuz-closed-impossible" target="_blank" rel="noopener">U.S. seizes Iranian cargo ship in Strait of Hormuz</a>
 <span class="impact negative">악재</span>            </div>
             <div class="meta">
 <span class="time-ago">21시간 전</span><span class="dot">·</span>NPR            </div>
-<div class="summary">미 해군 나포 관련 현장 상황 보도. 호르무즈 통과 선박 대부분이 U턴, LNG 탱커도 회항 잇따름.</div>          </li>
+<div class="summary">미 해군 나포 현장 보도. 통과 선박 대부분 U턴, LNG 탱커도 회항.</div>          </li>
           <li>
             <div class="headline">
               <a href="https://www.aljazeera.com/news/2026/4/18/iran-closes-strait-of-hormuz-again-over-us-blockade-of-its-ports" target="_blank" rel="noopener">Iran closes Strait of Hormuz again over US blockade of its ports</a>
 <span class="impact negative">악재</span>            </div>
             <div class="meta">
 <span class="time-ago">1일 전</span><span class="dot">·</span>Al Jazeera            </div>
-<div class="summary">IRGC가 "미국이 이란 항구 봉쇄를 푸는 순간까진 호르무즈 개방 없다"며 재봉쇄 공식화. 휴전 합의 위반이라 주장.</div>          </li>
+<div class="summary">IRGC가 미국의 이란 항구 봉쇄 해제 전까지 재봉쇄 유지 공식화.</div>          </li>
         </ul>
       </div>
     </details>
@@ -589,95 +713,134 @@
 🟢 한국 증시에 우호적
       </span>
     </h2>
-<p class="summary">코스피 6,219(+0.44%) 6200대 재탈환, 반도체 주도. 간밤 美 3대 지수 1%대 동반 상승, VIX 하락. 다만 원/달러 1,472원, WTI -11.45%가 중동 변동성의 단면 — 낙관만 하긴 어려운 구도.</p>    <ul class="points">
-      <li>
-        <div class="point-title">
-          <span class="text">골드만삭스·노무라 잇따라 코스피 목표 8000 제시</span>
-<span class="impact positive">호재</span>        </div>
-<div class="point-detail">골드만삭스 12개월 목표 7000→8000 상향. AI 반도체 초호황·산업재 이익 개선이 근거. 외국인 재유입 전제가 되는 리포트 흐름.</div>        <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/016/0002632431" target="_blank" rel="noopener">헤럴드경제</a><a href="https://n.news.naver.com/mnews/article/014/0005510403" target="_blank" rel="noopener">파이낸셜뉴스</a>        </div>
-      </li>
-      <li>
-        <div class="point-title">
-          <span class="text">반도체 ETF 자금 2조 유입 — 삼전닉스 2배·월배당 ETF 속속 출시</span>
-<span class="impact positive">호재</span>        </div>
-<div class="point-detail">자산운용사들이 삼성전자·SK하이닉스 편입 ETF 경쟁 출시. 반도체 수급에 우호.</div>        <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/008/0005346637" target="_blank" rel="noopener">머니투데이</a><a href="https://n.news.naver.com/mnews/article/119/0003082532" target="_blank" rel="noopener">데일리안</a>        </div>
-      </li>
-      <li>
-        <div class="point-title">
-          <span class="text">올해 ETF 수익률 1위는 건설(+116%) — 반도체·원유 제쳐</span>
-<span class="impact positive">호재</span>        </div>
-<div class="point-detail">중동 재건 기대감·원전·LNG 수주 스토리가 건설주 랠리의 바탕. 삼성E&A·현대건설 등 중장기 스토리 주목.</div>        <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/018/0006260825" target="_blank" rel="noopener">이데일리</a>        </div>
-      </li>
-      <li>
-        <div class="point-title">
-          <span class="text">원/달러 1,472원 — 수출주 우호, 물가엔 부담</span>
-<span class="impact neutral">중립</span>        </div>
-<div class="point-detail">중동 리스크 + 달러 강세로 환율 재상승. 반도체·자동차 단기 환차익 호재, 수입물가·내수엔 부담.</div>        <div class="sources">
-<a href="https://finance.naver.com/marketindex/" target="_blank" rel="noopener">네이버 금융 시세</a>        </div>
-      </li>
-    </ul>
+    <details class="section-toggle">
+      <summary>자세히 보기</summary>
+      <div class="section-body">
+<p class="summary">코스피 6,219(+0.44%)·코스닥 1,174(+0.41%)로 6200대 재탈환. 간밤 美 3대 지수 1%대 동반 상승·VIX 하락으로 위험선호 회복. 원/달러 1,472원·WTI -11.45%는 중동 변동성 반영.</p>        <ul class="points">
+          <li>
+            <div class="point-title">
+              <span class="text">골드만삭스 코스피 목표 7000→8000 (이익 전망치 220% 상향)</span>
+<span class="impact positive">호재</span>            </div>
+<div class="point-detail">AI 반도체 슈퍼사이클·산업재 이익 개선이 근거. 외국인 재유입 전제가 되는 리포트 흐름.</div>            <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/011/0004612662" target="_blank" rel="noopener">서울경제</a><a href="https://n.news.naver.com/mnews/article/014/0005510403" target="_blank" rel="noopener">파이낸셜뉴스</a>            </div>
+          </li>
+          <li>
+            <div class="point-title">
+              <span class="text">K바이오 다시 뜬다 — 보로노이·코아스템·셀리드 랠리</span>
+<span class="impact positive">호재</span>            </div>
+<div class="point-detail">외국인 코스닥 바이오 순매수 흐름 + 개별 호재가 겹치며 10%대 급등 종목 다수 출현.</div>            <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/009/0005668499" target="_blank" rel="noopener">매일경제 — K바이오 다시 뜬다</a><a href="https://n.news.naver.com/mnews/article/366/0001158237" target="_blank" rel="noopener">조선비Z — 코로나 변이 확산에 개미들 상한가</a>            </div>
+          </li>
+          <li>
+            <div class="point-title">
+              <span class="text">원/달러 1,472원 — 수출주 우호, 물가엔 부담</span>
+<span class="impact neutral">중립</span>            </div>
+<div class="point-detail">중동 리스크 + 달러 강세. 반도체·조선·방산 단기 환차익 호재, 내수는 부담.</div>            <div class="sources">
+<a href="https://finance.naver.com/marketindex/" target="_blank" rel="noopener">네이버 금융 시세</a>            </div>
+          </li>
+        </ul>
+      </div>
+    </details>
   </section>
 
   <section>
     <h2>🏭 섹터 흐름</h2>
-    <div style="margin-bottom: 16px;">
-      <div style="font-weight: 600; margin-bottom: 4px;">
-        반도체
-<span class="impact positive">호재</span><span class="sector-tag">SK하이닉스</span><span class="sector-tag">삼성전자</span>      </div>
-<div class="point-detail">SK하이닉스 신고가·엔비디아 양산 납품 호재로 주도. 삼성전자는 동반 상승 기대가 있었으나 차익실현 매물에 -0.69% 마감.</div>      <ul class="points">
-        <li>
-          <div class="point-title">
-            <span class="text">퀄리타스반도체, SK하이닉스와 18억원 IP 라이선스</span>
-<span class="impact positive">호재</span>          </div>
-<div class="point-detail">국내 팹리스 생태계 협업 확장. 차세대 HBM·초고속 인터페이스 로드맵 방증.</div>          <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/293/0000083073" target="_blank" rel="noopener">블로터</a>          </div>
-        </li>
-      </ul>
+    <div style="margin-bottom: 10px;">
+      <details class="sector-toggle">
+        <summary>
+          <span class="sector-name">반도체</span>
+<span class="impact positive">호재</span><span class="sector-tag">SK하이닉스</span><span class="sector-tag">한미반도체</span><span class="sector-tag">삼성전자</span>        </summary>
+        <div class="section-body">
+<div class="point-detail">SK하이닉스 신고가·엔비디아 납품 수혜 + 골드만 코스피 8000 상향이 섹터 리딩. 삼성전자는 차익실현에 -0.69%.</div>          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">ASMPT HBM4용 TC본더 SK하이닉스 유력 수주 — 한미반도체 경쟁구도</span>
+<span class="impact neutral">중립</span>              </div>
+<div class="point-detail">HBM4 본더 시장 경쟁 구도가 구체화. 한미반도체엔 중기 수주 경쟁 압박 요인.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/031/0001023140" target="_blank" rel="noopener">아이뉴스24</a>              </div>
+            </li>
+          </ul>
+        </div>
+      </details>
     </div>
-    <div style="margin-bottom: 16px;">
-      <div style="font-weight: 600; margin-bottom: 4px;">
-        건설·EPC
-<span class="impact neutral">중립</span><span class="sector-tag">삼성E&A</span>      </div>
-<div class="point-detail">건설 ETF가 올해 116% 급등하며 반도체·원유 제친 최고 수익률. 다만 미-이란 2차 협상 불확실성에 오늘 장초반엔 약세.</div>      <ul class="points">
-        <li>
-          <div class="point-title">
-            <span class="text">중동 재건 기대 vs 단기 불확실성 혼재</span>
-<span class="impact neutral">중립</span>          </div>
-<div class="point-detail">호르무즈 재봉쇄·2차 협상 지연이 단기 조정 요인. 중장기 재건 수혜 스토리는 유효.</div>          <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/001/0016030430" target="_blank" rel="noopener">연합뉴스</a>          </div>
-        </li>
-      </ul>
+    <div style="margin-bottom: 10px;">
+      <details class="sector-toggle">
+        <summary>
+          <span class="sector-name">바이오</span>
+<span class="impact positive">호재</span><span class="sector-tag">코아스템켐온</span><span class="sector-tag">보로노이</span><span class="sector-tag">셀리드</span><span class="sector-tag">큐리옥스바이오시스템즈</span><span class="sector-tag">앱클론</span><span class="sector-tag">에이비엘바이오</span>        </summary>
+        <div class="section-body">
+<div class="point-detail">'K바이오 다시 뜬다' 매크로 내러티브에 코아스템켐온 +12%·보로노이 +11.5%·셀리드 +7.7% 동반 급등. 코로나 변이 확산 테마 + 개별 파이프라인 호재 겹쳐.</div>          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">코로나 매미 변이 확산 — 셀리드 등 관련주 무더기 급등</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">진단키트·백신 테마 재부상. 단기 테마성 수급이라 지속성 점검 필요.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/366/0001158237" target="_blank" rel="noopener">조선비즈 — 코로나 변이 확산</a><a href="https://n.news.naver.com/mnews/article/003/0013898272" target="_blank" rel="noopener">뉴시스 — 코로나 테마주 무더기 급등</a>              </div>
+            </li>
+          </ul>
+        </div>
+      </details>
     </div>
-    <div style="margin-bottom: 16px;">
-      <div style="font-weight: 600; margin-bottom: 4px;">
-        바이오
-<span class="impact positive">호재</span><span class="sector-tag">큐리옥스바이오시스템즈</span><span class="sector-tag">앱클론</span>      </div>
-<div class="point-detail">3월 말부터 외국인이 코스피 매도 구간에 코스닥 바이오를 순매수 중. 개별 카탈리스트 없는 종목엔 섹터 프리미엄 정도 기대.</div>      <ul class="points">
-        <li>
-          <div class="point-title">
-            <span class="text">외국인 코스닥 바이오 순매수 기조 유효</span>
-<span class="impact positive">호재</span>          </div>
-<div class="point-detail">코스피 30조 매도 국면에서 코스닥 바이오 종목은 외국인이 담는 구도.</div>          <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/009/0005657786" target="_blank" rel="noopener">매일경제</a>          </div>
-        </li>
-      </ul>
+    <div style="margin-bottom: 10px;">
+      <details class="sector-toggle">
+        <summary>
+          <span class="sector-name">조선·방산·전력</span>
+<span class="impact positive">호재</span><span class="sector-tag">HD한국조선해양</span><span class="sector-tag">한화에어로스페이스</span><span class="sector-tag">HD현대일렉트릭</span>        </summary>
+        <div class="section-body">
+<div class="point-detail">K조선 빅3 1Q 합산 영업이익 2조 육박 — 호황기 이익 실현 본격화. 전력 3사는 북미 경쟁 격화.</div>          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">K조선 1Q 합산 영업이익 2조 육박</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">호황기 이익 실현 본격화. HD한국조선해양 -1.55%지만 중장기 실적 기조 유효.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/021/0002751628" target="_blank" rel="noopener">문화일보</a>              </div>
+            </li>
+            <li>
+              <div class="point-title">
+                <span class="text">HD현대일렉·LS일렉·대한전선 — 韓 전력 3사 북미 대격돌</span>
+<span class="impact neutral">중립</span>              </div>
+<div class="point-detail">AI 데이터센터 수요로 북미 전력 장비 시장 경쟁 심화. 수주 경쟁·가격 경쟁 동시 진행.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/029/0003022687" target="_blank" rel="noopener">디지털타임스</a>              </div>
+            </li>
+          </ul>
+        </div>
+      </details>
     </div>
-    <div style="margin-bottom: 16px;">
-      <div style="font-weight: 600; margin-bottom: 4px;">
-        배터리
-<span class="impact negative">악재</span><span class="sector-tag">SK이노베이션</span>      </div>
-<div class="point-detail">1분기 배터리·석화 실적 '뒷걸음' 전망. 다만 ESS 전환으로 성장축 이동, 하반기 반등 기대.</div>      <ul class="points">
-        <li>
-          <div class="point-title">
-            <span class="text">배터리 3사 1Q 적자 이후 하반기 반등 기대</span>
-<span class="impact neutral">중립</span>          </div>
-<div class="point-detail">EV 캐즘 장기화로 1Q는 어렵지만 ESS 신규 수주·원가 개선이 하반기 체질 정상화 키.</div>          <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/031/0001023211" target="_blank" rel="noopener">아이뉴스24</a><a href="https://n.news.naver.com/mnews/article/016/0002632249" target="_blank" rel="noopener">헤럴드경제 (ESS)</a>          </div>
-        </li>
-      </ul>
+    <div style="margin-bottom: 10px;">
+      <details class="sector-toggle">
+        <summary>
+          <span class="sector-name">건설·EPC</span>
+<span class="impact neutral">중립</span><span class="sector-tag">삼성E&A</span>        </summary>
+        <div class="section-body">
+<div class="point-detail">올해 ETF 수익률 1위 건설(+116%) — 다만 미-이란 2차협상 불확실성에 오늘은 장초반 약세.</div>          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">중동 재건 기대 vs 단기 협상 불확실성</span>
+<span class="impact neutral">중립</span>              </div>
+<div class="point-detail">호르무즈 재봉쇄·휴전 D-2의 불확실성이 중동 EPC주 조정 요인. 중장기 재건 수혜 내러티브 유효.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/001/0016030430" target="_blank" rel="noopener">연합뉴스</a>              </div>
+            </li>
+          </ul>
+        </div>
+      </details>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <details class="sector-toggle">
+        <summary>
+          <span class="sector-name">에너지·배터리</span>
+<span class="impact negative">악재</span><span class="sector-tag">SK이노베이션</span>        </summary>
+        <div class="section-body">
+<div class="point-detail">정유 1Q 호실적 예고에도 한숨 — 구조적 고민. 배터리·석화는 1Q 뒷걸음 예상.</div>          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">1Q 호실적 예고한 정유사들 한숨 ‘푹’</span>
+<span class="impact negative">악재</span>              </div>
+<div class="point-detail">일시적 호실적보다 배터리 적자·EV 캐즘·관세 영향이 주가 눌림 요인.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/018/0006261993" target="_blank" rel="noopener">이데일리</a>              </div>
+            </li>
+          </ul>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -690,23 +853,18 @@
           <span class="code">005930 · KOSPI</span>
           <span class="price-change down">-0.69%</span>
           <span class="rec hold">존버</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 장윤영</span>          </span>
         </summary>
         <div class="body">
-<div class="rec-rationale">AI 데이터센터·인도 공략 등 긍정 뉴스플로우지만 오늘 -0.69% 마감, 차익실현 매물 영향.</div><p class="stock-summary">SK하이닉스 동반 상승 기대에도 차익실현에 밀려 -0.69%. 6월 'AI 데이터센터 서울1' 가동·인도 AI/HVAC 공략 등 중장기 스토리는 유효.</p>
+<div class="rec-rationale">뉴스플로우는 우호(골드만 상향·AI 데이터센터), 오늘은 -0.69% 차익실현에 밀림.</div><p class="stock-summary">골드만삭스 이익 전망치 220% 상향·코스피 8000 제시 등 긍정 뉴스에도 차익실현 매물에 -0.69%. 6월 'AI 데이터센터 서울1' 가동 등 중장기 스토리 유효.</p>
           <ul class="points">
             <li>
               <div class="point-title">
-                <span class="text">'AI 데이터센터 서울1' 6월 가동 — 2·3호 증설 예고</span>
+                <span class="text">골드만삭스, 이익 전망치 220% 상향</span>
 <span class="impact positive">호재</span>              </div>
-<div class="point-detail">국내 AI 인프라 투자 본격화. 자체 수요 + 대외 수주 모두 열어둔 전략.</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/009/0005668599" target="_blank" rel="noopener">매일경제</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">인도 AI·HVAC 공략 가속 — LG전자와 동반</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">B2C 가전·B2B HVAC 투트랙 성장 전략. 중장기 내러티브 보강.</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/030/0003419628" target="_blank" rel="noopener">전자신문</a>              </div>
+<div class="point-detail">AI 반도체 슈퍼사이클 내러티브에 삼성전자도 수혜. 중기 모멘텀 유지.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/011/0004612662" target="_blank" rel="noopener">서울경제</a>              </div>
             </li>
           </ul>
 
@@ -714,7 +872,6 @@
           <h4>공시</h4>
           <ul class="disclosures">
             <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1628875&code=005930" target="_blank" rel="noopener">삼성전자(주) 변경상장(주식소각)</a><span class="date">26.04.09</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1627537&code=005930" target="_blank" rel="noopener">삼성전자(주) 기업설명회(IR) 개최</a><span class="date">26.04.07</span></li>
             <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1627456&code=005930" target="_blank" rel="noopener">삼성전자(주) 연결재무제표기준영업(잠정)실적</a><span class="date">26.04.07</span></li>
           </ul>
         </div>
@@ -727,23 +884,25 @@
           <span class="code">000660 · KOSPI</span>
           <span class="price-change up">+3.37%</span>
           <span class="rec strong_buy">풀매수</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 한윤근</span><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 장윤영</span><span class="owner-chip">👤 이영준</span>          </span>
         </summary>
         <div class="body">
-<div class="rec-rationale">+3.37% 신고가·실적 기대·엔비디아 납품·IP 계약까지 호재 다수, 거시/섹터 순풍.</div><p class="stock-summary">장중 116만원 신고가 갱신, +3.37% 마감. 엔비디아 차세대 AI 플랫폼 양산 수혜, 퀄리타스 18억원 IP 계약 등 공급망 뉴스까지 겹쳐 실적 발표 앞 기대감 지속.</p>
+<div class="rec-rationale">신고가·엔비디아 양산·골드만 상향·IP 계약 등 강한 호재 다수, 거시 순풍.</div><p class="stock-summary">장중 116만원 신고가 갱신, +3.37%. 엔비디아 차세대 AI 플랫폼 양산 수혜, 곽노정 대표 동반성장협의회 등 공급망 메시지도 긍정.</p>
           <ul class="points">
             <li>
               <div class="point-title">
                 <span class="text">116만원 신고가 — '120만닉스' 구간 진입 시도</span>
 <span class="impact positive">호재</span>              </div>
-<div class="point-detail">차세대 서버용 저전력 제품군·엔비디아 양산 납품 기대가 주가 동력.</div>              <div class="sources">
+<div class="point-detail">차세대 서버용 저전력 제품·엔비디아 양산 납품 기대가 주가 동력.</div>              <div class="sources">
 <a href="https://n.news.naver.com/mnews/article/011/0004612568" target="_blank" rel="noopener">서울경제</a>              </div>
             </li>
             <li>
               <div class="point-title">
-                <span class="text">퀄리타스반도체 18억원 IP 라이선스</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">국내 팹리스 협업 확장. 차세대 HBM·초고속 인터페이스 로드맵 방증.</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/293/0000083073" target="_blank" rel="noopener">블로터</a>              </div>
+                <span class="text">곽노정 대표 "AI는 산업 표준" — 동반성장협의회 개최</span>
+<span class="impact neutral">중립</span>              </div>
+<div class="point-detail">협력사 공급망 강화 메시지. 수율·납기 실행 리스크를 낮추는 중기 신호.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/422/0000752891" target="_blank" rel="noopener">연합뉴스TV</a>              </div>
             </li>
           </ul>
 
@@ -751,7 +910,6 @@
           <h4>공시</h4>
           <ul class="disclosures">
             <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1628802&code=000660" target="_blank" rel="noopener">에스케이하이닉스(주) 기업설명회(IR) 개최</a><span class="date">26.04.09</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1623630&code=000660" target="_blank" rel="noopener">에스케이하이닉스(주) 자기주식 처분 결정</a><span class="date">26.03.30</span></li>
           </ul>
         </div>
       </details>
@@ -759,220 +917,51 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">현대차</span>
-          <span class="code">005380 · KOSPI</span>
-          <span class="price-change down">-2.04%</span>
-          <span class="rec hold">존버</span>
-        </summary>
-        <div class="body">
-<div class="rec-rationale">-2.04% 마감. 중기 성장 스토리 보강은 긍정, 단기 촉매 부재 + 노조 이슈 혼재.</div><p class="stock-summary">오늘 -2.04%로 약세. 사장단 총출동 실리콘밸리 채용 행사로 SDV·자율주행 인재 확보 드라이브. 다만 노조 '순익 30%' 성과급 요구·완전월급제 쟁점이 파업 변수.</p>
-          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">9월 美 'HMG 테크 탤런트 포럼' 개최</span>
-<span class="impact neutral">중립</span>              </div>
-<div class="point-detail">무뇨스·박민우·하러 사장 총출동. 해외 이공계 직접 채용으로 소프트웨어 역량 보강.</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/020/0003713792" target="_blank" rel="noopener">동아일보</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">노조 성과급·완전월급제 쟁점</span>
-<span class="impact negative">악재</span>              </div>
-<div class="point-detail">'순익 30%' 요구는 협상 레토릭이나, 완전월급제 쟁점이 파업 변수로 작용 가능.</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/586/0000127359" target="_blank" rel="noopener">시사저널</a>              </div>
-            </li>
-          </ul>
-
-
-          <h4>공시</h4>
-          <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631429&code=005380" target="_blank" rel="noopener">현대자동차(주) 기업설명회(IR) 개최</a><span class="date">26.04.17</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1625404&code=005380" target="_blank" rel="noopener">현대자동차(주) 영업(잠정)실적</a><span class="date">26.04.01</span></li>
-          </ul>
-        </div>
-      </details>
-    </article>
-    <article class="stock">
-      <details>
-        <summary>
-<span class="owner-tag">👤 이웅수</span>          <span class="name">큐리옥스바이오시스템즈</span>
-          <span class="code">445680 · KOSDAQ</span>
-          <span class="price-change down">-1.65%</span>
-          <span class="rec hold">존버</span>
-        </summary>
-        <div class="body">
-<div class="rec-rationale">-1.65% 약세. 신규 모멘텀 부재, 바이오 섹터 외국인 매수 기조는 우호.</div><p class="stock-summary">오늘 -1.65% 하락. 당일 신규 뉴스 없음. 3월 말 외국인 코스닥 바이오 순매수 흐름에 편입된 이력. 장기 모멘텀은 Pluto 시리즈 글로벌 상용화 속도.</p>
-          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">코스닥 바이오 외국인 매수 기조 유효</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">3월 말 코스피 매도 구간에 외국인이 코스닥 바이오주 순매수. 큐리옥스도 편입 목록.</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/009/0005657786" target="_blank" rel="noopener">매일경제</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">4/17 스톡옵션 행사 추가상장</span>
-<span class="impact neutral">중립</span>              </div>
-<div class="point-detail">희석 효과 제한적이나 단기 수급엔 미세한 부담.</div>              <div class="sources">
-<a href="https://finance.naver.com/item/news_notice_read.naver?no=1631513&code=445680" target="_blank" rel="noopener">네이버 공시</a>              </div>
-            </li>
-          </ul>
-
-          <div class="deep-dive">
-            <h4>🔬 심층 분석</h4>
-            <div class="dd-block">
-              <div class="dd-label">주력 사업·제품</div>
-              <div class="dd-body">Laminar Wash 기술 기반 세포 분석 자동화 장비 업체. 원심분리기 없이 laminar flow로 부유세포를 부드럽게 세척, 플로우/매스 사이토메트리·단일세포 시퀀싱의 샘플 준비를 자동화. 주력: HT2100 시스템, Pluto 워크스테이션 시리즈(Pluto Workstation, Pluto Code, Pluto ALPHA), C-FREE 브랜드.</div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">시장성</div>
-              <div class="dd-body">제약사·CGT(세포유전자치료) 개발사·CRO·플로우 코어 랩 대상. Top-15 글로벌 제약사 1곳이 Pluto Code 최초 상업 도입(AstraZeneca R. Cimbro 박사 검증). 2025.3 IMU Biosciences(영국)가 대규모 면역 프로파일링에 Pluto 도입. 국내 보도상 글로벌 장비사 OEM 대량생산 계약, Pluto 3년차 본격 상용화 진입.</div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">경쟁 구도</div>
-              <div class="dd-body">
-                <div class="dd-tags"><span class="dd-tag">Beckman Coulter (CellMek SPS)</span><span class="dd-tag">BD Biosciences (FACSDuet, SPA III, LWA)</span><span class="dd-tag">Sysmex America (PS-10)</span></div>
-              </div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">R&D / 논문·특허 동향</div>
-              <div class="dd-body">Laminar Wash 림프구 회수율 90.6% vs 원심분리 10.5% 내부 비교 데이터. 2024 Cytometry Part B 리뷰(Al-Attar 등)에 자동화 시스템으로 포함. C-FREE 미국 상표 등록 확보.</div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">리스크</div>
-              <div class="dd-body">① 재무: 2025.1H 매출 -28.4% YoY, 영업·순손실 확대. ② 공시 신뢰: 파생 지연공시로 불성실공시법인 지정 예고 전력. ③ 수급: 투자주의·소수계좌 집중 지정 잦음. ④ 경쟁: BD·Beckman 빅3 샘플프렙 확장 중.</div>
-            </div>
-            <div class="sources">
-<a href="https://www.curiox.com/technology/curiox-laminar-wash/" target="_blank" rel="noopener">Curiox — Laminar Wash 기술</a><a href="https://www.curiox.com/news/pluto-code-first-biopharma-adoption/" target="_blank" rel="noopener">Curiox — Pluto Code 첫 제약사 도입</a><a href="https://www.biospace.com/press-releases/imu-biosciences-adopts-curioxs-pluto-for-large-scale-uk-immune-profiling-initiative" target="_blank" rel="noopener">BioSpace — IMU Biosciences Adopts Pluto</a><a href="https://www.beckman.com/flow-cytometry/sample-preparation-stations/cellmek-sps" target="_blank" rel="noopener">Beckman — CellMek SPS</a><a href="https://www.bdbiosciences.com/en-us/products/instruments/sample-prep-systems" target="_blank" rel="noopener">BD — Cell Sample Prep Systems</a><a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=612001" target="_blank" rel="noopener">디지털투데이 — 파생 지연공시 불성실공시 예고</a><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/cyto.b.22125" target="_blank" rel="noopener">Cytometry Part B — 자동화 리뷰</a>            </div>
-          </div>
-
-          <h4>공시</h4>
-          <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631513&code=445680" target="_blank" rel="noopener">큐리옥스바이오시스템즈(주) 추가상장(주식매수선택권행사)</a><span class="date">26.04.17</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1624921&code=445680" target="_blank" rel="noopener">큐리옥스바이오시스템즈(주) 정기주주총회결과</a><span class="date">26.03.31</span></li>
-          </ul>
-        </div>
-      </details>
-    </article>
-    <article class="stock">
-      <details>
-        <summary>
-<span class="owner-tag">👤 장윤영</span>          <span class="name">앱클론</span>
-          <span class="code">174900 · KOSDAQ</span>
+          <span class="name">HD현대일렉트릭</span>
+          <span class="code">267260 · KOSPI</span>
           <span class="price-change flat">0.00%</span>
           <span class="rec hold">존버</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 한윤근</span>          </span>
         </summary>
         <div class="body">
-<div class="rec-rationale">오늘 보합(0.00%). 종근당 이중항체 공동개발은 호재지만 이미 반영, 2026 품목허가 기대 유효.</div><p class="stock-summary">오늘 0.00% 보합. 종근당과의 이중항체 공동개발(3/30)·관리종목 해제(3/13)·단일판매 공급계약(4/7, 4/16 정정) 등 이벤트는 풍부하나 주가 반응은 제한. 핵심은 AT101(네스페셀) 2026 품목허가 진행.</p>
+<div class="rec-rationale">보합. 북미 전력 3사 대격돌 + 녹색 얼라이언스 편입 등 중기 호재지만 단기 촉매는 제한.</div><p class="stock-summary">오늘 보합. HD현대일렉·LS일렉·대한전선 북미 전력 경쟁 본격화. 여수 GX 주간에서 '녹색 얼라이언스' 참여로 민관 해외진출 확대.</p>
           <ul class="points">
             <li>
               <div class="point-title">
-                <span class="text">종근당과 이중항체 기반 난치성 고형암 공동개발</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">앱클론의 이중항체 플랫폼 기술을 종근당과 공동 개발. 공동개발 단계라 상용화까지 장기 레인지.</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/016/0002622223" target="_blank" rel="noopener">헤럴드경제</a><a href="https://n.news.naver.com/mnews/article/009/0005658032" target="_blank" rel="noopener">매일경제</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">4/16 단일판매·공급계약 체결 자율공시(정정)</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">매출 기반 확대 시도. 관리종목 해제와 맞물려 재무 가시성 회복 신호.</div>              <div class="sources">
-<a href="https://finance.naver.com/item/news_notice_read.naver?no=1631030&code=174900" target="_blank" rel="noopener">네이버 공시</a>              </div>
+                <span class="text">北美 전력 3사 대격돌 — AI 데이터센터發 수요</span>
+<span class="impact neutral">중립</span>              </div>
+<div class="point-detail">AI 수요로 북미 변압기·배전 시장 확장 중이나 LS일렉·대한전선과 수주 경쟁.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/029/0003022687" target="_blank" rel="noopener">디지털타임스</a>              </div>
             </li>
           </ul>
 
-          <div class="deep-dive">
-            <h4>🔬 심층 분석</h4>
-            <div class="dd-block">
-              <div class="dd-label">주력 사업·제품</div>
-              <div class="dd-body">CAR-T 세포치료제 및 이중항체 항암제 개발 바이오. 대표 파이프라인: AT101(네스페셀, CD19 CAR-T, 재발·불응성 DLBCL), AC101(둘파타턱, 이중항체 혁신신약). 종근당과 이중항체 기반 난치성 고형암 치료제 공동개발.</div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">시장성</div>
-              <div class="dd-body">글로벌 CAR-T 시장 연 20%대 성장 추정. 국내 시장은 노바티스(킴리아)·길리어드(예스카타)·큐로셀(림카토) 이미 허가권 진입. AT101은 2026 품목허가 목표, 국가신약개발재단(KDDF) 지원.</div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">경쟁 구도</div>
-              <div class="dd-body">
-                <div class="dd-tags"><span class="dd-tag">큐로셀 (림카토, ORR 84%)</span><span class="dd-tag">노바티스 (킴리아, ORR 50%)</span><span class="dd-tag">길리어드 (예스카타, ORR 72%)</span><span class="dd-tag">BMS (Breyanzi)</span></div>
-              </div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">R&D / 논문·특허 동향</div>
-              <div class="dd-body">AT101 임상 2상 중간분석 ORR 94%·CR 68% (경쟁제품 대비 우위 주장). 2025.9 희귀의약품·첨단바이오의약품 신속처리 지정. AC101(WHO INN '둘파타턱') 2026 AACR 발표 예정, 임상 7개 동시 진행.</div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">리스크</div>
-              <div class="dd-body">① 후발주자 — 국내외 경쟁제품이 이미 허가·출시. ② 품목허가까지 아직 시간 필요, 최종 데이터 리스크. ③ 2025 상반기까지 관리종목 상태였던 재무 기반(3월 해제). ④ 종근당 협업은 초기 단계 — 상업화까지 수년.</div>
-            </div>
-            <div class="sources">
-<a href="https://www.kpanews.co.kr/news/articleView.html?idxno=531047" target="_blank" rel="noopener">약사공론 — 앱클론 관리종목 해제·글로벌 임상 확대</a><a href="https://www.dailypharm.com/user/news/333338" target="_blank" rel="noopener">데일리팜 — 네스페셀 경쟁력 점검</a><a href="https://www.hankyung.com/article/202602266704i" target="_blank" rel="noopener">한국경제 — AC101 임상 7개 동시 진행</a><a href="https://www.hankyung.com/article/202603189691i" target="_blank" rel="noopener">한국경제 — AACR 2026 차세대 파이프라인 공개</a><a href="https://www.etoday.co.kr/news/view/2568015" target="_blank" rel="noopener">이투데이 — AC101 WHO 명칭 '둘파타턱' 확정</a><a href="https://www.sisajournal-e.com/news/articleView.html?idxno=415412" target="_blank" rel="noopener">시사저널e — 큐로셀 독주 견제</a>            </div>
-          </div>
 
-          <h4>공시</h4>
-          <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631030&code=174900" target="_blank" rel="noopener">앱클론(주) (정정)단일판매ㆍ공급계약체결</a><span class="date">26.04.16</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1627701&code=174900" target="_blank" rel="noopener">앱클론(주) 단일판매ㆍ공급계약체결</a><span class="date">26.04.07</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1612992&code=174900" target="_blank" rel="noopener">앱클론(주) 관리종목 해제(매출액 30억 미달 사유 해소)</a><span class="date">26.03.13</span></li>
-          </ul>
         </div>
       </details>
     </article>
     <article class="stock">
       <details>
         <summary>
-<span class="owner-tag">👤 장한솔</span>          <span class="name">삼성E&A</span>
-          <span class="code">028050 · KOSPI</span>
-          <span class="price-change down">-0.50%</span>
+          <span class="name">알테오젠</span>
+          <span class="code">196170 · KOSDAQ</span>
+          <span class="price-change up">+1.50%</span>
           <span class="rec hold">존버</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 한윤근</span>          </span>
         </summary>
         <div class="body">
-<div class="rec-rationale">-0.50% 약세. 건설 ETF 116% 수익률 테마의 대표주지만, 호르무즈·美이란 2차협상 불확실성에 단기 조정.</div><p class="stock-summary">오늘 -0.50%. 건설 ETF 연초 대비 116% 급등의 핵심 종목이지만 미-이란 2차 협상 불확실성에 오전 약세. 중동 재건 27개 훼손 시설 중 7개 시공 이력이 중장기 수혜 근거.</p>
+<div class="rec-rationale">K바이오 섹터 순풍에 소폭 상승. 당일 개별 카탈리스트는 뚜렷하지 않음.</div><p class="stock-summary">바이오 섹터 리플레이션 흐름에 +1.50%. SC제형(피하주사) 플랫폼 라이선스 비즈니스 유효, MSD 키트루다SC 진행이 장기 가치 축.</p>
           <ul class="points">
             <li>
               <div class="point-title">
-                <span class="text">올해 ETF 수익률 1위는 '건설'(+116%)</span>
+                <span class="text">K바이오 재부상 흐름 수혜</span>
 <span class="impact positive">호재</span>              </div>
-<div class="point-detail">반도체·원유도 제친 건설 ETF 수익률 1위. 중동 재건·원전·LNG 스토리 다층.</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/018/0006260825" target="_blank" rel="noopener">이데일리</a><a href="https://n.news.naver.com/mnews/article/366/0001158051" target="_blank" rel="noopener">조선비즈</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">미-이란 2차 협상 불확실성 — 건설주 장초반 약세</span>
-<span class="impact negative">악재</span>              </div>
-<div class="point-detail">호르무즈 재봉쇄·휴전 D-2의 단기 불확실성이 중동 EPC주 조정 요인.</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/001/0016030430" target="_blank" rel="noopener">연합뉴스</a>              </div>
+<div class="point-detail">섹터 상승 베타 수혜. 개별 모멘텀은 다음 계약·임상 이벤트 대기.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/009/0005668499" target="_blank" rel="noopener">매일경제 — K바이오 다시 뜬다</a>              </div>
             </li>
           </ul>
 
-          <div class="deep-dive">
-            <h4>🔬 심층 분석</h4>
-            <div class="dd-block">
-              <div class="dd-label">주력 사업·제품</div>
-              <div class="dd-body">화학·정유·가스·LNG·수소·원전 등 에너지·산업 플랜트 EPC 전문(구 삼성엔지니어링, 2024 사명 변경). 중동·동남아 대형 프로젝트 수주 기반.</div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">시장성</div>
-              <div class="dd-body">2026 수주 가이던스 12조원 / 매출 10조 / 영업이익 8천억. 2025년 중동 매출 5조 950억. 전쟁 훼손 중동 시설 27개 중 7개 시공 이력 — 재건 수혜 가능성 국내 최고. 美·LNG·청정에너지 포트폴리오 다각화 진행.</div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">경쟁 구도</div>
-              <div class="dd-body">
-                <div class="dd-tags"><span class="dd-tag">현대건설</span><span class="dd-tag">GS건설</span><span class="dd-tag">대우건설</span><span class="dd-tag">DL이앤씨</span><span class="dd-tag">Technip Energies (佛)</span><span class="dd-tag">JGC (日)</span><span class="dd-tag">KBR (美)</span><span class="dd-tag">Fluor (美)</span></div>
-              </div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">R&D / 논문·특허 동향</div>
-              <div class="dd-body">2025 3Q Review: 우수한 마진, 아쉬운 수주. 메리츠證 목표 3.8만(→ 4/26 시점 가격과 괴리). 사우디 8조 수주 등 뉴스플로우 누적 중.</div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">리스크</div>
-              <div class="dd-body">① 중동 지정학 — 호르무즈 봉쇄·이란 상황. ② 발주 지연·취소 리스크. ③ 글로벌 EPC 경쟁 심화. ④ LNG·청정에너지 유럽/일본 선점 구도. ⑤ 현장 안전·외교 변수.</div>
-            </div>
-            <div class="sources">
-<a href="https://www.newspim.com/news/view/20260414001022" target="_blank" rel="noopener">뉴스핌 — 중동 플랜트 재건 호재, 안전·외교 변수는 부담</a><a href="https://www.ilovepc.co.kr/news/articleView.html?idxno=58917" target="_blank" rel="noopener">디지털포스트 — 중동 재건 18조 수주 가능</a><a href="https://news.bizwatch.co.kr/article/real_estate/2026/01/23/0041" target="_blank" rel="noopener">비즈워치 — 2025년과 달라진 미래</a><a href="http://home.imeritz.com/include/resource/research/WorkFlow/20251029110044720K_02.pdf" target="_blank" rel="noopener">메리츠證 리포트 (3Q25 Review)</a>            </div>
-          </div>
 
         </div>
       </details>
@@ -980,27 +969,218 @@
     <article class="stock">
       <details>
         <summary>
-<span class="owner-tag">👤 한윤근</span>          <span class="name">SK이노베이션</span>
+          <span class="name">한미반도체</span>
+          <span class="code">042700 · KOSPI</span>
+          <span class="price-change up">+0.17%</span>
+          <span class="rec hold">존버</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 한윤근</span><span class="owner-chip">👤 장한솔</span>          </span>
+        </summary>
+        <div class="body">
+<div class="rec-rationale">HBM4 TC본더 경쟁 구도가 구체화되는 국면. 보합 근접 강보합.</div><p class="stock-summary">HBM 본더 원조 프리미엄 유지되지만 ASMPT의 HBM4 TC본더 SK하이닉스 유력 수주 보도가 단기 경쟁 압박. 주식부자 지도에서 약진 기사로 투심은 방어.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">ASMPT HBM4 TC본더 SK하이닉스 유력 수주 보도</span>
+<span class="impact negative">악재</span>              </div>
+<div class="point-detail">한미반도체의 HBM 본더 독점 구도에 경쟁 압력. 3Q 실적과 HBM4 양산 물량 배분이 관건.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/031/0001023140" target="_blank" rel="noopener">아이뉴스24</a>              </div>
+            </li>
+          </ul>
+
+
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">한화에어로스페이스</span>
+          <span class="code">012450 · KOSPI</span>
+          <span class="price-change up">+0.14%</span>
+          <span class="rec hold">존버</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 한윤근</span>          </span>
+        </summary>
+        <div class="body">
+<div class="rec-rationale">강보합. 중동 긴장 속 방산 수혜 기대는 있으나 오늘 개별 모멘텀 부재.</div><p class="stock-summary">방산 수주 모멘텀 + 중동 긴장 재부각은 중기 호재. 오늘은 +0.14%로 큰 움직임 없음. 향후 K9·천궁II 수주 발표 스케줄이 촉매.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">중동 긴장 속 방산 섹터 리플레이션</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">호르무즈 봉쇄 지속 시 방산 수요·국방예산 내러티브 강화.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/009/0005668599" target="_blank" rel="noopener">매일경제 — 중동 리스크?</a>              </div>
+            </li>
+          </ul>
+
+
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">SK이노베이션</span>
           <span class="code">096770 · KOSPI</span>
           <span class="price-change down">-0.46%</span>
           <span class="rec hold">존버</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 한윤근</span>          </span>
         </summary>
         <div class="body">
-<div class="rec-rationale">-0.46% 약세. 정유 1Q 호실적 기대지만 SK온 적자 확대가 상쇄, 방어적 관망.</div><p class="stock-summary">오늘 -0.46%. 1분기 호실적 예고에도 정유사 한숨(이데일리), 배터리·석화 뒷걸음 예상. SK엔무브 합병 효과와 ESS 전환이 중기 체질 개선 변수.</p>
+<div class="rec-rationale">정유 1Q 호실적 기대지만 SK온 적자·배터리 구조 고민이 상쇄, 방어적 관망.</div><p class="stock-summary">오늘 -0.46%. 1Q 호실적 예고에도 정유사 한숨(이데일리), 배터리·석화 뒷걸음 예상. 벤츠 CEO 방한이 배터리 협력 기대감 소폭 부여.</p>
           <ul class="points">
             <li>
               <div class="point-title">
                 <span class="text">1Q 호실적 예고에도 정유사 한숨 — 구조적 고민</span>
 <span class="impact negative">악재</span>              </div>
-<div class="point-detail">일시적 호실적보다는 배터리 적자 구조·EV 캐즘 장기화가 주가 눌림 요인.</div>              <div class="sources">
+<div class="point-detail">배터리 적자 구조·EV 캐즘 장기화가 주가 눌림 요인. 정유 일시 호실적만으로는 반등 제한.</div>              <div class="sources">
 <a href="https://n.news.naver.com/mnews/article/018/0006261993" target="_blank" rel="noopener">이데일리</a>              </div>
             </li>
             <li>
               <div class="point-title">
-                <span class="text">K-배터리 ESS로 활로 — 하반기 반등 기대</span>
+                <span class="text">벤츠 회장 방한 — 삼성·LG 배터리 협력 강화</span>
 <span class="impact positive">호재</span>              </div>
-<div class="point-detail">EV 캐즘 장기화 속 ESS 수주 확대가 성장축. SK온 2026 ESS 신규 수주 목표 20GWh.</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/016/0002632249" target="_blank" rel="noopener">헤럴드경제</a><a href="https://n.news.naver.com/mnews/article/031/0001023211" target="_blank" rel="noopener">아이뉴스24</a>              </div>
+<div class="point-detail">직접 수혜는 아니지만 K-배터리 섹터 전반 센티멘트 반등 변수.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/293/0000083064" target="_blank" rel="noopener">블로터</a>              </div>
+            </li>
+          </ul>
+
+
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">셀리드</span>
+          <span class="code">299660 · KOSDAQ</span>
+          <span class="price-change up">+7.73%</span>
+          <span class="rec buy">매수</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 이웅수</span><span class="owner-chip">👤 한윤근</span>          </span>
+        </summary>
+        <div class="body">
+<div class="rec-rationale">코로나 매미 변이 확산 테마로 +7.73%. 테마 수급 지속 여부 모니터링 필요.</div><p class="stock-summary">'매미' 코로나 변이 확산 우려에 코로나 테마주로 분류돼 +7.73%. 진단키트·백신 동반 급등 분위기. 개별 파이프라인(항암 백신)보다는 단기 테마 수급 위주.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">코로나 변이 테마주 무더기 급등</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">매미 변이 확산에 관련주 동반 랠리. 테마성 수급이라 돌발 변수에 급락 리스크 있음.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/003/0013898272" target="_blank" rel="noopener">뉴시스</a><a href="https://n.news.naver.com/mnews/article/366/0001158237" target="_blank" rel="noopener">조선비즈</a>              </div>
+            </li>
+          </ul>
+
+
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">KODEX 코스닥150 레버리지</span>
+          <span class="code">233740 · KOSPI</span>
+          <span class="price-change up">+1.55%</span>
+          <span class="rec hold">존버</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 한윤근</span><span class="owner-chip">👤 하우찬</span>          </span>
+        </summary>
+        <div class="body">
+<div class="rec-rationale">코스닥 +0.41%에 2배 레버리지로 +1.55%. 코스닥 추세 추종 — 별도 개별 판단 불필요.</div><p class="stock-summary">코스닥150의 2배 레버리지 ETF. 코스닥 강세를 그대로 반영해 +1.55%. 공매도·대차거래 사상 최대지만 지수 자체는 질주 중.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">코스닥 질주 + 레버리지 수급</span>
+<span class="impact neutral">중립</span>              </div>
+<div class="point-detail">ETF 개미 매수가 기관급으로 전략적 전환 중. 단 레버리지는 변동성 장기 보유 시 음의 복리 주의.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/015/0005268891" target="_blank" rel="noopener">한국경제 — ETF 거래 80% 개미</a>              </div>
+            </li>
+          </ul>
+
+
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">삼성E&A</span>
+          <span class="code">028050 · KOSPI</span>
+          <span class="price-change down">-0.50%</span>
+          <span class="rec hold">존버</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 장한솔</span>          </span>
+        </summary>
+        <div class="body">
+<div class="rec-rationale">건설 ETF 116% 수익률 대표주이나, 호르무즈·美이란 2차협상 불확실성에 단기 조정.</div><p class="stock-summary">오늘 -0.50%. 건설 ETF 연초 대비 116% 급등의 핵심 종목이지만 미-이란 2차 협상 불확실성에 오전 약세. 중동 재건 27개 훼손 시설 중 7개 시공 이력이 중장기 수혜 근거.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">올해 ETF 수익률 1위 '건설'(+116%)</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">반도체·원유도 제친 건설 ETF. 중동 재건·원전·LNG 스토리 다층.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/018/0006260825" target="_blank" rel="noopener">이데일리</a>              </div>
+            </li>
+            <li>
+              <div class="point-title">
+                <span class="text">미-이란 2차 협상 불확실성 — 건설주 장초반 약세</span>
+<span class="impact negative">악재</span>              </div>
+<div class="point-detail">호르무즈 재봉쇄·휴전 D-2의 단기 불확실성이 중동 EPC 조정 요인.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/001/0016030430" target="_blank" rel="noopener">연합뉴스</a>              </div>
+            </li>
+          </ul>
+
+
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">보로노이</span>
+          <span class="code">310210 · KOSDAQ</span>
+          <span class="price-change up">+11.56%</span>
+          <span class="rec buy">매수</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 하우찬</span>          </span>
+        </summary>
+        <div class="body">
+<div class="rec-rationale">+11.56% K바이오 랠리 주도. 단, 테마 + 실적 촉매 확인 필요.</div><p class="stock-summary">'K바이오 다시 뜬다' 매크로 내러티브 핵심 종목으로 +11.56% 급등. 매일경제 자이언트에서 보로노이 15% 상승 언급. 정밀의학·키나아제 표적항암제 후발주자 베팅이 재개.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">K바이오 다시 뜬다 — 보로노이 15% 급등 주도</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">과거 고점 대비 낙폭 컸던 바이오 섹터에 외국인·기관 수급 복귀. 파이프라인 이벤트 없이 수급 중심 상승이라 차익실현 경계.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/009/0005668499" target="_blank" rel="noopener">매일경제</a>              </div>
+            </li>
+          </ul>
+
+
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">큐리옥스바이오시스템즈</span>
+          <span class="code">445680 · KOSDAQ</span>
+          <span class="price-change down">-1.65%</span>
+          <span class="rec hold">존버</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 이웅수</span><span class="owner-chip">👤 주황선</span>          </span>
+        </summary>
+        <div class="body">
+<div class="rec-rationale">-1.65% 약세. 당일 신규 모멘텀 부재, 바이오 섹터는 우호.</div><p class="stock-summary">오늘 -1.65%. 당일 신규 뉴스 없음. 바이오 섹터 전반 랠리에서는 소외. 장기 모멘텀은 Pluto 시리즈 글로벌 상용화 속도.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">K바이오 랠리에서는 소외 — 개별 카탈리스트 필요</span>
+<span class="impact negative">악재</span>              </div>
+<div class="point-detail">코아스템·보로노이·셀리드가 주도하는 섹터 랠리에 동참 못함. 개별 계약·임상 이벤트 확인 필요.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/009/0005668499" target="_blank" rel="noopener">매일경제 — K바이오 다시 뜬다</a>              </div>
             </li>
           </ul>
 
@@ -1008,35 +1188,177 @@
             <h4>🔬 심층 분석</h4>
             <div class="dd-block">
               <div class="dd-label">주력 사업·제품</div>
-              <div class="dd-body">정유(SK에너지)·윤활유(SK엔무브, 합병 후 CIC)·화학·자원개발·배터리(SK온, 자회사) 수직계열 에너지 컴플렉스. 2024 SK E&S·SK엔무브 합병으로 포트폴리오 재편.</div>
+              <div class="dd-body">Laminar Wash 기술 기반 세포 분석 자동화 장비. 원심분리기 없이 laminar flow로 부유세포 세척, 플로우/매스 사이토메트리·단일세포 시퀀싱 샘플 준비 자동화. 주력: HT2100, Pluto 시리즈(Workstation/Code/ALPHA), C-FREE 브랜드.</div>
             </div>
             <div class="dd-block">
               <div class="dd-label">시장성</div>
-              <div class="dd-body">글로벌 배터리 EV 캐즘 장기화(2026 EV 판매 2025 수준 전제). 성장축이 EV → ESS로 이동. 2026 ESS 신규 수주 목표 20GWh. 정유/윤활은 안정적 현금흐름원이지만 대규모 배터리 투자 부담 흡수엔 역부족.</div>
+              <div class="dd-body">제약사·CGT 개발사·CRO·플로우 코어 랩 대상. Top-15 글로벌 제약사 1곳 Pluto Code 최초 상업 도입(AstraZeneca 검증). 2025.3 IMU Biosciences(영국) Pluto 도입. Pluto 3년차 본격 상용화 진입.</div>
             </div>
             <div class="dd-block">
               <div class="dd-label">경쟁 구도</div>
               <div class="dd-body">
-                <div class="dd-tags"><span class="dd-tag">LG에너지솔루션</span><span class="dd-tag">삼성SDI</span><span class="dd-tag">CATL (중)</span><span class="dd-tag">BYD (중)</span><span class="dd-tag">에쓰오일</span><span class="dd-tag">GS칼텍스</span><span class="dd-tag">HD현대오일뱅크</span></div>
+                <div class="dd-tags"><span class="dd-tag">Beckman Coulter (CellMek SPS)</span><span class="dd-tag">BD Biosciences (FACSDuet)</span><span class="dd-tag">Sysmex America (PS-10)</span></div>
               </div>
             </div>
             <div class="dd-block">
               <div class="dd-label">R&D / 논문·특허 동향</div>
-              <div class="dd-body">2025 4Q 배터리 영업손실 3,244억 (전분기 대비 1,996억 확대), 윤활 1,885억 흑자로 상쇄 역부족. 2026 SK온 영업손실 1.6조 전망(6년 연속 적자). iM증권 등 목표주가 하향 잇따름. 체질 개선 키: 가동률·원가·합병 시너지.</div>
+              <div class="dd-body">Laminar Wash 림프구 회수율 90.6% vs 원심분리 10.5%. 2024 Cytometry Part B 리뷰 포함. C-FREE 미국 상표 등록.</div>
             </div>
             <div class="dd-block">
               <div class="dd-label">리스크</div>
-              <div class="dd-body">① SK온 적자 지속 — 6년 연속. ② EV 캐즘 장기화. ③ 미국 IRA 보조금 삭감 가능성. ④ 관세 전쟁 영향. ⑤ 호르무즈·중동 정세 → 정유 마진 변동성 확대.</div>
+              <div class="dd-body">① 2025.1H 매출 -28.4% YoY, 적자 확대. ② 파생 지연공시 불성실공시 지정 예고 전력. ③ 투자주의·소수계좌 집중 지정 잦음. ④ BD·Beckman 빅3 샘플프렙 확장.</div>
             </div>
             <div class="sources">
-<a href="https://www.thepublic.kr/news/articleView.html?idxno=291826" target="_blank" rel="noopener">더퍼블릭 — SK온 4분기 적자 확대</a><a href="https://www.businesspost.co.kr/BP?command=article_view&num=427284" target="_blank" rel="noopener">비즈니스포스트 — SK온 영업손실 1.6조 전망</a><a href="https://www.thelec.kr/news/articleView.html?idxno=51459" target="_blank" rel="noopener">디일렉 — 2025 4Q 컨콜 전문</a><a href="https://www.investchosun.com/site/data/html_dir/2025/05/16/2025051680129.html" target="_blank" rel="noopener">인베스트조선 — 계열사 추가 합병 가능성</a><a href="https://www.finance-scope.com/article/view/scp202601300015" target="_blank" rel="noopener">Finance Scope — 배터리 재편·에너지 포트폴리오 전환</a>            </div>
+<a href="https://www.curiox.com/technology/curiox-laminar-wash/" target="_blank" rel="noopener">Curiox — Laminar Wash</a><a href="https://www.curiox.com/news/pluto-code-first-biopharma-adoption/" target="_blank" rel="noopener">Curiox — Pluto Code 첫 제약사 도입</a><a href="https://www.biospace.com/press-releases/imu-biosciences-adopts-curioxs-pluto-for-large-scale-uk-immune-profiling-initiative" target="_blank" rel="noopener">BioSpace — IMU Biosciences Adopts Pluto</a><a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=612001" target="_blank" rel="noopener">디지털투데이 — 파생 지연공시 불성실공시 예고</a>            </div>
           </div>
 
           <h4>공시</h4>
           <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1624277&code=096770" target="_blank" rel="noopener">SK이노베이션(주) (정정)감자 결정(종속회사)</a><span class="date">26.03.31</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1619385&code=096770" target="_blank" rel="noopener">SK이노베이션(주) 대표이사 변경(안내공시)</a><span class="date">26.03.24</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631513&code=445680" target="_blank" rel="noopener">큐리옥스바이오시스템즈(주) 추가상장(주식매수선택권행사)</a><span class="date">26.04.17</span></li>
           </ul>
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">HD한국조선해양</span>
+          <span class="code">009540 · KOSPI</span>
+          <span class="price-change down">-1.55%</span>
+          <span class="rec hold">존버</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 오병호</span>          </span>
+        </summary>
+        <div class="body">
+<div class="rec-rationale">K조선 빅3 1Q 호실적 호재에도 오늘은 차익실현 -1.55%. 중장기 스토리는 유효.</div><p class="stock-summary">K조선 빅3 1Q 합산 영업이익 2조 육박 발표에도 차익실현에 밀려 -1.55%. 호황기 이익 실현 본격화라는 내러티브는 유지.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">K조선 빅3 1Q 합산 영업이익 2조 육박</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">호황기 이익 실현 본격화. 중기 실적 기조는 유지되나 단기 차익실현 매물 출현.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/021/0002751628" target="_blank" rel="noopener">문화일보</a>              </div>
+            </li>
+          </ul>
+
+
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">앱클론</span>
+          <span class="code">174900 · KOSDAQ</span>
+          <span class="price-change flat">0.00%</span>
+          <span class="rec hold">존버</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 오병호</span>          </span>
+        </summary>
+        <div class="body">
+<div class="rec-rationale">보합. 종근당 공동개발·관리종목 해제 등 이벤트는 이미 반영, 2026 품목허가 기다리는 국면.</div><p class="stock-summary">오늘 보합. 종근당과의 이중항체 공동개발(3/30)·관리종목 해제(3/13)·단일판매 공급계약(4/16) 등 이벤트 반영 완료. 핵심은 AT101(네스페셀) 2026 품목허가 진행.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">종근당과 이중항체 기반 난치성 고형암 공동개발</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">앱클론의 이중항체 플랫폼을 종근당과 공동 개발. 상용화까지 장기 레인지.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/016/0002622223" target="_blank" rel="noopener">헤럴드경제</a>              </div>
+            </li>
+          </ul>
+
+          <div class="deep-dive">
+            <h4>🔬 심층 분석</h4>
+            <div class="dd-block">
+              <div class="dd-label">주력 사업·제품</div>
+              <div class="dd-body">CAR-T 세포치료제·이중항체 항암제 개발. 대표: AT101(네스페셀, CD19 CAR-T, 재발·불응 DLBCL), AC101(둘파타턱, 이중항체). 종근당과 이중항체 난치성 고형암 공동개발.</div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-label">시장성</div>
+              <div class="dd-body">글로벌 CAR-T 연 20%대 성장. 국내는 노바티스(킴리아)·길리어드(예스카타)·큐로셀(림카토) 허가권. AT101은 2026 품목허가 목표, KDDF 지원.</div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-label">경쟁 구도</div>
+              <div class="dd-body">
+                <div class="dd-tags"><span class="dd-tag">큐로셀 (림카토, ORR 84%)</span><span class="dd-tag">노바티스 (킴리아, ORR 50%)</span><span class="dd-tag">길리어드 (예스카타, ORR 72%)</span></div>
+              </div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-label">R&D / 논문·특허 동향</div>
+              <div class="dd-body">AT101 2상 중간 ORR 94%·CR 68%. 2025.9 희귀의약품·첨단바이오 신속처리 지정. AC101 임상 7개 동시 진행, 2026 AACR 발표 예정.</div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-label">리스크</div>
+              <div class="dd-body">① 후발주자 — 국내외 경쟁제품 이미 허가. ② 최종 데이터·허가 리스크. ③ 2025 상반기 관리종목이었던 재무 기반. ④ 종근당 협업 초기 단계.</div>
+            </div>
+            <div class="sources">
+<a href="https://www.kpanews.co.kr/news/articleView.html?idxno=531047" target="_blank" rel="noopener">약사공론 — 앱클론 관리종목 해제·글로벌 임상 확대</a><a href="https://www.dailypharm.com/user/news/333338" target="_blank" rel="noopener">데일리팜 — 네스페셀 경쟁력 점검</a><a href="https://www.hankyung.com/article/202603189691i" target="_blank" rel="noopener">한국경제 — AACR 2026 차세대 파이프라인 공개</a>            </div>
+          </div>
+
+          <h4>공시</h4>
+          <ul class="disclosures">
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631030&code=174900" target="_blank" rel="noopener">앱클론(주) (정정)단일판매ㆍ공급계약체결</a><span class="date">26.04.16</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1612992&code=174900" target="_blank" rel="noopener">앱클론(주) 관리종목 해제</a><span class="date">26.03.13</span></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">에이비엘바이오</span>
+          <span class="code">298380 · KOSDAQ</span>
+          <span class="price-change down">-0.80%</span>
+          <span class="rec hold">존버</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 우동희</span>          </span>
+        </summary>
+        <div class="body">
+<div class="rec-rationale">-0.80% 소폭 약세. K바이오 랠리 대비 소외, 개별 파이프라인 이벤트 대기.</div><p class="stock-summary">바이오 섹터 랠리에서 소외돼 -0.80%. Grabody-B(BBB 셔틀) 플랫폼과 사노피 딜이 장기 가치축. 당일 개별 촉매 없음.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">K바이오 섹터 랠리에서 소외</span>
+<span class="impact negative">악재</span>              </div>
+<div class="point-detail">보로노이·코아스템·셀리드가 주도하는 섹터 랠리에 동참 못함. 다음 임상 이벤트 대기.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/009/0005668499" target="_blank" rel="noopener">매일경제</a>              </div>
+            </li>
+          </ul>
+
+
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">코아스템켐온</span>
+          <span class="code">166480 · KOSDAQ</span>
+          <span class="price-change up">+12.06%</span>
+          <span class="rec strong_buy">풀매수</span>
+          <span class="owner-chips">
+<span class="owner-chip">👤 이정수</span>          </span>
+        </summary>
+        <div class="body">
+<div class="rec-rationale">+12.06% 급등. 루게릭 치료제 올해 성패 + 국책과제 + 관리종목 해소 — 호재 다수 + 섹터 순풍.</div><p class="stock-summary">오늘 +12.06%로 코스닥 탑게이너 급. 루게릭병 치료제 '뉴로나타알' 허가 대기·베트남 비임상 연구시설·국책과제 선정 등 호재 중첩. K바이오 리플레이션 수혜 동시에 받음.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">루게릭 치료제 '뉴로나타알' 22년 개발 올해 성패</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">허가 대기 중. 승인 시 시가총액 리레이팅 구간. 실패 시 급락 가능성도 동시 존재.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/008/0005322918" target="_blank" rel="noopener">머니투데이</a><a href="https://n.news.naver.com/mnews/article/018/0006238721" target="_blank" rel="noopener">이데일리 — 관리종목 리스크 해소</a>              </div>
+            </li>
+            <li>
+              <div class="point-title">
+                <span class="text">베트남 한국형 비임상 연구시설 설립</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">CRO 사업 확장 모멘텀. 해외 거점 확보로 중장기 매출 다변화.</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/016/0002631883" target="_blank" rel="noopener">헤럴드경제</a>              </div>
+            </li>
+          </ul>
+
+
         </div>
       </details>
     </article>

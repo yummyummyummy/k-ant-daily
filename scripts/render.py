@@ -154,6 +154,9 @@ def _normalize(summary: dict) -> dict:
             _annotate_impact(pt)
 
     for stock in summary.get("stocks") or []:
+        # backward-compat: accept single `owner` as `owners: [owner]`
+        if stock.get("owner") and not stock.get("owners"):
+            stock["owners"] = [stock["owner"]]
         rec = stock.get("recommendation")
         if rec and "recommendation_label" not in stock:
             stock["recommendation_label"] = RECOMMENDATION_LABEL.get(rec, rec)
@@ -181,15 +184,15 @@ def _normalize(summary: dict) -> dict:
 
 
 def _coffee_buyer(stocks: list[dict]) -> dict | None:
-    """Among friend-stocks (those with `owner`), return the top gainer (> 0%). None otherwise."""
-    friend = [s for s in stocks if s.get("owner") and s.get("price_change_pct_num") is not None]
+    """Return the top-gaining friend-stock (> 0%) with its owners. None if no green."""
+    friend = [s for s in stocks if s.get("owners") and s.get("price_change_pct_num") is not None]
     up = [s for s in friend if s["price_change_pct_num"] > 0]
     if not up:
         return None
     up.sort(key=lambda s: s["price_change_pct_num"], reverse=True)
     top = up[0]
     return {
-        "owner": top["owner"],
+        "owners": top.get("owners") or [],
         "name": top["name"],
         "code": top["code"],
         "change_display": top.get("price_change_display", ""),
@@ -197,16 +200,20 @@ def _coffee_buyer(stocks: list[dict]) -> dict | None:
 
 
 def _friends_overview(stocks: list[dict]) -> list[dict]:
-    """Compact view of all friend-stocks for the coffee banner subline."""
-    return [
+    """One card per friend-stock for the coffee banner, sorted by today's change desc."""
+    out = [
         {
-            "owner": s["owner"],
+            "owners": s.get("owners") or [],
             "name": s["name"],
+            "code": s["code"],
             "change_display": s.get("price_change_display", "-"),
             "direction": s.get("price_direction", ""),
+            "pct": s.get("price_change_pct_num", 0) or 0,
         }
-        for s in stocks if s.get("owner")
+        for s in stocks if s.get("owners")
     ]
+    out.sort(key=lambda c: c["pct"], reverse=True)
+    return out
 
 
 def _display_time(iso: str) -> str:

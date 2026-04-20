@@ -2,49 +2,75 @@ stocks:
   - code: "005930"
     name: "삼성전자"
     market: KOSPI
+    owners: ["장윤영"]
   - code: "000660"
     name: "SK하이닉스"
     market: KOSPI
-  - code: "005380"
-    name: "현대차"
+    owners: ["한윤근", "장한솔", "장윤영", "이영준"]
+  - code: "267260"
+    name: "HD현대일렉트릭"
     market: KOSPI
+    owners: ["한윤근"]
+  - code: "196170"
+    name: "알테오젠"
+    market: KOSDAQ
+    owners: ["한윤근"]
+  - code: "042700"
+    name: "한미반도체"
+    market: KOSPI
+    owners: ["한윤근", "장한솔"]
+  - code: "012450"
+    name: "한화에어로스페이스"
+    market: KOSPI
+    owners: ["한윤근"]
+  - code: "096770"
+    name: "SK이노베이션"
+    market: KOSPI
+    owners: ["한윤근"]
+  - code: "299660"
+    name: "셀리드"
+    market: KOSDAQ
+    owners: ["이웅수", "한윤근"]
+  - code: "233740"
+    name: "KODEX 코스닥150 레버리지"
+    market: KOSPI
+    is_etf: true
+    owners: ["한윤근", "하우찬"]
+  - code: "028050"
+    name: "삼성E&A"
+    market: KOSPI
+    owners: ["장한솔"]
+  - code: "310210"
+    name: "보로노이"
+    market: KOSDAQ
+    owners: ["하우찬"]
   - code: "445680"
     name: "큐리옥스바이오시스템즈"
     market: KOSDAQ
-    owner: "이웅수"
+    owners: ["이웅수", "주황선"]
     deep_dive: true
     keywords:
       - "큐리옥스"
       - "Curiox"
       - "Laminar Wash"
-      - "세포 기반 분석"
+  - code: "009540"
+    name: "HD한국조선해양"
+    market: KOSPI
+    owners: ["오병호"]
   - code: "174900"
     name: "앱클론"
     market: KOSDAQ
-    owner: "장윤영"
+    owners: ["오병호"]
     deep_dive: true
     keywords:
       - "앱클론"
       - "AbClon"
       - "CAR-T"
-      - "이중 항체"
-  - code: "028050"
-    name: "삼성E&A"
-    market: KOSPI
-    owner: "장한솔"
-    deep_dive: true
-    keywords:
-      - "삼성E&A"
-      - "삼성엔지니어링"
-      - "EPC"
-      - "플랜트"
-  - code: "096770"
-    name: "SK이노베이션"
-    market: KOSPI
-    owner: "한윤근"
-    deep_dive: true
-    keywords:
-      - "SK이노베이션"
-      - "SK온"
-      - "배터리"
-      - "정유"
+  - code: "298380"
+    name: "에이비엘바이오"
+    market: KOSDAQ
+    owners: ["우동희"]
+  - code: "166480"
+    name: "코아스템켐온"
+    market: KOSDAQ
+    owners: ["이정수"]
