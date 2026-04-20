@@ -52,6 +52,12 @@ RECOMMENDATION_LABEL = {
     "strong_sell": "풀매도",
 }
 
+STATUS_LABEL = {
+    "closed": "봉쇄",
+    "restricted": "제한 통행",
+    "open": "통행 중",
+}
+
 
 def _infer_direction(change: str | None) -> str:
     if not change:
@@ -70,8 +76,41 @@ def _annotate_impact(obj: dict) -> None:
         obj["impact_label"] = IMPACT_LABEL.get(impact, impact)
 
 
+def _time_ago(iso_str: str | None, now: datetime) -> str:
+    if not iso_str:
+        return ""
+    try:
+        dt = datetime.fromisoformat(iso_str)
+    except Exception:
+        return ""
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=now.tzinfo or KST)
+    delta = now - dt
+    secs = int(delta.total_seconds())
+    if secs < 0:
+        return "방금 전"
+    if secs < 60:
+        return "방금 전"
+    if secs < 3600:
+        return f"{secs // 60}분 전"
+    if secs < 86400:
+        return f"{secs // 3600}시간 전"
+    days = secs // 86400
+    if days < 7:
+        return f"{days}일 전"
+    return dt.strftime("%m/%d")
+
+
 def _normalize(summary: dict) -> dict:
     """Fill derived fields the template relies on."""
+    # reference "now" for time-ago calculations: prefer generated_at, fallback to system now
+    try:
+        now = datetime.fromisoformat(summary.get("generated_at", ""))
+        if now.tzinfo is None:
+            now = now.replace(tzinfo=KST)
+    except Exception:
+        now = datetime.now(KST)
+
     macro = summary.get("macro", {}) or {}
     for ind in (macro.get("indicators") or []) + (macro.get("overnight") or []):
         if "direction" not in ind:
@@ -79,6 +118,11 @@ def _normalize(summary: dict) -> dict:
         _annotate_impact(ind)
     for pt in macro.get("key_points") or []:
         _annotate_impact(pt)
+    # overall impact for each indicator block (displayed as a badge next to the h2)
+    for key in ("indicators_impact", "overnight_impact"):
+        impact = macro.get(key)
+        if impact:
+            macro[f"{key}_label"] = IMPACT_LABEL.get(impact, impact)
 
     for ts in summary.get("top_stories") or []:
         _annotate_impact(ts)
@@ -86,6 +130,21 @@ def _normalize(summary: dict) -> dict:
     focus = summary.get("focus")
     if focus:
         _annotate_impact(focus)
+        status = focus.get("status") or {}
+        if status:
+            lvl = status.get("level")
+            if lvl and "label" not in status:
+                status["label"] = STATUS_LABEL.get(lvl, lvl)
+        # news_items: sort by published_at desc, annotate time_ago + impact_label
+        items = focus.get("news_items") or []
+        for n in items:
+            _annotate_impact(n)
+            n["time_ago"] = _time_ago(n.get("published_at"), now)
+        items.sort(
+            key=lambda n: n.get("published_at") or "",
+            reverse=True,
+        )
+        focus["news_items"] = items
         for pt in focus.get("key_points") or []:
             _annotate_impact(pt)
 
@@ -103,9 +162,51 @@ def _normalize(summary: dict) -> dict:
             legacy = {"positive": "buy", "negative": "sell", "neutral": "hold"}
             stock["recommendation"] = legacy.get(stock["sentiment"], "hold")
             stock["recommendation_label"] = RECOMMENDATION_LABEL[stock["recommendation"]]
+        # derive quote display fields
+        quote = stock.get("quote") or {}
+        pct_num = quote.get("change_pct_num")
+        if pct_num is None and quote.get("change_pct"):
+            try:
+                pct_num = float(str(quote["change_pct"]).replace("%", "").replace("+", ""))
+            except ValueError:
+                pct_num = None
+        if pct_num is not None:
+            stock["price_change_pct_num"] = pct_num
+            stock["price_direction"] = "up" if pct_num > 0 else ("down" if pct_num < 0 else "flat")
+            sign = "+" if pct_num > 0 else ""
+            stock["price_change_display"] = f"{sign}{pct_num:.2f}%"
         for pt in stock.get("key_points") or []:
             _annotate_impact(pt)
     return summary
+
+
+def _coffee_buyer(stocks: list[dict]) -> dict | None:
+    """Among friend-stocks (those with `owner`), return the top gainer (> 0%). None otherwise."""
+    friend = [s for s in stocks if s.get("owner") and s.get("price_change_pct_num") is not None]
+    up = [s for s in friend if s["price_change_pct_num"] > 0]
+    if not up:
+        return None
+    up.sort(key=lambda s: s["price_change_pct_num"], reverse=True)
+    top = up[0]
+    return {
+        "owner": top["owner"],
+        "name": top["name"],
+        "code": top["code"],
+        "change_display": top.get("price_change_display", ""),
+    }
+
+
+def _friends_overview(stocks: list[dict]) -> list[dict]:
+    """Compact view of all friend-stocks for the coffee banner subline."""
+    return [
+        {
+            "owner": s["owner"],
+            "name": s["name"],
+            "change_display": s.get("price_change_display", "-"),
+            "direction": s.get("price_direction", ""),
+        }
+        for s in stocks if s.get("owner")
+    ]
 
 
 def _display_time(iso: str) -> str:
@@ -122,6 +223,7 @@ def render_report(summary: dict, base_url: str) -> tuple[str, str]:
     filename = f"{date}.html"
     canonical = f"{base_url.rstrip('/')}/{filename}"
 
+    stocks = summary.get("stocks", []) or []
     env = _env()
     tmpl = env.get_template("report.html.j2")
     html = tmpl.render(
@@ -135,7 +237,9 @@ def render_report(summary: dict, base_url: str) -> tuple[str, str]:
         focus=summary.get("focus") or None,
         macro=summary.get("macro", {}) or {},
         sectors=summary.get("sectors", []) or [],
-        stocks=summary.get("stocks", []) or [],
+        stocks=stocks,
+        coffee_buyer=_coffee_buyer(stocks),
+        friends_overview=_friends_overview(stocks),
     )
     return filename, html
 

@@ -11,9 +11,40 @@ stocks:
   - code: "445680"
     name: "큐리옥스바이오시스템즈"
     market: KOSDAQ
+    owner: "이웅수"
     deep_dive: true
     keywords:
       - "큐리옥스"
       - "Curiox"
       - "Laminar Wash"
       - "세포 기반 분석"
+  - code: "174900"
+    name: "앱클론"
+    market: KOSDAQ
+    owner: "장윤영"
+    deep_dive: true
+    keywords:
+      - "앱클론"
+      - "AbClon"
+      - "CAR-T"
+      - "이중 항체"
+  - code: "028050"
+    name: "삼성E&A"
+    market: KOSPI
+    owner: "장한솔"
+    deep_dive: true
+    keywords:
+      - "삼성E&A"
+      - "삼성엔지니어링"
+      - "EPC"
+      - "플랜트"
+  - code: "096770"
+    name: "SK이노베이션"
+    market: KOSPI
+    owner: "한윤근"
+    deep_dive: true
+    keywords:
+      - "SK이노베이션"
+      - "SK온"
+      - "배터리"
+      - "정유"

@@ -76,6 +76,60 @@
   }
   .focus h2 { margin-top: 0; }
   .focus .focus-summary { margin: 0 0 8px; font-size: 15px; }
+  .focus-status {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px;
+    padding: 10px 12px; margin: 0 0 12px;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+  }
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 13px; font-weight: 700; padding: 4px 12px;
+    border-radius: 999px; letter-spacing: 0.02em;
+  }
+  .status-badge.closed      { background: #dc2626; color: white; }
+  .status-badge.restricted  { background: #f59e0b; color: white; }
+  .status-badge.open        { background: #16a34a; color: white; }
+  @media (prefers-color-scheme: dark) {
+    .status-badge.closed     { background: #b91c1c; }
+    .status-badge.restricted { background: #d97706; }
+    .status-badge.open       { background: #15803d; }
+  }
+  .status-detail { font-size: 13px; color: var(--muted); }
+  .ship-count   { font-size: 13px; color: var(--fg); }
+  .ship-count strong { font-size: 15px; color: var(--accent); }
+
+  .news-items { list-style: none; padding: 0; margin: 8px 0 0; }
+  .news-items li {
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .news-items li:last-child { border-bottom: none; }
+  .news-items .headline { font-weight: 600; display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+  .news-items .headline a { color: var(--fg); text-decoration: none; flex: 1; min-width: 0; }
+  .news-items .headline a:hover { color: var(--accent); }
+  .news-items .meta { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .news-items .meta .dot { margin: 0 6px; }
+  .news-items .time-ago { color: var(--accent); font-weight: 600; }
+  .news-items .summary { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+  /* COFFEE BANNER */
+  .coffee-banner {
+    background: linear-gradient(135deg, #fde68a 0%, #fbbf24 100%);
+    color: #422006;
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 20px;
+    font-size: 15px;
+  }
+  @media (prefers-color-scheme: dark) {
+    .coffee-banner { background: linear-gradient(135deg, #78350f 0%, #92400e 100%); color: #fef3c7; }
+  }
+  .coffee-banner .headline { font-weight: 700; font-size: 17px; margin-bottom: 4px; }
+  .coffee-banner .sub { font-size: 13px; opacity: 0.85; }
+  .coffee-banner.none { background: var(--card); color: var(--fg); border: 1px dashed var(--border); }
+  .friend-row { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 6px; font-size: 13px; }
+  .friend-row .friend { display: inline-flex; gap: 4px; align-items: baseline; }
+  .friend-row .friend .owner { font-weight: 600; }
+  .friend-row .up { color: var(--pos); font-weight: 600; }
+  .friend-row .down { color: var(--neg); font-weight: 600; }
+  .friend-row .flat { color: var(--muted); }
   .top-stories h2 { margin-top: 0; }
   .top-stories ol { margin: 0; padding-left: 20px; }
   .top-stories li { padding: 8px 0; border-bottom: 1px dashed var(--border); }
@@ -133,10 +187,36 @@
   .points .sources a:hover { text-decoration: underline; }
 
   /* STOCK CARD */
-  article.stock { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+  article.stock { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+  article.stock > details > summary {
+    list-style: none; cursor: pointer; padding: 14px 16px;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    user-select: none;
+  }
+  article.stock > details > summary::-webkit-details-marker { display: none; }
+  article.stock > details > summary::after {
+    content: "▸"; color: var(--muted); font-size: 14px; margin-left: auto; transition: transform 0.15s;
+  }
+  article.stock > details[open] > summary::after { transform: rotate(90deg); }
+  article.stock > details[open] > summary { border-bottom: 1px solid var(--border); }
+  article.stock .body { padding: 12px 16px 16px; }
+  article.stock .owner-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 12px; font-weight: 700; color: var(--accent);
+    background: var(--bg); padding: 3px 8px; border-radius: 999px;
+    border: 1px solid var(--border);
+  }
+  article.stock .name { font-size: 16px; font-weight: 600; }
+  article.stock .code { font-size: 11px; color: var(--muted); font-weight: 400; font-family: ui-monospace, SFMono-Regular, monospace; }
+  article.stock .price-change {
+    font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums;
+    padding: 2px 8px; border-radius: 4px;
+  }
+  article.stock .price-change.up { color: var(--pos); background: var(--pos-bg); }
+  article.stock .price-change.down { color: var(--neg); background: var(--neg-bg); }
+  article.stock .price-change.flat { color: var(--muted); background: var(--neu-bg); }
   article.stock header { border: none; padding: 0; margin: 0 0 8px; }
   article.stock h3 { margin: 0; font-size: 17px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-  article.stock .code { font-size: 12px; color: var(--muted); font-weight: 400; font-family: ui-monospace, SFMono-Regular, monospace; }
 
   /* RECOMMENDATION BADGE (5 levels) */
   .rec {
@@ -197,6 +277,30 @@
     <time>생성: {{ generated_at_display }} KST · <a href="archive.html">아카이브</a></time>
   </header>
 
+  {% if friends_overview %}
+    {% if coffee_buyer %}
+    <div class="coffee-banner">
+      <div class="headline">☕ 오늘 커피는 <strong>{{ coffee_buyer.owner }}</strong>님이!</div>
+      <div class="sub">{{ coffee_buyer.name }} {{ coffee_buyer.change_display }} — 친구 보유 종목 중 최고 상승</div>
+      <div class="friend-row">
+        {% for f in friends_overview %}
+        <span class="friend"><span class="owner">{{ f.owner }}</span>·{{ f.name }} <span class="{{ f.direction or 'flat' }}">{{ f.change_display }}</span></span>
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <div class="coffee-banner none">
+      <div class="headline">☕ 오늘 커피는 각자 사기</div>
+      <div class="sub">친구 보유 종목 중 상승 종목 없음</div>
+      <div class="friend-row">
+        {% for f in friends_overview %}
+        <span class="friend"><span class="owner">{{ f.owner }}</span>·{{ f.name }} <span class="{{ f.direction or 'flat' }}">{{ f.change_display }}</span></span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  {% endif %}
+
   {% if top_stories %}
   <section class="top-stories">
     <h2>⭐ 오늘의 핵심</h2>
@@ -225,21 +329,41 @@
       🚨 {{ focus.title or '집중 이슈' }}
       {% if focus.impact %}<span class="impact {{ focus.impact }}">{{ focus.impact_label or focus.impact }}</span>{% endif %}
     </h2>
-    {% if focus.summary %}<p class="focus-summary">{{ focus.summary }}</p>{% endif %}
-    {% if focus.key_points %}
-    <ul class="points">
-      {% for pt in focus.key_points %}
-      <li>
-        <div class="point-title">
-          <span class="text">{{ pt.point }}</span>
-          {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
-        </div>
-        {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
-        {% if pt.sources %}
-        <div class="sources">
-          {% for src in pt.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
-        </div>
+    {% if focus.status %}
+    <div class="focus-status">
+      {% if focus.status.level %}
+      <span class="status-badge {{ focus.status.level }}">
+        {% if focus.status.level == 'closed' %}🚫{% elif focus.status.level == 'restricted' %}⚠️{% elif focus.status.level == 'open' %}✅{% endif %}
+        {{ focus.status.label or focus.status.level }}
+      </span>
+      {% endif %}
+      {% if focus.status.detail %}<span class="status-detail">{{ focus.status.detail }}</span>{% endif %}
+      {% if focus.status.ship_count %}
+      <span class="ship-count">
+        🚢 <strong>{{ focus.status.ship_count.value }}</strong>
+        {% if focus.status.ship_count.date %}({{ focus.status.ship_count.date }}){% endif %}
+        {% if focus.status.ship_count.note %} · {{ focus.status.ship_count.note }}{% endif %}
+        {% if focus.status.ship_count.source %}
+        <a href="{{ focus.status.ship_count.source.url }}" target="_blank" rel="noopener" style="color: var(--accent); margin-left: 4px;">({{ focus.status.ship_count.source.title }})</a>
         {% endif %}
+      </span>
+      {% endif %}
+    </div>
+    {% endif %}
+    {% if focus.summary %}<p class="focus-summary">{{ focus.summary }}</p>{% endif %}
+    {% if focus.news_items %}
+    <ul class="news-items">
+      {% for n in focus.news_items %}
+      <li>
+        <div class="headline">
+          <a href="{{ n.url }}" target="_blank" rel="noopener">{{ n.title }}</a>
+          {% if n.impact %}<span class="impact {{ n.impact }}">{{ n.impact_label or n.impact }}</span>{% endif %}
+        </div>
+        <div class="meta">
+          {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
+          {% if n.source %}<span class="dot">·</span>{{ n.source }}{% endif %}
+        </div>
+        {% if n.summary %}<div class="summary">{{ n.summary }}</div>{% endif %}
       </li>
       {% endfor %}
     </ul>
@@ -249,7 +373,16 @@
 
   {% if macro.indicators %}
   <section>
-    <h2>📊 국내 시장 지표</h2>
+    <h2>
+      📊 국내 시장 지표
+      {% if macro.indicators_impact %}
+      <span class="macro-mood {{ macro.indicators_impact }}">
+        {% if macro.indicators_impact == 'positive' %}🟢 우호적
+        {% elif macro.indicators_impact == 'negative' %}🔴 부담
+        {% else %}🟡 혼조{% endif %}
+      </span>
+      {% endif %}
+    </h2>
     <div class="indicators">
       {% for ind in macro.indicators %}
       <div class="indicator {{ ind.impact or ind.direction or 'neutral' }}">
@@ -268,7 +401,16 @@
 
   {% if macro.overnight %}
   <section>
-    <h2>🌙 간밤 해외 시장</h2>
+    <h2>
+      🌙 간밤 해외 시장
+      {% if macro.overnight_impact %}
+      <span class="macro-mood {{ macro.overnight_impact }}">
+        {% if macro.overnight_impact == 'positive' %}🟢 우호적
+        {% elif macro.overnight_impact == 'negative' %}🔴 부담
+        {% else %}🟡 혼조{% endif %}
+      </span>
+      {% endif %}
+    </h2>
     <p class="section-sub">미국 증시 전일 종가 및 주요 원자재/환율</p>
     <div class="indicators">
       {% for ind in macro.overnight %}
@@ -353,95 +495,100 @@
   {% endif %}
 
   <section>
-    <h2>📈 종목별</h2>
+    <h2>📈 종목별 <span class="section-sub" style="font-size: 13px; margin-left: 4px;">(클릭하면 상세 펼침)</span></h2>
     {% for stock in stocks %}
     <article class="stock">
-      <header>
-        <h3>
-          {{ stock.name }}
+      <details>
+        <summary>
+          {% if stock.owner %}<span class="owner-tag">👤 {{ stock.owner }}</span>{% endif %}
+          <span class="name">{{ stock.name }}</span>
           <span class="code">{{ stock.code }}{% if stock.market %} · {{ stock.market }}{% endif %}</span>
+          {% if stock.price_change_display %}
+          <span class="price-change {{ stock.price_direction }}">{{ stock.price_change_display }}</span>
+          {% endif %}
           {% if stock.recommendation %}
           <span class="rec {{ stock.recommendation }}">{{ stock.recommendation_label or stock.recommendation }}</span>
           {% endif %}
-        </h3>
-        {% if stock.rationale %}<div class="rec-rationale">{{ stock.rationale }}</div>{% endif %}
-      </header>
+        </summary>
+        <div class="body">
+          {% if stock.rationale %}<div class="rec-rationale">{{ stock.rationale }}</div>{% endif %}
+          {% if stock.summary %}<p class="stock-summary">{{ stock.summary }}</p>{% endif %}
 
-      {% if stock.summary %}<p class="stock-summary">{{ stock.summary }}</p>{% endif %}
-
-      {% if stock.key_points %}
-      <ul class="points">
-        {% for pt in stock.key_points %}
-        <li>
-          <div class="point-title">
-            <span class="text">{{ pt.point }}</span>
-            {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
-          </div>
-          {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
-          {% if pt.sources %}
-          <div class="sources">
-            {% for src in pt.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
-          </div>
+          {% if stock.key_points %}
+          <ul class="points">
+            {% for pt in stock.key_points %}
+            <li>
+              <div class="point-title">
+                <span class="text">{{ pt.point }}</span>
+                {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
+              </div>
+              {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
+              {% if pt.sources %}
+              <div class="sources">
+                {% for src in pt.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
+              </div>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
           {% endif %}
-        </li>
-        {% endfor %}
-      </ul>
-      {% endif %}
 
-      {% if stock.deep_dive %}
-      <div class="deep-dive">
-        <h4>🔬 심층 분석</h4>
-        {% if stock.deep_dive.business %}
-        <div class="dd-block">
-          <div class="dd-label">주력 사업·제품</div>
-          <div class="dd-body">{{ stock.deep_dive.business }}</div>
-        </div>
-        {% endif %}
-        {% if stock.deep_dive.market %}
-        <div class="dd-block">
-          <div class="dd-label">시장성</div>
-          <div class="dd-body">{{ stock.deep_dive.market }}</div>
-        </div>
-        {% endif %}
-        {% if stock.deep_dive.competitors %}
-        <div class="dd-block">
-          <div class="dd-label">경쟁 구도</div>
-          <div class="dd-body">
-            {% if stock.deep_dive.competitors is string %}{{ stock.deep_dive.competitors }}
-            {% else %}
-            <div class="dd-tags">{% for c in stock.deep_dive.competitors %}<span class="dd-tag">{{ c }}</span>{% endfor %}</div>
+          {% if stock.deep_dive %}
+          <div class="deep-dive">
+            <h4>🔬 심층 분석</h4>
+            {% if stock.deep_dive.business %}
+            <div class="dd-block">
+              <div class="dd-label">주력 사업·제품</div>
+              <div class="dd-body">{{ stock.deep_dive.business }}</div>
+            </div>
+            {% endif %}
+            {% if stock.deep_dive.market %}
+            <div class="dd-block">
+              <div class="dd-label">시장성</div>
+              <div class="dd-body">{{ stock.deep_dive.market }}</div>
+            </div>
+            {% endif %}
+            {% if stock.deep_dive.competitors %}
+            <div class="dd-block">
+              <div class="dd-label">경쟁 구도</div>
+              <div class="dd-body">
+                {% if stock.deep_dive.competitors is string %}{{ stock.deep_dive.competitors }}
+                {% else %}
+                <div class="dd-tags">{% for c in stock.deep_dive.competitors %}<span class="dd-tag">{{ c }}</span>{% endfor %}</div>
+                {% endif %}
+              </div>
+            </div>
+            {% endif %}
+            {% if stock.deep_dive.research_notes %}
+            <div class="dd-block">
+              <div class="dd-label">R&D / 논문·특허 동향</div>
+              <div class="dd-body">{{ stock.deep_dive.research_notes }}</div>
+            </div>
+            {% endif %}
+            {% if stock.deep_dive.risks %}
+            <div class="dd-block">
+              <div class="dd-label">리스크</div>
+              <div class="dd-body">{{ stock.deep_dive.risks }}</div>
+            </div>
+            {% endif %}
+            {% if stock.deep_dive.sources %}
+            <div class="sources">
+              {% for src in stock.deep_dive.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
+            </div>
             {% endif %}
           </div>
-        </div>
-        {% endif %}
-        {% if stock.deep_dive.research_notes %}
-        <div class="dd-block">
-          <div class="dd-label">R&D / 논문·특허 동향</div>
-          <div class="dd-body">{{ stock.deep_dive.research_notes }}</div>
-        </div>
-        {% endif %}
-        {% if stock.deep_dive.risks %}
-        <div class="dd-block">
-          <div class="dd-label">리스크</div>
-          <div class="dd-body">{{ stock.deep_dive.risks }}</div>
-        </div>
-        {% endif %}
-        {% if stock.deep_dive.sources %}
-        <div class="sources">
-          {% for src in stock.deep_dive.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
-        </div>
-        {% endif %}
-      </div>
-      {% endif %}
+          {% endif %}
 
-      {% if stock.disclosures %}
-      <h4>공시</h4>
-      <ul class="disclosures">
-        {% for d in stock.disclosures %}
-        <li><a href="{{ d.url }}" target="_blank" rel="noopener">{{ d.title }}</a>{% if d.date %}<span class="date">{{ d.date }}</span>{% endif %}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
+          {% if stock.disclosures %}
+          <h4>공시</h4>
+          <ul class="disclosures">
+            {% for d in stock.disclosures %}
+            <li><a href="{{ d.url }}" target="_blank" rel="noopener">{{ d.title }}</a>{% if d.date %}<span class="date">{{ d.date }}</span>{% endif %}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </details>
     </article>
     {% endfor %}
   </section>

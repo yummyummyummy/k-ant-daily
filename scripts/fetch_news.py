@@ -52,6 +52,45 @@ def _abs_naver_link(href: str) -> str:
     return href
 
 
+def fetch_stock_quote(code: str) -> dict:
+    """Current price & change for a stock from Naver Finance main page."""
+    url = f"https://finance.naver.com/item/main.naver?code={code}"
+    soup = _get(url)
+    out: dict = {}
+    # Current price block: div.today
+    today = soup.select_one("div.today")
+    if not today:
+        return out
+    now = today.select_one("p.no_today .blind")
+    if now:
+        out["price"] = now.get_text(strip=True)
+    exday = today.select_one("p.no_exday")
+    if exday:
+        # Two spans: absolute change and percent change, each with .blind
+        blinds = [b.get_text(strip=True) for b in exday.select("em .blind, span .blind")]
+        # Direction from class (up/down) on the first em
+        em = exday.select_one("em")
+        direction = ""
+        if em:
+            cls = " ".join(em.get("class") or [])
+            if "up" in cls:
+                direction = "up"
+            elif "down" in cls:
+                direction = "down"
+        if blinds:
+            out["change"] = blinds[0] if len(blinds) >= 1 else ""
+            pct = blinds[1] if len(blinds) >= 2 else ""
+            if pct:
+                sign = "-" if direction == "down" else "+" if direction == "up" else ""
+                out["change_pct"] = f"{sign}{pct}"
+                try:
+                    out["change_pct_num"] = float(pct.replace("%", "")) * (-1 if direction == "down" else 1)
+                except ValueError:
+                    pass
+            out["direction"] = direction
+    return out
+
+
 def fetch_stock_news(code: str, limit: int = 10) -> list[dict]:
     """Recent news articles for a stock from Naver Finance."""
     url = f"https://finance.naver.com/item/news_news.naver?code={code}&page=1&sm=title_entity_id.basic&clusterId="
@@ -266,6 +305,13 @@ def main() -> int:
             "name": stock["name"],
             "market": stock.get("market", ""),
         }
+        if stock.get("owner"):
+            entry["owner"] = stock["owner"]
+        try:
+            entry["quote"] = fetch_stock_quote(stock["code"])
+        except Exception as e:
+            print(f"[warn] quote failed for {stock['code']}: {e}", file=sys.stderr)
+            entry["quote"] = {}
         try:
             entry["news"] = fetch_stock_news(stock["code"])
         except Exception as e:
