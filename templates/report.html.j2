@@ -124,12 +124,25 @@
   .coffee-banner .headline { font-weight: 700; font-size: 17px; margin-bottom: 4px; }
   .coffee-banner .sub { font-size: 13px; opacity: 0.85; }
   .coffee-banner.none { background: var(--card); color: var(--fg); border: 1px dashed var(--border); }
-  .friend-row { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 6px; font-size: 13px; }
-  .friend-row .friend { display: inline-flex; gap: 4px; align-items: baseline; }
-  .friend-row .friend .owner { font-weight: 600; }
-  .friend-row .up { color: var(--pos); font-weight: 600; }
-  .friend-row .down { color: var(--neg); font-weight: 600; }
-  .friend-row .flat { color: var(--muted); }
+  .friend-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 8px; margin-top: 10px;
+  }
+  .friend-card {
+    background: rgba(255,255,255,0.55); border-radius: 8px;
+    padding: 8px 10px; display: flex; flex-direction: column; gap: 2px;
+    min-width: 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    .friend-card { background: rgba(0,0,0,0.25); }
+  }
+  .coffee-banner.none .friend-card { background: var(--bg); border: 1px solid var(--border); }
+  .friend-card .owner { font-size: 11px; font-weight: 700; opacity: 0.75; letter-spacing: 0.02em; }
+  .friend-card .stock-name { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .friend-card .change { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .friend-card .change.up { color: var(--pos); }
+  .friend-card .change.down { color: var(--neg); }
+  .friend-card .change.flat { opacity: 0.6; }
   .top-stories h2 { margin-top: 0; }
   .top-stories ol { margin: 0; padding-left: 20px; }
   .top-stories li { padding: 6px 0; border-bottom: 1px dashed var(--border); }
@@ -309,9 +322,13 @@
     <div class="coffee-banner">
       <div class="headline">☕ 오늘 커피는 <strong>{{ coffee_buyer.owner }}</strong>님이!</div>
       <div class="sub">{{ coffee_buyer.name }} {{ coffee_buyer.change_display }} — 친구 보유 종목 중 최고 상승</div>
-      <div class="friend-row">
+      <div class="friend-cards">
         {% for f in friends_overview %}
-        <span class="friend"><span class="owner">{{ f.owner }}</span>·{{ f.name }} <span class="{{ f.direction or 'flat' }}">{{ f.change_display }}</span></span>
+        <div class="friend-card">
+          <div class="owner">👤 {{ f.owner }}</div>
+          <div class="stock-name">{{ f.name }}</div>
+          <div class="change {{ f.direction or 'flat' }}">{{ f.change_display }}</div>
+        </div>
         {% endfor %}
       </div>
     </div>
@@ -319,9 +336,13 @@
     <div class="coffee-banner none">
       <div class="headline">☕ 오늘 커피는 각자 사기</div>
       <div class="sub">친구 보유 종목 중 상승 종목 없음</div>
-      <div class="friend-row">
+      <div class="friend-cards">
         {% for f in friends_overview %}
-        <span class="friend"><span class="owner">{{ f.owner }}</span>·{{ f.name }} <span class="{{ f.direction or 'flat' }}">{{ f.change_display }}</span></span>
+        <div class="friend-card">
+          <div class="owner">👤 {{ f.owner }}</div>
+          <div class="stock-name">{{ f.name }}</div>
+          <div class="change {{ f.direction or 'flat' }}">{{ f.change_display }}</div>
+        </div>
         {% endfor %}
       </div>
     </div>
