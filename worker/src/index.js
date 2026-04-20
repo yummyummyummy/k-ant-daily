@@ -41,9 +41,11 @@ function rfToDirection(rf) {
   return "";
 }
 
-async function fetchQuotes(codes) {
-  const query = codes.map((c) => `SERVICE_ITEM:${c}`).join(",");
-  const url = `${NAVER_POLL}?query=${encodeURIComponent(query)}`;
+// Naver's polling API only returns one item per query, so fan out.
+// Response body is EUC-KR encoded; we decode manually since TextDecoder
+// supports legacy Korean encodings in Workers.
+async function fetchOne(code) {
+  const url = `${NAVER_POLL}?query=${encodeURIComponent(`SERVICE_ITEM:${code}`)}`;
   const res = await fetch(url, {
     headers: {
       "User-Agent": UA,
@@ -53,25 +55,34 @@ async function fetchQuotes(codes) {
     },
     cf: { cacheTtl: CACHE_TTL, cacheEverything: true },
   });
-  if (!res.ok) {
-    throw new Error(`naver upstream ${res.status}`);
-  }
-  const data = await res.json();
-  const datas = data?.result?.areas?.[0]?.datas ?? [];
+  if (!res.ok) return null;
+  const buf = await res.arrayBuffer();
+  const text = new TextDecoder("euc-kr").decode(buf);
+  let data;
+  try { data = JSON.parse(text); } catch { return null; }
+  const d = data?.result?.areas?.[0]?.datas?.[0];
+  if (!d?.cd) return null;
+  const direction = rfToDirection(d.rf);
+  // Naver returns `cv` (absolute change) and `cr` (change ratio) both
+  // unsigned. Sign them here so downstream consumers don't need the rf code.
+  const mag = direction === "down" ? -1 : 1;
+  return {
+    price: d.nv,
+    change: Math.abs(Number(d.cv)) * mag,
+    change_pct: Math.abs(Number(d.cr)) * mag,
+    direction,
+    name: d.nm,
+    ts: Date.now(),
+  };
+}
+
+async function fetchQuotes(codes) {
+  const results = await Promise.all(codes.map((c) => fetchOne(c).catch(() => null)));
   const out = {};
-  for (const d of datas) {
-    if (!d?.cd) continue;
-    // `cr` (change ratio) already carries sign. `cv` is absolute-valued; we
-    // let the client sign it via `direction`.
-    out[d.cd] = {
-      price: d.nv,
-      change: d.cv,
-      change_pct: d.cr,
-      direction: rfToDirection(d.rf),
-      name: d.nm,
-      ts: Date.now(),
-    };
-  }
+  codes.forEach((code, i) => {
+    const q = results[i];
+    if (q) out[code] = q;
+  });
   return out;
 }
 
