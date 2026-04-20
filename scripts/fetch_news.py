@@ -223,6 +223,43 @@ def fetch_fx() -> dict:
     return {"fx": rates}
 
 
+def fetch_proxy_changes(tickers: list[str]) -> dict[str, float]:
+    """Last-session % change for each ticker via yfinance (cached-once)."""
+    import yfinance as yf
+    out: dict[str, float] = {}
+    for sym in tickers:
+        try:
+            h = yf.Ticker(sym).history(period="5d", auto_adjust=False)
+            if len(h) < 2:
+                continue
+            prev = float(h.iloc[-2]["Close"])
+            last = float(h.iloc[-1]["Close"])
+            if prev:
+                out[sym] = (last - prev) / prev * 100
+        except Exception as e:
+            print(f"[warn] proxy {sym}: {e}", file=sys.stderr)
+    return out
+
+
+def compute_overnight_signal(proxies: list[str], changes: dict[str, float]) -> dict:
+    """Average proxy % change → direction bucket."""
+    vals = [changes[p] for p in proxies if p in changes]
+    if not vals:
+        return {"direction": "", "avg_pct": None, "proxies": []}
+    avg = sum(vals) / len(vals)
+    if avg > 0.7:
+        direction = "up"
+    elif avg < -0.7:
+        direction = "down"
+    else:
+        direction = "neutral"
+    return {
+        "direction": direction,
+        "avg_pct": round(avg, 2),
+        "proxies": [{"symbol": p, "change_pct": round(changes[p], 2)} for p in proxies if p in changes],
+    }
+
+
 def fetch_overnight_markets() -> dict:
     """간밤 해외 시장 (US indices, VIX, commodities, dollar index) via yfinance."""
     import yfinance as yf  # lazy — slow import
@@ -299,6 +336,16 @@ def main() -> int:
         print(f"[warn] overnight fetch failed: {e}", file=sys.stderr)
         data["macro"]["overnight"] = []
 
+    # Collect all overnight proxy tickers upfront for a single batched fetch
+    all_proxies = sorted({
+        p for stock in config["stocks"] for p in (stock.get("overnight_proxy") or [])
+    })
+    try:
+        proxy_changes = fetch_proxy_changes(all_proxies) if all_proxies else {}
+    except Exception as e:
+        print(f"[warn] proxy changes fetch failed: {e}", file=sys.stderr)
+        proxy_changes = {}
+
     for stock in config["stocks"]:
         entry: dict = {
             "code": stock["code"],
@@ -309,6 +356,8 @@ def main() -> int:
             entry["owners"] = stock["owners"]
         elif stock.get("owner"):
             entry["owners"] = [stock["owner"]]  # backward compat
+        if stock.get("overnight_proxy"):
+            entry["overnight_signal"] = compute_overnight_signal(stock["overnight_proxy"], proxy_changes)
         try:
             entry["quote"] = fetch_stock_quote(stock["code"])
         except Exception as e:

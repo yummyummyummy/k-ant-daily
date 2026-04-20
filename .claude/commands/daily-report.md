@@ -2,13 +2,29 @@
 description: Generate and publish today's pre-market stock briefing
 ---
 
-Generate today's pre-market briefing for the stocks in `stocks.yml` and publish it to GitHub Pages.
+## Framing — this is a PRE-MARKET briefing
+
+**운영 시점은 매일 오전 07:30 KST (한국 장 시작 전).**
+
+분석은 "오늘을 사후 해석"이 아니라 **"오늘 개장 후 한국 장 방향 예측"** 입니다.
+의견과 언어는 항상 forward-looking:
+
+- **확정 입력 (과거)**
+  - 어제 한국 증시 종가·등락률·공시·장중 뉴스
+  - 밤사이 미국/유럽 증시 종가 (S&P, 다우, 나스닥, SOX, VIX, WTI, 금, BTC, 달러인덱스)
+  - 어제 밤~오늘 새벽 사이 나온 거시·정책·전쟁 이슈
+- **예측 대상 (미래)**
+  - 오늘 장 개장 시 갭 방향·섹터 분위기
+  - 오늘 종가까지의 1일 흐름 (1~5일 단기)
+
+종목 `quote` 필드의 가격은 **어제 종가**입니다. 이걸 "오늘 실적"이 아니라 "예측의 출발점"으로 취급하세요.
 
 ## Steps
 
 1. **Fetch raw news.** Run `.venv/bin/python scripts/fetch_news.py`. Writes `.tmp/news.json`
    with: `macro.news`, `macro.indices`, `macro.fx`, `macro.overnight` (간밤 해외시장),
-   and per-stock `news[]` + `disclosures[]`.
+   per-stock `news[]` + `disclosures[]` + `quote` (어제 종가) + `overnight_signal`
+   (종목별 간밤 해외 프록시 평균 등락률).
 
 2. **Read the raw data.** Read `.tmp/news.json`. Scan all stock news, disclosures, macro
    news, overnight markets, and indices together. Identify recurring themes, sector-level
@@ -16,30 +32,21 @@ Generate today's pre-market briefing for the stocks in `stocks.yml` and publish 
 
 3. **Deep-dive research (for stocks with `deep_dive: true` in `stocks.yml`).**
    For each such stock, **use WebSearch and WebFetch** to research:
-   - **주력 사업·제품**: 회사가 만드는 제품/서비스, 기술 스택
-   - **시장성**: TAM 추정, 성장률, 핵심 고객사, 최근 주문/계약 공개 자료
-   - **경쟁 구도**: 국내외 경쟁사, 차별화 요소
-   - **R&D/논문·특허 동향**: 최근 논문 인용, 특허 출원, 학회 발표 (바이오/기술 섹터 중요)
-   - **리스크**: 재무 리스크, 규제, 기술 대체재, 주요 이슈
+   - **주력 사업·제품**, **시장성**, **경쟁 구도**, **R&D/논문·특허 동향**, **리스크**
    Use any `keywords` from `stocks.yml` as search seed. Always cite source URLs.
 
 4. **Compose the summary.** Write `.tmp/summary.json` matching the schema below.
-   Language: **중립·사실 기반**. No hype, no investment advice beyond the requested
-   recommendation label. Lead with "what happened" before "what it means". Every claim
-   needs a source from the fetched/searched data; never fabricate URLs.
+   Language: **중립·사실 기반**. Forward-looking ("오늘 장 열릴 때...", "갭 ~% 예상",
+   "오늘 약세 시작 가능성"). No hype, no investment advice beyond the requested
+   recommendation label. Every claim needs a source from the fetched/searched data.
 
 5. **Render.** Run `.venv/bin/python scripts/render.py .tmp/summary.json`.
 
-6. **Commit & push.**
-   ```
-   git add docs/ stocks.yml
-   git commit -m "report: YYYY-MM-DD briefing"
-   git push
-   ```
+6. **Commit & push.** `git add docs/ stocks.yml; git commit -m "report: YYYY-MM-DD briefing"; git push`
 
-7. **Report the URL + one-line summary** (headline + what today emphasizes).
+7. **Report the URL + one-line summary.**
 
-## summary.json schema
+## summary.json schema (stock-level decision fields explained below)
 
 ```json
 {
@@ -49,41 +56,40 @@ Generate today's pre-market briefing for the stocks in `stocks.yml` and publish 
   "tldr": "카톡 미리보기용 한 줄 요약 (80자 이내, 투자 권유 금지)",
 
   "top_stories": [
-    {
-      "headline": "오늘 가장 중요한 뉴스 (최대 3개)",
-      "why_it_matters": "한국 시장/선정 종목에 왜 중요한지 1~2문장",
-      "impact": "positive | neutral | negative",
-      "sources": [{"title": "...", "url": "..."}]
-    }
+    {"headline": "...", "why_it_matters": "...", "impact": "positive|neutral|negative",
+     "sources": [{"title": "...", "url": "..."}]}
   ],
 
-  "macro": {
-    "overall_impact": "positive | neutral | negative",
-    "summary": "오늘 거시 흐름 2~3문장",
-    "indicators": [
-      {"name": "KOSPI", "value": "2,680", "change": "+0.5%", "impact": "positive"}
-    ],
-    "overnight": [
-      {"name": "S&P 500", "value": "...", "change": "+1.2%", "impact": "positive"}
-    ],
-    "key_points": [
-      {
-        "point": "핵심 포인트 헤드라인",
-        "detail": "1~2문장",
-        "impact": "positive | neutral | negative",
-        "sources": [{"title": "...", "url": "..."}]
-      }
+  "focus": {
+    "title": "미국·이란 전쟁과 호르무즈 해협",
+    "impact": "negative",
+    "status": {
+      "level": "closed|restricted|open",
+      "label": "봉쇄 중",
+      "detail": "...",
+      "ship_count": {"value": "일 14척 통과", "date": "2026-04-19 (일)", "note": "...",
+                     "source": {"title": "...", "url": "..."}}
+    },
+    "summary": "...",
+    "news_items": [
+      {"title": "...", "summary": "...", "source": "...", "url": "...",
+       "published_at": "2026-04-20T15:35:00+09:00", "impact": "..."}
     ]
   },
 
+  "macro": {
+    "overall_impact": "positive|neutral|negative",
+    "indicators_impact": "positive|neutral|negative",
+    "overnight_impact": "positive|neutral|negative",
+    "summary": "...",
+    "indicators": [{"name": "KOSPI", "value": "...", "change": "...", "impact": "..."}],
+    "overnight": [{"name": "S&P 500", "value": "...", "change": "...", "impact": "..."}],
+    "key_points": [{"point": "...", "detail": "...", "impact": "...", "sources": [...]}]
+  },
+
   "sectors": [
-    {
-      "name": "반도체",
-      "summary": "섹터 흐름 1~2문장",
-      "impact": "positive | neutral | negative",
-      "affected": ["삼성전자", "SK하이닉스"],
-      "key_points": [{"point": "...", "detail": "...", "impact": "...", "sources": [...]}]
-    }
+    {"name": "반도체", "summary": "...", "impact": "...", "affected": [...],
+     "key_points": [{"point": "...", "detail": "...", "impact": "...", "sources": [...]}]}
   ],
 
   "stocks": [
@@ -91,46 +97,74 @@ Generate today's pre-market briefing for the stocks in `stocks.yml` and publish 
       "code": "005930",
       "name": "삼성전자",
       "market": "KOSPI",
-      "recommendation": "strong_buy | buy | hold | sell | strong_sell",
-      "rationale": "해당 의견의 근거 한 문장 (뉴스 흐름 기반, 가치평가 아님)",
-      "summary": "오늘 해당 종목 포인트 2~3문장",
-      "key_points": [
-        {"point": "...", "detail": "...", "impact": "...", "sources": [...]}
-      ],
-      "deep_dive": {
-        "business": "주력 제품/기술 설명",
-        "market": "TAM, 성장률, 주요 고객",
-        "competitors": ["경쟁사1", "경쟁사2"],
-        "research_notes": "최근 논문/특허/학회 동향",
-        "risks": "주요 리스크 요약",
-        "sources": [{"title": "...", "url": "..."}]
-      },
+      "news_sentiment": "positive|neutral|negative",
+      "priced_in": true,
+      "overnight_signal": "up|neutral|down",
+      "recommendation": "strong_buy|buy|hold|sell|strong_sell",
+      "confidence": "high|medium|low",
+      "rationale": "한 문장 근거 — 뉴스·어제종가·간밤신호의 조합 설명",
+      "summary": "오늘 세션 예측 2~3문장 (forward-looking)",
+      "key_points": [{"point": "...", "detail": "...", "impact": "...", "sources": [...]}],
+      "deep_dive": { "business": "...", "market": "...", "competitors": [...],
+                     "research_notes": "...", "risks": "...", "sources": [...] },
       "disclosures": [{"title": "...", "url": "...", "date": "YY.MM.DD"}]
     }
   ]
 }
 ```
 
-## 투자의견 (recommendation) 기준
+## 투자의견 (recommendation) 결정 규칙 — 결정 매트릭스
 
-어디까지나 **단기(1~5일) 뉴스 플로우 해석**이라는 전제로 부여. 가치평가·장기 전망 아님.
+전제: **오늘 개장 후 한국 장에서의 1~5일 방향 예측**. 가치평가·장기전망 아님.
 
-- `strong_buy` (풀매수): 강한 호재 다수 + 거시/섹터 순풍 + 공시·실적 기대감 확인
-- `buy` (매수): 우호적 뉴스 우위, 반대 시그널 없음
-- `hold` (존버): 혼조 / 특이 이슈 없음 / 추세 관망
-- `sell` (매도): 부정적 뉴스 우위, 단기 악재 확인
-- `strong_sell` (풀매도): 중대 악재 (실적 쇼크·규제·치명적 이슈) + 섹터도 부정적
+### 단계 1: 세 가지 신호를 독립적으로 판단
+
+| 신호 | 값 | 판단 기준 |
+|---|---|---|
+| `news_sentiment` | positive / neutral / negative | 종목·섹터 뉴스 플로우 (톤만, 주가는 제외) |
+| `overnight_signal` | up / neutral / down | `quote.overnight_signal`가 자동 계산됨. 그대로 반영 |
+| `priced_in` | true / false | 어제 주가 변동이 이미 해당 뉴스를 반영했나? (어제 ±5% 이상 + 뉴스 방향 일치면 true) |
+
+### 단계 2: 조합 매트릭스
+
+| news_sentiment | overnight_signal | priced_in | 권장 |
+|---|---|---|---|
+| positive | up | false | `strong_buy` |
+| positive | up | true | `buy` (갭 상승 후 피로 가능) |
+| positive | neutral | false | `buy` |
+| positive | neutral | true | `hold` |
+| positive | down | * | `hold` (상충 — 갭다운 리스크) |
+| neutral | up | * | `buy` |
+| neutral | neutral | * | `hold` |
+| neutral | down | * | `hold` or `sell` |
+| negative | up | false | `hold` (베어트랩 의심) |
+| negative | up | true | `hold` (어제 급락 반영됨, 반등 여지) |
+| negative | neutral | * | `sell` |
+| negative | down | * | `strong_sell` |
+
+**이 매트릭스는 기본값**입니다. 개별 종목의 강한 특수 이벤트(실적 쇼크·규제·M&A 공시) 는 한 단계 override 가능. 단, override 시 `rationale`에 명시.
+
+### 단계 3: `confidence` 부여
+- `high`: 세 신호가 모두 같은 방향
+- `medium`: 두 신호가 같은 방향, 하나만 다름
+- `low`: 신호들이 상충하거나, 종목 뉴스 부재 + 섹터만 있음
+
+## Forward-looking 언어 가이드
+
+- ❌ "오늘 +3% 급등했다" → ✅ "어제 +3% 강세에 이어, 간밤 나스닥도 +1.5%로 오늘 개장 초 강세 예상"
+- ❌ "오늘 -2% 하락" → ✅ "어제 -2% 마감했으나, 간밤 해당 섹터 미국주는 +0.5%로 반등 가능성"
+- ❌ "매수 의견" 단독 → ✅ "매수 (뉴스 긍정 + 간밤 강세 + priced_in 아님)"
 
 ## Rules
 
 - **Source URLs must come from fetched data or web tool results** — do not invent.
 - `stocks` array must preserve `stocks.yml` order and include every stock.
-- For deep_dive stocks, `deep_dive` 섹션 필수. Other stocks는 생략 가능.
-- For no-material-news days, `recommendation: "hold"`, `rationale: "특이 이슈 없음"` OK.
-- `impact`는 **한국 시장 / 해당 종목**에 대한 영향 기준.
-  - KOSPI +1% 같은 지수 지표: `positive` (상승=호재)
-  - USD/KRW 상승: 수출주엔 긍정, 수입주엔 부담 — 종합해서 `neutral` 또는 `negative` 기본값
+- For deep_dive stocks, `deep_dive` 섹션 필수.
+- For no-material-news days, `recommendation: "hold"`, `confidence: "low"`, `rationale: "개별 뉴스 부재"` OK.
+- `news_sentiment`, `priced_in`, `overnight_signal`, `confidence` 는 **모든 종목에 필수**.
+- `top_stories`는 최대 3개.
+- `impact` 해석:
+  - KOSPI +1% → `positive` (상승=호재)
+  - USD/KRW 상승: 수출주 긍정/수입주 부담 → 종합 `neutral` 기본값
   - VIX 상승: `negative`
-- `top_stories`는 최대 3개. 4개 이상은 핵심이 희석됨.
-- `overall_impact`는 전체 macro 분위기. 지표 상승 + 긍정 뉴스 우위면 `positive`.
 - If `.tmp/news.json` missing/empty, stop and report — do not fabricate.

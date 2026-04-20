@@ -58,6 +58,10 @@ STATUS_LABEL = {
     "open": "통행 중",
 }
 
+SENTIMENT_LABEL = {"positive": "긍정", "neutral": "중립", "negative": "부정"}
+OVERNIGHT_LABEL = {"up": "강세", "neutral": "중립", "down": "약세"}
+CONFIDENCE_LABEL = {"high": "높음", "medium": "중간", "low": "낮음"}
+
 
 def _infer_direction(change: str | None) -> str:
     if not change:
@@ -102,23 +106,35 @@ def _time_ago(iso_str: str | None, now: datetime) -> str:
 
 
 def _merge_quotes_from_news(summary: dict, news_path: Path) -> None:
-    """If a sibling news.json exists, pull fresh quote data into summary stocks by code."""
+    """Pull fresh quote + overnight_signal from sibling news.json into summary stocks by code."""
     if not news_path.exists():
         return
     try:
         news = json.loads(news_path.read_text(encoding="utf-8"))
     except Exception:
         return
-    by_code = {s.get("code"): s.get("quote", {}) for s in news.get("stocks") or []}
+    by_code = {s.get("code"): s for s in news.get("stocks") or []}
     for stock in summary.get("stocks") or []:
         src = by_code.get(stock.get("code")) or {}
         if not src:
             continue
-        dst = stock.setdefault("quote", {})
-        # Prefer freshly scraped values — news.json is the source of truth.
-        for k, v in src.items():
+        # Quote (price/change/pct)
+        qdst = stock.setdefault("quote", {})
+        for k, v in (src.get("quote") or {}).items():
             if v not in (None, ""):
-                dst[k] = v
+                qdst[k] = v
+        # Overnight signal (direction + avg_pct + proxies). Summary may override `direction`
+        # via a top-level `overnight_signal: "up|neutral|down"` string; keep the proxies data.
+        news_sig = src.get("overnight_signal") or {}
+        existing = stock.get("overnight_signal")
+        if isinstance(existing, str):
+            stock["overnight_signal"] = {
+                "direction": existing,
+                "avg_pct": news_sig.get("avg_pct"),
+                "proxies": news_sig.get("proxies") or [],
+            }
+        elif not existing and news_sig:
+            stock["overnight_signal"] = dict(news_sig)
 
 
 def _normalize(summary: dict) -> dict:
@@ -217,6 +233,14 @@ def _normalize(summary: dict) -> dict:
                     stock["price_change_abs_display"] = raw
             except ValueError:
                 stock["price_change_abs_display"] = raw
+        # decision-signal labels (news_sentiment, overnight_signal, confidence)
+        if stock.get("news_sentiment"):
+            stock["news_sentiment_label"] = SENTIMENT_LABEL.get(stock["news_sentiment"], stock["news_sentiment"])
+        onsig = stock.get("overnight_signal")
+        if isinstance(onsig, dict) and onsig.get("direction"):
+            onsig["label"] = OVERNIGHT_LABEL.get(onsig["direction"], onsig["direction"])
+        if stock.get("confidence"):
+            stock["confidence_label"] = CONFIDENCE_LABEL.get(stock["confidence"], stock["confidence"])
         for pt in stock.get("key_points") or []:
             _annotate_impact(pt)
     return summary

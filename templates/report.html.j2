@@ -197,6 +197,39 @@
   .sector-toggle > summary .sector-name { font-weight: 600; }
   .sector-toggle .section-body { padding: 10px 14px 2px; }
 
+  /* STOCK CARD overnight signal badge */
+  .overnight-badge {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.02em;
+    padding: 2px 8px; border-radius: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .overnight-badge.up       { color: var(--pos); background: var(--pos-bg); }
+  .overnight-badge.down     { color: var(--neg); background: var(--neg-bg); }
+  .overnight-badge.neutral  { color: var(--muted); background: var(--neu-bg); }
+
+  /* DECISION SIGNALS block (inside expanded stock body) */
+  .decision-block {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 12px; margin: 8px 0 10px; font-size: 13px;
+  }
+  .decision-block .row { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; margin: 3px 0; }
+  .decision-block .label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; min-width: 82px; }
+  .decision-block .value { font-weight: 600; }
+  .decision-block .proxies { color: var(--muted); font-size: 12px; }
+  .decision-block .proxies .p.up   { color: var(--pos); }
+  .decision-block .proxies .p.down { color: var(--neg); }
+  .decision-block .rationale { margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border); color: var(--fg); font-style: italic; font-size: 13px; }
+  .confidence-chip {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 999px;
+    background: var(--card); color: var(--muted); border: 1px solid var(--border);
+    margin-left: 4px;
+  }
+  .confidence-chip.high   { color: var(--accent); border-color: var(--accent); }
+  .confidence-chip.medium { color: var(--fg); }
+  .confidence-chip.low    { opacity: 0.65; }
+
   /* STOCK CARD owner chips (right-aligned on summary row) */
   article.stock > details > summary { position: relative; padding-right: 30px; }
   article.stock > details > summary::after { position: absolute; right: 12px; top: 14px; margin-left: 0; }
@@ -654,10 +687,17 @@
           <span class="name">{{ stock.name }}</span>
           <span class="code">{{ stock.code }}{% if stock.market %} · {{ stock.market }}{% endif %}</span>
           {% if stock.price_change_display %}
-          <span class="price-change {{ stock.price_direction }}">{{ stock.price_change_display }}</span>
+          <span class="price-change {{ stock.price_direction }}" title="어제 종가 기준">{{ stock.price_change_display }}</span>
+          {% endif %}
+          {% if stock.overnight_signal and stock.overnight_signal.direction %}
+          <span class="overnight-badge {{ stock.overnight_signal.direction }}" title="간밤 해외 프록시 평균">
+            🌙 {% if stock.overnight_signal.direction == 'up' %}▲{% elif stock.overnight_signal.direction == 'down' %}▼{% else %}—{% endif %}
+            {% if stock.overnight_signal.avg_pct is not none %}{{ '%+.2f'|format(stock.overnight_signal.avg_pct) }}%{% endif %}
+          </span>
           {% endif %}
           {% if stock.recommendation %}
           <span class="rec {{ stock.recommendation }}">{{ stock.recommendation_label or stock.recommendation }}</span>
+          {% if stock.confidence %}<span class="confidence-chip {{ stock.confidence }}">신뢰 {{ stock.confidence_label or stock.confidence }}</span>{% endif %}
           {% endif %}
           {% if stock.owners %}
           <span class="owner-chips">
@@ -666,7 +706,31 @@
           {% endif %}
         </summary>
         <div class="body">
-          {% if stock.rationale %}<div class="rec-rationale">{{ stock.rationale }}</div>{% endif %}
+          {% if stock.news_sentiment or stock.overnight_signal or stock.priced_in is defined or stock.rationale %}
+          <div class="decision-block">
+            {% if stock.news_sentiment %}
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact {{ stock.news_sentiment }}">{{ stock.news_sentiment_label or stock.news_sentiment }}</span></div>
+            {% endif %}
+            {% if stock.overnight_signal and stock.overnight_signal.direction %}
+            <div class="row"><span class="label">간밤 신호</span>
+              <span class="value overnight-badge {{ stock.overnight_signal.direction }}">
+                {% if stock.overnight_signal.direction == 'up' %}▲{% elif stock.overnight_signal.direction == 'down' %}▼{% else %}—{% endif %}
+                {{ stock.overnight_signal.label or stock.overnight_signal.direction }}
+                {% if stock.overnight_signal.avg_pct is not none %} ({{ '%+.2f'|format(stock.overnight_signal.avg_pct) }}%){% endif %}
+              </span>
+              {% if stock.overnight_signal.proxies %}
+              <span class="proxies">
+                {% for p in stock.overnight_signal.proxies %}<span class="p {% if p.change_pct > 0 %}up{% elif p.change_pct < 0 %}down{% endif %}">{{ p.symbol }} {{ '%+.2f'|format(p.change_pct) }}%</span>{% if not loop.last %} · {% endif %}{% endfor %}
+              </span>
+              {% endif %}
+            </div>
+            {% endif %}
+            {% if stock.priced_in is defined %}
+            <div class="row"><span class="label">뉴스 반영</span><span class="value">{% if stock.priced_in %}이미 어제 주가에 반영{% else %}아직 반영 안 됨 (신선함){% endif %}</span></div>
+            {% endif %}
+            {% if stock.rationale %}<div class="rationale">{{ stock.rationale }}</div>{% endif %}
+          </div>
+          {% endif %}
           {% if stock.summary %}<p class="stock-summary">{{ stock.summary }}</p>{% endif %}
 
           {% if stock.key_points %}
