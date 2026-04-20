@@ -94,7 +94,11 @@ description: Generate and publish today's pre-market stock briefing
 
   "sectors": [
     {"name": "반도체", "summary": "...", "impact": "...", "affected": [...],
-     "key_points": [{"point": "...", "detail": "...", "impact": "...", "sources": [...]}]}
+     "key_points": [
+       {"point": "...", "detail": "...", "impact": "...",
+        "published_at": "2026-04-20T15:57:00+09:00",
+        "sources": [...]}
+     ]}
   ],
 
   "stocks": [
@@ -109,7 +113,11 @@ description: Generate and publish today's pre-market stock briefing
       "confidence": "high|medium|low",
       "rationale": "한 문장 근거 — 뉴스·어제종가·간밤신호의 조합 설명",
       "summary": "오늘 세션 예측 2~3문장 (forward-looking)",
-      "key_points": [{"point": "...", "detail": "...", "impact": "...", "sources": [...]}],
+      "key_points": [
+        {"point": "...", "detail": "...", "impact": "...",
+         "published_at": "2026-04-20T15:57:00+09:00",
+         "sources": [...]}
+      ],
       "deep_dive": { "business": "...", "market": "...", "competitors": [...],
                      "research_notes": "...", "risks": "...", "sources": [...] },
       "disclosures": [{"title": "...", "url": "...", "date": "YY.MM.DD"}]
@@ -168,6 +176,7 @@ description: Generate and publish today's pre-market stock briefing
 - For no-material-news days, `recommendation: "hold"`, `confidence: "low"`, `rationale: "개별 뉴스 부재"` OK.
 - `news_sentiment`, `priced_in`, `overnight_signal`, `confidence` 는 **모든 종목에 필수**.
 - `top_stories`는 최대 3개. 거시 경제 해석은 `top_stories` 안으로 녹여 넣고, 별도 `macro.key_points`는 쓰지 않는다.
+- 섹터/종목 `key_points` 각 항목엔 **반드시 `published_at` 을 채운다**. 참조한 뉴스의 발행시각(news.json의 `date` 필드, ISO-8601 또는 Naver식 `YYYY.MM.DD HH:MM` 모두 허용). 여러 소스가 있으면 가장 최신 소스 시각 기준. render가 자동으로 `X시간 전`으로 바꿔 표시하고 published_at 내림차순으로 정렬한다.
 - `impact` 해석:
   - KOSPI +1% → `positive` (상승=호재)
   - USD/KRW 상승: 수출주 긍정/수입주 부담 → 종합 `neutral` 기본값

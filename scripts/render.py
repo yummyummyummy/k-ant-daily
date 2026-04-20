@@ -87,19 +87,33 @@ def _annotate_impact(obj: dict) -> None:
         obj["impact_label"] = IMPACT_LABEL.get(impact, impact)
 
 
-def _time_ago(iso_str: str | None, now: datetime) -> str:
-    if not iso_str:
-        return ""
+def _parse_published(raw: str | None) -> datetime | None:
+    """Accept ISO-8601 or Naver-style 'YYYY.MM.DD HH:MM[:SS]' timestamps."""
+    if not raw:
+        return None
+    s = str(raw).strip()
+    # ISO first (covers "+09:00" etc.)
     try:
-        dt = datetime.fromisoformat(iso_str)
+        return datetime.fromisoformat(s)
     except Exception:
+        pass
+    # Naver: '2026.04.20 15:57' or '2026.04.20 15:57:53'
+    for fmt in ("%Y.%m.%d %H:%M:%S", "%Y.%m.%d %H:%M", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M"):
+        try:
+            return datetime.strptime(s, fmt)
+        except Exception:
+            continue
+    return None
+
+
+def _time_ago(iso_str: str | None, now: datetime) -> str:
+    dt = _parse_published(iso_str)
+    if dt is None:
         return ""
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=now.tzinfo or KST)
     delta = now - dt
     secs = int(delta.total_seconds())
-    if secs < 0:
-        return "방금 전"
     if secs < 60:
         return "방금 전"
     if secs < 3600:
@@ -200,8 +214,13 @@ def _normalize(summary: dict) -> dict:
 
     for sec in summary.get("sectors") or []:
         _annotate_impact(sec)
-        for pt in sec.get("key_points") or []:
+        pts = sec.get("key_points") or []
+        for pt in pts:
             _annotate_impact(pt)
+            pt["time_ago"] = _time_ago(pt.get("published_at"), now)
+        # newest first; points without timestamps sink to the bottom
+        pts.sort(key=lambda p: p.get("published_at") or "0", reverse=True)
+        sec["key_points"] = pts
 
     for stock in summary.get("stocks") or []:
         # backward-compat: accept single `owner` as `owners: [owner]`
@@ -259,8 +278,12 @@ def _normalize(summary: dict) -> dict:
         result = stock.get("result")
         if isinstance(result, dict) and result.get("outcome"):
             result["label"] = OUTCOME_LABEL.get(result["outcome"], result["outcome"])
-        for pt in stock.get("key_points") or []:
+        pts = stock.get("key_points") or []
+        for pt in pts:
             _annotate_impact(pt)
+            pt["time_ago"] = _time_ago(pt.get("published_at"), now)
+        pts.sort(key=lambda p: p.get("published_at") or "0", reverse=True)
+        stock["key_points"] = pts
     return summary
 
 
@@ -316,6 +339,15 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
     canonical = f"{base_url.rstrip('/')}/{filename}"
 
     stocks = summary.get("stocks", []) or []
+    # Alphabetize owners on each stock once so both the card summary row and
+    # the coffee friend-cards render them in the same order.
+    for s in stocks:
+        if s.get("owners"):
+            s["owners"] = sorted(s["owners"])
+    # Display order for the 📈 종목별 section: alphabetical (가나다 순).
+    # Leaves summary["stocks"] untouched for any downstream consumer.
+    stocks_display = sorted(stocks, key=lambda s: s.get("name", ""))
+
     env = _env()
     tmpl = env.get_template("report.html.j2")
     html = tmpl.render(
@@ -329,7 +361,7 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
         focus=summary.get("focus") or None,
         macro=summary.get("macro", {}) or {},
         sectors=summary.get("sectors", []) or [],
-        stocks=stocks,
+        stocks=stocks_display,
         coffee_buyer=_coffee_buyer(stocks),
         friends_overview=_friends_overview(stocks),
         review=summary.get("review") or None,

@@ -378,6 +378,7 @@
   .points li:last-child { border-bottom: none; }
   .points .point-title { font-weight: 600; margin-bottom: 4px; display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
   .points .point-title .text { flex: 1; min-width: 0; }
+  .points .point-title .time-ago { font-size: 11px; color: var(--accent); font-weight: 600; white-space: nowrap; }
   .points .point-detail { color: var(--muted); font-size: 14px; margin: 4px 0; }
   .points .sources { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
   .points .sources a {
@@ -739,6 +740,7 @@
               <div class="point-title">
                 <span class="text">{{ pt.point }}</span>
                 {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
+                {% if pt.time_ago %}<span class="time-ago">{{ pt.time_ago }}</span>{% endif %}
               </div>
               {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
               {% if pt.sources %}
@@ -846,6 +848,7 @@
               <div class="point-title">
                 <span class="text">{{ pt.point }}</span>
                 {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
+                {% if pt.time_ago %}<span class="time-ago">{{ pt.time_ago }}</span>{% endif %}
               </div>
               {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
               {% if pt.sources %}

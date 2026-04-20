@@ -378,6 +378,7 @@
   .points li:last-child { border-bottom: none; }
   .points .point-title { font-weight: 600; margin-bottom: 4px; display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
   .points .point-title .text { flex: 1; min-width: 0; }
+  .points .point-title .time-ago { font-size: 11px; color: var(--accent); font-weight: 600; white-space: nowrap; }
   .points .point-detail { color: var(--muted); font-size: 14px; margin: 4px 0; }
   .points .sources { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
   .points .sources a {
@@ -860,11 +861,63 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">삼성전자</span>
-          <span class="code">005930 · KOSPI</span>
-          <span class="price-change down" title="어제 종가 기준">-0.69%</span>
+          <span class="name">HD한국조선해양</span>
+          <span class="code">009540 · KOSPI</span>
+          <span class="price-change down" title="어제 종가 기준">-1.55%</span>
+          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
+            🌙 —0.52%          </span>
+          <span class="rec buy">매수</span>
+<span class="confidence-chip medium">신뢰 중간</span>        </summary>
+        <div class="body">
+          <div class="decision-block">
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">간밤 신호</span>
+              <span class="value overnight-badge neutral">
+—                중립
+ (0.52%)              </span>
+              <span class="proxies">
+<span class="p up">XLI ▲ 1.87%</span> · <span class="p down">DAC ▼ 0.83%</span>              </span>
+            </div>
+            <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
+<div class="rationale">뉴스 긍정(1분기 수주 50% 급증·K조선 영업익 2조·태국 호위함 수주전) + 간밤 중립(XLI +1.87% vs DAC -0.83%) + 어제 -1.55%로 미반영</div>          </div>
+
+
+<p class="stock-summary">1분기 수주 전년비 50% 급증, K조선 빅3 합산 영업익 2조 육박으로 호황기 이익 실현 본격화. 태국 호위함 8000억 수주전 참여. 어제 -1.55% 조정으로 매수 기회.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">1분기 수주 50% 급증</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">전년 대비 수주 순항. 호황기 이익 실현 본격화</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/123/0002381668" target="_blank" rel="noopener">조세일보 — 1분기 수주 순항</a>              </div>
+            </li>
+            <li>
+              <div class="point-title">
+                <span class="text">잠정실적 공시</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">4/20 영업(잠정)실적 공시. 호실적 확인 시 추가 상승 동력</div>              <div class="sources">
+<a href="https://finance.naver.com/item/news_notice_read.naver?no=1631823&code=009540&page_notice=" target="_blank" rel="noopener">HD한국조선해양 공시 — 잠정실적</a>              </div>
+            </li>
+          </ul>
+
+
+          <h4>공시</h4>
+          <ul class="disclosures">
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631823&code=009540&page_notice=" target="_blank" rel="noopener">영업(잠정)실적</a><span class="date">26.04.20</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631816&code=009540&page_notice=" target="_blank" rel="noopener">영업(잠정)실적 — 자회사</a><span class="date">26.04.20</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631292&code=009540&page_notice=" target="_blank" rel="noopener">단일판매·공급계약체결</a><span class="date">26.04.17</span></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">HD현대일렉트릭</span>
+          <span class="code">267260 · KOSPI</span>
+          <span class="price-change flat" title="어제 종가 기준">0.00%</span>
           <span class="overnight-badge up" title="간밤 해외 프록시 평균">
-            🌙 ▲1.21%          </span>
+            🌙 ▲1.84%          </span>
           <span class="rec strong_buy">풀매수</span>
 <span class="confidence-chip high">신뢰 높음</span>        </summary>
         <div class="body">
@@ -873,45 +926,132 @@
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge up">
 ▲                강세
- (1.21%)              </span>
+ (1.84%)              </span>
               <span class="proxies">
-<span class="p up">^SOX ▲ 2.43%</span> · <span class="p up">NVDA ▲ 1.68%</span> · <span class="p down">MU ▼ 0.47%</span>              </span>
+<span class="p up">GEV ▲ 2.50%</span> · <span class="p up">ETN ▲ 3.43%</span> · <span class="p down">XLU ▼ 0.41%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">뉴스 긍정(IB 목표 상향·외인 매수·이재용 인도 방문) + 간밤 SOX +2.43% 강세 + 어제 -0.69%로 미반영</div>          </div>
+<div class="rationale">뉴스 긍정(녹색산업 협의체 확대·전력3사 북미 경쟁·데이터센터 전력) + 간밤 GEV +2.5%·ETN +3.43% 강세 + 어제 보합으로 미반영</div>          </div>
 
 
-<p class="stock-summary">골드만·JP모건 코스피 목표 대폭 상향의 핵심 수혜주. 간밤 SOX +2.43% 강세로 오늘 갭업 출발 예상. RIA(국내복귀계좌) 잔고 17배 급증도 수급 호재.</p>
+<p class="stock-summary">녹색산업 민관 협의체에 에너지·플랜트까지 확대 편입. 전력3사 북미 수주전 가속. 간밤 미국 전력 인프라 관련주(GEV·ETN) 강세로 오늘 갭업 예상.</p>
           <ul class="points">
             <li>
               <div class="point-title">
-                <span class="text">이재용 회장 인도 방문</span>
+                <span class="text">녹색산업 협의체 확대</span>
 <span class="impact positive">호재</span>              </div>
-<div class="point-detail">李대통령·모디 총리와 갤럭시 플립7 셀카. 인도 시장 확대 기대</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/003/0013898947" target="_blank" rel="noopener">뉴시스 — 인도 방문</a>              </div>
+<div class="point-detail">삼성·한화 등 26곳 합류. 해외 패키지 수주 가속 기대</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/001/0016030611" target="_blank" rel="noopener">연합뉴스 — 녹색산업 협의체</a>              </div>
             </li>
             <li>
               <div class="point-title">
-                <span class="text">외국인 순매수 지속</span>
+                <span class="text">전력3사 북미 대격돌</span>
 <span class="impact positive">호재</span>              </div>
-<div class="point-detail">이달 외국인·기관 삼전 매수, 개인은 역행 매도. 수급 구도 우호적</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/014/0005510527" target="_blank" rel="noopener">파이낸셜뉴스 — 외인은 사고 개인은 팔았다</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">주식 소각 완료</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">4/9 변경상장(주식소각). 주주환원 강화 신호</div>              <div class="sources">
-<a href="https://finance.naver.com/item/news_notice_read.naver?no=1628875&code=005930&page_notice=" target="_blank" rel="noopener">삼성전자 공시 — 변경상장(주식소각)</a>              </div>
+<div class="point-detail">HD현대일렉·LS일렉·대한전선, 북미 전력 인프라 시장 경쟁</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/029/0003022682" target="_blank" rel="noopener">디지털타임스 — 전력3사 북미</a>              </div>
             </li>
           </ul>
 
 
           <h4>공시</h4>
           <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1628875&code=005930&page_notice=" target="_blank" rel="noopener">변경상장(주식소각)</a><span class="date">26.04.09</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1627537&code=005930&page_notice=" target="_blank" rel="noopener">기업설명회(IR) 개최</a><span class="date">26.04.07</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1627456&code=005930&page_notice=" target="_blank" rel="noopener">연결재무제표기준영업(잠정)실적</a><span class="date">26.04.07</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1620092&code=267260&page_notice=" target="_blank" rel="noopener">기업가치 제고 계획(2026년)</a><span class="date">26.03.25</span></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">KODEX 코스닥150 레버리지</span>
+          <span class="code">233740 · KOSPI</span>
+          <span class="price-change up" title="어제 종가 기준">+1.55%</span>
+          <span class="overnight-badge up" title="간밤 해외 프록시 평균">
+            🌙 ▲1.41%          </span>
+          <span class="rec buy">매수</span>
+<span class="confidence-chip medium">신뢰 중간</span>        </summary>
+        <div class="body">
+          <div class="decision-block">
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">간밤 신호</span>
+              <span class="value overnight-badge up">
+▲                강세
+ (1.41%)              </span>
+              <span class="proxies">
+<span class="p up">^IXIC ▲ 1.52%</span> · <span class="p up">QQQ ▲ 1.31%</span>              </span>
+            </div>
+            <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
+<div class="rationale">뉴스 긍정(ETF 시장 400조 돌파·기관 레버리지 전환) + 간밤 나스닥 +1.52% 강세 + 어제 +1.55%로 미반영. 레버리지 ETF 특성상 한 단계 보수적 적용</div>          </div>
+
+
+<p class="stock-summary">ETF 시장 400조 돌파. 기관·외인이 곱버스 팔고 레버리지로 전환 중. 간밤 나스닥 +1.52%로 코스닥 갭업 기대. 다만 공매도·대차거래 사상 최대치 경계.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">기관·외인 레버리지 전환</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">곱버스 매도+레버리지 매수 전환. 상승장 지속 베팅</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/014/0005509479" target="_blank" rel="noopener">파이낸셜뉴스 — 곱버스 팔고 레버리지</a>              </div>
+            </li>
+            <li>
+              <div class="point-title">
+                <span class="text">공매도 사상 최대치</span>
+<span class="impact negative">악재</span>              </div>
+<div class="point-detail">공매도·대차거래 동시 사상 최대. 하락 베팅도 동시 확대</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/088/0001006283" target="_blank" rel="noopener">매일신문 — 공매도 사상 최대</a>              </div>
+            </li>
+          </ul>
+
+
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">SK이노베이션</span>
+          <span class="code">096770 · KOSPI</span>
+          <span class="price-change down" title="어제 종가 기준">-0.46%</span>
+          <span class="overnight-badge up" title="간밤 해외 프록시 평균">
+            🌙 ▲1.53%          </span>
+          <span class="rec buy">매수</span>
+<span class="confidence-chip medium">신뢰 중간</span>        </summary>
+        <div class="body">
+          <div class="decision-block">
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">간밤 신호</span>
+              <span class="value overnight-badge up">
+▲                강세
+ (1.53%)              </span>
+              <span class="proxies">
+<span class="p down">XLE ▼ 2.76%</span> · <span class="p up">CL=F ▲ 4.33%</span> · <span class="p up">TSLA ▲ 3.01%</span>              </span>
+            </div>
+            <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
+<div class="rationale">뉴스 긍정(K배터리 반등·삼성SDI 벤츠 계약·ESS·고유가→EV 수요) + 간밤 WTI +4.33%·TSLA +3.01% 강세 + 어제 -0.46%로 미반영. 단 XLE -2.76%로 에너지 섹터 혼조</div>          </div>
+
+
+<p class="stock-summary">배터리 섹터 반등세. 삼성SDI-벤츠 10조 계약, 고유가→전기차 수요 부활론. 정유 부문은 호르무즈 봉쇄 장기화 불확실성이 상수. WTI +4.33%는 정유 수혜이나 XLE -2.76%로 시장 해석은 엇갈림.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">K배터리 반등 — 삼성SDI 벤츠 계약</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">삼성SDI 벤츠 전기차 배터리 첫 공급. K배터리 캐즘 돌파론</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/020/0003713826" target="_blank" rel="noopener">동아일보 — 삼성SDI 벤츠 첫 공급</a>              </div>
+            </li>
+            <li>
+              <div class="point-title">
+                <span class="text">정유 1분기 호실적이나 불확실성</span>
+<span class="impact neutral">중립</span>              </div>
+<div class="point-detail">정유 1분기 호실적 예고했으나, 2분기 고유가 지속 시 수요 감소 우려</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/018/0006261993" target="_blank" rel="noopener">이데일리 — 정유사 한숨</a>              </div>
+            </li>
+          </ul>
+
+
+          <h4>공시</h4>
+          <ul class="disclosures">
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1619385&code=096770&page_notice=" target="_blank" rel="noopener">대표이사 변경</a><span class="date">26.03.24</span></li>
           </ul>
         </div>
       </details>
@@ -977,144 +1117,49 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">HD현대일렉트릭</span>
-          <span class="code">267260 · KOSPI</span>
-          <span class="price-change flat" title="어제 종가 기준">0.00%</span>
+          <span class="name">보로노이</span>
+          <span class="code">310210 · KOSDAQ</span>
+          <span class="price-change up" title="어제 종가 기준">+11.56%</span>
           <span class="overnight-badge up" title="간밤 해외 프록시 평균">
-            🌙 ▲1.84%          </span>
-          <span class="rec strong_buy">풀매수</span>
-<span class="confidence-chip high">신뢰 높음</span>        </summary>
-        <div class="body">
-          <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
-            <div class="row"><span class="label">간밤 신호</span>
-              <span class="value overnight-badge up">
-▲                강세
- (1.84%)              </span>
-              <span class="proxies">
-<span class="p up">GEV ▲ 2.50%</span> · <span class="p up">ETN ▲ 3.43%</span> · <span class="p down">XLU ▼ 0.41%</span>              </span>
-            </div>
-            <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">뉴스 긍정(녹색산업 협의체 확대·전력3사 북미 경쟁·데이터센터 전력) + 간밤 GEV +2.5%·ETN +3.43% 강세 + 어제 보합으로 미반영</div>          </div>
-
-
-<p class="stock-summary">녹색산업 민관 협의체에 에너지·플랜트까지 확대 편입. 전력3사 북미 수주전 가속. 간밤 미국 전력 인프라 관련주(GEV·ETN) 강세로 오늘 갭업 예상.</p>
-          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">녹색산업 협의체 확대</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">삼성·한화 등 26곳 합류. 해외 패키지 수주 가속 기대</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/001/0016030611" target="_blank" rel="noopener">연합뉴스 — 녹색산업 협의체</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">전력3사 북미 대격돌</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">HD현대일렉·LS일렉·대한전선, 북미 전력 인프라 시장 경쟁</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/029/0003022682" target="_blank" rel="noopener">디지털타임스 — 전력3사 북미</a>              </div>
-            </li>
-          </ul>
-
-
-          <h4>공시</h4>
-          <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1620092&code=267260&page_notice=" target="_blank" rel="noopener">기업가치 제고 계획(2026년)</a><span class="date">26.03.25</span></li>
-          </ul>
-        </div>
-      </details>
-    </article>
-    <article class="stock">
-      <details>
-        <summary>
-          <span class="name">알테오젠</span>
-          <span class="code">196170 · KOSDAQ</span>
-          <span class="price-change up" title="어제 종가 기준">+1.50%</span>
-          <span class="overnight-badge up" title="간밤 해외 프록시 평균">
-            🌙 ▲1.91%          </span>
+            🌙 ▲2.37%          </span>
           <span class="rec buy">매수</span>
 <span class="confidence-chip medium">신뢰 중간</span>        </summary>
         <div class="body">
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
-            <div class="row"><span class="label">간밤 신호</span>
-              <span class="value overnight-badge up">
-▲                강세
- (1.91%)              </span>
-              <span class="proxies">
-<span class="p up">XBI ▲ 2.37%</span> · <span class="p up">IBB ▲ 1.46%</span>              </span>
-            </div>
-            <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">뉴스 중립(코스피 이전 시 ETF 매수세 감소 우려 vs 일반 시장 강세) + 간밤 XBI +2.37% 강세 + 어제 +1.50%로 미반영</div>          </div>
-
-
-<p class="stock-summary">코스피 이전 시 코스닥150 ETF 비중 조정에 따른 수급 부담 우려가 있으나, 간밤 미국 바이오 ETF(XBI +2.37%) 강세로 갭업 가능. 히알루로니다제 플랫폼의 글로벌 라이선스 가치는 여전히 유효.</p>
-          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">코스피 이전 시 ETF 매수세 감소 우려</span>
-<span class="impact negative">악재</span>              </div>
-<div class="point-detail">코스닥→코스피 이전 시 코스닥150 ETF 편출. 단기 수급 부담</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/009/0005668723" target="_blank" rel="noopener">매일경제 — 알테오젠 ETF 수급</a>              </div>
-            </li>
-          </ul>
-
-
-          <h4>공시</h4>
-          <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1627709&code=196170&page_notice=" target="_blank" rel="noopener">기업설명회(IR) 개최</a><span class="date">26.04.07</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1620130&code=196170&page_notice=" target="_blank" rel="noopener">히알루로니다제 제조판매 허가</a><span class="date">26.03.25</span></li>
-          </ul>
-        </div>
-      </details>
-    </article>
-    <article class="stock">
-      <details>
-        <summary>
-          <span class="name">한미반도체</span>
-          <span class="code">042700 · KOSPI</span>
-          <span class="price-change up" title="어제 종가 기준">+0.17%</span>
-          <span class="overnight-badge up" title="간밤 해외 프록시 평균">
-            🌙 ▲1.97%          </span>
-          <span class="rec strong_buy">풀매수</span>
-<span class="confidence-chip high">신뢰 높음</span>        </summary>
-        <div class="body">
-          <div class="decision-block">
             <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge up">
 ▲                강세
- (1.97%)              </span>
+ (2.37%)              </span>
               <span class="proxies">
-<span class="p up">^SOX ▲ 2.43%</span> · <span class="p up">AMAT ▲ 1.81%</span> · <span class="p up">NVDA ▲ 1.68%</span>              </span>
+<span class="p up">XBI ▲ 2.37%</span>              </span>
             </div>
-            <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">뉴스 긍정(반도체 부자 약진·HBM4 TC본더 수주·AI반도체 ETF 선두) + 간밤 SOX +2.43%·AMAT +1.81% 강세 + 어제 +0.17%로 미반영</div>          </div>
+            <div class="row"><span class="label">뉴스 반영</span><span class="value">이미 어제 주가에 반영</span></div>
+<div class="rationale">뉴스 긍정(VRN11 AACR 임상1상 성공·VRN10 HER2 데이터) + 간밤 XBI +2.37% 강세 + 어제 +11.56%로 대부분 반영. 갭 상승 후 차익실현 매물 경계</div>          </div>
 
 
-<p class="stock-summary">ASMPT HBM4용 TC본더 복수 수주(SK하이닉스 유력) 소식. AI반도체 소부장 ETF 수익률 상위. 간밤 반도체 장비주 강세로 오늘 갭업 예상.</p>
+<p class="stock-summary">AACR2026에서 VRN11(폐암 표적치료제) 임상1상 유의미한 결과 공개. EGFR C797S 내성 환자군 ORR 상승으로 가속승인 기대감. 어제 +11.56% 급등 후 단기 차익실현 매물 나올 수 있으나, 간밤 XBI +2.37% 강세로 추가 상승 여력.</p>
           <ul class="points">
             <li>
               <div class="point-title">
-                <span class="text">ASMPT HBM4 TC본더 수주</span>
+                <span class="text">VRN11 AACR 임상1상 성공</span>
 <span class="impact positive">호재</span>              </div>
-<div class="point-detail">ASMPT가 작년 HBM4용 TC본더 복수 수주. SK하이닉스 유력 고객</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/031/0001023114" target="_blank" rel="noopener">아이뉴스24 — ASMPT TC본더</a>              </div>
+<div class="point-detail">폐암 EGFR C797S 내성 환자군에서 높은 ORR. 가속승인 경로 기대</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/008/0005346739" target="_blank" rel="noopener">머니투데이 — VRN11 C797S ORR 상승</a>              </div>
             </li>
             <li>
               <div class="point-title">
-                <span class="text">반도체 부자 지도 변화</span>
+                <span class="text">VRN10 HER2 데이터도 공개</span>
 <span class="impact positive">호재</span>              </div>
-<div class="point-detail">반도체 랠리로 국내 주식부자 지도 재편. 한미반도체 약진</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/023/0003971855" target="_blank" rel="noopener">조선일보 — 반도체 부자 지도</a>              </div>
+<div class="point-detail">AACR2026에서 VRN10 HER2 치료 데이터 동시 발표</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/018/0006262114" target="_blank" rel="noopener">이데일리 — VRN10 데이터</a>              </div>
             </li>
           </ul>
 
 
           <h4>공시</h4>
           <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1629091&code=042700&page_notice=" target="_blank" rel="noopener">기업설명회(IR) 개최</a><span class="date">26.04.10</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1617335&code=042700&page_notice=" target="_blank" rel="noopener">기업가치 제고 계획</a><span class="date">26.03.20</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1620356&code=310210&page_notice=" target="_blank" rel="noopener">임상시험계획 변경승인(VRN11)</a><span class="date">26.03.26</span></li>
           </ul>
         </div>
       </details>
@@ -1122,44 +1167,50 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">한화에어로스페이스</span>
-          <span class="code">012450 · KOSPI</span>
-          <span class="price-change up" title="어제 종가 기준">+0.14%</span>
+          <span class="name">삼성E&A</span>
+          <span class="code">028050 · KOSPI</span>
+          <span class="price-change down" title="어제 종가 기준">-0.50%</span>
           <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.32%          </span>
+            🌙 —0.67%          </span>
           <span class="rec hold">관망</span>
-<span class="confidence-chip medium">신뢰 중간</span>        </summary>
+<span class="confidence-chip low">신뢰 낮음</span>        </summary>
         <div class="body">
           <div class="decision-block">
             <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
- (0.32%)              </span>
+ (0.67%)              </span>
               <span class="proxies">
-<span class="p up">ITA ▲ 1.27%</span> · <span class="p down">LMT ▼ 2.52%</span> · <span class="p up">RTX ▲ 0.29%</span>              </span>
+<span class="p down">XLE ▼ 2.76%</span> · <span class="p up">FLR ▲ 1.42%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">뉴스 중립(개별 뉴스 부재, 시장 일반) + 간밤 방산 혼조(ITA +1.27% vs LMT -2.52%) + 어제 +0.14% 보합</div>          </div>
+<div class="rationale">뉴스 혼조(건설 ETF 최고 수익률 vs 미·이란 불확실성) + 간밤 중립(XLE -2.76% vs FLR +1.42%) + 어제 -0.50% 보합</div>          </div>
 
 
-<p class="stock-summary">미·이란 휴전 만료 D-day로 방산주 변동성 예상. 간밤 LMT -2.52%로 방산 심리 다소 위축. 단기 방향성 불분명하여 관망 적절.</p>
+<p class="stock-summary">건설 ETF 올해 수익률 1위(+116%)로 섹터 전체 강세이나, 미·이란 2차 협상 불확실성이 중동 건설주 부담. 오늘 휴전 만료일로 방향성은 협상 결과에 달림.</p>
           <ul class="points">
             <li>
               <div class="point-title">
-                <span class="text">미·이란 휴전 만료 D-day</span>
-<span class="impact neutral">중립</span>              </div>
-<div class="point-detail">4/21 휴전 만료. 연장 여부에 따라 방산주 방향 급변 가능</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/008/0005346319" target="_blank" rel="noopener">머니투데이 — 휴전 시한 D-1</a>              </div>
+                <span class="text">건설 ETF 올해 수익률 1위</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">반도체·원유 제치고 건설이 올해 최고. 중동 재건 기대 반영</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/011/0004612340" target="_blank" rel="noopener">서울경제 — 건설 ETF 최고</a>              </div>
+            </li>
+            <li>
+              <div class="point-title">
+                <span class="text">미·이란 2차 협상 불확실성</span>
+<span class="impact negative">악재</span>              </div>
+<div class="point-detail">어제 건설주 장초반 약세. 오늘 휴전 만료로 불확실성 극대화</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/001/0016030430" target="_blank" rel="noopener">연합뉴스 — 건설주 약세</a>              </div>
             </li>
           </ul>
 
 
           <h4>공시</h4>
           <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1630538&code=012450&page_notice=" target="_blank" rel="noopener">기업설명회(IR) 개최</a><span class="date">26.04.15</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1630536&code=012450&page_notice=" target="_blank" rel="noopener">결산실적공시 예고</a><span class="date">26.04.15</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1629026&code=012450&page_notice=" target="_blank" rel="noopener">단일판매·공급계약체결</a><span class="date">26.04.10</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631438&code=028050&page_notice=" target="_blank" rel="noopener">단일판매·공급계약체결 (정정)</a><span class="date">26.04.17</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631027&code=028050&page_notice=" target="_blank" rel="noopener">기업설명회(IR) 개최</a><span class="date">26.04.16</span></li>
           </ul>
         </div>
       </details>
@@ -1167,49 +1218,58 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">SK이노베이션</span>
-          <span class="code">096770 · KOSPI</span>
-          <span class="price-change down" title="어제 종가 기준">-0.46%</span>
+          <span class="name">삼성전자</span>
+          <span class="code">005930 · KOSPI</span>
+          <span class="price-change down" title="어제 종가 기준">-0.69%</span>
           <span class="overnight-badge up" title="간밤 해외 프록시 평균">
-            🌙 ▲1.53%          </span>
-          <span class="rec buy">매수</span>
-<span class="confidence-chip medium">신뢰 중간</span>        </summary>
+            🌙 ▲1.21%          </span>
+          <span class="rec strong_buy">풀매수</span>
+<span class="confidence-chip high">신뢰 높음</span>        </summary>
         <div class="body">
           <div class="decision-block">
             <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge up">
 ▲                강세
- (1.53%)              </span>
+ (1.21%)              </span>
               <span class="proxies">
-<span class="p down">XLE ▼ 2.76%</span> · <span class="p up">CL=F ▲ 4.33%</span> · <span class="p up">TSLA ▲ 3.01%</span>              </span>
+<span class="p up">^SOX ▲ 2.43%</span> · <span class="p up">NVDA ▲ 1.68%</span> · <span class="p down">MU ▼ 0.47%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">뉴스 긍정(K배터리 반등·삼성SDI 벤츠 계약·ESS·고유가→EV 수요) + 간밤 WTI +4.33%·TSLA +3.01% 강세 + 어제 -0.46%로 미반영. 단 XLE -2.76%로 에너지 섹터 혼조</div>          </div>
+<div class="rationale">뉴스 긍정(IB 목표 상향·외인 매수·이재용 인도 방문) + 간밤 SOX +2.43% 강세 + 어제 -0.69%로 미반영</div>          </div>
 
 
-<p class="stock-summary">배터리 섹터 반등세. 삼성SDI-벤츠 10조 계약, 고유가→전기차 수요 부활론. 정유 부문은 호르무즈 봉쇄 장기화 불확실성이 상수. WTI +4.33%는 정유 수혜이나 XLE -2.76%로 시장 해석은 엇갈림.</p>
+<p class="stock-summary">골드만·JP모건 코스피 목표 대폭 상향의 핵심 수혜주. 간밤 SOX +2.43% 강세로 오늘 갭업 출발 예상. RIA(국내복귀계좌) 잔고 17배 급증도 수급 호재.</p>
           <ul class="points">
             <li>
               <div class="point-title">
-                <span class="text">K배터리 반등 — 삼성SDI 벤츠 계약</span>
+                <span class="text">이재용 회장 인도 방문</span>
 <span class="impact positive">호재</span>              </div>
-<div class="point-detail">삼성SDI 벤츠 전기차 배터리 첫 공급. K배터리 캐즘 돌파론</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/020/0003713826" target="_blank" rel="noopener">동아일보 — 삼성SDI 벤츠 첫 공급</a>              </div>
+<div class="point-detail">李대통령·모디 총리와 갤럭시 플립7 셀카. 인도 시장 확대 기대</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/003/0013898947" target="_blank" rel="noopener">뉴시스 — 인도 방문</a>              </div>
             </li>
             <li>
               <div class="point-title">
-                <span class="text">정유 1분기 호실적이나 불확실성</span>
-<span class="impact neutral">중립</span>              </div>
-<div class="point-detail">정유 1분기 호실적 예고했으나, 2분기 고유가 지속 시 수요 감소 우려</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/018/0006261993" target="_blank" rel="noopener">이데일리 — 정유사 한숨</a>              </div>
+                <span class="text">외국인 순매수 지속</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">이달 외국인·기관 삼전 매수, 개인은 역행 매도. 수급 구도 우호적</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/014/0005510527" target="_blank" rel="noopener">파이낸셜뉴스 — 외인은 사고 개인은 팔았다</a>              </div>
+            </li>
+            <li>
+              <div class="point-title">
+                <span class="text">주식 소각 완료</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">4/9 변경상장(주식소각). 주주환원 강화 신호</div>              <div class="sources">
+<a href="https://finance.naver.com/item/news_notice_read.naver?no=1628875&code=005930&page_notice=" target="_blank" rel="noopener">삼성전자 공시 — 변경상장(주식소각)</a>              </div>
             </li>
           </ul>
 
 
           <h4>공시</h4>
           <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1619385&code=096770&page_notice=" target="_blank" rel="noopener">대표이사 변경</a><span class="date">26.03.24</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1628875&code=005930&page_notice=" target="_blank" rel="noopener">변경상장(주식소각)</a><span class="date">26.04.09</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1627537&code=005930&page_notice=" target="_blank" rel="noopener">기업설명회(IR) 개최</a><span class="date">26.04.07</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1627456&code=005930&page_notice=" target="_blank" rel="noopener">연결재무제표기준영업(잠정)실적</a><span class="date">26.04.07</span></li>
           </ul>
         </div>
       </details>
@@ -1268,160 +1328,13 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">KODEX 코스닥150 레버리지</span>
-          <span class="code">233740 · KOSPI</span>
-          <span class="price-change up" title="어제 종가 기준">+1.55%</span>
-          <span class="overnight-badge up" title="간밤 해외 프록시 평균">
-            🌙 ▲1.41%          </span>
-          <span class="rec buy">매수</span>
-<span class="confidence-chip medium">신뢰 중간</span>        </summary>
-        <div class="body">
-          <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
-            <div class="row"><span class="label">간밤 신호</span>
-              <span class="value overnight-badge up">
-▲                강세
- (1.41%)              </span>
-              <span class="proxies">
-<span class="p up">^IXIC ▲ 1.52%</span> · <span class="p up">QQQ ▲ 1.31%</span>              </span>
-            </div>
-            <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">뉴스 긍정(ETF 시장 400조 돌파·기관 레버리지 전환) + 간밤 나스닥 +1.52% 강세 + 어제 +1.55%로 미반영. 레버리지 ETF 특성상 한 단계 보수적 적용</div>          </div>
-
-
-<p class="stock-summary">ETF 시장 400조 돌파. 기관·외인이 곱버스 팔고 레버리지로 전환 중. 간밤 나스닥 +1.52%로 코스닥 갭업 기대. 다만 공매도·대차거래 사상 최대치 경계.</p>
-          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">기관·외인 레버리지 전환</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">곱버스 매도+레버리지 매수 전환. 상승장 지속 베팅</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/014/0005509479" target="_blank" rel="noopener">파이낸셜뉴스 — 곱버스 팔고 레버리지</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">공매도 사상 최대치</span>
-<span class="impact negative">악재</span>              </div>
-<div class="point-detail">공매도·대차거래 동시 사상 최대. 하락 베팅도 동시 확대</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/088/0001006283" target="_blank" rel="noopener">매일신문 — 공매도 사상 최대</a>              </div>
-            </li>
-          </ul>
-
-
-        </div>
-      </details>
-    </article>
-    <article class="stock">
-      <details>
-        <summary>
-          <span class="name">삼성E&A</span>
-          <span class="code">028050 · KOSPI</span>
-          <span class="price-change down" title="어제 종가 기준">-0.50%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.67%          </span>
-          <span class="rec hold">관망</span>
-<span class="confidence-chip low">신뢰 낮음</span>        </summary>
-        <div class="body">
-          <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
-            <div class="row"><span class="label">간밤 신호</span>
-              <span class="value overnight-badge neutral">
-—                중립
- (0.67%)              </span>
-              <span class="proxies">
-<span class="p down">XLE ▼ 2.76%</span> · <span class="p up">FLR ▲ 1.42%</span>              </span>
-            </div>
-            <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">뉴스 혼조(건설 ETF 최고 수익률 vs 미·이란 불확실성) + 간밤 중립(XLE -2.76% vs FLR +1.42%) + 어제 -0.50% 보합</div>          </div>
-
-
-<p class="stock-summary">건설 ETF 올해 수익률 1위(+116%)로 섹터 전체 강세이나, 미·이란 2차 협상 불확실성이 중동 건설주 부담. 오늘 휴전 만료일로 방향성은 협상 결과에 달림.</p>
-          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">건설 ETF 올해 수익률 1위</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">반도체·원유 제치고 건설이 올해 최고. 중동 재건 기대 반영</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/011/0004612340" target="_blank" rel="noopener">서울경제 — 건설 ETF 최고</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">미·이란 2차 협상 불확실성</span>
-<span class="impact negative">악재</span>              </div>
-<div class="point-detail">어제 건설주 장초반 약세. 오늘 휴전 만료로 불확실성 극대화</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/001/0016030430" target="_blank" rel="noopener">연합뉴스 — 건설주 약세</a>              </div>
-            </li>
-          </ul>
-
-
-          <h4>공시</h4>
-          <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631438&code=028050&page_notice=" target="_blank" rel="noopener">단일판매·공급계약체결 (정정)</a><span class="date">26.04.17</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631027&code=028050&page_notice=" target="_blank" rel="noopener">기업설명회(IR) 개최</a><span class="date">26.04.16</span></li>
-          </ul>
-        </div>
-      </details>
-    </article>
-    <article class="stock">
-      <details>
-        <summary>
-          <span class="name">보로노이</span>
-          <span class="code">310210 · KOSDAQ</span>
-          <span class="price-change up" title="어제 종가 기준">+11.56%</span>
-          <span class="overnight-badge up" title="간밤 해외 프록시 평균">
-            🌙 ▲2.37%          </span>
-          <span class="rec buy">매수</span>
-<span class="confidence-chip medium">신뢰 중간</span>        </summary>
-        <div class="body">
-          <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
-            <div class="row"><span class="label">간밤 신호</span>
-              <span class="value overnight-badge up">
-▲                강세
- (2.37%)              </span>
-              <span class="proxies">
-<span class="p up">XBI ▲ 2.37%</span>              </span>
-            </div>
-            <div class="row"><span class="label">뉴스 반영</span><span class="value">이미 어제 주가에 반영</span></div>
-<div class="rationale">뉴스 긍정(VRN11 AACR 임상1상 성공·VRN10 HER2 데이터) + 간밤 XBI +2.37% 강세 + 어제 +11.56%로 대부분 반영. 갭 상승 후 차익실현 매물 경계</div>          </div>
-
-
-<p class="stock-summary">AACR2026에서 VRN11(폐암 표적치료제) 임상1상 유의미한 결과 공개. EGFR C797S 내성 환자군 ORR 상승으로 가속승인 기대감. 어제 +11.56% 급등 후 단기 차익실현 매물 나올 수 있으나, 간밤 XBI +2.37% 강세로 추가 상승 여력.</p>
-          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">VRN11 AACR 임상1상 성공</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">폐암 EGFR C797S 내성 환자군에서 높은 ORR. 가속승인 경로 기대</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/008/0005346739" target="_blank" rel="noopener">머니투데이 — VRN11 C797S ORR 상승</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">VRN10 HER2 데이터도 공개</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">AACR2026에서 VRN10 HER2 치료 데이터 동시 발표</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/018/0006262114" target="_blank" rel="noopener">이데일리 — VRN10 데이터</a>              </div>
-            </li>
-          </ul>
-
-
-          <h4>공시</h4>
-          <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1620356&code=310210&page_notice=" target="_blank" rel="noopener">임상시험계획 변경승인(VRN11)</a><span class="date">26.03.26</span></li>
-          </ul>
-        </div>
-      </details>
-    </article>
-    <article class="stock">
-      <details>
-        <summary>
-          <span class="name">큐리옥스바이오시스템즈</span>
-          <span class="code">445680 · KOSDAQ</span>
-          <span class="price-change down" title="어제 종가 기준">-1.65%</span>
+          <span class="name">알테오젠</span>
+          <span class="code">196170 · KOSDAQ</span>
+          <span class="price-change up" title="어제 종가 기준">+1.50%</span>
           <span class="overnight-badge up" title="간밤 해외 프록시 평균">
             🌙 ▲1.91%          </span>
           <span class="rec buy">매수</span>
-<span class="confidence-chip low">신뢰 낮음</span>        </summary>
+<span class="confidence-chip medium">신뢰 중간</span>        </summary>
         <div class="body">
           <div class="decision-block">
             <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
@@ -1433,104 +1346,25 @@
 <span class="p up">XBI ▲ 2.37%</span> · <span class="p up">IBB ▲ 1.46%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">뉴스 중립(종목 개별 뉴스 부재, 외국인 코스닥 바이오 순매수 정도) + 간밤 XBI +2.37% 강세 + 어제 -1.65%로 미반영. 종목 뉴스 부재로 낮은 확신</div>          </div>
+<div class="rationale">뉴스 중립(코스피 이전 시 ETF 매수세 감소 우려 vs 일반 시장 강세) + 간밤 XBI +2.37% 강세 + 어제 +1.50%로 미반영</div>          </div>
 
 
-<p class="stock-summary">최근 3주간 종목 고유 뉴스 부재. 간밤 미국 바이오 ETF 강세로 소폭 반등 가능. Pluto Code 빅파마 상업화 및 Beckman Coulter 파트너십이 중기 모멘��.</p>
+<p class="stock-summary">코스피 이전 시 코스닥150 ETF 비중 조정에 따른 수급 부담 우려가 있으나, 간밤 미국 바이오 ETF(XBI +2.37%) 강세로 갭업 가능. 히알루로니다제 플랫폼의 글로벌 라이선스 가치는 여전히 유효.</p>
           <ul class="points">
             <li>
               <div class="point-title">
-                <span class="text">소수계좌 거래집중 투자주의</span>
+                <span class="text">코스피 이전 시 ETF 매수세 감소 우려</span>
 <span class="impact negative">악재</span>              </div>
-<div class="point-detail">3/24 소수계좌 거래집중 종목 지정. 수급 쏠림 주의</div>              <div class="sources">
-<a href="https://finance.naver.com/item/news_notice_read.naver?no=1619737&code=445680&page_notice=" target="_blank" rel="noopener">큐리옥스 공시 — 투자주의</a>              </div>
-            </li>
-          </ul>
-
-          <div class="deep-dive">
-            <h4>🔬 심층 분석</h4>
-            <div class="dd-block">
-              <div class="dd-label">주력 사업·제품</div>
-              <div class="dd-body">원심분리기 없이(C-FREE) 층류를 이용한 세포 세척 기술(Laminar Wash). Pluto 시리즈: Workstation(전용 장비), Code(기존 장비용 소프트웨어), HT(고처리량). 2026년부터 고마진 소프트웨어(Pluto Code) 매출 비중 확대 전략.</div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">시장성</div>
-              <div class="dd-body">글로벌 flow cytometry 시장 2026년 약 73억 달러(CAGR 9%). Sample preparation 자동화는 가장 빠르게 성장하는 세그먼트. CGT·면역항암제 개발에서 표준화된 sample prep 수요 구조적 증가.</div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">경쟁 구도</div>
-              <div class="dd-body">
-                <div class="dd-tags"><span class="dd-tag">BD Biosciences (FACSDuet 자동화 장비, Biosero 로보틱 협업)</span><span class="dd-tag">Beckman Coulter (경쟁자이자 파트너 — DURAClone+C-FREE 파트너십)</span><span class="dd-tag">Thermo Fisher (광범위 포트폴리오)</span></div>
-              </div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">R&D / 논문·특허 동향</div>
-              <div class="dd-body">특허 15건 출원/5건 등록. C-FREE 미국 상표 등록. SLAS 2026 포스터 2건 발표. AstraZeneca·ETH Zurich·Stanford(Maecker) 검증. NIST와 세포 분석 글로벌 표준 수립 협력.</div>
-            </div>
-            <div class="dd-block">
-              <div class="dd-label">리스크</div>
-              <div class="dd-body">적자 지속(2025 상반기 매출 -28.4%, 순손실 확대). PBR 26배 고밸류. 현금 ~200억원 vs 연간 판관비 ~150억원으로 소진 리스크. 소수 빅파마 계약 의존. BD FACSDuet 등 대형사 자동화 경쟁 심화.</div>
-            </div>
-            <div class="sources">
-<a href="https://www.curiox.com/news/pluto-code-first-biopharma-adoption/" target="_blank" rel="noopener">Curiox — Pluto Code Biopharma Adoption</a><a href="https://www.curiox.com/laminar-wash/laminar-wash-technology-an-overview/" target="_blank" rel="noopener">Curiox — Laminar Wash Overview</a><a href="https://www.biotimes.co.kr/news/articleView.html?idxno=24297" target="_blank" rel="noopener">바이오타임즈 — 플루토 코드 상업화</a><a href="https://www.fortunebusinessinsights.com/flow-cytometry-market-107325" target="_blank" rel="noopener">Fortune BI — Flow Cytometry Market</a>            </div>
-          </div>
-
-          <h4>공시</h4>
-          <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631513&code=445680&page_notice=" target="_blank" rel="noopener">추가상장(주식매수선택권행사)</a><span class="date">26.04.17</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1619737&code=445680&page_notice=" target="_blank" rel="noopener">소수계좌 거래집중 종목</a><span class="date">26.03.24</span></li>
-          </ul>
-        </div>
-      </details>
-    </article>
-    <article class="stock">
-      <details>
-        <summary>
-          <span class="name">HD한국조선해양</span>
-          <span class="code">009540 · KOSPI</span>
-          <span class="price-change down" title="어제 종가 기준">-1.55%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.52%          </span>
-          <span class="rec buy">매수</span>
-<span class="confidence-chip medium">신뢰 중간</span>        </summary>
-        <div class="body">
-          <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
-            <div class="row"><span class="label">간밤 신호</span>
-              <span class="value overnight-badge neutral">
-—                중립
- (0.52%)              </span>
-              <span class="proxies">
-<span class="p up">XLI ▲ 1.87%</span> · <span class="p down">DAC ▼ 0.83%</span>              </span>
-            </div>
-            <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">뉴스 긍정(1분기 수주 50% 급증·K조선 영업익 2조·태국 호위함 수주전) + 간밤 중립(XLI +1.87% vs DAC -0.83%) + 어제 -1.55%로 미반영</div>          </div>
-
-
-<p class="stock-summary">1분기 수주 전년비 50% 급증, K조선 빅3 합산 영업익 2조 육박으로 호황기 이익 실현 본격화. 태국 호위함 8000억 수주전 참여. 어제 -1.55% 조정으로 매수 기회.</p>
-          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">1분기 수주 50% 급증</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">전년 대비 수주 순항. 호황기 이익 실현 본격화</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/123/0002381668" target="_blank" rel="noopener">조세일보 — 1분기 수주 순항</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">잠정실적 공시</span>
-<span class="impact positive">호재</span>              </div>
-<div class="point-detail">4/20 영업(잠정)실적 공시. 호실적 확인 시 추가 상승 동력</div>              <div class="sources">
-<a href="https://finance.naver.com/item/news_notice_read.naver?no=1631823&code=009540&page_notice=" target="_blank" rel="noopener">HD한국조선해양 공시 — 잠정실적</a>              </div>
+<div class="point-detail">코스닥→코스피 이전 시 코스닥150 ETF 편출. 단기 수급 부담</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/009/0005668723" target="_blank" rel="noopener">매일경제 — 알테오젠 ETF 수급</a>              </div>
             </li>
           </ul>
 
 
           <h4>공시</h4>
           <ul class="disclosures">
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631823&code=009540&page_notice=" target="_blank" rel="noopener">영업(잠정)실적</a><span class="date">26.04.20</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631816&code=009540&page_notice=" target="_blank" rel="noopener">영업(잠정)실적 — 자회사</a><span class="date">26.04.20</span></li>
-            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631292&code=009540&page_notice=" target="_blank" rel="noopener">단일판매·공급계약체결</a><span class="date">26.04.17</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1627709&code=196170&page_notice=" target="_blank" rel="noopener">기업설명회(IR) 개최</a><span class="date">26.04.07</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1620130&code=196170&page_notice=" target="_blank" rel="noopener">히알루로니다제 제조판매 허가</a><span class="date">26.03.25</span></li>
           </ul>
         </div>
       </details>
@@ -1704,6 +1538,173 @@
           <h4>공시</h4>
           <ul class="disclosures">
             <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1621869&code=166480&page_notice=" target="_blank" rel="noopener">정기주주총회결과</a><span class="date">26.03.27</span></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">큐리옥스바이오시스템즈</span>
+          <span class="code">445680 · KOSDAQ</span>
+          <span class="price-change down" title="어제 종가 기준">-1.65%</span>
+          <span class="overnight-badge up" title="간밤 해외 프록시 평균">
+            🌙 ▲1.91%          </span>
+          <span class="rec buy">매수</span>
+<span class="confidence-chip low">신뢰 낮음</span>        </summary>
+        <div class="body">
+          <div class="decision-block">
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
+            <div class="row"><span class="label">간밤 신호</span>
+              <span class="value overnight-badge up">
+▲                강세
+ (1.91%)              </span>
+              <span class="proxies">
+<span class="p up">XBI ▲ 2.37%</span> · <span class="p up">IBB ▲ 1.46%</span>              </span>
+            </div>
+            <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
+<div class="rationale">뉴스 중립(종목 개별 뉴스 부재, 외국인 코스닥 바이오 순매수 정도) + 간밤 XBI +2.37% 강세 + 어제 -1.65%로 미반영. 종목 뉴스 부재로 낮은 확신</div>          </div>
+
+
+<p class="stock-summary">최근 3주간 종목 고유 뉴스 부재. 간밤 미국 바이오 ETF 강세로 소폭 반등 가능. Pluto Code 빅파마 상업화 및 Beckman Coulter 파트너십이 중기 모멘��.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">소수계좌 거래집중 투자주의</span>
+<span class="impact negative">악재</span>              </div>
+<div class="point-detail">3/24 소수계좌 거래집중 종목 지정. 수급 쏠림 주의</div>              <div class="sources">
+<a href="https://finance.naver.com/item/news_notice_read.naver?no=1619737&code=445680&page_notice=" target="_blank" rel="noopener">큐리옥스 공시 — 투자주의</a>              </div>
+            </li>
+          </ul>
+
+          <div class="deep-dive">
+            <h4>🔬 심층 분석</h4>
+            <div class="dd-block">
+              <div class="dd-label">주력 사업·제품</div>
+              <div class="dd-body">원심분리기 없이(C-FREE) 층류를 이용한 세포 세척 기술(Laminar Wash). Pluto 시리즈: Workstation(전용 장비), Code(기존 장비용 소프트웨어), HT(고처리량). 2026년부터 고마진 소프트웨어(Pluto Code) 매출 비중 확대 전략.</div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-label">시장성</div>
+              <div class="dd-body">글로벌 flow cytometry 시장 2026년 약 73억 달러(CAGR 9%). Sample preparation 자동화는 가장 빠르게 성장하는 세그먼트. CGT·면역항암제 개발에서 표준화된 sample prep 수요 구조적 증가.</div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-label">경쟁 구도</div>
+              <div class="dd-body">
+                <div class="dd-tags"><span class="dd-tag">BD Biosciences (FACSDuet 자동화 장비, Biosero 로보틱 협업)</span><span class="dd-tag">Beckman Coulter (경쟁자이자 파트너 — DURAClone+C-FREE 파트너십)</span><span class="dd-tag">Thermo Fisher (광범위 포트폴리오)</span></div>
+              </div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-label">R&D / 논문·특허 동향</div>
+              <div class="dd-body">특허 15건 출원/5건 등록. C-FREE 미국 상표 등록. SLAS 2026 포스터 2건 발표. AstraZeneca·ETH Zurich·Stanford(Maecker) 검증. NIST와 세포 분석 글로벌 표준 수립 협력.</div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-label">리스크</div>
+              <div class="dd-body">적자 지속(2025 상반기 매출 -28.4%, 순손실 확대). PBR 26배 고밸류. 현금 ~200억원 vs 연간 판관비 ~150억원으로 소진 리스크. 소수 빅파마 계약 의존. BD FACSDuet 등 대형사 자동화 경쟁 심화.</div>
+            </div>
+            <div class="sources">
+<a href="https://www.curiox.com/news/pluto-code-first-biopharma-adoption/" target="_blank" rel="noopener">Curiox — Pluto Code Biopharma Adoption</a><a href="https://www.curiox.com/laminar-wash/laminar-wash-technology-an-overview/" target="_blank" rel="noopener">Curiox — Laminar Wash Overview</a><a href="https://www.biotimes.co.kr/news/articleView.html?idxno=24297" target="_blank" rel="noopener">바이오타임즈 — 플루토 코드 상업화</a><a href="https://www.fortunebusinessinsights.com/flow-cytometry-market-107325" target="_blank" rel="noopener">Fortune BI — Flow Cytometry Market</a>            </div>
+          </div>
+
+          <h4>공시</h4>
+          <ul class="disclosures">
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631513&code=445680&page_notice=" target="_blank" rel="noopener">추가상장(주식매수선택권행사)</a><span class="date">26.04.17</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1619737&code=445680&page_notice=" target="_blank" rel="noopener">소수계좌 거래집중 종목</a><span class="date">26.03.24</span></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">한미반도체</span>
+          <span class="code">042700 · KOSPI</span>
+          <span class="price-change up" title="어제 종가 기준">+0.17%</span>
+          <span class="overnight-badge up" title="간밤 해외 프록시 평균">
+            🌙 ▲1.97%          </span>
+          <span class="rec strong_buy">풀매수</span>
+<span class="confidence-chip high">신뢰 높음</span>        </summary>
+        <div class="body">
+          <div class="decision-block">
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">간밤 신호</span>
+              <span class="value overnight-badge up">
+▲                강세
+ (1.97%)              </span>
+              <span class="proxies">
+<span class="p up">^SOX ▲ 2.43%</span> · <span class="p up">AMAT ▲ 1.81%</span> · <span class="p up">NVDA ▲ 1.68%</span>              </span>
+            </div>
+            <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
+<div class="rationale">뉴스 긍정(반도체 부자 약진·HBM4 TC본더 수주·AI반도체 ETF 선두) + 간밤 SOX +2.43%·AMAT +1.81% 강세 + 어제 +0.17%로 미반영</div>          </div>
+
+
+<p class="stock-summary">ASMPT HBM4용 TC본더 복수 수주(SK하이닉스 유력) 소식. AI반도체 소부장 ETF 수익률 상위. 간밤 반도체 장비주 강세로 오늘 갭업 예상.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">ASMPT HBM4 TC본더 수주</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">ASMPT가 작년 HBM4용 TC본더 복수 수주. SK하이닉스 유력 고객</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/031/0001023114" target="_blank" rel="noopener">아이뉴스24 — ASMPT TC본더</a>              </div>
+            </li>
+            <li>
+              <div class="point-title">
+                <span class="text">반도체 부자 지도 변화</span>
+<span class="impact positive">호재</span>              </div>
+<div class="point-detail">반도체 랠리로 국내 주식부자 지도 재편. 한미반도체 약진</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/023/0003971855" target="_blank" rel="noopener">조선일보 — 반도체 부자 지도</a>              </div>
+            </li>
+          </ul>
+
+
+          <h4>공시</h4>
+          <ul class="disclosures">
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1629091&code=042700&page_notice=" target="_blank" rel="noopener">기업설명회(IR) 개최</a><span class="date">26.04.10</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1617335&code=042700&page_notice=" target="_blank" rel="noopener">기업가치 제고 계획</a><span class="date">26.03.20</span></li>
+          </ul>
+        </div>
+      </details>
+    </article>
+    <article class="stock">
+      <details>
+        <summary>
+          <span class="name">한화에어로스페이스</span>
+          <span class="code">012450 · KOSPI</span>
+          <span class="price-change up" title="어제 종가 기준">+0.14%</span>
+          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
+            🌙 —0.32%          </span>
+          <span class="rec hold">관망</span>
+<span class="confidence-chip medium">신뢰 중간</span>        </summary>
+        <div class="body">
+          <div class="decision-block">
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
+            <div class="row"><span class="label">간밤 신호</span>
+              <span class="value overnight-badge neutral">
+—                중립
+ (0.32%)              </span>
+              <span class="proxies">
+<span class="p up">ITA ▲ 1.27%</span> · <span class="p down">LMT ▼ 2.52%</span> · <span class="p up">RTX ▲ 0.29%</span>              </span>
+            </div>
+            <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
+<div class="rationale">뉴스 중립(개별 뉴스 부재, 시장 일반) + 간밤 방산 혼조(ITA +1.27% vs LMT -2.52%) + 어제 +0.14% 보합</div>          </div>
+
+
+<p class="stock-summary">미·이란 휴전 만료 D-day로 방산주 변동성 예상. 간밤 LMT -2.52%로 방산 심리 다소 위축. 단기 방향성 불분명하여 관망 적절.</p>
+          <ul class="points">
+            <li>
+              <div class="point-title">
+                <span class="text">미·이란 휴전 만료 D-day</span>
+<span class="impact neutral">중립</span>              </div>
+<div class="point-detail">4/21 휴전 만료. 연장 여부에 따라 방산주 방향 급변 가능</div>              <div class="sources">
+<a href="https://n.news.naver.com/mnews/article/008/0005346319" target="_blank" rel="noopener">머니투데이 — 휴전 시한 D-1</a>              </div>
+            </li>
+          </ul>
+
+
+          <h4>공시</h4>
+          <ul class="disclosures">
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1630538&code=012450&page_notice=" target="_blank" rel="noopener">기업설명회(IR) 개최</a><span class="date">26.04.15</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1630536&code=012450&page_notice=" target="_blank" rel="noopener">결산실적공시 예고</a><span class="date">26.04.15</span></li>
+            <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1629026&code=012450&page_notice=" target="_blank" rel="noopener">단일판매·공급계약체결</a><span class="date">26.04.10</span></li>
           </ul>
         </div>
       </details>
