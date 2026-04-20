@@ -52,6 +52,13 @@ RECOMMENDATION_LABEL = {
     "strong_sell": "풀매도",
 }
 
+OUTCOME_LABEL = {
+    "hit":     "적중",
+    "partial": "부분",
+    "miss":    "실패",
+    "n/a":     "데이터 없음",
+}
+
 STATUS_LABEL = {
     "closed": "봉쇄",
     "restricted": "제한 통행",
@@ -241,6 +248,10 @@ def _normalize(summary: dict) -> dict:
             onsig["label"] = OVERNIGHT_LABEL.get(onsig["direction"], onsig["direction"])
         if stock.get("confidence"):
             stock["confidence_label"] = CONFIDENCE_LABEL.get(stock["confidence"], stock["confidence"])
+        # session-review result label
+        result = stock.get("result")
+        if isinstance(result, dict) and result.get("outcome"):
+            result["label"] = OUTCOME_LABEL.get(result["outcome"], result["outcome"])
         for pt in stock.get("key_points") or []:
             _annotate_impact(pt)
     return summary
@@ -314,8 +325,18 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
         stocks=stocks,
         coffee_buyer=_coffee_buyer(stocks),
         friends_overview=_friends_overview(stocks),
+        review=summary.get("review") or None,
     )
     return filename, html
+
+
+def persist_summary_artifact(summary: dict, date: str) -> Path:
+    """Write the normalized summary.json alongside the HTML so the evening
+    review job can read back the morning's prediction. Committed to git
+    so the remote evening agent can pull it after checkout."""
+    path = DOCS / f"{date}.summary.json"
+    path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+    return path
 
 
 def build_archive_index(base_url: str) -> str:
@@ -356,6 +377,10 @@ def main(argv: list[str]) -> int:
     dated = DOCS / filename
     dated.write_text(html, encoding="utf-8")
 
+    # Persist the normalized summary (with any review overlay) for re-use.
+    date_key = filename.removesuffix(".html")
+    artifact = persist_summary_artifact(summary, date_key)
+
     index = DOCS / "index.html"
     shutil.copyfile(dated, index)
 
@@ -366,6 +391,7 @@ def main(argv: list[str]) -> int:
     (DOCS / ".nojekyll").touch()
 
     print(f"✓ Wrote {dated.relative_to(ROOT)}")
+    print(f"✓ Wrote {artifact.relative_to(ROOT)}")
     print(f"✓ Updated {index.relative_to(ROOT)}")
     print(f"✓ Updated archive.html")
     return 0

@@ -40,7 +40,9 @@ description: Generate and publish today's pre-market stock briefing
    "오늘 약세 시작 가능성"). No hype, no investment advice beyond the requested
    recommendation label. Every claim needs a source from the fetched/searched data.
 
-5. **Render.** Run `.venv/bin/python scripts/render.py .tmp/summary.json`.
+5. **Render.** Run `.venv/bin/python scripts/render.py .tmp/summary.json`. This also writes
+   `docs/YYYY-MM-DD.summary.json` — a persistent copy that the evening `/daily-review`
+   job reads back to compare predictions against actual closes.
 
 6. **Commit & push.** `git add docs/ stocks.yml; git commit -m "report: YYYY-MM-DD briefing"; git push`
 

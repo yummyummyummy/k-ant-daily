@@ -111,6 +111,53 @@
   .news-items .time-ago { color: var(--accent); font-weight: 600; }
   .news-items .summary { font-size: 14px; color: var(--muted); margin-top: 4px; }
 
+  /* REVIEW BANNER (evening) */
+  .review-banner {
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--card), transparent);
+    border: 1px solid var(--border); border-left: 4px solid var(--accent);
+  }
+  .review-banner .rv-title { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: 0.02em; }
+  .review-banner .rv-score { font-size: 22px; font-weight: 800; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .review-banner .rv-score .pct { color: var(--accent); }
+  .review-banner .rv-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .review-banner .rv-breakdown { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; font-size: 12px; }
+  .review-banner .rv-chip { padding: 3px 10px; border-radius: 999px; font-weight: 600; }
+  .review-banner .rv-chip.hit     { background: var(--pos-bg); color: var(--pos); }
+  .review-banner .rv-chip.partial { background: rgba(245,158,11,0.15); color: #d97706; }
+  .review-banner .rv-chip.miss    { background: var(--neg-bg); color: var(--neg); }
+  .review-banner .rv-chip.neutral { background: var(--neu-bg); color: var(--muted); }
+  .review-banner .rv-attrib { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+  /* OUTCOME BADGE on stock-card summary row */
+  .outcome-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .outcome-badge.hit     { background: var(--pos-bg); color: var(--pos); }
+  .outcome-badge.partial { background: rgba(245,158,11,0.15); color: #d97706; }
+  .outcome-badge.miss    { background: var(--neg-bg); color: var(--neg); }
+  .outcome-badge.na      { background: var(--neu-bg); color: var(--muted); }
+
+  /* SESSION RESULT block (inside expanded stock body) */
+  .session-result-block {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 12px; margin: 8px 0 10px; font-size: 13px;
+  }
+  .session-result-block .sr-head {
+    font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .session-result-block .sr-row {
+    display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; margin: 3px 0;
+  }
+  .session-result-block .sr-arrow { color: var(--muted); font-size: 13px; }
+  .session-result-block .sr-note {
+    margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border);
+    color: var(--fg); font-style: italic; font-size: 13px;
+  }
+
   /* COFFEE BANNER */
   .coffee-banner {
     background: linear-gradient(135deg, #fde68a 0%, #fbbf24 100%);
@@ -478,6 +525,44 @@
     {% endif %}
   {% endif %}
 
+  {% if review %}
+  <section class="review-banner">
+    <div class="rv-title">📊 오늘의 예측 검증 · NXT 마감 후</div>
+    <div class="rv-score">
+      {{ review.accuracy.hits }}/{{ review.accuracy.total }} 적중
+      <span class="pct">· {{ (review.accuracy.hit_rate * 100) | round(0) | int }}%</span>
+    </div>
+    <div class="rv-sub">
+      방향 정확도 {{ (review.accuracy.directional_accuracy * 100) | round(0) | int }}%
+      {% if review.session_change.kospi %} · KOSPI {{ review.session_change.kospi }}{% endif %}
+      {% if review.session_change.kosdaq %} · KOSDAQ {{ review.session_change.kosdaq }}{% endif %}
+    </div>
+    <div class="rv-breakdown">
+      <span class="rv-chip hit">✅ 적중 {{ review.accuracy.hits }}</span>
+      <span class="rv-chip partial">🟡 부분 {{ review.accuracy.partial }}</span>
+      <span class="rv-chip miss">❌ 실패 {{ review.accuracy.misses }}</span>
+      {% if review.accuracy.by_confidence %}
+        {% for conf, stat in review.accuracy.by_confidence.items() %}
+        <span class="rv-chip neutral">
+          신뢰 {% if conf == 'high' %}높음{% elif conf == 'low' %}낮음{% else %}중간{% endif %}
+          · {{ (stat.rate * 100) | round(0) | int }}% ({{ stat.hits }}/{{ stat.total }})
+        </span>
+        {% endfor %}
+      {% endif %}
+    </div>
+    {% if review.signal_attribution %}
+    <div class="rv-attrib">
+      {% set a = review.signal_attribution %}
+      신호 기여도 —
+      {% if a.overnight_helped %}간밤 적중 {{ a.overnight_helped }}건 · {% endif %}
+      {% if a.news_misread %}뉴스 오독 {{ a.news_misread }}건 · {% endif %}
+      {% if a.overnight_misled %}간밤 오도 {{ a.overnight_misled }}건 · {% endif %}
+      {% if a.priced_in_underestimated %}반영 과소추정 {{ a.priced_in_underestimated }}건{% endif %}
+    </div>
+    {% endif %}
+  </section>
+  {% endif %}
+
   {% if top_stories %}
   <section class="top-stories">
     <h2>
@@ -685,6 +770,13 @@
           <span class="rec {{ stock.recommendation }}">{{ stock.recommendation_label or stock.recommendation }}</span>
           {% if stock.confidence %}<span class="confidence-chip {{ stock.confidence }}">신뢰 {{ stock.confidence_label or stock.confidence }}</span>{% endif %}
           {% endif %}
+          {% if stock.result and stock.result.outcome and stock.result.outcome != 'n/a' %}
+          <span class="outcome-badge {{ stock.result.outcome }}" title="아침 예측 대비 실제 결과">
+            {% if stock.result.outcome == 'hit' %}✅{% elif stock.result.outcome == 'partial' %}🟡{% elif stock.result.outcome == 'miss' %}❌{% endif %}
+            {{ stock.result.label or stock.result.outcome }}
+            {% if stock.result.actual_change_pct is not none %}· {{ '%+.2f'|format(stock.result.actual_change_pct) }}%{% endif %}
+          </span>
+          {% endif %}
           {% if stock.owners %}
           <span class="owner-chips">
             {% for o in stock.owners %}<span class="owner-chip">👤 {{ o }}</span>{% endfor %}
@@ -717,6 +809,26 @@
             {% if stock.rationale %}<div class="rationale">{{ stock.rationale }}</div>{% endif %}
           </div>
           {% endif %}
+
+          {% if stock.result and stock.result.outcome and stock.result.outcome != 'n/a' %}
+          <div class="session-result-block">
+            <div class="sr-head">🏁 오늘 세션 결과 (NXT 마감 기준)</div>
+            <div class="sr-row">
+              <span>예측</span>
+              <span class="rec {{ stock.recommendation }}">{{ stock.recommendation_label or stock.recommendation }}</span>
+              <span class="sr-arrow">→</span>
+              <span>실제</span>
+              {% if stock.result.actual_change_pct is not none %}
+              <span class="price-change {{ stock.result.actual_direction or 'flat' }}">{{ '%+.2f'|format(stock.result.actual_change_pct) }}%</span>
+              {% endif %}
+              <span class="outcome-badge {{ stock.result.outcome }}">
+                {% if stock.result.outcome == 'hit' %}✅ 적중{% elif stock.result.outcome == 'partial' %}🟡 부분{% elif stock.result.outcome == 'miss' %}❌ 실패{% endif %}
+              </span>
+            </div>
+            {% if stock.result.note %}<div class="sr-note">{{ stock.result.note }}</div>{% endif %}
+          </div>
+          {% endif %}
+
           {% if stock.summary %}<p class="stock-summary">{{ stock.summary }}</p>{% endif %}
 
           {% if stock.key_points %}
