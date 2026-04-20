@@ -1,0 +1,13 @@
+name = "k-ant-daily-quotes"
+main = "src/index.js"
+compatibility_date = "2024-10-01"
+
+# Free plan — no custom domain needed. After `wrangler deploy` you'll get
+# a URL like https://k-ant-daily-quotes.<your-subdomain>.workers.dev
+#
+# To change the subdomain (optional):
+#   wrangler whoami       # shows your account id
+#   Cloudflare dashboard → Workers & Pages → Settings → Subdomain
+
+[observability]
+enabled = true

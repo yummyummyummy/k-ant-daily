@@ -159,6 +159,19 @@
   .friend-card .quote.flat .price { color: var(--fg); }
   .friend-card .quote.flat .abs,
   .friend-card .quote.flat .pct   { color: var(--muted); }
+  @keyframes flash-up   { 0% { background: rgba(220,38,38,0.35); } 100% { background: transparent; } }
+  @keyframes flash-down { 0% { background: rgba(37,99,235,0.35); } 100% { background: transparent; } }
+  .friend-card .price.flash-up   { animation: flash-up 0.8s ease-out; border-radius: 4px; }
+  .friend-card .price.flash-down { animation: flash-down 0.8s ease-out; border-radius: 4px; }
+
+  /* LIVE INDICATOR */
+  .live-indicator {
+    font-size: 11px; color: var(--muted); margin-top: 8px; text-align: right;
+    opacity: 0.85;
+  }
+  .live-indicator.live   { color: var(--accent); }
+  .live-indicator.closed { opacity: 0.6; }
+  .live-indicator.error  { color: var(--neg); }
   .friend-card .owners {
     display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px;
   }
@@ -420,9 +433,9 @@
     <div class="coffee-banner">
       <div class="headline">☕ 오늘 커피는 <strong>{{ coffee_buyer.owners | join('·') }}</strong>님이!</div>
       <div class="sub">{{ coffee_buyer.name }} {{ coffee_buyer.change_display }} — 친구 보유 종목 중 최고 상승</div>
-      <div class="friend-cards">
+      <div class="friend-cards" id="friend-cards">
         {% for f in friends_overview %}
-        <div class="friend-card">
+        <div class="friend-card" data-code="{{ f.code }}">
           <div class="stock-name">{{ f.name }}</div>
           <div class="quote {{ f.direction or 'flat' }}">
             <div class="price">{{ f.price_display or '-' }}</div>
@@ -437,14 +450,15 @@
         </div>
         {% endfor %}
       </div>
+      <div class="live-indicator" id="live-indicator" aria-live="polite"></div>
     </div>
     {% else %}
     <div class="coffee-banner none">
       <div class="headline">☕ 오늘 커피는 각자 사기</div>
       <div class="sub">친구 보유 종목 중 상승 종목 없음</div>
-      <div class="friend-cards">
+      <div class="friend-cards" id="friend-cards">
         {% for f in friends_overview %}
-        <div class="friend-card">
+        <div class="friend-card" data-code="{{ f.code }}">
           <div class="stock-name">{{ f.name }}</div>
           <div class="quote {{ f.direction or 'flat' }}">
             <div class="price">{{ f.price_display or '-' }}</div>
@@ -459,6 +473,7 @@
         </div>
         {% endfor %}
       </div>
+      <div class="live-indicator" id="live-indicator" aria-live="polite"></div>
     </div>
     {% endif %}
   {% endif %}
@@ -793,5 +808,147 @@
     <p>k-ant-daily · 자동 생성 리포트 · <a href="https://github.com/yummyummyummy/k-ant-daily" target="_blank" rel="noopener">GitHub</a></p>
   </footer>
 </main>
+
+<script>
+(function () {
+  // ── CONFIGURE ME ────────────────────────────────────────────────
+  // After deploying the Cloudflare Worker in ../worker/, paste its URL here.
+  // Expected shape: https://<name>.<subdomain>.workers.dev/quote
+  // Leave as "" to disable live polling (snapshot values render as-is).
+  const QUOTE_API = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/quote";
+  // ────────────────────────────────────────────────────────────────
+
+  const POLL_MS = 60_000;
+  const MARKET_OPEN_MIN  = 9 * 60;       // 09:00 KST
+  const MARKET_CLOSE_MIN = 15 * 60 + 30; // 15:30 KST
+
+  function kstNow() {
+    // Build a KST wall-clock regardless of viewer timezone.
+    const utc = Date.now() + new Date().getTimezoneOffset() * 60_000;
+    return new Date(utc + 9 * 60 * 60_000);
+  }
+
+  function isMarketOpen() {
+    const k = kstNow();
+    const day = k.getDay(); // 0=Sun, 6=Sat
+    if (day === 0 || day === 6) return false;
+    const mins = k.getHours() * 60 + k.getMinutes();
+    return mins >= MARKET_OPEN_MIN && mins < MARKET_CLOSE_MIN;
+  }
+
+  function fmtKstTime(d) {
+    const hh = String(d.getHours()).padStart(2, "0");
+    const mm = String(d.getMinutes()).padStart(2, "0");
+    const ss = String(d.getSeconds()).padStart(2, "0");
+    return `${hh}:${mm}:${ss}`;
+  }
+
+  function fmtPrice(n) {
+    if (n == null) return "";
+    return Number(n).toLocaleString("ko-KR");
+  }
+
+  function fmtAbs(n, direction) {
+    if (n == null) return "";
+    const abs = Math.abs(Number(n));
+    if (abs === 0) return "—";
+    const num = abs.toLocaleString("ko-KR");
+    if (direction === "up")   return "▲ " + num;
+    if (direction === "down") return "▼ " + num;
+    return num;
+  }
+
+  function fmtPct(n) {
+    if (n == null) return "";
+    const v = Number(n);
+    const sign = v > 0 ? "+" : "";
+    return sign + v.toFixed(2) + "%";
+  }
+
+  function setIndicator(state, text) {
+    const el = document.getElementById("live-indicator");
+    if (!el) return;
+    el.classList.remove("live", "closed", "error");
+    el.classList.add(state);
+    el.textContent = text;
+  }
+
+  function applyQuote(card, q) {
+    const quoteBox = card.querySelector(".quote");
+    const priceEl  = card.querySelector(".price");
+    const absEl    = card.querySelector(".abs");
+    const pctEl    = card.querySelector(".pct");
+    if (!quoteBox || !priceEl) return;
+
+    const newPrice = fmtPrice(q.price);
+    const priceChanged = priceEl.textContent.trim() !== newPrice;
+
+    priceEl.textContent = newPrice;
+    if (absEl) absEl.textContent = fmtAbs(q.change, q.direction);
+    if (pctEl) pctEl.textContent = fmtPct(q.change_pct);
+
+    // Update up/down/flat class on the quote container
+    quoteBox.classList.remove("up", "down", "flat");
+    quoteBox.classList.add(q.direction || "flat");
+
+    // Flash the price cell on change
+    if (priceChanged && q.direction && q.direction !== "flat") {
+      const cls = q.direction === "up" ? "flash-up" : "flash-down";
+      priceEl.classList.remove("flash-up", "flash-down");
+      // Force reflow so the animation restarts
+      void priceEl.offsetWidth;
+      priceEl.classList.add(cls);
+    }
+  }
+
+  async function refreshQuotes() {
+    if (!QUOTE_API) return;
+    const cards = document.querySelectorAll(".friend-card[data-code]");
+    if (!cards.length) return;
+    const codes = [...cards].map((el) => el.dataset.code);
+    try {
+      const url = QUOTE_API + "?codes=" + encodeURIComponent(codes.join(","));
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error("status " + res.status);
+      const data = await res.json();
+      let applied = 0;
+      cards.forEach((card) => {
+        const q = data[card.dataset.code];
+        if (q) { applyQuote(card, q); applied += 1; }
+      });
+      if (applied > 0) {
+        setIndicator("live", "🟢 Live · 업데이트 " + fmtKstTime(kstNow()));
+      }
+    } catch (err) {
+      setIndicator("error", "⚠️ 실시간 업데이트 실패 (스냅샷 표시) · " + fmtKstTime(kstNow()));
+    }
+  }
+
+  function init() {
+    if (!QUOTE_API) {
+      setIndicator("closed", "⏸ 실시간 업데이트 비활성 (스냅샷)");
+      return;
+    }
+    if (!isMarketOpen()) {
+      setIndicator("closed", "⏸ 장 마감 — 종가 표시 중");
+      return;
+    }
+    refreshQuotes();
+    setInterval(refreshQuotes, POLL_MS);
+    // Re-check market-close boundary every minute; stop polling after 15:30.
+    setInterval(() => {
+      if (!isMarketOpen()) {
+        setIndicator("closed", "⏸ 장 마감 — 종가 표시 중");
+      }
+    }, 60_000);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
 </body>
 </html>
