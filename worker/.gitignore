@@ -1,0 +1,7 @@
+# Wrangler / Cloudflare local caches
+.wrangler/
+.dev.vars
+
+# Node
+node_modules/
+*.log
