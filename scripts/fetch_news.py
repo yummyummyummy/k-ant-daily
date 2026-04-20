@@ -39,10 +39,14 @@ def _get(url: str, referer: str | None = None) -> BeautifulSoup:
 
 
 def _abs_naver_link(href: str) -> str:
-    if href.startswith("/item/news_read"):
-        m = re.search(r"office_id=(\d+).*?article_id=(\d+)", href)
-        if m:
-            return f"https://n.news.naver.com/mnews/article/{m.group(1)}/{m.group(2)}"
+    # Desktop finance.naver.com article URLs drop their query on mobile and
+    # land on the news list. Rewrite both /item/news_read and /news/news_read
+    # to the universal n.news.naver.com path that works on both platforms.
+    if "news_read" in href:
+        office = re.search(r"office_id=(\d+)", href)
+        article = re.search(r"article_id=(\d+)", href)
+        if office and article:
+            return f"https://n.news.naver.com/mnews/article/{office.group(1)}/{article.group(1)}"
     if href.startswith("/"):
         return "https://finance.naver.com" + href
     return href
@@ -115,9 +119,7 @@ def fetch_macro_news(limit: int = 15) -> list[dict]:
         summ = li.select_one("dd.articleSummary")
         if not subj:
             continue
-        href = subj.get("href", "")
-        if href.startswith("/"):
-            href = "https://finance.naver.com" + href
+        href = _abs_naver_link(subj.get("href", ""))
         source = ""
         date = ""
         if summ:
@@ -194,6 +196,7 @@ def fetch_overnight_markets() -> dict:
         ("^KS200", "KOSPI200 (종가)"),
         ("CL=F", "WTI 원유"),
         ("GC=F", "금"),
+        ("BTC-USD", "비트코인"),
         ("DX-Y.NYB", "달러인덱스"),
     ]
     out: list[dict] = []

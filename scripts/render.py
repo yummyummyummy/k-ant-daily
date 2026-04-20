@@ -83,6 +83,12 @@ def _normalize(summary: dict) -> dict:
     for ts in summary.get("top_stories") or []:
         _annotate_impact(ts)
 
+    focus = summary.get("focus")
+    if focus:
+        _annotate_impact(focus)
+        for pt in focus.get("key_points") or []:
+            _annotate_impact(pt)
+
     for sec in summary.get("sectors") or []:
         _annotate_impact(sec)
         for pt in sec.get("key_points") or []:
@@ -126,6 +132,7 @@ def render_report(summary: dict, base_url: str) -> tuple[str, str]:
         generated_at_display=_display_time(summary.get("generated_at", "")),
         canonical_url=canonical,
         top_stories=summary.get("top_stories", []) or [],
+        focus=summary.get("focus") or None,
         macro=summary.get("macro", {}) or {},
         sectors=summary.get("sectors", []) or [],
         stocks=summary.get("stocks", []) or [],
