@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>아카이브 · k-ant-daily</title>
+<style>
+  :root { --fg: #0f172a; --muted: #64748b; --bg: #fff; --accent: #0f766e; --border: #e2e8f0; --card: #f8fafc; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fg: #e2e8f0; --muted: #94a3b8; --bg: #0f172a; --accent: #5eead4; --border: #1e293b; --card: #1e293b; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; background: var(--bg); color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+    line-height: 1.6; font-size: 16px;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  .hint { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li { padding: 12px 14px; margin-bottom: 8px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
+  li a { color: var(--fg); text-decoration: none; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  li a:hover { color: var(--accent); }
+  li .date { font-weight: 600; }
+  li .tldr { color: var(--muted); font-size: 14px; flex: 1; }
+  nav { margin-bottom: 16px; }
+  nav a { color: var(--accent); text-decoration: none; font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <nav><a href="index.html">← 오늘자</a></nav>
+  <h1>📚 아카이브</h1>
+  <p class="hint">과거 장전 브리핑 1개</p>
+  <ul>
+    <li>
+      <a href="2026-04-20.html">
+        <span class="date">2026-04-20</span>
+        <span class="tldr">KOSPI 6,219 (+0.44%) · 반도체 주도 강세, 환율 1,476원 · SK하이닉스 23일 실적 발표 대기</span>
+      </a>
+    </li>
+  </ul>
+</main>
+</body>
+</html>

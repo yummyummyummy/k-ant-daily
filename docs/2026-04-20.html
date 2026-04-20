@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-04-20 장전 브리핑 · k-ant-daily</title>
+<meta name="description" content="KOSPI 6,219 (+0.44%) · 반도체 주도 강세, 환율 1,476원 · SK하이닉스 23일 실적 발표 대기">
+<link rel="canonical" href="https://yummyummyummy.github.io/k-ant-daily/2026-04-20.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-04-20 장전 브리핑">
+<meta property="og:description" content="KOSPI 6,219 (+0.44%) · 반도체 주도 강세, 환율 1,476원 · SK하이닉스 23일 실적 발표 대기">
+<meta property="og:url" content="https://yummyummyummy.github.io/k-ant-daily/2026-04-20.html">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="k-ant-daily">
+<meta property="article:published_time" content="2026-04-20T07:30:00+09:00">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2026-04-20 장전 브리핑">
+<meta name="twitter:description" content="KOSPI 6,219 (+0.44%) · 반도체 주도 강세, 환율 1,476원 · SK하이닉스 23일 실적 발표 대기">
+
+<style>
+  :root {
+    --fg: #0f172a;
+    --muted: #64748b;
+    --bg: #ffffff;
+    --accent: #0f766e;
+    --border: #e2e8f0;
+    --card: #f8fafc;
+    --up: #dc2626;
+    --down: #2563eb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fg: #e2e8f0; --muted: #94a3b8; --bg: #0f172a; --accent: #5eead4;
+      --border: #1e293b; --card: #1e293b; --up: #f87171; --down: #60a5fa;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+      "Pretendard", "Noto Sans KR", sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; }
+  header { border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 24px; }
+  header h1 { font-size: 24px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  header .tldr { margin: 0; color: var(--fg); font-size: 17px; font-weight: 500; }
+  header time { display: block; color: var(--muted); font-size: 13px; margin-top: 8px; }
+
+  section { margin-bottom: 32px; }
+  section > h2 { font-size: 18px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+
+  .indicators { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-bottom: 16px; }
+  .indicator { background: var(--card); padding: 12px; border-radius: 8px; border: 1px solid var(--border); }
+  .indicator .name { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .indicator .value { font-size: 16px; font-weight: 600; }
+  .indicator .change { font-size: 13px; margin-top: 2px; }
+  .change.up { color: var(--up); }
+  .change.down { color: var(--down); }
+
+  .summary { color: var(--fg); }
+  .points { list-style: none; padding: 0; margin: 0; }
+  .points li { padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .points li:last-child { border-bottom: none; }
+  .points .point-title { font-weight: 600; margin-bottom: 4px; }
+  .points .point-detail { color: var(--muted); font-size: 14px; margin: 4px 0; }
+  .points .sources { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .points .sources a {
+    font-size: 12px; color: var(--accent); text-decoration: none;
+    background: var(--card); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border);
+  }
+  .points .sources a:hover { text-decoration: underline; }
+
+  article.stock { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+  article.stock h3 { margin: 0 0 4px; font-size: 17px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  article.stock .code { font-size: 12px; color: var(--muted); font-weight: 400; font-family: ui-monospace, SFMono-Regular, monospace; }
+  article.stock .sentiment { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
+  article.stock .sentiment.positive { background: rgba(220,38,38,0.1); color: var(--up); }
+  article.stock .sentiment.negative { background: rgba(37,99,235,0.1); color: var(--down); }
+  article.stock .sentiment.neutral { background: var(--border); color: var(--muted); }
+  article.stock .stock-summary { margin: 8px 0 12px; }
+  article.stock h4 { font-size: 13px; color: var(--muted); margin: 16px 0 8px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
+
+  .disclosures { list-style: none; padding: 0; margin: 0; }
+  .disclosures li { font-size: 13px; padding: 6px 0; border-bottom: 1px dashed var(--border); }
+  .disclosures li:last-child { border-bottom: none; }
+  .disclosures a { color: var(--fg); text-decoration: none; }
+  .disclosures a:hover { color: var(--accent); }
+  .disclosures .date { color: var(--muted); font-size: 11px; margin-left: 6px; }
+
+  footer {
+    margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 12px; text-align: center;
+  }
+  footer a { color: var(--muted); }
+  .sector-tag { display: inline-block; font-size: 11px; background: var(--border); color: var(--muted); padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>📰 2026-04-20 장전 브리핑</h1>
+    <p class="tldr">KOSPI 6,219 (+0.44%) · 반도체 주도 강세, 환율 1,476원 · SK하이닉스 23일 실적 발표 대기</p>
+    <time>생성: 2026-04-20 07:30 KST · <a href="archive.html">아카이브</a></time>
+  </header>
+
+  <section>
+    <h2>📊 시장 지표</h2>
+    <div class="indicators">
+      <div class="indicator">
+        <div class="name">KOSPI</div>
+        <div class="value">6,219.09</div>
+        <div class="change up">+0.44%</div>
+      </div>
+      <div class="indicator">
+        <div class="name">KOSDAQ</div>
+        <div class="value">1,174.85</div>
+        <div class="change up">+0.41%</div>
+      </div>
+      <div class="indicator">
+        <div class="name">KOSPI200</div>
+        <div class="value">935.75</div>
+        <div class="change up">+0.47%</div>
+      </div>
+      <div class="indicator">
+        <div class="name">USD/KRW</div>
+        <div class="value">1,476.20</div>
+        <div class="change up">+8.40</div>
+      </div>
+      <div class="indicator">
+        <div class="name">JPY(100)/KRW</div>
+        <div class="value">928.63</div>
+        <div class="change up">+3.19</div>
+      </div>
+      <div class="indicator">
+        <div class="name">EUR/KRW</div>
+        <div class="value">1,735.05</div>
+        <div class="change up">+8.33</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🌏 거시 경제</h2>
+<p class="summary">코스피가 반도체 주도 랠리로 6,219선에서 강보합 마감. 골드만삭스가 12개월 코스피 목표치를 7,000→8,000으로 상향 조정. 한편 미국-이란 휴전 기한이 임박해 중동 지정학 리스크가 변수로 남아있으며, 원/달러 환율은 1,476원까지 상승해 외국인 수급에 영향 가능.</p>    <ul class="points">
+      <li>
+        <div class="point-title">골드만삭스, 코스피 12개월 목표 8,000으로 상향</div>
+<div class="point-detail">기존 7,000에서 8,000으로 220% 수준의 상향 조정. 반도체 섹터가 지수 랠리의 주도주라고 평가.</div>        <div class="sources">
+<a href="https://finance.naver.com/news/news_read.naver?article_id=0005751974&office_id=277&mode=mainnews&type=&date=2026-04-20&page=1" target="_blank" rel="noopener">아시아경제</a>        </div>
+      </li>
+      <li>
+        <div class="point-title">미국-이란 휴전 기한 임박, TACO 베팅 확산</div>
+<div class="point-detail">파키스탄에서 마지막 담판 예정. 아시아 증시는 지정학 우려에도 불구하고 AI 모멘텀에 기반한 TACO(Trump Always Chickens Out) 베팅으로 전반적으로 상승.</div>        <div class="sources">
+<a href="https://finance.naver.com/news/news_read.naver?article_id=0001249584&office_id=215&mode=mainnews&type=&date=2026-04-20&page=1" target="_blank" rel="noopener">한국경제TV</a><a href="https://finance.naver.com/news/news_read.naver?article_id=0006261838&office_id=018&mode=mainnews&type=&date=2026-04-20&page=1" target="_blank" rel="noopener">이데일리</a>        </div>
+      </li>
+      <li>
+        <div class="point-title">코스피 상장사 지난해 현금배당 38.2조 역대 최고</div>
+<div class="point-detail">밸류업 공시법인 중심으로 고배당 기조 확연. 배당 투자 매력 부각.</div>        <div class="sources">
+<a href="https://finance.naver.com/news/news_read.naver?article_id=0005346537&office_id=008&mode=mainnews&type=&date=2026-04-20&page=1" target="_blank" rel="noopener">머니투데이</a>        </div>
+      </li>
+      <li>
+        <div class="point-title">Claude Mithras 발 양자암호·보안주 급등</div>
+<div class="point-detail">Anthropic의 보안 취약점 탐지 AI 모델 발표로 관련주 무더기 상한가. 반도체·이차전지와 함께 3대 테마로 자금 쏠림.</div>        <div class="sources">
+<a href="https://finance.naver.com/news/news_read.naver?article_id=0005346534&office_id=008&mode=mainnews&type=&date=2026-04-20&page=1" target="_blank" rel="noopener">머니투데이</a><a href="https://finance.naver.com/news/news_read.naver?article_id=0005668455&office_id=009&mode=mainnews&type=&date=2026-04-20&page=1" target="_blank" rel="noopener">매일경제</a>        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🏭 섹터 흐름</h2>
+    <div style="margin-bottom: 16px;">
+      <div style="font-weight: 600; margin-bottom: 4px;">
+        반도체
+<span class="sector-tag">삼성전자</span><span class="sector-tag">SK하이닉스</span>      </div>
+<div class="point-detail">SK하이닉스 신고가 경신, 엔비디아용 SOCAMM2 양산 소식이 섹터 전반을 끌어올림. '40만전자·200만닉스' 전망 확산.</div>      <ul class="points">
+        <li>
+          <div class="point-title">SK하이닉스, 엔비디아 차세대 서버용 저전력 메모리 양산</div>
+<div class="point-detail">SOCAMM2 양산 소식에 장중 52주 신고가 재경신. 1분기 영업이익 40조원 육박 전망.</div>          <div class="sources">
+<a href="https://finance.naver.com/news/news_read.naver?article_id=0004612568&office_id=011&mode=mainnews&type=&date=2026-04-20&page=1" target="_blank" rel="noopener">서울경제</a><a href="https://finance.naver.com/item/news_read.naver?article_id=0000141545&office_id=658&code=000660&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">국제신문</a>          </div>
+        </li>
+        <li>
+          <div class="point-title">개인 투자자는 반도체 하락에 베팅</div>
+<div class="point-detail">반도체 양강 주가 고공 행진에도 개미들은 하락 방향 ETF 매수 집중 — 단기 과열 경계 심리 반영.</div>          <div class="sources">
+<a href="https://finance.naver.com/news/news_read.naver?article_id=0005510383&office_id=014&mode=mainnews&type=&date=2026-04-20&page=1" target="_blank" rel="noopener">파이낸셜뉴스</a>          </div>
+        </li>
+      </ul>
+    </div>
+    <div style="margin-bottom: 16px;">
+      <div style="font-weight: 600; margin-bottom: 4px;">
+        모빌리티·AI시티
+<span class="sector-tag">현대차</span><span class="sector-tag">삼성전자</span>      </div>
+<div class="point-detail">이재용·정의선·구광모 등 총수가 한-인도 비즈니스 포럼 참석. AI시티 규제 혁신 간담회 동시 진행.</div>      <ul class="points">
+        <li>
+          <div class="point-title">이 대통령 주재 한-인도 비즈니스 포럼</div>
+<div class="point-detail">주요 그룹 총수들 참석. 포스코는 10조 제철소 협약 체결.</div>          <div class="sources">
+<a href="https://finance.naver.com/item/news_read.naver?article_id=0004612526&office_id=011&code=005380&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">서울경제</a><a href="https://finance.naver.com/item/news_read.naver?article_id=0003022638&office_id=029&code=005380&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">디지털타임스</a>          </div>
+        </li>
+        <li>
+          <div class="point-title">국토부, AI시티 규제 혁신 간담회 개최</div>
+<div class="point-detail">21일 현대차·네이버·카카오와 법 개정 논의 예정. 모빌리티·AI 융합 규제 완화 기대.</div>          <div class="sources">
+<a href="https://finance.naver.com/item/news_read.naver?article_id=0004612576&office_id=005380&code=005380&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">서울경제</a><a href="https://finance.naver.com/item/news_read.naver?article_id=0000046398&office_id=648&code=005380&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">비즈워치</a>          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>📈 종목별</h2>
+    <article class="stock">
+      <h3>
+        삼성전자
+        <span class="code">005930 · KOSPI</span>
+<span class="sentiment positive">호재</span>      </h3>
+<p class="stock-summary">반도체 섹터 훈풍과 삼성SDI의 벤츠 배터리 첫 공급 계약이 복합 호재. 다만 노조 블랙리스트 의혹 경찰 수사는 리스크.</p>      <ul class="points">
+        <li>
+          <div class="point-title">삼성SDI, 벤츠에 하이니켈 배터리 첫 공급</div>
+<div class="point-detail">이재용 회장 '총수 외교' 결실. 최대 10조 규모 계약 관측.</div>          <div class="sources">
+<a href="https://finance.naver.com/item/news_read.naver?article_id=0005346610&office_id=008&code=005930&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">머니투데이</a><a href="https://finance.naver.com/item/news_read.naver?article_id=0002225147&office_id=138&code=005930&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">디지털데일리</a>          </div>
+        </li>
+        <li>
+          <div class="point-title">미래에셋 반도체 커버드콜 ETF, 삼전·하닉 기초자산 포함</div>
+<div class="point-detail">21일 출시 예정. 개별주식 옵션 활용 국내 최초 상품. 기관 매수세 기대.</div>          <div class="sources">
+<a href="https://finance.naver.com/item/news_read.naver?article_id=0005346539&office_id=008&code=005930&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">머니투데이</a>          </div>
+        </li>
+        <li>
+          <div class="point-title">경찰, 노조 블랙리스트 의혹 수사 착수</div>
+<div class="point-detail">ESG·거버넌스 관점에서 잠재 리스크 요인.</div>          <div class="sources">
+<a href="https://finance.naver.com/item/news_read.naver?article_id=0000104925&office_id=024&code=005930&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">매경이코노미</a>          </div>
+        </li>
+      </ul>
+      <h4>공시</h4>
+      <ul class="disclosures">
+        <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1628875&code=005930&page_notice=" target="_blank" rel="noopener">변경상장(주식소각)</a><span class="date">2026.04.09</span></li>
+        <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1627456&code=005930&page_notice=" target="_blank" rel="noopener">연결재무제표기준영업(잠정)실적 공정공시</a><span class="date">2026.04.07</span></li>
+        <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1627537&code=005930&page_notice=" target="_blank" rel="noopener">기업설명회(IR) 개최 안내</a><span class="date">2026.04.07</span></li>
+      </ul>
+    </article>
+    <article class="stock">
+      <h3>
+        SK하이닉스
+        <span class="code">000660 · KOSPI</span>
+<span class="sentiment positive">호재</span>      </h3>
+<p class="stock-summary">엔비디아용 SOCAMM2 양산으로 52주 신고가. 23일 1분기 실적 발표 앞두고 40조 영업이익 전망.</p>      <ul class="points">
+        <li>
+          <div class="point-title">엔비디아 차세대 AI 플랫폼용 저전력 메모리 양산 진입</div>
+<div class="point-detail">SOCAMM2 납품 본격화로 장중 신고가 재경신. '120만닉스' 기대 확산.</div>          <div class="sources">
+<a href="https://finance.naver.com/news/news_read.naver?article_id=0004612568&office_id=011&mode=mainnews&type=&date=2026-04-20&page=1" target="_blank" rel="noopener">서울경제</a>          </div>
+        </li>
+        <li>
+          <div class="point-title">23일 1분기 실적 발표 — 영업이익 40조 육박 전망</div>
+<div class="point-detail">컨센서스 상회 시 추가 모멘텀, 하회 시 단기 조정 가능.</div>          <div class="sources">
+<a href="https://finance.naver.com/item/news_read.naver?article_id=0000141545&office_id=658&code=000660&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">국제신문</a>          </div>
+        </li>
+        <li>
+          <div class="point-title">성과급·인재 유입 이슈</div>
+<div class="point-detail">13억 성과급 보도로 취업 선호도 상승. 인적 자본 측면 긍정.</div>          <div class="sources">
+<a href="https://finance.naver.com/item/news_read.naver?article_id=0005277104&office_id=015&code=000660&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">한국경제</a>          </div>
+        </li>
+      </ul>
+      <h4>공시</h4>
+      <ul class="disclosures">
+        <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1628802&code=000660&page_notice=" target="_blank" rel="noopener">기업설명회(IR) 개최 안내</a><span class="date">2026.04.09</span></li>
+        <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1623630&code=000660&page_notice=" target="_blank" rel="noopener">자기주식 처분 결정</a><span class="date">2026.03.30</span></li>
+      </ul>
+    </article>
+    <article class="stock">
+      <h3>
+        현대차
+        <span class="code">005380 · KOSPI</span>
+<span class="sentiment neutral">중립</span>      </h3>
+<p class="stock-summary">한-인도 비즈니스 포럼 + AI시티 규제 혁신 간담회 참여로 대외 이벤트 중심. 차량용 MCU 기술 동향(인피니언 RISC-V)도 주시.</p>      <ul class="points">
+        <li>
+          <div class="point-title">한-인도 비즈니스 포럼 참석, 인도 시장 확장 시그널</div>
+<div class="point-detail">정의선 회장 등 주요 총수와 동반. 포스코는 10조 규모 제철소 협약 성사.</div>          <div class="sources">
+<a href="https://finance.naver.com/item/news_read.naver?article_id=0004612533&office_id=011&code=005380&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">서울경제</a>          </div>
+        </li>
+        <li>
+          <div class="point-title">국토부 주도 AI시티 규제 혁신 간담회 (21일)</div>
+<div class="point-detail">네이버·카카오와 공동 참여. 자율주행·모빌리티 규제 완화 기대.</div>          <div class="sources">
+<a href="https://finance.naver.com/item/news_read.naver?article_id=0005668388&office_id=009&code=005380&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">매일경제</a><a href="https://finance.naver.com/item/news_read.naver?article_id=0000046398&office_id=648&code=005380&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">비즈워치</a>          </div>
+        </li>
+        <li>
+          <div class="point-title">휴머노이드 로봇 시장 2035년 166조원 전망</div>
+<div class="point-detail">증권가 주목 — 현대차의 보스턴다이내믹스 자회사 관련 주목도 부각.</div>          <div class="sources">
+<a href="https://finance.naver.com/item/news_read.naver?article_id=0005277112&office_id=015&code=005380&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">한국경제</a>          </div>
+        </li>
+      </ul>
+      <h4>공시</h4>
+      <ul class="disclosures">
+        <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631429&code=005380&page_notice=" target="_blank" rel="noopener">기업설명회(IR) 개최 안내</a><span class="date">2026.04.17</span></li>
+        <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1625404&code=005380&page_notice=" target="_blank" rel="noopener">영업(잠정)실적 공정공시</a><span class="date">2026.04.01</span></li>
+        <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1625762&code=005380&page_notice=" target="_blank" rel="noopener">풍문 또는 보도에 대한 해명(미확정)</a><span class="date">2026.04.02</span></li>
+      </ul>
+    </article>
+    <article class="stock">
+      <h3>
+        큐리옥스바이오시스템즈
+        <span class="code">445680 · KOSDAQ</span>
+<span class="sentiment neutral">중립</span>      </h3>
+<p class="stock-summary">당일 개별 모멘텀 뉴스는 제한적. 3월말 투자경고종목 지정예고 이력이 있어 변동성 주의. 최근 공시는 주식매수선택권 행사에 따른 추가상장.</p>      <ul class="points">
+        <li>
+          <div class="point-title">주요 이슈 없음 — 과거 변동성 이력 유의</div>
+<div class="point-detail">지난 3월 투자경고종목 지정예고, 소수계좌 거래집중 지정 이력. 주식매수선택권 행사로 4/17 추가 상장.</div>          <div class="sources">
+<a href="https://finance.naver.com/item/news_read.naver?article_id=0006249109&office_id=018&code=445680&page=1&sm=title_entity_id.basic" target="_blank" rel="noopener">이데일리 (바이오맥짚기)</a>          </div>
+        </li>
+      </ul>
+      <h4>공시</h4>
+      <ul class="disclosures">
+        <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631513&code=445680&page_notice=" target="_blank" rel="noopener">추가상장(주식매수선택권행사)</a><span class="date">2026.04.17</span></li>
+        <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1619737&code=445680&page_notice=" target="_blank" rel="noopener">[투자주의]소수계좌 거래집중 종목</a><span class="date">2026.03.24</span></li>
+        <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1616172&code=445680&page_notice=" target="_blank" rel="noopener">[투자주의]투자경고종목 지정예고</a><span class="date">2026.03.18</span></li>
+      </ul>
+    </article>
+  </section>
+
+  <footer>
+    <p>k-ant-daily · 자동 생성 리포트 · 정보 제공 목적이며 투자 권유가 아닙니다.</p>
+  </footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,13 @@
+stocks:
+  - code: "005930"
+    name: "삼성전자"
+    market: KOSPI
+  - code: "000660"
+    name: "SK하이닉스"
+    market: KOSPI
+  - code: "005380"
+    name: "현대차"
+    market: KOSPI
+  - code: "445680"
+    name: "큐리옥스바이오시스템즈"
+    market: KOSDAQ

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ date }} 장전 브리핑 · k-ant-daily</title>
+<meta name="description" content="{{ tldr }}">
+<link rel="canonical" href="{{ canonical_url }}">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ date }} 장전 브리핑">
+<meta property="og:description" content="{{ tldr }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="k-ant-daily">
+<meta property="article:published_time" content="{{ generated_at }}">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ date }} 장전 브리핑">
+<meta name="twitter:description" content="{{ tldr }}">
+
+<style>
+  :root {
+    --fg: #0f172a;
+    --muted: #64748b;
+    --bg: #ffffff;
+    --accent: #0f766e;
+    --border: #e2e8f0;
+    --card: #f8fafc;
+    --up: #dc2626;
+    --down: #2563eb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fg: #e2e8f0; --muted: #94a3b8; --bg: #0f172a; --accent: #5eead4;
+      --border: #1e293b; --card: #1e293b; --up: #f87171; --down: #60a5fa;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+      "Pretendard", "Noto Sans KR", sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; }
+  header { border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 24px; }
+  header h1 { font-size: 24px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  header .tldr { margin: 0; color: var(--fg); font-size: 17px; font-weight: 500; }
+  header time { display: block; color: var(--muted); font-size: 13px; margin-top: 8px; }
+
+  section { margin-bottom: 32px; }
+  section > h2 { font-size: 18px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+
+  .indicators { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-bottom: 16px; }
+  .indicator { background: var(--card); padding: 12px; border-radius: 8px; border: 1px solid var(--border); }
+  .indicator .name { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .indicator .value { font-size: 16px; font-weight: 600; }
+  .indicator .change { font-size: 13px; margin-top: 2px; }
+  .change.up { color: var(--up); }
+  .change.down { color: var(--down); }
+
+  .summary { color: var(--fg); }
+  .points { list-style: none; padding: 0; margin: 0; }
+  .points li { padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .points li:last-child { border-bottom: none; }
+  .points .point-title { font-weight: 600; margin-bottom: 4px; }
+  .points .point-detail { color: var(--muted); font-size: 14px; margin: 4px 0; }
+  .points .sources { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .points .sources a {
+    font-size: 12px; color: var(--accent); text-decoration: none;
+    background: var(--card); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border);
+  }
+  .points .sources a:hover { text-decoration: underline; }
+
+  article.stock { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+  article.stock h3 { margin: 0 0 4px; font-size: 17px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  article.stock .code { font-size: 12px; color: var(--muted); font-weight: 400; font-family: ui-monospace, SFMono-Regular, monospace; }
+  article.stock .sentiment { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
+  article.stock .sentiment.positive { background: rgba(220,38,38,0.1); color: var(--up); }
+  article.stock .sentiment.negative { background: rgba(37,99,235,0.1); color: var(--down); }
+  article.stock .sentiment.neutral { background: var(--border); color: var(--muted); }
+  article.stock .stock-summary { margin: 8px 0 12px; }
+  article.stock h4 { font-size: 13px; color: var(--muted); margin: 16px 0 8px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
+
+  .disclosures { list-style: none; padding: 0; margin: 0; }
+  .disclosures li { font-size: 13px; padding: 6px 0; border-bottom: 1px dashed var(--border); }
+  .disclosures li:last-child { border-bottom: none; }
+  .disclosures a { color: var(--fg); text-decoration: none; }
+  .disclosures a:hover { color: var(--accent); }
+  .disclosures .date { color: var(--muted); font-size: 11px; margin-left: 6px; }
+
+  footer {
+    margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 12px; text-align: center;
+  }
+  footer a { color: var(--muted); }
+  .sector-tag { display: inline-block; font-size: 11px; background: var(--border); color: var(--muted); padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>📰 {{ date }} 장전 브리핑</h1>
+    <p class="tldr">{{ tldr }}</p>
+    <time>생성: {{ generated_at_display }} KST · <a href="archive.html">아카이브</a></time>
+  </header>
+
+  {% if macro.indicators %}
+  <section>
+    <h2>📊 시장 지표</h2>
+    <div class="indicators">
+      {% for ind in macro.indicators %}
+      <div class="indicator">
+        <div class="name">{{ ind.name }}</div>
+        <div class="value">{{ ind.value }}</div>
+        {% if ind.change %}
+        <div class="change {{ ind.direction or '' }}">{{ ind.change }}</div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <section>
+    <h2>🌏 거시 경제</h2>
+    {% if macro.summary %}<p class="summary">{{ macro.summary }}</p>{% endif %}
+    {% if macro.key_points %}
+    <ul class="points">
+      {% for pt in macro.key_points %}
+      <li>
+        <div class="point-title">{{ pt.point }}</div>
+        {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
+        {% if pt.sources %}
+        <div class="sources">
+          {% for src in pt.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
+        </div>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </section>
+
+  {% if sectors %}
+  <section>
+    <h2>🏭 섹터 흐름</h2>
+    {% for sec in sectors %}
+    <div style="margin-bottom: 16px;">
+      <div style="font-weight: 600; margin-bottom: 4px;">
+        {{ sec.name }}
+        {% for s in sec.affected or [] %}<span class="sector-tag">{{ s }}</span>{% endfor %}
+      </div>
+      {% if sec.summary %}<div class="point-detail">{{ sec.summary }}</div>{% endif %}
+      {% if sec.key_points %}
+      <ul class="points">
+        {% for pt in sec.key_points %}
+        <li>
+          <div class="point-title">{{ pt.point }}</div>
+          {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
+          {% if pt.sources %}
+          <div class="sources">
+            {% for src in pt.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
+          </div>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <section>
+    <h2>📈 종목별</h2>
+    {% for stock in stocks %}
+    <article class="stock">
+      <h3>
+        {{ stock.name }}
+        <span class="code">{{ stock.code }}{% if stock.market %} · {{ stock.market }}{% endif %}</span>
+        {% if stock.sentiment %}<span class="sentiment {{ stock.sentiment }}">{{ stock.sentiment_label or stock.sentiment }}</span>{% endif %}
+      </h3>
+      {% if stock.summary %}<p class="stock-summary">{{ stock.summary }}</p>{% endif %}
+      {% if stock.key_points %}
+      <ul class="points">
+        {% for pt in stock.key_points %}
+        <li>
+          <div class="point-title">{{ pt.point }}</div>
+          {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
+          {% if pt.sources %}
+          <div class="sources">
+            {% for src in pt.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
+          </div>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if stock.disclosures %}
+      <h4>공시</h4>
+      <ul class="disclosures">
+        {% for d in stock.disclosures %}
+        <li><a href="{{ d.url }}" target="_blank" rel="noopener">{{ d.title }}</a>{% if d.date %}<span class="date">{{ d.date }}</span>{% endif %}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </section>
+
+  <footer>
+    <p>k-ant-daily · 자동 생성 리포트 · 정보 제공 목적이며 투자 권유가 아닙니다.</p>
+  </footer>
+</main>
+</body>
+</html>
