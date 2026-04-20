@@ -663,7 +663,7 @@
           {% if stock.overnight_signal and stock.overnight_signal.direction %}
           <span class="overnight-badge {{ stock.overnight_signal.direction }}" title="간밤 해외 프록시 평균">
             🌙 {% if stock.overnight_signal.direction == 'up' %}▲{% elif stock.overnight_signal.direction == 'down' %}▼{% else %}—{% endif %}
-            {% if stock.overnight_signal.avg_pct is not none %}{{ '%+.2f'|format(stock.overnight_signal.avg_pct) }}%{% endif %}
+            {% if stock.overnight_signal.avg_pct is not none %}{{ '%.2f'|format(stock.overnight_signal.avg_pct | abs) }}%{% endif %}
           </span>
           {% endif %}
           {% if stock.recommendation %}
@@ -687,11 +687,11 @@
               <span class="value overnight-badge {{ stock.overnight_signal.direction }}">
                 {% if stock.overnight_signal.direction == 'up' %}▲{% elif stock.overnight_signal.direction == 'down' %}▼{% else %}—{% endif %}
                 {{ stock.overnight_signal.label or stock.overnight_signal.direction }}
-                {% if stock.overnight_signal.avg_pct is not none %} ({{ '%+.2f'|format(stock.overnight_signal.avg_pct) }}%){% endif %}
+                {% if stock.overnight_signal.avg_pct is not none %} ({{ '%.2f'|format(stock.overnight_signal.avg_pct | abs) }}%){% endif %}
               </span>
               {% if stock.overnight_signal.proxies %}
               <span class="proxies">
-                {% for p in stock.overnight_signal.proxies %}<span class="p {% if p.change_pct > 0 %}up{% elif p.change_pct < 0 %}down{% endif %}">{{ p.symbol }} {{ '%+.2f'|format(p.change_pct) }}%</span>{% if not loop.last %} · {% endif %}{% endfor %}
+                {% for p in stock.overnight_signal.proxies %}<span class="p {% if p.change_pct > 0 %}up{% elif p.change_pct < 0 %}down{% endif %}">{{ p.symbol }} {% if p.change_pct > 0 %}▲{% elif p.change_pct < 0 %}▼{% else %}—{% endif %} {{ '%.2f'|format(p.change_pct | abs) }}%</span>{% if not loop.last %} · {% endif %}{% endfor %}
               </span>
               {% endif %}
             </div>
