@@ -84,8 +84,12 @@ description: Generate and publish today's pre-market stock briefing
     "indicators_impact": "positive|neutral|negative",
     "overnight_impact": "positive|neutral|negative",
     "summary": "오늘 장 전반 흐름 2~3문장 (top_stories 상단 노출)",
-    "indicators": [{"name": "KOSPI", "value": "...", "change": "...", "impact": "..."}],
-    "overnight": [{"name": "S&P 500", "value": "...", "change": "...", "impact": "..."}]
+    "indicators": [{"name": "KOSPI", "value": "6,219.09",
+                    "change_abs": "+27.17", "change_pct": "+0.44%",
+                    "impact": "positive"}],
+    "overnight":  [{"name": "S&P 500", "value": "7,126.06",
+                    "change_abs": "+85.12", "change_pct": "+1.20%",
+                    "impact": "positive"}]
   },
 
   "sectors": [

@@ -354,10 +354,12 @@
   .indicator.neutral { border-left: 3px solid var(--neu); }
   .indicator .name { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
   .indicator .value { font-size: 16px; font-weight: 600; }
-  .indicator .change { font-size: 13px; margin-top: 2px; font-weight: 500; }
+  .indicator .change { font-size: 13px; margin-top: 2px; font-weight: 500; font-variant-numeric: tabular-nums; }
   .indicator .change.up { color: var(--pos); }
   .indicator .change.down { color: var(--neg); }
   .indicator .arrow { font-size: 11px; margin-right: 2px; }
+  .indicator .change .pct { font-size: 11px; opacity: 0.75; margin-left: 4px; font-weight: 500; }
+  .indicator .change .abs { font-weight: 600; }
   .section-sub { font-size: 14px; color: var(--muted); margin: -4px 0 8px; }
 
   /* KEY POINTS */
@@ -671,9 +673,11 @@
       <div class="indicator {{ ind.impact or ind.direction or 'neutral' }}">
         <div class="name">{{ ind.name }}</div>
         <div class="value">{{ ind.value }}</div>
-        {% if ind.change %}
+        {% if ind.change_abs or ind.change_pct or ind.change %}
         <div class="change {{ ind.direction or '' }}">
-          <span class="arrow">{% if ind.direction == 'up' %}▲{% elif ind.direction == 'down' %}▼{% endif %}</span>{{ ind.change }}
+          <span class="arrow">{% if ind.direction == 'up' %}▲{% elif ind.direction == 'down' %}▼{% endif %}</span>
+          {% if ind.change_abs %}<span class="abs">{{ ind.change_abs|replace('+','')|replace('-','') }}</span>{% endif %}
+          <span class="pct">{{ ind.change_pct or ind.change }}</span>
         </div>
         {% endif %}
       </div>
@@ -700,9 +704,11 @@
       <div class="indicator {{ ind.impact or ind.direction or 'neutral' }}">
         <div class="name">{{ ind.name }}</div>
         <div class="value">{{ ind.value }}</div>
-        {% if ind.change %}
+        {% if ind.change_abs or ind.change_pct or ind.change %}
         <div class="change {{ ind.direction or '' }}">
-          <span class="arrow">{% if ind.direction == 'up' %}▲{% elif ind.direction == 'down' %}▼{% endif %}</span>{{ ind.change }}
+          <span class="arrow">{% if ind.direction == 'up' %}▲{% elif ind.direction == 'down' %}▼{% endif %}</span>
+          {% if ind.change_abs %}<span class="abs">{{ ind.change_abs|replace('+','')|replace('-','') }}</span>{% endif %}
+          <span class="pct">{{ ind.change_pct or ind.change }}</span>
         </div>
         {% endif %}
       </div>

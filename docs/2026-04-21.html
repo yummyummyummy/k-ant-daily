@@ -354,10 +354,12 @@
   .indicator.neutral { border-left: 3px solid var(--neu); }
   .indicator .name { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
   .indicator .value { font-size: 16px; font-weight: 600; }
-  .indicator .change { font-size: 13px; margin-top: 2px; font-weight: 500; }
+  .indicator .change { font-size: 13px; margin-top: 2px; font-weight: 500; font-variant-numeric: tabular-nums; }
   .indicator .change.up { color: var(--pos); }
   .indicator .change.down { color: var(--neg); }
   .indicator .arrow { font-size: 11px; margin-right: 2px; }
+  .indicator .change .pct { font-size: 11px; opacity: 0.75; margin-left: 4px; font-weight: 500; }
+  .indicator .change .abs { font-weight: 600; }
   .section-sub { font-size: 14px; color: var(--muted); margin: -4px 0 8px; }
 
   /* KEY POINTS */
@@ -583,42 +585,48 @@
         <div class="name">KOSPI</div>
         <div class="value">6,219.09</div>
         <div class="change up">
-          <span class="arrow">▲</span>+27.17 (+0.44%)
+          <span class="arrow">▲</span>
+<span class="abs">27.17</span>          <span class="pct">+0.44%</span>
         </div>
       </div>
       <div class="indicator positive">
         <div class="name">KOSDAQ</div>
         <div class="value">1,174.85</div>
         <div class="change up">
-          <span class="arrow">▲</span>+4.81 (+0.41%)
+          <span class="arrow">▲</span>
+<span class="abs">4.81</span>          <span class="pct">+0.41%</span>
         </div>
       </div>
       <div class="indicator positive">
         <div class="name">KOSPI200</div>
         <div class="value">935.75</div>
         <div class="change up">
-          <span class="arrow">▲</span>+4.34 (+0.47%)
+          <span class="arrow">▲</span>
+<span class="abs">4.34</span>          <span class="pct">+0.47%</span>
         </div>
       </div>
       <div class="indicator neutral">
         <div class="name">USD/KRW</div>
         <div class="value">1,470.60</div>
         <div class="change up">
-          <span class="arrow">▲</span>+2.80
+          <span class="arrow">▲</span>
+          <span class="pct">+2.80</span>
         </div>
       </div>
       <div class="indicator neutral">
         <div class="name">EUR/KRW</div>
         <div class="value">1,730.46</div>
         <div class="change up">
-          <span class="arrow">▲</span>+3.74
+          <span class="arrow">▲</span>
+          <span class="pct">+3.74</span>
         </div>
       </div>
       <div class="indicator neutral">
         <div class="name">JPY/KRW(100엔)</div>
         <div class="value">925.87</div>
         <div class="change up">
-          <span class="arrow">▲</span>+0.43
+          <span class="arrow">▲</span>
+          <span class="pct">+0.43</span>
         </div>
       </div>
     </div>
@@ -637,56 +645,64 @@
         <div class="name">S&P 500</div>
         <div class="value">7,126.06</div>
         <div class="change up">
-          <span class="arrow">▲</span>+1.20%
+          <span class="arrow">▲</span>
+<span class="abs">84.78</span>          <span class="pct">+1.20%</span>
         </div>
       </div>
       <div class="indicator positive">
         <div class="name">다우존스</div>
         <div class="value">49,447.43</div>
         <div class="change up">
-          <span class="arrow">▲</span>+1.79%
+          <span class="arrow">▲</span>
+<span class="abs">868.71</span>          <span class="pct">+1.79%</span>
         </div>
       </div>
       <div class="indicator positive">
         <div class="name">나스닥</div>
         <div class="value">24,468.48</div>
         <div class="change up">
-          <span class="arrow">▲</span>+1.52%
+          <span class="arrow">▲</span>
+<span class="abs">365.78</span>          <span class="pct">+1.52%</span>
         </div>
       </div>
       <div class="indicator negative">
         <div class="name">VIX</div>
         <div class="value">19.44</div>
         <div class="change up">
-          <span class="arrow">▲</span>+11.21%
+          <span class="arrow">▲</span>
+<span class="abs">1.80</span>          <span class="pct">+10.30%</span>
         </div>
       </div>
       <div class="indicator negative">
         <div class="name">WTI 원유</div>
         <div class="value">87.48</div>
         <div class="change up">
-          <span class="arrow">▲</span>+4.33%
+          <span class="arrow">▲</span>
+<span class="abs">3.10</span>          <span class="pct">+3.70%</span>
         </div>
       </div>
       <div class="indicator neutral">
         <div class="name">금</div>
         <div class="value">4,811.30</div>
         <div class="change down">
-          <span class="arrow">▼</span>-0.95%
+          <span class="arrow">▼</span>
+<span class="abs">26.50</span>          <span class="pct">-0.55%</span>
         </div>
       </div>
       <div class="indicator positive">
         <div class="name">비트코인</div>
         <div class="value">75,167.99</div>
         <div class="change up">
-          <span class="arrow">▲</span>+1.78%
+          <span class="arrow">▲</span>
+<span class="abs">1,694.99</span>          <span class="pct">+2.29%</span>
         </div>
       </div>
       <div class="indicator neutral">
         <div class="name">달러인덱스</div>
         <div class="value">98.17</div>
         <div class="change up">
-          <span class="arrow">▲</span>+0.08%
+          <span class="arrow">▲</span>
+<span class="abs">0.19</span>          <span class="pct">+0.20%</span>
         </div>
       </div>
     </div>

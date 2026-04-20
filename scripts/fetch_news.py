@@ -185,21 +185,60 @@ def fetch_macro_news(limit: int = 15) -> list[dict]:
     return items
 
 
+def _parse_index_change(raw: str) -> dict:
+    """Parse '27.17 +0.44% 상승' → {abs, pct, direction}.
+
+    Naver formats: '<abs> <pct_with_sign> 상승|하락|보합'.
+    Abs is unsigned in the raw; we re-sign it based on the rise/fall label."""
+    parts = raw.split()
+    if len(parts) < 3:
+        return {"abs": "", "pct": "", "direction": "flat"}
+    raw_abs, raw_pct, rise_fall = parts[0], parts[1], parts[2]
+    if rise_fall == "상승":
+        direction, sign = "up", "+"
+    elif rise_fall == "하락":
+        direction, sign = "down", "-"
+    else:
+        direction, sign = "flat", ""
+    return {
+        "abs": f"{sign}{raw_abs}" if sign else raw_abs,
+        "pct": raw_pct,  # already signed
+        "direction": direction,
+    }
+
+
 def fetch_market_indices() -> dict:
-    """KOSPI / KOSDAQ / KOSPI200 latest values from Naver main sise page."""
+    """KOSPI / KOSDAQ / KOSPI200 latest values from Naver main sise page.
+
+    Returns structured entries:
+      {"KOSPI":    {"value": "6,219.09", "change_abs": "+27.17",
+                   "change_pct": "+0.44%", "direction": "up"},
+       "KOSDAQ":   {...}, "KOSPI200": {...}}
+
+    Also keeps the legacy flat `<NAME>_change` string for backward compat."""
     soup = _get("https://finance.naver.com/sise/")
     result: dict = {}
-    for key, selector in [
-        ("KOSPI", "#KOSPI_now"),
-        ("KOSPI_change", "#KOSPI_change"),
-        ("KOSDAQ", "#KOSDAQ_now"),
-        ("KOSDAQ_change", "#KOSDAQ_change"),
-        ("KOSPI200", "#KPI200_now"),
-        ("KOSPI200_change", "#KPI200_change"),
-    ]:
-        el = soup.select_one(selector)
-        if el:
-            result[key] = el.get_text(" ", strip=True)
+    mapping = [
+        ("KOSPI",    "#KOSPI_now",  "#KOSPI_change"),
+        ("KOSDAQ",   "#KOSDAQ_now", "#KOSDAQ_change"),
+        ("KOSPI200", "#KPI200_now", "#KPI200_change"),
+    ]
+    for name, val_sel, chg_sel in mapping:
+        val_el = soup.select_one(val_sel)
+        chg_el = soup.select_one(chg_sel)
+        if not val_el:
+            continue
+        value = val_el.get_text(" ", strip=True)
+        raw_change = chg_el.get_text(" ", strip=True) if chg_el else ""
+        parsed = _parse_index_change(raw_change) if raw_change else {"abs": "", "pct": "", "direction": "flat"}
+        result[name] = {
+            "value": value,
+            "change_abs": parsed["abs"],
+            "change_pct": parsed["pct"],
+            "direction": parsed["direction"],
+        }
+        # Legacy keys — kept so existing summary.json authors that referenced them don't break.
+        result[f"{name}_change"] = raw_change
     return result
 
 
@@ -283,14 +322,17 @@ def fetch_overnight_markets() -> dict:
                 continue
             prev = float(h.iloc[-2]["Close"])
             last = float(h.iloc[-1]["Close"])
-            pct = (last - prev) / prev * 100 if prev else 0.0
-            sign = "+" if pct >= 0 else ""
+            diff = last - prev
+            pct = (diff / prev * 100) if prev else 0.0
+            pct_sign = "+" if pct >= 0 else ""
+            abs_sign = "+" if diff >= 0 else "-"
             out.append(
                 {
                     "symbol": sym,
                     "name": label,
                     "value": f"{last:,.2f}",
-                    "change": f"{sign}{pct:.2f}%",
+                    "change": f"{pct_sign}{pct:.2f}%",
+                    "change_abs": f"{abs_sign}{abs(diff):,.2f}",
                     "change_pct": round(pct, 2),
                     "as_of": str(h.index[-1].date()),
                 }
