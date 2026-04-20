@@ -208,11 +208,11 @@ def _normalize(summary: dict) -> dict:
             bare = raw.lstrip("+-")
             try:
                 if float(bare.replace(",", "")) == 0:
-                    stock["price_change_abs_display"] = "0"
+                    stock["price_change_abs_display"] = "—"
                 elif direction == "up":
-                    stock["price_change_abs_display"] = f"+{bare}"
+                    stock["price_change_abs_display"] = f"▲ {bare}"
                 elif direction == "down":
-                    stock["price_change_abs_display"] = f"-{bare}"
+                    stock["price_change_abs_display"] = f"▼ {bare}"
                 else:
                     stock["price_change_abs_display"] = raw
             except ValueError:
