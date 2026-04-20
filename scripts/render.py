@@ -156,11 +156,15 @@ def _normalize(summary: dict) -> dict:
 
     macro = summary.get("macro", {}) or {}
     for ind in (macro.get("indicators") or []) + (macro.get("overnight") or []):
-        # Backward-compat: if only `change` is given, treat it as percentage.
-        if "change_pct" not in ind and ind.get("change"):
-            ind["change_pct"] = ind["change"]
+        # Legacy `change` split: treat %-bearing strings as percentage, others as absolute.
+        if ind.get("change"):
+            raw = str(ind["change"])
+            if "%" in raw and "change_pct" not in ind:
+                ind["change_pct"] = raw
+            elif "%" not in raw and "change_abs" not in ind:
+                ind["change_abs"] = raw
         if "direction" not in ind:
-            ind["direction"] = _infer_direction(ind.get("change_pct") or ind.get("change"))
+            ind["direction"] = _infer_direction(ind.get("change_pct") or ind.get("change_abs"))
         _annotate_impact(ind)
     for pt in macro.get("key_points") or []:
         _annotate_impact(pt)

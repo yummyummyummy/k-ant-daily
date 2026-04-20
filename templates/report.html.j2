@@ -673,11 +673,12 @@
       <div class="indicator {{ ind.impact or ind.direction or 'neutral' }}">
         <div class="name">{{ ind.name }}</div>
         <div class="value">{{ ind.value }}</div>
-        {% if ind.change_abs or ind.change_pct or ind.change %}
+        {% if ind.change_abs or ind.change_pct %}
         <div class="change {{ ind.direction or '' }}">
-          <span class="arrow">{% if ind.direction == 'up' %}▲{% elif ind.direction == 'down' %}▼{% endif %}</span>
-          {% if ind.change_abs %}<span class="abs">{{ ind.change_abs|replace('+','')|replace('-','') }}</span>{% endif %}
-          <span class="pct">{{ ind.change_pct or ind.change }}</span>
+          {% if ind.change_abs %}
+          <span class="abs">{% if ind.direction == 'up' %}▲{% elif ind.direction == 'down' %}▼{% endif %} {{ ind.change_abs|replace('+','')|replace('-','') }}</span>
+          {% endif %}
+          {% if ind.change_pct %}<span class="pct">{{ ind.change_pct }}</span>{% endif %}
         </div>
         {% endif %}
       </div>
@@ -704,11 +705,12 @@
       <div class="indicator {{ ind.impact or ind.direction or 'neutral' }}">
         <div class="name">{{ ind.name }}</div>
         <div class="value">{{ ind.value }}</div>
-        {% if ind.change_abs or ind.change_pct or ind.change %}
+        {% if ind.change_abs or ind.change_pct %}
         <div class="change {{ ind.direction or '' }}">
-          <span class="arrow">{% if ind.direction == 'up' %}▲{% elif ind.direction == 'down' %}▼{% endif %}</span>
-          {% if ind.change_abs %}<span class="abs">{{ ind.change_abs|replace('+','')|replace('-','') }}</span>{% endif %}
-          <span class="pct">{{ ind.change_pct or ind.change }}</span>
+          {% if ind.change_abs %}
+          <span class="abs">{% if ind.direction == 'up' %}▲{% elif ind.direction == 'down' %}▼{% endif %} {{ ind.change_abs|replace('+','')|replace('-','') }}</span>
+          {% endif %}
+          {% if ind.change_pct %}<span class="pct">{{ ind.change_pct }}</span>{% endif %}
         </div>
         {% endif %}
       </div>
