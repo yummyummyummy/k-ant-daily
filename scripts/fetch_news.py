@@ -30,7 +30,11 @@ def _get(url: str, referer: str | None = None) -> BeautifulSoup:
         headers["Referer"] = referer
     r = requests.get(url, headers=headers, timeout=15)
     r.raise_for_status()
-    r.encoding = "euc-kr"
+    # Naver serves news endpoints as EUC-KR without explicit charset header;
+    # main.naver and some others are UTF-8 with explicit header. Trust header if present.
+    ct = r.headers.get("content-type", "").lower()
+    if "charset" not in ct:
+        r.encoding = "euc-kr"
     return BeautifulSoup(r.text, "html.parser")
 
 
@@ -161,19 +165,12 @@ def fetch_market_indices() -> dict:
 def fetch_fx() -> dict:
     """Key FX rates (USD/KRW etc.) from Naver."""
     soup = _get("https://finance.naver.com/marketindex/")
-    result: dict = {}
-    for key, data_id in [
-        ("USD/KRW", "exchangeList"),
-    ]:
-        pass
-    # Generic: first few items in exchangeList
     ex = soup.select("ul#exchangeList li")
     rates = []
     for li in ex[:4]:
         name = li.select_one("h3.h_lst span.blind")
         value = li.select_one("span.value")
         change = li.select_one("span.change")
-        updown = li.select_one("span.blind")
         if name and value:
             rates.append(
                 {
@@ -182,8 +179,46 @@ def fetch_fx() -> dict:
                     "change": change.get_text(strip=True) if change else "",
                 }
             )
-    result["fx"] = rates
-    return result
+    return {"fx": rates}
+
+
+def fetch_overnight_markets() -> dict:
+    """간밤 해외 시장 (US indices, VIX, commodities, dollar index) via yfinance."""
+    import yfinance as yf  # lazy — slow import
+
+    tickers = [
+        ("^GSPC", "S&P 500"),
+        ("^DJI", "다우존스"),
+        ("^IXIC", "나스닥"),
+        ("^VIX", "VIX"),
+        ("^KS200", "KOSPI200 (종가)"),
+        ("CL=F", "WTI 원유"),
+        ("GC=F", "금"),
+        ("DX-Y.NYB", "달러인덱스"),
+    ]
+    out: list[dict] = []
+    for sym, label in tickers:
+        try:
+            h = yf.Ticker(sym).history(period="5d", auto_adjust=False)
+            if len(h) < 2:
+                continue
+            prev = float(h.iloc[-2]["Close"])
+            last = float(h.iloc[-1]["Close"])
+            pct = (last - prev) / prev * 100 if prev else 0.0
+            sign = "+" if pct >= 0 else ""
+            out.append(
+                {
+                    "symbol": sym,
+                    "name": label,
+                    "value": f"{last:,.2f}",
+                    "change": f"{sign}{pct:.2f}%",
+                    "change_pct": round(pct, 2),
+                    "as_of": str(h.index[-1].date()),
+                }
+            )
+        except Exception as e:
+            print(f"[warn] yfinance {sym}: {e}", file=sys.stderr)
+    return {"overnight": out}
 
 
 def main() -> int:
@@ -215,6 +250,12 @@ def main() -> int:
     except Exception as e:
         print(f"[warn] fx fetch failed: {e}", file=sys.stderr)
         data["macro"]["fx"] = []
+
+    try:
+        data["macro"].update(fetch_overnight_markets())
+    except Exception as e:
+        print(f"[warn] overnight fetch failed: {e}", file=sys.stderr)
+        data["macro"]["overnight"] = []
 
     for stock in config["stocks"]:
         entry: dict = {

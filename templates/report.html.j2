@@ -27,13 +27,20 @@
     --accent: #0f766e;
     --border: #e2e8f0;
     --card: #f8fafc;
-    --up: #dc2626;
-    --down: #2563eb;
+    --pos: #dc2626;        /* 한국 주식 관행: 상승=빨강 */
+    --pos-bg: rgba(220,38,38,0.08);
+    --neg: #2563eb;        /* 하락=파랑 */
+    --neg-bg: rgba(37,99,235,0.08);
+    --neu: #6b7280;
+    --neu-bg: rgba(107,114,128,0.08);
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --fg: #e2e8f0; --muted: #94a3b8; --bg: #0f172a; --accent: #5eead4;
-      --border: #1e293b; --card: #1e293b; --up: #f87171; --down: #60a5fa;
+      --border: #1e293b; --card: #1e293b;
+      --pos: #f87171; --pos-bg: rgba(248,113,113,0.12);
+      --neg: #60a5fa; --neg-bg: rgba(96,165,250,0.12);
+      --neu: #94a3b8; --neu-bg: rgba(148,163,184,0.12);
     }
   }
   * { box-sizing: border-box; }
@@ -41,11 +48,11 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
       "Pretendard", "Noto Sans KR", sans-serif;
-    line-height: 1.6;
-    font-size: 16px;
+    line-height: 1.6; font-size: 16px;
     -webkit-text-size-adjust: 100%;
   }
   main { max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; }
+
   header { border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 24px; }
   header h1 { font-size: 24px; margin: 0 0 8px; letter-spacing: -0.01em; }
   header .tldr { margin: 0; color: var(--fg); font-size: 17px; font-weight: 500; }
@@ -54,19 +61,60 @@
   section { margin-bottom: 32px; }
   section > h2 { font-size: 18px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
 
-  .indicators { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-bottom: 16px; }
-  .indicator { background: var(--card); padding: 12px; border-radius: 8px; border: 1px solid var(--border); }
+  /* TOP STORIES */
+  .top-stories {
+    background: linear-gradient(135deg, var(--card), transparent);
+    border: 1px solid var(--border); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 18px; margin-bottom: 24px;
+  }
+  .top-stories h2 { margin-top: 0; }
+  .top-stories ol { margin: 0; padding-left: 20px; }
+  .top-stories li { padding: 8px 0; border-bottom: 1px dashed var(--border); }
+  .top-stories li:last-child { border-bottom: none; }
+  .top-stories .title { font-weight: 600; }
+  .top-stories .why { color: var(--muted); font-size: 14px; margin-top: 2px; }
+  .top-stories .sources { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .top-stories .sources a {
+    font-size: 12px; color: var(--accent); text-decoration: none;
+    background: var(--bg); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border);
+  }
+
+  /* IMPACT BADGES */
+  .impact { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; vertical-align: middle; margin-left: 6px; }
+  .impact.positive { background: var(--pos-bg); color: var(--pos); }
+  .impact.negative { background: var(--neg-bg); color: var(--neg); }
+  .impact.neutral { background: var(--neu-bg); color: var(--neu); }
+
+  /* INDICATORS */
+  .indicators { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-bottom: 12px; }
+  .indicator { padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); position: relative; }
+  .indicator.positive { border-left: 3px solid var(--pos); background: linear-gradient(to right, var(--pos-bg), var(--card) 60%); }
+  .indicator.negative { border-left: 3px solid var(--neg); background: linear-gradient(to right, var(--neg-bg), var(--card) 60%); }
+  .indicator.neutral { border-left: 3px solid var(--neu); }
   .indicator .name { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
   .indicator .value { font-size: 16px; font-weight: 600; }
-  .indicator .change { font-size: 13px; margin-top: 2px; }
-  .change.up { color: var(--up); }
-  .change.down { color: var(--down); }
+  .indicator .change { font-size: 13px; margin-top: 2px; font-weight: 500; }
+  .indicator .change.up { color: var(--pos); }
+  .indicator .change.down { color: var(--neg); }
+  .indicator .arrow { font-size: 11px; margin-right: 2px; }
+  .section-sub { font-size: 14px; color: var(--muted); margin: -4px 0 8px; }
 
+  /* KEY POINTS */
   .summary { color: var(--fg); }
+  .macro-mood {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; padding: 4px 10px; border-radius: 999px; font-weight: 500;
+    margin-left: 8px;
+  }
+  .macro-mood.positive { background: var(--pos-bg); color: var(--pos); }
+  .macro-mood.negative { background: var(--neg-bg); color: var(--neg); }
+  .macro-mood.neutral { background: var(--neu-bg); color: var(--neu); }
+
   .points { list-style: none; padding: 0; margin: 0; }
   .points li { padding: 12px 0; border-bottom: 1px solid var(--border); }
   .points li:last-child { border-bottom: none; }
-  .points .point-title { font-weight: 600; margin-bottom: 4px; }
+  .points .point-title { font-weight: 600; margin-bottom: 4px; display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+  .points .point-title .text { flex: 1; min-width: 0; }
   .points .point-detail { color: var(--muted); font-size: 14px; margin: 4px 0; }
   .points .sources { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
   .points .sources a {
@@ -75,15 +123,43 @@
   }
   .points .sources a:hover { text-decoration: underline; }
 
-  article.stock { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
-  article.stock h3 { margin: 0 0 4px; font-size: 17px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  /* STOCK CARD */
+  article.stock { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+  article.stock header { border: none; padding: 0; margin: 0 0 8px; }
+  article.stock h3 { margin: 0; font-size: 17px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
   article.stock .code { font-size: 12px; color: var(--muted); font-weight: 400; font-family: ui-monospace, SFMono-Regular, monospace; }
-  article.stock .sentiment { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
-  article.stock .sentiment.positive { background: rgba(220,38,38,0.1); color: var(--up); }
-  article.stock .sentiment.negative { background: rgba(37,99,235,0.1); color: var(--down); }
-  article.stock .sentiment.neutral { background: var(--border); color: var(--muted); }
+
+  /* RECOMMENDATION BADGE (5 levels) */
+  .rec {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 12px; font-weight: 700; padding: 3px 10px;
+    border-radius: 999px; letter-spacing: 0.02em;
+  }
+  .rec.strong_buy { background: #dc2626; color: white; }
+  .rec.buy { background: var(--pos-bg); color: var(--pos); border: 1px solid var(--pos); }
+  .rec.hold { background: var(--neu-bg); color: var(--neu); border: 1px solid var(--neu); }
+  .rec.sell { background: var(--neg-bg); color: var(--neg); border: 1px solid var(--neg); }
+  .rec.strong_sell { background: #1d4ed8; color: white; }
+  @media (prefers-color-scheme: dark) {
+    .rec.strong_buy { background: #b91c1c; }
+    .rec.strong_sell { background: #1e40af; }
+  }
+  .rec-rationale { color: var(--muted); font-size: 13px; margin-top: 6px; font-style: italic; }
+
   article.stock .stock-summary { margin: 8px 0 12px; }
-  article.stock h4 { font-size: 13px; color: var(--muted); margin: 16px 0 8px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
+  article.stock h4 { font-size: 12px; color: var(--muted); margin: 16px 0 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* DEEP DIVE */
+  .deep-dive {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 14px; margin-top: 12px; font-size: 14px;
+  }
+  .deep-dive h4 { margin-top: 0; }
+  .deep-dive .dd-block { margin: 8px 0; }
+  .deep-dive .dd-label { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
+  .deep-dive .dd-body { color: var(--fg); }
+  .deep-dive .dd-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .deep-dive .dd-tag { font-size: 11px; background: var(--card); padding: 2px 8px; border-radius: 4px; color: var(--muted); border: 1px solid var(--border); }
 
   .disclosures { list-style: none; padding: 0; margin: 0; }
   .disclosures li { font-size: 13px; padding: 6px 0; border-bottom: 1px dashed var(--border); }
@@ -92,12 +168,16 @@
   .disclosures a:hover { color: var(--accent); }
   .disclosures .date { color: var(--muted); font-size: 11px; margin-left: 6px; }
 
+  .sector-tag { display: inline-block; font-size: 11px; background: var(--border); color: var(--muted); padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
+
   footer {
     margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border);
     color: var(--muted); font-size: 12px; text-align: center;
   }
-  footer a { color: var(--muted); }
-  .sector-tag { display: inline-block; font-size: 11px; background: var(--border); color: var(--muted); padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
+  footer .disclaimer {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 14px; margin-bottom: 10px; text-align: left;
+  }
 </style>
 </head>
 <body>
@@ -108,16 +188,60 @@
     <time>생성: {{ generated_at_display }} KST · <a href="archive.html">아카이브</a></time>
   </header>
 
+  {% if top_stories %}
+  <section class="top-stories">
+    <h2>⭐ 오늘의 핵심</h2>
+    <ol>
+      {% for ts in top_stories %}
+      <li>
+        <div class="title">
+          <span>{{ ts.headline }}</span>
+          {% if ts.impact %}<span class="impact {{ ts.impact }}">{{ ts.impact_label or ts.impact }}</span>{% endif %}
+        </div>
+        {% if ts.why_it_matters %}<div class="why">{{ ts.why_it_matters }}</div>{% endif %}
+        {% if ts.sources %}
+        <div class="sources">
+          {% for src in ts.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
+        </div>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+  {% endif %}
+
   {% if macro.indicators %}
   <section>
-    <h2>📊 시장 지표</h2>
+    <h2>📊 국내 시장 지표</h2>
     <div class="indicators">
       {% for ind in macro.indicators %}
-      <div class="indicator">
+      <div class="indicator {{ ind.impact or ind.direction or 'neutral' }}">
         <div class="name">{{ ind.name }}</div>
         <div class="value">{{ ind.value }}</div>
         {% if ind.change %}
-        <div class="change {{ ind.direction or '' }}">{{ ind.change }}</div>
+        <div class="change {{ ind.direction or '' }}">
+          <span class="arrow">{% if ind.direction == 'up' %}▲{% elif ind.direction == 'down' %}▼{% endif %}</span>{{ ind.change }}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if macro.overnight %}
+  <section>
+    <h2>🌙 간밤 해외 시장</h2>
+    <p class="section-sub">미국 증시 전일 종가 및 주요 원자재/환율</p>
+    <div class="indicators">
+      {% for ind in macro.overnight %}
+      <div class="indicator {{ ind.impact or ind.direction or 'neutral' }}">
+        <div class="name">{{ ind.name }}</div>
+        <div class="value">{{ ind.value }}</div>
+        {% if ind.change %}
+        <div class="change {{ ind.direction or '' }}">
+          <span class="arrow">{% if ind.direction == 'up' %}▲{% elif ind.direction == 'down' %}▼{% endif %}</span>{{ ind.change }}
+        </div>
         {% endif %}
       </div>
       {% endfor %}
@@ -126,13 +250,25 @@
   {% endif %}
 
   <section>
-    <h2>🌏 거시 경제</h2>
+    <h2>
+      🌏 거시 경제
+      {% if macro.overall_impact %}
+      <span class="macro-mood {{ macro.overall_impact }}">
+        {% if macro.overall_impact == 'positive' %}🟢 한국 증시에 우호적
+        {% elif macro.overall_impact == 'negative' %}🔴 한국 증시에 부담
+        {% else %}🟡 중립/혼조{% endif %}
+      </span>
+      {% endif %}
+    </h2>
     {% if macro.summary %}<p class="summary">{{ macro.summary }}</p>{% endif %}
     {% if macro.key_points %}
     <ul class="points">
       {% for pt in macro.key_points %}
       <li>
-        <div class="point-title">{{ pt.point }}</div>
+        <div class="point-title">
+          <span class="text">{{ pt.point }}</span>
+          {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
+        </div>
         {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
         {% if pt.sources %}
         <div class="sources">
@@ -152,6 +288,7 @@
     <div style="margin-bottom: 16px;">
       <div style="font-weight: 600; margin-bottom: 4px;">
         {{ sec.name }}
+        {% if sec.impact %}<span class="impact {{ sec.impact }}">{{ sec.impact_label or sec.impact }}</span>{% endif %}
         {% for s in sec.affected or [] %}<span class="sector-tag">{{ s }}</span>{% endfor %}
       </div>
       {% if sec.summary %}<div class="point-detail">{{ sec.summary }}</div>{% endif %}
@@ -159,7 +296,10 @@
       <ul class="points">
         {% for pt in sec.key_points %}
         <li>
-          <div class="point-title">{{ pt.point }}</div>
+          <div class="point-title">
+            <span class="text">{{ pt.point }}</span>
+            {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
+          </div>
           {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
           {% if pt.sources %}
           <div class="sources">
@@ -179,17 +319,27 @@
     <h2>📈 종목별</h2>
     {% for stock in stocks %}
     <article class="stock">
-      <h3>
-        {{ stock.name }}
-        <span class="code">{{ stock.code }}{% if stock.market %} · {{ stock.market }}{% endif %}</span>
-        {% if stock.sentiment %}<span class="sentiment {{ stock.sentiment }}">{{ stock.sentiment_label or stock.sentiment }}</span>{% endif %}
-      </h3>
+      <header>
+        <h3>
+          {{ stock.name }}
+          <span class="code">{{ stock.code }}{% if stock.market %} · {{ stock.market }}{% endif %}</span>
+          {% if stock.recommendation %}
+          <span class="rec {{ stock.recommendation }}">{{ stock.recommendation_label or stock.recommendation }}</span>
+          {% endif %}
+        </h3>
+        {% if stock.rationale %}<div class="rec-rationale">{{ stock.rationale }}</div>{% endif %}
+      </header>
+
       {% if stock.summary %}<p class="stock-summary">{{ stock.summary }}</p>{% endif %}
+
       {% if stock.key_points %}
       <ul class="points">
         {% for pt in stock.key_points %}
         <li>
-          <div class="point-title">{{ pt.point }}</div>
+          <div class="point-title">
+            <span class="text">{{ pt.point }}</span>
+            {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
+          </div>
           {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
           {% if pt.sources %}
           <div class="sources">
@@ -200,6 +350,53 @@
         {% endfor %}
       </ul>
       {% endif %}
+
+      {% if stock.deep_dive %}
+      <div class="deep-dive">
+        <h4>🔬 심층 분석</h4>
+        {% if stock.deep_dive.business %}
+        <div class="dd-block">
+          <div class="dd-label">주력 사업·제품</div>
+          <div class="dd-body">{{ stock.deep_dive.business }}</div>
+        </div>
+        {% endif %}
+        {% if stock.deep_dive.market %}
+        <div class="dd-block">
+          <div class="dd-label">시장성</div>
+          <div class="dd-body">{{ stock.deep_dive.market }}</div>
+        </div>
+        {% endif %}
+        {% if stock.deep_dive.competitors %}
+        <div class="dd-block">
+          <div class="dd-label">경쟁 구도</div>
+          <div class="dd-body">
+            {% if stock.deep_dive.competitors is string %}{{ stock.deep_dive.competitors }}
+            {% else %}
+            <div class="dd-tags">{% for c in stock.deep_dive.competitors %}<span class="dd-tag">{{ c }}</span>{% endfor %}</div>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        {% if stock.deep_dive.research_notes %}
+        <div class="dd-block">
+          <div class="dd-label">R&D / 논문·특허 동향</div>
+          <div class="dd-body">{{ stock.deep_dive.research_notes }}</div>
+        </div>
+        {% endif %}
+        {% if stock.deep_dive.risks %}
+        <div class="dd-block">
+          <div class="dd-label">리스크</div>
+          <div class="dd-body">{{ stock.deep_dive.risks }}</div>
+        </div>
+        {% endif %}
+        {% if stock.deep_dive.sources %}
+        <div class="sources">
+          {% for src in stock.deep_dive.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
       {% if stock.disclosures %}
       <h4>공시</h4>
       <ul class="disclosures">
@@ -213,7 +410,13 @@
   </section>
 
   <footer>
-    <p>k-ant-daily · 자동 생성 리포트 · 정보 제공 목적이며 투자 권유가 아닙니다.</p>
+    <div class="disclaimer">
+      <strong>⚠️ 투자 유의:</strong> 본 리포트는 AI가 공개 뉴스·공시·웹 자료를 종합해 자동 생성한
+      개인 참고용이며, 투자 자문·권유가 아닙니다. 투자 판단과 책임은 전적으로 본인에게 있습니다.
+      '풀매수/매수/존버/매도/풀매도' 의견은 AI의 단기 뉴스 흐름 해석일 뿐이며, 종목의 내재가치나
+      장기 전망을 반영하지 않습니다.
+    </div>
+    <p>k-ant-daily · 자동 생성 리포트 · <a href="https://github.com/yummyummyummy/k-ant-daily" target="_blank" rel="noopener">GitHub</a></p>
   </footer>
 </main>
 </body>

@@ -38,29 +38,67 @@ def _env() -> Environment:
     )
 
 
+IMPACT_LABEL = {
+    "positive": "호재",
+    "negative": "악재",
+    "neutral": "중립",
+}
+
+RECOMMENDATION_LABEL = {
+    "strong_buy": "풀매수",
+    "buy": "매수",
+    "hold": "존버",
+    "sell": "매도",
+    "strong_sell": "풀매도",
+}
+
+
 def _infer_direction(change: str | None) -> str:
     if not change:
         return ""
-    if change.strip().startswith("-") or "▼" in change or "하락" in change:
+    s = change.strip()
+    if s.startswith("-") or "▼" in s or "하락" in s:
         return "down"
-    if change.strip().startswith("+") or "▲" in change or "상승" in change:
+    if s.startswith("+") or "▲" in s or "상승" in s:
         return "up"
     return ""
 
 
+def _annotate_impact(obj: dict) -> None:
+    impact = obj.get("impact")
+    if impact and "impact_label" not in obj:
+        obj["impact_label"] = IMPACT_LABEL.get(impact, impact)
+
+
 def _normalize(summary: dict) -> dict:
     """Fill derived fields the template relies on."""
-    for ind in summary.get("macro", {}).get("indicators", []) or []:
+    macro = summary.get("macro", {}) or {}
+    for ind in (macro.get("indicators") or []) + (macro.get("overnight") or []):
         if "direction" not in ind:
             ind["direction"] = _infer_direction(ind.get("change"))
-    for stock in summary.get("stocks", []) or []:
-        sent = stock.get("sentiment")
-        if sent and "sentiment_label" not in stock:
-            stock["sentiment_label"] = {
-                "positive": "호재",
-                "negative": "악재",
-                "neutral": "중립",
-            }.get(sent, sent)
+        _annotate_impact(ind)
+    for pt in macro.get("key_points") or []:
+        _annotate_impact(pt)
+
+    for ts in summary.get("top_stories") or []:
+        _annotate_impact(ts)
+
+    for sec in summary.get("sectors") or []:
+        _annotate_impact(sec)
+        for pt in sec.get("key_points") or []:
+            _annotate_impact(pt)
+
+    for stock in summary.get("stocks") or []:
+        rec = stock.get("recommendation")
+        if rec and "recommendation_label" not in stock:
+            stock["recommendation_label"] = RECOMMENDATION_LABEL.get(rec, rec)
+        # backward compat: accept sentiment as alias
+        if not rec and stock.get("sentiment"):
+            legacy = {"positive": "buy", "negative": "sell", "neutral": "hold"}
+            stock["recommendation"] = legacy.get(stock["sentiment"], "hold")
+            stock["recommendation_label"] = RECOMMENDATION_LABEL[stock["recommendation"]]
+        for pt in stock.get("key_points") or []:
+            _annotate_impact(pt)
     return summary
 
 
@@ -87,6 +125,7 @@ def render_report(summary: dict, base_url: str) -> tuple[str, str]:
         generated_at=summary.get("generated_at", ""),
         generated_at_display=_display_time(summary.get("generated_at", "")),
         canonical_url=canonical,
+        top_stories=summary.get("top_stories", []) or [],
         macro=summary.get("macro", {}) or {},
         sectors=summary.get("sectors", []) or [],
         stocks=summary.get("stocks", []) or [],

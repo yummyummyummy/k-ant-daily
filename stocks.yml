@@ -11,3 +11,9 @@ stocks:
   - code: "445680"
     name: "큐리옥스바이오시스템즈"
     market: KOSDAQ
+    deep_dive: true
+    keywords:
+      - "큐리옥스"
+      - "Curiox"
+      - "Laminar Wash"
+      - "세포 기반 분석"
