@@ -1,0 +1,2046 @@
+{
+  "date": "2026-04-21",
+  "generated_at": "2026-04-21T07:30:00+09:00",
+  "headline": "휴전 만료 D-2, 유가 급등 속 실적 기대감 공존",
+  "tldr": "미-이란 휴전 수요일 만료 예고에 유가 +2.8%, VIX +8% 급등. SK하이닉스 실적 기대감이 지수 방어 중",
+  "top_stories": [
+    {
+      "headline": "미-이란 휴전 수요일 만료 예고, 호르무즈 재봉쇄 긴장 고조",
+      "why_it_matters": "트럼프 대통령이 수요일 휴전 종료 및 연장 '극히 어렵다'고 밝혀 중동 리스크 재점화. 미 해군이 이란 화물선 투스카호를 나포하며 긴장 극대화. WTI +2.8%, VIX +8%로 위험자산 전반에 부담. 다만 시장은 1차 협상 결렬에도 코스피 6,200을 방어해 '최악 시나리오' 배제 중",
+      "impact": "negative",
+      "sources": [
+        {
+          "title": "Peace talks are in doubt as the U.S. seizes an Iranian ship",
+          "url": "https://www.npr.org/2026/04/20/nx-s1-5791256/iran-middle-east-updates"
+        },
+        {
+          "title": "유가 급등에 뉴욕증시 숨고르기…나스닥 13일 랠리 종료",
+          "url": "https://n.news.naver.com/mnews/article/018/0006262198"
+        },
+        {
+          "title": "\"이미 시장은 이란 사태 너머로\"…서학개미 시동 거나",
+          "url": "https://n.news.naver.com/mnews/article/119/0003082682"
+        }
+      ],
+      "impact_label": "악재"
+    },
+    {
+      "headline": "SK하이닉스 1Q 영업익 +369% 전망, 골드만 코스피 8000 목표",
+      "why_it_matters": "골드만삭스가 코스피 목표를 8,000으로 상향. SK하이닉스 1분기 영업이익 +369% 컨센서스에 증권가 목표가 상향 릴레이. 어제 장중 신고가 경신 후 +3.37% 마감. 실적 시즌 본격화가 중동 불확실성을 상쇄하는 구도",
+      "impact": "positive",
+      "sources": [
+        {
+          "title": "코스피 8000 간다…골드만삭스 목표 상향",
+          "url": "https://n.news.naver.com/mnews/article/011/0004612812"
+        },
+        {
+          "title": "\"실적장 온다\" SK하닉 영업익 369% 전망에 코스피 전고점 도전",
+          "url": "https://n.news.naver.com/mnews/article/421/0008901390"
+        },
+        {
+          "title": "\"진짜 200만닉스 가나\" SK하이닉스 목표가 높이는 증권가",
+          "url": "https://n.news.naver.com/mnews/article/277/0005752210"
+        }
+      ],
+      "impact_label": "호재"
+    },
+    {
+      "headline": "K바이오 AACR 2026 모멘텀 — 보로노이 VRN11 임상 성과 공개",
+      "why_it_matters": "AACR 2026에서 보로노이 차세대 폐암 표적치료제 VRN11의 유의미한 1상 데이터 공개. EGFR C797S 내성 환자군에서 높은 ORR 달성, 가속승인 기대. 어제 +11.6% 급등. 앱클론도 zCART·AM109 발표 예정으로 바이오 섹터 전반 관심 확대",
+      "impact": "positive",
+      "sources": [
+        {
+          "title": "차세대 항암 기술도 공개…글로벌 시장 파고드는 K바이오",
+          "url": "https://n.news.naver.com/mnews/article/011/0004612804"
+        },
+        {
+          "title": "보로노이, AACR2026서 'VRN10' 데이터 공개…HER2 치료",
+          "url": "https://n.news.naver.com/mnews/article/018/0006262114"
+        },
+        {
+          "title": "보로노이, 높아진 'VRN11' C797S 환자군 ORR…가속승인 기대",
+          "url": "https://n.news.naver.com/mnews/article/008/0005346739"
+        }
+      ],
+      "impact_label": "호재"
+    }
+  ],
+  "focus": {
+    "title": "미국·이란 전쟁과 호르무즈 해협",
+    "impact": "negative",
+    "status": {
+      "level": "restricted",
+      "label": "선별적 통제 중",
+      "detail": "이란이 4/17 개방 선언 후 4/18 재봉쇄. 현재 이란 항구 출입 선박 중심 선별 차단 중. 미 해군은 이란 화물선 투스카호를 4/20 나포. 휴전 수요일 만료 예고",
+      "ship_count": {
+        "value": "일 20척 이상 통과 (비이란 선박 중심)",
+        "date": "2026-04-20 (일)",
+        "note": "이란 관련 선박은 차단, 비관련 상선은 제한적 통과 중. 대기 선박 수백 척·선원 약 2만명",
+        "source": {
+          "title": "호르무즈 통행 빠르게 늘어... 한국 선박도 항해 시작",
+          "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003225907"
+        }
+      }
+    },
+    "summary": "트럼프 대통령이 휴전 수요일 만료를 예고하며 연장은 '극히 어렵다'고 밝혔다. 이란은 2차 협상 참여 여부를 미정이라 밝히며 미국의 '외교적 진정성 부족'을 비판. 미 해군의 이란 화물선 나포(4/20)로 긴장 극대화. 핵심 쟁점은 우라늄 농축 유예 기간(미국 20년 vs 이란 5년)과 호르무즈 개방 조건. WTI $86.20(+2.8%)으로 유가 상승 압력 지속. 한국 증시는 최악 시나리오를 배제한 흐름이나, 휴전 만료 시 변동성 확대 불가피",
+    "news_items": [
+      {
+        "title": "WTI $86.20(+2.8%) — 유가 급등에 나스닥 13일 랠리 종료",
+        "summary": "호르무즈 재봉쇄 우려에 WTI 급등, VIX +8%. 나스닥 -0.26%로 13거래일 연속 상승 마감",
+        "source": "이데일리",
+        "url": "https://n.news.naver.com/mnews/article/018/0006262198",
+        "published_at": "2026-04-21T06:17:00+09:00",
+        "impact": "negative",
+        "impact_label": "악재",
+        "time_ago": "1시간 전"
+      },
+      {
+        "title": "이란, 2차 협상 참여 미정 — '미국 진정성 부족' 비판",
+        "summary": "이란 외무부 대변인이 2차 협상 계획이 아직 없다고 밝히며 미국의 외교적 진정성 부족을 비판. 이슬라마바드 2차 회담 불투명",
+        "source": "NPR",
+        "url": "https://www.npr.org/2026/04/20/nx-s1-5791256/iran-middle-east-updates",
+        "published_at": "2026-04-21T04:00:00+09:00",
+        "impact": "negative",
+        "impact_label": "악재",
+        "time_ago": "3시간 전"
+      },
+      {
+        "title": "트럼프, 휴전 수요일 만료·연장 '극히 어렵다'",
+        "summary": "트럼프 대통령이 블룸버그 인터뷰에서 수요일 저녁 휴전 종료를 예고하며 추가 연장은 매우 어렵다고 밝혀 시장 불확실성 증대",
+        "source": "CNN",
+        "url": "https://www.cnn.com/2026/04/20/world/live-news/iran-war-us-trump-israel",
+        "published_at": "2026-04-20T22:00:00+09:00",
+        "impact": "negative",
+        "impact_label": "악재",
+        "time_ago": "9시간 전"
+      },
+      {
+        "title": "미 해군, 이란 화물선 '투스카호' 나포",
+        "summary": "미 해군 구축함이 이란 화물선의 추진 장치를 무력화한 뒤 해병대가 헬기 하강으로 승선·나포. 평화협상 전망에 찬물",
+        "source": "NPR",
+        "url": "https://www.npr.org/2026/04/20/nx-s1-5791256/iran-middle-east-updates",
+        "published_at": "2026-04-20T20:00:00+09:00",
+        "impact": "negative",
+        "impact_label": "악재",
+        "time_ago": "11시간 전"
+      }
+    ],
+    "impact_label": "악재"
+  },
+  "macro": {
+    "overall_impact": "neutral",
+    "indicators_impact": "positive",
+    "overnight_impact": "negative",
+    "summary": "어제 코스피는 SK하이닉스 실적 기대감에 +0.44% 상승해 6,219로 마감. 그러나 간밤 미국 증시는 유가 급등(WTI +2.8%)과 호르무즈 긴장에 소폭 하락(S&P -0.24%, 나스닥 -0.26%). VIX +8%로 불안심리 확대. 오늘 장은 중동 리스크와 실적 기대감이 상충하며 보합~소폭 약세 출발 예상",
+    "indicators": [
+      {
+        "name": "KOSPI",
+        "value": "6,219.09",
+        "change_abs": "+27.17",
+        "change_pct": "+0.44%",
+        "impact": "positive",
+        "direction": "up",
+        "impact_label": "호재"
+      },
+      {
+        "name": "KOSDAQ",
+        "value": "1,174.85",
+        "change_abs": "+4.81",
+        "change_pct": "+0.41%",
+        "impact": "positive",
+        "direction": "up",
+        "impact_label": "호재"
+      },
+      {
+        "name": "KOSPI200",
+        "value": "935.75",
+        "change_abs": "+4.34",
+        "change_pct": "+0.47%",
+        "impact": "positive",
+        "direction": "up",
+        "impact_label": "호재"
+      },
+      {
+        "name": "USD/KRW",
+        "value": "1,472.30",
+        "change_abs": "+4.50",
+        "change_pct": "+0.31%",
+        "impact": "neutral",
+        "direction": "up",
+        "impact_label": "중립"
+      },
+      {
+        "name": "EUR/KRW",
+        "value": "1,735.33",
+        "change_abs": "+8.61",
+        "change_pct": "+0.50%",
+        "impact": "neutral",
+        "direction": "up",
+        "impact_label": "중립"
+      }
+    ],
+    "overnight": [
+      {
+        "name": "S&P 500",
+        "value": "7,109.14",
+        "change_abs": "-16.92",
+        "change_pct": "-0.24%",
+        "impact": "negative",
+        "direction": "down",
+        "impact_label": "악재"
+      },
+      {
+        "name": "다우존스",
+        "value": "49,442.56",
+        "change_abs": "-4.87",
+        "change_pct": "-0.01%",
+        "impact": "neutral",
+        "direction": "down",
+        "impact_label": "중립"
+      },
+      {
+        "name": "나스닥",
+        "value": "24,404.39",
+        "change_abs": "-64.09",
+        "change_pct": "-0.26%",
+        "impact": "negative",
+        "direction": "down",
+        "impact_label": "악재"
+      },
+      {
+        "name": "VIX",
+        "value": "18.87",
+        "change_abs": "+1.39",
+        "change_pct": "+7.95%",
+        "impact": "negative",
+        "direction": "up",
+        "impact_label": "악재"
+      },
+      {
+        "name": "WTI 원유",
+        "value": "$86.20",
+        "change_abs": "+$2.35",
+        "change_pct": "+2.80%",
+        "impact": "negative",
+        "direction": "up",
+        "impact_label": "악재"
+      },
+      {
+        "name": "금",
+        "value": "$4,853.00",
+        "change_abs": "-$4.60",
+        "change_pct": "-0.09%",
+        "impact": "neutral",
+        "direction": "down",
+        "impact_label": "중립"
+      },
+      {
+        "name": "비트코인",
+        "value": "$75,969.66",
+        "change_abs": "+$2,113.30",
+        "change_pct": "+2.86%",
+        "impact": "positive",
+        "direction": "up",
+        "impact_label": "호재"
+      },
+      {
+        "name": "달러인덱스",
+        "value": "98.05",
+        "change_abs": "-0.05",
+        "change_pct": "-0.05%",
+        "impact": "neutral",
+        "direction": "down",
+        "impact_label": "중립"
+      }
+    ],
+    "indicators_impact_label": "호재",
+    "overnight_impact_label": "악재"
+  },
+  "sectors": [
+    {
+      "name": "반도체",
+      "summary": "SK하이닉스 1Q 영업익 +369% 전망에 증권가 목표가 상향 릴레이. 골드만삭스 코스피 8,000 목표 제시. 간밤 SOX +0.45%, NVDA +0.19%로 혼조. MU -1.46% 약세가 갭다운 리스크 소폭 존재하나, 국내 실적 모멘텀이 압도적",
+      "impact": "positive",
+      "affected": [
+        "삼성전자",
+        "SK하이닉스",
+        "한미반도체"
+      ],
+      "key_points": [
+        {
+          "point": "골드만삭스 코스피 목표 8,000 상향",
+          "detail": "골드만삭스가 한국 증시 목표를 8,000으로 올리며 반도체 실적 시즌 기대감 반영",
+          "impact": "positive",
+          "published_at": "2026-04-21T07:20:00+09:00",
+          "sources": [
+            {
+              "title": "코스피 8000 간다…골드만삭스 목표 상향",
+              "url": "https://n.news.naver.com/mnews/article/011/0004612812"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "10분 전"
+        },
+        {
+          "point": "HBM 잔치 후 리스크 — IMF 경고",
+          "detail": "IMF가 한국 반도체 쏠림 리스크를 경고. HBM 수퍼사이클 이후 다변화 필요성 제기",
+          "impact": "negative",
+          "published_at": "2026-04-21T07:01:00+09:00",
+          "sources": [
+            {
+              "title": "HBM 잔치 끝나면…IMF 경고가 던진 한국 반도체 민낯",
+              "url": "https://n.news.naver.com/mnews/article/119/0003082675"
+            }
+          ],
+          "impact_label": "악재",
+          "time_ago": "29분 전"
+        },
+        {
+          "point": "SK하이닉스 1Q 영업익 +369% 컨센서스, 목표가 200만원 논의",
+          "detail": "HBM 수퍼사이클 기대에 증권가 목표가 상향 행진. 어제 장중 신고가 경신",
+          "impact": "positive",
+          "published_at": "2026-04-21T06:00:00+09:00",
+          "sources": [
+            {
+              "title": "\"진짜 200만닉스 가나\" SK하이닉스 목표가 높이는 증권가",
+              "url": "https://n.news.naver.com/mnews/article/277/0005752210"
+            },
+            {
+              "title": "이란 변수에도 '굳건'…SK하닉, '수퍼사이클' 기대감에 신고가 랠리",
+              "url": "https://n.news.naver.com/mnews/article/003/0013899207"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1시간 전"
+        }
+      ],
+      "impact_label": "호재"
+    },
+    {
+      "name": "바이오/제약",
+      "summary": "AACR 2026 학회 모멘텀으로 바이오 섹터 전반 강세. 보로노이 VRN11 1상 데이터 호조에 +11.6% 급등. 코로나 시카다 변이 확산 우려에 백신·진단 테마주도 급등. 간밤 XBI -0.63%로 소폭 약세",
+      "impact": "positive",
+      "affected": [
+        "알테오젠",
+        "보로노이",
+        "셀리드",
+        "앱클론",
+        "에이비엘바이오",
+        "코아스템켐온"
+      ],
+      "key_points": [
+        {
+          "point": "알테오젠 코스피 이전 — ETF 매수세 변화 주목",
+          "detail": "알테오젠의 코스피 이전 후 코스닥150 편출에 따른 ETF 패시브 자금 변동 가능성",
+          "impact": "neutral",
+          "published_at": "2026-04-20T17:50:00+09:00",
+          "sources": [
+            {
+              "title": "'코스피 이전' 알테오젠, ETF 매수세 줄어드나",
+              "url": "https://n.news.naver.com/mnews/article/009/0005668723"
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "13시간 전"
+        },
+        {
+          "point": "보로노이 VRN11 EGFR C797S 내성 환자 1상 ORR 호조",
+          "detail": "AACR 2026서 차세대 폐암 표적치료제 VRN11의 유의미한 임상1상 결과 공개. 가속승인 기대감 확대",
+          "impact": "positive",
+          "published_at": "2026-04-20T17:24:00+09:00",
+          "sources": [
+            {
+              "title": "보로노이, 높아진 'VRN11' C797S 환자군 ORR…가속승인 기대",
+              "url": "https://n.news.naver.com/mnews/article/008/0005346739"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "14시간 전"
+        },
+        {
+          "point": "코로나 시카다 변이 확산 — 백신·진단 테마주 급등",
+          "detail": "코로나 시카다 변이 국내 점유율 급증 소식에 셀리드 등 관련주 무더기 상승. 투자경고종목 지정 예고도 동반",
+          "impact": "positive",
+          "published_at": "2026-04-20T16:07:00+09:00",
+          "sources": [
+            {
+              "title": "빵 굽는 바이오·20년 적자 기업도 상한가… 코로나 변이 확산에 개미…",
+              "url": "https://n.news.naver.com/mnews/article/366/0001158288"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "15시간 전"
+        }
+      ],
+      "impact_label": "호재"
+    },
+    {
+      "name": "방산/조선",
+      "summary": "한화에어로스페이스 K9 자주포 인도 수출 모멘텀, HD한국조선해양 1Q 수주 +50% 급증 및 잠정 실적 공시. 간밤 방산 프록시(LMT -1.84%) 약세는 갭다운 부담 요인",
+      "impact": "neutral",
+      "affected": [
+        "한화에어로스페이스",
+        "HD한국조선해양"
+      ],
+      "key_points": [
+        {
+          "point": "한화에어로스페이스, 경쟁사 공동전선 구축 보도",
+          "detail": "한화의 몸집 확대에 경쟁사들이 공동전선을 구축하고 있다는 보도. 인도 K9 자주포 현지 제조 60% 이전 논의 중",
+          "impact": "neutral",
+          "published_at": "2026-04-21T00:34:00+09:00",
+          "sources": [
+            {
+              "title": "몸집 키운 한화에 맞서… 경쟁사들 공동전선 구축",
+              "url": "https://n.news.naver.com/mnews/article/023/0003971993"
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "6시간 전"
+        },
+        {
+          "point": "HD한국조선해양 1Q 수주 전년비 50% 급증, 잠정실적 공시",
+          "detail": "K조선 빅3 합산 영업익 2조 육박 전망. 태국 호위함 8000억 수주전도 주목",
+          "impact": "positive",
+          "published_at": "2026-04-20T17:45:00+09:00",
+          "sources": [
+            {
+              "title": "HD한국조선해양, 1분기 수주 '순항'…전년 대비 50% 급증",
+              "url": "https://n.news.naver.com/mnews/article/123/0002381668"
+            },
+            {
+              "title": "'K조선 빅3' 1분기 합산 영업익 2조 육박",
+              "url": "https://n.news.naver.com/mnews/article/021/0002785979"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "13시간 전"
+        }
+      ],
+      "impact_label": "중립"
+    },
+    {
+      "name": "에너지/건설",
+      "summary": "WTI +2.8% 급등에 정유 1Q 영업익 4조 전망이나 재고이익 착시 우려. 삼성E&A 등 건설 ETF가 올해 수익률 1위(+116%) 기록. 종전 선언 시 정유주 반등 전망도 병존",
+      "impact": "neutral",
+      "affected": [
+        "SK이노베이션",
+        "삼성E&A"
+      ],
+      "key_points": [
+        {
+          "point": "정유 1Q 영업익 4조 전망, 재고이익 착시 우려",
+          "detail": "유가 급등에 정유사 1분기 실적 호조 예상되나 재고평가이익에 따른 착시 가능성 제기",
+          "impact": "neutral",
+          "published_at": "2026-04-21T06:50:00+09:00",
+          "sources": [
+            {
+              "title": "정유업계, 1Q 영업익 '4조 잭팟'?…'재고이익 착시' 우려",
+              "url": "https://n.news.naver.com/mnews/article/421/0008901449"
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "40분 전"
+        },
+        {
+          "point": "건설 ETF 올해 수익률 1위 (+116%), 반도체 제쳐",
+          "detail": "삼성E&A 포함 건설 섹터 ETF가 올해 최고 수익률 기록. 중동 재건 기대감 반영",
+          "impact": "positive",
+          "published_at": "2026-04-20T06:31:00+09:00",
+          "sources": [
+            {
+              "title": "ETF 수익률 최고는 반도체가 아니었다…올 들어 두 배 오른 '건설'",
+              "url": "https://n.news.naver.com/mnews/article/011/0004612340"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1일 전"
+        }
+      ],
+      "impact_label": "중립"
+    },
+    {
+      "name": "플랫폼/엔터",
+      "summary": "카카오는 개별 뉴스 부재 속 간밤 META -2.6%, GOOGL -1.3%로 갭다운 부담. 하이브는 방시혁 출국금지 해제 요청(미 대사관) 및 1Q 실적 하회 전망 혼재. BTS 월드투어 516만명 관람 호재와 법적 리스크 상충",
+      "impact": "negative",
+      "affected": [
+        "카카오",
+        "하이브"
+      ],
+      "key_points": [
+        {
+          "point": "미 대사관, 방시혁 출국금지 해제 요청",
+          "detail": "BTS 월드투어 지원 명목으로 미 대사관이 출국금지 해제를 요청. 경찰청은 아직 요청 미수령 입장",
+          "impact": "positive",
+          "published_at": "2026-04-20T14:26:00+09:00",
+          "sources": [
+            {
+              "title": "美대사관, '방시혁 출국금지 해제' 요청…서울경찰청 \"아직 요청 받…\"",
+              "url": "https://n.news.naver.com/mnews/article/138/0002225120"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "17시간 전"
+        },
+        {
+          "point": "하이브 1Q 실적 예상치 하회 전망 — 메리츠 목표가 하향",
+          "detail": "메리츠증권이 하이브 1분기 실적이 예상치를 밑돌 것으로 전망하며 목표가를 하향 조정",
+          "impact": "negative",
+          "published_at": "2026-04-17T08:29:00+09:00",
+          "sources": [
+            {
+              "title": "\"하이브, 올 1분기 실적 예상치 밑돌 전망…목표가↓\"-메리츠",
+              "url": "https://n.news.naver.com/mnews/article/015/0005276138"
+            }
+          ],
+          "impact_label": "악재",
+          "time_ago": "3일 전"
+        }
+      ],
+      "impact_label": "악재"
+    },
+    {
+      "name": "전력기기",
+      "summary": "HD현대일렉트릭, 원전 르네상스 수혜 및 북미 전력3사 경쟁 구도 부각. 녹색산업 협의체 확대 개편에 에너지·플랜트 기업 추가 참여. 어제 보합 마감, 간밤 GEV -1.25% 약세",
+      "impact": "neutral",
+      "affected": [
+        "HD현대일렉트릭"
+      ],
+      "key_points": [
+        {
+          "point": "세계 원전 르네상스 — '짓는 기업'에 자금 유입",
+          "detail": "글로벌 원전 건설 투자 확대 흐름에서 HD현대일렉트릭 등 전력기기 기업 수혜 전망",
+          "impact": "positive",
+          "published_at": "2026-04-21T07:01:00+09:00",
+          "sources": [
+            {
+              "title": "[투자노트] 세계 '원전 르네상스'… '짓는 기업'에 돈 몰린다",
+              "url": "https://n.news.naver.com/mnews/article/366/0001158362"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "29분 전"
+        },
+        {
+          "point": "HD현대일렉·LS일렉·대한전선, 북미 대격돌",
+          "detail": "한국 전력3사가 북미 시장에서 본격 경쟁. AI 데이터센터 전력 수요 확대가 배경",
+          "impact": "neutral",
+          "published_at": "2026-04-20T16:03:00+09:00",
+          "sources": [
+            {
+              "title": "HD현대일렉·LS일렉·대한전선, 韓 전력3사 북미 대격돌",
+              "url": "https://n.news.naver.com/mnews/article/029/0003022682"
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "15시간 전"
+        }
+      ],
+      "impact_label": "중립"
+    }
+  ],
+  "stocks": [
+    {
+      "code": "005930",
+      "name": "삼성전자",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.27,
+        "proxies": [
+          {
+            "symbol": "^SOX",
+            "change_pct": 0.45
+          },
+          {
+            "symbol": "NVDA",
+            "change_pct": 0.19
+          },
+          {
+            "symbol": "MU",
+            "change_pct": -1.46
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "골드만삭스 코스피 8,000 목표 상향 + 밸류업 ETF 유입세 긍정적이나, 간밤 SOX 혼조(MU -1.46%)로 갭업 제한 예상",
+      "summary": "어제 -0.69% 소폭 약세 마감했으나, 골드만삭스의 코스피 8,000 목표 상향과 삼성그룹주 ETF 올해 +57% 수익률이 매수 심리를 지지. 간밤 필라델피아 반도체지수 +0.45% 소폭 강세이나 MU -1.46%로 혼조. 실적 시즌 본격화에 따른 수혜 기대. 오늘 소폭 강보합 출발 후 횡보 예상",
+      "key_points": [
+        {
+          "point": "삼성그룹주 ETF 올해 +57% 수익률",
+          "detail": "삼성전자가 이끄는 삼성그룹주 ETF의 올해 수익률이 57%에 달하며 자금 유입 지속",
+          "impact": "positive",
+          "published_at": "2026-04-21T07:29:00+09:00",
+          "sources": [
+            {
+              "title": "삼성전자가 끌고 삼성전기·삼성SDI 밀고…삼성그룹주 ETF 올해 57%…",
+              "url": "https://n.news.naver.com/mnews/article/011/0004612818"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1분 전"
+        },
+        {
+          "point": "한국은행 신현송 총재 오늘 취임",
+          "detail": "신현송 한은 총재 취임으로 통화정책 방향 주목. 시장 안정 메시지 기대",
+          "impact": "neutral",
+          "published_at": "2026-04-21T06:44:00+09:00",
+          "sources": [
+            {
+              "title": "수장 공백 피한 한국은행…신현송 총재 오늘 취임",
+              "url": "https://n.news.naver.com/mnews/article/374/0000505588"
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "46분 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "삼성전자(주) 변경상장(주식소각)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1628875&code=005930&page_notice=",
+          "date": "26.04.09"
+        },
+        {
+          "title": "삼성전자(주) 기업설명회(IR) 개최(안내공시)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1627537&code=005930&page_notice=",
+          "date": "26.04.07"
+        },
+        {
+          "title": "삼성전자(주) 연결재무제표기준영업(잠정)실적(공정공시)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1627456&code=005930&page_notice=",
+          "date": "26.04.07"
+        }
+      ],
+      "quote": {
+        "price": "214,500",
+        "change": "1,500",
+        "change_pct": "-0.69",
+        "change_pct_num": -0.69,
+        "direction": "down"
+      },
+      "recommendation_label": "매수",
+      "price_change_pct_num": -0.69,
+      "price_direction": "down",
+      "price_change_display": "-0.69%",
+      "price_display": "214,500",
+      "price_change_abs_display": "▼ 1,500",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "000660",
+      "name": "SK하이닉스",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": true,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.27,
+        "proxies": [
+          {
+            "symbol": "^SOX",
+            "change_pct": 0.45
+          },
+          {
+            "symbol": "NVDA",
+            "change_pct": 0.19
+          },
+          {
+            "symbol": "MU",
+            "change_pct": -1.46
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "medium",
+      "rationale": "1Q 영업익 +369% 컨센서스에 목표가 200만원 논의까지 나오지만, 어제 +3.37% 신고가 후 단기 차익실현 압력. 간밤 MU -1.46%도 부담",
+      "summary": "어제 +3.37% 상승하며 1,166,000원 신고가 경신. 1분기 영업이익 +369% 전망에 증권가 목표가 상향 릴레이가 이어지고 있으나, 급등 후 피로감과 간밤 MU -1.46% 약세가 단기 조정 요인. 오늘은 강보합~소폭 약세 출발 후 실적 발표 대기 모드 전환 예상",
+      "key_points": [
+        {
+          "point": "구글-마벨, AI 추론용 칩 2종 개발 착수",
+          "detail": "구글과 마벨이 AI 추론용 칩 공동개발 착수. HBM 수요 확대의 추가 촉매 가능성",
+          "impact": "positive",
+          "published_at": "2026-04-21T07:23:00+09:00",
+          "sources": [
+            {
+              "title": "구글-마벨, AI 추론용 칩 2종 개발 착수…내년 시험생산",
+              "url": "https://n.news.naver.com/mnews/article/011/0004612816"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "7분 전"
+        },
+        {
+          "point": "증권가 목표가 200만원 상향 행진",
+          "detail": "1분기 호실적 + 2분기 이후 HBM4 모멘텀에 목표가 상향 릴레이 지속",
+          "impact": "positive",
+          "published_at": "2026-04-21T06:00:00+09:00",
+          "sources": [
+            {
+              "title": "\"진짜 200만닉스 가나\" SK하이닉스 목표가 높이는 증권가",
+              "url": "https://n.news.naver.com/mnews/article/277/0005752210"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1시간 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "에스케이하이닉스(주) 기업설명회(IR) 개최(안내공시)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1628802&code=000660&page_notice=",
+          "date": "26.04.09"
+        },
+        {
+          "title": "에스케이하이닉스(주) 자기주식 처분 결정",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1623630&code=000660&page_notice=",
+          "date": "26.03.30"
+        }
+      ],
+      "quote": {
+        "price": "1,166,000",
+        "change": "38,000",
+        "change_pct": "+3.37",
+        "change_pct_num": 3.37,
+        "direction": "up"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 3.37,
+      "price_direction": "up",
+      "price_change_display": "+3.37%",
+      "price_display": "1,166,000",
+      "price_change_abs_display": "▲ 38,000",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.6,
+        "proxies": [
+          {
+            "symbol": "GEV",
+            "change_pct": -1.25
+          },
+          {
+            "symbol": "ETN",
+            "change_pct": 0.33
+          },
+          {
+            "symbol": "XLU",
+            "change_pct": -0.89
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "원전 르네상스 수혜 + 북미 전력기기 경쟁 부각이나, 간밤 GEV -1.25% 약세로 갭업 제한. 어제 보합 마감으로 priced_in 아님",
+      "summary": "어제 보합 마감(1,087,000원). 세계 원전 르네상스 투자 확대 흐름과 녹색산업 협의체 확대가 중장기 호재. 한국 전력3사 북미 경쟁 구도 부각도 관심. 간밤 GEV -1.25%로 소폭 갭다운 가능하나, 국내 고유 모멘텀이 방어 역할 예상",
+      "key_points": [
+        {
+          "point": "녹색산업 협의체 확대 — 삼성·한화 등 26곳 합류",
+          "detail": "기후부가 녹색산업 해외진출 협의체를 에너지·플랜트까지 확대 개편. HD현대일렉트릭 포함",
+          "impact": "positive",
+          "published_at": "2026-04-20T10:30:00+09:00",
+          "sources": [
+            {
+              "title": "녹색산업 '국가대표팀' 확대…삼성·한화 등 26곳 합류",
+              "url": "https://n.news.naver.com/mnews/article/421/0008899310"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "21시간 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "에이치디현대일렉트릭(주) 기업가치 제고 계획(자율공시)(2026년)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1620092&code=267260&page_notice=",
+          "date": "26.03.25"
+        }
+      ],
+      "quote": {
+        "price": "1,087,000",
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0
+      },
+      "recommendation_label": "매수",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "1,087,000",
+      "price_change_abs_display": "—",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "196170",
+      "name": "알테오젠",
+      "market": "KOSDAQ",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.57,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.63
+          },
+          {
+            "symbol": "IBB",
+            "change_pct": -0.51
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "코스피 이전 후 ETF 패시브 자금 변동 가능성 + 개별 뉴스 부재. 간밤 XBI -0.63% 약세",
+      "summary": "어제 +1.5% 소폭 상승해 371,500원 마감. 코스피 이전에 따른 ETF 매수세 변화 관찰 필요. 개별 종목 뉴스 부재로 섹터 흐름에 동조할 전망. 간밤 XBI -0.63%으로 바이오 프록시 약세. 오늘 보합권 출발 예상",
+      "key_points": [
+        {
+          "point": "코스피 이전 후 ETF 패시브 자금 재배분 주목",
+          "detail": "코스닥150 편출에 따른 패시브 매도 vs 코스피200 편입 가능성. 단기 수급 변동 요인",
+          "impact": "neutral",
+          "published_at": "2026-04-20T17:50:00+09:00",
+          "sources": [
+            {
+              "title": "'코스피 이전' 알테오젠, ETF 매수세 줄어드나",
+              "url": "https://n.news.naver.com/mnews/article/009/0005668723"
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "13시간 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "(주)알테오젠 기업설명회(IR) 개최",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1627709&code=196170&page_notice=",
+          "date": "26.04.07"
+        }
+      ],
+      "quote": {
+        "price": "371,500",
+        "change": "5,500",
+        "change_pct": "+1.50",
+        "change_pct_num": 1.5,
+        "direction": "up"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 1.5,
+      "price_direction": "up",
+      "price_change_display": "+1.50%",
+      "price_display": "371,500",
+      "price_change_abs_display": "▲ 5,500",
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음"
+    },
+    {
+      "code": "042700",
+      "name": "한미반도체",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.23,
+        "proxies": [
+          {
+            "symbol": "^SOX",
+            "change_pct": 0.45
+          },
+          {
+            "symbol": "AMAT",
+            "change_pct": -1.34
+          },
+          {
+            "symbol": "NVDA",
+            "change_pct": 0.19
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "HBM4용 TC본더 복수 수주 소식 + 반도체 실적 시즌 수혜 기대. 간밤 AMAT -1.34% 약세가 일부 부담이나 종목 고유 모멘텀 우세",
+      "summary": "어제 +0.17% 보합 마감(287,000원). ASMPT의 HBM4용 TC본더 복수 수주(SK하이닉스 유력) 소식이 간접 호재. 주식 부자 랭킹에 한미반도체 약진 기사도 관심. 간밤 AMAT -1.34%로 소폭 갭다운 가능하나, HBM 장비 사이클 수혜 지속 예상",
+      "key_points": [
+        {
+          "point": "ASMPT, HBM4용 TC본더 복수 수주 — SK하이닉스 유력",
+          "detail": "ASMPT가 작년 HBM4용 TC본더를 복수 수주했으며 SK하이닉스가 유력 고객으로 거론",
+          "impact": "positive",
+          "published_at": "2026-04-19T08:01:00+09:00",
+          "sources": [
+            {
+              "title": "ASMPT, 작년 HBM4용 TC본더 복수 수주…SK하닉 유력",
+              "url": "https://n.news.naver.com/mnews/article/031/0001023114"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1일 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "한미반도체(주) 기업설명회(IR) 개최(안내공시)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1629091&code=042700&page_notice=",
+          "date": "26.04.10"
+        }
+      ],
+      "quote": {
+        "price": "287,000",
+        "change": "500",
+        "change_pct": "+0.17",
+        "change_pct_num": 0.17,
+        "direction": "up"
+      },
+      "recommendation_label": "매수",
+      "price_change_pct_num": 0.17,
+      "price_direction": "up",
+      "price_change_display": "+0.17%",
+      "price_display": "287,000",
+      "price_change_abs_display": "▲ 500",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "012450",
+      "name": "한화에어로스페이스",
+      "market": "KOSPI",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "down",
+        "avg_pct": -0.73,
+        "proxies": [
+          {
+            "symbol": "ITA",
+            "change_pct": -0.04
+          },
+          {
+            "symbol": "LMT",
+            "change_pct": -1.84
+          },
+          {
+            "symbol": "RTX",
+            "change_pct": -0.32
+          }
+        ],
+        "label": "약세"
+      },
+      "recommendation": "hold",
+      "confidence": "medium",
+      "rationale": "인도 K9 수출 모멘텀 중립 + 간밤 LMT -1.84% 약세로 갭다운 리스크. 경쟁사 공동전선 부담도 상충",
+      "summary": "어제 +0.14% 보합 마감(1,425,000원). 인도 K9 자주포 현지 제조 60% 이전 논의가 중장기 호재이나, 경쟁사 공동전선 구축 보도와 간밤 LMT -1.84% 약세가 오늘 갭다운 요인. 실적 발표 대기 국면으로 관망 권고",
+      "key_points": [
+        {
+          "point": "인도 K9 자주포 현지 제조 60% 이전 논의",
+          "detail": "李 대통령의 인도 방문에서 K9 자주포의 현지 제조 비율 60% 이전이 논의됨",
+          "impact": "positive",
+          "published_at": "2026-04-20T22:20:00+09:00",
+          "sources": [
+            {
+              "title": "李 \"K9 자주포, 韓-인도 신뢰 상징…현지 제조 60% 넘는 기술 이…\"",
+              "url": "https://n.news.naver.com/mnews/article/050/0000105151"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "9시간 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "한화에어로스페이스(주) 기업설명회(IR) 개최(안내공시)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1630538&code=012450&page_notice=",
+          "date": "26.04.15"
+        },
+        {
+          "title": "한화에어로스페이스(주) 단일판매ㆍ공급계약체결",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1629026&code=012450&page_notice=",
+          "date": "26.04.10"
+        }
+      ],
+      "quote": {
+        "price": "1,425,000",
+        "change": "2,000",
+        "change_pct": "+0.14",
+        "change_pct_num": 0.14,
+        "direction": "up"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.14,
+      "price_direction": "up",
+      "price_change_display": "+0.14%",
+      "price_display": "1,425,000",
+      "price_change_abs_display": "▲ 2,000",
+      "news_sentiment_label": "중립",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "096770",
+      "name": "SK이노베이션",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": 0.29,
+        "proxies": [
+          {
+            "symbol": "XLE",
+            "change_pct": 0.09
+          },
+          {
+            "symbol": "CL=F",
+            "change_pct": 2.8
+          },
+          {
+            "symbol": "TSLA",
+            "change_pct": -2.03
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "WTI +2.8% 급등 + K배터리 ESS 신사업 + 정유 1Q 4조 실적 기대. 재고이익 착시 우려는 리스크이나 유가 상승이 직접 수혜",
+      "summary": "어제 -0.46% 소폭 약세 마감(128,800원). 간밤 WTI +2.8% 급등은 정유 부문 직접 호재. K배터리 ESS 신시장 전환 모멘텀과 삼성SDI 벤츠 계약 등 배터리 섹터 훈풍도 긍정적. 다만 재고이익 착시 우려와 종전 시 유가 급락 리스크 상존. 오늘 소폭 갭업 출발 예상",
+      "key_points": [
+        {
+          "point": "K배터리 ESS 신시장 전환 모멘텀",
+          "detail": "적자 지속 K배터리가 ESS(에너지저장장치) 시장으로 전환 가속. 독일 완성차와 밀착 동맹 구축",
+          "impact": "positive",
+          "published_at": "2026-04-20T11:36:00+09:00",
+          "sources": [
+            {
+              "title": "적자 K-배터리, ESS로 난다",
+              "url": "https://n.news.naver.com/mnews/article/016/0002632249"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "19시간 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "SK이노베이션(주) 대표이사(대표집행임원) 변경(안내공시)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1619385&code=096770&page_notice=",
+          "date": "26.03.24"
+        }
+      ],
+      "quote": {
+        "price": "128,800",
+        "change": "600",
+        "change_pct": "-0.46",
+        "change_pct_num": -0.46,
+        "direction": "down"
+      },
+      "recommendation_label": "매수",
+      "price_change_pct_num": -0.46,
+      "price_direction": "down",
+      "price_change_display": "-0.46%",
+      "price_display": "128,800",
+      "price_change_abs_display": "▼ 600",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "299660",
+      "name": "셀리드",
+      "market": "KOSDAQ",
+      "news_sentiment": "positive",
+      "priced_in": true,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": 0.49,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.63
+          },
+          {
+            "symbol": "MRNA",
+            "change_pct": 1.62
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "medium",
+      "rationale": "코로나 시카다 변이 테마로 어제 +7.73% 급등. 이미 priced_in + 투자경고종목 지정 예고로 단기 과열 리스크. 실체 없는 테마 상승",
+      "summary": "어제 +7.73% 급등(4,110원). 코로나 시카다 변이 확산 우려에 백신 테마로 급등했으나, 단기과열종목·투자경고종목 지정 예고가 동시에 발표. '좀비 바이오' 퇴출 강화 기류와 이종사업(두쫀쿠) 꼼수 지적도 리스크. 테마 소멸 시 급락 가능성 높아 관망 권고",
+      "key_points": [
+        {
+          "point": "단기과열·투자경고종목 지정 예고",
+          "detail": "4/20 단기과열종목 지정예고 + 투자경고종목 지정예고 동시 공시. 변동성 급등 경고",
+          "impact": "negative",
+          "published_at": "2026-04-20T16:00:00+09:00",
+          "sources": [
+            {
+              "title": "(주)셀리드 (예고)단기과열종목 지정예고",
+              "url": "https://finance.naver.com/item/news_notice_read.naver?no=1632059&code=299660&page_notice="
+            }
+          ],
+          "impact_label": "악재",
+          "time_ago": "15시간 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "(주)셀리드 (예고)단기과열종목 지정예고",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1632059&code=299660&page_notice=",
+          "date": "26.04.20"
+        },
+        {
+          "title": "(주)셀리드 [투자주의]투자경고종목 지정예고",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1632035&code=299660&page_notice=",
+          "date": "26.04.20"
+        }
+      ],
+      "quote": {
+        "price": "4,110",
+        "change": "295",
+        "change_pct": "+7.73",
+        "change_pct_num": 7.73,
+        "direction": "up"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 7.73,
+      "price_direction": "up",
+      "price_change_display": "+7.73%",
+      "price_display": "4,110",
+      "price_change_abs_display": "▲ 295",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "233740",
+      "name": "KODEX 코스닥150 레버리지",
+      "market": "KOSPI",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.29,
+        "proxies": [
+          {
+            "symbol": "^IXIC",
+            "change_pct": -0.26
+          },
+          {
+            "symbol": "QQQ",
+            "change_pct": -0.32
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "코스닥 지수 연동 ETF. 간밤 나스닥 -0.26% 소폭 약세 + VIX +8%로 변동성 확대. 중동 리스크 대비 관망 적절",
+      "summary": "어제 +1.55% 상승(16,345원). 코스닥150 지수 2배 추종 ETF로 지수 방향에 연동. 간밤 나스닥 -0.26%, QQQ -0.32%로 소폭 약세. 공매도·대차거래 사상 최대치 경신 속에서도 개인 레버리지 매수세 지속. 휴전 만료 리스크 감안 시 관망 적절",
+      "key_points": [
+        {
+          "point": "공매도·대차거래 사상 최대치 경신",
+          "detail": "상승장 지속에도 공매도·대차거래가 역대 최대를 경신하며 하락 베팅 세력과 상승 베팅 세력 간 대치 심화",
+          "impact": "neutral",
+          "published_at": "2026-04-20T10:47:00+09:00",
+          "sources": [
+            {
+              "title": "공매도·대차거래 사상 최대치 경신했는데…질주하는 증시에 '하락 베…'",
+              "url": "https://n.news.naver.com/mnews/article/088/0001006283"
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "20시간 전"
+        }
+      ],
+      "disclosures": [],
+      "quote": {
+        "price": "16,345",
+        "change": "250",
+        "change_pct": "+1.55",
+        "change_pct_num": 1.55,
+        "direction": "up"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 1.55,
+      "price_direction": "up",
+      "price_change_display": "+1.55%",
+      "price_display": "16,345",
+      "price_change_abs_display": "▲ 250",
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음"
+    },
+    {
+      "code": "028050",
+      "name": "삼성E&A",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.43,
+        "proxies": [
+          {
+            "symbol": "XLE",
+            "change_pct": 0.09
+          },
+          {
+            "symbol": "FLR",
+            "change_pct": -0.95
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "건설 ETF 올해 수익률 1위(+116%) + 중동 재건 기대감. 어제 소폭 약세(-0.5%)로 priced_in 아님. 간밤 FLR -0.95% 약세는 소폭 부담",
+      "summary": "어제 -0.50% 소폭 약세 마감(49,300원). 건설 ETF가 올해 수익률 1위(+116%)를 기록하며 삼성E&A 수혜 지속. 중동 재건 기대감과 종전 시 추가 수주 기대가 모멘텀. 미-이란 협상 불확실성은 단기 부담이나, 'ETF 수익률 1위' 모멘텀에 매수 의견 유지",
+      "key_points": [
+        {
+          "point": "건설 ETF 올해 수익률 1위 (+116%)",
+          "detail": "반도체·원유 ETF를 제치고 건설 ETF가 올해 최고 수익률 기록. 삼성E&A 핵심 편입종목",
+          "impact": "positive",
+          "published_at": "2026-04-19T10:00:00+09:00",
+          "sources": [
+            {
+              "title": "수익률 1등, 반도체 아니네…올해 116% 급등한 ETF는",
+              "url": "https://n.news.naver.com/mnews/article/018/0006260825"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1일 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "삼성이앤에이(주) (정정)단일판매ㆍ공급계약체결",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1631438&code=028050&page_notice=",
+          "date": "26.04.17"
+        },
+        {
+          "title": "삼성이앤에이(주) 기업설명회(IR) 개최(안내공시)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1631027&code=028050&page_notice=",
+          "date": "26.04.16"
+        }
+      ],
+      "quote": {
+        "price": "49,300",
+        "change": "250",
+        "change_pct": "-0.50",
+        "change_pct_num": -0.5,
+        "direction": "down"
+      },
+      "recommendation_label": "매수",
+      "price_change_pct_num": -0.5,
+      "price_direction": "down",
+      "price_change_display": "-0.50%",
+      "price_display": "49,300",
+      "price_change_abs_display": "▼ 250",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "310210",
+      "name": "보로노이",
+      "market": "KOSDAQ",
+      "news_sentiment": "positive",
+      "priced_in": true,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.63,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.63
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "VRN11 1상 ORR 호조 + AACR 모멘텀이 강력. 어제 +11.56% 급등으로 일부 priced_in이나, AACR 후속 데이터 공개(VRN10)가 추가 촉매. 매트릭스 기본값은 hold이나 AACR 이벤트 강도로 한 단계 override",
+      "summary": "어제 +11.56% 급등(342,500원). AACR 2026서 VRN11 EGFR C797S 내성 환자군 ORR 호조 발표가 촉매. 가속승인 기대감 확대. VRN10(HER2) 데이터도 추가 공개 예정. 급등 후 차익실현 압력 존재하나, AACR 후속 발표가 지속적 모멘텀 역할 예상. 단기 조정 시 매수 기회",
+      "key_points": [
+        {
+          "point": "VRN10 HER2 데이터 AACR 추가 공개",
+          "detail": "VRN10의 HER2 양성 암 치료 데이터도 AACR에서 공개 예정. 파이프라인 다변화 확인",
+          "impact": "positive",
+          "published_at": "2026-04-20T19:04:00+09:00",
+          "sources": [
+            {
+              "title": "보로노이, AACR2026서 'VRN10' 데이터 공개…HER2 치료",
+              "url": "https://n.news.naver.com/mnews/article/018/0006262114"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "12시간 전"
+        },
+        {
+          "point": "VRN11 EGFR C797S 내성 환자 1상 ORR 호조, 가속승인 기대",
+          "detail": "차세대 폐암 표적치료제 VRN11이 EGFR C797S 내성 환자군에서 유의미한 반응률 달성",
+          "impact": "positive",
+          "published_at": "2026-04-20T17:24:00+09:00",
+          "sources": [
+            {
+              "title": "보로노이, 높아진 'VRN11' C797S 환자군 ORR…가속승인 기대",
+              "url": "https://n.news.naver.com/mnews/article/008/0005346739"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "14시간 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "보로노이(주) 투자판단 관련 주요경영사항(임상시험계획 변경승인)(VRN…)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1620356&code=310210&page_notice=",
+          "date": "26.03.26"
+        }
+      ],
+      "quote": {
+        "price": "342,500",
+        "change": "35,500",
+        "change_pct": "+11.56",
+        "change_pct_num": 11.56,
+        "direction": "up"
+      },
+      "recommendation_label": "매수",
+      "price_change_pct_num": 11.56,
+      "price_direction": "up",
+      "price_change_display": "+11.56%",
+      "price_display": "342,500",
+      "price_change_abs_display": "▲ 35,500",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "445680",
+      "name": "큐리옥스바이오시스템즈",
+      "market": "KOSDAQ",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.57,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.63
+          },
+          {
+            "symbol": "IBB",
+            "change_pct": -0.51
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "개별 종목 뉴스 부재 + 최근 주가 약세(-1.65%). 섹터(바이오) 흐름에 동조할 전망. 간밤 XBI -0.63%",
+      "summary": "어제 -1.65% 약세 마감(89,300원). 최근 종목 뉴스가 부재한 가운데 바이오 섹터 전반적 분위기에 연동될 전망. 간밤 XBI -0.63%으로 소폭 약세. 코스닥150 편입 반사이익 가능성은 중장기 모니터링 사항",
+      "key_points": [
+        {
+          "point": "외국인 코스닥 바이오 순매수 흐름 지속",
+          "detail": "외국인이 코스피 매도 후 코스닥 바이오 종목을 순매수하는 패턴 지속. 큐리옥스도 수혜 가능",
+          "impact": "positive",
+          "published_at": "2026-03-29T17:14:00+09:00",
+          "sources": [
+            {
+              "title": "코스피 던진 외국인, 코스닥 바이오株는 샀다",
+              "url": "https://n.news.naver.com/mnews/article/009/0005657711"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "03/29"
+        }
+      ],
+      "deep_dive": {
+        "business": "세계 최초 세포분석 자동화 시스템 'Laminar Wash' 개발·판매. 층류(Laminar Flow) 기반 미세유체공학 기술로 원심분리 없이 세포 손실·변형 없는 분석 가능. 유세포분석(Flow Cytometry), 단일세포 유전체학 등 정밀의료 분야의 핵심 전처리 장비",
+        "market": "CGT(세포·유전자치료) 대상 세포분석공정 시장 규모 전임상 5,700억원, R&D~상업화 포함 약 1.9조원. 글로벌 10대 제약사(화이자, 머크, 길리어드, 노바티스 등) 전부 고객으로 확보. 2025~2026년 글로벌 레퍼런스 구축이 방사형 성장의 핵심 기반",
+        "competitors": [
+          "Beckman Coulter(원심분리 기반)",
+          "Thermo Fisher(세포분석 장비)",
+          "BD Biosciences(유세포분석)"
+        ],
+        "research_notes": "세포분석 표준화 컨소시엄 내 자동화 장비회사로 유일하게 참여 중. NIH, Charles River Labs 등 국가기관 및 CRO에도 납품. 다만 2025 상반기 매출 -28.4%, 영업손실 +7.6% 증가하며 수익성 악화 중",
+        "risks": "2025 상반기 매출 28.4% 감소·영업손실 확대. 소수계좌 거래집중 종목 지정 이력(3/24). 투자경고종목 지정 예고 이력(3/18). 글로벌 빅파마 채택에도 불구하고 매출 성장 속도가 기대에 미치지 못하는 상황",
+        "sources": [
+          {
+            "title": "큐리옥스바이오시스템즈 회사소개",
+            "url": "https://curiox.co.kr/sub/company/greeting.asp"
+          },
+          {
+            "title": "큐리옥스, 세포분석공정 대중화 시작…2조 시장 독점",
+            "url": "https://news.nate.com/view/20240422n03778"
+          },
+          {
+            "title": "큐리옥스바이오시스템즈 - 위키백과",
+            "url": "https://ko.wikipedia.org/wiki/%ED%81%90%EB%A6%AC%EC%98%A5%EC%8A%A4%EB%B0%94%EC%9D%B4%EC%98%A4%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%A6%88"
+          }
+        ]
+      },
+      "disclosures": [
+        {
+          "title": "큐리옥스바이오시스템즈(주) 추가상장(주식매수선택권행사)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1631513&code=445680&page_notice=",
+          "date": "26.04.17"
+        }
+      ],
+      "quote": {
+        "price": "89,300",
+        "change": "1,500",
+        "change_pct": "-1.65",
+        "change_pct_num": -1.65,
+        "direction": "down"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": -1.65,
+      "price_direction": "down",
+      "price_change_display": "-1.65%",
+      "price_display": "89,300",
+      "price_change_abs_display": "▼ 1,500",
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음"
+    },
+    {
+      "code": "009540",
+      "name": "HD한국조선해양",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": 0.07,
+        "proxies": [
+          {
+            "symbol": "XLI",
+            "change_pct": 0.22
+          },
+          {
+            "symbol": "DAC",
+            "change_pct": -0.09
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "1Q 수주 +50% 급증 + 잠정실적 공시 호재 + 인도 조선소 진출 모멘텀. 어제 -1.55% 약세는 중동 긴장 반영, priced_in 아님",
+      "summary": "어제 -1.55% 약세 마감(413,000원). 1분기 수주가 전년비 50% 급증하며 잠정실적 공시. K조선 빅3 합산 영업익 2조 전망. 인도 조선소 진출과 태국 호위함 8,000억 수주전도 모멘텀. 어제 약세는 중동 리스크 반영이나, 수주잔고 기반의 실적 가시성이 높아 오늘 반등 예상",
+      "key_points": [
+        {
+          "point": "태국 호위함 8,000억 수주전 참여",
+          "detail": "HD현대중공업과 한화오션이 태국 호위함 8,000억 수주전에서 경쟁 중",
+          "impact": "positive",
+          "published_at": "2026-04-20T19:57:00+09:00",
+          "sources": [
+            {
+              "title": "태국 호위함 8000억 수주전…HD현대重·한화오션 경쟁",
+              "url": "https://n.news.naver.com/mnews/article/277/0005752169"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "11시간 전"
+        },
+        {
+          "point": "1Q 수주 전년비 50% 급증, 잠정실적 공시",
+          "detail": "4/20 영업잠정실적 공시. K조선 빅3 합산 영업익 2조 육박 전망으로 호황기 본격 진입",
+          "impact": "positive",
+          "published_at": "2026-04-20T17:45:00+09:00",
+          "sources": [
+            {
+              "title": "HD한국조선해양, 1분기 수주 '순항'…전년 대비 50% 급증",
+              "url": "https://n.news.naver.com/mnews/article/123/0002381668"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "13시간 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "에이치디한국조선해양(주) 영업(잠정)실적(공정공시)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1631823&code=009540&page_notice=",
+          "date": "26.04.20"
+        },
+        {
+          "title": "에이치디한국조선해양(주) 단일판매ㆍ공급계약체결(자회사의 주요경영사항)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1631292&code=009540&page_notice=",
+          "date": "26.04.17"
+        }
+      ],
+      "quote": {
+        "price": "413,000",
+        "change": "6,500",
+        "change_pct": "-1.55",
+        "change_pct_num": -1.55,
+        "direction": "down"
+      },
+      "recommendation_label": "매수",
+      "price_change_pct_num": -1.55,
+      "price_direction": "down",
+      "price_change_display": "-1.55%",
+      "price_display": "413,000",
+      "price_change_abs_display": "▼ 6,500",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "174900",
+      "name": "앱클론",
+      "market": "KOSDAQ",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.57,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.63
+          },
+          {
+            "symbol": "IBB",
+            "change_pct": -0.51
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "AACR 발표 예정이나 최근 주가 보합(0.00%) + 개별 종목 촉매 부재. 종근당 이중항체 공동개발은 중장기 호재",
+      "summary": "어제 보합 마감(55,800원). AACR 2026에서 zCART·AM109 발표 예정이나 아직 구체적 데이터 미공개. 종근당과 이중항체 치료제 공동개발 본격화 및 AT101 임상2상 ORR 94%·완전관해 68% 달성은 중장기 호재. 단기적으로는 AACR 데이터 확인 후 방향 결정 예상",
+      "key_points": [
+        {
+          "point": "종근당-앱클론 이중항체 공동개발 본격화",
+          "detail": "종근당이 122억 투자로 2대 주주. AT101 국내 판매 우선권 확보 + 이중항체 공동개발위원회 발족",
+          "impact": "positive",
+          "published_at": "2026-03-30T09:58:00+09:00",
+          "sources": [
+            {
+              "title": "앱클론-종근당, 난치성 암질환 이중항체 치료제 공동개발 본격화",
+              "url": "https://biz.heraldcorp.com/article/10705289"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "03/30"
+        },
+        {
+          "point": "AACR 2026서 zCART·AM109 발표 예정",
+          "detail": "고형암 정복 차세대 스위처블 CAR-T 'zCART'와 이중항체 AM109의 최신 연구 성과 발표 예정",
+          "impact": "positive",
+          "published_at": "2026-03-18T10:05:00+09:00",
+          "sources": [
+            {
+              "title": "앱클론, AACR 2026서 차세대 난치성 항암 파이프라인 공개",
+              "url": "https://www.hankyung.com/article/202603189691i"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "03/18"
+        }
+      ],
+      "deep_dive": {
+        "business": "항체 기반 항암 치료제 개발 전문 바이오텍. 핵심 플랫폼은 (1) 스위처블 CAR-T 'zCART' — 고형암 정복 목표, (2) AffiMab 이중항체 플랫폼 — AM105, AM109 등 면역세포 인게이저 개발. 주요 파이프라인: 혈액암 CAR-T AT101(임상2상, ORR 94%, CR 68%), 고형암 CAR-T AT501/AT502, 이중항체 AM109(PSMAxCD137)",
+        "market": "글로벌 CAR-T 시장 약 33조원(2026 추정). 고형암 CAR-T는 미충족 수요 큰 블루오션. 스위처블 CAR-T는 기존 CAR-T의 독성·내성 한계를 극복하는 차세대 기술로 주목",
+        "competitors": [
+          "노바티스(Kymriah)",
+          "길리어드/카이트(Yescarta)",
+          "BMS(Breyanzi/Abecma)",
+          "레전드바이오/J&J(Carvykti)"
+        ],
+        "research_notes": "AT101 임상2상 중간분석에서 ORR 94%, CR 68% 달성. 2025년 9월 희귀의약품 지정 + 첨단바이오의약품 신속처리대상 지정. 튀르키예 기술이전 건 현지 IND 승인 진행 중. AACR 2026에서 zCART 플랫폼 및 AM109 최신 데이터 발표 예정. 2026년 3월 관리종목 해제(매출액 30억 미달 사유 해소)",
+        "risks": "관리종목 해제 직후로 재무 안정성 아직 불안. CAR-T 상업화까지 추가 자금 조달 필요. 글로벌 빅파마 대비 임상 규모·속도 열위. 중국 파트너 의존도",
+        "sources": [
+          {
+            "title": "앱클론, 관리종목 족쇄 풀었다…CAR-T·AC101 글로벌 임상 확대 '가속'",
+            "url": "https://www.kpanews.co.kr/news/articleView.html?idxno=531047"
+          },
+          {
+            "title": "앱클론, AACR 2026서 차세대 난치성 항암 파이프라인 공개",
+            "url": "https://www.etoday.co.kr/news/view/2566576"
+          },
+          {
+            "title": "앱클론-종근당, 이중항체 신약 공동 개발 착수",
+            "url": "https://www.mdtoday.co.kr/news/view/1065588458456322"
+          },
+          {
+            "title": "앱클론, AACR 2026서 '고형암 정복' 청사진 공개… 33조 글로벌 시장 정조준",
+            "url": "https://www.kndaily.co.kr/news/articleView.html?idxno=309973"
+          }
+        ]
+      },
+      "disclosures": [
+        {
+          "title": "앱클론(주) (정정)단일판매ㆍ공급계약체결(자율공시)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1631030&code=174900&page_notice=",
+          "date": "26.04.16"
+        },
+        {
+          "title": "앱클론(주) 관리종목 해제(매출액 30억 미달 사유 해소)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1612992&code=174900&page_notice=",
+          "date": "26.03.13"
+        }
+      ],
+      "quote": {
+        "price": "55,800",
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "55,800",
+      "price_change_abs_display": "—",
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음"
+    },
+    {
+      "code": "298380",
+      "name": "에이비엘바이오",
+      "market": "KOSDAQ",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.57,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.63
+          },
+          {
+            "symbol": "IBB",
+            "change_pct": -0.51
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "미국 희귀의약품 5개 중 1개 한국산 지정 + AACR 삼성바이오 참가 등 바이오 섹터 훈풍. 어제 -0.8%로 priced_in 아님",
+      "summary": "어제 -0.80% 소폭 약세 마감(160,200원). 미국 FDA 이달 희귀의약품 5개 중 1개가 한국산으로 지정되며 K바이오 글로벌 위상 확인. AACR 2026 학회 모멘텀과 삼성바이오로직스의 초기 개발 선점 전략 본격화가 바이오 섹터 전반에 긍정적. 오늘 소폭 강보합 출발 예상",
+      "key_points": [
+        {
+          "point": "미국 희귀의약품 이달 5개 중 1개 한국산 지정",
+          "detail": "FDA가 이달 지정한 희귀의약품 중 한국 기업 제품 비중이 높아 K바이오 글로벌 경쟁력 확인",
+          "impact": "positive",
+          "published_at": "2026-04-20T17:27:00+09:00",
+          "sources": [
+            {
+              "title": "'이유있는 국뽕!'…미국 새 희귀의약품 5개 중 1개가 '한국산'",
+              "url": "https://n.news.naver.com/mnews/article/021/0002786046"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "14시간 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "에이비엘바이오(주) 유상증자결정(종속회사의 주요경영사항)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1623481&code=298380&page_notice=",
+          "date": "26.03.30"
+        }
+      ],
+      "quote": {
+        "price": "160,200",
+        "change": "1,300",
+        "change_pct": "-0.80",
+        "change_pct_num": -0.8,
+        "direction": "down"
+      },
+      "recommendation_label": "매수",
+      "price_change_pct_num": -0.8,
+      "price_direction": "down",
+      "price_change_display": "-0.80%",
+      "price_display": "160,200",
+      "price_change_abs_display": "▼ 1,300",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "166480",
+      "name": "코아스템켐온",
+      "market": "KOSDAQ",
+      "news_sentiment": "positive",
+      "priced_in": true,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.63,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.63
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "medium",
+      "rationale": "어제 +12.06% 급등으로 이미 priced_in. K바이오 테마 동반 상승이나 실체적 촉매(루게릭 허가) 대기 중. 급등 후 차익실현 리스크",
+      "summary": "어제 +12.06% 급등(3,345원). K바이오 섹터 전반 강세와 보로노이 AACR 모멘텀에 동반 상승. 루게릭병 치료제 '뉴로나타-알' 허가 대기가 본업 촉매이나, 올해 성패 판가름 국면. 급등 후 차익실현 압력과 관리종목 리스크 해소 이력(최근) 감안 시 관망 적절",
+      "key_points": [
+        {
+          "point": "루게릭병 치료제 뉴로나타-알, 올해 성패 판가름",
+          "detail": "22년간 개발해온 루게릭병 치료제의 허가 여부가 올해 결정될 전망. 성공 시 큰 모멘텀",
+          "impact": "positive",
+          "published_at": "2026-04-13T15:50:00+09:00",
+          "sources": [
+            {
+              "title": "코아스템켐온, 루게릭병 치료제 개발 22년…올해 성패 판가름",
+              "url": "https://n.news.naver.com/mnews/article/008/0005343447"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "04/13"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "코아스템켐온 주식회사 정기주주총회결과",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1621869&code=166480&page_notice=",
+          "date": "26.03.27"
+        }
+      ],
+      "quote": {
+        "price": "3,345",
+        "change": "360",
+        "change_pct": "+12.06",
+        "change_pct_num": 12.06,
+        "direction": "up"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 12.06,
+      "price_direction": "up",
+      "price_change_display": "+12.06%",
+      "price_display": "3,345",
+      "price_change_abs_display": "▲ 360",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "035720",
+      "name": "카카오",
+      "market": "KOSPI",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "down",
+        "avg_pct": -1.36,
+        "proxies": [
+          {
+            "symbol": "META",
+            "change_pct": -2.56
+          },
+          {
+            "symbol": "GOOGL",
+            "change_pct": -1.25
+          },
+          {
+            "symbol": "^IXIC",
+            "change_pct": -0.26
+          }
+        ],
+        "label": "약세"
+      },
+      "recommendation": "hold",
+      "confidence": "medium",
+      "rationale": "개별 뉴스 부재 + 간밤 META -2.56%, GOOGL -1.25%로 프록시 전체 약세. 어제 이미 -2.3% 하락한 상태에서 추가 갭다운 리스크",
+      "summary": "어제 -2.30% 약세 마감(48,850원). 개별 종목 뉴스 부재 속 간밤 META -2.56%, GOOGL -1.25%로 글로벌 플랫폼주 전반 약세. 오늘 갭다운 출발 후 약세 흐름 이어질 가능성. 접근성 서포터즈 출범 등 CSR 활동은 주가 영향 제한적",
+      "key_points": [
+        {
+          "point": "간밤 글로벌 플랫폼주 약세 — META -2.56%, GOOGL -1.25%",
+          "detail": "유가 급등·VIX 상승 속 글로벌 기술주 전반 약세. 카카오 갭다운 요인",
+          "impact": "negative",
+          "published_at": "2026-04-21T06:17:00+09:00",
+          "sources": [
+            {
+              "title": "유가 급등에 뉴욕증시 숨고르기…나스닥 13일 랠리 종료",
+              "url": "https://n.news.naver.com/mnews/article/018/0006262198"
+            }
+          ],
+          "impact_label": "악재",
+          "time_ago": "1시간 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "(주)카카오 자기주식 처분 결정",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1631043&code=035720&page_notice=",
+          "date": "26.04.16"
+        }
+      ],
+      "quote": {
+        "price": "48,850",
+        "change": "1,150",
+        "change_pct": "-2.30",
+        "change_pct_num": -2.3,
+        "direction": "down"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": -2.3,
+      "price_direction": "down",
+      "price_change_display": "-2.30%",
+      "price_display": "48,850",
+      "price_change_abs_display": "▼ 1,150",
+      "news_sentiment_label": "중립",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "005380",
+      "name": "현대차",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.05,
+        "proxies": [
+          {
+            "symbol": "F",
+            "change_pct": 0.0
+          },
+          {
+            "symbol": "GM",
+            "change_pct": -0.96
+          },
+          {
+            "symbol": "STLA",
+            "change_pct": 0.81
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "제네시스 독일 시장 호평 + 실리콘밸리 AI 인재 채용 + 인도 방문 모멘텀. 어제 -2.04% 약세로 priced_in 아님. 간밤 프록시 혼조(GM -0.96%, STLA +0.81%)",
+      "summary": "어제 -2.04% 약세 마감(527,000원). 제네시스가 독일에서 포르쉐보다 높은 평가를 받았다는 보도와 실리콘밸리 글로벌 인재 통합 채용 소식이 긍정적. 이재용 대통령의 인도 방문에서 3륜 EV 개발 등 현대차 관련 협력 논의도 호재. 어제 약세는 중동 리스크 반영이며, 오늘 반등 여지 존재",
+      "key_points": [
+        {
+          "point": "제네시스, 독일에서 포르쉐 상회 평가",
+          "detail": "독일 자동차 전문지에서 제네시스가 포르쉐보다 높은 소비자 만족도 평가를 받아 브랜드 가치 확인",
+          "impact": "positive",
+          "published_at": "2026-04-21T06:46:00+09:00",
+          "sources": [
+            {
+              "title": "제네시스가 포르쉐보다 더 좋다…한국 아니었네, 독일도 드디어…",
+              "url": "https://n.news.naver.com/mnews/article/009/0005668852"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "44분 전"
+        },
+        {
+          "point": "현대차그룹, 실리콘밸리 AI 인재 첫 계열사 통합 채용",
+          "detail": "현대차그룹이 실리콘밸리에서 글로벌 AI 인재를 계열사 통합으로 최초 채용 나서",
+          "impact": "positive",
+          "published_at": "2026-04-21T04:05:00+09:00",
+          "sources": [
+            {
+              "title": "\"AI 인재 모십니다\" 실리콘밸리로 가는 현대차 '테크원팀'",
+              "url": "https://n.news.naver.com/mnews/article/008/0005346840"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "3시간 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "현대자동차(주) 기업설명회(IR) 개최(안내공시)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1631429&code=005380&page_notice=",
+          "date": "26.04.17"
+        },
+        {
+          "title": "현대자동차(주) 영업(잠정)실적(공정공시)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1625404&code=005380&page_notice=",
+          "date": "26.04.01"
+        }
+      ],
+      "quote": {
+        "price": "527,000",
+        "change": "11,000",
+        "change_pct": "-2.04",
+        "change_pct_num": -2.04,
+        "direction": "down"
+      },
+      "recommendation_label": "매수",
+      "price_change_pct_num": -2.04,
+      "price_direction": "down",
+      "price_change_display": "-2.04%",
+      "price_display": "527,000",
+      "price_change_abs_display": "▼ 11,000",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간"
+    },
+    {
+      "code": "034230",
+      "name": "파라다이스",
+      "market": "KOSDAQ",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": 0.32,
+        "proxies": [
+          {
+            "symbol": "LVS",
+            "change_pct": -0.78
+          },
+          {
+            "symbol": "WYNN",
+            "change_pct": -0.37
+          },
+          {
+            "symbol": "MGM",
+            "change_pct": 2.1
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "1Q 실적 기대 이하 전망 + 매출 -40% 보도가 부담. 환율 수혜(외국인 카지노)는 중장기 호재이나 단기 촉매 부족",
+      "summary": "어제 -1.59% 약세 마감(15,460원). 증권가에서 1분기 실적이 기대에 미치지 못할 전망이나 '비중확대' 의견은 유지. 손님은 늘었지만 매출 40% 감소라는 구조적 문제 보도가 부담. 환율 상승이 외국인 카지노 매출에 긍정적이나 단기 촉매 부족으로 관망",
+      "key_points": [
+        {
+          "point": "카지노 3사 1Q 실적 '온도 차' — 파라다이스 부진 전망",
+          "detail": "롯데관광개발은 성장, 파라다이스는 실적 부진 전망. 다만 증권가는 비중확대 의견 유지",
+          "impact": "negative",
+          "published_at": "2026-04-17T10:17:00+09:00",
+          "sources": [
+            {
+              "title": "카지노 3사, 1분기 성적표 '온도 차' 전망…롯데관광개발 성장·파라…",
+              "url": "https://n.news.naver.com/mnews/article/018/0006259246"
+            }
+          ],
+          "impact_label": "악재",
+          "time_ago": "3일 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "(주)파라다이스 기업설명회(IR) 개최(안내공시)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1630148&code=034230&page_notice=",
+          "date": "26.04.14"
+        },
+        {
+          "title": "(주)파라다이스 연결재무제표기준영업(잠정)실적(공정공시)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1626040&code=034230&page_notice=",
+          "date": "26.04.02"
+        }
+      ],
+      "quote": {
+        "price": "15,460",
+        "change": "250",
+        "change_pct": "-1.59",
+        "change_pct_num": -1.59,
+        "direction": "down"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": -1.59,
+      "price_direction": "down",
+      "price_change_display": "-1.59%",
+      "price_display": "15,460",
+      "price_change_abs_display": "▼ 250",
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음"
+    },
+    {
+      "code": "352820",
+      "name": "하이브",
+      "market": "KOSPI",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": 0.44,
+        "proxies": [
+          {
+            "symbol": "SPOT",
+            "change_pct": 0.03
+          },
+          {
+            "symbol": "WMG",
+            "change_pct": 0.86
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "미 대사관 출국금지 해제 요청(긍정) vs 1Q 실적 하회 전망·법적 리스크(부정) 상충. 신호 혼재로 관망",
+      "summary": "어제 -2.86% 약세 마감(255,000원). 미 대사관이 BTS 월드투어 지원 명목으로 방시혁 출국금지 해제를 요청한 것은 긍정적이나, 메리츠 1Q 실적 하회 전망 및 자본시장법 위반 혐의 등 법적 리스크가 상존. 패노미논 훈풍도 빠르게 소멸. 혼재된 신호로 방향 판단 어려워 관망",
+      "key_points": [
+        {
+          "point": "미 대사관, BTS 투어 위해 방시혁 출국금지 해제 요청",
+          "detail": "미국 대사관이 BTS 월드투어 지원 명목으로 출국금지 해제를 공식 요청. 경찰 아직 미접수",
+          "impact": "positive",
+          "published_at": "2026-04-20T14:26:00+09:00",
+          "sources": [
+            {
+              "title": "美대사관, '방시혁 출국금지 해제' 요청",
+              "url": "https://n.news.naver.com/mnews/article/138/0002225120"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "17시간 전"
+        },
+        {
+          "point": "메리츠, 1Q 실적 예상치 하회 전망 — 목표가 하향",
+          "detail": "메리츠증권이 하이브 1분기 실적 하회를 전망하며 목표가를 하향 조정",
+          "impact": "negative",
+          "published_at": "2026-04-17T08:29:00+09:00",
+          "sources": [
+            {
+              "title": "\"하이브, 올 1분기 실적 예상치 밑돌 전망…목표가↓\"-메리츠",
+              "url": "https://n.news.naver.com/mnews/article/015/0005276138"
+            }
+          ],
+          "impact_label": "악재",
+          "time_ago": "3일 전"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "(주)하이브 추가상장(국내CB전환)",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1627708&code=352820&page_notice=",
+          "date": "26.04.07"
+        }
+      ],
+      "quote": {
+        "price": "255,000",
+        "change": "7,500",
+        "change_pct": "-2.86",
+        "change_pct_num": -2.86,
+        "direction": "down"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": -2.86,
+      "price_direction": "down",
+      "price_change_display": "-2.86%",
+      "price_display": "255,000",
+      "price_change_abs_display": "▼ 7,500",
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음"
+    }
+  ]
+}
