@@ -47,7 +47,7 @@ IMPACT_LABEL = {
 RECOMMENDATION_LABEL = {
     "strong_buy": "풀매수",
     "buy": "매수",
-    "hold": "존버",
+    "hold": "관망",
     "sell": "매도",
     "strong_sell": "풀매도",
 }
