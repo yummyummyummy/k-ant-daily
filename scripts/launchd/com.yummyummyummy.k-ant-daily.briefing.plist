@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.yummyummyummy.k-ant-daily.briefing</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/woong/projects/k-ant-daily/scripts/launchd/run-briefing.sh</string>
+    </array>
+
+    <!-- 07:30 on weekdays (Mon-Fri). StartCalendarInterval uses the Mac's
+         local timezone, which we assume is Asia/Seoul. -->
+    <key>StartCalendarInterval</key>
+    <array>
+        <dict><key>Weekday</key><integer>1</integer><key>Hour</key><integer>7</integer><key>Minute</key><integer>30</integer></dict>
+        <dict><key>Weekday</key><integer>2</integer><key>Hour</key><integer>7</integer><key>Minute</key><integer>30</integer></dict>
+        <dict><key>Weekday</key><integer>3</integer><key>Hour</key><integer>7</integer><key>Minute</key><integer>30</integer></dict>
+        <dict><key>Weekday</key><integer>4</integer><key>Hour</key><integer>7</integer><key>Minute</key><integer>30</integer></dict>
+        <dict><key>Weekday</key><integer>5</integer><key>Hour</key><integer>7</integer><key>Minute</key><integer>30</integer></dict>
+    </array>
+
+    <!-- Don't run immediately on load / after a missed schedule window. -->
+    <key>RunAtLoad</key><false/>
+
+    <!-- Log stdout/stderr in addition to per-run logs in the script. -->
+    <key>StandardOutPath</key>
+    <string>/Users/woong/Library/Logs/k-ant-daily/launchd-briefing.out</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/woong/Library/Logs/k-ant-daily/launchd-briefing.err</string>
+
+    <key>ProcessType</key><string>Background</string>
+</dict>
+</plist>
