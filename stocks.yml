@@ -2,7 +2,7 @@ stocks:
   - code: "005930"
     name: "삼성전자"
     market: KOSPI
-    owners: ["장윤영"]
+    owners: ["장윤영", "장한솔"]
     overnight_proxy: ["^SOX", "NVDA", "MU"]
   - code: "000660"
     name: "SK하이닉스"
@@ -58,7 +58,7 @@ stocks:
   - code: "445680"
     name: "큐리옥스바이오시스템즈"
     market: KOSDAQ
-    owners: ["이웅수", "주황선"]
+    owners: ["이웅수", "주황선", "장한솔"]
     overnight_proxy: ["XBI", "IBB"]
     deep_dive: true
     keywords:
@@ -90,3 +90,23 @@ stocks:
     market: KOSDAQ
     owners: ["이정수"]
     overnight_proxy: ["XBI"]
+  - code: "035720"
+    name: "카카오"
+    market: KOSPI
+    owners: ["장한솔"]
+    overnight_proxy: ["META", "GOOGL", "^IXIC"]
+  - code: "005380"
+    name: "현대차"
+    market: KOSPI
+    owners: ["장한솔"]
+    overnight_proxy: ["F", "GM", "STLA"]
+  - code: "034230"
+    name: "파라다이스"
+    market: KOSDAQ
+    owners: ["장한솔"]
+    overnight_proxy: ["LVS", "WYNN", "MGM"]
+  - code: "352820"
+    name: "하이브"
+    market: KOSPI
+    owners: ["장한솔"]
+    overnight_proxy: ["SPOT", "WMG"]
