@@ -85,7 +85,18 @@ k-ant-daily/
     └── summary.json                    # agent가 작성 → render 입력
 ```
 
-## `stocks.yml` 스키마
+## 초기 세팅 — `stocks.yml`
+
+`stocks.yml` 은 개인 정보(친구 실명 + 보유 내역)라 **.gitignore에 포함**되어 있습니다. 포크 후 처음 세팅할 때:
+
+```bash
+cp stocks.example.yml stocks.yml
+# 실제 종목과 보유자 이름으로 편집
+```
+
+> ⚠️ 프라이버시 주의: `stocks.yml`을 gitignore해도 렌더링된 `docs/*.html`은 **공개 GitHub Pages**에 보유자 이름과 함께 배포됩니다. 민감하다면 리포지토리를 Private으로 돌리거나 템플릿에서 이름을 이니셜/닉네임으로 치환하세요.
+
+### 스키마
 
 ```yaml
 stocks:

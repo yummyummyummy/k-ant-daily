@@ -5,3 +5,6 @@ __pycache__/
 venv/
 .DS_Store
 .env
+
+# Personal config — real names / holdings. Fork: copy stocks.example.yml → stocks.yml.
+stocks.yml
