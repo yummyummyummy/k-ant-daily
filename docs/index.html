@@ -137,11 +137,28 @@
     .friend-card { background: rgba(0,0,0,0.25); }
   }
   .coffee-banner.none .friend-card { background: var(--bg); border: 1px solid var(--border); }
-  .friend-card .stock-name { font-size: 13px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .friend-card .change { font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
-  .friend-card .change.up { color: var(--pos); }
-  .friend-card .change.down { color: var(--neg); }
-  .friend-card .change.flat { opacity: 0.6; }
+  .friend-card .stock-name { font-size: 12px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: 0.85; }
+  .friend-card .quote {
+    display: grid; grid-template-rows: auto auto; gap: 1px; margin-top: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+  .friend-card .quote .price {
+    font-size: 18px; font-weight: 800; line-height: 1.1;
+  }
+  .friend-card .quote .deltas {
+    display: flex; gap: 6px; align-items: baseline; font-weight: 700;
+  }
+  .friend-card .quote .abs { font-size: 12px; }
+  .friend-card .quote .pct { font-size: 13px; }
+  .friend-card .quote.up   .price,
+  .friend-card .quote.up   .abs,
+  .friend-card .quote.up   .pct   { color: var(--pos); }
+  .friend-card .quote.down .price,
+  .friend-card .quote.down .abs,
+  .friend-card .quote.down .pct   { color: var(--neg); }
+  .friend-card .quote.flat .price { color: var(--fg); }
+  .friend-card .quote.flat .abs,
+  .friend-card .quote.flat .pct   { color: var(--muted); }
   .friend-card .owners {
     display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px;
   }
@@ -371,97 +388,193 @@
       <div class="friend-cards">
         <div class="friend-card">
           <div class="stock-name">코아스템켐온</div>
-          <div class="change up">+12.06%</div>
+          <div class="quote up">
+            <div class="price">3,345</div>
+            <div class="deltas">
+              <span class="abs">+360</span>
+              <span class="pct">+12.06%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 이정수</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">보로노이</div>
-          <div class="change up">+11.56%</div>
+          <div class="quote up">
+            <div class="price">342,500</div>
+            <div class="deltas">
+              <span class="abs">+35,500</span>
+              <span class="pct">+11.56%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 하우찬</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">셀리드</div>
-          <div class="change up">+7.73%</div>
+          <div class="quote up">
+            <div class="price">4,110</div>
+            <div class="deltas">
+              <span class="abs">+295</span>
+              <span class="pct">+7.73%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 이웅수</span><span class="owner-chip">👤 한윤근</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">SK하이닉스</div>
-          <div class="change up">+3.37%</div>
+          <div class="quote up">
+            <div class="price">1,166,000</div>
+            <div class="deltas">
+              <span class="abs">+38,000</span>
+              <span class="pct">+3.37%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 한윤근</span><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 장윤영</span><span class="owner-chip">👤 이영준</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">KODEX 코스닥150 레버리지</div>
-          <div class="change up">+1.55%</div>
+          <div class="quote up">
+            <div class="price">16,345</div>
+            <div class="deltas">
+              <span class="abs">+250</span>
+              <span class="pct">+1.55%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 한윤근</span><span class="owner-chip">👤 하우찬</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">알테오젠</div>
-          <div class="change up">+1.50%</div>
+          <div class="quote up">
+            <div class="price">371,500</div>
+            <div class="deltas">
+              <span class="abs">+5,500</span>
+              <span class="pct">+1.50%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 한윤근</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">한미반도체</div>
-          <div class="change up">+0.17%</div>
+          <div class="quote up">
+            <div class="price">287,000</div>
+            <div class="deltas">
+              <span class="abs">+500</span>
+              <span class="pct">+0.17%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 한윤근</span><span class="owner-chip">👤 장한솔</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">한화에어로스페이스</div>
-          <div class="change up">+0.14%</div>
+          <div class="quote up">
+            <div class="price">1,425,000</div>
+            <div class="deltas">
+              <span class="abs">+2,000</span>
+              <span class="pct">+0.14%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 한윤근</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">HD현대일렉트릭</div>
-          <div class="change flat">0.00%</div>
+          <div class="quote flat">
+            <div class="price">1,087,000</div>
+            <div class="deltas">
+              <span class="abs">0</span>
+              <span class="pct">0.00%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 한윤근</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">앱클론</div>
-          <div class="change flat">0.00%</div>
+          <div class="quote flat">
+            <div class="price">55,800</div>
+            <div class="deltas">
+              <span class="abs">0</span>
+              <span class="pct">0.00%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 오병호</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">SK이노베이션</div>
-          <div class="change down">-0.46%</div>
+          <div class="quote down">
+            <div class="price">128,800</div>
+            <div class="deltas">
+              <span class="abs">-600</span>
+              <span class="pct">-0.46%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 한윤근</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">삼성E&A</div>
-          <div class="change down">-0.50%</div>
+          <div class="quote down">
+            <div class="price">49,300</div>
+            <div class="deltas">
+              <span class="abs">-250</span>
+              <span class="pct">-0.50%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 장한솔</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">삼성전자</div>
-          <div class="change down">-0.69%</div>
+          <div class="quote down">
+            <div class="price">214,500</div>
+            <div class="deltas">
+              <span class="abs">-1,500</span>
+              <span class="pct">-0.69%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 장윤영</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">에이비엘바이오</div>
-          <div class="change down">-0.80%</div>
+          <div class="quote down">
+            <div class="price">160,200</div>
+            <div class="deltas">
+              <span class="abs">-1,300</span>
+              <span class="pct">-0.80%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 우동희</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">HD한국조선해양</div>
-          <div class="change down">-1.55%</div>
+          <div class="quote down">
+            <div class="price">413,000</div>
+            <div class="deltas">
+              <span class="abs">-6,500</span>
+              <span class="pct">-1.55%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 오병호</span>          </div>
         </div>
         <div class="friend-card">
           <div class="stock-name">큐리옥스바이오시스템즈</div>
-          <div class="change down">-1.65%</div>
+          <div class="quote down">
+            <div class="price">89,300</div>
+            <div class="deltas">
+              <span class="abs">-1,500</span>
+              <span class="pct">-1.65%</span>
+            </div>
+          </div>
           <div class="owners">
 <span class="owner-chip">👤 이웅수</span><span class="owner-chip">👤 주황선</span>          </div>
         </div>

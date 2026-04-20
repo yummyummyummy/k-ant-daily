@@ -101,6 +101,26 @@ def _time_ago(iso_str: str | None, now: datetime) -> str:
     return dt.strftime("%m/%d")
 
 
+def _merge_quotes_from_news(summary: dict, news_path: Path) -> None:
+    """If a sibling news.json exists, pull fresh quote data into summary stocks by code."""
+    if not news_path.exists():
+        return
+    try:
+        news = json.loads(news_path.read_text(encoding="utf-8"))
+    except Exception:
+        return
+    by_code = {s.get("code"): s.get("quote", {}) for s in news.get("stocks") or []}
+    for stock in summary.get("stocks") or []:
+        src = by_code.get(stock.get("code")) or {}
+        if not src:
+            continue
+        dst = stock.setdefault("quote", {})
+        # Prefer freshly scraped values — news.json is the source of truth.
+        for k, v in src.items():
+            if v not in (None, ""):
+                dst[k] = v
+
+
 def _normalize(summary: dict) -> dict:
     """Fill derived fields the template relies on."""
     # reference "now" for time-ago calculations: prefer generated_at, fallback to system now
@@ -178,6 +198,25 @@ def _normalize(summary: dict) -> dict:
             stock["price_direction"] = "up" if pct_num > 0 else ("down" if pct_num < 0 else "flat")
             sign = "+" if pct_num > 0 else ""
             stock["price_change_display"] = f"{sign}{pct_num:.2f}%"
+        # Absolute price + signed change amount (호가창 style)
+        if quote.get("price"):
+            stock["price_display"] = quote["price"]
+        if quote.get("change"):
+            direction = stock.get("price_direction") or quote.get("direction") or ""
+            raw = str(quote["change"]).strip()
+            # Strip any existing sign; re-sign from direction
+            bare = raw.lstrip("+-")
+            try:
+                if float(bare.replace(",", "")) == 0:
+                    stock["price_change_abs_display"] = "0"
+                elif direction == "up":
+                    stock["price_change_abs_display"] = f"+{bare}"
+                elif direction == "down":
+                    stock["price_change_abs_display"] = f"-{bare}"
+                else:
+                    stock["price_change_abs_display"] = raw
+            except ValueError:
+                stock["price_change_abs_display"] = raw
         for pt in stock.get("key_points") or []:
             _annotate_impact(pt)
     return summary
@@ -206,6 +245,8 @@ def _friends_overview(stocks: list[dict]) -> list[dict]:
             "owners": s.get("owners") or [],
             "name": s["name"],
             "code": s["code"],
+            "price_display": s.get("price_display", ""),
+            "abs_change_display": s.get("price_change_abs_display", ""),
             "change_display": s.get("price_change_display", "-"),
             "direction": s.get("price_direction", ""),
             "pct": s.get("price_change_pct_num", 0) or 0,
@@ -224,7 +265,9 @@ def _display_time(iso: str) -> str:
         return iso
 
 
-def render_report(summary: dict, base_url: str) -> tuple[str, str]:
+def render_report(summary: dict, base_url: str, news_path: Path | None = None) -> tuple[str, str]:
+    if news_path is not None:
+        _merge_quotes_from_news(summary, news_path)
     summary = _normalize(summary)
     date = summary.get("date") or datetime.now(KST).strftime("%Y-%m-%d")
     filename = f"{date}.html"
@@ -283,7 +326,9 @@ def main(argv: list[str]) -> int:
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     DOCS.mkdir(exist_ok=True)
 
-    filename, html = render_report(summary, base_url)
+    # Auto-merge scraped quote data from sibling news.json when available.
+    news_path = summary_path.parent / "news.json"
+    filename, html = render_report(summary, base_url, news_path=news_path)
     dated = DOCS / filename
     dated.write_text(html, encoding="utf-8")
 

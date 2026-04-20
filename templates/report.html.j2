@@ -137,11 +137,28 @@
     .friend-card { background: rgba(0,0,0,0.25); }
   }
   .coffee-banner.none .friend-card { background: var(--bg); border: 1px solid var(--border); }
-  .friend-card .stock-name { font-size: 13px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .friend-card .change { font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
-  .friend-card .change.up { color: var(--pos); }
-  .friend-card .change.down { color: var(--neg); }
-  .friend-card .change.flat { opacity: 0.6; }
+  .friend-card .stock-name { font-size: 12px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: 0.85; }
+  .friend-card .quote {
+    display: grid; grid-template-rows: auto auto; gap: 1px; margin-top: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+  .friend-card .quote .price {
+    font-size: 18px; font-weight: 800; line-height: 1.1;
+  }
+  .friend-card .quote .deltas {
+    display: flex; gap: 6px; align-items: baseline; font-weight: 700;
+  }
+  .friend-card .quote .abs { font-size: 12px; }
+  .friend-card .quote .pct { font-size: 13px; }
+  .friend-card .quote.up   .price,
+  .friend-card .quote.up   .abs,
+  .friend-card .quote.up   .pct   { color: var(--pos); }
+  .friend-card .quote.down .price,
+  .friend-card .quote.down .abs,
+  .friend-card .quote.down .pct   { color: var(--neg); }
+  .friend-card .quote.flat .price { color: var(--fg); }
+  .friend-card .quote.flat .abs,
+  .friend-card .quote.flat .pct   { color: var(--muted); }
   .friend-card .owners {
     display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px;
   }
@@ -374,7 +391,13 @@
         {% for f in friends_overview %}
         <div class="friend-card">
           <div class="stock-name">{{ f.name }}</div>
-          <div class="change {{ f.direction or 'flat' }}">{{ f.change_display }}</div>
+          <div class="quote {{ f.direction or 'flat' }}">
+            <div class="price">{{ f.price_display or '-' }}</div>
+            <div class="deltas">
+              <span class="abs">{{ f.abs_change_display or '' }}</span>
+              <span class="pct">{{ f.change_display }}</span>
+            </div>
+          </div>
           <div class="owners">
             {% for o in f.owners %}<span class="owner-chip">👤 {{ o }}</span>{% endfor %}
           </div>
@@ -390,7 +413,13 @@
         {% for f in friends_overview %}
         <div class="friend-card">
           <div class="stock-name">{{ f.name }}</div>
-          <div class="change {{ f.direction or 'flat' }}">{{ f.change_display }}</div>
+          <div class="quote {{ f.direction or 'flat' }}">
+            <div class="price">{{ f.price_display or '-' }}</div>
+            <div class="deltas">
+              <span class="abs">{{ f.abs_change_display or '' }}</span>
+              <span class="pct">{{ f.change_display }}</span>
+            </div>
+          </div>
           <div class="owners">
             {% for o in f.owners %}<span class="owner-chip">👤 {{ o }}</span>{% endfor %}
           </div>
