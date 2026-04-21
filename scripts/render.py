@@ -20,6 +20,22 @@ from pathlib import Path
 
 import yaml
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+from markupsafe import Markup, escape
+
+_HIGHLIGHT_RE = re.compile(r"\*\*(.+?)\*\*", re.DOTALL)
+
+
+def _highlight_drivers(text: str | None) -> Markup:
+    """Jinja filter: wrap ``**phrase**`` markers in the agent's prose with
+    ``<mark class="driver">phrase</mark>`` so장중 변동성 핵심 변수 etc. get a
+    visual highlighter. HTML-escapes the input first so the marker is the only
+    thing that can produce tags — prevents accidental markup injection from
+    summary.json content."""
+    if not text:
+        return Markup("")
+    escaped = str(escape(text))
+    highlighted = _HIGHLIGHT_RE.sub(r'<mark class="driver">\1</mark>', escaped)
+    return Markup(highlighted)
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
@@ -35,7 +51,7 @@ def _env() -> Environment:
     # only matches the final suffix — a template named `foo.html.j2` has the
     # final suffix `.j2`, not `.html`, so the default `["html","xml"]` would
     # silently leave it unescaped.
-    return Environment(
+    env = Environment(
         loader=FileSystemLoader(str(TEMPLATES)),
         autoescape=select_autoescape(
             enabled_extensions=("html", "xml", "html.j2", "j2"),
@@ -44,6 +60,8 @@ def _env() -> Environment:
         trim_blocks=True,
         lstrip_blocks=True,
     )
+    env.filters["highlight"] = _highlight_drivers
+    return env
 
 
 def _render_template(template_name: str, **context: object) -> str:

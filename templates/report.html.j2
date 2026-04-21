@@ -875,7 +875,7 @@
       </span>
       {% endif %}
     </h2>
-    {% if macro.summary %}<p class="point-detail" style="margin: -4px 0 12px; font-size: 14px;">{{ macro.summary }}</p>{% endif %}
+    {% if macro.summary %}<p class="point-detail" style="margin: -4px 0 12px; font-size: 14px;">{{ macro.summary | highlight }}</p>{% endif %}
 
     {% if mood_dashboard %}
     <div class="mood-grid">

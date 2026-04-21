@@ -33,3 +33,22 @@
     }
   }
   * { box-sizing: border-box; }
+
+  /* 하이라이터 — macro.summary · rationale 등 agent 가 `**...**` 로 감싼 구절이
+     이 스타일로 렌더된다. 장중 변동성 핵심 변수나 주요 예측 문구를 시각적으로
+     부각하는 용도. 내용은 `highlight` Jinja 필터가 생성. */
+  mark.driver {
+    background: rgba(250, 204, 21, 0.35);
+    color: inherit;
+    font-weight: 700;
+    padding: 1px 4px;
+    border-radius: 3px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  @media (prefers-color-scheme: dark) {
+    mark.driver {
+      background: rgba(250, 204, 21, 0.22);
+      color: var(--fg);
+    }
+  }
