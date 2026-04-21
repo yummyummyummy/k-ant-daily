@@ -714,36 +714,8 @@
   </section>
   {% endif %}
 
-  {% if macro.indicators %}
-  <section>
-    <h2>
-      📊 국내 시장 지표
-      {% if macro.indicators_impact %}
-      <span class="macro-mood {{ macro.indicators_impact }}">
-        {% if macro.indicators_impact == 'positive' %}🟢 우호적
-        {% elif macro.indicators_impact == 'negative' %}🔴 부담
-        {% else %}🟡 혼조{% endif %}
-      </span>
-      {% endif %}
-    </h2>
-    <div class="indicators">
-      {% for ind in macro.indicators %}
-      <div class="indicator {{ ind.impact or ind.direction or 'neutral' }}">
-        <div class="name">{{ ind.name }}</div>
-        <div class="value">{{ ind.value }}</div>
-        {% if ind.change_abs or ind.change_pct %}
-        <div class="change {{ ind.direction or '' }}">
-          {% if ind.change_abs %}
-          <span class="abs">{% if ind.direction == 'up' %}▲{% elif ind.direction == 'down' %}▼{% endif %} {{ ind.change_abs|replace('+','')|replace('-','') }}</span>
-          {% endif %}
-          {% if ind.change_pct %}<span class="pct">{{ ind.change_pct }}</span>{% endif %}
-        </div>
-        {% endif %}
-      </div>
-      {% endfor %}
-    </div>
-  </section>
-  {% endif %}
+  {# 📊 국내 시장 지표 was folded into the top ticker marquee (KOSPI / KOSDAQ / USD/KRW).
+     KOSPI200 and JPY·EUR·CNY weren't pulling enough weight to justify a full section. #}
 
   {% if macro.overnight %}
   <section>
