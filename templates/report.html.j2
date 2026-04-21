@@ -248,34 +248,43 @@
     .coffee-banner { background: linear-gradient(135deg, #78350f 0%, #92400e 100%); color: #fef3c7; }
   }
   .coffee-banner .headline { font-weight: 700; font-size: 17px; margin-bottom: 4px; }
-  .coffee-banner .sub { font-size: 13px; opacity: 0.85; }
+  .coffee-banner .headline { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+  .coffee-banner .sub { font-size: 12px; opacity: 0.85; }
   .coffee-banner.none { background: var(--card); color: var(--fg); border: 1px dashed var(--border); }
+  /* Compact 2-column card: [name + owners] | [price + delta] */
   .friend-cards {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 8px; margin-top: 10px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 4px; margin-top: 8px;
   }
   .friend-card {
-    background: rgba(255,255,255,0.55); border-radius: 8px;
-    padding: 8px 10px; display: flex; flex-direction: column; gap: 2px;
-    min-width: 0;
+    background: rgba(255,255,255,0.55); border-radius: 6px;
+    padding: 6px 10px;
+    display: grid; grid-template-columns: 1fr auto; column-gap: 10px;
+    align-items: center; min-width: 0;
   }
   @media (prefers-color-scheme: dark) {
     .friend-card { background: rgba(0,0,0,0.25); }
   }
   .coffee-banner.none .friend-card { background: var(--bg); border: 1px solid var(--border); }
-  .friend-card .stock-name { font-size: 12px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: 0.85; }
+  .friend-card .stock-name {
+    grid-column: 1; grid-row: 1;
+    font-size: 13px; font-weight: 700;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0;
+  }
   .friend-card .quote {
-    display: grid; grid-template-rows: auto auto; gap: 1px; margin-top: 2px;
+    grid-column: 2; grid-row: 1 / span 2;
+    text-align: right;
+    display: flex; flex-direction: column; gap: 0;
     font-variant-numeric: tabular-nums;
   }
   .friend-card .quote .price {
-    font-size: 18px; font-weight: 800; line-height: 1.1;
+    font-size: 15px; font-weight: 800; line-height: 1.1;
   }
   .friend-card .quote .deltas {
-    display: flex; gap: 6px; align-items: baseline; font-weight: 700;
+    display: flex; gap: 5px; justify-content: flex-end; align-items: baseline; font-weight: 700;
   }
-  .friend-card .quote .abs { font-size: 12px; }
-  .friend-card .quote .pct { font-size: 13px; }
+  .friend-card .quote .abs { font-size: 11px; }
+  .friend-card .quote .pct { font-size: 11px; }
   .friend-card .quote.up   .price,
   .friend-card .quote.up   .abs,
   .friend-card .quote.up   .pct   { color: var(--pos); }
@@ -299,12 +308,13 @@
   .live-indicator.closed { opacity: 0.6; }
   .live-indicator.error  { color: var(--neg); }
   .friend-card .owners {
-    display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px;
+    grid-column: 1; grid-row: 2;
+    display: flex; flex-wrap: wrap; gap: 2px; margin-top: 1px; min-width: 0;
   }
   .friend-card .owner-chip {
-    font-size: 10px; font-weight: 700;
+    font-size: 9px; font-weight: 700;
     background: rgba(0,0,0,0.1); border-radius: 999px;
-    padding: 1px 6px; white-space: nowrap;
+    padding: 1px 5px; white-space: nowrap;
   }
   @media (prefers-color-scheme: dark) {
     .friend-card .owner-chip { background: rgba(255,255,255,0.12); }
