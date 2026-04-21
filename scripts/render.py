@@ -114,6 +114,39 @@ def _annotate_impact(obj: dict) -> None:
         obj["impact_label"] = IMPACT_LABEL.get(impact, impact)
 
 
+# Heuristic impact classifier for stock news titles. Agent is supposed to
+# label each item, but when it doesn't (raw Naver scrape passthrough) we
+# fall back to keyword matching so the 호재/악재/중립 chip still shows up.
+_POS_PATTERNS = re.compile(
+    r"(상승|급등|강세|반등|신고가|최고치|돌파|호실적|실적\s*개선|영업이익\s*증가|"
+    r"어닝\s*서프라이즈|상향|수주|체결|공급\s*계약|라이선스|승인|허가|특허|"
+    r"자사주\s*매입|자사주\s*소각|배당\s*(인상|증가|확대)|흑자\s*전환|"
+    r"수혜|성장|호재|랠리|폭등|대박|인수|인수\s*합병|M&A|골든크로스|"
+    r"최대\s*실적|사상\s*최대|어닝\s*비트|목표가\s*상향|매수\s*추천|"
+    r"투자의견\s*상향|긍정적|기대감|수주잔고|호조|낙관)"
+)
+_NEG_PATTERNS = re.compile(
+    r"(하락|급락|약세|부진|적자|쇼크|저조|감소|하향|실패|철회|취소|"
+    r"리스크|부담|제재|과징금|횡령|배임|소송|경고|우려|손실|위기|"
+    r"낙폭|추락|불안|악재|하회|둔화|슬럼프|논란|감원|구조조정|"
+    r"적자\s*전환|매도\s*추천|투자의견\s*하향|목표가\s*하향|부정적|"
+    r"데드크로스|실망감|어닝\s*쇼크|실적\s*쇼크|규제|조사|경영권\s*분쟁)"
+)
+
+def _auto_impact(title: str) -> str:
+    """Best-guess impact label from a headline. Returns positive / negative /
+    neutral. Conservative — ambiguous titles default to neutral."""
+    if not title:
+        return "neutral"
+    pos = bool(_POS_PATTERNS.search(title))
+    neg = bool(_NEG_PATTERNS.search(title))
+    if pos and not neg:
+        return "positive"
+    if neg and not pos:
+        return "negative"
+    return "neutral"
+
+
 def _sparkline_path(closes: list, width: float = 80.0, height: float = 24.0) -> str:
     """Turn a sequence of closes into an SVG path string (M x,y L x,y L ...)."""
     if not closes or len(closes) < 2:
@@ -423,6 +456,9 @@ def _normalize(summary: dict) -> dict:
             # Convert `link` (fetcher key) to `url` for template uniformity.
             if "url" not in n and n.get("link"):
                 n["url"] = n["link"]
+            # Fill in impact via heuristic if agent didn't label it.
+            if not n.get("impact"):
+                n["impact"] = _auto_impact(n.get("title", ""))
             _annotate_impact(n)
             kept.append(n)
         stock["news"] = kept

@@ -253,7 +253,7 @@ description: Generate and publish today's pre-market stock briefing
 ### 섹터 news vs 종목 news 역할
 
 - **섹터 news**: 내 보유 종목과 **독립**. 섹터 자체의 시황·매크로·규제. `affected` 안 씀.
-- **종목 news**: 해당 기업 고유 이슈. `news.json` 의 raw news 중에서 material만 골라 `why_material` 붙임.
+- **종목 news**: 해당 기업 고유 이슈. `news.json` 의 raw news 중에서 material만 골라 `why_material` 붙임. render가 24h 필터 + 헤드라인 keyword로 impact 자동 라벨(호재/악재/중립) 함 — agent가 더 정확한 판단이 있으면 명시적으로 `impact` 덮어써라 (예: 헤드라인은 "매각 검토" 같은 중립적 표현이지만 주가에는 호재로 해석되는 케이스).
 
 ---
 

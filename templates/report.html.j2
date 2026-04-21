@@ -1218,8 +1218,10 @@
                     </div>
                     <div class="news-meta">
                       {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
-                      {% if n.source %}<span>· {{ n.source }}</span>{% endif %}
+                      {% if n.source %}<span>· {% if n.source is mapping %}{{ n.source.title }}{% else %}{{ n.source }}{% endif %}</span>{% endif %}
+                      {% if n.impact %}<span class="impact {{ n.impact }}">{{ n.impact_label or n.impact }}</span>{% endif %}
                     </div>
+                    {% if n.why_material %}<div class="why-material">📈 {{ n.why_material }}</div>{% endif %}
                   </div>
                 </li>
                 {% endfor %}
