@@ -114,6 +114,27 @@ def _annotate_impact(obj: dict) -> None:
         obj["impact_label"] = IMPACT_LABEL.get(impact, impact)
 
 
+def _sparkline_path(closes: list, width: float = 80.0, height: float = 24.0) -> str:
+    """Turn a sequence of closes into an SVG path string (M x,y L x,y L ...)."""
+    if not closes or len(closes) < 2:
+        return ""
+    try:
+        vals = [float(c) for c in closes if c is not None]
+    except Exception:
+        return ""
+    if len(vals) < 2:
+        return ""
+    pmin, pmax = min(vals), max(vals)
+    span = (pmax - pmin) or 1.0
+    n = len(vals)
+    pts = []
+    for i, p in enumerate(vals):
+        x = i * width / (n - 1)
+        y = height - ((p - pmin) / span) * height
+        pts.append(f"{x:.1f},{y:.1f}")
+    return "M" + " L".join(pts)
+
+
 def _parse_published(raw: str | None) -> datetime | None:
     """Accept ISO-8601 or Naver-style 'YYYY.MM.DD HH:MM[:SS]' timestamps."""
     if not raw:
@@ -218,6 +239,9 @@ def _merge_quotes_from_news(summary: dict, news_path: Path) -> None:
             stock["news"] = list(src["news"])
         if not stock.get("disclosures") and src.get("disclosures"):
             stock["disclosures"] = list(src["disclosures"])
+        # Historical price context (20-day close series + 52-week levels)
+        if src.get("history"):
+            stock["history"] = dict(src["history"])
 
 
 def _normalize(summary: dict) -> dict:
@@ -392,6 +416,17 @@ def _normalize(summary: dict) -> dict:
             _annotate_impact(n)
         stock["news"] = stock_news
         stock["news_count"] = len(stock_news)
+        # Price-context block (sparkline + 52w range) if history is available
+        hist = stock.get("history") or {}
+        closes = hist.get("closes_20d") or []
+        if closes:
+            hist["sparkline_path"] = _sparkline_path(closes, width=80, height=24)
+            hist["sparkline_direction"] = (
+                "up" if closes[-1] > closes[0]
+                else "down" if closes[-1] < closes[0]
+                else "flat"
+            )
+            stock["history"] = hist
     return summary
 
 

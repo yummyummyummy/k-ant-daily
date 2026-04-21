@@ -407,6 +407,49 @@
   .confidence-chip.medium { color: var(--fg); }
   .confidence-chip.low    { opacity: 0.65; }
 
+  /* Price context block (sparkline + 52w range) inside expanded stock body */
+  .price-context {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 12px; margin: 8px 0 10px;
+    display: grid; grid-template-columns: auto 1fr; gap: 12px 14px;
+    align-items: center;
+  }
+  .price-context .spark-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+  }
+  .price-context .spark {
+    width: 90px; height: 28px; display: block;
+  }
+  .price-context .spark path { stroke-width: 1.5; fill: none; }
+  .price-context .spark.up   path { stroke: var(--pos); }
+  .price-context .spark.down path { stroke: var(--neg); }
+  .price-context .spark.flat path { stroke: var(--muted); }
+  .price-context .spark-label {
+    font-size: 10px; color: var(--muted); font-variant-numeric: tabular-nums;
+  }
+  .price-context .spark-label .pos { color: var(--pos); font-weight: 600; }
+  .price-context .spark-label .neg { color: var(--neg); font-weight: 600; }
+
+  .price-context .w52 {
+    display: flex; flex-direction: column; gap: 4px; min-width: 0;
+  }
+  .price-context .w52-bar {
+    position: relative; height: 6px; border-radius: 3px;
+    background: linear-gradient(to right, rgba(37,99,235,0.35), rgba(128,128,128,0.2), rgba(220,38,38,0.35));
+  }
+  .price-context .w52-pin {
+    position: absolute; top: -3px; width: 3px; height: 12px;
+    background: var(--fg); border-radius: 2px;
+    transform: translateX(-50%);
+  }
+  .price-context .w52-labels {
+    display: flex; justify-content: space-between; gap: 6px;
+    font-size: 10px; color: var(--muted); font-variant-numeric: tabular-nums;
+  }
+  .price-context .w52-labels .mid {
+    font-weight: 600; color: var(--fg);
+  }
+
   /* Fresh-news counter on stock summary row (오늘 뉴스 N건) */
   .news-count-chip {
     display: inline-flex; align-items: center; gap: 2px;
@@ -1100,6 +1143,40 @@
           {% endif %}
         </summary>
         <div class="body">
+          {% if stock.history and stock.history.sparkline_path %}
+          <div class="price-context">
+            <div class="spark-wrap">
+              <svg class="spark {{ stock.history.sparkline_direction or 'flat' }}" viewBox="0 0 80 24" preserveAspectRatio="none">
+                <path d="{{ stock.history.sparkline_path }}"/>
+              </svg>
+              <div class="spark-label">
+                20일
+                {% if stock.history.change_20d_pct is not none %}
+                  {% if stock.history.change_20d_pct > 0 %}<span class="pos">+{{ '%.1f'|format(stock.history.change_20d_pct) }}%</span>
+                  {% elif stock.history.change_20d_pct < 0 %}<span class="neg">{{ '%.1f'|format(stock.history.change_20d_pct) }}%</span>
+                  {% else %}<span>0%</span>{% endif %}
+                {% endif %}
+              </div>
+            </div>
+            <div class="w52">
+              <div class="w52-bar">
+                {% if stock.history.pos_52w_pct is not none %}
+                <div class="w52-pin" style="left: {{ stock.history.pos_52w_pct }}%" title="52주 범위 내 현재 위치"></div>
+                {% endif %}
+              </div>
+              <div class="w52-labels">
+                <span>저 {{ '{:,.0f}'.format(stock.history.fifty_two_week_low) if stock.history.fifty_two_week_low else '' }}</span>
+                <span class="mid">
+                  {% if stock.history.from_high_pct is not none %}
+                    고점 대비 {% if stock.history.from_high_pct >= 0 %}+{% endif %}{{ '%.1f'|format(stock.history.from_high_pct) }}%
+                  {% endif %}
+                </span>
+                <span>고 {{ '{:,.0f}'.format(stock.history.fifty_two_week_high) if stock.history.fifty_two_week_high else '' }}</span>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
           {# Trader morning digest: today's news goes first, decision block after #}
           {% if stock.news %}
           <div class="stock-news-block">

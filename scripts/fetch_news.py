@@ -299,6 +299,67 @@ def compute_overnight_signal(proxies: list[str], changes: dict[str, float]) -> d
     }
 
 
+def fetch_stock_history(code: str, market: str) -> dict:
+    """20-day close series + 52-week high/low for a Korean stock.
+
+    yfinance suffix: .KS for KOSPI, .KQ for KOSDAQ.
+    Returns {} on failure so callers can skip the 가격 맥락 block gracefully.
+    """
+    import yfinance as yf
+
+    primary_suffix = ".KS" if (market or "").upper() == "KOSPI" else ".KQ"
+    # yfinance occasionally has a Korean stock under the opposite exchange
+    # (e.g. 034230 파라다이스 is KOSDAQ but yfinance serves it as .KS).
+    # Try the stocks.yml-declared market first, then the other.
+    fallback = ".KQ" if primary_suffix == ".KS" else ".KS"
+    h = None
+    symbol = f"{code}{primary_suffix}"
+    for suffix in (primary_suffix, fallback):
+        try:
+            cand = yf.Ticker(f"{code}{suffix}").history(period="1y", auto_adjust=False)
+        except Exception:
+            cand = None
+        if cand is not None and len(cand) >= 2:
+            symbol = f"{code}{suffix}"
+            h = cand
+            break
+
+    if h is None or len(h) < 2:
+        return {}
+
+    closes = h["Close"].tolist()
+    last20 = closes[-20:]
+    high_52w = float(h["High"].max()) if not h.empty else None
+    low_52w  = float(h["Low"].min()) if not h.empty else None
+    last_close = float(closes[-1]) if closes else None
+
+    # 20-day change %: compare last close to first close of the last-20 window.
+    change_20d_pct = None
+    if len(last20) >= 2 and last20[0]:
+        change_20d_pct = round((last20[-1] - last20[0]) / last20[0] * 100, 2)
+
+    # Position within 52w range (0% = at low, 100% = at high).
+    pos_52w_pct = None
+    if last_close is not None and high_52w is not None and low_52w is not None and high_52w > low_52w:
+        pos_52w_pct = round((last_close - low_52w) / (high_52w - low_52w) * 100, 1)
+
+    from_high_pct = None
+    if last_close is not None and high_52w:
+        from_high_pct = round((last_close - high_52w) / high_52w * 100, 2)
+
+    return {
+        "symbol": symbol,
+        "closes_20d": [round(float(c), 2) for c in last20],
+        "fifty_two_week_high": round(high_52w, 2) if high_52w else None,
+        "fifty_two_week_low":  round(low_52w, 2) if low_52w else None,
+        "last_close": round(last_close, 2) if last_close else None,
+        "change_20d_pct": change_20d_pct,
+        "pos_52w_pct": pos_52w_pct,
+        "from_high_pct": from_high_pct,
+        "as_of": str(h.index[-1].date()),
+    }
+
+
 def fetch_upbit_tickers(markets: list[str]) -> dict:
     """KRW-denominated crypto quotes from Upbit public API.
 
@@ -450,6 +511,11 @@ def main() -> int:
         except Exception as e:
             print(f"[warn] quote failed for {stock['code']}: {e}", file=sys.stderr)
             entry["quote"] = {}
+        try:
+            entry["history"] = fetch_stock_history(stock["code"], stock.get("market", ""))
+        except Exception as e:
+            print(f"[warn] history failed for {stock['code']}: {e}", file=sys.stderr)
+            entry["history"] = {}
         try:
             entry["news"] = fetch_stock_news(stock["code"])
         except Exception as e:

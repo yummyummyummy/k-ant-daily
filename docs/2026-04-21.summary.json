@@ -676,18 +676,18 @@
         }
       ],
       "quote": {
-        "price": "216,500",
-        "change": "2,000",
-        "change_pct": "+0.93",
-        "change_pct_num": 0.93,
+        "price": "219,000",
+        "change": "4,500",
+        "change_pct": "+2.10",
+        "change_pct_num": 2.1,
         "direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": 0.93,
+      "price_change_pct_num": 2.1,
       "price_direction": "up",
-      "price_change_display": "+0.93%",
-      "price_display": "216,500",
-      "price_change_abs_display": "▲ 2,000",
+      "price_change_display": "+2.10%",
+      "price_display": "219,000",
+      "price_change_abs_display": "▲ 4,500",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "owners": [
@@ -764,7 +764,41 @@
           "url": "https://n.news.naver.com/mnews/article/001/0016033151"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "005930.KS",
+        "closes_20d": [
+          189000.0,
+          180100.0,
+          180100.0,
+          176300.0,
+          167200.0,
+          189650.0,
+          178400.0,
+          186200.0,
+          193100.0,
+          196500.0,
+          210500.0,
+          204000.0,
+          206000.0,
+          201000.0,
+          206500.0,
+          211000.0,
+          217500.0,
+          216000.0,
+          214500.0,
+          219000.0
+        ],
+        "fifty_two_week_high": 223000.0,
+        "fifty_two_week_low": 53700.0,
+        "last_close": 219000.0,
+        "change_20d_pct": 15.87,
+        "pos_52w_pct": 97.6,
+        "from_high_pct": -1.79,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,13.9 L4.2,18.0 L8.4,18.0 L12.6,19.8 L16.8,24.0 L21.1,13.6 L25.3,18.8 L29.5,15.2 L33.7,12.0 L37.9,10.4 L42.1,3.9 L46.3,6.9 L50.5,6.0 L54.7,8.3 L58.9,5.8 L63.2,3.7 L67.4,0.7 L71.6,1.4 L75.8,2.1 L80.0,0.0",
+        "sparkline_direction": "up"
+      }
     },
     {
       "code": "000660",
@@ -838,18 +872,18 @@
         }
       ],
       "quote": {
-        "price": "1,207,000",
-        "change": "41,000",
-        "change_pct": "+3.52",
-        "change_pct_num": 3.52,
+        "price": "1,224,000",
+        "change": "58,000",
+        "change_pct": "+4.97",
+        "change_pct_num": 4.97,
         "direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 3.52,
+      "price_change_pct_num": 4.97,
       "price_direction": "up",
-      "price_change_display": "+3.52%",
-      "price_display": "1,207,000",
-      "price_change_abs_display": "▲ 41,000",
+      "price_change_display": "+4.97%",
+      "price_display": "1,224,000",
+      "price_change_abs_display": "▲ 58,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "owners": [
@@ -928,7 +962,41 @@
           "url": "https://n.news.naver.com/mnews/article/119/0003082777"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "000660.KS",
+        "closes_20d": [
+          995000.0,
+          933000.0,
+          933000.0,
+          873000.0,
+          807000.0,
+          897000.0,
+          830000.0,
+          876000.0,
+          886000.0,
+          916000.0,
+          1033000.0,
+          998000.0,
+          1027000.0,
+          1040000.0,
+          1103000.0,
+          1136000.0,
+          1155000.0,
+          1128000.0,
+          1166000.0,
+          1224000.0
+        ],
+        "fifty_two_week_high": 1228000.0,
+        "fifty_two_week_low": 173300.0,
+        "last_close": 1224000.0,
+        "change_20d_pct": 23.02,
+        "pos_52w_pct": 99.6,
+        "from_high_pct": -0.33,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,13.2 L4.2,16.7 L8.4,16.7 L12.6,20.2 L16.8,24.0 L21.1,18.8 L25.3,22.7 L29.5,20.0 L33.7,19.5 L37.9,17.7 L42.1,11.0 L46.3,13.0 L50.5,11.3 L54.7,10.6 L58.9,7.0 L63.2,5.1 L67.4,4.0 L71.6,5.5 L75.8,3.3 L80.0,0.0",
+        "sparkline_direction": "up"
+      }
     },
     {
       "code": "267260",
@@ -983,18 +1051,18 @@
         }
       ],
       "quote": {
-        "price": "1,051,000",
-        "change": "36,000",
-        "change_pct": "-3.31",
-        "change_pct_num": -3.31,
+        "price": "1,058,000",
+        "change": "29,000",
+        "change_pct": "-2.67",
+        "change_pct_num": -2.67,
         "direction": "down"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": -3.31,
+      "price_change_pct_num": -2.67,
       "price_direction": "down",
-      "price_change_display": "-3.31%",
-      "price_display": "1,051,000",
-      "price_change_abs_display": "▼ 36,000",
+      "price_change_display": "-2.67%",
+      "price_display": "1,058,000",
+      "price_change_abs_display": "▼ 29,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "owners": [
@@ -1070,7 +1138,41 @@
           "url": "https://n.news.naver.com/mnews/article/374/0000505445"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "267260.KS",
+        "closes_20d": [
+          992000.0,
+          965000.0,
+          915000.0,
+          872000.0,
+          832000.0,
+          897000.0,
+          882000.0,
+          883000.0,
+          894000.0,
+          891000.0,
+          980000.0,
+          980000.0,
+          999000.0,
+          1007000.0,
+          1061000.0,
+          1050000.0,
+          1085000.0,
+          1087000.0,
+          1087000.0,
+          1058000.0
+        ],
+        "fifty_two_week_high": 1116000.0,
+        "fifty_two_week_low": 291500.0,
+        "last_close": 1058000.0,
+        "change_20d_pct": 6.65,
+        "pos_52w_pct": 93.0,
+        "from_high_pct": -5.2,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,8.9 L4.2,11.5 L8.4,16.2 L12.6,20.2 L16.8,24.0 L21.1,17.9 L25.3,19.3 L29.5,19.2 L33.7,18.2 L37.9,18.4 L42.1,10.1 L46.3,10.1 L50.5,8.3 L54.7,7.5 L58.9,2.4 L63.2,3.5 L67.4,0.2 L71.6,0.0 L75.8,0.0 L80.0,2.7",
+        "sparkline_direction": "up"
+      }
     },
     {
       "code": "196170",
@@ -1121,18 +1223,18 @@
         }
       ],
       "quote": {
-        "price": "369,500",
-        "change": "2,000",
-        "change_pct": "-0.54",
-        "change_pct_num": -0.54,
+        "price": "369,000",
+        "change": "2,500",
+        "change_pct": "-0.67",
+        "change_pct_num": -0.67,
         "direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -0.54,
+      "price_change_pct_num": -0.67,
       "price_direction": "down",
-      "price_change_display": "-0.54%",
-      "price_display": "369,500",
-      "price_change_abs_display": "▼ 2,000",
+      "price_change_display": "-0.67%",
+      "price_display": "369,000",
+      "price_change_abs_display": "▼ 2,500",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "owners": [
@@ -1198,7 +1300,41 @@
           "url": "https://n.news.naver.com/mnews/article/277/0005752405"
         }
       ],
-      "news_count": 6
+      "news_count": 6,
+      "history": {
+        "symbol": "196170.KQ",
+        "closes_20d": [
+          358500.0,
+          381000.0,
+          381000.0,
+          354500.0,
+          341500.0,
+          360000.0,
+          352000.0,
+          365500.0,
+          362000.0,
+          354000.0,
+          374500.0,
+          370000.0,
+          361500.0,
+          353500.0,
+          353000.0,
+          373000.0,
+          369500.0,
+          366000.0,
+          371500.0,
+          369000.0
+        ],
+        "fifty_two_week_high": 569000.0,
+        "fifty_two_week_low": 315500.0,
+        "last_close": 369000.0,
+        "change_20d_pct": 2.93,
+        "pos_52w_pct": 21.1,
+        "from_high_pct": -35.15,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,13.7 L4.2,0.0 L8.4,0.0 L12.6,16.1 L16.8,24.0 L21.1,12.8 L25.3,17.6 L29.5,9.4 L33.7,11.5 L37.9,16.4 L42.1,3.9 L46.3,6.7 L50.5,11.8 L54.7,16.7 L58.9,17.0 L63.2,4.9 L67.4,7.0 L71.6,9.1 L75.8,5.8 L80.0,7.3",
+        "sparkline_direction": "up"
+      }
     },
     {
       "code": "042700",
@@ -1253,18 +1389,18 @@
         }
       ],
       "quote": {
-        "price": "290,500",
-        "change": "3,500",
-        "change_pct": "+1.22",
-        "change_pct_num": 1.22,
+        "price": "295,000",
+        "change": "8,000",
+        "change_pct": "+2.79",
+        "change_pct_num": 2.79,
         "direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": 1.22,
+      "price_change_pct_num": 2.79,
       "price_direction": "up",
-      "price_change_display": "+1.22%",
-      "price_display": "290,500",
-      "price_change_abs_display": "▲ 3,500",
+      "price_change_display": "+2.79%",
+      "price_display": "295,000",
+      "price_change_abs_display": "▲ 8,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "owners": [
@@ -1341,7 +1477,41 @@
           "url": "https://n.news.naver.com/mnews/article/015/0005276586"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "042700.KS",
+        "closes_20d": [
+          300000.0,
+          278000.0,
+          278000.0,
+          260500.0,
+          251000.0,
+          273500.0,
+          256000.0,
+          260000.0,
+          252000.0,
+          253500.0,
+          280500.0,
+          286000.0,
+          286000.0,
+          276500.0,
+          284000.0,
+          295000.0,
+          292000.0,
+          286500.0,
+          287000.0,
+          295000.0
+        ],
+        "fifty_two_week_high": 335500.0,
+        "fifty_two_week_low": 72000.0,
+        "last_close": 295000.0,
+        "change_20d_pct": -1.67,
+        "pos_52w_pct": 84.6,
+        "from_high_pct": -12.07,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,0.0 L4.2,10.8 L8.4,10.8 L12.6,19.3 L16.8,24.0 L21.1,13.0 L25.3,21.6 L29.5,19.6 L33.7,23.5 L37.9,22.8 L42.1,9.6 L46.3,6.9 L50.5,6.9 L54.7,11.5 L58.9,7.8 L63.2,2.4 L67.4,3.9 L71.6,6.6 L75.8,6.4 L80.0,2.4",
+        "sparkline_direction": "down"
+      }
     },
     {
       "code": "012450",
@@ -1401,18 +1571,18 @@
         }
       ],
       "quote": {
-        "price": "1,410,000",
-        "change": "15,000",
-        "change_pct": "-1.05",
-        "change_pct_num": -1.05,
+        "price": "1,391,000",
+        "change": "34,000",
+        "change_pct": "-2.39",
+        "change_pct_num": -2.39,
         "direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -1.05,
+      "price_change_pct_num": -2.39,
       "price_direction": "down",
-      "price_change_display": "-1.05%",
-      "price_display": "1,410,000",
-      "price_change_abs_display": "▼ 15,000",
+      "price_change_display": "-2.39%",
+      "price_display": "1,391,000",
+      "price_change_abs_display": "▼ 34,000",
       "news_sentiment_label": "중립",
       "confidence_label": "중간",
       "owners": [
@@ -1479,7 +1649,41 @@
           "url": "https://n.news.naver.com/mnews/article/629/0000493134"
         }
       ],
-      "news_count": 6
+      "news_count": 6,
+      "history": {
+        "symbol": "012450.KS",
+        "closes_20d": [
+          1400000.0,
+          1369000.0,
+          1369000.0,
+          1308000.0,
+          1249000.0,
+          1331000.0,
+          1417000.0,
+          1449000.0,
+          1450000.0,
+          1537000.0,
+          1484000.0,
+          1451000.0,
+          1507000.0,
+          1530000.0,
+          1523000.0,
+          1509000.0,
+          1519000.0,
+          1423000.0,
+          1425000.0,
+          1391000.0
+        ],
+        "fifty_two_week_high": 1655000.0,
+        "fifty_two_week_low": 751000.0,
+        "last_close": 1391000.0,
+        "change_20d_pct": -0.64,
+        "pos_52w_pct": 70.8,
+        "from_high_pct": -15.95,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,11.4 L4.2,14.0 L8.4,14.0 L12.6,19.1 L16.8,24.0 L21.1,17.2 L25.3,10.0 L29.5,7.3 L33.7,7.2 L37.9,0.0 L42.1,4.4 L46.3,7.2 L50.5,2.5 L54.7,0.6 L58.9,1.2 L63.2,2.3 L67.4,1.5 L71.6,9.5 L75.8,9.3 L80.0,12.2",
+        "sparkline_direction": "down"
+      }
     },
     {
       "code": "096770",
@@ -1534,18 +1738,18 @@
         }
       ],
       "quote": {
-        "price": "130,800",
-        "change": "2,000",
-        "change_pct": "+1.55",
-        "change_pct_num": 1.55,
+        "price": "133,500",
+        "change": "4,700",
+        "change_pct": "+3.65",
+        "change_pct_num": 3.65,
         "direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": 1.55,
+      "price_change_pct_num": 3.65,
       "price_direction": "up",
-      "price_change_display": "+1.55%",
-      "price_display": "130,800",
-      "price_change_abs_display": "▲ 2,000",
+      "price_change_display": "+3.65%",
+      "price_display": "133,500",
+      "price_change_abs_display": "▲ 4,700",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "owners": [
@@ -1621,7 +1825,41 @@
           "url": "https://n.news.naver.com/mnews/article/003/0013899230"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "096770.KS",
+        "closes_20d": [
+          114100.0,
+          111300.0,
+          111400.0,
+          113400.0,
+          108700.0,
+          114500.0,
+          115500.0,
+          118200.0,
+          123200.0,
+          121800.0,
+          120400.0,
+          124000.0,
+          122400.0,
+          121500.0,
+          121600.0,
+          121600.0,
+          126500.0,
+          129400.0,
+          128800.0,
+          133500.0
+        ],
+        "fifty_two_week_high": 141300.0,
+        "fifty_two_week_low": 80800.0,
+        "last_close": 133500.0,
+        "change_20d_pct": 17.0,
+        "pos_52w_pct": 87.1,
+        "from_high_pct": -5.52,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,18.8 L4.2,21.5 L8.4,21.4 L12.6,19.5 L16.8,24.0 L21.1,18.4 L25.3,17.4 L29.5,14.8 L33.7,10.0 L37.9,11.3 L42.1,12.7 L46.3,9.2 L50.5,10.7 L54.7,11.6 L58.9,11.5 L63.2,11.5 L67.4,6.8 L71.6,4.0 L75.8,4.5 L80.0,0.0",
+        "sparkline_direction": "up"
+      }
     },
     {
       "code": "299660",
@@ -1677,18 +1915,18 @@
         }
       ],
       "quote": {
-        "price": "3,650",
-        "change": "460",
-        "change_pct": "-11.19",
-        "change_pct_num": -11.19,
+        "price": "3,610",
+        "change": "500",
+        "change_pct": "-12.17",
+        "change_pct_num": -12.17,
         "direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -11.19,
+      "price_change_pct_num": -12.17,
       "price_direction": "down",
-      "price_change_display": "-11.19%",
-      "price_display": "3,650",
-      "price_change_abs_display": "▼ 460",
+      "price_change_display": "-12.17%",
+      "price_display": "3,610",
+      "price_change_abs_display": "▼ 500",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "owners": [
@@ -1764,7 +2002,41 @@
           "url": "https://n.news.naver.com/mnews/article/018/0006259155"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "299660.KQ",
+        "closes_20d": [
+          2690.0,
+          2630.0,
+          2590.0,
+          2520.0,
+          2470.0,
+          2620.0,
+          2450.0,
+          2430.0,
+          2415.0,
+          2390.0,
+          2365.0,
+          2400.0,
+          2450.0,
+          2475.0,
+          2555.0,
+          2780.0,
+          2935.0,
+          3815.0,
+          4110.0,
+          3610.0
+        ],
+        "fifty_two_week_high": 9910.0,
+        "fifty_two_week_low": 2275.0,
+        "last_close": 3610.0,
+        "change_20d_pct": 34.2,
+        "pos_52w_pct": 17.5,
+        "from_high_pct": -63.57,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,19.5 L4.2,20.4 L8.4,20.9 L12.6,21.9 L16.8,22.6 L21.1,20.5 L25.3,22.8 L29.5,23.1 L33.7,23.3 L37.9,23.7 L42.1,24.0 L46.3,23.5 L50.5,22.8 L54.7,22.5 L58.9,21.4 L63.2,18.3 L67.4,16.2 L71.6,4.1 L75.8,0.0 L80.0,6.9",
+        "sparkline_direction": "up"
+      }
     },
     {
       "code": "233740",
@@ -1835,18 +2107,18 @@
         }
       ],
       "quote": {
-        "price": "16,470",
-        "change": "125",
-        "change_pct": "+0.76",
-        "change_pct_num": 0.76,
+        "price": "16,680",
+        "change": "335",
+        "change_pct": "+2.05",
+        "change_pct_num": 2.05,
         "direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.76,
+      "price_change_pct_num": 2.05,
       "price_direction": "up",
-      "price_change_display": "+0.76%",
-      "price_display": "16,470",
-      "price_change_abs_display": "▲ 125",
+      "price_change_display": "+2.05%",
+      "price_display": "16,680",
+      "price_change_abs_display": "▲ 335",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "owners": [
@@ -1923,7 +2195,41 @@
           "url": "https://n.news.naver.com/mnews/article/008/0005345540"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "233740.KS",
+        "closes_20d": [
+          17350.0,
+          16660.0,
+          16930.0,
+          15890.0,
+          14120.0,
+          15715.0,
+          13895.0,
+          13865.0,
+          13450.0,
+          13325.0,
+          14730.0,
+          14315.0,
+          14525.0,
+          14505.0,
+          14805.0,
+          15870.0,
+          16105.0,
+          16095.0,
+          16345.0,
+          16680.0
+        ],
+        "fifty_two_week_high": 21750.0,
+        "fifty_two_week_low": 6485.0,
+        "last_close": 16680.0,
+        "change_20d_pct": -3.86,
+        "pos_52w_pct": 66.8,
+        "from_high_pct": -23.31,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,0.0 L4.2,4.1 L8.4,2.5 L12.6,8.7 L16.8,19.3 L21.1,9.7 L25.3,20.6 L29.5,20.8 L33.7,23.3 L37.9,24.0 L42.1,15.6 L46.3,18.1 L50.5,16.8 L54.7,17.0 L58.9,15.2 L63.2,8.8 L67.4,7.4 L71.6,7.5 L75.8,6.0 L80.0,4.0",
+        "sparkline_direction": "down"
+      }
     },
     {
       "code": "028050",
@@ -1979,18 +2285,18 @@
         }
       ],
       "quote": {
-        "price": "51,000",
-        "change": "1,700",
-        "change_pct": "+3.45",
-        "change_pct_num": 3.45,
+        "price": "51,700",
+        "change": "2,400",
+        "change_pct": "+4.87",
+        "change_pct_num": 4.87,
         "direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": 3.45,
+      "price_change_pct_num": 4.87,
       "price_direction": "up",
-      "price_change_display": "+3.45%",
-      "price_display": "51,000",
-      "price_change_abs_display": "▲ 1,700",
+      "price_change_display": "+4.87%",
+      "price_display": "51,700",
+      "price_change_abs_display": "▲ 2,400",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "owners": [
@@ -2065,7 +2371,41 @@
           "url": "https://n.news.naver.com/mnews/article/055/0001349828"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "028050.KS",
+        "closes_20d": [
+          33700.0,
+          32900.0,
+          33100.0,
+          33250.0,
+          35700.0,
+          37900.0,
+          35100.0,
+          40550.0,
+          45650.0,
+          47800.0,
+          50500.0,
+          51300.0,
+          51200.0,
+          49550.0,
+          51800.0,
+          52400.0,
+          50400.0,
+          49550.0,
+          49300.0,
+          51700.0
+        ],
+        "fifty_two_week_high": 54500.0,
+        "fifty_two_week_low": 18700.0,
+        "last_close": 51700.0,
+        "change_20d_pct": 53.41,
+        "pos_52w_pct": 92.2,
+        "from_high_pct": -5.14,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,23.0 L4.2,24.0 L8.4,23.8 L12.6,23.6 L16.8,20.6 L21.1,17.8 L25.3,21.3 L29.5,14.6 L33.7,8.3 L37.9,5.7 L42.1,2.3 L46.3,1.4 L50.5,1.5 L54.7,3.5 L58.9,0.7 L63.2,0.0 L67.4,2.5 L71.6,3.5 L75.8,3.8 L80.0,0.9",
+        "sparkline_direction": "up"
+      }
     },
     {
       "code": "310210",
@@ -2126,18 +2466,18 @@
         }
       ],
       "quote": {
-        "price": "316,500",
-        "change": "26,000",
-        "change_pct": "-7.59",
-        "change_pct_num": -7.59,
+        "price": "308,000",
+        "change": "34,500",
+        "change_pct": "-10.07",
+        "change_pct_num": -10.07,
         "direction": "down"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": -7.59,
+      "price_change_pct_num": -10.07,
       "price_direction": "down",
-      "price_change_display": "-7.59%",
-      "price_display": "316,500",
-      "price_change_abs_display": "▼ 26,000",
+      "price_change_display": "-10.07%",
+      "price_display": "308,000",
+      "price_change_abs_display": "▼ 34,500",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "owners": [
@@ -2211,7 +2551,41 @@
           "url": "https://n.news.naver.com/mnews/article/015/0005276914"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "310210.KQ",
+        "closes_20d": [
+          300000.0,
+          316000.0,
+          313500.0,
+          320000.0,
+          307000.0,
+          319000.0,
+          282000.0,
+          279000.0,
+          272000.0,
+          273000.0,
+          280000.0,
+          282000.0,
+          287000.0,
+          297000.0,
+          279500.0,
+          295500.0,
+          301000.0,
+          307000.0,
+          342500.0,
+          308000.0
+        ],
+        "fifty_two_week_high": 375500.0,
+        "fifty_two_week_low": 89800.0,
+        "last_close": 308000.0,
+        "change_20d_pct": 2.67,
+        "pos_52w_pct": 76.4,
+        "from_high_pct": -17.98,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,14.5 L4.2,9.0 L8.4,9.9 L12.6,7.7 L16.8,12.1 L21.1,8.0 L25.3,20.6 L29.5,21.6 L33.7,24.0 L37.9,23.7 L42.1,21.3 L46.3,20.6 L50.5,18.9 L54.7,15.5 L58.9,21.4 L63.2,16.0 L67.4,14.1 L71.6,12.1 L75.8,0.0 L80.0,11.7",
+        "sparkline_direction": "up"
+      }
     },
     {
       "code": "445680",
@@ -2287,18 +2661,18 @@
         }
       ],
       "quote": {
-        "price": "87,600",
-        "change": "1,700",
-        "change_pct": "-1.90",
-        "change_pct_num": -1.9,
+        "price": "87,800",
+        "change": "1,500",
+        "change_pct": "-1.68",
+        "change_pct_num": -1.68,
         "direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -1.9,
+      "price_change_pct_num": -1.68,
       "price_direction": "down",
-      "price_change_display": "-1.90%",
-      "price_display": "87,600",
-      "price_change_abs_display": "▼ 1,700",
+      "price_change_display": "-1.68%",
+      "price_display": "87,800",
+      "price_change_abs_display": "▼ 1,500",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "owners": [
@@ -2376,7 +2750,41 @@
           "url": "https://n.news.naver.com/mnews/article/018/0006242703"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "445680.KQ",
+        "closes_20d": [
+          116900.0,
+          116700.0,
+          113200.0,
+          109700.0,
+          101400.0,
+          87300.0,
+          77500.0,
+          77400.0,
+          79600.0,
+          78800.0,
+          84600.0,
+          76900.0,
+          74300.0,
+          82500.0,
+          90500.0,
+          93200.0,
+          90700.0,
+          90800.0,
+          89300.0,
+          87800.0
+        ],
+        "fifty_two_week_high": 149200.0,
+        "fifty_two_week_low": 23050.0,
+        "last_close": 87800.0,
+        "change_20d_pct": -24.89,
+        "pos_52w_pct": 51.3,
+        "from_high_pct": -41.15,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,0.0 L4.2,0.1 L8.4,2.1 L12.6,4.1 L16.8,8.7 L21.1,16.7 L25.3,22.2 L29.5,22.3 L33.7,21.0 L37.9,21.5 L42.1,18.2 L46.3,22.5 L50.5,24.0 L54.7,19.4 L58.9,14.9 L63.2,13.4 L67.4,14.8 L71.6,14.7 L75.8,15.5 L80.0,16.4",
+        "sparkline_direction": "down"
+      }
     },
     {
       "code": "009540",
@@ -2446,18 +2854,18 @@
         }
       ],
       "quote": {
-        "price": "416,500",
-        "change": "3,500",
-        "change_pct": "+0.85",
-        "change_pct_num": 0.85,
+        "price": "427,500",
+        "change": "14,500",
+        "change_pct": "+3.51",
+        "change_pct_num": 3.51,
         "direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": 0.85,
+      "price_change_pct_num": 3.51,
       "price_direction": "up",
-      "price_change_display": "+0.85%",
-      "price_display": "416,500",
-      "price_change_abs_display": "▲ 3,500",
+      "price_change_display": "+3.51%",
+      "price_display": "427,500",
+      "price_change_abs_display": "▲ 14,500",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "owners": [
@@ -2532,7 +2940,41 @@
           "url": "https://n.news.naver.com/mnews/article/011/0004612533"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "009540.KS",
+        "closes_20d": [
+          385000.0,
+          375000.0,
+          367000.0,
+          347000.0,
+          344000.0,
+          372500.0,
+          350500.0,
+          375000.0,
+          371500.0,
+          376000.0,
+          389500.0,
+          391000.0,
+          394000.0,
+          388500.0,
+          396500.0,
+          401500.0,
+          408000.0,
+          419500.0,
+          413000.0,
+          427500.0
+        ],
+        "fifty_two_week_high": 494500.0,
+        "fifty_two_week_low": 217500.0,
+        "last_close": 427500.0,
+        "change_20d_pct": 11.04,
+        "pos_52w_pct": 75.8,
+        "from_high_pct": -13.55,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,12.2 L4.2,15.1 L8.4,17.4 L12.6,23.1 L16.8,24.0 L21.1,15.8 L25.3,22.1 L29.5,15.1 L33.7,16.1 L37.9,14.8 L42.1,10.9 L46.3,10.5 L50.5,9.6 L54.7,11.2 L58.9,8.9 L63.2,7.5 L67.4,5.6 L71.6,2.3 L75.8,4.2 L80.0,0.0",
+        "sparkline_direction": "up"
+      }
     },
     {
       "code": "174900",
@@ -2632,18 +3074,18 @@
         }
       ],
       "quote": {
-        "price": "50,900",
-        "change": "4,900",
-        "change_pct": "-8.78",
-        "change_pct_num": -8.78,
+        "price": "48,700",
+        "change": "7,100",
+        "change_pct": "-12.72",
+        "change_pct_num": -12.72,
         "direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -8.78,
+      "price_change_pct_num": -12.72,
       "price_direction": "down",
-      "price_change_display": "-8.78%",
-      "price_display": "50,900",
-      "price_change_abs_display": "▼ 4,900",
+      "price_change_display": "-12.72%",
+      "price_display": "48,700",
+      "price_change_abs_display": "▼ 7,100",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "owners": [
@@ -2718,7 +3160,41 @@
           "url": "https://n.news.naver.com/mnews/article/016/0002621338"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "174900.KQ",
+        "closes_20d": [
+          66900.0,
+          75700.0,
+          71800.0,
+          64500.0,
+          56700.0,
+          60700.0,
+          57100.0,
+          56300.0,
+          50100.0,
+          50900.0,
+          53500.0,
+          50700.0,
+          50300.0,
+          50200.0,
+          50700.0,
+          52800.0,
+          57900.0,
+          55800.0,
+          55800.0,
+          48700.0
+        ],
+        "fifty_two_week_high": 95800.0,
+        "fifty_two_week_low": 8770.0,
+        "last_close": 48700.0,
+        "change_20d_pct": -27.2,
+        "pos_52w_pct": 45.9,
+        "from_high_pct": -49.16,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,7.8 L4.2,0.0 L8.4,3.5 L12.6,10.0 L16.8,16.9 L21.1,13.3 L25.3,16.5 L29.5,17.2 L33.7,22.8 L37.9,22.0 L42.1,19.7 L46.3,22.2 L50.5,22.6 L54.7,22.7 L58.9,22.2 L63.2,20.4 L67.4,15.8 L71.6,17.7 L75.8,17.7 L80.0,24.0",
+        "sparkline_direction": "down"
+      }
     },
     {
       "code": "298380",
@@ -2769,18 +3245,18 @@
         }
       ],
       "quote": {
-        "price": "157,700",
-        "change": "2,500",
-        "change_pct": "-1.56",
-        "change_pct_num": -1.56,
+        "price": "155,900",
+        "change": "4,300",
+        "change_pct": "-2.68",
+        "change_pct_num": -2.68,
         "direction": "down"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": -1.56,
+      "price_change_pct_num": -2.68,
       "price_direction": "down",
-      "price_change_display": "-1.56%",
-      "price_display": "157,700",
-      "price_change_abs_display": "▼ 2,500",
+      "price_change_display": "-2.68%",
+      "price_display": "155,900",
+      "price_change_abs_display": "▼ 4,300",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "owners": [
@@ -2855,7 +3331,41 @@
           "url": "https://n.news.naver.com/mnews/article/277/0005752306"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "298380.KQ",
+        "closes_20d": [
+          172300.0,
+          179900.0,
+          180100.0,
+          171600.0,
+          165900.0,
+          180000.0,
+          159800.0,
+          156800.0,
+          154400.0,
+          153800.0,
+          158400.0,
+          155600.0,
+          157700.0,
+          155000.0,
+          155900.0,
+          163800.0,
+          163900.0,
+          161500.0,
+          160200.0,
+          155900.0
+        ],
+        "fifty_two_week_high": 257500.0,
+        "fifty_two_week_low": 57700.0,
+        "last_close": 155900.0,
+        "change_20d_pct": -9.52,
+        "pos_52w_pct": 49.1,
+        "from_high_pct": -39.46,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,7.1 L4.2,0.2 L8.4,0.0 L12.6,7.8 L16.8,13.0 L21.1,0.1 L25.3,18.5 L29.5,21.3 L33.7,23.5 L37.9,24.0 L42.1,19.8 L46.3,22.4 L50.5,20.4 L54.7,22.9 L58.9,22.1 L63.2,14.9 L67.4,14.8 L71.6,17.0 L75.8,18.2 L80.0,22.1",
+        "sparkline_direction": "down"
+      }
     },
     {
       "code": "166480",
@@ -2902,18 +3412,18 @@
         }
       ],
       "quote": {
-        "price": "3,160",
-        "change": "185",
-        "change_pct": "-5.53",
-        "change_pct_num": -5.53,
+        "price": "3,180",
+        "change": "165",
+        "change_pct": "-4.93",
+        "change_pct_num": -4.93,
         "direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -5.53,
+      "price_change_pct_num": -4.93,
       "price_direction": "down",
-      "price_change_display": "-5.53%",
-      "price_display": "3,160",
-      "price_change_abs_display": "▼ 185",
+      "price_change_display": "-4.93%",
+      "price_display": "3,180",
+      "price_change_abs_display": "▼ 165",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "owners": [
@@ -2987,7 +3497,41 @@
           "url": "https://n.news.naver.com/mnews/article/018/0006240805"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "166480.KQ",
+        "closes_20d": [
+          2315.0,
+          2350.0,
+          2535.0,
+          2375.0,
+          2370.0,
+          2530.0,
+          2410.0,
+          2415.0,
+          2320.0,
+          2290.0,
+          2405.0,
+          2385.0,
+          2460.0,
+          2460.0,
+          2550.0,
+          2655.0,
+          2990.0,
+          2985.0,
+          3345.0,
+          3180.0
+        ],
+        "fifty_two_week_high": 4310.0,
+        "fifty_two_week_low": 1014.0,
+        "last_close": 3180.0,
+        "change_20d_pct": 37.37,
+        "pos_52w_pct": 65.7,
+        "from_high_pct": -26.22,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,23.4 L4.2,22.6 L8.4,18.4 L12.6,22.1 L16.8,22.2 L21.1,18.5 L25.3,21.3 L29.5,21.2 L33.7,23.3 L37.9,24.0 L42.1,21.4 L46.3,21.8 L50.5,20.1 L54.7,20.1 L58.9,18.1 L63.2,15.7 L67.4,8.1 L71.6,8.2 L75.8,0.0 L80.0,3.8",
+        "sparkline_direction": "up"
+      }
     },
     {
       "code": "035720",
@@ -3042,18 +3586,18 @@
         }
       ],
       "quote": {
-        "price": "48,550",
-        "change": "300",
-        "change_pct": "-0.61",
-        "change_pct_num": -0.61,
-        "direction": "down"
+        "price": "48,950",
+        "change": "100",
+        "change_pct": "+0.20",
+        "change_pct_num": 0.2,
+        "direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -0.61,
-      "price_direction": "down",
-      "price_change_display": "-0.61%",
-      "price_display": "48,550",
-      "price_change_abs_display": "▼ 300",
+      "price_change_pct_num": 0.2,
+      "price_direction": "up",
+      "price_change_display": "+0.20%",
+      "price_display": "48,950",
+      "price_change_abs_display": "▲ 100",
       "news_sentiment_label": "중립",
       "confidence_label": "중간",
       "owners": [
@@ -3129,7 +3673,41 @@
           "url": "https://n.news.naver.com/mnews/article/003/0013899482"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "035720.KS",
+        "closes_20d": [
+          49050.0,
+          48650.0,
+          48650.0,
+          47100.0,
+          45800.0,
+          48150.0,
+          45400.0,
+          45200.0,
+          44850.0,
+          46400.0,
+          47850.0,
+          47300.0,
+          47700.0,
+          47000.0,
+          48100.0,
+          49600.0,
+          50600.0,
+          50000.0,
+          48850.0,
+          48950.0
+        ],
+        "fifty_two_week_high": 71600.0,
+        "fifty_two_week_low": 36300.0,
+        "last_close": 48950.0,
+        "change_20d_pct": -0.2,
+        "pos_52w_pct": 35.8,
+        "from_high_pct": -31.63,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,6.5 L4.2,8.1 L8.4,8.1 L12.6,14.6 L16.8,20.0 L21.1,10.2 L25.3,21.7 L29.5,22.5 L33.7,24.0 L37.9,17.5 L42.1,11.5 L46.3,13.8 L50.5,12.1 L54.7,15.0 L58.9,10.4 L63.2,4.2 L67.4,0.0 L71.6,2.5 L75.8,7.3 L80.0,6.9",
+        "sparkline_direction": "down"
+      }
     },
     {
       "code": "005380",
@@ -3203,18 +3781,18 @@
         }
       ],
       "quote": {
-        "price": "538,000",
-        "change": "11,000",
-        "change_pct": "+2.09",
-        "change_pct_num": 2.09,
+        "price": "546,000",
+        "change": "19,000",
+        "change_pct": "+3.61",
+        "change_pct_num": 3.61,
         "direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": 2.09,
+      "price_change_pct_num": 3.61,
       "price_direction": "up",
-      "price_change_display": "+2.09%",
-      "price_display": "538,000",
-      "price_change_abs_display": "▲ 11,000",
+      "price_change_display": "+3.61%",
+      "price_display": "546,000",
+      "price_change_abs_display": "▲ 19,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "owners": [
@@ -3290,7 +3868,41 @@
           "url": "https://n.news.naver.com/mnews/article/031/0001023560"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "005380.KS",
+        "closes_20d": [
+          501000.0,
+          490000.0,
+          495000.0,
+          469500.0,
+          445500.0,
+          487500.0,
+          465500.0,
+          471000.0,
+          469000.0,
+          473000.0,
+          508000.0,
+          489500.0,
+          489500.0,
+          478500.0,
+          491500.0,
+          508000.0,
+          534000.0,
+          538000.0,
+          527000.0,
+          546000.0
+        ],
+        "fifty_two_week_high": 687000.0,
+        "fifty_two_week_low": 179300.0,
+        "last_close": 546000.0,
+        "change_20d_pct": 8.98,
+        "pos_52w_pct": 72.2,
+        "from_high_pct": -20.52,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,10.7 L4.2,13.4 L8.4,12.2 L12.6,18.3 L16.8,24.0 L21.1,14.0 L25.3,19.2 L29.5,17.9 L33.7,18.4 L37.9,17.4 L42.1,9.1 L46.3,13.5 L50.5,13.5 L54.7,16.1 L58.9,13.0 L63.2,9.1 L67.4,2.9 L71.6,1.9 L75.8,4.5 L80.0,0.0",
+        "sparkline_direction": "up"
+      }
     },
     {
       "code": "034230",
@@ -3350,18 +3962,18 @@
         }
       ],
       "quote": {
-        "price": "15,240",
-        "change": "220",
-        "change_pct": "-1.42",
-        "change_pct_num": -1.42,
+        "price": "15,350",
+        "change": "110",
+        "change_pct": "-0.71",
+        "change_pct_num": -0.71,
         "direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -1.42,
+      "price_change_pct_num": -0.71,
       "price_direction": "down",
-      "price_change_display": "-1.42%",
-      "price_display": "15,240",
-      "price_change_abs_display": "▼ 220",
+      "price_change_display": "-0.71%",
+      "price_display": "15,350",
+      "price_change_abs_display": "▼ 110",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "owners": [
@@ -3437,7 +4049,41 @@
           "url": "https://n.news.naver.com/mnews/article/003/0013889881"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "034230.KS",
+        "closes_20d": [
+          16970.0,
+          16990.0,
+          17830.0,
+          16500.0,
+          16100.0,
+          16900.0,
+          16490.0,
+          15020.0,
+          14810.0,
+          14600.0,
+          14850.0,
+          14820.0,
+          15170.0,
+          15160.0,
+          15400.0,
+          15400.0,
+          15920.0,
+          15710.0,
+          15460.0,
+          15350.0
+        ],
+        "fifty_two_week_high": 24000.0,
+        "fifty_two_week_low": 11720.0,
+        "last_close": 15350.0,
+        "change_20d_pct": -9.55,
+        "pos_52w_pct": 29.6,
+        "from_high_pct": -36.04,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,6.4 L4.2,6.2 L8.4,0.0 L12.6,9.9 L16.8,12.9 L21.1,6.9 L25.3,10.0 L29.5,20.9 L33.7,22.4 L37.9,24.0 L42.1,22.1 L46.3,22.4 L50.5,19.8 L54.7,19.8 L58.9,18.1 L63.2,18.1 L67.4,14.2 L71.6,15.8 L75.8,17.6 L80.0,18.4",
+        "sparkline_direction": "down"
+      }
     },
     {
       "code": "352820",
@@ -3502,18 +4148,18 @@
         }
       ],
       "quote": {
-        "price": "249,500",
-        "change": "5,500",
-        "change_pct": "-2.16",
-        "change_pct_num": -2.16,
+        "price": "249,000",
+        "change": "6,000",
+        "change_pct": "-2.35",
+        "change_pct_num": -2.35,
         "direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -2.16,
+      "price_change_pct_num": -2.35,
       "price_direction": "down",
-      "price_change_display": "-2.16%",
-      "price_display": "249,500",
-      "price_change_abs_display": "▼ 5,500",
+      "price_change_display": "-2.35%",
+      "price_display": "249,000",
+      "price_change_abs_display": "▼ 6,000",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "owners": [
@@ -3588,7 +4234,41 @@
           "url": "https://n.news.naver.com/mnews/article/138/0002225120"
         }
       ],
-      "news_count": 7
+      "news_count": 7,
+      "history": {
+        "symbol": "352820.KS",
+        "closes_20d": [
+          304500.0,
+          304000.0,
+          307000.0,
+          302500.0,
+          299000.0,
+          289500.0,
+          268500.0,
+          270000.0,
+          271000.0,
+          256000.0,
+          260500.0,
+          255500.0,
+          254000.0,
+          250000.0,
+          245500.0,
+          255500.0,
+          268000.0,
+          262500.0,
+          255000.0,
+          249000.0
+        ],
+        "fifty_two_week_high": 405500.0,
+        "fifty_two_week_low": 226500.0,
+        "last_close": 249000.0,
+        "change_20d_pct": -18.23,
+        "pos_52w_pct": 12.6,
+        "from_high_pct": -38.59,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,1.0 L4.2,1.2 L8.4,0.0 L12.6,1.8 L16.8,3.1 L21.1,6.8 L25.3,15.0 L29.5,14.4 L33.7,14.0 L37.9,19.9 L42.1,18.1 L46.3,20.1 L50.5,20.7 L54.7,22.2 L58.9,24.0 L63.2,20.1 L67.4,15.2 L71.6,17.4 L75.8,20.3 L80.0,22.6",
+        "sparkline_direction": "down"
+      }
     }
   ],
   "mood_dashboard": {
