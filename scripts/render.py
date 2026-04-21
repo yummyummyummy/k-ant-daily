@@ -162,7 +162,7 @@ def _merge_config_from_stocks_yml(summary: dict, yml_path: Path) -> None:
         src = by_code.get(stock.get("code"))
         if not src:
             continue
-        for key in ("owners", "overnight_proxy", "is_etf"):
+        for key in ("owners", "overnight_proxy", "is_etf", "leader"):
             if src.get(key) is not None and not stock.get(key):
                 stock[key] = src[key]
 
@@ -453,11 +453,20 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
     canonical = f"{base_url.rstrip('/')}/{filename}"
 
     stocks = summary.get("stocks", []) or []
-    # Alphabetize owners on each stock once so both the card summary row and
-    # the coffee friend-cards render them in the same order.
+    # Order owners: designated leader first, then the remaining names in
+    # 가나다 (unicode) order. This feeds both the coffee friend-card primary
+    # chip and the stock-card summary row's primary chip, so the "대장"
+    # name consistently appears first everywhere.
     for s in stocks:
-        if s.get("owners"):
-            s["owners"] = sorted(s["owners"])
+        owners = s.get("owners") or []
+        if not owners:
+            continue
+        leader = s.get("leader")
+        if leader and leader in owners:
+            rest = sorted(o for o in owners if o != leader)
+            s["owners"] = [leader, *rest]
+        else:
+            s["owners"] = sorted(owners)
     # Display order for the 📈 종목별 section: alphabetical (가나다 순).
     # Leaves summary["stocks"] untouched for any downstream consumer.
     stocks_display = sorted(stocks, key=lambda s: s.get("name", ""))

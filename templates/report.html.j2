@@ -309,6 +309,7 @@
   .live-indicator.error  { color: var(--neg); }
   .friend-card .owners {
     grid-column: 1; grid-row: 2;
+    position: relative;
     display: flex; flex-wrap: wrap; gap: 2px; margin-top: 1px; min-width: 0;
   }
   .friend-card .owner-chip {
@@ -319,6 +320,33 @@
   @media (prefers-color-scheme: dark) {
     .friend-card .owner-chip { background: rgba(255,255,255,0.12); }
   }
+
+  /* Owner popover — applies to both coffee friend-cards and stock-card rows */
+  .owners-wrap {
+    position: relative;
+    display: inline-flex; gap: 2px; align-items: center;
+  }
+  .owners-wrap .owner-more {
+    cursor: pointer; opacity: 0.75;
+    background: rgba(0,0,0,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    .owners-wrap .owner-more { background: rgba(255,255,255,0.08); }
+  }
+  .owner-popover {
+    display: none;
+    position: absolute; top: calc(100% + 4px); right: 0;
+    z-index: 100;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px; padding: 6px;
+    gap: 3px; flex-wrap: wrap; min-width: 120px; max-width: 220px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  }
+  @media (hover: hover) {
+    .owners-wrap:hover .owner-popover { display: flex; }
+  }
+  .owners-wrap:focus-within .owner-popover,
+  .owners-wrap.open .owner-popover { display: flex; }
 
   /* MACRO / SECTOR collapse toggle (reuses focus-toggle styling) */
   .section-toggle > summary {
@@ -559,6 +587,23 @@
   }
 </style>
 </head>
+{#- Owner chips with collapsed "primary + (+N)" view and hover/tap popover.
+    `owners` is expected to be sorted (leader first, then 가나다 순). -#}
+{%- macro owner_chips(owners) -%}
+  {%- set n = owners | length -%}
+  {%- if n == 0 -%}
+  {%- elif n == 1 -%}
+    <span class="owners-wrap"><span class="owner-chip">👤 {{ owners[0] }}</span></span>
+  {%- else -%}
+    <span class="owners-wrap" tabindex="0">
+      <span class="owner-chip">👤 {{ owners[0] }}</span>
+      <span class="owner-chip owner-more" aria-label="+{{ n - 1 }}명 더 보기">+{{ n - 1 }}</span>
+      <span class="owner-popover">
+        {%- for o in owners -%}<span class="owner-chip">👤 {{ o }}</span>{%- endfor -%}
+      </span>
+    </span>
+  {%- endif -%}
+{%- endmacro -%}
 <body>
 {% if ticker %}
 <div class="ticker-strip" id="ticker-strip">
@@ -603,9 +648,7 @@
               <span class="pct">{{ f.change_display }}</span>
             </div>
           </div>
-          <div class="owners">
-            {% for o in f.owners %}<span class="owner-chip">👤 {{ o }}</span>{% endfor %}
-          </div>
+          <div class="owners">{{ owner_chips(f.owners) }}</div>
         </div>
         {% endfor %}
       </div>
@@ -626,9 +669,7 @@
               <span class="pct">{{ f.change_display }}</span>
             </div>
           </div>
-          <div class="owners">
-            {% for o in f.owners %}<span class="owner-chip">👤 {{ o }}</span>{% endfor %}
-          </div>
+          <div class="owners">{{ owner_chips(f.owners) }}</div>
         </div>
         {% endfor %}
       </div>
@@ -922,9 +963,7 @@
           </span>
           {% endif %}
           {% if stock.owners %}
-          <span class="owner-chips">
-            {% for o in stock.owners %}<span class="owner-chip">👤 {{ o }}</span>{% endfor %}
-          </span>
+          <span class="owner-chips">{{ owner_chips(stock.owners) }}</span>
           {% endif %}
         </summary>
         <div class="body">
@@ -1203,7 +1242,7 @@
 
     // Back off if the user is mid-interaction so a card doesn't move
     // under the cursor/finger.
-    if (cards.some((c) => c.matches(":hover") || c.querySelector("details[open]"))) {
+    if (cards.some((c) => c.matches(":hover") || c.querySelector("details[open]") || c.querySelector(".owners-wrap.open"))) {
       return;
     }
 
@@ -1261,7 +1300,13 @@
       const q = data[card.dataset.code];
       if (!q || typeof q.change_pct !== "number") return;
       const name = card.querySelector(".stock-name")?.textContent?.trim() || "";
-      const owners = [...card.querySelectorAll(".owner-chip")]
+      // Only pick up chips inside the popover (which is the full owner list).
+      // Falls back to top-level chips when there's no popover (single-owner card).
+      const pop = card.querySelector(".owner-popover");
+      const chipScope = pop || card.querySelector(".owners-wrap") || card.querySelector(".owners");
+      const rawChips = chipScope ? [...chipScope.querySelectorAll(".owner-chip")] : [];
+      const owners = rawChips
+        .filter((el) => !el.classList.contains("owner-more"))
         .map((el) => el.textContent.replace("👤", "").trim())
         .filter(Boolean);
       entries.push({ name, owners, pct: q.change_pct });
@@ -1315,6 +1360,23 @@
       setIndicator("error", "⚠️ 실시간 업데이트 실패 (스냅샷 표시) · " + fmtKstTime(kstNow()));
     }
   }
+
+  // Owner popover tap toggle — needed on touch devices where :hover isn't reliable.
+  // Also closes any other open popover when one is opened.
+  document.addEventListener("click", (e) => {
+    const wrap = e.target.closest(".owners-wrap");
+    document.querySelectorAll(".owners-wrap.open").forEach((el) => {
+      if (el !== wrap) el.classList.remove("open");
+    });
+    if (wrap && wrap.querySelector(".owner-popover")) {
+      // Don't toggle if the user clicked a link/button inside; only when
+      // the target was the wrap itself, the primary chip, or the +N chip.
+      const t = e.target;
+      if (t === wrap || t.classList.contains("owner-chip")) {
+        wrap.classList.toggle("open");
+      }
+    }
+  });
 
   function init() {
     // Ticker (indices + FX + crypto) polls 24/7 — crypto trades on weekends,
