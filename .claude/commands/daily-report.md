@@ -103,11 +103,16 @@ description: Generate and publish today's pre-market stock briefing
   },
 
   "sectors": [
-    {"name": "반도체", "summary": "...", "impact": "...", "affected": [...],
-     "key_points": [
-       {"point": "...", "detail": "...", "impact": "...",
-        "published_at": "2026-04-20T15:57:00+09:00",
-        "sources": [...]}
+    {"name": "반도체",
+     "emoji": "🔧",
+     "impact": "positive|neutral|negative",
+     "headline": "한 줄 내러티브 (예: 'AI 슈퍼사이클 모멘텀 재확인')",
+     "news": [
+       {"title": "뉴스 헤드라인",
+        "impact": "positive|neutral|negative",
+        "published_at": "2026-04-21T04:30:00+09:00",
+        "source": {"title": "언론사", "url": "..."},
+        "note": "optional — 한 줄 부연"}
      ]}
   ],
 
@@ -199,7 +204,13 @@ description: Generate and publish today's pre-market stock briefing
   - `fx_macro` — 원/달러, WTI, 금, 비트코인, 원자재
   - 각 축 값: `{"impact": "positive|neutral|negative", "note": "한 줄 근거 30자 이내"}`
   - `neutral` 은 "혼조" 의미로도 씀 (긍정·부정 신호 섞여 있음).
-- 섹터/종목 `key_points` 각 항목엔 **반드시 `published_at` 을 채운다**. 참조한 뉴스의 발행시각(news.json의 `date` 필드, ISO-8601 또는 Naver식 `YYYY.MM.DD HH:MM` 모두 허용). 여러 소스가 있으면 가장 최신 소스 시각 기준. render가 자동으로 `X시간 전`으로 바꿔 표시하고 published_at 내림차순으로 정렬한다.
+- 섹터 `news` 규칙:
+  - 섹터는 **내가 가진 종목과 독립**. 섹터 자체의 시황·매크로 뉴스만. `affected` 필드 쓰지 않음.
+  - 각 섹터에 `headline` (오늘의 한 줄 내러티브) + **상위 3~5건의 news**를 담는다.
+  - 각 news item 은 `title` · `impact` · `published_at` · `source{title,url}` 필수. `note` 는 optional.
+  - Render가 자동으로 `published_at` 내림차순 정렬 + `time_ago` 계산.
+- 종목 `news[]` 는 `fetch_news.py`가 Naver에서 자동 수집. **agent는 summary.json에 다시 쓰지 않아도 된다**. 필요하면 상위 5개 뉴스에 대해 `impact` 필드만 라벨링 (positive/neutral/negative).
+- 종목 `key_points` 는 이제 optional. agent 코멘터리(해석·포인트)가 필요할 때만 사용. 기본은 뉴스 리스트 + decision block(news_sentiment/overnight/priced_in) 이 주연.
 - `impact` 해석:
   - KOSPI +1% → `positive` (상승=호재)
   - USD/KRW 상승: 수출주 긍정/수입주 부담 → 종합 `neutral` 기본값

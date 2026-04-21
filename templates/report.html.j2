@@ -407,6 +407,55 @@
   .confidence-chip.medium { color: var(--fg); }
   .confidence-chip.low    { opacity: 0.65; }
 
+  /* Fresh-news counter on stock summary row (오늘 뉴스 N건) */
+  .news-count-chip {
+    display: inline-flex; align-items: center; gap: 2px;
+    font-size: 10px; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    background: rgba(245, 158, 11, 0.12); color: #d97706;
+  }
+  @media (prefers-color-scheme: dark) {
+    .news-count-chip { background: rgba(245, 158, 11, 0.18); color: #fbbf24; }
+  }
+
+  /* Stock news block (inside expanded stock body) — trader's morning digest */
+  .stock-news-block {
+    margin: 10px 0 12px;
+  }
+  .stock-news-block > h4 {
+    font-size: 12px; color: var(--muted); margin: 0 0 8px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .stock-news-block ul { list-style: none; padding: 0; margin: 0; }
+  .stock-news-block li {
+    display: flex; gap: 8px; padding: 6px 0;
+    border-top: 1px dashed var(--border);
+  }
+  .stock-news-block li:first-child { border-top: none; padding-top: 0; }
+  .stock-news-block .news-dot {
+    flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%;
+    margin-top: 8px; background: var(--muted);
+  }
+  .stock-news-block .news-dot.positive { background: var(--pos); }
+  .stock-news-block .news-dot.negative { background: var(--neg); }
+  .stock-news-block .news-body { flex: 1; min-width: 0; }
+  .stock-news-block .news-title { font-size: 13px; line-height: 1.4; }
+  .stock-news-block .news-title a { color: var(--fg); text-decoration: none; }
+  .stock-news-block .news-title a:hover { color: var(--accent); }
+  .stock-news-block .news-meta {
+    font-size: 11px; color: var(--muted); margin-top: 2px;
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .stock-news-block .news-meta .time-ago { color: var(--accent); font-weight: 600; }
+  .stock-news-block details.news-more > summary {
+    list-style: none; cursor: pointer; user-select: none;
+    font-size: 12px; font-weight: 600; color: var(--accent);
+    padding: 6px 0 0; display: inline-flex; align-items: center; gap: 4px;
+  }
+  .stock-news-block details.news-more > summary::-webkit-details-marker { display: none; }
+  .stock-news-block details.news-more > summary::after { content: "▾"; font-size: 10px; }
+  .stock-news-block details.news-more[open] > summary::after { content: "▴"; }
+
   /* STOCK CARD owner chips (right-aligned on summary row) */
   article.stock > details > summary { position: relative; padding-right: 30px; }
   article.stock > details > summary::after { position: absolute; right: 12px; top: 14px; margin-left: 0; }
@@ -576,6 +625,62 @@
   .disclosures .date { color: var(--muted); font-size: 11px; margin-left: 6px; }
 
   .sector-tag { display: inline-block; font-size: 11px; background: var(--border); color: var(--muted); padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
+
+  /* SECTOR BRIEFING CARD (new news-centric layout) */
+  .sector-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-left: 3px solid var(--muted);
+    border-radius: 10px; padding: 12px 14px; margin-bottom: 10px;
+  }
+  .sector-card.positive { border-left-color: var(--pos); }
+  .sector-card.negative { border-left-color: var(--neg); }
+  .sector-card.neutral  { border-left-color: var(--muted); }
+  .sector-card .sec-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px; flex-wrap: wrap;
+  }
+  .sector-card .sec-title { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+  .sector-card .sec-emoji { font-size: 18px; }
+  .sector-card .sec-headline {
+    color: var(--fg); font-size: 13px; margin-top: 4px; line-height: 1.4;
+  }
+  .sector-card .sec-news {
+    list-style: none; padding: 0; margin: 8px 0 0;
+  }
+  .sector-card .sec-news li {
+    display: flex; gap: 8px; padding: 6px 0;
+    border-top: 1px dashed var(--border);
+  }
+  .sector-card .sec-news li:first-child { border-top: none; padding-top: 8px; }
+  .sector-card .news-dot {
+    flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%;
+    margin-top: 7px; background: var(--muted);
+  }
+  .sector-card .news-dot.positive { background: var(--pos); }
+  .sector-card .news-dot.negative { background: var(--neg); }
+  .sector-card .news-body { flex: 1; min-width: 0; }
+  .sector-card .news-title {
+    font-size: 13px; font-weight: 500; line-height: 1.4;
+  }
+  .sector-card .news-title a { color: var(--fg); text-decoration: none; }
+  .sector-card .news-title a:hover { color: var(--accent); }
+  .sector-card .news-meta {
+    font-size: 11px; color: var(--muted); margin-top: 2px;
+    display: flex; gap: 6px; flex-wrap: wrap; align-items: baseline;
+  }
+  .sector-card .news-meta .time-ago { color: var(--accent); font-weight: 600; }
+  .sector-card .news-note {
+    font-size: 12px; color: var(--muted); margin-top: 3px; font-style: italic;
+  }
+  .sector-card details.sec-more > summary {
+    list-style: none; cursor: pointer; user-select: none;
+    font-size: 12px; font-weight: 600; color: var(--accent);
+    padding: 4px 0 0; margin-top: 2px;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .sector-card details.sec-more > summary::-webkit-details-marker { display: none; }
+  .sector-card details.sec-more > summary::after { content: "▾"; font-size: 10px; }
+  .sector-card details.sec-more[open] > summary::after { content: "▴"; }
 
   footer {
     margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border);
@@ -895,40 +1000,67 @@
   </section>
   {% endif %}
 
+  {% macro sector_news_item(n) %}
+    <li>
+      <span class="news-dot {{ n.impact or 'neutral' }}"></span>
+      <div class="news-body">
+        <div class="news-title">
+          {% if n.source and n.source.url %}
+            <a href="{{ n.source.url }}" target="_blank" rel="noopener">{{ n.title }}</a>
+          {% elif n.sources and n.sources[0].url %}
+            <a href="{{ n.sources[0].url }}" target="_blank" rel="noopener">{{ n.title }}</a>
+          {% else %}
+            {{ n.title }}
+          {% endif %}
+        </div>
+        <div class="news-meta">
+          {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
+          {% if n.source and n.source.title %}<span>· {{ n.source.title }}</span>
+          {% elif n.sources %}{% for s in n.sources %}<span>· {{ s.title }}</span>{% endfor %}{% endif %}
+          {% if n.impact %}<span class="impact {{ n.impact }}">{{ n.impact_label or n.impact }}</span>{% endif %}
+        </div>
+        {% if n.note %}<div class="news-note">{{ n.note }}</div>{% endif %}
+      </div>
+    </li>
+  {% endmacro %}
+
   {% if sectors %}
   <section>
     <h2>🏭 섹터 흐름</h2>
     {% for sec in sectors %}
-    <div style="margin-bottom: 10px;">
-      <details class="sector-toggle">
-        <summary>
-          <span class="sector-name">{{ sec.name }}</span>
-          {% if sec.impact %}<span class="impact {{ sec.impact }}">{{ sec.impact_label or sec.impact }}</span>{% endif %}
-          {% for s in sec.affected or [] %}<span class="sector-tag">{{ s }}</span>{% endfor %}
-        </summary>
-        <div class="section-body">
-          {% if sec.summary %}<div class="point-detail">{{ sec.summary }}</div>{% endif %}
-          {% if sec.key_points %}
-          <ul class="points">
-            {% for pt in sec.key_points %}
-            <li>
-              <div class="point-title">
-                <span class="text">{{ pt.point }}</span>
-                {% if pt.impact %}<span class="impact {{ pt.impact }}">{{ pt.impact_label or pt.impact }}</span>{% endif %}
-                {% if pt.time_ago %}<span class="time-ago">{{ pt.time_ago }}</span>{% endif %}
-              </div>
-              {% if pt.detail %}<div class="point-detail">{{ pt.detail }}</div>{% endif %}
-              {% if pt.sources %}
-              <div class="sources">
-                {% for src in pt.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
-              </div>
-              {% endif %}
-            </li>
-            {% endfor %}
-          </ul>
-          {% endif %}
+    <div class="sector-card {{ sec.impact or 'neutral' }}">
+      <div class="sec-head">
+        <div class="sec-title">
+          {% if sec.emoji %}<span class="sec-emoji">{{ sec.emoji }}</span>{% endif %}
+          {{ sec.name }}
         </div>
+        {% if sec.impact %}
+        <span class="macro-mood {{ sec.impact }}">
+          {% if sec.impact == 'positive' %}🟢 우호
+          {% elif sec.impact == 'negative' %}🔴 부담
+          {% else %}🟡 혼조{% endif %}
+        </span>
+        {% endif %}
+      </div>
+      {% if sec.headline %}<div class="sec-headline">{{ sec.headline }}</div>
+      {% elif sec.summary %}<div class="sec-headline">{{ sec.summary }}</div>
+      {% endif %}
+
+      {% if sec.news %}
+      {% set preview = sec.news[:2] %}
+      {% set rest    = sec.news[2:] %}
+      <ul class="sec-news">
+        {% for n in preview %}{{ sector_news_item(n) }}{% endfor %}
+      </ul>
+      {% if rest %}
+      <details class="sec-more">
+        <summary>더 보기 ({{ rest|length }}건)</summary>
+        <ul class="sec-news">
+          {% for n in rest %}{{ sector_news_item(n) }}{% endfor %}
+        </ul>
       </details>
+      {% endif %}
+      {% endif %}
     </div>
     {% endfor %}
   </section>
@@ -941,25 +1073,20 @@
       <details>
         <summary>
           <span class="name">{{ stock.name }}</span>
-          <span class="code">{{ stock.code }}{% if stock.market %} · {{ stock.market }}{% endif %}</span>
+          <span class="code">{{ stock.code }}</span>
+          {% if stock.news_count %}
+          <span class="news-count-chip" title="오늘 새 뉴스 {{ stock.news_count }}건">🔥 {{ stock.news_count }}</span>
+          {% endif %}
           {% if stock.price_change_display %}
           <span class="price-change {{ stock.price_direction }}" title="어제 종가 기준">{{ stock.price_change_display }}</span>
           {% endif %}
-          {% if stock.overnight_signal and stock.overnight_signal.direction %}
-          <span class="overnight-badge {{ stock.overnight_signal.direction }}" title="간밤 해외 프록시 평균">
-            🌙 {% if stock.overnight_signal.direction == 'up' %}▲{% elif stock.overnight_signal.direction == 'down' %}▼{% else %}—{% endif %}
-            {% if stock.overnight_signal.avg_pct is not none %}{{ '%.2f'|format(stock.overnight_signal.avg_pct | abs) }}%{% endif %}
-          </span>
-          {% endif %}
           {% if stock.recommendation %}
           <span class="rec {{ stock.recommendation }}">{{ stock.recommendation_label or stock.recommendation }}</span>
-          {% if stock.confidence %}<span class="confidence-chip {{ stock.confidence }}">신뢰 {{ stock.confidence_label or stock.confidence }}</span>{% endif %}
           {% endif %}
           {% if stock.result and stock.result.outcome and stock.result.outcome != 'n/a' %}
           <span class="outcome-badge {{ stock.result.outcome }}" title="아침 예측 대비 실제 결과">
             {% if stock.result.outcome == 'hit' %}✅{% elif stock.result.outcome == 'partial' %}🟡{% elif stock.result.outcome == 'miss' %}❌{% endif %}
-            {{ stock.result.label or stock.result.outcome }}
-            {% if stock.result.actual_change_pct is not none %}· {{ '%+.2f'|format(stock.result.actual_change_pct) }}%{% endif %}
+            {% if stock.result.actual_change_pct is not none %}{{ '%+.2f'|format(stock.result.actual_change_pct) }}%{% endif %}
           </span>
           {% endif %}
           {% if stock.owners %}
@@ -967,10 +1094,61 @@
           {% endif %}
         </summary>
         <div class="body">
+          {# Trader morning digest: today's news goes first, decision block after #}
+          {% if stock.news %}
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 ({{ stock.news|length }}건, 최신순)</h4>
+            {% set visible_news = stock.news[:5] %}
+            {% set hidden_news  = stock.news[5:] %}
+            <ul>
+              {% for n in visible_news %}
+              <li>
+                <span class="news-dot {{ n.impact or 'neutral' }}"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    {% if n.url or n.link %}
+                    <a href="{{ n.url or n.link }}" target="_blank" rel="noopener">{{ n.title }}</a>
+                    {% else %}{{ n.title }}{% endif %}
+                  </div>
+                  <div class="news-meta">
+                    {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
+                    {% if n.source %}<span>· {{ n.source }}</span>{% endif %}
+                    {% if n.impact %}<span class="impact {{ n.impact }}">{{ n.impact_label or n.impact }}</span>{% endif %}
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+            {% if hidden_news %}
+            <details class="news-more">
+              <summary>더 보기 ({{ hidden_news|length }}건)</summary>
+              <ul>
+                {% for n in hidden_news %}
+                <li>
+                  <span class="news-dot {{ n.impact or 'neutral' }}"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      {% if n.url or n.link %}
+                      <a href="{{ n.url or n.link }}" target="_blank" rel="noopener">{{ n.title }}</a>
+                      {% else %}{{ n.title }}{% endif %}
+                    </div>
+                    <div class="news-meta">
+                      {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
+                      {% if n.source %}<span>· {{ n.source }}</span>{% endif %}
+                    </div>
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+            </details>
+            {% endif %}
+          </div>
+          {% endif %}
+
           {% if stock.news_sentiment or stock.overnight_signal or stock.priced_in is defined or stock.rationale %}
           <div class="decision-block">
             {% if stock.news_sentiment %}
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact {{ stock.news_sentiment }}">{{ stock.news_sentiment_label or stock.news_sentiment }}</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact {{ stock.news_sentiment }}">{{ stock.news_sentiment_label or stock.news_sentiment }}</span>{% if stock.confidence %}<span class="confidence-chip {{ stock.confidence }}">신뢰 {{ stock.confidence_label or stock.confidence }}</span>{% endif %}</div>
             {% endif %}
             {% if stock.overnight_signal and stock.overnight_signal.direction %}
             <div class="row"><span class="label">간밤 신호</span>

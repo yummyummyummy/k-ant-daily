@@ -407,6 +407,55 @@
   .confidence-chip.medium { color: var(--fg); }
   .confidence-chip.low    { opacity: 0.65; }
 
+  /* Fresh-news counter on stock summary row (오늘 뉴스 N건) */
+  .news-count-chip {
+    display: inline-flex; align-items: center; gap: 2px;
+    font-size: 10px; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    background: rgba(245, 158, 11, 0.12); color: #d97706;
+  }
+  @media (prefers-color-scheme: dark) {
+    .news-count-chip { background: rgba(245, 158, 11, 0.18); color: #fbbf24; }
+  }
+
+  /* Stock news block (inside expanded stock body) — trader's morning digest */
+  .stock-news-block {
+    margin: 10px 0 12px;
+  }
+  .stock-news-block > h4 {
+    font-size: 12px; color: var(--muted); margin: 0 0 8px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .stock-news-block ul { list-style: none; padding: 0; margin: 0; }
+  .stock-news-block li {
+    display: flex; gap: 8px; padding: 6px 0;
+    border-top: 1px dashed var(--border);
+  }
+  .stock-news-block li:first-child { border-top: none; padding-top: 0; }
+  .stock-news-block .news-dot {
+    flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%;
+    margin-top: 8px; background: var(--muted);
+  }
+  .stock-news-block .news-dot.positive { background: var(--pos); }
+  .stock-news-block .news-dot.negative { background: var(--neg); }
+  .stock-news-block .news-body { flex: 1; min-width: 0; }
+  .stock-news-block .news-title { font-size: 13px; line-height: 1.4; }
+  .stock-news-block .news-title a { color: var(--fg); text-decoration: none; }
+  .stock-news-block .news-title a:hover { color: var(--accent); }
+  .stock-news-block .news-meta {
+    font-size: 11px; color: var(--muted); margin-top: 2px;
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .stock-news-block .news-meta .time-ago { color: var(--accent); font-weight: 600; }
+  .stock-news-block details.news-more > summary {
+    list-style: none; cursor: pointer; user-select: none;
+    font-size: 12px; font-weight: 600; color: var(--accent);
+    padding: 6px 0 0; display: inline-flex; align-items: center; gap: 4px;
+  }
+  .stock-news-block details.news-more > summary::-webkit-details-marker { display: none; }
+  .stock-news-block details.news-more > summary::after { content: "▾"; font-size: 10px; }
+  .stock-news-block details.news-more[open] > summary::after { content: "▴"; }
+
   /* STOCK CARD owner chips (right-aligned on summary row) */
   article.stock > details > summary { position: relative; padding-right: 30px; }
   article.stock > details > summary::after { position: absolute; right: 12px; top: 14px; margin-left: 0; }
@@ -577,6 +626,62 @@
 
   .sector-tag { display: inline-block; font-size: 11px; background: var(--border); color: var(--muted); padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
 
+  /* SECTOR BRIEFING CARD (new news-centric layout) */
+  .sector-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-left: 3px solid var(--muted);
+    border-radius: 10px; padding: 12px 14px; margin-bottom: 10px;
+  }
+  .sector-card.positive { border-left-color: var(--pos); }
+  .sector-card.negative { border-left-color: var(--neg); }
+  .sector-card.neutral  { border-left-color: var(--muted); }
+  .sector-card .sec-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px; flex-wrap: wrap;
+  }
+  .sector-card .sec-title { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+  .sector-card .sec-emoji { font-size: 18px; }
+  .sector-card .sec-headline {
+    color: var(--fg); font-size: 13px; margin-top: 4px; line-height: 1.4;
+  }
+  .sector-card .sec-news {
+    list-style: none; padding: 0; margin: 8px 0 0;
+  }
+  .sector-card .sec-news li {
+    display: flex; gap: 8px; padding: 6px 0;
+    border-top: 1px dashed var(--border);
+  }
+  .sector-card .sec-news li:first-child { border-top: none; padding-top: 8px; }
+  .sector-card .news-dot {
+    flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%;
+    margin-top: 7px; background: var(--muted);
+  }
+  .sector-card .news-dot.positive { background: var(--pos); }
+  .sector-card .news-dot.negative { background: var(--neg); }
+  .sector-card .news-body { flex: 1; min-width: 0; }
+  .sector-card .news-title {
+    font-size: 13px; font-weight: 500; line-height: 1.4;
+  }
+  .sector-card .news-title a { color: var(--fg); text-decoration: none; }
+  .sector-card .news-title a:hover { color: var(--accent); }
+  .sector-card .news-meta {
+    font-size: 11px; color: var(--muted); margin-top: 2px;
+    display: flex; gap: 6px; flex-wrap: wrap; align-items: baseline;
+  }
+  .sector-card .news-meta .time-ago { color: var(--accent); font-weight: 600; }
+  .sector-card .news-note {
+    font-size: 12px; color: var(--muted); margin-top: 3px; font-style: italic;
+  }
+  .sector-card details.sec-more > summary {
+    list-style: none; cursor: pointer; user-select: none;
+    font-size: 12px; font-weight: 600; color: var(--accent);
+    padding: 4px 0 0; margin-top: 2px;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .sector-card details.sec-more > summary::-webkit-details-marker { display: none; }
+  .sector-card details.sec-more > summary::after { content: "▾"; font-size: 10px; }
+  .sector-card details.sec-more[open] > summary::after { content: "▴"; }
+
   footer {
     margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border);
     color: var(--muted); font-size: 12px; text-align: center;
@@ -659,53 +764,16 @@
   </header>
 
     <div class="coffee-banner">
-      <div class="headline">☕ 오늘 커피는 <strong>이정수</strong>님이!</div>
-      <div class="sub">코아스템켐온 +12.06% — 친구 보유 종목 중 최고 상승</div>
+      <div class="headline">☕ 오늘 커피는 <strong>이영준·장윤영·장한솔·한윤근</strong>님이!</div>
+      <div class="sub">SK하이닉스 +3.52% — 친구 보유 종목 중 최고 상승</div>
       <div class="friend-cards" id="friend-cards">
-        <div class="friend-card" data-code="166480">
-          <div class="stock-name">코아스템켐온</div>
-          <div class="quote up">
-            <div class="price">3,345</div>
-            <div class="deltas">
-              <span class="abs">▲ 360</span>
-              <span class="pct">+12.06%</span>
-            </div>
-          </div>
-          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 이정수</span></span></div>
-        </div>
-        <div class="friend-card" data-code="310210">
-          <div class="stock-name">보로노이</div>
-          <div class="quote up">
-            <div class="price">342,500</div>
-            <div class="deltas">
-              <span class="abs">▲ 35,500</span>
-              <span class="pct">+11.56%</span>
-            </div>
-          </div>
-          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 하우찬</span></span></div>
-        </div>
-        <div class="friend-card" data-code="299660">
-          <div class="stock-name">셀리드</div>
-          <div class="quote up">
-            <div class="price">4,110</div>
-            <div class="deltas">
-              <span class="abs">▲ 295</span>
-              <span class="pct">+7.73%</span>
-            </div>
-          </div>
-          <div class="owners"><span class="owners-wrap" tabindex="0">
-      <span class="owner-chip">👤 이웅수</span>
-      <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
-      <span class="owner-popover"><span class="owner-chip">👤 이웅수</span><span class="owner-chip">👤 한윤근</span></span>
-    </span></div>
-        </div>
         <div class="friend-card" data-code="000660">
           <div class="stock-name">SK하이닉스</div>
           <div class="quote up">
-            <div class="price">1,166,000</div>
+            <div class="price">1,207,000</div>
             <div class="deltas">
-              <span class="abs">▲ 38,000</span>
-              <span class="pct">+3.37%</span>
+              <span class="abs">▲ 41,000</span>
+              <span class="pct">+3.52%</span>
             </div>
           </div>
           <div class="owners"><span class="owners-wrap" tabindex="0">
@@ -714,13 +782,87 @@
       <span class="owner-popover"><span class="owner-chip">👤 이영준</span><span class="owner-chip">👤 장윤영</span><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 한윤근</span></span>
     </span></div>
         </div>
+        <div class="friend-card" data-code="028050">
+          <div class="stock-name">삼성E&A</div>
+          <div class="quote up">
+            <div class="price">51,000</div>
+            <div class="deltas">
+              <span class="abs">▲ 1,700</span>
+              <span class="pct">+3.45%</span>
+            </div>
+          </div>
+          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></div>
+        </div>
+        <div class="friend-card" data-code="005380">
+          <div class="stock-name">현대차</div>
+          <div class="quote up">
+            <div class="price">538,000</div>
+            <div class="deltas">
+              <span class="abs">▲ 11,000</span>
+              <span class="pct">+2.09%</span>
+            </div>
+          </div>
+          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></div>
+        </div>
+        <div class="friend-card" data-code="096770">
+          <div class="stock-name">SK이노베이션</div>
+          <div class="quote up">
+            <div class="price">130,800</div>
+            <div class="deltas">
+              <span class="abs">▲ 2,000</span>
+              <span class="pct">+1.55%</span>
+            </div>
+          </div>
+          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></div>
+        </div>
+        <div class="friend-card" data-code="042700">
+          <div class="stock-name">한미반도체</div>
+          <div class="quote up">
+            <div class="price">290,500</div>
+            <div class="deltas">
+              <span class="abs">▲ 3,500</span>
+              <span class="pct">+1.22%</span>
+            </div>
+          </div>
+          <div class="owners"><span class="owners-wrap" tabindex="0">
+      <span class="owner-chip">👤 장한솔</span>
+      <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
+      <span class="owner-popover"><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 한윤근</span></span>
+    </span></div>
+        </div>
+        <div class="friend-card" data-code="005930">
+          <div class="stock-name">삼성전자</div>
+          <div class="quote up">
+            <div class="price">216,500</div>
+            <div class="deltas">
+              <span class="abs">▲ 2,000</span>
+              <span class="pct">+0.93%</span>
+            </div>
+          </div>
+          <div class="owners"><span class="owners-wrap" tabindex="0">
+      <span class="owner-chip">👤 장윤영</span>
+      <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
+      <span class="owner-popover"><span class="owner-chip">👤 장윤영</span><span class="owner-chip">👤 장한솔</span></span>
+    </span></div>
+        </div>
+        <div class="friend-card" data-code="009540">
+          <div class="stock-name">HD한국조선해양</div>
+          <div class="quote up">
+            <div class="price">416,500</div>
+            <div class="deltas">
+              <span class="abs">▲ 3,500</span>
+              <span class="pct">+0.85%</span>
+            </div>
+          </div>
+          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></div>
+        </div>
         <div class="friend-card" data-code="233740">
           <div class="stock-name">KODEX 코스닥150 레버리지</div>
           <div class="quote up">
-            <div class="price">16,345</div>
+            <div class="price">16,470</div>
             <div class="deltas">
-              <span class="abs">▲ 250</span>
-              <span class="pct">+1.55%</span>
+              <span class="abs">▲ 125</span>
+              <span class="pct">+0.76%</span>
             </div>
           </div>
           <div class="owners"><span class="owners-wrap" tabindex="0">
@@ -731,140 +873,66 @@
         </div>
         <div class="friend-card" data-code="196170">
           <div class="stock-name">알테오젠</div>
-          <div class="quote up">
-            <div class="price">371,500</div>
-            <div class="deltas">
-              <span class="abs">▲ 5,500</span>
-              <span class="pct">+1.50%</span>
-            </div>
-          </div>
-          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></div>
-        </div>
-        <div class="friend-card" data-code="042700">
-          <div class="stock-name">한미반도체</div>
-          <div class="quote up">
-            <div class="price">287,000</div>
-            <div class="deltas">
-              <span class="abs">▲ 500</span>
-              <span class="pct">+0.17%</span>
-            </div>
-          </div>
-          <div class="owners"><span class="owners-wrap" tabindex="0">
-      <span class="owner-chip">👤 장한솔</span>
-      <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
-      <span class="owner-popover"><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 한윤근</span></span>
-    </span></div>
-        </div>
-        <div class="friend-card" data-code="012450">
-          <div class="stock-name">한화에어로스페이스</div>
-          <div class="quote up">
-            <div class="price">1,425,000</div>
-            <div class="deltas">
-              <span class="abs">▲ 2,000</span>
-              <span class="pct">+0.14%</span>
-            </div>
-          </div>
-          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></div>
-        </div>
-        <div class="friend-card" data-code="267260">
-          <div class="stock-name">HD현대일렉트릭</div>
-          <div class="quote flat">
-            <div class="price">1,087,000</div>
-            <div class="deltas">
-              <span class="abs">—</span>
-              <span class="pct">0.00%</span>
-            </div>
-          </div>
-          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></div>
-        </div>
-        <div class="friend-card" data-code="174900">
-          <div class="stock-name">앱클론</div>
-          <div class="quote flat">
-            <div class="price">55,800</div>
-            <div class="deltas">
-              <span class="abs">—</span>
-              <span class="pct">0.00%</span>
-            </div>
-          </div>
-          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></div>
-        </div>
-        <div class="friend-card" data-code="096770">
-          <div class="stock-name">SK이노베이션</div>
           <div class="quote down">
-            <div class="price">128,800</div>
+            <div class="price">369,500</div>
             <div class="deltas">
-              <span class="abs">▼ 600</span>
-              <span class="pct">-0.46%</span>
+              <span class="abs">▼ 2,000</span>
+              <span class="pct">-0.54%</span>
             </div>
           </div>
           <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></div>
         </div>
-        <div class="friend-card" data-code="028050">
-          <div class="stock-name">삼성E&A</div>
+        <div class="friend-card" data-code="035720">
+          <div class="stock-name">카카오</div>
           <div class="quote down">
-            <div class="price">49,300</div>
+            <div class="price">48,550</div>
             <div class="deltas">
-              <span class="abs">▼ 250</span>
-              <span class="pct">-0.50%</span>
+              <span class="abs">▼ 300</span>
+              <span class="pct">-0.61%</span>
             </div>
           </div>
           <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></div>
         </div>
-        <div class="friend-card" data-code="005930">
-          <div class="stock-name">삼성전자</div>
+        <div class="friend-card" data-code="012450">
+          <div class="stock-name">한화에어로스페이스</div>
           <div class="quote down">
-            <div class="price">214,500</div>
+            <div class="price">1,410,000</div>
             <div class="deltas">
-              <span class="abs">▼ 1,500</span>
-              <span class="pct">-0.69%</span>
+              <span class="abs">▼ 15,000</span>
+              <span class="pct">-1.05%</span>
             </div>
           </div>
-          <div class="owners"><span class="owners-wrap" tabindex="0">
-      <span class="owner-chip">👤 장윤영</span>
-      <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
-      <span class="owner-popover"><span class="owner-chip">👤 장윤영</span><span class="owner-chip">👤 장한솔</span></span>
-    </span></div>
-        </div>
-        <div class="friend-card" data-code="298380">
-          <div class="stock-name">에이비엘바이오</div>
-          <div class="quote down">
-            <div class="price">160,200</div>
-            <div class="deltas">
-              <span class="abs">▼ 1,300</span>
-              <span class="pct">-0.80%</span>
-            </div>
-          </div>
-          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 우동희</span></span></div>
-        </div>
-        <div class="friend-card" data-code="009540">
-          <div class="stock-name">HD한국조선해양</div>
-          <div class="quote down">
-            <div class="price">413,000</div>
-            <div class="deltas">
-              <span class="abs">▼ 6,500</span>
-              <span class="pct">-1.55%</span>
-            </div>
-          </div>
-          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></div>
+          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></div>
         </div>
         <div class="friend-card" data-code="034230">
           <div class="stock-name">파라다이스</div>
           <div class="quote down">
-            <div class="price">15,460</div>
+            <div class="price">15,240</div>
             <div class="deltas">
-              <span class="abs">▼ 250</span>
-              <span class="pct">-1.59%</span>
+              <span class="abs">▼ 220</span>
+              <span class="pct">-1.42%</span>
             </div>
           </div>
           <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></div>
         </div>
+        <div class="friend-card" data-code="298380">
+          <div class="stock-name">에이비엘바이오</div>
+          <div class="quote down">
+            <div class="price">157,700</div>
+            <div class="deltas">
+              <span class="abs">▼ 2,500</span>
+              <span class="pct">-1.56%</span>
+            </div>
+          </div>
+          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 우동희</span></span></div>
+        </div>
         <div class="friend-card" data-code="445680">
           <div class="stock-name">큐리옥스바이오시스템즈</div>
           <div class="quote down">
-            <div class="price">89,300</div>
+            <div class="price">87,600</div>
             <div class="deltas">
-              <span class="abs">▼ 1,500</span>
-              <span class="pct">-1.65%</span>
+              <span class="abs">▼ 1,700</span>
+              <span class="pct">-1.90%</span>
             </div>
           </div>
           <div class="owners"><span class="owners-wrap" tabindex="0">
@@ -873,38 +941,75 @@
       <span class="owner-popover"><span class="owner-chip">👤 이웅수</span><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 주황선</span></span>
     </span></div>
         </div>
-        <div class="friend-card" data-code="005380">
-          <div class="stock-name">현대차</div>
-          <div class="quote down">
-            <div class="price">527,000</div>
-            <div class="deltas">
-              <span class="abs">▼ 11,000</span>
-              <span class="pct">-2.04%</span>
-            </div>
-          </div>
-          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></div>
-        </div>
-        <div class="friend-card" data-code="035720">
-          <div class="stock-name">카카오</div>
-          <div class="quote down">
-            <div class="price">48,850</div>
-            <div class="deltas">
-              <span class="abs">▼ 1,150</span>
-              <span class="pct">-2.30%</span>
-            </div>
-          </div>
-          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></div>
-        </div>
         <div class="friend-card" data-code="352820">
           <div class="stock-name">하이브</div>
           <div class="quote down">
-            <div class="price">255,000</div>
+            <div class="price">249,500</div>
             <div class="deltas">
-              <span class="abs">▼ 7,500</span>
-              <span class="pct">-2.86%</span>
+              <span class="abs">▼ 5,500</span>
+              <span class="pct">-2.16%</span>
             </div>
           </div>
           <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></div>
+        </div>
+        <div class="friend-card" data-code="267260">
+          <div class="stock-name">HD현대일렉트릭</div>
+          <div class="quote down">
+            <div class="price">1,051,000</div>
+            <div class="deltas">
+              <span class="abs">▼ 36,000</span>
+              <span class="pct">-3.31%</span>
+            </div>
+          </div>
+          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></div>
+        </div>
+        <div class="friend-card" data-code="166480">
+          <div class="stock-name">코아스템켐온</div>
+          <div class="quote down">
+            <div class="price">3,160</div>
+            <div class="deltas">
+              <span class="abs">▼ 185</span>
+              <span class="pct">-5.53%</span>
+            </div>
+          </div>
+          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 이정수</span></span></div>
+        </div>
+        <div class="friend-card" data-code="310210">
+          <div class="stock-name">보로노이</div>
+          <div class="quote down">
+            <div class="price">316,500</div>
+            <div class="deltas">
+              <span class="abs">▼ 26,000</span>
+              <span class="pct">-7.59%</span>
+            </div>
+          </div>
+          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 하우찬</span></span></div>
+        </div>
+        <div class="friend-card" data-code="174900">
+          <div class="stock-name">앱클론</div>
+          <div class="quote down">
+            <div class="price">50,900</div>
+            <div class="deltas">
+              <span class="abs">▼ 4,900</span>
+              <span class="pct">-8.78%</span>
+            </div>
+          </div>
+          <div class="owners"><span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></div>
+        </div>
+        <div class="friend-card" data-code="299660">
+          <div class="stock-name">셀리드</div>
+          <div class="quote down">
+            <div class="price">3,650</div>
+            <div class="deltas">
+              <span class="abs">▼ 460</span>
+              <span class="pct">-11.19%</span>
+            </div>
+          </div>
+          <div class="owners"><span class="owners-wrap" tabindex="0">
+      <span class="owner-chip">👤 이웅수</span>
+      <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
+      <span class="owner-popover"><span class="owner-chip">👤 이웅수</span><span class="owner-chip">👤 한윤근</span></span>
+    </span></div>
         </div>
       </div>
       <div class="live-indicator" id="live-indicator" aria-live="polite"></div>
@@ -1114,171 +1219,251 @@
     </div>
   </section>
 
+
   <section>
     <h2>🏭 섹터 흐름</h2>
-    <div style="margin-bottom: 10px;">
-      <details class="sector-toggle">
-        <summary>
-          <span class="sector-name">반도체</span>
-<span class="impact positive">호재</span><span class="sector-tag">삼성전자</span><span class="sector-tag">SK하이닉스</span><span class="sector-tag">한미반도체</span>        </summary>
-        <div class="section-body">
-<div class="point-detail">SK하이닉스 1Q 영업익 +369% 전망에 증권가 목표가 상향 릴레이. 골드만삭스 코스피 8,000 목표 제시. 간밤 SOX +0.45%, NVDA +0.19%로 혼조. MU -1.46% 약세가 갭다운 리스크 소폭 존재하나, 국내 실적 모멘텀이 압도적</div>          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">골드만삭스 코스피 목표 8,000 상향</span>
-<span class="impact positive">호재</span><span class="time-ago">10분 전</span>              </div>
-<div class="point-detail">골드만삭스가 한국 증시 목표를 8,000으로 올리며 반도체 실적 시즌 기대감 반영</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/011/0004612812" target="_blank" rel="noopener">코스피 8000 간다…골드만삭스 목표 상향</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">HBM 잔치 후 리스크 — IMF 경고</span>
-<span class="impact negative">악재</span><span class="time-ago">29분 전</span>              </div>
-<div class="point-detail">IMF가 한국 반도체 쏠림 리스크를 경고. HBM 수퍼사이클 이후 다변화 필요성 제기</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/119/0003082675" target="_blank" rel="noopener">HBM 잔치 끝나면…IMF 경고가 던진 한국 반도체 민낯</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">SK하이닉스 1Q 영업익 +369% 컨센서스, 목표가 200만원 논의</span>
-<span class="impact positive">호재</span><span class="time-ago">1시간 전</span>              </div>
-<div class="point-detail">HBM 수퍼사이클 기대에 증권가 목표가 상향 행진. 어제 장중 신고가 경신</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/277/0005752210" target="_blank" rel="noopener">"진짜 200만닉스 가나" SK하이닉스 목표가 높이는 증권가</a><a href="https://n.news.naver.com/mnews/article/003/0013899207" target="_blank" rel="noopener">이란 변수에도 '굳건'…SK하닉, '수퍼사이클' 기대감에 신고가 랠리</a>              </div>
-            </li>
-          </ul>
+    <div class="sector-card positive">
+      <div class="sec-head">
+        <div class="sec-title">
+<span class="sec-emoji">🔧</span>          반도체
         </div>
+        <span class="macro-mood positive">
+🟢 우호
+        </span>
+      </div>
+<div class="sec-headline">SK하이닉스 1Q 영업익 +369% 전망에 증권가 목표가 상향 릴레이. 골드만삭스 코스피 8,000 목표 제시. 간밤 SOX +0.45%, NVDA +0.19%로 혼조. MU -1.46% 약세가 갭다운 리스크 소폭 존재하나, 국내 실적 모멘텀이 압도적</div>
+
+      <ul class="sec-news">
+    <li>
+      <span class="news-dot positive"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/011/0004612812" target="_blank" rel="noopener">골드만삭스 코스피 목표 8,000 상향</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">10분 전</span><span>· 코스피 8000 간다…골드만삭스 목표 상향</span>
+<span class="impact positive">호재</span>        </div>
+<div class="news-note">골드만삭스가 한국 증시 목표를 8,000으로 올리며 반도체 실적 시즌 기대감 반영</div>      </div>
+    </li>
+    <li>
+      <span class="news-dot negative"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/119/0003082675" target="_blank" rel="noopener">HBM 잔치 후 리스크 — IMF 경고</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">29분 전</span><span>· HBM 잔치 끝나면…IMF 경고가 던진 한국 반도체 민낯</span>
+<span class="impact negative">악재</span>        </div>
+<div class="news-note">IMF가 한국 반도체 쏠림 리스크를 경고. HBM 수퍼사이클 이후 다변화 필요성 제기</div>      </div>
+    </li>
+      </ul>
+      <details class="sec-more">
+        <summary>더 보기 (1건)</summary>
+        <ul class="sec-news">
+    <li>
+      <span class="news-dot positive"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/277/0005752210" target="_blank" rel="noopener">SK하이닉스 1Q 영업익 +369% 컨센서스, 목표가 200만원 논의</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">1시간 전</span><span>· "진짜 200만닉스 가나" SK하이닉스 목표가 높이는 증권가</span><span>· 이란 변수에도 '굳건'…SK하닉, '수퍼사이클' 기대감에 신고가 랠리</span><span class="impact positive">호재</span>        </div>
+<div class="news-note">HBM 수퍼사이클 기대에 증권가 목표가 상향 행진. 어제 장중 신고가 경신</div>      </div>
+    </li>
+        </ul>
       </details>
     </div>
-    <div style="margin-bottom: 10px;">
-      <details class="sector-toggle">
-        <summary>
-          <span class="sector-name">바이오/제약</span>
-<span class="impact positive">호재</span><span class="sector-tag">알테오젠</span><span class="sector-tag">보로노이</span><span class="sector-tag">셀리드</span><span class="sector-tag">앱클론</span><span class="sector-tag">에이비엘바이오</span><span class="sector-tag">코아스템켐온</span>        </summary>
-        <div class="section-body">
-<div class="point-detail">AACR 2026 학회 모멘텀으로 바이오 섹터 전반 강세. 보로노이 VRN11 1상 데이터 호조에 +11.6% 급등. 코로나 시카다 변이 확산 우려에 백신·진단 테마주도 급등. 간밤 XBI -0.63%로 소폭 약세</div>          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">알테오젠 코스피 이전 — ETF 매수세 변화 주목</span>
-<span class="impact neutral">중립</span><span class="time-ago">13시간 전</span>              </div>
-<div class="point-detail">알테오젠의 코스피 이전 후 코스닥150 편출에 따른 ETF 패시브 자금 변동 가능성</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/009/0005668723" target="_blank" rel="noopener">'코스피 이전' 알테오젠, ETF 매수세 줄어드나</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">보로노이 VRN11 EGFR C797S 내성 환자 1상 ORR 호조</span>
-<span class="impact positive">호재</span><span class="time-ago">14시간 전</span>              </div>
-<div class="point-detail">AACR 2026서 차세대 폐암 표적치료제 VRN11의 유의미한 임상1상 결과 공개. 가속승인 기대감 확대</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/008/0005346739" target="_blank" rel="noopener">보로노이, 높아진 'VRN11' C797S 환자군 ORR…가속승인 기대</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">코로나 시카다 변이 확산 — 백신·진단 테마주 급등</span>
-<span class="impact positive">호재</span><span class="time-ago">15시간 전</span>              </div>
-<div class="point-detail">코로나 시카다 변이 국내 점유율 급증 소식에 셀리드 등 관련주 무더기 상승. 투자경고종목 지정 예고도 동반</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/366/0001158288" target="_blank" rel="noopener">빵 굽는 바이오·20년 적자 기업도 상한가… 코로나 변이 확산에 개미…</a>              </div>
-            </li>
-          </ul>
+    <div class="sector-card positive">
+      <div class="sec-head">
+        <div class="sec-title">
+<span class="sec-emoji">🧬</span>          바이오/제약
         </div>
+        <span class="macro-mood positive">
+🟢 우호
+        </span>
+      </div>
+<div class="sec-headline">AACR 2026 학회 모멘텀으로 바이오 섹터 전반 강세. 보로노이 VRN11 1상 데이터 호조에 +11.6% 급등. 코로나 시카다 변이 확산 우려에 백신·진단 테마주도 급등. 간밤 XBI -0.63%로 소폭 약세</div>
+
+      <ul class="sec-news">
+    <li>
+      <span class="news-dot neutral"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/009/0005668723" target="_blank" rel="noopener">알테오젠 코스피 이전 — ETF 매수세 변화 주목</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">13시간 전</span><span>· '코스피 이전' 알테오젠, ETF 매수세 줄어드나</span>
+<span class="impact neutral">중립</span>        </div>
+<div class="news-note">알테오젠의 코스피 이전 후 코스닥150 편출에 따른 ETF 패시브 자금 변동 가능성</div>      </div>
+    </li>
+    <li>
+      <span class="news-dot positive"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/008/0005346739" target="_blank" rel="noopener">보로노이 VRN11 EGFR C797S 내성 환자 1상 ORR 호조</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">14시간 전</span><span>· 보로노이, 높아진 'VRN11' C797S 환자군 ORR…가속승인 기대</span>
+<span class="impact positive">호재</span>        </div>
+<div class="news-note">AACR 2026서 차세대 폐암 표적치료제 VRN11의 유의미한 임상1상 결과 공개. 가속승인 기대감 확대</div>      </div>
+    </li>
+      </ul>
+      <details class="sec-more">
+        <summary>더 보기 (1건)</summary>
+        <ul class="sec-news">
+    <li>
+      <span class="news-dot positive"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/366/0001158288" target="_blank" rel="noopener">코로나 시카다 변이 확산 — 백신·진단 테마주 급등</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">15시간 전</span><span>· 빵 굽는 바이오·20년 적자 기업도 상한가… 코로나 변이 확산에 개미…</span>
+<span class="impact positive">호재</span>        </div>
+<div class="news-note">코로나 시카다 변이 국내 점유율 급증 소식에 셀리드 등 관련주 무더기 상승. 투자경고종목 지정 예고도 동반</div>      </div>
+    </li>
+        </ul>
       </details>
     </div>
-    <div style="margin-bottom: 10px;">
-      <details class="sector-toggle">
-        <summary>
-          <span class="sector-name">방산/조선</span>
-<span class="impact neutral">중립</span><span class="sector-tag">한화에어로스페이스</span><span class="sector-tag">HD한국조선해양</span>        </summary>
-        <div class="section-body">
-<div class="point-detail">한화에어로스페이스 K9 자주포 인도 수출 모멘텀, HD한국조선해양 1Q 수주 +50% 급증 및 잠정 실적 공시. 간밤 방산 프록시(LMT -1.84%) 약세는 갭다운 부담 요인</div>          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">한화에어로스페이스, 경쟁사 공동전선 구축 보도</span>
-<span class="impact neutral">중립</span><span class="time-ago">6시간 전</span>              </div>
-<div class="point-detail">한화의 몸집 확대에 경쟁사들이 공동전선을 구축하고 있다는 보도. 인도 K9 자주포 현지 제조 60% 이전 논의 중</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/023/0003971993" target="_blank" rel="noopener">몸집 키운 한화에 맞서… 경쟁사들 공동전선 구축</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">HD한국조선해양 1Q 수주 전년비 50% 급증, 잠정실적 공시</span>
-<span class="impact positive">호재</span><span class="time-ago">13시간 전</span>              </div>
-<div class="point-detail">K조선 빅3 합산 영업익 2조 육박 전망. 태국 호위함 8000억 수주전도 주목</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/123/0002381668" target="_blank" rel="noopener">HD한국조선해양, 1분기 수주 '순항'…전년 대비 50% 급증</a><a href="https://n.news.naver.com/mnews/article/021/0002785979" target="_blank" rel="noopener">'K조선 빅3' 1분기 합산 영업익 2조 육박</a>              </div>
-            </li>
-          </ul>
+    <div class="sector-card neutral">
+      <div class="sec-head">
+        <div class="sec-title">
+<span class="sec-emoji">🚢</span>          방산/조선
         </div>
-      </details>
+        <span class="macro-mood neutral">
+🟡 혼조        </span>
+      </div>
+<div class="sec-headline">한화에어로스페이스 K9 자주포 인도 수출 모멘텀, HD한국조선해양 1Q 수주 +50% 급증 및 잠정 실적 공시. 간밤 방산 프록시(LMT -1.84%) 약세는 갭다운 부담 요인</div>
+
+      <ul class="sec-news">
+    <li>
+      <span class="news-dot neutral"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/023/0003971993" target="_blank" rel="noopener">한화에어로스페이스, 경쟁사 공동전선 구축 보도</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">6시간 전</span><span>· 몸집 키운 한화에 맞서… 경쟁사들 공동전선 구축</span>
+<span class="impact neutral">중립</span>        </div>
+<div class="news-note">한화의 몸집 확대에 경쟁사들이 공동전선을 구축하고 있다는 보도. 인도 K9 자주포 현지 제조 60% 이전 논의 중</div>      </div>
+    </li>
+    <li>
+      <span class="news-dot positive"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/123/0002381668" target="_blank" rel="noopener">HD한국조선해양 1Q 수주 전년비 50% 급증, 잠정실적 공시</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">13시간 전</span><span>· HD한국조선해양, 1분기 수주 '순항'…전년 대비 50% 급증</span><span>· 'K조선 빅3' 1분기 합산 영업익 2조 육박</span><span class="impact positive">호재</span>        </div>
+<div class="news-note">K조선 빅3 합산 영업익 2조 육박 전망. 태국 호위함 8000억 수주전도 주목</div>      </div>
+    </li>
+      </ul>
     </div>
-    <div style="margin-bottom: 10px;">
-      <details class="sector-toggle">
-        <summary>
-          <span class="sector-name">에너지/건설</span>
-<span class="impact neutral">중립</span><span class="sector-tag">SK이노베이션</span><span class="sector-tag">삼성E&A</span>        </summary>
-        <div class="section-body">
-<div class="point-detail">WTI +2.8% 급등에 정유 1Q 영업익 4조 전망이나 재고이익 착시 우려. 삼성E&A 등 건설 ETF가 올해 수익률 1위(+116%) 기록. 종전 선언 시 정유주 반등 전망도 병존</div>          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">정유 1Q 영업익 4조 전망, 재고이익 착시 우려</span>
-<span class="impact neutral">중립</span><span class="time-ago">40분 전</span>              </div>
-<div class="point-detail">유가 급등에 정유사 1분기 실적 호조 예상되나 재고평가이익에 따른 착시 가능성 제기</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/421/0008901449" target="_blank" rel="noopener">정유업계, 1Q 영업익 '4조 잭팟'?…'재고이익 착시' 우려</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">건설 ETF 올해 수익률 1위 (+116%), 반도체 제쳐</span>
-<span class="impact positive">호재</span><span class="time-ago">1일 전</span>              </div>
-<div class="point-detail">삼성E&A 포함 건설 섹터 ETF가 올해 최고 수익률 기록. 중동 재건 기대감 반영</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/011/0004612340" target="_blank" rel="noopener">ETF 수익률 최고는 반도체가 아니었다…올 들어 두 배 오른 '건설'</a>              </div>
-            </li>
-          </ul>
+    <div class="sector-card neutral">
+      <div class="sec-head">
+        <div class="sec-title">
+<span class="sec-emoji">🏗️</span>          에너지/건설
         </div>
-      </details>
+        <span class="macro-mood neutral">
+🟡 혼조        </span>
+      </div>
+<div class="sec-headline">WTI +2.8% 급등에 정유 1Q 영업익 4조 전망이나 재고이익 착시 우려. 삼성E&A 등 건설 ETF가 올해 수익률 1위(+116%) 기록. 종전 선언 시 정유주 반등 전망도 병존</div>
+
+      <ul class="sec-news">
+    <li>
+      <span class="news-dot neutral"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/421/0008901449" target="_blank" rel="noopener">정유 1Q 영업익 4조 전망, 재고이익 착시 우려</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">40분 전</span><span>· 정유업계, 1Q 영업익 '4조 잭팟'?…'재고이익 착시' 우려</span>
+<span class="impact neutral">중립</span>        </div>
+<div class="news-note">유가 급등에 정유사 1분기 실적 호조 예상되나 재고평가이익에 따른 착시 가능성 제기</div>      </div>
+    </li>
+    <li>
+      <span class="news-dot positive"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/011/0004612340" target="_blank" rel="noopener">건설 ETF 올해 수익률 1위 (+116%), 반도체 제쳐</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">1일 전</span><span>· ETF 수익률 최고는 반도체가 아니었다…올 들어 두 배 오른 '건설'</span>
+<span class="impact positive">호재</span>        </div>
+<div class="news-note">삼성E&A 포함 건설 섹터 ETF가 올해 최고 수익률 기록. 중동 재건 기대감 반영</div>      </div>
+    </li>
+      </ul>
     </div>
-    <div style="margin-bottom: 10px;">
-      <details class="sector-toggle">
-        <summary>
-          <span class="sector-name">플랫폼/엔터</span>
-<span class="impact negative">악재</span><span class="sector-tag">카카오</span><span class="sector-tag">하이브</span>        </summary>
-        <div class="section-body">
-<div class="point-detail">카카오는 개별 뉴스 부재 속 간밤 META -2.6%, GOOGL -1.3%로 갭다운 부담. 하이브는 방시혁 출국금지 해제 요청(미 대사관) 및 1Q 실적 하회 전망 혼재. BTS 월드투어 516만명 관람 호재와 법적 리스크 상충</div>          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">미 대사관, 방시혁 출국금지 해제 요청</span>
-<span class="impact positive">호재</span><span class="time-ago">17시간 전</span>              </div>
-<div class="point-detail">BTS 월드투어 지원 명목으로 미 대사관이 출국금지 해제를 요청. 경찰청은 아직 요청 미수령 입장</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/138/0002225120" target="_blank" rel="noopener">美대사관, '방시혁 출국금지 해제' 요청…서울경찰청 "아직 요청 받…"</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">하이브 1Q 실적 예상치 하회 전망 — 메리츠 목표가 하향</span>
-<span class="impact negative">악재</span><span class="time-ago">3일 전</span>              </div>
-<div class="point-detail">메리츠증권이 하이브 1분기 실적이 예상치를 밑돌 것으로 전망하며 목표가를 하향 조정</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/015/0005276138" target="_blank" rel="noopener">"하이브, 올 1분기 실적 예상치 밑돌 전망…목표가↓"-메리츠</a>              </div>
-            </li>
-          </ul>
+    <div class="sector-card negative">
+      <div class="sec-head">
+        <div class="sec-title">
+<span class="sec-emoji">🎤</span>          플랫폼/엔터
         </div>
-      </details>
+        <span class="macro-mood negative">
+🔴 부담
+        </span>
+      </div>
+<div class="sec-headline">카카오는 개별 뉴스 부재 속 간밤 META -2.6%, GOOGL -1.3%로 갭다운 부담. 하이브는 방시혁 출국금지 해제 요청(미 대사관) 및 1Q 실적 하회 전망 혼재. BTS 월드투어 516만명 관람 호재와 법적 리스크 상충</div>
+
+      <ul class="sec-news">
+    <li>
+      <span class="news-dot positive"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/138/0002225120" target="_blank" rel="noopener">미 대사관, 방시혁 출국금지 해제 요청</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">17시간 전</span><span>· 美대사관, '방시혁 출국금지 해제' 요청…서울경찰청 "아직 요청 받…"</span>
+<span class="impact positive">호재</span>        </div>
+<div class="news-note">BTS 월드투어 지원 명목으로 미 대사관이 출국금지 해제를 요청. 경찰청은 아직 요청 미수령 입장</div>      </div>
+    </li>
+    <li>
+      <span class="news-dot negative"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/015/0005276138" target="_blank" rel="noopener">하이브 1Q 실적 예상치 하회 전망 — 메리츠 목표가 하향</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· "하이브, 올 1분기 실적 예상치 밑돌 전망…목표가↓"-메리츠</span>
+<span class="impact negative">악재</span>        </div>
+<div class="news-note">메리츠증권이 하이브 1분기 실적이 예상치를 밑돌 것으로 전망하며 목표가를 하향 조정</div>      </div>
+    </li>
+      </ul>
     </div>
-    <div style="margin-bottom: 10px;">
-      <details class="sector-toggle">
-        <summary>
-          <span class="sector-name">전력기기</span>
-<span class="impact neutral">중립</span><span class="sector-tag">HD현대일렉트릭</span>        </summary>
-        <div class="section-body">
-<div class="point-detail">HD현대일렉트릭, 원전 르네상스 수혜 및 북미 전력3사 경쟁 구도 부각. 녹색산업 협의체 확대 개편에 에너지·플랜트 기업 추가 참여. 어제 보합 마감, 간밤 GEV -1.25% 약세</div>          <ul class="points">
-            <li>
-              <div class="point-title">
-                <span class="text">세계 원전 르네상스 — '짓는 기업'에 자금 유입</span>
-<span class="impact positive">호재</span><span class="time-ago">29분 전</span>              </div>
-<div class="point-detail">글로벌 원전 건설 투자 확대 흐름에서 HD현대일렉트릭 등 전력기기 기업 수혜 전망</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/366/0001158362" target="_blank" rel="noopener">[투자노트] 세계 '원전 르네상스'… '짓는 기업'에 돈 몰린다</a>              </div>
-            </li>
-            <li>
-              <div class="point-title">
-                <span class="text">HD현대일렉·LS일렉·대한전선, 북미 대격돌</span>
-<span class="impact neutral">중립</span><span class="time-ago">15시간 전</span>              </div>
-<div class="point-detail">한국 전력3사가 북미 시장에서 본격 경쟁. AI 데이터센터 전력 수요 확대가 배경</div>              <div class="sources">
-<a href="https://n.news.naver.com/mnews/article/029/0003022682" target="_blank" rel="noopener">HD현대일렉·LS일렉·대한전선, 韓 전력3사 북미 대격돌</a>              </div>
-            </li>
-          </ul>
+    <div class="sector-card neutral">
+      <div class="sec-head">
+        <div class="sec-title">
+<span class="sec-emoji">⚡</span>          전력기기
         </div>
-      </details>
+        <span class="macro-mood neutral">
+🟡 혼조        </span>
+      </div>
+<div class="sec-headline">HD현대일렉트릭, 원전 르네상스 수혜 및 북미 전력3사 경쟁 구도 부각. 녹색산업 협의체 확대 개편에 에너지·플랜트 기업 추가 참여. 어제 보합 마감, 간밤 GEV -1.25% 약세</div>
+
+      <ul class="sec-news">
+    <li>
+      <span class="news-dot positive"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/366/0001158362" target="_blank" rel="noopener">세계 원전 르네상스 — '짓는 기업'에 자금 유입</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">29분 전</span><span>· [투자노트] 세계 '원전 르네상스'… '짓는 기업'에 돈 몰린다</span>
+<span class="impact positive">호재</span>        </div>
+<div class="news-note">글로벌 원전 건설 투자 확대 흐름에서 HD현대일렉트릭 등 전력기기 기업 수혜 전망</div>      </div>
+    </li>
+    <li>
+      <span class="news-dot neutral"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/029/0003022682" target="_blank" rel="noopener">HD현대일렉·LS일렉·대한전선, 북미 대격돌</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">15시간 전</span><span>· HD현대일렉·LS일렉·대한전선, 韓 전력3사 북미 대격돌</span>
+<span class="impact neutral">중립</span>        </div>
+<div class="news-note">한국 전력3사가 북미 시장에서 본격 경쟁. AI 데이터센터 전력 수요 확대가 배경</div>      </div>
+    </li>
+      </ul>
     </div>
   </section>
 
@@ -1288,16 +1473,126 @@
       <details>
         <summary>
           <span class="name">HD한국조선해양</span>
-          <span class="code">009540 · KOSPI</span>
-          <span class="price-change down" title="어제 종가 기준">-1.55%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.07%          </span>
+          <span class="code">009540</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change up" title="어제 종가 기준">+0.85%</span>
           <span class="rec buy">매수</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/001/0016032803" target="_blank" rel="noopener">스마트폰처럼 선박도 업데이트…울산시, AI특화 기반 개발·실증</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/016/0002632746" target="_blank" rel="noopener">HD현대, 印 정부와 손잡고 현지 합작조선소 짓는다</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 헤럴드경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/018/0006262262" target="_blank" rel="noopener">HD현대, 인도 합작조선소 설립 협력 확대</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 이데일리</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/018/0006262287" target="_blank" rel="noopener">포스코 ‘10조 인도 투자’ 신호탄…조선·車·에너지도 협력 확대</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 이데일리</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/050/0000105150" target="_blank" rel="noopener">인도 상륙한 K조선·배터리…"단순 수출 넘어 생산 거점으로"</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">9시간 전</span><span>· 한경비즈니스</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/011/0004612727" target="_blank" rel="noopener">HD현대 조선소, 현대차는 3륜 EV 개발…李 “최적의 협력 파트너”</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">11시간 전</span><span>· 서울경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/011/0004612533" target="_blank" rel="noopener">포스코 10조 들여 인도에 제철소 설립....메가딜 성사</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">17시간 전</span><span>· 서울경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/277/0005752169" target="_blank" rel="noopener">태국 호위함 8000억 수주전…HD현대重·한화오션 경쟁</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">11시간 전</span><span>· 아시아경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/123/0002381668" target="_blank" rel="noopener">HD한국조선해양, 1분기 수주 '순항'…전년 대비 50% 급증</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">13시간 전</span><span>· 조세일보</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/029/0003022638" target="_blank" rel="noopener">李대통령, 한·인도 비즈니스 포럼 참석… ‘이재용·정의선·구광모...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">16시간 전</span><span>· 디지털타임스</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -1340,16 +1635,126 @@
       <details>
         <summary>
           <span class="name">HD현대일렉트릭</span>
-          <span class="code">267260 · KOSPI</span>
-          <span class="price-change flat" title="어제 종가 기준">0.00%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.60%          </span>
+          <span class="code">267260</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change down" title="어제 종가 기준">-3.31%</span>
           <span class="rec buy">매수</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/030/0003419824" target="_blank" rel="noopener">KOIIA, 독일 하노버 산업박람회서 'AI in Manufacturi...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 전자신문</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/018/0006262354" target="_blank" rel="noopener">KOIIA, 하노버 산업박람회 한국관 운영</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 이데일리</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/366/0001158362" target="_blank" rel="noopener">[투자노트] 세계 ‘원전 르네상스’… ‘짓는 기업’에 돈 몰린다</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">29분 전</span><span>· 조선비즈</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/092/0002419396" target="_blank" rel="noopener">녹색산업 해외진출, ‘민관 한뜻’으로 지평 넓힌다</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">13시간 전</span><span>· 지디넷코리아</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/629/0000492927" target="_blank" rel="noopener">녹색산업 민관 ‘국가대표팀’…패키지 수주로 해외시장 공략</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">17시간 전</span><span>· 더팩트</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/277/0005751930" target="_blank" rel="noopener">녹색산업 해외진출 '민관 원팀' 구축…에너지·플랜트까지 협의체 확.....</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">18시간 전</span><span>· 아시아경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/374/0000505445" target="_blank" rel="noopener">기후부, '녹색산업 협의체'에 에너지·플랜트 추가</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">19시간 전</span><span>· SBS Biz</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/008/0005346410" target="_blank" rel="noopener">환경에서 녹색 신산업 진흥으로…민관 협력체 확대 개편</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">21시간 전</span><span>· 머니투데이</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/001/0016030611" target="_blank" rel="noopener">녹색산업 외국진출 지원 협의체에 에너지·플랜트기업 추가 참여</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">21시간 전</span><span>· 연합뉴스</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/421/0008899310" target="_blank" rel="noopener">녹색산업 '국가대표팀' 확대…삼성·한화 등 26곳 합류</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">21시간 전</span><span>· 뉴스1</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -1384,20 +1789,130 @@
       <details>
         <summary>
           <span class="name">KODEX 코스닥150 레버리지</span>
-          <span class="code">233740 · KOSPI</span>
-          <span class="price-change up" title="어제 종가 기준">+1.55%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.29%          </span>
+          <span class="code">233740</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change up" title="어제 종가 기준">+0.76%</span>
           <span class="rec hold">관망</span>
-<span class="confidence-chip low">신뢰 낮음</span>          <span class="owner-chips"><span class="owners-wrap" tabindex="0">
+          <span class="owner-chips"><span class="owners-wrap" tabindex="0">
       <span class="owner-chip">👤 하우찬</span>
       <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
       <span class="owner-popover"><span class="owner-chip">👤 하우찬</span><span class="owner-chip">👤 한윤근</span></span>
     </span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/088/0001006283" target="_blank" rel="noopener">공매도·대차거래 사상 최대치 경신했는데…질주하는 증시에 '하락 베...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">20시간 전</span><span>· 매일신문</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/003/0013895632" target="_blank" rel="noopener">'국민 재테크 수단' 떠올라…운용본부장들의 투자 키워드는?[ETF 전성...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">1일 전</span><span>· 뉴시스</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/015/0005276441" target="_blank" rel="noopener">공포에 사고 탐욕에 판 개미들…전쟁에도 '오천피' 지킨 일등공신</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· 한국경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/015/0005276433" target="_blank" rel="noopener">동학개미 운동 '시즌2'…스마트 투자자로 진화</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· 한국경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/015/0005276417" target="_blank" rel="noopener">ETF 거래 80%가 개미…"이젠 기관처럼 전략적 투자"</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· 한국경제</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/014/0005509479" target="_blank" rel="noopener">"상승장 지속될까"…기관·외인, 곱버스 팔고 레버리지로</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· 파이낸셜뉴스</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/008/0005345540" target="_blank" rel="noopener">K증시 '쥐락펴락' 외인에 개미 반격…'400조' ETF로 랠리 떠받쳤...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· 머니투데이</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/032/0003440417" target="_blank" rel="noopener">‘ETF’ 시총 400조…꼬리가 몸통 흔들라</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">4일 전</span><span>· 경향신문</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/032/0003440327" target="_blank" rel="noopener">너도나도 ETF 투자, 순자산·시가총액 400조 돌파···‘꼬리가 몸통...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">4일 전</span><span>· 경향신문</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/018/0006258726" target="_blank" rel="noopener">ETF 시장 400조 시대 개막…지수 베팅 쏠림·대형사 편중은 과제</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">4일 전</span><span>· 이데일리</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span><span class="confidence-chip low">신뢰 낮음</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -1421,6 +1936,14 @@
           </ul>
 
 
+          <h4>공시</h4>
+          <ul class="disclosures">
+            <li><a href="" target="_blank" rel="noopener">삼성 KODEX 코스닥150 레버리지증권상장지수투자신탁(주식-파생형) ...</a><span class="date">2026.03.06</span></li>
+            <li><a href="" target="_blank" rel="noopener">삼성 KODEX 코스닥150 레버리지증권상장지수투자신탁(주식-파생형) ...</a><span class="date">2026.03.05</span></li>
+            <li><a href="" target="_blank" rel="noopener">삼성 KODEX 코스닥150 레버리지증권상장지수투자신탁(주식-파생형) ...</a><span class="date">2026.03.05</span></li>
+            <li><a href="" target="_blank" rel="noopener">삼성 KODEX 코스닥150 레버리지증권상장지수투자신탁(주식-파생형) ...</a><span class="date">2026.01.13</span></li>
+            <li><a href="" target="_blank" rel="noopener">삼성 KODEX 코스닥150 레버리지증권상장지수투자신탁(주식-파생형) ...</a><span class="date">2026.01.07</span></li>
+          </ul>
         </div>
       </details>
     </article>
@@ -1428,16 +1951,126 @@
       <details>
         <summary>
           <span class="name">SK이노베이션</span>
-          <span class="code">096770 · KOSPI</span>
-          <span class="price-change down" title="어제 종가 기준">-0.46%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.29%          </span>
+          <span class="code">096770</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change up" title="어제 종가 기준">+1.55%</span>
           <span class="rec buy">매수</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/119/0003082813" target="_blank" rel="noopener">벤츠 "한국 기업과 파트너십 확대"…2차전지주 급등세 [특징주]</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 데일리안</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/092/0002419447" target="_blank" rel="noopener">SDT, IPO 준비+역량강화 위해 SK 재무통 영입</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 지디넷코리아</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/277/0005752432" target="_blank" rel="noopener">SDT, 최준희 스탠퍼드대 교수·강해웅 전 SK 재무실장 사외이사 영...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 아시아경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/008/0005346961" target="_blank" rel="noopener">2차전지 반등 사이클 돌아오나…LG엔솔·삼성SDI 8%대 강세</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 머니투데이</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/421/0008901449" target="_blank" rel="noopener">정유업계, 1Q 영업익 ‘4조 잭팟’?…'재고이익 착시' 우려</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">40분 전</span><span>· 뉴스1</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/015/0005277414" target="_blank" rel="noopener">"전쟁 끝나면 주가 뛴다"…반토막 난 주식 '반전 전망' [종목+]</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">59분 전</span><span>· 한국경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/003/0013899230" target="_blank" rel="noopener">中에 안방 위협받는 獨 완성차…K배터리와 '밀착 동맹'으로 반격</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">1시간 전</span><span>· 뉴시스</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/020/0003713887" target="_blank" rel="noopener">벤츠 뚫은 이재용 배터리 세일즈… 삼성SDI, 수조원 공급 계약</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">6시간 전</span><span>· 동아일보</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/008/0005346865" target="_blank" rel="noopener">'정권교체'에도 헝가리-K배터리 동맹 굳건</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">2시간 전</span><span>· 머니투데이</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/005/0001844342" target="_blank" rel="noopener">전기차 재부흥 못 기다려… 신시장 눈 돌리는 K배터리</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">7시간 전</span><span>· 국민일보</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -1472,20 +2105,130 @@
       <details>
         <summary>
           <span class="name">SK하이닉스</span>
-          <span class="code">000660 · KOSPI</span>
-          <span class="price-change up" title="어제 종가 기준">+3.37%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.27%          </span>
+          <span class="code">000660</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change up" title="어제 종가 기준">+3.52%</span>
           <span class="rec hold">관망</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap" tabindex="0">
+          <span class="owner-chips"><span class="owners-wrap" tabindex="0">
       <span class="owner-chip">👤 이영준</span>
       <span class="owner-chip owner-more" aria-label="+3명 더 보기">+3</span>
       <span class="owner-popover"><span class="owner-chip">👤 이영준</span><span class="owner-chip">👤 장윤영</span><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 한윤근</span></span>
     </span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/243/0000096729" target="_blank" rel="noopener">'120만닉스' 사상 최고치…코스피 6300선 호재에 '질주' [신Go...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 이코노미스트</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/092/0002419476" target="_blank" rel="noopener">中 D램 업체, HBM3 개발 지연…韓 추격 '난항'</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 지디넷코리아</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/055/0001350156" target="_blank" rel="noopener">[자막뉴스] "경쟁사들에 기회주는 '최악의 자책골'?" 외신들도 경고한...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· SBS</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/422/0000857203" target="_blank" rel="noopener">코스피, 사상 최고치 경신…장중 6,350선 돌파</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 연합뉴스TV</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/001/0016033151" target="_blank" rel="noopener">한화운용 "글로벌HBM반도체 ETF 1년 수익률 375%…전체 1위"</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/011/0004612925" target="_blank" rel="noopener">‘RISE 삼전닉스채권혼합’, 채권혼합형 ETF 최단 기간 순자산 1조...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 서울경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/018/0006262478" target="_blank" rel="noopener">키움운용, 삼전닉스 채권혼합 ETF 상장…월분배에 특별분배까지</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 이데일리</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/119/0003082777" target="_blank" rel="noopener">KB운용 ‘RISE 삼성전자SK하이닉스채권혼합50’ 1조 클럽 입성</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 데일리안</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/277/0005752444" target="_blank" rel="noopener">키움운용, '삼성전자&SK하이닉스채권혼합50' ETF 신규상장</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 아시아경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/001/0016032893" target="_blank" rel="noopener">키움운용, '삼전닉스+채권' ETF 상장…월분배에 특별분배도</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -1528,16 +2271,126 @@
       <details>
         <summary>
           <span class="name">보로노이</span>
-          <span class="code">310210 · KOSDAQ</span>
-          <span class="price-change up" title="어제 종가 기준">+11.56%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.63%          </span>
+          <span class="code">310210</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change down" title="어제 종가 기준">-7.59%</span>
           <span class="rec buy">매수</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 하우찬</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 하우찬</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/008/0005346954" target="_blank" rel="noopener">전쟁해도 '그러려니'…외인 "사자"에 6350 사상 최고치 뚫은 코스피</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 머니투데이</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/011/0004612804" target="_blank" rel="noopener">차세대 항암 기술도 공개…글로벌 시장 파고드는 K바이오</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">29분 전</span><span>· 서울경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/018/0006262114" target="_blank" rel="noopener">보로노이, AACR2026서 ‘VRN10’ 데이터 공개…HER2 치료 ...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">12시간 전</span><span>· 이데일리</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/018/0006261874" target="_blank" rel="noopener">보로노이, AACR2026서 ‘VRN10’ 데이터 공개…HER2 치료...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">17시간 전</span><span>· 이데일리</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/008/0005346739" target="_blank" rel="noopener">보로노이, 높아진 'VRN11' C797S 환자군 ORR…가속승인 기대...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">14시간 전</span><span>· 머니투데이</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/015/0005277201" target="_blank" rel="noopener">차세대 폐암치료제 보로노이, 1상 공개</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">14시간 전</span><span>· 한국경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/015/0005276914" target="_blank" rel="noopener">보로노이, 폐암 표적치료제 'VRN11' 임상 성과 소식에 강세</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">22시간 전</span><span>· 한국경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/008/0005346301" target="_blank" rel="noopener">보로노이 "폐암 신약 VRN11, EGFR C797S 내성 환자 효능...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">22시간 전</span><span>· 머니투데이</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/018/0006261514" target="_blank" rel="noopener">보로노이 "차세대 폐암 표적치료제 VRN11, 유의미한 임상1상 결과...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">23시간 전</span><span>· 이데일리</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/015/0005276869" target="_blank" rel="noopener">보로노이 '폐암 표적치료제 VRN11'…"EGFR C797S 내성 환...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">23시간 전</span><span>· 한국경제</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -1579,16 +2432,126 @@
       <details>
         <summary>
           <span class="name">삼성E&A</span>
-          <span class="code">028050 · KOSPI</span>
-          <span class="price-change down" title="어제 종가 기준">-0.50%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.43%          </span>
+          <span class="code">028050</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change up" title="어제 종가 기준">+3.45%</span>
           <span class="rec buy">매수</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/011/0004612885" target="_blank" rel="noopener">‘중동 붐 재현’ 기대감…대우건설 15%대 급등 [이런국장 저런주식]</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 서울경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/018/0006262370" target="_blank" rel="noopener">건설주, 중동 재건 수혜 기대에 일제히 강세…대우건설, 16%↑[특징주...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 이데일리</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/018/0006262236" target="_blank" rel="noopener">중동 재건 수혜 기대 커진 건설주…“3년간 1400억달러 수주 가능”</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 이데일리</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/366/0001158396" target="_blank" rel="noopener">NH證 “삼성E&A, 중동 재건 최대 수혜주…목표가 71%↑”</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 조선비즈</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/009/0005668884" target="_blank" rel="noopener">롤러코스터 탄 건설주, 美·이란 협상에 쏠린 눈…‘재건’ 수혜주는...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 매일경제</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/001/0016030430" target="_blank" rel="noopener">[특징주] 미-이란 2차 협상 불확실성에 건설주 장초반 약세</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">21시간 전</span><span>· 연합뉴스</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/055/0001349828" target="_blank" rel="noopener">[친절한 경제] 성과급만 7억?…경쟁 치열한 '닉스 고시'</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">22시간 전</span><span>· SBS</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/011/0004612340" target="_blank" rel="noopener">ETF 수익률 최고는 반도체가 아니었다…올 들어 두 배 오른 ‘건설’....</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">1일 전</span><span>· 서울경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/023/0003971834" target="_blank" rel="noopener">동학 개미 스승 박세익 “코스피 주도주, 반도체에서 ‘이것’으로 바.....</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">1일 전</span><span>· 조선일보</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/366/0001158051" target="_blank" rel="noopener">반도체 제쳤다… 올해 가장 많이 오른 ETF는 ‘건설’</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">1일 전</span><span>· 조선비즈</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -1624,20 +2587,130 @@
       <details>
         <summary>
           <span class="name">삼성전자</span>
-          <span class="code">005930 · KOSPI</span>
-          <span class="price-change down" title="어제 종가 기준">-0.69%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.27%          </span>
+          <span class="code">005930</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change up" title="어제 종가 기준">+0.93%</span>
           <span class="rec buy">매수</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap" tabindex="0">
+          <span class="owner-chips"><span class="owners-wrap" tabindex="0">
       <span class="owner-chip">👤 장윤영</span>
       <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
       <span class="owner-popover"><span class="owner-chip">👤 장윤영</span><span class="owner-chip">👤 장한솔</span></span>
     </span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/243/0000096729" target="_blank" rel="noopener">'120만닉스' 사상 최고치…코스피 6300선 호재에 '질주' [신Go...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 이코노미스트</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/629/0000493214" target="_blank" rel="noopener">삼성·LG전자, '밀라노 디자인위크' 동시 출격…유럽 시장 정조준</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 더팩트</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/092/0002419476" target="_blank" rel="noopener">中 D램 업체, HBM3 개발 지연…韓 추격 '난항'</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 지디넷코리아</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/055/0001350156" target="_blank" rel="noopener">[자막뉴스] "경쟁사들에 기회주는 '최악의 자책골'?" 외신들도 경고한...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· SBS</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/030/0003419901" target="_blank" rel="noopener">외신, 삼성전자 OLED TV 기술 호평</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 전자신문</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/422/0000857203" target="_blank" rel="noopener">코스피, 사상 최고치 경신…장중 6,350선 돌파</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 연합뉴스TV</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/030/0003419898" target="_blank" rel="noopener">삼성전자, '밀라노 디자인위크' 참가…“AI 시대 사람 중심 디자인 강...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 전자신문</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/001/0016033151" target="_blank" rel="noopener">한화운용 "글로벌HBM반도체 ETF 1년 수익률 375%…전체 1위"</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/011/0004612925" target="_blank" rel="noopener">‘RISE 삼전닉스채권혼합’, 채권혼합형 ETF 최단 기간 순자산 1조...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 서울경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/018/0006262478" target="_blank" rel="noopener">키움운용, 삼전닉스 채권혼합 ETF 상장…월분배에 특별분배까지</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 이데일리</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -1681,20 +2754,130 @@
       <details>
         <summary>
           <span class="name">셀리드</span>
-          <span class="code">299660 · KOSDAQ</span>
-          <span class="price-change up" title="어제 종가 기준">+7.73%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.49%          </span>
+          <span class="code">299660</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change down" title="어제 종가 기준">-11.19%</span>
           <span class="rec hold">관망</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap" tabindex="0">
+          <span class="owner-chips"><span class="owners-wrap" tabindex="0">
       <span class="owner-chip">👤 이웅수</span>
       <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
       <span class="owner-popover"><span class="owner-chip">👤 이웅수</span><span class="owner-chip">👤 한윤근</span></span>
     </span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/366/0001158288" target="_blank" rel="noopener">빵 굽는 바이오·20년 적자 기업도 상한가… 코로나 변이 확산에 개미....</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">15시간 전</span><span>· 조선비즈</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/081/0003636864" target="_blank" rel="noopener">[서울데이터랩]코스닥 거래상위 종목 강세…에스아이리소스·드림시큐...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">17시간 전</span><span>· 서울신문</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/003/0013896689" target="_blank" rel="noopener">'매미 변이' 확산에 코로나 테마주 무더기 급등…묻지마 투자 우려</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">1일 전</span><span>· 뉴시스</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/123/0002381532" target="_blank" rel="noopener">코로나19 변이 확산 우려에 관련주 급등... 신풍제약·진원생명과학 ....</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· 조세일보</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/009/0005667390" target="_blank" rel="noopener">‘코로나 변이’ 또 오나…진단키트·백신 동반 급등</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· 매일경제</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/011/0004611722" target="_blank" rel="noopener">코로나19 변이 바이러스 우려에 진단키트·백신 관련주↑[Why 바이오]</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· 서울경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/374/0000505004" target="_blank" rel="noopener">[이 시각 시황] 코로나 변이 '시카다' 확산 조짐…국내 점유율 급증</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· SBS Biz</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/018/0006259155" target="_blank" rel="noopener">코로나 변이 바이러스 확산 소식에…관련주 '들썩'[특징주]</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· 이데일리</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/018/0006252473" target="_blank" rel="noopener">'신약 대신 두쫀쿠로 버틴 셀리드'…거래소, 이종사업 꼼수 칼댄다[on...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">04/08</span><span>· 이데일리</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/018/0006219856" target="_blank" rel="noopener">'좀비 바이오' 퇴출 빨라진다…'상폐 요주의' 기업은?</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">02/16</span><span>· 이데일리</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -1730,16 +2913,126 @@
       <details>
         <summary>
           <span class="name">알테오젠</span>
-          <span class="code">196170 · KOSDAQ</span>
-          <span class="price-change up" title="어제 종가 기준">+1.50%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.57%          </span>
+          <span class="code">196170</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change down" title="어제 종가 기준">-0.54%</span>
           <span class="rec hold">관망</span>
-<span class="confidence-chip low">신뢰 낮음</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/654/0000176812" target="_blank" rel="noopener">코스피, 장중 6350선 돌파 '사상 최고치' 경신…반도체 강세 '12...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 강원도민일보</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/016/0002632796" target="_blank" rel="noopener">전쟁 공포 이긴 SK하이닉스…호실적 기대에 코스피 전고점 뚫고 질주....</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 헤럴드경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/001/0016032851" target="_blank" rel="noopener">코스피, 장중 사상 최고치…SK하이닉스 '120만 닉스' 돌파(종합)</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/088/0001006470" target="_blank" rel="noopener">'갈 줄 알았는데 제자리걸음'…제약·바이오 반전은 이때?</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 매일신문</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/119/0003082747" target="_blank" rel="noopener">코스피, 전쟁 리스크에도 6350선 ‘사상 최고치’ [시황]</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 데일리안</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/015/0005277512" target="_blank" rel="noopener">사상 최고치 뚫었다…"코스피 8500 간다" 역대급 '불장' [종합]</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 한국경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/018/0006262379" target="_blank" rel="noopener">코스피, 6350 넘어 ‘사상 최고치’…SK하이닉스 120만원 돌파</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 이데일리</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/003/0013899576" target="_blank" rel="noopener">코스피, 6350선 돌파하며 최고치 경신…휴전 불안 뚫고 강세</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 뉴시스</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/277/0005752405" target="_blank" rel="noopener">코스피, 사상 최고가 경신…외인·기관이 끌었다</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 아시아경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/417/0001139874" target="_blank" rel="noopener">코스피 사상 최고치 6355 경신… 외국인·기관 쓸어담아</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 동행미디어 시대</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span><span class="confidence-chip low">신뢰 낮음</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -1774,16 +3067,126 @@
       <details>
         <summary>
           <span class="name">앱클론</span>
-          <span class="code">174900 · KOSDAQ</span>
-          <span class="price-change flat" title="어제 종가 기준">0.00%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.57%          </span>
+          <span class="code">174900</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change down" title="어제 종가 기준">-8.78%</span>
           <span class="rec hold">관망</span>
-<span class="confidence-chip low">신뢰 낮음</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/015/0005270663" target="_blank" rel="noopener">'상위 1%' 투자 고수, '삼전닉스' 팔고 담은 종목이…'깜짝' [마...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">04/03</span><span>· 한국경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/018/0006246934" target="_blank" rel="noopener">삼천당제약의 폭주는 어디까지…각종 의혹에도 주가는 ↑[바이오 맥짚...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">04/01</span><span>· 이데일리</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/016/0002622223" target="_blank" rel="noopener">앱클론·종근당 ‘차세대 이중항체’ 신약 공동개발</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">03/31</span><span>· 헤럴드경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/018/0006245806" target="_blank" rel="noopener">종근당-앱클론, 난치성 암질환 이중항체 치료제 공동개발</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">03/30</span><span>· 이데일리</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/119/0003074876" target="_blank" rel="noopener">앱클론-종근당, 난치성 암질환 이중항체 치료제 공동 개발</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">03/30</span><span>· 데일리안</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/009/0005658032" target="_blank" rel="noopener">앱클론-종근당, 이중항체 기반 난치성 고형암 치료제 공동개발 착수</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/30</span><span>· 매일경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/016/0002621338" target="_blank" rel="noopener">앱클론-종근당, 난치성 암질환 이중항체 치료제 공동개발 본격화</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/30</span><span>· 헤럴드경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/277/0005741863" target="_blank" rel="noopener">앱클론-종근당, 난치성 암질환 이중항체 치료제 공동개발</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/30</span><span>· 아시아경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/008/0005336767" target="_blank" rel="noopener">앱클론-종근당, 난치성 암질환 이중항체 치료제 공동개발</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/30</span><span>· 머니투데이</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/016/0002621637" target="_blank" rel="noopener">코스닥 ‘알아 보고’ 투자하고 싶다면?…키움증권 코스닥 IR 콥데이,....</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/30</span><span>· 헤럴드경제</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span><span class="confidence-chip low">신뢰 낮음</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -1853,16 +3256,126 @@
       <details>
         <summary>
           <span class="name">에이비엘바이오</span>
-          <span class="code">298380 · KOSDAQ</span>
-          <span class="price-change down" title="어제 종가 기준">-0.80%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.57%          </span>
+          <span class="code">298380</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change down" title="어제 종가 기준">-1.56%</span>
           <span class="rec buy">매수</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 우동희</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 우동희</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/016/0002632796" target="_blank" rel="noopener">전쟁 공포 이긴 SK하이닉스…호실적 기대에 코스피 전고점 뚫고 질주.....</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 헤럴드경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/001/0016032851" target="_blank" rel="noopener">코스피, 장중 사상 최고치…SK하이닉스 '120만 닉스' 돌파(종합)</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/119/0003082747" target="_blank" rel="noopener">코스피, 전쟁 리스크에도 6350선 ‘사상 최고치’ [시황]</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 데일리안</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/366/0001158419" target="_blank" rel="noopener">에이비엘바이오 “이중 항체 ADC 후보물질, 비임상서 항암 효과·안전....</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 조선비즈</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/421/0008901683" target="_blank" rel="noopener">에이비엘바이오 "ABL209, 다양한 암종서 항암효과·안전성 확보"</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 뉴스1</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/011/0004612842" target="_blank" rel="noopener">에이비엘바이오 ‘ABL209’, 국제 학술지에 비임상 연구 데이터 논...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 서울경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/277/0005752306" target="_blank" rel="noopener">에이비엘바이오, ABL209 비임상 데이터 AACR 국제 학술지 게재</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 아시아경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/008/0005346900" target="_blank" rel="noopener">에이비엘바이오, 美암학회 국제학술지에 'ABL209' 비임상 결과 게...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 머니투데이</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/421/0008901850" target="_blank" rel="noopener">코스피, 중동전쟁 직전 최고치 회복…SK하닉 '최고가' [개장시황]</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 뉴스1</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/277/0005752405" target="_blank" rel="noopener">코스피, 사상 최고가 경신…외인·기관이 끌었다</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 아시아경제</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -1897,16 +3410,126 @@
       <details>
         <summary>
           <span class="name">카카오</span>
-          <span class="code">035720 · KOSPI</span>
-          <span class="price-change down" title="어제 종가 기준">-2.30%</span>
-          <span class="overnight-badge down" title="간밤 해외 프록시 평균">
-            🌙 ▼1.36%          </span>
+          <span class="code">035720</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change down" title="어제 종가 기준">-0.61%</span>
           <span class="rec hold">관망</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/001/0016033003" target="_blank" rel="noopener">[테크스냅] 카카오메이커스, 출시 10년 누적 기부 34억원</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/014/0005510819" target="_blank" rel="noopener">카카오메이커스 10주년...311만 이용자·기부 34억</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 파이낸셜뉴스</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/119/0003082759" target="_blank" rel="noopener">"누적 기부금 34억"…10살 카카오메이커스, 기념 캠페인 전개</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 데일리안</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/018/0006262387" target="_blank" rel="noopener">카카오메이커스 10주년…누적 기부 34억·이용자 311만명</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 이데일리</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/030/0003419821" target="_blank" rel="noopener">누적 기부금 34억·이용자 311만명…카카오메이커스, 10주년 감사 ...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 전자신문</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/421/0008901824" target="_blank" rel="noopener">카카오메이커스 10주년…누적 기부 34.6억 돌파</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 뉴스1</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/003/0013899482" target="_blank" rel="noopener">누적 기부 34억·이용자 311만명…카카오메이커스, 10주년 기념 캠...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 뉴시스</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/030/0003419808" target="_blank" rel="noopener">“환절기 면역력 챙기세요”…동행축제 '건강식' 동행제품 눈길</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 전자신문</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/293/0000083118" target="_blank" rel="noopener">[업스테이지 상장]③ B2B서 B2C로…'다음' 품고 AI 포털 노린다...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 블로터</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/293/0000083117" target="_blank" rel="noopener">[업스테이지 상장]② VC 출신 CFO 영입…6인 C레벨 진용 구축 [...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 블로터</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge down">
 ▼                약세
@@ -1941,16 +3564,126 @@
       <details>
         <summary>
           <span class="name">코아스템켐온</span>
-          <span class="code">166480 · KOSDAQ</span>
-          <span class="price-change up" title="어제 종가 기준">+12.06%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.63%          </span>
+          <span class="code">166480</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change down" title="어제 종가 기준">-5.53%</span>
           <span class="rec hold">관망</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 이정수</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 이정수</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/030/0003419721" target="_blank" rel="noopener">독성연, 국내 기업과 함께 베트남 비임상 연구기반 세운다</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">11시간 전</span><span>· 전자신문</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/016/0002632120" target="_blank" rel="noopener">베트남에 한국형 ‘비임상 연구시설’ 만든다</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">21시간 전</span><span>· 헤럴드경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/584/0000037266" target="_blank" rel="noopener">[사이언스게시판] 과기정통부, 5대 핵심 협업 이슈 '다함께 스프린트....</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">13시간 전</span><span>· 동아사이언스</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/009/0005668454" target="_blank" rel="noopener">K바이오 다시 뜬다…보로노이 15% 상승 [매경 자이앤트]</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">17시간 전</span><span>· 매일경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/008/0005343447" target="_blank" rel="noopener">코아스템켐온, 루게릭병 치료제 개발 22년…올해 성패 판가름</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">04/13</span><span>· 머니투데이</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/018/0006243265" target="_blank" rel="noopener">코아스템켐온, 해수부 국책과제 선정…비임상 안전성 평가 수행</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/26</span><span>· 이데일리</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/018/0006240805" target="_blank" rel="noopener">코아스템켐온, 관리종목 리스크 해소…뉴로나타 알, 허가 대기</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/23</span><span>· 이데일리</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/648/0000045141" target="_blank" rel="noopener">임상시험수탁, 지난해 외형 성장…수익성 회복 숙제</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/11</span><span>· 비즈워치</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/008/0005326982" target="_blank" rel="noopener">디티앤씨알오, 이철규 사장 승진…"CRO 경쟁력 강화"</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/09</span><span>· 머니투데이</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/014/0005487998" target="_blank" rel="noopener">디티앤씨알오 정기 승진 인사, 이철규 사장 발령</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/09</span><span>· 파이낸셜뉴스</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -1985,20 +3718,130 @@
       <details>
         <summary>
           <span class="name">큐리옥스바이오시스템즈</span>
-          <span class="code">445680 · KOSDAQ</span>
-          <span class="price-change down" title="어제 종가 기준">-1.65%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.57%          </span>
+          <span class="code">445680</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change down" title="어제 종가 기준">-1.90%</span>
           <span class="rec hold">관망</span>
-<span class="confidence-chip low">신뢰 낮음</span>          <span class="owner-chips"><span class="owners-wrap" tabindex="0">
+          <span class="owner-chips"><span class="owners-wrap" tabindex="0">
       <span class="owner-chip">👤 이웅수</span>
       <span class="owner-chip owner-more" aria-label="+2명 더 보기">+2</span>
       <span class="owner-popover"><span class="owner-chip">👤 이웅수</span><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 주황선</span></span>
     </span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/374/0000503451" target="_blank" rel="noopener">[애프터마켓 브리핑] 호르무즈 재봉쇄에 코스피 5800선 반납</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">04/09</span><span>· SBS Biz</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/088/0001003995" target="_blank" rel="noopener">전쟁통에 삼천당·한올바이오파마 개별 악재까지…제약·바이오 섹터...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">04/03</span><span>· 매일신문</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/018/0006249109" target="_blank" rel="noopener">툴젠 뛰고 큐리옥스 밀리고…바이오다인은 ‘배당’ 기대[바이오맥짚...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">04/03</span><span>· 이데일리</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/005/0001839944" target="_blank" rel="noopener">한달새 30조 던진 외국인, 언제 돌아올까… “관건은 환율”</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">03/30</span><span>· 국민일보</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/009/0005657786" target="_blank" rel="noopener">삼전닉스 던진 외국인, 코스닥은 주웠다…줍줍한 종목 대부분 바이오</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">03/29</span><span>· 매일경제</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/009/0005657711" target="_blank" rel="noopener">코스피 던진 외국인, 코스닥 바이오株는 샀다</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/29</span><span>· 매일경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/005/0001839637" target="_blank" rel="noopener">전쟁 후 코스피 26조 매도한 외국인, 코스닥은 순매수?… 뭐 샀나 봤...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/27</span><span>· 국민일보</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/018/0006242703" target="_blank" rel="noopener">삼천당제약 '황제주' 등극…코스닥 주도주 바이오로</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/25</span><span>· 이데일리</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/023/0003966588" target="_blank" rel="noopener">올들어 코스닥 대장주 다섯번 바뀌어… 최종 승자는?</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/25</span><span>· 조선일보</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/366/0001151490" target="_blank" rel="noopener">투자주의 종목 속출에… 코스닥150 ‘빈자리’ 채우는 편입株 반사이.....</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">03/25</span><span>· 조선비즈</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span><span class="confidence-chip low">신뢰 낮음</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -2060,16 +3903,126 @@
       <details>
         <summary>
           <span class="name">파라다이스</span>
-          <span class="code">034230 · KOSDAQ</span>
-          <span class="price-change down" title="어제 종가 기준">-1.59%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.32%          </span>
+          <span class="code">034230</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change down" title="어제 종가 기준">-1.42%</span>
           <span class="rec hold">관망</span>
-<span class="confidence-chip low">신뢰 낮음</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/243/0000096699" target="_blank" rel="noopener">파라다이스복지재단, 발달장애 청소년과 함께하는 ‘아이소리 페스티...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">15시간 전</span><span>· 이코노미스트</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/003/0013898483" target="_blank" rel="noopener">오늘의 휴식 넘어 내일의 자립…파라다이스의 특별한 장애 청소년 지.....</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">15시간 전</span><span>· 뉴시스</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/015/0005276276" target="_blank" rel="noopener">"외국인 카지노, 1분기 실적 기대 이하지만…'비중확대' 의견 유지"-...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· 한국경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/018/0006259246" target="_blank" rel="noopener">카지노 3사, 1분기 성적표 ‘온도 차’ 전망…롯데관광개발 성장·파라....</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· 이데일리</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/277/0005750773" target="_blank" rel="noopener">"이게 가능해?"…손님은 늘었는데 매출은 40% '뚝' 떨어졌다</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">4일 전</span><span>· 아시아경제</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/421/0008892575" target="_blank" rel="noopener">환율로 웃는다…롯데관광·파라다이스, 외국인 큰손에 실적 모멘텀[줌...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">5일 전</span><span>· 뉴스1</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/003/0013889881" target="_blank" rel="noopener">라이브 커머스로 만나는 하얏트 리젠시 인천…파라다이스시티 혜택까...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">5일 전</span><span>· 뉴시스</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/366/0001157130" target="_blank" rel="noopener">국민연금 코스닥 쇼핑 리스트... 키워드는 ‘우주·AI·반도체’</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">5일 전</span><span>· 조선비즈</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/003/0013871748" target="_blank" rel="noopener">파라다이스 부산, 상반기 최대 객실 프로모션…라방 특전까지</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">04/07</span><span>· 뉴시스</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/003/0013871426" target="_blank" rel="noopener">파라다이스 호텔 부산, '프리즘'과 협업 객실 패키지 6종 선봬</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">04/07</span><span>· 뉴시스</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span><span class="confidence-chip low">신뢰 낮음</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -2105,16 +4058,126 @@
       <details>
         <summary>
           <span class="name">하이브</span>
-          <span class="code">352820 · KOSPI</span>
-          <span class="price-change down" title="어제 종가 기준">-2.86%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.44%          </span>
+          <span class="code">352820</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change down" title="어제 종가 기준">-2.16%</span>
           <span class="rec hold">관망</span>
-<span class="confidence-chip low">신뢰 낮음</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/374/0000505640" target="_blank" rel="noopener">IBK "하이브 목표주가 하향…투자의견 '매수' 유지"</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· SBS Biz</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/215/0001249662" target="_blank" rel="noopener">'BTS 컴백' 효과 없었다...주가 전망 '암울'</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 한국경제TV</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/001/0016032608" target="_blank" rel="noopener">IBK투자, 하이브 목표주가↓…"1분기 영업익 기대치 하회전망"</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/009/0005668872" target="_blank" rel="noopener">“하이브, BTS 커리어하이 갱신에도 실적·주가 전망 암울”…이유는.....</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 매일경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/640/0000087277" target="_blank" rel="noopener">Five K-pop leaders featured on 'Billboa...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">13시간 전</span><span>· 코리아중앙데일리</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/008/0005346723" target="_blank" rel="noopener">한국판 코첼라 '패노미논' 훈풍도 잠깐…엔터 4사 주가, 다시 약세</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">14시간 전</span><span>· 머니투데이</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/138/0002225120" target="_blank" rel="noopener">美대사관, ‘방시혁 출국금지 해제’ 요청…서울경찰청 "아직 요청 받.....</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">17시간 전</span><span>· 디지털데일리</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/053/0000057641" target="_blank" rel="noopener">"BTS 투어 지원해야"…美대사관, '출국금지' 방시혁 美 방문 요청</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">22시간 전</span><span>· 주간조선</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/468/0001235104" target="_blank" rel="noopener">‘자본시장법 위반혐의’ 방시혁, 미국측에서 ‘출금 해제’ 요청…B.....</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">1일 전</span><span>· 스포츠서울</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/277/0005751815" target="_blank" rel="noopener">SM 김지원·빅히트 신선정 등 美 '빌보드 위민 인 뮤직' 수상</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">20시간 전</span><span>· 아시아경제</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span><span class="confidence-chip low">신뢰 낮음</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -2156,20 +4219,130 @@
       <details>
         <summary>
           <span class="name">한미반도체</span>
-          <span class="code">042700 · KOSPI</span>
-          <span class="price-change up" title="어제 종가 기준">+0.17%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.23%          </span>
+          <span class="code">042700</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change up" title="어제 종가 기준">+1.22%</span>
           <span class="rec buy">매수</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap" tabindex="0">
+          <span class="owner-chips"><span class="owners-wrap" tabindex="0">
       <span class="owner-chip">👤 장한솔</span>
       <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
       <span class="owner-popover"><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 한윤근</span></span>
     </span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/374/0000505642" target="_blank" rel="noopener">[이 시각 시황] 2차전지주, 업황 개선·정책 기대감 속 상승폭 확대</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· SBS Biz</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/023/0003972005" target="_blank" rel="noopener">반도체 효과… 삼성家, 국내 주식 부자 1~4위 싹쓸이</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">6시간 전</span><span>· 조선일보</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/011/0004612511" target="_blank" rel="noopener">“환희에 팔았다”…상위 1%, SK하닉 신고가에 팔고 대한전선 담아 [...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">19시간 전</span><span>· 서울경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/023/0003971855" target="_blank" rel="noopener">반도체가 바꾼 국내 주식부자 지도…삼성가·한미반도체 약진, 코스닥...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">22시간 전</span><span>· 조선일보</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/015/0005276702" target="_blank" rel="noopener">2030은 '코스피' 5060은 '반도체' ETF 담았다</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">1일 전</span><span>· 한국경제</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/031/0001023114" target="_blank" rel="noopener">ASMPT, 작년 HBM4용 TC본더 복수 수주…SK하닉 유력</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">1일 전</span><span>· 아이뉴스24</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/015/0005276586" target="_blank" rel="noopener">'2030 코스피' vs '5060 반도체'…확 갈린 '연금 ETF' ...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">2일 전</span><span>· 한국경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/119/0003081984" target="_blank" rel="noopener">소부장 ETF 1위…한투운용 ‘ACE AI반도체TOP3+’ 수익률 선두</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">2일 전</span><span>· 데일리안</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/037/0000038014" target="_blank" rel="noopener">종전 기대감에 삼성전자 전고점 탈환 목전… 코스피 6000선 안착한 한...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· 주간동아</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/015/0005276370" target="_blank" rel="noopener">SK하닉보다 많이 샀다…'1%' 투자 고수들 찜한 뜻밖의 회사 [마켓 ...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">3일 전</span><span>· 한국경제</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립
@@ -2204,16 +4377,126 @@
       <details>
         <summary>
           <span class="name">한화에어로스페이스</span>
-          <span class="code">012450 · KOSPI</span>
-          <span class="price-change up" title="어제 종가 기준">+0.14%</span>
-          <span class="overnight-badge down" title="간밤 해외 프록시 평균">
-            🌙 ▼0.73%          </span>
+          <span class="code">012450</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change down" title="어제 종가 기준">-1.05%</span>
           <span class="rec hold">관망</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/008/0005347024" target="_blank" rel="noopener">앤로보틱스 및 관계사, 제노코 지분 5% 취득 및 '경영참여' 선언…"...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 머니투데이</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/586/0000127401" target="_blank" rel="noopener">'종가 기준 최고치' 다시 넘어선 코스피</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 시사저널</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/119/0003082747" target="_blank" rel="noopener">코스피, 전쟁 리스크에도 6350선 ‘사상 최고치’ [시황]</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 데일리안</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/018/0006262379" target="_blank" rel="noopener">코스피, 6350 넘어 ‘사상 최고치’…SK하이닉스 120만원 돌파</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 이데일리</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/015/0005277512" target="_blank" rel="noopener">사상 최고치 뚫었다…"코스피 8500 간다" 역대급 '불장' [종합]</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 한국경제</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/277/0005752405" target="_blank" rel="noopener">코스피, 사상 최고가 경신…외인·기관이 끌었다</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 아시아경제</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/417/0001139874" target="_blank" rel="noopener">코스피 사상 최고치 6355 경신… 외국인·기관 쓸어담아</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 동행미디어 시대</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/081/0003637156" target="_blank" rel="noopener">[서울데이터랩]코스피 장 초반 6348로 전고점 갱신…외국인·기관 동반...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 서울신문</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/629/0000493134" target="_blank" rel="noopener">코스피, 중동 전쟁 이후 첫 6300선 넘었다…외국인 매수 확대</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 더팩트</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/009/0005668906" target="_blank" rel="noopener">[속보] 코스피 장중 사상최고가 경신 ‘6350선 돌파’…121만닉스·...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 매일경제</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact neutral">중립</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge down">
 ▼                약세
@@ -2249,16 +4532,126 @@
       <details>
         <summary>
           <span class="name">현대차</span>
-          <span class="code">005380 · KOSPI</span>
-          <span class="price-change down" title="어제 종가 기준">-2.04%</span>
-          <span class="overnight-badge neutral" title="간밤 해외 프록시 평균">
-            🌙 —0.05%          </span>
+          <span class="code">005380</span>
+          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
+          <span class="price-change up" title="어제 종가 기준">+2.09%</span>
           <span class="rec buy">매수</span>
-<span class="confidence-chip medium">신뢰 중간</span>          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          <span class="owner-chips"><span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
         </summary>
         <div class="body">
+          <div class="stock-news-block">
+            <h4>📰 오늘의 뉴스 (10건, 최신순)</h4>
+            <ul>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/293/0000083133" target="_blank" rel="noopener">지엠비코리아, 현대차·기아와 1289억 규모 공급계약</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 블로터</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/009/0005668994" target="_blank" rel="noopener">글로벌 車기업 공략 가속화…미래 모빌리티 엔지니어링 KNC, 인도 제3...</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 매일경제</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/629/0000493199" target="_blank" rel="noopener">고금리에도 수요 지속…카드론 잔액 43조 육박 '역대 최대'</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 더팩트</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/119/0003082751" target="_blank" rel="noopener">카드론 잔액 또 역대 최대…43조 육박하며 3개월째 증가</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 데일리안</span>                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="news-dot neutral"></span>
+                <div class="news-body">
+                  <div class="news-title">
+                    <a href="https://n.news.naver.com/mnews/article/648/0000046448" target="_blank" rel="noopener">현대차, 인도 맞춤형 3륜 EV 개발 나선다</a>
+                  </div>
+                  <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 비즈워치</span>                  </div>
+                </div>
+              </li>
+            </ul>
+            <details class="news-more">
+              <summary>더 보기 (5건)</summary>
+              <ul>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/050/0000105160" target="_blank" rel="noopener">“8년 전 모디 총리 부탁” 정의선 회장의 ‘결단’</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 한경비즈니스</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/031/0001023560" target="_blank" rel="noopener">현대차, 인도 '국민차' 3륜차 시장 공략?TVS와 EV 공동개발 맞...</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 아이뉴스24</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/029/0003022795" target="_blank" rel="noopener">정의선, 인도서 8년만 결실…현대차 3륜 전기차 승부수</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 디지털타임스</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/001/0016032848" target="_blank" rel="noopener">현대차, 인도 시장 맞춤형 마이크로모빌리티 공급 위한 전략적 협업</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span>                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-dot neutral"></span>
+                  <div class="news-body">
+                    <div class="news-title">
+                      <a href="https://n.news.naver.com/mnews/article/001/0016032841" target="_blank" rel="noopener">현대차, 인도 TVS 모터 컴퍼니와 현지 특화 삼륜EV 공동 개발</a>
+                    </div>
+                    <div class="news-meta">
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span>                    </div>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+
           <div class="decision-block">
-            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span></div>
+            <div class="row"><span class="label">뉴스 톤</span><span class="value impact positive">긍정</span><span class="confidence-chip medium">신뢰 중간</span></div>
             <div class="row"><span class="label">간밤 신호</span>
               <span class="value overnight-badge neutral">
 —                중립

@@ -85,6 +85,17 @@ MOOD_AXES = [
     {"key": "fx_macro",    "emoji": "💱", "name": "환율·원자재"},
 ]
 
+# Fallback emoji for sector cards when the agent doesn't supply one.
+SECTOR_EMOJI_FALLBACK = {
+    "반도체": "🔧", "바이오": "🧬", "건설": "🏗️", "EPC": "🏗️", "플랜트": "🏗️",
+    "조선": "🚢", "방산": "🚀", "조선·방산": "🚢",
+    "자동차": "🚗", "배터리": "🔋", "에너지": "⛽", "정유": "⛽",
+    "전력": "⚡", "통신": "📡", "엔터": "🎤", "게임": "🎮",
+    "철강": "🏭", "화학": "🧪", "금융": "🏦", "은행": "🏦", "증권": "📈",
+    "유통": "🛒", "식음료": "🍽️", "제약": "💊", "항공": "✈️",
+    "플랫폼": "💻", "인터넷": "🌐", "전기전자": "🔌",
+}
+
 
 def _infer_direction(change: str | None) -> str:
     if not change:
@@ -168,7 +179,9 @@ def _merge_config_from_stocks_yml(summary: dict, yml_path: Path) -> None:
 
 
 def _merge_quotes_from_news(summary: dict, news_path: Path) -> None:
-    """Pull fresh quote + overnight_signal from sibling news.json into summary stocks by code."""
+    """Pull fresh quote + overnight_signal + news + disclosures from sibling
+    news.json into summary stocks by code. The agent doesn't need to echo
+    these fields back — they're raw scrape data that render pulls directly."""
     if not news_path.exists():
         return
     try:
@@ -197,6 +210,11 @@ def _merge_quotes_from_news(summary: dict, news_path: Path) -> None:
             }
         elif not existing and news_sig:
             stock["overnight_signal"] = dict(news_sig)
+        # Stock news list — agent doesn't compose this; we pull raw from Naver scrape.
+        if not stock.get("news") and src.get("news"):
+            stock["news"] = list(src["news"])
+        if not stock.get("disclosures") and src.get("disclosures"):
+            stock["disclosures"] = list(src["disclosures"])
 
 
 def _normalize(summary: dict) -> dict:
@@ -263,13 +281,36 @@ def _normalize(summary: dict) -> dict:
 
     for sec in summary.get("sectors") or []:
         _annotate_impact(sec)
-        pts = sec.get("key_points") or []
-        for pt in pts:
-            _annotate_impact(pt)
-            pt["time_ago"] = _time_ago(pt.get("published_at"), now)
-        # newest first; points without timestamps sink to the bottom
-        pts.sort(key=lambda p: p.get("published_at") or "0", reverse=True)
-        sec["key_points"] = pts
+        # Emoji fallback if agent didn't supply one.
+        if not sec.get("emoji") and sec.get("name"):
+            for key, emj in SECTOR_EMOJI_FALLBACK.items():
+                if key in sec["name"]:
+                    sec["emoji"] = emj
+                    break
+        # Accept either `news` (new schema) or `key_points` (legacy). Coerce
+        # legacy items into news shape: title/note/source/impact/published_at.
+        news_items = sec.get("news")
+        if news_items is None:
+            news_items = []
+            for kp in sec.get("key_points") or []:
+                item = {
+                    "title": kp.get("point") or "",
+                    "note":  kp.get("detail") or "",
+                    "impact": kp.get("impact"),
+                    "published_at": kp.get("published_at"),
+                    "sources": kp.get("sources") or [],
+                }
+                # If the legacy item had exactly one source, expose it as `source`
+                # too so the new template's 'title · time · source' line works.
+                if len(item["sources"]) == 1:
+                    item["source"] = item["sources"][0]
+                news_items.append(item)
+        for n in news_items:
+            _annotate_impact(n)
+            n["time_ago"] = _time_ago(n.get("published_at"), now)
+        news_items.sort(key=lambda n: n.get("published_at") or "0", reverse=True)
+        sec["news"] = news_items
+        sec.pop("key_points", None)  # consolidate on `news`
 
     for stock in summary.get("stocks") or []:
         # backward-compat: accept single `owner` as `owners: [owner]`
@@ -333,6 +374,21 @@ def _normalize(summary: dict) -> dict:
             pt["time_ago"] = _time_ago(pt.get("published_at"), now)
         pts.sort(key=lambda p: p.get("published_at") or "0", reverse=True)
         stock["key_points"] = pts
+        # Stock news from Naver scrape. Items have {title, link, source, date}.
+        # Compute time_ago from the Naver-style date and keep original order
+        # (already newest-first from the fetcher).
+        stock_news = stock.get("news") or []
+        for n in stock_news:
+            # Uniform shape: treat `date` as the published timestamp.
+            if "published_at" not in n and n.get("date"):
+                n["published_at"] = n["date"]
+            n["time_ago"] = _time_ago(n.get("published_at"), now)
+            # Convert `link` (fetcher key) to `url` for template uniformity.
+            if "url" not in n and n.get("link"):
+                n["url"] = n["link"]
+            _annotate_impact(n)
+        stock["news"] = stock_news
+        stock["news_count"] = len(stock_news)
     return summary
 
 
@@ -434,19 +490,22 @@ def _display_time(iso: str) -> str:
 
 def render_report(summary: dict, base_url: str, news_path: Path | None = None) -> tuple[str, str]:
     _merge_config_from_stocks_yml(summary, ROOT / "stocks.yml")
-    if news_path is not None:
-        _merge_quotes_from_news(summary, news_path)
-    # Load news.json for the ticker's initial server-render values. Try the
-    # provided path first (sibling of summary.json), then the conventional
-    # .tmp/news.json fallback so re-rendering from docs/*.summary.json works.
-    news_data = {}
+    # Resolve the actual news.json path once, with a fallback to .tmp/news.json
+    # so re-rendering from docs/*.summary.json (where the sibling doesn't
+    # exist) still merges fresh quote + news data.
+    resolved_news_path = None
     for candidate in (news_path, ROOT / ".tmp" / "news.json"):
         if candidate and candidate.exists():
-            try:
-                news_data = json.loads(candidate.read_text(encoding="utf-8"))
-                break
-            except Exception:
-                continue
+            resolved_news_path = candidate
+            break
+    if resolved_news_path is not None:
+        _merge_quotes_from_news(summary, resolved_news_path)
+    news_data = {}
+    if resolved_news_path is not None:
+        try:
+            news_data = json.loads(resolved_news_path.read_text(encoding="utf-8"))
+        except Exception:
+            news_data = {}
     summary = _normalize(summary)
     date = summary.get("date") or datetime.now(KST).strftime("%Y-%m-%d")
     filename = f"{date}.html"
@@ -467,9 +526,12 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
             s["owners"] = [leader, *rest]
         else:
             s["owners"] = sorted(owners)
-    # Display order for the 📈 종목별 section: alphabetical (가나다 순).
-    # Leaves summary["stocks"] untouched for any downstream consumer.
-    stocks_display = sorted(stocks, key=lambda s: s.get("name", ""))
+    # Display order for the 📈 종목별 section: stocks with the most fresh
+    # news today surface first (trader morning check), ties broken by 가나다.
+    stocks_display = sorted(
+        stocks,
+        key=lambda s: (-(len(s.get("news") or [])), s.get("name", "")),
+    )
 
     env = _env()
     tmpl = env.get_template("report.html.j2")
