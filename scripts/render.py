@@ -18,6 +18,7 @@ import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+import yaml
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -124,6 +125,31 @@ def _time_ago(iso_str: str | None, now: datetime) -> str:
     if days < 7:
         return f"{days}일 전"
     return dt.strftime("%m/%d")
+
+
+def _merge_config_from_stocks_yml(summary: dict, yml_path: Path) -> None:
+    """Backfill config-only fields from stocks.yml so the agent doesn't have
+    to copy them every time.
+
+    Agents writing summary.json sometimes drop fields that don't appear in
+    the schema example (owners / overnight_proxy / is_etf). Those are pure
+    configuration, not analysis output — we pull them straight from the
+    source of truth instead of relying on the agent to propagate them."""
+    if not yml_path.exists():
+        return
+    try:
+        with yml_path.open(encoding="utf-8") as f:
+            cfg = yaml.safe_load(f) or {}
+    except Exception:
+        return
+    by_code = {s.get("code"): s for s in (cfg.get("stocks") or [])}
+    for stock in summary.get("stocks") or []:
+        src = by_code.get(stock.get("code"))
+        if not src:
+            continue
+        for key in ("owners", "overnight_proxy", "is_etf"):
+            if src.get(key) is not None and not stock.get(key):
+                stock[key] = src[key]
 
 
 def _merge_quotes_from_news(summary: dict, news_path: Path) -> None:
@@ -331,6 +357,7 @@ def _display_time(iso: str) -> str:
 
 
 def render_report(summary: dict, base_url: str, news_path: Path | None = None) -> tuple[str, str]:
+    _merge_config_from_stocks_yml(summary, ROOT / "stocks.yml")
     if news_path is not None:
         _merge_quotes_from_news(summary, news_path)
     summary = _normalize(summary)

@@ -629,7 +629,16 @@
       "price_display": "214,500",
       "price_change_abs_display": "▼ 1,500",
       "news_sentiment_label": "긍정",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "장윤영",
+        "장한솔"
+      ],
+      "overnight_proxy": [
+        "^SOX",
+        "NVDA",
+        "MU"
+      ]
     },
     {
       "code": "000660",
@@ -716,7 +725,18 @@
       "price_display": "1,166,000",
       "price_change_abs_display": "▲ 38,000",
       "news_sentiment_label": "긍정",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "이영준",
+        "장윤영",
+        "장한솔",
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "^SOX",
+        "NVDA",
+        "MU"
+      ]
     },
     {
       "code": "267260",
@@ -783,7 +803,15 @@
       "price_display": "1,087,000",
       "price_change_abs_display": "—",
       "news_sentiment_label": "긍정",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "GEV",
+        "ETN",
+        "XLU"
+      ]
     },
     {
       "code": "196170",
@@ -847,7 +875,14 @@
       "price_display": "371,500",
       "price_change_abs_display": "▲ 5,500",
       "news_sentiment_label": "중립",
-      "confidence_label": "낮음"
+      "confidence_label": "낮음",
+      "owners": [
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "XBI",
+        "IBB"
+      ]
     },
     {
       "code": "042700",
@@ -915,7 +950,16 @@
       "price_display": "287,000",
       "price_change_abs_display": "▲ 500",
       "news_sentiment_label": "긍정",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "장한솔",
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "^SOX",
+        "AMAT",
+        "NVDA"
+      ]
     },
     {
       "code": "012450",
@@ -988,7 +1032,15 @@
       "price_display": "1,425,000",
       "price_change_abs_display": "▲ 2,000",
       "news_sentiment_label": "중립",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "ITA",
+        "LMT",
+        "RTX"
+      ]
     },
     {
       "code": "096770",
@@ -1056,7 +1108,15 @@
       "price_display": "128,800",
       "price_change_abs_display": "▼ 600",
       "news_sentiment_label": "긍정",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "XLE",
+        "CL=F",
+        "TSLA"
+      ]
     },
     {
       "code": "299660",
@@ -1125,7 +1185,15 @@
       "price_display": "4,110",
       "price_change_abs_display": "▲ 295",
       "news_sentiment_label": "긍정",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "이웅수",
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "XBI",
+        "MRNA"
+      ]
     },
     {
       "code": "233740",
@@ -1183,7 +1251,16 @@
       "price_display": "16,345",
       "price_change_abs_display": "▲ 250",
       "news_sentiment_label": "중립",
-      "confidence_label": "낮음"
+      "confidence_label": "낮음",
+      "owners": [
+        "하우찬",
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "^IXIC",
+        "QQQ"
+      ],
+      "is_etf": true
     },
     {
       "code": "028050",
@@ -1252,7 +1329,14 @@
       "price_display": "49,300",
       "price_change_abs_display": "▼ 250",
       "news_sentiment_label": "긍정",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "장한솔"
+      ],
+      "overnight_proxy": [
+        "XLE",
+        "FLR"
+      ]
     },
     {
       "code": "310210",
@@ -1326,7 +1410,13 @@
       "price_display": "342,500",
       "price_change_abs_display": "▲ 35,500",
       "news_sentiment_label": "긍정",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "하우찬"
+      ],
+      "overnight_proxy": [
+        "XBI"
+      ]
     },
     {
       "code": "445680",
@@ -1415,7 +1505,16 @@
       "price_display": "89,300",
       "price_change_abs_display": "▼ 1,500",
       "news_sentiment_label": "중립",
-      "confidence_label": "낮음"
+      "confidence_label": "낮음",
+      "owners": [
+        "이웅수",
+        "장한솔",
+        "주황선"
+      ],
+      "overnight_proxy": [
+        "XBI",
+        "IBB"
+      ]
     },
     {
       "code": "009540",
@@ -1498,7 +1597,14 @@
       "price_display": "413,000",
       "price_change_abs_display": "▼ 6,500",
       "news_sentiment_label": "긍정",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "오병호"
+      ],
+      "overnight_proxy": [
+        "XLI",
+        "DAC"
+      ]
     },
     {
       "code": "174900",
@@ -1610,7 +1716,14 @@
       "price_display": "55,800",
       "price_change_abs_display": "—",
       "news_sentiment_label": "중립",
-      "confidence_label": "낮음"
+      "confidence_label": "낮음",
+      "owners": [
+        "오병호"
+      ],
+      "overnight_proxy": [
+        "XBI",
+        "IBB"
+      ]
     },
     {
       "code": "298380",
@@ -1674,7 +1787,14 @@
       "price_display": "160,200",
       "price_change_abs_display": "▼ 1,300",
       "news_sentiment_label": "긍정",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "우동희"
+      ],
+      "overnight_proxy": [
+        "XBI",
+        "IBB"
+      ]
     },
     {
       "code": "166480",
@@ -1734,7 +1854,13 @@
       "price_display": "3,345",
       "price_change_abs_display": "▲ 360",
       "news_sentiment_label": "긍정",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "이정수"
+      ],
+      "overnight_proxy": [
+        "XBI"
+      ]
     },
     {
       "code": "035720",
@@ -1802,7 +1928,15 @@
       "price_display": "48,850",
       "price_change_abs_display": "▼ 1,150",
       "news_sentiment_label": "중립",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "장한솔"
+      ],
+      "overnight_proxy": [
+        "META",
+        "GOOGL",
+        "^IXIC"
+      ]
     },
     {
       "code": "005380",
@@ -1889,7 +2023,15 @@
       "price_display": "527,000",
       "price_change_abs_display": "▼ 11,000",
       "news_sentiment_label": "긍정",
-      "confidence_label": "중간"
+      "confidence_label": "중간",
+      "owners": [
+        "장한솔"
+      ],
+      "overnight_proxy": [
+        "F",
+        "GM",
+        "STLA"
+      ]
     },
     {
       "code": "034230",
@@ -1962,7 +2104,15 @@
       "price_display": "15,460",
       "price_change_abs_display": "▼ 250",
       "news_sentiment_label": "중립",
-      "confidence_label": "낮음"
+      "confidence_label": "낮음",
+      "owners": [
+        "장한솔"
+      ],
+      "overnight_proxy": [
+        "LVS",
+        "WYNN",
+        "MGM"
+      ]
     },
     {
       "code": "352820",
@@ -2040,7 +2190,14 @@
       "price_display": "255,000",
       "price_change_abs_display": "▼ 7,500",
       "news_sentiment_label": "중립",
-      "confidence_label": "낮음"
+      "confidence_label": "낮음",
+      "owners": [
+        "장한솔"
+      ],
+      "overnight_proxy": [
+        "SPOT",
+        "WMG"
+      ]
     }
   ]
 }
