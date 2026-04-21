@@ -330,6 +330,18 @@
     cursor: pointer; opacity: 0.75;
     background: rgba(0,0,0,0.06);
   }
+  .owner-chip.owner-leader {
+    background: linear-gradient(135deg, rgba(255,214,0,0.25), rgba(255,214,0,0.08));
+    color: var(--fg);
+    border: 1px solid rgba(255,214,0,0.55);
+    font-weight: 800;
+  }
+  @media (prefers-color-scheme: dark) {
+    .owner-chip.owner-leader {
+      background: linear-gradient(135deg, rgba(255,214,0,0.2), rgba(255,214,0,0.06));
+      border-color: rgba(255,214,0,0.4);
+    }
+  }
   @media (prefers-color-scheme: dark) {
     .owners-wrap .owner-more { background: rgba(255,255,255,0.08); }
   }
@@ -765,13 +777,16 @@
   {%- set n = owners | length -%}
   {%- if n == 0 -%}
   {%- elif n == 1 -%}
+    {# Single owner — no leader emphasis needed. #}
     <span class="owners-wrap"><span class="owner-chip">👤 {{ owners[0] }}</span></span>
   {%- else -%}
+    {# Multi-owner — first owner is the 대장 (render.py sorts leader→rest 가나다). #}
     <span class="owners-wrap" tabindex="0">
-      <span class="owner-chip">👤 {{ owners[0] }}</span>
+      <span class="owner-chip owner-leader">👑 {{ owners[0] }}</span>
       <span class="owner-chip owner-more" aria-label="+{{ n - 1 }}명 더 보기">+{{ n - 1 }}</span>
       <span class="owner-popover">
-        {%- for o in owners -%}<span class="owner-chip">👤 {{ o }}</span>{%- endfor -%}
+        <span class="owner-chip owner-leader">👑 {{ owners[0] }}</span>
+        {%- for o in owners[1:] -%}<span class="owner-chip">👤 {{ o }}</span>{%- endfor -%}
       </span>
     </span>
   {%- endif -%}
@@ -812,7 +827,7 @@
   <header>
     <h1>📰 {{ date }} 장전 브리핑</h1>
     <p class="tldr">{{ tldr }}</p>
-    <time>생성: {{ generated_at_display }} KST · <a href="archive.html">아카이브</a></time>
+    <time>생성: {{ generated_at_display }} KST · <a href="archive.html">아카이브</a> · <a href="accuracy.html">📊 정확도</a></time>
   </header>
 
   {% if friends_overview %}
@@ -1409,8 +1424,9 @@
   // After deploying the Cloudflare Worker in ../worker/, paste its URL here.
   // Expected shape: https://<name>.<subdomain>.workers.dev/quote
   // Leave as "" to disable live polling (snapshot values render as-is).
-  const QUOTE_API  = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/quote";
-  const TICKER_API = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/ticker";
+  const QUOTE_API    = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/quote";
+  const TICKER_API   = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/ticker";
+  const FEEDBACK_API = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/feedback";
   const TICKER_ITEMS = ["KOSPI", "KOSDAQ", "USDKRW", "BTC", "ETH"];
   // ────────────────────────────────────────────────────────────────
 
@@ -1615,7 +1631,7 @@
       const rawChips = chipScope ? [...chipScope.querySelectorAll(".owner-chip")] : [];
       const owners = rawChips
         .filter((el) => !el.classList.contains("owner-more"))
-        .map((el) => el.textContent.replace("👤", "").trim())
+        .map((el) => el.textContent.replace(/👑|👤/g, "").trim())
         .filter(Boolean);
       entries.push({ name, owners, pct: q.change_pct });
     });
@@ -1689,6 +1705,21 @@
       btn.classList.toggle("active", entry && entry.rating === rating);
     });
   }
+  // Fire-and-forget POST to Worker so the feedback reaches agent next morning.
+  // Failures (network / KV not bound / CORS) are silent — localStorage remains
+  // the source of truth on the client.
+  function syncFeedback(url, rating, stock, session_date) {
+    if (!FEEDBACK_API) return;
+    try {
+      fetch(FEEDBACK_API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, rating, stock, ts: Date.now(), session_date }),
+        keepalive: true,
+      }).catch(() => {});
+    } catch { /* noop */ }
+  }
+
   // Delegated click handler — stopPropagation keeps it from triggering
   // parent click listeners (owner popover toggler, etc).
   document.addEventListener("click", (e) => {
@@ -1701,11 +1732,15 @@
     if (!url || !rating) return;
     const fb = loadFeedback();
     const prev = fb[url] && fb[url].rating;
+    const stock = btn.dataset.stock || null;
+    const sessionDate = document.body.dataset.date || null;
     if (prev === rating) {
       // Toggling off — clear
       delete fb[url];
+      syncFeedback(url, "clear", stock, sessionDate);
     } else {
-      fb[url] = { rating, ts: Date.now(), stock: btn.dataset.stock || null };
+      fb[url] = { rating, ts: Date.now(), stock };
+      syncFeedback(url, rating, stock, sessionDate);
     }
     saveFeedback(fb);
     renderFeedbackState();

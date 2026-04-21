@@ -35,7 +35,7 @@
 
 ### ☕ 커피 배너
 친구별 보유 종목 카드. 2-컬럼 압축 레이아웃 (이름·오너칩 / 가격·변화량+%).
-- **대장(leader)** 지정 가능 — 대표 1명 + "+N" 형태로 축약, 호버/탭 시 전체 보유자 팝오버
+- **대장(leader)** 지정 가능 — 대장은 👑 + 금색 테두리로 강조 (단독 보유자는 일반 👤). 대표 1명 + "+N" 형태로 축약, 호버/탭 시 전체 보유자 팝오버
 - 오늘 가장 오른 친구 종목을 배너 헤드라인 ("오늘 커피는 X님이!")에 표시
 - 장중 60초 폴링으로 카드 시세 + 배너 탑게이너 + 카드 순서(FLIP 애니메이션) 모두 실시간 갱신
 
@@ -254,6 +254,16 @@ wrangler deploy        # 최초 1회 wrangler login 필요
 엔드포인트:
 - `GET /quote?codes=005930,000660,...` — 종목 시세 (Naver realtime polling)
 - `GET /ticker?items=KOSPI,KOSDAQ,USDKRW,BTC,ETH` — 지표·FX·암호화폐 통합
+- `POST /feedback` — 뉴스 피드백 수집 (body: `{url, rating, ts, stock?, session_date}`). KV namespace FEEDBACK 필요
+- `GET /feedback?date=YYYY-MM-DD` — 해당 날짜의 피드백 전체 (agent가 다음 날 활용)
+
+**KV 세팅** (최초 1회):
+```bash
+cd worker
+wrangler kv namespace create FEEDBACK
+# returned id 를 wrangler.toml 의 [[kv_namespaces]] 블록에 paste
+wrangler deploy
+```
 
 상세: [worker/README.md](worker/README.md).
 
@@ -308,11 +318,11 @@ Production과 동일 시퀀스는 `scripts/launchd/run-briefing.sh` / `run-revie
 
 "아침 스캔 도구로서 정점을 찍는" 방향 (HTS·TradingView 영역 중복 지양).
 
-**Phase 1 — 진행 중**
-- ✅ **스파크라인** (20일 종가 미니차트) — 구현 완료
-- ✅ **52주 고점·저점 거리** — 구현 완료
-- 🔨 **누적 리뷰 대시보드** — 주간/월간 적중률, 신뢰도별 성과 트렌드 (리뷰 데이터 누적 필요)
-- 🟡 **큐레이션 피드백 버튼** (👍👎) — **Iteration 1 완료** (localStorage 저장). 다음: Worker sync + agent prompt 주입
+**Phase 1 — 완료 ✅**
+- ✅ **스파크라인** (20일 종가 미니차트) — 추세 맥락 즉시 파악
+- ✅ **52주 고점·저점 거리** — 매매 심리 컨텍스트
+- ✅ **누적 리뷰 대시보드** — `/accuracy` 페이지. 전체 hit rate + 일별 stacked bar chart + 신뢰도 버킷별 + 신호 기여도. 데이터는 리뷰가 쌓이면서 자동 채워짐
+- ✅ **큐레이션 피드백 버튼** (👍👎) — localStorage + Worker /feedback POST 동기화. 다음 날 agent가 어제 피드백을 `GET /feedback?date=...` 로 가져와 큐레이션 튜닝에 참고
 
 **Phase 2 — 데이터 쌓인 후**
 - 큐레이션 기준 튜닝 (누적 리뷰 기반)
