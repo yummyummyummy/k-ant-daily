@@ -651,6 +651,123 @@ def persist_summary_artifact(summary: dict, date: str) -> Path:
     return path
 
 
+def _timeline_svg(records: list[dict], width: int = 680, height: int = 120) -> str:
+    """Stacked bar chart — one column per day, stacking hits/partial/misses."""
+    if not records:
+        return ""
+    pad_top, pad_bottom, pad_left, pad_right = 6, 18, 28, 6
+    plot_w = width - pad_left - pad_right
+    plot_h = height - pad_top - pad_bottom
+    n = len(records)
+    # Bar width with small gap between bars
+    bw = max(2.0, plot_w / n * 0.78)
+    step = plot_w / n
+    # Y scale based on max total calls across days
+    max_total = max((r.get("total") or 0) for r in records) or 1
+
+    parts = [f'<svg viewBox="0 0 {width} {height}" preserveAspectRatio="none">']
+    # Y gridlines (25%, 50%, 75%, 100%)
+    for frac in (0.25, 0.5, 0.75, 1.0):
+        y = pad_top + plot_h * (1 - frac)
+        parts.append(f'<line class="grid-line" x1="{pad_left}" x2="{width - pad_right}" y1="{y:.1f}" y2="{y:.1f}"/>')
+        parts.append(f'<text class="y-label" x="{pad_left - 3}" y="{y + 3:.1f}" text-anchor="end">{int(max_total * frac)}</text>')
+
+    # Bars
+    for i, r in enumerate(records):
+        hits    = r.get("hits") or 0
+        partial = r.get("partial") or 0
+        misses  = r.get("misses") or 0
+        x = pad_left + step * i + (step - bw) / 2
+        y_cursor = pad_top + plot_h  # bottom
+        for val, cls in ((hits, "bar-hit"), (partial, "bar-partial"), (misses, "bar-miss")):
+            if val <= 0:
+                continue
+            h = (val / max_total) * plot_h
+            y_cursor -= h
+            parts.append(f'<rect class="{cls}" x="{x:.1f}" y="{y_cursor:.1f}" width="{bw:.1f}" height="{h:.1f}"/>')
+        # X label (MM/DD) — only every ~6 days to avoid crowding
+        if n <= 14 or i % max(1, n // 7) == 0:
+            date = r.get("date", "")
+            short = date[5:] if len(date) == 10 else date
+            parts.append(f'<text class="x-label" x="{x + bw/2:.1f}" y="{pad_top + plot_h + 11}" text-anchor="middle">{short}</text>')
+    parts.append('</svg>')
+    return "".join(parts)
+
+
+def build_accuracy(base_url: str) -> str:
+    """Scan every docs/*.summary.json that carries a `review` block and
+    assemble a cumulative accuracy page. Rebuilt on every render — the
+    computation is cheap (tens of files) and keeps the page fresh without
+    a separate trigger."""
+    records = []
+    for p in sorted(DOCS.glob("*.summary.json")):
+        try:
+            data = json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        review = data.get("review")
+        if not review:
+            continue
+        acc = review.get("accuracy") or {}
+        records.append({
+            "date": data.get("date") or p.stem.replace(".summary", ""),
+            "hits":    acc.get("hits") or 0,
+            "partial": acc.get("partial") or 0,
+            "misses":  acc.get("misses") or 0,
+            "total":   acc.get("total") or 0,
+            "hit_rate": acc.get("hit_rate") or 0,
+            "directional_accuracy": acc.get("directional_accuracy") or 0,
+            "by_confidence": acc.get("by_confidence") or {},
+            "signal_attribution": review.get("signal_attribution") or {},
+        })
+
+    # Aggregate
+    total_hits    = sum(r["hits"]    for r in records)
+    total_partial = sum(r["partial"] for r in records)
+    total_misses  = sum(r["misses"]  for r in records)
+    total_calls   = sum(r["total"]   for r in records)
+    total_dir_correct = sum(round((r["directional_accuracy"] or 0) * (r["total"] or 0)) for r in records)
+    totals = {
+        "hits":    total_hits,
+        "partial": total_partial,
+        "misses":  total_misses,
+        "total":   total_calls,
+        "hit_rate": (total_hits + 0.5 * total_partial) / total_calls if total_calls else 0,
+        "directional_accuracy": total_dir_correct / total_calls if total_calls else 0,
+        "days": len(records),
+    }
+
+    # Cumulative by confidence bucket
+    by_confidence = {"high": {"hits": 0, "total": 0}, "medium": {"hits": 0, "total": 0}, "low": {"hits": 0, "total": 0}}
+    for r in records:
+        for bucket, stat in (r.get("by_confidence") or {}).items():
+            if bucket not in by_confidence:
+                continue
+            by_confidence[bucket]["hits"]  += stat.get("hits")  or 0
+            by_confidence[bucket]["total"] += stat.get("total") or 0
+    for b, s in by_confidence.items():
+        s["rate"] = s["hits"] / s["total"] if s["total"] else 0
+
+    # Cumulative signal attribution
+    attrib = {}
+    for r in records:
+        for k, v in (r.get("signal_attribution") or {}).items():
+            attrib[k] = attrib.get(k, 0) + (v or 0)
+    attrib_sorted = sorted(attrib.items(), key=lambda kv: kv[1], reverse=True)
+
+    env = _env()
+    tmpl = env.get_template("accuracy.html.j2")
+    return tmpl.render(
+        base_url=base_url,
+        records=records,
+        totals=totals,
+        by_confidence=by_confidence,
+        attrib_sorted=attrib_sorted,
+        timeline_svg=_timeline_svg(records),
+        generated_at_display=datetime.now(KST).strftime("%Y-%m-%d %H:%M"),
+    )
+
+
 def build_archive_index(base_url: str) -> str:
     entries: list[dict] = []
     pattern = re.compile(r"^(\d{4}-\d{2}-\d{2})\.html$")
@@ -698,6 +815,9 @@ def main(argv: list[str]) -> int:
 
     archive_html = build_archive_index(base_url)
     (DOCS / "archive.html").write_text(archive_html, encoding="utf-8")
+
+    accuracy_html = build_accuracy(base_url)
+    (DOCS / "accuracy.html").write_text(accuracy_html, encoding="utf-8")
 
     # .nojekyll for GitHub Pages (skip Jekyll processing)
     (DOCS / ".nojekyll").touch()

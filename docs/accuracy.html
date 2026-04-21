@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>누적 정확도 · k-ant-daily</title>
+<link rel="canonical" href="https://yummyummyummy.github.io/k-ant-daily/accuracy.html">
+<style>
+  :root {
+    --fg: #0f172a; --muted: #64748b; --bg: #fff; --accent: #0f766e; --border: #e2e8f0; --card: #f8fafc;
+    --pos: #dc2626; --pos-bg: rgba(220,38,38,0.08);
+    --neg: #2563eb; --neg-bg: rgba(37,99,235,0.08);
+    --partial: #d97706; --partial-bg: rgba(245,158,11,0.15);
+    --neu: #6b7280; --neu-bg: rgba(107,114,128,0.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --fg: #e2e8f0; --muted: #94a3b8; --bg: #0f172a; --accent: #5eead4; --border: #1e293b; --card: #1e293b;
+      --pos: #f87171; --pos-bg: rgba(248,113,113,0.12);
+      --neg: #60a5fa; --neg-bg: rgba(96,165,250,0.12);
+      --neu: #94a3b8; --neu-bg: rgba(148,163,184,0.12);
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+    line-height: 1.6; font-size: 16px; }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; }
+  h1 { font-size: 24px; margin: 0 0 6px; }
+  header nav a { color: var(--accent); text-decoration: none; font-size: 14px; }
+  header time { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; }
+  section { margin-top: 28px; }
+  section h2 { font-size: 16px; margin: 0 0 12px; }
+
+  .empty { background: var(--card); border: 1px dashed var(--border); border-radius: 10px;
+           padding: 24px; text-align: center; color: var(--muted); }
+
+  .hero {
+    display: grid; grid-template-columns: auto 1fr; gap: 20px;
+    align-items: center;
+    background: linear-gradient(135deg, var(--card), transparent);
+    border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+  }
+  .hero .big { font-size: 42px; font-weight: 900; font-variant-numeric: tabular-nums;
+    color: var(--accent); line-height: 1; }
+  .hero .label { font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .hero .meta { font-size: 13px; color: var(--muted); }
+  .hero .meta strong { color: var(--fg); }
+
+  /* Daily timeline chart (inline SVG) */
+  .timeline {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 14px 18px;
+  }
+  .timeline svg { width: 100%; height: 120px; display: block; }
+  .timeline .grid-line { stroke: var(--border); stroke-width: 0.5; }
+  .timeline .bar-hit     { fill: var(--pos); }
+  .timeline .bar-partial { fill: var(--partial); }
+  .timeline .bar-miss    { fill: var(--neg); }
+  .timeline .y-label     { font-size: 9px; fill: var(--muted); }
+  .timeline .x-label     { font-size: 9px; fill: var(--muted); }
+  .timeline-legend {
+    display: flex; gap: 12px; font-size: 11px; color: var(--muted);
+    margin-top: 8px; flex-wrap: wrap;
+  }
+  .timeline-legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 3px; vertical-align: middle; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .card .lbl { font-size: 11px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .card .val { font-size: 22px; font-weight: 800; margin-top: 3px; font-variant-numeric: tabular-nums; }
+  .card .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .card.high   .val { color: var(--accent); }
+  .card.medium .val { color: var(--fg); }
+  .card.low    .val { color: var(--muted); opacity: 0.7; }
+
+  .attrib-list { list-style: none; padding: 0; margin: 0; }
+  .attrib-list li {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 8px 0; border-bottom: 1px dashed var(--border);
+  }
+  .attrib-list li:last-child { border-bottom: none; }
+  .attrib-list .count { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .attrib-list .help { color: var(--accent); }
+  .attrib-list .hurt { color: var(--neg); }
+
+  footer { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <nav><a href="index.html">← 오늘자</a> · <a href="archive.html">아카이브</a></nav>
+    <h1>📊 누적 정확도</h1>
+    <time>생성 2026-04-21 16:48 KST · 데이터 0일 누적</time>
+  </header>
+
+  <section class="empty">
+    아직 검증된 일자가 없습니다. 평일 저녁 20:10 NXT 마감 후 리뷰가 발행되면 여기에 쌓입니다.
+  </section>
+
+  <footer>k-ant-daily · <a href="https://github.com/yummyummyummy/k-ant-daily" target="_blank" rel="noopener">GitHub</a></footer>
+</main>
+</body>
+</html>
