@@ -684,9 +684,9 @@
       ],
       "quote": {
         "price": "219,000",
-        "change": "4,500",
-        "change_pct": "+2.10",
-        "change_pct_num": 2.1,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "up"
       },
       "history": {
@@ -724,11 +724,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": 2.1,
-      "price_direction": "up",
-      "price_change_display": "+2.10%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "219,000",
-      "price_change_abs_display": "▲ 4,500",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "news_count": 0
@@ -820,9 +820,9 @@
       ],
       "quote": {
         "price": "1,224,000",
-        "change": "58,000",
-        "change_pct": "+4.97",
-        "change_pct_num": 4.97,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "up"
       },
       "history": {
@@ -860,11 +860,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": 4.97,
-      "price_direction": "up",
-      "price_change_display": "+4.97%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "1,224,000",
-      "price_change_abs_display": "▲ 58,000",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "news_count": 0
@@ -933,9 +933,9 @@
       ],
       "quote": {
         "price": "1,058,000",
-        "change": "29,000",
-        "change_pct": "-2.67",
-        "change_pct_num": -2.67,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "down"
       },
       "history": {
@@ -973,11 +973,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -2.67,
-      "price_direction": "down",
-      "price_change_display": "-2.67%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "1,058,000",
-      "price_change_abs_display": "▼ 29,000",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 0
@@ -1045,9 +1045,9 @@
       ],
       "quote": {
         "price": "369,000",
-        "change": "2,500",
-        "change_pct": "-0.67",
-        "change_pct_num": -0.67,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "down"
       },
       "history": {
@@ -1085,11 +1085,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -0.67,
-      "price_direction": "down",
-      "price_change_display": "-0.67%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "369,000",
-      "price_change_abs_display": "▼ 2,500",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 0
@@ -1163,9 +1163,9 @@
       ],
       "quote": {
         "price": "295,000",
-        "change": "8,000",
-        "change_pct": "+2.79",
-        "change_pct_num": 2.79,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "up"
       },
       "history": {
@@ -1203,11 +1203,11 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 2.79,
-      "price_direction": "up",
-      "price_change_display": "+2.79%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "295,000",
-      "price_change_abs_display": "▲ 8,000",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 0
@@ -1296,9 +1296,9 @@
       ],
       "quote": {
         "price": "1,391,000",
-        "change": "34,000",
-        "change_pct": "-2.39",
-        "change_pct_num": -2.39,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "down"
       },
       "history": {
@@ -1336,11 +1336,11 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -2.39,
-      "price_direction": "down",
-      "price_change_display": "-2.39%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "1,391,000",
-      "price_change_abs_display": "▼ 34,000",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
       "news_count": 0
@@ -1429,9 +1429,9 @@
       ],
       "quote": {
         "price": "133,500",
-        "change": "4,700",
-        "change_pct": "+3.65",
-        "change_pct_num": 3.65,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "up"
       },
       "history": {
@@ -1469,11 +1469,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": 3.65,
-      "price_direction": "up",
-      "price_change_display": "+3.65%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "133,500",
-      "price_change_abs_display": "▲ 4,700",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "news_count": 0
@@ -1558,9 +1558,9 @@
       ],
       "quote": {
         "price": "3,610",
-        "change": "500",
-        "change_pct": "-12.17",
-        "change_pct_num": -12.17,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "down"
       },
       "history": {
@@ -1598,11 +1598,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "풀매도",
-      "price_change_pct_num": -12.17,
-      "price_direction": "down",
-      "price_change_display": "-12.17%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "3,610",
-      "price_change_abs_display": "▼ 500",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "부정",
       "confidence_label": "높음",
       "news_count": 0
@@ -1672,9 +1672,9 @@
       "is_etf": true,
       "quote": {
         "price": "16,680",
-        "change": "335",
-        "change_pct": "+2.05",
-        "change_pct_num": 2.05,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "up"
       },
       "history": {
@@ -1712,11 +1712,11 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 2.05,
-      "price_direction": "up",
-      "price_change_display": "+2.05%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "16,680",
-      "price_change_abs_display": "▲ 335",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 0
@@ -1800,9 +1800,9 @@
       ],
       "quote": {
         "price": "51,700",
-        "change": "2,400",
-        "change_pct": "+4.87",
-        "change_pct_num": 4.87,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "up"
       },
       "history": {
@@ -1840,11 +1840,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 4.87,
-      "price_direction": "up",
-      "price_change_display": "+4.87%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "51,700",
-      "price_change_abs_display": "▲ 2,400",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "news_count": 0
@@ -1923,9 +1923,9 @@
       ],
       "quote": {
         "price": "308,000",
-        "change": "34,500",
-        "change_pct": "-10.07",
-        "change_pct_num": -10.07,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "down"
       },
       "history": {
@@ -1963,11 +1963,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -10.07,
-      "price_direction": "down",
-      "price_change_display": "-10.07%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "308,000",
-      "price_change_abs_display": "▼ 34,500",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
       "news_count": 0
@@ -2060,9 +2060,9 @@
       "leader": "이웅수",
       "quote": {
         "price": "87,800",
-        "change": "1,500",
-        "change_pct": "-1.68",
-        "change_pct_num": -1.68,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "down"
       },
       "history": {
@@ -2100,11 +2100,11 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -1.68,
-      "price_direction": "down",
-      "price_change_display": "-1.68%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "87,800",
-      "price_change_abs_display": "▼ 1,500",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 0
@@ -2183,9 +2183,9 @@
       ],
       "quote": {
         "price": "427,500",
-        "change": "14,500",
-        "change_pct": "+3.51",
-        "change_pct_num": 3.51,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "up"
       },
       "history": {
@@ -2223,11 +2223,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 3.51,
-      "price_direction": "up",
-      "price_change_display": "+3.51%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "427,500",
-      "price_change_abs_display": "▲ 14,500",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
       "news_count": 0
@@ -2338,9 +2338,9 @@
       ],
       "quote": {
         "price": "48,700",
-        "change": "7,100",
-        "change_pct": "-12.72",
-        "change_pct_num": -12.72,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "down"
       },
       "history": {
@@ -2378,11 +2378,11 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -12.72,
-      "price_direction": "down",
-      "price_change_display": "-12.72%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "48,700",
-      "price_change_abs_display": "▼ 7,100",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
       "news_count": 0
@@ -2450,9 +2450,9 @@
       ],
       "quote": {
         "price": "155,900",
-        "change": "4,300",
-        "change_pct": "-2.68",
-        "change_pct_num": -2.68,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "down"
       },
       "history": {
@@ -2490,11 +2490,11 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -2.68,
-      "price_direction": "down",
-      "price_change_display": "-2.68%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "155,900",
-      "price_change_abs_display": "▼ 4,300",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 0
@@ -2557,9 +2557,9 @@
       ],
       "quote": {
         "price": "3,180",
-        "change": "165",
-        "change_pct": "-4.93",
-        "change_pct_num": -4.93,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "down"
       },
       "history": {
@@ -2597,11 +2597,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "매도",
-      "price_change_pct_num": -4.93,
-      "price_direction": "down",
-      "price_change_display": "-4.93%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "3,180",
-      "price_change_abs_display": "▼ 165",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "중립",
       "confidence_label": "중간",
       "news_count": 0
@@ -2674,9 +2674,9 @@
       ],
       "quote": {
         "price": "48,950",
-        "change": "100",
-        "change_pct": "+0.20",
-        "change_pct_num": 0.2,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "up"
       },
       "history": {
@@ -2714,11 +2714,11 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.2,
-      "price_direction": "up",
-      "price_change_display": "+0.20%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "48,950",
-      "price_change_abs_display": "▲ 100",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 0
@@ -2807,9 +2807,9 @@
       ],
       "quote": {
         "price": "546,000",
-        "change": "19,000",
-        "change_pct": "+3.61",
-        "change_pct_num": 3.61,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "up"
       },
       "history": {
@@ -2847,11 +2847,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 3.61,
-      "price_direction": "up",
-      "price_change_display": "+3.61%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "546,000",
-      "price_change_abs_display": "▲ 19,000",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 0
@@ -2924,9 +2924,9 @@
       ],
       "quote": {
         "price": "15,350",
-        "change": "110",
-        "change_pct": "-0.71",
-        "change_pct_num": -0.71,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "down"
       },
       "history": {
@@ -2964,11 +2964,11 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -0.71,
-      "price_direction": "down",
-      "price_change_display": "-0.71%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "15,350",
-      "price_change_abs_display": "▼ 110",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 0
@@ -3067,9 +3067,9 @@
       ],
       "quote": {
         "price": "249,000",
-        "change": "6,000",
-        "change_pct": "-2.35",
-        "change_pct_num": -2.35,
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0,
         "direction": "down"
       },
       "history": {
@@ -3107,14 +3107,643 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "풀매도",
-      "price_change_pct_num": -2.35,
-      "price_direction": "down",
-      "price_change_display": "-2.35%",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
       "price_display": "249,000",
-      "price_change_abs_display": "▼ 6,000",
+      "price_change_abs_display": "—",
       "news_sentiment_label": "부정",
       "confidence_label": "높음",
       "news_count": 0
+    },
+    {
+      "code": "329180",
+      "name": "HD현대중공업",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": true,
+      "recommendation": "hold",
+      "confidence": "medium",
+      "rationale": "한·미 무인함대 공동개발 + 동남아 K-방산 수출 + 1Q 잠정실적 호재로 뉴스 톤 긍정. 그러나 20일 +21% 급등(474,500→576,000)으로 상당 부분 선반영, 간밤 XLI -1.41%·DAC -2.27% (-1.84%) 약세로 갭다운 리스크. 관망으로 방어.",
+      "summary": "어제 576,000원(보합) 마감, 20일 누적 +21% 급등 후 단기 쉬어가는 구간. 아침에 美·韓 무인함대 공동 제작·차세대 해전 게임체인저·동남아 K-방산 수출 등 긍정 헤드라인이 줄줄이 등장하고 1Q 잠정실적 공시도 나왔으나, 간밤 XLI·DAC 모두 약세로 마감해 오늘 개장 초 갭다운 후 흐름 재정비 가능성. 중장기 방산·조선 복합 모멘텀은 유효.",
+      "key_points": [
+        {
+          "point": "20일 +21% 급등 후 선반영 구간",
+          "detail": "4/초 474,500원 → 4/21 576,000원, 20일 누적 +21%. 방산·조선 복합 내러티브를 상당 부분 선반영. 간밤 해외 프록시 약세 겹쳐 단기 차익실현 압력.",
+          "impact": "negative",
+          "why_material": "단기 과열·차익실현 리스크",
+          "published_at": "2026-04-22T00:00:00+09:00",
+          "sources": [],
+          "impact_label": "악재",
+          "time_ago": "7시간 전"
+        },
+        {
+          "point": "한·미 무인함대 공동개발 확정",
+          "detail": "HD현대·한화가 美 무인함대 양산에 참여, 韓 건조 역량과 美 AI 기술 결합으로 차세대 해전 게임체인저 겨냥. 중장기 방산 수출 파이프라인의 핵심 프로젝트.",
+          "impact": "positive",
+          "why_material": "중장기 방산 수주 파이프라인 확장",
+          "published_at": "2026-04-21T17:43:00+09:00",
+          "sources": [
+            {
+              "title": "서울경제",
+              "url": "https://n.news.naver.com/mnews/article/011/0004613155"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "13시간 전"
+        },
+        {
+          "point": "1Q 잠정실적 공시",
+          "detail": "4/20 영업(잠정)실적 공시. 조선·엔진 부문 업황 호조 반영 추정. 구체 수치 확인 필요하나 공시 자체가 긍정 시그널.",
+          "impact": "positive",
+          "why_material": "실적 모멘텀 확인",
+          "published_at": "2026-04-20T00:00:00+09:00",
+          "sources": [
+            {
+              "title": "금감원 공시",
+              "url": "https://finance.naver.com/item/news_notice.naver?code=329180"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "2일 전"
+        }
+      ],
+      "owners": [
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "XLI",
+        "DAC"
+      ],
+      "quote": {
+        "price": "576,000",
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0
+      },
+      "overnight_signal": {
+        "direction": "down",
+        "avg_pct": -1.84,
+        "proxies": [
+          {
+            "symbol": "XLI",
+            "change_pct": -1.41
+          },
+          {
+            "symbol": "DAC",
+            "change_pct": -2.27
+          }
+        ],
+        "label": "약세"
+      },
+      "news": [
+        {
+          "title": "韓 건조 역량에 美 기술을 더하면…미래 해전 좌우할 ‘차세대 무인함.....",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613232",
+          "source": "서울경제",
+          "date": "2026.04.22 06:31",
+          "published_at": "2026.04.22 06:31",
+          "time_ago": "59분 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613232",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "동남아서 'K-방산' 위용 떨친다",
+          "link": "https://n.news.naver.com/mnews/article/277/0005752862",
+          "source": "아시아경제",
+          "date": "2026.04.22 06:19",
+          "published_at": "2026.04.22 06:19",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/277/0005752862",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "공매도 집중 공격 종목, 되레 올랐다…숏커버링에 주가 뜀박질 [fn마켓...",
+          "link": "https://n.news.naver.com/mnews/article/014/0005511338",
+          "source": "파이낸셜뉴스",
+          "date": "2026.04.22 06:07",
+          "published_at": "2026.04.22 06:07",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005511338",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"0.7mm의 벽 넘는다\"…레이저 빔 용접으로 우주시장 정조준",
+          "link": "https://n.news.naver.com/mnews/article/008/0005347452",
+          "source": "머니투데이",
+          "date": "2026.04.22 05:00",
+          "published_at": "2026.04.22 05:00",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/008/0005347452",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "증시로 다시 돈 몰린다… 빚투 자금도 34조 ‘사상 최고치’",
+          "link": "https://n.news.naver.com/mnews/article/005/0001844594",
+          "source": "국민일보",
+          "date": "2026.04.22 00:18",
+          "published_at": "2026.04.22 00:18",
+          "time_ago": "7시간 전",
+          "url": "https://n.news.naver.com/mnews/article/005/0001844594",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "외국인 '삼전닉스' 4.2조원 폭풍 매수",
+          "link": "https://n.news.naver.com/mnews/article/015/0005277870",
+          "source": "한국경제",
+          "date": "2026.04.21 18:16",
+          "published_at": "2026.04.21 18:16",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005277870",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "韓 제조 능력·美 AI 기술 시너지…미래 해전 ‘게임체인저’ 양산",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613120",
+          "source": "서울경제",
+          "date": "2026.04.21 17:51",
+          "published_at": "2026.04.21 17:51",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613120",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "HD현대·한화, 美 무인함대 만든다",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613100",
+          "source": "서울경제",
+          "date": "2026.04.21 17:43",
+          "published_at": "2026.04.21 17:43",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613100",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "울산·현대차, 미래차 ‘소부장’ 생태계 조성",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613098",
+          "source": "서울경제",
+          "date": "2026.04.21 17:42",
+          "published_at": "2026.04.21 17:42",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613098",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "울산시-현대차, 미래차·소부장 생태계 조성 '맞손'",
+          "link": "https://n.news.naver.com/mnews/article/001/0016032717",
+          "source": "연합뉴스",
+          "date": "2026.04.21 09:07",
+          "published_at": "2026.04.21 09:07",
+          "time_ago": "22시간 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016032717",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "에이치디현대중공업(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1632204&code=329180&page_notice=",
+          "date": "2026.04.21"
+        },
+        {
+          "title": "에이치디현대중공업(주) 영업(잠정)실적(공정공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1631815&code=329180&page_notice=",
+          "date": "2026.04.20"
+        },
+        {
+          "title": "에이치디현대중공업(주) 단일판매ㆍ공급계약체결",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1631289&code=329180&page_notice=",
+          "date": "2026.04.17"
+        },
+        {
+          "title": "에이치디현대중공업(주) 단일판매ㆍ공급계약 체결(자율공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1630917&code=329180&page_notice=",
+          "date": "2026.04.16"
+        },
+        {
+          "title": "에이치디현대중공업(주) 생산중단",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1630423&code=329180&page_notice=",
+          "date": "2026.04.15"
+        }
+      ],
+      "history": {
+        "symbol": "329180.KS",
+        "closes_20d": [
+          523000.0,
+          511000.0,
+          498500.0,
+          480000.0,
+          465000.0,
+          450500.0,
+          439000.0,
+          479500.0,
+          471000.0,
+          470000.0,
+          484500.0,
+          470500.0,
+          475000.0,
+          463000.0,
+          479000.0,
+          474500.0,
+          493500.0,
+          514000.0,
+          524000.0,
+          576000.0
+        ],
+        "fifty_two_week_high": 652000.0,
+        "fifty_two_week_low": 347000.0,
+        "last_close": 576000.0,
+        "change_20d_pct": 10.13,
+        "pos_52w_pct": 75.1,
+        "from_high_pct": -11.66,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,9.3 L4.2,11.4 L8.4,13.6 L12.6,16.8 L16.8,19.4 L21.1,22.0 L25.3,24.0 L29.5,16.9 L33.7,18.4 L37.9,18.6 L42.1,16.0 L46.3,18.5 L50.5,17.7 L54.7,19.8 L58.9,17.0 L63.2,17.8 L67.4,14.5 L71.6,10.9 L75.8,9.1 L80.0,0.0",
+        "sparkline_direction": "up"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "576,000",
+      "price_change_abs_display": "—",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간",
+      "news_count": 10
+    },
+    {
+      "code": "083450",
+      "name": "GST",
+      "market": "KOSDAQ",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "당일 개별 촉매 부재 (최근 종목 기사는 4/13 '사상 최대 실적 가시화' 이후 9일 경과). 간밤 SOX +0.5%·AMAT +0.69% 중립-우호. 어제 보합 마감. 뚜렷한 방향성 없어 관망.",
+      "summary": "어제 43,250원(보합) 마감, 20일 누적 +9%. 반도체 진공 스크러버·액침냉각 솔루션이 핵심 사업으로 MWC 2026 공개 호재는 3월에 소화된 상태. 4/13 '사상 최대 실적 가시화'로 7% 급등한 이후 새로운 개별 재료 부재. 간밤 반도체 장비 프록시(^SOX·AMAT) 중립-우호로 장세에 휩쓸리는 흐름 예상.",
+      "key_points": [
+        {
+          "point": "반도체 장비 프록시 중립-우호",
+          "detail": "간밤 ^SOX +0.5%, AMAT +0.69%로 평균 +0.6%. 약하게 우호적이나 종목 고유 촉매가 없어 단독 상승 동력은 부족.",
+          "impact": "neutral",
+          "why_material": "섹터 프록시는 우호, 종목 촉매 부재",
+          "published_at": "2026-04-22T06:00:00+09:00",
+          "sources": [],
+          "impact_label": "중립",
+          "time_ago": "1시간 전"
+        },
+        {
+          "point": "당일 개별 촉매 부재",
+          "detail": "최근 개별 종목 기사는 4/13 '사상 최대 실적 가시화'가 마지막. 이후 9일 동안 신규 모멘텀 없음. 3월 MWC 2026 액침냉각 공개 호재는 이미 소화.",
+          "impact": "neutral",
+          "why_material": "방향성 부재로 섹터 흐름 동조 전망",
+          "published_at": "2026-04-13T09:42:00+09:00",
+          "sources": [
+            {
+              "title": "이데일리",
+              "url": "https://n.news.naver.com/mnews/article/018/0006261xxx"
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "04/13"
+        }
+      ],
+      "owners": [
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "^SOX",
+        "AMAT"
+      ],
+      "quote": {
+        "price": "43,250",
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0
+      },
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": 0.6,
+        "proxies": [
+          {
+            "symbol": "^SOX",
+            "change_pct": 0.5
+          },
+          {
+            "symbol": "AMAT",
+            "change_pct": 0.69
+          }
+        ],
+        "label": "중립"
+      },
+      "news": [
+        {
+          "title": "벤츠 수혜에도 갈렸다…초고수, LG엔솔 매수·삼성SDI 매도 [주식 초...",
+          "link": "https://n.news.naver.com/mnews/article/011/0004612951",
+          "source": "서울경제",
+          "date": "2026.04.21 11:54",
+          "published_at": "2026.04.21 11:54",
+          "time_ago": "19시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004612951",
+          "impact": "positive",
+          "impact_label": "호재"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "(주)글로벌스탠다드테크놀로지 주주총회소집결의(임시주주총회)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1627381&code=083450&page_notice=",
+          "date": "2026.04.06"
+        },
+        {
+          "title": "(주)글로벌스탠다드테크놀로지 주주명부폐쇄기간 또는 기준일 설정",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1627353&code=083450&page_notice=",
+          "date": "2026.04.06"
+        },
+        {
+          "title": "(주)글로벌스탠다드테크놀로지 기업가치 제고 계획(자율공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1622074&code=083450&page_notice=",
+          "date": "2026.03.27"
+        },
+        {
+          "title": "(주)글로벌스탠다드테크놀로지 정기주주총회결과",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1621553&code=083450&page_notice=",
+          "date": "2026.03.26"
+        },
+        {
+          "title": "(주)글로벌스탠다드테크놀로지 감사보고서 제출",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1615818&code=083450&page_notice=",
+          "date": "2026.03.18"
+        }
+      ],
+      "history": {
+        "symbol": "083450.KQ",
+        "closes_20d": [
+          29700.0,
+          27750.0,
+          27050.0,
+          25500.0,
+          24800.0,
+          27250.0,
+          25550.0,
+          25850.0,
+          25750.0,
+          27100.0,
+          29550.0,
+          30500.0,
+          32350.0,
+          36900.0,
+          39100.0,
+          39650.0,
+          41750.0,
+          42500.0,
+          43150.0,
+          43250.0
+        ],
+        "fifty_two_week_high": 43750.0,
+        "fifty_two_week_low": 16780.0,
+        "last_close": 43250.0,
+        "change_20d_pct": 45.62,
+        "pos_52w_pct": 98.1,
+        "from_high_pct": -1.14,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,17.6 L4.2,20.2 L8.4,21.1 L12.6,23.1 L16.8,24.0 L21.1,20.8 L25.3,23.0 L29.5,22.6 L33.7,22.8 L37.9,21.0 L42.1,17.8 L46.3,16.6 L50.5,14.2 L54.7,8.3 L58.9,5.4 L63.2,4.7 L67.4,2.0 L71.6,1.0 L75.8,0.1 L80.0,0.0",
+        "sparkline_direction": "up"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "43,250",
+      "price_change_abs_display": "—",
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음",
+      "news_count": 1
+    },
+    {
+      "code": "079550",
+      "name": "LIG디펜스앤에어로스페이스",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "recommendation": "hold",
+      "confidence": "medium",
+      "rationale": "중동발 특수로 방산 4사 영업익 30%+ 성장, K-방산 수출 154억달러 회복, 말레이시아 DSA 2026 참가, 단일공급계약 공시 등 긍정 재료 多. 그러나 간밤 ITA -3.78%·RTX -4.4%·LMT -1.61% (-3.26%)로 美 방산 전반 강한 약세 → 오늘 개장 갭다운 리스크 명백. 관망으로 대응.",
+      "summary": "어제 909,000원(보합) 마감. 4/9 LIG넥스원에서 사명 변경 완료, 전일 단일공급계약 공시 + 말레이시아 DSA 2026 참가로 동남아 방공 시장 공략 속도. 중동 분쟁 수혜주로도 재부각. 그러나 간밤 美 방산 ETF ITA -3.78%·RTX -4.4% 등 섹터 전반 폭락에 가까운 약세 → 오늘 개장 초 갭다운 후 뉴스 호재에 반등 시도할지, 글로벌 방산 약세에 휩쓸려 밀릴지 관찰 필요.",
+      "key_points": [
+        {
+          "point": "간밤 美 방산 ETF 강한 약세 — 갭다운 리스크",
+          "detail": "ITA -3.78%, LMT -1.61%, RTX -4.4%로 방산 전반 약세 강함. 평균 -3.26%는 매우 분명한 하락 신호. 오늘 개장 갭다운 가능성 높음.",
+          "impact": "negative",
+          "why_material": "해외 섹터 약세로 오늘 단기 하방 압력",
+          "published_at": "2026-04-22T06:00:00+09:00",
+          "sources": [],
+          "impact_label": "악재",
+          "time_ago": "1시간 전"
+        },
+        {
+          "point": "중동발 특수로 방산 4사 영업익 30%+ 성장",
+          "detail": "방산 4사 1Q 영업익 30% 이상 성장 전망. 중동 분쟁 지속으로 무기 수요 확대, LIG D&A 도 수혜주로 거론.",
+          "impact": "positive",
+          "why_material": "섹터 전반 실적 호조 + 개별 종목 수혜",
+          "published_at": "2026-04-21T18:20:00+09:00",
+          "sources": [
+            {
+              "title": "부산일보",
+              "url": "https://n.news.naver.com/mnews/article/082/0001298xxx"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "13시간 전"
+        },
+        {
+          "point": "전일 단일공급계약 체결 공시",
+          "detail": "4/21 단일판매·공급계약 체결 공시. 규모·상대방 확인 필요하나 매출 가시성 추가.",
+          "impact": "positive",
+          "why_material": "매출 가시성 확보",
+          "published_at": "2026-04-21T00:00:00+09:00",
+          "sources": [
+            {
+              "title": "금감원 공시",
+              "url": "https://finance.naver.com/item/news_notice.naver?code=079550"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1일 전"
+        },
+        {
+          "point": "말레이시아 DSA 2026 참가 — 동남아 방공 시장",
+          "detail": "LIG D&A가 4/20 말레이시아 국제 방산전시회 DSA 2026 참가. 동남아 방공 시스템 수출 파이프라인 확대 중.",
+          "impact": "positive",
+          "why_material": "해외 수주 파이프라인 추가",
+          "published_at": "2026-04-20T14:39:00+09:00",
+          "sources": [
+            {
+              "title": "이데일리",
+              "url": "https://n.news.naver.com/mnews/article/018/0006261xxx"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1일 전"
+        }
+      ],
+      "owners": [
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "ITA",
+        "LMT",
+        "RTX"
+      ],
+      "quote": {
+        "price": "909,000",
+        "change": "0",
+        "change_pct": "0.00",
+        "change_pct_num": 0.0
+      },
+      "overnight_signal": {
+        "direction": "down",
+        "avg_pct": -3.26,
+        "proxies": [
+          {
+            "symbol": "ITA",
+            "change_pct": -3.78
+          },
+          {
+            "symbol": "LMT",
+            "change_pct": -1.61
+          },
+          {
+            "symbol": "RTX",
+            "change_pct": -4.4
+          }
+        ],
+        "label": "약세"
+      },
+      "news": [
+        {
+          "title": "파블로항공 김영준 \"드론전, 운용 개념·철학 모두 재설계해야\"",
+          "link": "https://n.news.naver.com/mnews/article/053/0000057694",
+          "source": "주간조선",
+          "date": "2026.04.22 05:00",
+          "published_at": "2026.04.22 05:00",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/053/0000057694",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "‘중동발 특수’ 국내 방산 4사, 영업익 30% 이상 성장",
+          "link": "https://n.news.naver.com/mnews/article/082/0001377170",
+          "source": "부산일보",
+          "date": "2026.04.21 18:20",
+          "published_at": "2026.04.21 18:20",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/082/0001377170",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "6000억 장비가 내 책상에?…ASML 직원들도 난리 난 이유",
+          "link": "https://n.news.naver.com/mnews/article/015/0005277645",
+          "source": "한국경제",
+          "date": "2026.04.21 14:37",
+          "published_at": "2026.04.21 14:37",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005277645",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "K-방산 수출 154억달러 회복…46조 생산·10만 고용 유발",
+          "link": "https://n.news.naver.com/mnews/article/029/0003022850",
+          "source": "디지털타임스",
+          "date": "2026.04.21 11:37",
+          "published_at": "2026.04.21 11:37",
+          "time_ago": "19시간 전",
+          "url": "https://n.news.naver.com/mnews/article/029/0003022850",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "엘아이지디펜스앤에어로스페이스(주) 단일판매ㆍ공급계약체결",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1632346&code=079550&page_notice=",
+          "date": "2026.04.21"
+        },
+        {
+          "title": "엘아이지디펜스앤에어로스페이스(주) 주식워런트증권 변경상장",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1630244&code=079550&page_notice=",
+          "date": "2026.04.14"
+        },
+        {
+          "title": "엘아이지넥스원(주) 상장채권변경상장(상호변경)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1629703&code=079550&page_notice=",
+          "date": "2026.04.13"
+        },
+        {
+          "title": "엘아이지넥스원(주) 변경상장(상호변경)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1628873&code=079550&page_notice=",
+          "date": "2026.04.09"
+        },
+        {
+          "title": "엘아이지넥스원(주) 주식선물 2단계 가격제한폭 확대요건 도달(상승)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1628769&code=079550&page_notice=",
+          "date": "2026.04.09"
+        }
+      ],
+      "history": {
+        "symbol": "079550.KS",
+        "closes_20d": [
+          734000.0,
+          735000.0,
+          735000.0,
+          686000.0,
+          611000.0,
+          794000.0,
+          784000.0,
+          860000.0,
+          810000.0,
+          827000.0,
+          833000.0,
+          887000.0,
+          921000.0,
+          939000.0,
+          934000.0,
+          893000.0,
+          883000.0,
+          876000.0,
+          921000.0,
+          909000.0
+        ],
+        "fifty_two_week_high": 979000.0,
+        "fifty_two_week_low": 285000.0,
+        "last_close": 909000.0,
+        "change_20d_pct": 23.84,
+        "pos_52w_pct": 89.9,
+        "from_high_pct": -7.15,
+        "as_of": "2026-04-21",
+        "sparkline_path": "M0.0,15.0 L4.2,14.9 L8.4,14.9 L12.6,18.5 L16.8,24.0 L21.1,10.6 L25.3,11.3 L29.5,5.8 L33.7,9.4 L37.9,8.2 L42.1,7.8 L46.3,3.8 L50.5,1.3 L54.7,0.0 L58.9,0.4 L63.2,3.4 L67.4,4.1 L71.6,4.6 L75.8,1.3 L80.0,2.2",
+        "sparkline_direction": "up"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "909,000",
+      "price_change_abs_display": "—",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간",
+      "news_count": 4
     }
   ]
 }
