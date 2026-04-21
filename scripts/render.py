@@ -402,20 +402,31 @@ def _normalize(summary: dict) -> dict:
         pts.sort(key=lambda p: p.get("published_at") or "0", reverse=True)
         stock["key_points"] = pts
         # Stock news from Naver scrape. Items have {title, link, source, date}.
-        # Compute time_ago from the Naver-style date and keep original order
-        # (already newest-first from the fetcher).
+        # Compute time_ago + filter to the last 24h — a trader's morning check
+        # shouldn't surface weeks-old articles that Naver happens to keep in
+        # the top-10 list. Items without a parseable timestamp drop out.
         stock_news = stock.get("news") or []
+        cutoff_24h = now - timedelta(hours=24)
+        kept = []
         for n in stock_news:
             # Uniform shape: treat `date` as the published timestamp.
             if "published_at" not in n and n.get("date"):
                 n["published_at"] = n["date"]
+            dt = _parse_published(n.get("published_at"))
+            if dt is None:
+                continue
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=now.tzinfo or KST)
+            if dt < cutoff_24h:
+                continue
             n["time_ago"] = _time_ago(n.get("published_at"), now)
             # Convert `link` (fetcher key) to `url` for template uniformity.
             if "url" not in n and n.get("link"):
                 n["url"] = n["link"]
             _annotate_impact(n)
-        stock["news"] = stock_news
-        stock["news_count"] = len(stock_news)
+            kept.append(n)
+        stock["news"] = kept
+        stock["news_count"] = len(kept)
         # Price-context block (sparkline + 52w range) if history is available
         hist = stock.get("history") or {}
         closes = hist.get("closes_20d") or []
