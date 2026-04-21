@@ -11,3 +11,12 @@ compatibility_date = "2024-10-01"
 
 [observability]
 enabled = true
+
+# To enable the /feedback endpoint, create a KV namespace and paste its id:
+#   wrangler kv namespace create FEEDBACK
+# Then uncomment the block below with the returned id, and `wrangler deploy`.
+# Worker runs fine without this — /feedback just returns 503 until bound.
+#
+# [[kv_namespaces]]
+# binding = "FEEDBACK"
+# id = "PASTE_KV_NAMESPACE_ID_HERE"

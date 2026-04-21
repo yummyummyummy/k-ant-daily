@@ -31,6 +31,11 @@ function json(obj, status = 200, extraHeaders = {}) {
   });
 }
 
+async function sha1Hex(text) {
+  const buf = await crypto.subtle.digest("SHA-1", new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
 // Map Naver's `rf` (risefall) code → direction.
 // 1=상한, 2=상승, 3=보합, 4=하한, 5=하락
 function rfToDirection(rf) {
@@ -243,6 +248,61 @@ export default {
       });
       ctx.waitUntil(cache.put(cacheKey, resp.clone()));
       return resp;
+    }
+
+    // ─── Feedback sync (news 👍/👎) ───
+    // POST body: { url, rating ("up"|"down"|"clear"), ts, stock?, session_date }
+    // KV key:    fb:<session_date>:<url_hash>
+    // Value:     { url, rating, ts, stock }
+    if (url.pathname === "/feedback") {
+      if (!env.FEEDBACK) {
+        return json({ error: "feedback store not configured" }, 503);
+      }
+      if (request.method === "POST") {
+        let body;
+        try { body = await request.json(); }
+        catch { return json({ error: "invalid json" }, 400); }
+        const u = String(body.url || "").slice(0, 500);
+        const rating = String(body.rating || "");
+        if (!u || !["up", "down", "clear"].includes(rating)) {
+          return json({ error: "url + rating (up|down|clear) required" }, 400);
+        }
+        const sessionDate = /^\d{4}-\d{2}-\d{2}$/.test(body.session_date || "")
+          ? body.session_date
+          : new Date().toISOString().slice(0, 10);
+        // Stable-ish hash of URL for readable keys.
+        const urlHash = await sha1Hex(u);
+        const key = `fb:${sessionDate}:${urlHash.slice(0, 12)}`;
+        if (rating === "clear") {
+          await env.FEEDBACK.delete(key);
+        } else {
+          const payload = JSON.stringify({
+            url: u, rating, ts: Number(body.ts) || Date.now(),
+            stock: body.stock || null,
+          });
+          await env.FEEDBACK.put(key, payload, {
+            // 60-day retention — plenty for tuning cycles
+            expirationTtl: 60 * 24 * 3600,
+          });
+        }
+        return json({ ok: true }, 200);
+      }
+      if (request.method === "GET") {
+        const date = url.searchParams.get("date");
+        if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+          return json({ error: "missing ?date=YYYY-MM-DD" }, 400);
+        }
+        const list = await env.FEEDBACK.list({ prefix: `fb:${date}:`, limit: 1000 });
+        const entries = [];
+        for (const k of list.keys) {
+          const v = await env.FEEDBACK.get(k.name);
+          if (v) {
+            try { entries.push(JSON.parse(v)); } catch {}
+          }
+        }
+        return json({ date, count: entries.length, entries }, 200);
+      }
+      return json({ error: "method not allowed" }, 405);
     }
 
     if (url.pathname !== "/quote") {
