@@ -591,6 +591,34 @@
   }
   .points .sources a:hover { text-decoration: underline; }
 
+  /* STOCK GROUPING — action-first layout (매수/관망/매도 buckets) */
+  .stock-group { margin-bottom: 20px; }
+  .stock-group-head {
+    display: flex; align-items: baseline; gap: 6px;
+    font-size: 13px; font-weight: 700;
+    padding: 6px 10px; margin-bottom: 8px;
+    border-left: 3px solid var(--muted);
+    background: var(--card); border-radius: 4px;
+  }
+  .stock-group-head .g-emoji { font-size: 14px; }
+  .stock-group-head .g-label { color: var(--fg); letter-spacing: 0.02em; }
+  .stock-group-head .g-count { color: var(--muted); font-weight: 500; margin-left: 2px; }
+  /* Accent colors echo the recommendation badge palette */
+  .stock-group.accent-strong_buy  .stock-group-head { border-left-color: #dc2626; }
+  .stock-group.accent-buy         .stock-group-head { border-left-color: var(--pos); }
+  .stock-group.accent-hold        .stock-group-head { border-left-color: var(--neu); }
+  .stock-group.accent-sell        .stock-group-head { border-left-color: var(--neg); }
+  .stock-group.accent-strong_sell .stock-group-head { border-left-color: #1d4ed8; }
+
+  /* 2-column grid on wider viewports; mobile stays single column.
+     Each article.stock fills its own grid cell, which means an expanded card
+     in one column doesn't drag the sibling's height. */
+  .stock-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  @media (min-width: 720px) {
+    .stock-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .stock-grid article.stock { margin-bottom: 0; }  /* gap handles spacing */
+
   /* STOCK CARD */
   article.stock { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
   article.stock > details > summary {
@@ -1111,12 +1139,19 @@
 
   <section>
     <h2>📈 종목별 <span class="section-sub" style="font-size: 13px; margin-left: 4px;">(클릭하면 상세 펼침)</span></h2>
-    {% for stock in stocks %}
+    {% for group in stock_groups %}
+    <div class="stock-group accent-{{ group.accent }}">
+      <div class="stock-group-head">
+        <span class="g-emoji">{{ group.emoji }}</span>
+        <span class="g-label">{{ group.label }}</span>
+        <span class="g-count">· {{ group.stocks|length }}건</span>
+      </div>
+      <div class="stock-grid">
+    {% for stock in group.stocks %}
     <article class="stock">
       <details>
         <summary>
           <span class="name">{{ stock.name }}</span>
-          <span class="code">{{ stock.code }}</span>
           {% if stock.news_count %}
           <span class="news-count-chip" title="오늘 새 뉴스 {{ stock.news_count }}건">🔥 {{ stock.news_count }}</span>
           {% endif %}
@@ -1349,6 +1384,9 @@
         </div>
       </details>
     </article>
+    {% endfor %}
+      </div>
+    </div>
     {% endfor %}
   </section>
 

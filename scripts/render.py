@@ -631,12 +631,17 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
             s["owners"] = [leader, *rest]
         else:
             s["owners"] = sorted(owners)
-    # Display order for the 📈 종목별 section: stocks with the most fresh
-    # news today surface first (trader morning check), ties broken by 가나다.
+    # Display order within each recommendation group: stocks with the most
+    # fresh news today surface first (trader morning check), ties broken by 가나다.
     stocks_display = sorted(
         stocks,
         key=lambda s: (-(len(s.get("news") or [])), s.get("name", "")),
     )
+
+    # Group by recommendation — action-first layout. Each group shown as its
+    # own block with a header; within a group we keep the news-desc order.
+    # Groups with 0 stocks are suppressed by the template.
+    stock_groups = _group_stocks_by_recommendation(stocks_display)
 
     html = _render_template(
         "report.html.j2",
@@ -651,6 +656,7 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
         macro=summary.get("macro", {}) or {},
         sectors=summary.get("sectors", []) or [],
         stocks=stocks_display,
+        stock_groups=stock_groups,
         coffee_buyer=_coffee_buyer(stocks),
         friends_overview=_friends_overview(stocks),
         review=summary.get("review") or None,
@@ -659,6 +665,42 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
         mood_axes=MOOD_AXES,
     )
     return filename, html
+
+
+# Metadata for the 📈 종목별 grouping view. Order = display order (top→down).
+# Each entry carries the enum key, user-facing label, and a color accent.
+STOCK_GROUP_META = [
+    {"key": "strong_buy",  "label": "풀매수", "emoji": "🔥", "accent": "strong_buy"},
+    {"key": "buy",         "label": "매수",   "emoji": "🟢", "accent": "buy"},
+    {"key": "hold",        "label": "관망",   "emoji": "🟡", "accent": "hold"},
+    {"key": "sell",        "label": "매도",   "emoji": "🔴", "accent": "sell"},
+    {"key": "strong_sell", "label": "풀매도", "emoji": "⛔", "accent": "strong_sell"},
+]
+
+
+def _group_stocks_by_recommendation(stocks: list[dict]) -> list[dict]:
+    """Partition the pre-sorted stocks list into blocks keyed by recommendation.
+    Returns ``[{key, label, emoji, accent, stocks: [...]}]`` in display order.
+    Unrecognized/missing recommendations fall into a trailing "기타" group so
+    nothing gets silently dropped."""
+    buckets = {meta["key"]: [] for meta in STOCK_GROUP_META}
+    other = []
+    for s in stocks:
+        rec = s.get("recommendation")
+        if rec in buckets:
+            buckets[rec].append(s)
+        else:
+            other.append(s)
+    groups = []
+    for meta in STOCK_GROUP_META:
+        if buckets[meta["key"]]:
+            groups.append({**meta, "stocks": buckets[meta["key"]]})
+    if other:
+        groups.append({
+            "key": "other", "label": "기타", "emoji": "·", "accent": "other",
+            "stocks": other,
+        })
+    return groups
 
 
 def persist_summary_artifact(summary: dict, date: str) -> Path:
