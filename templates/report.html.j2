@@ -447,6 +447,11 @@
     display: flex; gap: 6px; flex-wrap: wrap;
   }
   .stock-news-block .news-meta .time-ago { color: var(--accent); font-weight: 600; }
+  .stock-news-block .why-material,
+  .sector-card .why-material {
+    font-size: 12px; color: var(--accent); margin-top: 3px; line-height: 1.4;
+    font-style: italic; opacity: 0.9;
+  }
   .stock-news-block details.news-more > summary {
     list-style: none; cursor: pointer; user-select: none;
     font-size: 12px; font-weight: 600; color: var(--accent);
@@ -1019,6 +1024,7 @@
           {% elif n.sources %}{% for s in n.sources %}<span>· {{ s.title }}</span>{% endfor %}{% endif %}
           {% if n.impact %}<span class="impact {{ n.impact }}">{{ n.impact_label or n.impact }}</span>{% endif %}
         </div>
+        {% if n.why_material %}<div class="why-material">📈 {{ n.why_material }}</div>{% endif %}
         {% if n.note %}<div class="news-note">{{ n.note }}</div>{% endif %}
       </div>
     </li>
@@ -1112,9 +1118,10 @@
                   </div>
                   <div class="news-meta">
                     {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
-                    {% if n.source %}<span>· {{ n.source }}</span>{% endif %}
+                    {% if n.source %}<span>· {% if n.source is mapping %}{{ n.source.title }}{% else %}{{ n.source }}{% endif %}</span>{% endif %}
                     {% if n.impact %}<span class="impact {{ n.impact }}">{{ n.impact_label or n.impact }}</span>{% endif %}
                   </div>
+                  {% if n.why_material %}<div class="why-material">📈 {{ n.why_material }}</div>{% endif %}
                 </div>
               </li>
               {% endfor %}

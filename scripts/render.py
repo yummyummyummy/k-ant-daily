@@ -210,8 +210,11 @@ def _merge_quotes_from_news(summary: dict, news_path: Path) -> None:
             }
         elif not existing and news_sig:
             stock["overnight_signal"] = dict(news_sig)
-        # Stock news list — agent doesn't compose this; we pull raw from Naver scrape.
-        if not stock.get("news") and src.get("news"):
+        # Stock news list — only backfill from raw Naver scrape if the summary
+        # never declared a `news` field at all. An explicit `"news": []` from
+        # the agent means "no material news today — don't show the block" and
+        # must NOT be overwritten by the raw scrape.
+        if "news" not in stock and src.get("news"):
             stock["news"] = list(src["news"])
         if not stock.get("disclosures") and src.get("disclosures"):
             stock["disclosures"] = list(src["disclosures"])

@@ -204,13 +204,64 @@ description: Generate and publish today's pre-market stock briefing
   - `fx_macro` — 원/달러, WTI, 금, 비트코인, 원자재
   - 각 축 값: `{"impact": "positive|neutral|negative", "note": "한 줄 근거 30자 이내"}`
   - `neutral` 은 "혼조" 의미로도 씀 (긍정·부정 신호 섞여 있음).
-- 섹터 `news` 규칙:
-  - 섹터는 **내가 가진 종목과 독립**. 섹터 자체의 시황·매크로 뉴스만. `affected` 필드 쓰지 않음.
-  - 각 섹터에 `headline` (오늘의 한 줄 내러티브) + **상위 3~5건의 news**를 담는다.
-  - 각 news item 은 `title` · `impact` · `published_at` · `source{title,url}` 필수. `note` 는 optional.
-  - Render가 자동으로 `published_at` 내림차순 정렬 + `time_ago` 계산.
-- 종목 `news[]` 는 `fetch_news.py`가 Naver에서 자동 수집. **agent는 summary.json에 다시 쓰지 않아도 된다**. 필요하면 상위 5개 뉴스에 대해 `impact` 필드만 라벨링 (positive/neutral/negative).
-- 종목 `key_points` 는 이제 optional. agent 코멘터리(해석·포인트)가 필요할 때만 사용. 기본은 뉴스 리스트 + decision block(news_sentiment/overnight/priced_in) 이 주연.
+## 뉴스 큐레이션 — **"오늘 주가에 영향을 줄 만한가?"** (핵심 규칙)
+
+섹터 news와 종목 news 모두에 적용되는 필터. Agent는 raw news(`news.json`)를 **정제**해서 summary.json에 다시 쓴다. 그냥 베껴넣지 말 것.
+
+### ✅ 포함 (Material) — 오늘 세션에 직접 영향 가능
+
+- **실적·가이던스**: 분기 실적 발표, 잠정 실적 공시, 가이던스 변경, 어닝 서프라이즈/쇼크
+- **대형 공시**: 자사주 매입·소각, 배당 변경, 감자/증자, M&A, 대주주 지분 변동
+- **계약·수주**: 대형 계약 체결, 공급 계약, 라이선스 딜, 수주 공시
+- **규제·정책**: 해당 종목/섹터 직접 영향 (예: 반도체 보조금, 배터리 보조금, 환경 규제)
+- **애널리스트 액션**: 투자의견 변경, 목표가 상향/하향, 커버리지 개시
+- **파이프라인 진전**: 신약 임상 결과, 허가 승인, 신제품 출시, 특허
+- **경영진 변경**: CEO 교체, 핵심 임원 변경
+- **매크로 → 개별 종목 연결**: 예) 금리 변동 → 은행주, 유가 변동 → 정유주 등 명확한 인과
+
+### ❌ 제외 (Non-material) — 단순 관련 언급
+
+- **시황 recap**: "코스피 6200선 회복", "코스닥 강보합 마감" 등 broad market. 개별 종목 언급만 있는 포함 뉴스
+- **운영 루틴**: 정기주총결과, 동반성장협의회, IR 개최 공지, 감사보고서 제출, 사장 인사말/인터뷰
+- **기술적 알림**: 가격제한폭 확대 도달, 주식매수선택권 행사
+- **stale 뉴스**: 1주일 이상 지난 항목 (오늘 새로 재부각되지 않는 한)
+- **풍문 해명 공시**: 실질 내용 없는 경우
+- **수급 flow**: 단순 외국인/기관 순매수/순매도 집계
+
+### 오늘 영향 여부 판단 기준
+
+- `<24시간`: 기본 포함 (신선도 유효)
+- `24~72시간`: 거시/섹터 맥락이 여전히 유효하면 포함
+- `>3일`: 매우 중요하고 오늘 재부각된 경우만 (예: "지난주 실적 후 타겟 상향 릴레이 오늘도 지속")
+
+### 필드 규칙
+
+각 curated news 항목:
+```json
+{
+  "title": "...",
+  "impact": "positive|neutral|negative",
+  "why_material": "왜 오늘 주가에 영향? 한 줄 (30자 이내, 필수)",
+  "published_at": "ISO 또는 YYYY.MM.DD HH:MM",
+  "source": {"title": "언론사", "url": "..."}
+}
+```
+
+- `why_material` **필수**: "실적 기대치 상향" / "대형 수주 발표" / "신약 허가 임박" 등. 제외 기준 아닌 이유를 한 줄로.
+- 종목별 큐레이션 결과 **3~7건** 권장. 정말 material 한 게 없으면 `"news": []` (빈 배열) — UI에서 블록 자체가 사라짐.
+- 섹터도 동일. 큐레이션 후 3~5건 권장.
+
+### 섹터 news vs 종목 news 역할
+
+- **섹터 news**: 내 보유 종목과 **독립**. 섹터 자체의 시황·매크로·규제. `affected` 안 씀.
+- **종목 news**: 해당 기업 고유 이슈. `news.json` 의 raw news 중에서 material만 골라 `why_material` 붙임.
+
+---
+
+## 렌더 편의
+
+- Render가 `published_at` 내림차순 자동 정렬, `time_ago` 계산, impact 라벨.
+- `"news": []` 는 "오늘 material 없음"으로 해석돼 블록 자체 숨김 + 🔥 N 뱃지 안 뜸.
 - `impact` 해석:
   - KOSPI +1% → `positive` (상승=호재)
   - USD/KRW 상승: 수출주 긍정/수입주 부담 → 종합 `neutral` 기본값
