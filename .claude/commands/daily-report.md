@@ -26,6 +26,28 @@ description: Generate and publish today's pre-market stock briefing
    per-stock `news[]` + `disclosures[]` + `quote` (어제 종가) + `overnight_signal`
    (종목별 간밤 해외 프록시 평균 등락률).
 
+1b. **최근 회고의 교훈 읽기 (학습 피드백).** 최근 5개 평일의 `docs/YYYY-MM-DD.summary.json` 을
+    훑어 `review.analysis.lessons` 배열이 있으면 모두 수집. 없으면 skip.
+
+    ```python
+    import json, glob, os
+    paths = sorted(glob.glob("docs/2*.summary.json"))[-5:]
+    recent_lessons = []
+    for p in paths:
+        try:
+            r = json.load(open(p)).get("review", {}).get("analysis", {}).get("lessons") or []
+            for les in r:
+                recent_lessons.append({"date": os.path.basename(p)[:10], **les})
+        except Exception:
+            pass
+    # recent_lessons 를 읽고 오늘 판정에 반영
+    ```
+
+    **적용 방식**: 각 lesson 의 `rule` 이 오늘 판정의 특정 종목에 해당하는 상황인지 검사.
+    - 해당하면 rule 을 **따르고**, 해당 종목의 `rationale` 에 "(어제 회고 교훈 반영: …) " 식으로 명시.
+    - 해당하지만 오늘은 다르게 갈 근거가 있으면 `rationale` 에 왜 예외인지 명시.
+    - 매일 같은 lesson 이 적용돼도 OK — 누적 학습이 목적.
+
 2. **Read the raw data.** Read `.tmp/news.json`. Scan all stock news, disclosures, macro
    news, overnight markets, and indices together. Identify recurring themes, sector-level
    stories, and anything material.
@@ -181,7 +203,23 @@ description: Generate and publish today's pre-market stock briefing
 
 - ❌ "오늘 +3% 급등했다" → ✅ "어제 +3% 강세에 이어, 간밤 나스닥도 +1.5%로 오늘 개장 초 강세 예상"
 - ❌ "오늘 -2% 하락" → ✅ "어제 -2% 마감했으나, 간밤 해당 섹터 미국주는 +0.5%로 반등 가능성"
-- ❌ "매수 의견" 단독 → ✅ "매수 (뉴스 긍정 + 간밤 강세 + priced_in 아님)"
+- ❌ "매수 의견" 단독 → ✅ "매수 (뉴스 긍정 + 간밤 강세 + 선반영 아님)"
+
+## `rationale` 서술 — 코드·영어 스키마 용어 금지
+
+`rationale` 필드는 사용자가 보는 텍스트다. JSON 필드명이나 내부 식별자를 그대로 쓰지 말고, 자연 한국어로 쓸 것.
+
+| 쓰지 말 것 | 쓸 것 |
+|---|---|
+| `priced_in=True` / `priced_in` | "선반영" · "이미 주가에 반영됨" |
+| `priced_in=False` / `priced_in 아님` | "선반영 아님" · "아직 주가에 반영 안 됨" |
+| `overnight_signal=up/down/neutral` | "간밤 강세/약세/중립" |
+| `news_sentiment=positive/neutral/negative` | "뉴스 톤 긍정/중립/부정" |
+| `hold` / `buy` / `sell` / `strong_buy` / `strong_sell` (영어 그대로) | "관망/매수/매도/풀매수/풀매도" |
+| `override` | "한 단계 상향/하향" · "재량 조정" |
+| `confidence=high/medium/low` | "신뢰도 높음/중간/낮음" |
+
+JSON 필드 자체(예: `"priced_in": false`) 는 스키마라 영어 그대로 맞음. 금지는 **`rationale`·`summary`·`why_material` 같은 서술 본문**에서의 사용만.
 
 ## Rules
 

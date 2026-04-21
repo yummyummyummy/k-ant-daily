@@ -31,9 +31,16 @@ DEFAULT_BASE_URL = "https://yummyummyummy.github.io/k-ant-daily"
 
 
 def _env() -> Environment:
+    # Explicit list including `.html.j2` / `.j2` because select_autoescape()
+    # only matches the final suffix — a template named `foo.html.j2` has the
+    # final suffix `.j2`, not `.html`, so the default `["html","xml"]` would
+    # silently leave it unescaped.
     return Environment(
         loader=FileSystemLoader(str(TEMPLATES)),
-        autoescape=select_autoescape(["html", "xml"]),
+        autoescape=select_autoescape(
+            enabled_extensions=("html", "xml", "html.j2", "j2"),
+            default_for_string=True,
+        ),
         trim_blocks=True,
         lstrip_blocks=True,
     )
@@ -709,8 +716,9 @@ def build_accuracy(base_url: str) -> str:
         if not review:
             continue
         acc = review.get("accuracy") or {}
+        date = data.get("date") or p.stem.replace(".summary", "")
         records.append({
-            "date": data.get("date") or p.stem.replace(".summary", ""),
+            "date": date,
             "hits":    acc.get("hits") or 0,
             "partial": acc.get("partial") or 0,
             "misses":  acc.get("misses") or 0,
@@ -719,6 +727,7 @@ def build_accuracy(base_url: str) -> str:
             "directional_accuracy": acc.get("directional_accuracy") or 0,
             "by_confidence": acc.get("by_confidence") or {},
             "signal_attribution": review.get("signal_attribution") or {},
+            "has_retro": (DOCS / "accuracy" / f"{date}.html").exists(),
         })
 
     # Aggregate
@@ -768,6 +777,89 @@ def build_accuracy(base_url: str) -> str:
     )
 
 
+def _session_indices(session_change: dict | None) -> list[dict]:
+    """Normalize review.session_change into a list[dict] with keys
+    {name, value, change_abs, change_pct, direction, raw}. Handles three legacy
+    shapes:
+      - dict of dicts (current): {"kospi": {value, change_abs, ...}, ...}
+      - dict of strings (pre-2026-04): {"kospi": "169.38 +2.72% 상승", ...}
+      - missing
+    The string form holds only the change (Δ), NOT the closing level — we parse
+    it into change_abs/change_pct so the template can still label it clearly.
+    """
+    if not session_change or not isinstance(session_change, dict):
+        return []
+    out: list[dict] = []
+    for key in ("kospi", "kosdaq"):
+        entry = session_change.get(key)
+        name = key.upper()
+        if entry is None:
+            continue
+        if isinstance(entry, dict):
+            out.append({
+                "name": name,
+                "value": entry.get("value"),
+                "change_abs": entry.get("change_abs"),
+                "change_pct": entry.get("change_pct"),
+                "direction": entry.get("direction"),
+                "raw": entry.get("raw"),
+            })
+            continue
+        # Legacy flat string — parse "169.38 +2.72% 상승" into parts.
+        s = str(entry).strip()
+        if not s:
+            continue
+        m = re.match(r"([+-]?\s*[\d,.]+)\s+([+-]?\s*[\d.]+%)\s*(상승|하락|보합)?", s)
+        if m:
+            abs_raw = m.group(1).replace(" ", "")
+            pct     = m.group(2).replace(" ", "")
+            label   = m.group(3) or ""
+            direction = {"상승": "up", "하락": "down", "보합": "flat"}.get(label, "flat")
+            # abs_raw has no sign in legacy; attach sign from direction
+            if direction == "down" and not abs_raw.startswith("-"):
+                abs_raw = f"-{abs_raw}"
+            elif direction == "up" and not abs_raw.startswith("+"):
+                abs_raw = f"+{abs_raw}"
+            out.append({
+                "name": name, "value": None,
+                "change_abs": abs_raw, "change_pct": pct,
+                "direction": direction, "raw": s,
+            })
+        else:
+            out.append({"name": name, "value": None, "change_abs": None,
+                        "change_pct": None, "direction": "flat", "raw": s})
+    return out
+
+
+def build_accuracy_day(summary: dict, base_url: str) -> str | None:
+    """Render a single-day retrospective page from a summary.json that
+    carries `review`. Returns None if there is no review block yet."""
+    review = summary.get("review")
+    if not review:
+        return None
+    accuracy = review.get("accuracy") or {}
+    analysis = review.get("analysis") or {}
+    # Normalize stocks.analysis into a dict keyed by code for template lookup.
+    if isinstance(analysis.get("stocks"), list):
+        analysis["stocks"] = {entry.get("code"): entry for entry in analysis["stocks"] if entry.get("code")}
+
+    attrib = review.get("signal_attribution") or {}
+    attrib_sorted = sorted(((k, v) for k, v in attrib.items() if v), key=lambda kv: kv[1], reverse=True)
+
+    env = _env()
+    tmpl = env.get_template("accuracy_day.html.j2")
+    return tmpl.render(
+        base_url=base_url,
+        date=summary.get("date") or "",
+        session_indices=_session_indices(review.get("session_change")),
+        accuracy=accuracy,
+        analysis=analysis,
+        attrib_sorted=attrib_sorted,
+        stocks=summary.get("stocks") or [],
+        generated_at_display=datetime.now(KST).strftime("%Y-%m-%d %H:%M"),
+    )
+
+
 def build_archive_index(base_url: str) -> str:
     entries: list[dict] = []
     pattern = re.compile(r"^(\d{4}-\d{2}-\d{2})\.html$")
@@ -783,7 +875,9 @@ def build_archive_index(base_url: str) -> str:
                 tldr = dm.group(1)
         except Exception:
             pass
-        entries.append({"date": m.group(1), "filename": p.name, "tldr": tldr})
+        date = m.group(1)
+        has_retro = (DOCS / "accuracy" / f"{date}.html").exists()
+        entries.append({"date": date, "filename": p.name, "tldr": tldr, "has_retro": has_retro})
 
     env = _env()
     tmpl = env.get_template("archive.html.j2")
@@ -818,6 +912,15 @@ def main(argv: list[str]) -> int:
 
     accuracy_html = build_accuracy(base_url)
     (DOCS / "accuracy.html").write_text(accuracy_html, encoding="utf-8")
+
+    # Per-day retrospective — emitted only once the evening review block exists.
+    day_html = build_accuracy_day(summary, base_url)
+    if day_html:
+        day_dir = DOCS / "accuracy"
+        day_dir.mkdir(exist_ok=True)
+        day_path = day_dir / f"{date_key}.html"
+        day_path.write_text(day_html, encoding="utf-8")
+        print(f"✓ Wrote {day_path.relative_to(ROOT)}")
 
     # .nojekyll for GitHub Pages (skip Jekyll processing)
     (DOCS / ".nojekyll").touch()

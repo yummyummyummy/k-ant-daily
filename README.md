@@ -151,6 +151,9 @@ SK하이닉스 000660  🔥 7   +3.37%   매수   👤 이영준 +3
 - **종목별**: `hit` / `partial` / `miss` (매트릭스 맵핑, [compute_review.py](scripts/compute_review.py))
 - **집계**: 적중률, 방향 정확도, 신뢰도 버킷별 정확도
 - **신호 기여도**: 실패 케이스를 `news_misread` / `overnight_misled` / `priced_in_underestimated` 로 분류. 누적되면 `stocks.yml` 의 `overnight_proxy` 매핑을 조정할 근거.
+- **회고 분석 (review.analysis)**: agent가 직접 쓰는 서술형 요약 — `day_summary` 한 줄, `what_worked` / `what_missed` (lead + examples 3~5건 + takeaway), 그리고 miss·partial 종목별 `why` 가설. 별도 페이지 `docs/accuracy/YYYY-MM-DD.html` 로 렌더링됨. 스키마·작성 규칙은 [.claude/commands/daily-review.md](.claude/commands/daily-review.md).
+
+**회고 아카이브 흐름**: 누적 [`/accuracy`](https://yummyummyummy.github.io/k-ant-daily/accuracy.html) 에서 일별 hit rate 바 아래 상세 목록, `archive.html` 의 각 날짜 행에 "🔍 회고" 보조 링크. 각 회고 페이지는 `docs/YYYY-MM-DD.html` 아침 브리핑과 상호 링크.
 
 ---
 
@@ -166,6 +169,8 @@ k-ant-daily/
 │   └── launchd/                        # macOS 로컬 스케줄 (install.sh / plists / README.md)
 ├── templates/
 │   ├── report.html.j2                  # 일간 브리핑 (모든 UI)
+│   ├── accuracy.html.j2                # 누적 정확도 대시보드
+│   ├── accuracy_day.html.j2            # 일별 회고 페이지
 │   └── archive.html.j2                 # 아카이브 목록
 ├── worker/                             # Cloudflare Worker (실시간 시세 프록시)
 │   ├── src/index.js                    # /quote + /ticker 엔드포인트
@@ -177,6 +182,8 @@ k-ant-daily/
 ├── docs/                               # GitHub Pages
 │   ├── YYYY-MM-DD.html                 # 일간 리포트 (아침 발행 + 저녁 오버레이)
 │   ├── YYYY-MM-DD.summary.json         # 영구 아티팩트 (저녁 리뷰가 읽음)
+│   ├── accuracy.html                   # 누적 정확도 대시보드
+│   ├── accuracy/YYYY-MM-DD.html        # 일별 회고 (예측 ↔ 결과 서술 분석)
 │   ├── index.html                      # 최신본 사본
 │   └── archive.html                    # 날짜별 리스트
 └── .tmp/                               # 런타임 scratch (gitignored)
@@ -312,6 +319,7 @@ Production과 동일 시퀀스는 `scripts/launchd/run-briefing.sh` / `run-revie
 - ✅ **스파크라인** (20일 종가 미니차트) — 추세 맥락 즉시 파악
 - ✅ **52주 고점·저점 거리** — 매매 심리 컨텍스트
 - ✅ **누적 리뷰 대시보드** — `/accuracy` 페이지. 전체 hit rate + 일별 stacked bar chart + 신뢰도 버킷별 + 신호 기여도. 데이터는 리뷰가 쌓이면서 자동 채워짐
+- ✅ **일별 회고 아카이브** — `docs/accuracy/YYYY-MM-DD.html`. 그날 예측 · 아침 근거 ↔ 실제 결과 · "왜" 서술형 분석. miss/partial 에만 per-stock 가설 기록. `/accuracy` 와 `archive.html` 에서 링크
 
 **Phase 2 — 데이터 쌓인 후**
 - 큐레이션 기준 튜닝 (누적 리뷰 기반)

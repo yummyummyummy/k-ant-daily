@@ -20,10 +20,17 @@
   .hint { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
   ul { list-style: none; padding: 0; margin: 0; }
   li { padding: 12px 14px; margin-bottom: 8px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
-  li a { color: var(--fg); text-decoration: none; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  li a:hover { color: var(--accent); }
+  li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  li > a.primary { color: var(--fg); text-decoration: none; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; flex: 1; min-width: 0; }
+  li > a.primary:hover { color: var(--accent); }
   li .date { font-weight: 600; }
-  li .tldr { color: var(--muted); font-size: 14px; flex: 1; }
+  li .tldr { color: var(--muted); font-size: 14px; flex: 1; min-width: 0; }
+  li .retro {
+    color: var(--accent); text-decoration: none; font-size: 12px; font-weight: 600;
+    padding: 3px 8px; border: 1px solid var(--accent); border-radius: 999px;
+    white-space: nowrap; opacity: 0.9;
+  }
+  li .retro:hover { opacity: 1; background: var(--card); }
   nav { margin-bottom: 16px; }
   nav a { color: var(--accent); text-decoration: none; font-size: 14px; }
 </style>
@@ -35,10 +42,11 @@
   <p class="hint">과거 장전 브리핑 1개</p>
   <ul>
     <li>
-      <a href="2026-04-21.html">
+      <a class="primary" href="2026-04-21.html">
         <span class="date">2026-04-21</span>
         <span class="tldr">미-이란 휴전 수요일 만료 예고에 유가 +2.8%, VIX +8% 급등. SK하이닉스 실적 기대감이 지수 방어 중</span>
       </a>
+      <a class="retro" href="accuracy/2026-04-21.html" title="그날의 예측 vs 결과 회고">🔍 회고</a>
     </li>
   </ul>
 </main>

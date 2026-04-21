@@ -20,10 +20,17 @@
   .hint { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
   ul { list-style: none; padding: 0; margin: 0; }
   li { padding: 12px 14px; margin-bottom: 8px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
-  li a { color: var(--fg); text-decoration: none; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  li a:hover { color: var(--accent); }
+  li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  li > a.primary { color: var(--fg); text-decoration: none; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; flex: 1; min-width: 0; }
+  li > a.primary:hover { color: var(--accent); }
   li .date { font-weight: 600; }
-  li .tldr { color: var(--muted); font-size: 14px; flex: 1; }
+  li .tldr { color: var(--muted); font-size: 14px; flex: 1; min-width: 0; }
+  li .retro {
+    color: var(--accent); text-decoration: none; font-size: 12px; font-weight: 600;
+    padding: 3px 8px; border: 1px solid var(--accent); border-radius: 999px;
+    white-space: nowrap; opacity: 0.9;
+  }
+  li .retro:hover { opacity: 1; background: var(--card); }
   nav { margin-bottom: 16px; }
   nav a { color: var(--accent); text-decoration: none; font-size: 14px; }
 </style>
@@ -36,10 +43,13 @@
   <ul>
     {% for e in entries %}
     <li>
-      <a href="{{ e.filename }}">
+      <a class="primary" href="{{ e.filename }}">
         <span class="date">{{ e.date }}</span>
         <span class="tldr">{{ e.tldr }}</span>
       </a>
+      {% if e.has_retro %}
+      <a class="retro" href="accuracy/{{ e.date }}.html" title="그날의 예측 vs 결과 회고">🔍 회고</a>
+      {% endif %}
     </li>
     {% endfor %}
   </ul>

@@ -29,19 +29,23 @@ description: Post-market review — compare morning prediction vs actual close
    - 신호 기여도: news_misread, overnight_misled, priced_in_underestimated, overnight_helped
    - `.tmp/summary.json` 에 병합 결과 저장
 
-4. **재렌더.** `.venv/bin/python scripts/render.py .tmp/summary.json`
-   - `docs/YYYY-MM-DD.html` 에 review 블록 덧씌워짐
-   - `docs/YYYY-MM-DD.summary.json` 도 업데이트 (review 섹션 포함)
-   - `docs/index.html` 도 최신본으로 교체
+4. **회고 분석 작성.** `.tmp/summary.json` 을 읽고 `review.analysis` 섹션을 직접 편집해서 채워 넣는다.
+   이 회고가 `docs/accuracy/YYYY-MM-DD.html` 별도 페이지로 렌더링된다. 스키마 · 규칙은 아래 "회고 분석" 절 참고.
 
-5. **커밋/푸시.**
+5. **재렌더.** `.venv/bin/python scripts/render.py .tmp/summary.json`
+   - `docs/YYYY-MM-DD.html` 에 review 블록 덧씌워짐
+   - `docs/YYYY-MM-DD.summary.json` 도 업데이트 (review + analysis 섹션 포함)
+   - `docs/accuracy/YYYY-MM-DD.html` 회고 페이지 생성
+   - `docs/index.html` · `docs/accuracy.html` · `docs/archive.html` 도 최신본으로 교체
+
+6. **커밋/푸시.**
    ```bash
    git add docs/
    git commit -m "review: $(date +%Y-%m-%d) post-session review"
    git push
    ```
 
-6. **결과 요약 보고.** 적중률, 방향 정확도, 가장 맞춘 / 틀린 종목 각 1개, 기여도 요약을 한 단락으로.
+7. **결과 요약 보고.** 적중률, 방향 정확도, 가장 맞춘 / 틀린 종목 각 1개, 기여도 요약을 한 단락으로.
 
 ## 환경 셋업 (필요시)
 
@@ -60,6 +64,135 @@ python3 -m venv .venv 2>/dev/null || true
 | `hold` | |Δ|<1.5% 적중 / 1.5~3% 부분 / >3% 실패 |
 | `sell` | <-0.5% 적중 / -0.5~+0.5% 부분 / >+0.5% 실패 |
 | `strong_sell` | ≤-2% 적중 / -2~0% 부분 / >0% 실패 |
+
+## 회고 분석 (review.analysis) — step 4
+
+`compute_review.py` 가 기계적 집계를 낸 뒤, **agent가 직접 서술**해 넣는다. 목적: "왜 맞았고 왜 틀렸나" 를 다음 날 자신이 읽고 큐레이션·판단을 조정할 수 있게 남기는 것.
+
+### 스키마
+
+```json
+"review": {
+  "accuracy": { ... },
+  "signal_attribution": { ... },
+  "analysis": {
+    "day_summary": "한 문장 — 지수 방향 + 오늘 hit rate + 가장 지배적인 miss 패턴",
+
+    "what_worked": {
+      "lead": "한 문장 — 어떤 섹터·패턴이 잘 맞혔는지",
+      "examples": [
+        {"code": "096770", "name": "SK이노베이션", "change_pct": 3.65,
+         "reason": "WTI +2.8% 급등 직접 수혜 + K배터리 ESS 신사업"}
+      ],
+      "takeaway": "선택 — 공통 패턴 한 줄"
+    },
+
+    "what_missed": {
+      "lead": "한 문장 — 어떤 패턴에서 틀렸나 (주된 miss 원인)",
+      "examples": [
+        {"code": "174900", "name": "앱클론", "change_pct": -12.72,
+         "reason": "'뉴스 부재 = hold' 오판 — 소형 바이오 섹터 약세 휩쓸림"}
+      ],
+      "takeaway": "선택 — 교훈 한 줄"
+    },
+
+    "stocks": {
+      "<code>": {
+        "why": "왜 실패/부분 적중했는지 2~3문장 요약",
+        "misread": {  // 선택 — 뉴스 오독 케이스(news_misread)에만 깊이 있게
+          "news_cited":      "무슨 뉴스를 근거로 판단했나 (원 제목·핵심 수치)",
+          "how_interpreted": "그 뉴스를 어떻게 해석해서 예측으로 연결했나",
+          "what_was_wrong":  "해석 중 어떤 부분이 실제와 어긋났나 (구체적으로)",
+          "lesson":          "같은 상황이 또 오면 어떻게 해석해야 하나 (선택)"
+        }
+      }
+    },
+
+    "lessons": [  // 독자·다음날 /daily-report 에이전트가 읽을 오늘의 교훈
+      {
+        "title":  "짧은 제목 (20자 내외)",
+        "detail": "왜 이 패턴이 중요한지 2~3문장",
+        "rule":   "앞으로의 판단에 적용할 규칙 한 줄 (선택)"
+      }
+    ]
+  }
+}
+```
+
+### 작성 규칙
+
+- **`day_summary`**: 한 문장. 지수 흐름 + 적중률 + 가장 도드라진 빗나감 패턴을 압축.
+- **`what_worked.examples` / `what_missed.examples`**: 각 **3~5개**. 10개 이상 쓰지 말 것 (UI 가독성). 가장 대표적 예시만.
+- **`examples[].change_pct`**: 숫자 (부호 포함). `-12.72` · `3.65` 식. 문자열 금지.
+- **`examples[].reason`**: **한 문장 25~45자**. "WTI +2.8% 급등 직접 수혜 + K배터리 ESS 신사업" 처럼 촉매 + 구체 근거.
+- **`takeaway`**: 선택. 있으면 "공통 패턴 / 교훈" 한 줄.
+- **`analysis.stocks`**: **실패 · 부분 적중 종목에만** 작성. 적중 종목은 생략 (페이지에서 "적중 — 별도 분석 생략"으로 표시).
+  - `why`: "왜 예측이 틀렸나" 를 **가설 톤** 으로. "…압도한 것으로 보임", "…를 과소평가한 것으로 해석" 같이. 단정 금지.
+  - 3~5문장은 과함. 2~3문장 목표.
+- **`analysis.stocks[code].misread`**: **뉴스 오독(news_misread) 케이스에만** 작성 — 뉴스 톤이 실제 방향과 반대로 나간 종목. 4개 필드 모두 채우는 것 권장 (`lesson` 은 선택).
+  - `news_cited`: 원 뉴스 핵심. 제목·출처·수치를 구체적으로. "AACR 학회 발표 예정 (4/25) + 종근당과 이중항체 공동개발 MOU" 같이.
+  - `how_interpreted`: 이 뉴스를 어떤 논리로 읽고 예측까지 갔는지. "중장기 호재 2건 + 개별 당일 촉매 부재 → 관망으로 처리" 처럼 연결고리 명시.
+  - `what_was_wrong`: 어떤 부분의 해석이 실제와 어긋났는지. "당일 촉매 부재 = 중립 이라는 연결이 틀림. 섹터 약세 중이면 중립이 아니라 섹터 흐름에 그대로 노출됨" 처럼 구체적으로.
+  - `lesson`: 같은 상황 재발 시 어떻게 할지. 선택이지만 강권장.
+- **`analysis.lessons`**: 오늘 미스 패턴에서 **일반화 가능한** 교훈 3~5개. 사용자·다음날 에이전트 둘 다 읽는다.
+  - 특정 종목 이름은 예시로만 잠깐 언급. 규칙 자체는 종목 무관하게 적용 가능해야.
+  - `rule` 은 가능한 한 구체적 조건 형태로 — "X 상황에서 Y 하라" 식.
+  - 매일 같은 교훈을 반복해 쓰지 말 것. 이미 최근 N일에 같은 lesson이 있으면 skip 하거나 "재확인" 으로 가볍게.
+- **톤**: 자기 비판 OK, 과도한 낙관·패닉 금지. 다음 날 자신이 읽고 조정할 힌트가 되어야 함.
+- **다른 종목 비교**: "섹터 동조로…" 식 인용은 OK. 단 실제 데이터에 없는 종목은 들먹이지 말 것.
+
+### 서술형 본문에서 **금지 용어 (코드·영어 스키마 식별자)**
+
+`day_summary` · `lead` · `reason` · `takeaway` · `stocks[].why` 는 독자(사용자)가 읽는 텍스트다. JSON 필드명·내부 코드 식별자를 그대로 쓰지 말고, 아래 자연 한국어로 치환할 것:
+
+| 쓰지 말 것 | 쓸 것 |
+|---|---|
+| `news_misread` · "news misread" | "뉴스 톤 오독" · "뉴스 해석 실패" |
+| `overnight_misled` · "overnight misled" | "간밤 신호가 방향을 잘못 가리킴" |
+| `priced_in_underestimated` | "이미 주가에 반영된 정도를 과소평가" |
+| `overnight_helped` | "간밤 해외 신호가 적중을 지원" |
+| `priced_in=True` · "priced in" (형용사) | "이미 주가에 반영됨" · **"선반영"** OK |
+| `priced_in=False` | "아직 주가에 반영 안 됨" · "선반영 아님" |
+| `overnight_signal=neutral/up/down` | "간밤 해외 신호 중립/강세/약세" |
+| `news_sentiment=positive/neutral/negative` | "뉴스 톤 긍정/중립/부정" |
+| `recommendation=buy/sell/hold/strong_buy/strong_sell` | "매수/매도/관망/풀매수/풀매도" |
+| `hit/partial/miss` (영어 그대로) | "적중/부분 적중/실패·빗나감" |
+| `hit rate` · `hit_rate` | "적중률" |
+| `override` · `override한` | "한 단계 상향/하향" · "재량 조정" |
+| `confidence=high/medium/low` | "신뢰도 높음/중간/낮음" |
+| `matrix` · "매트릭스" (코드 맥락) | "기본 판정 규칙" · "매트릭스"는 가능하지만 풀어쓰기 우선 |
+
+예시:
+- ❌ "priced_in=True 였는데 miss 함 — news_misread 패턴"
+- ✅ "선반영으로 봤는데 빗나감 — 뉴스 톤을 잘못 읽은 패턴"
+
+JSON 필드명·수치 라벨 그 자체(예: `accuracy.hit_rate` 가 55%) 는 그대로 둬도 된다. 금지는 **서술 본문 안**에서의 사용에만 해당.
+
+### 작성 절차
+
+```python
+# .tmp/summary.json 을 읽고 편집
+import json
+from pathlib import Path
+p = Path(".tmp/summary.json")
+d = json.loads(p.read_text())
+
+# 종목별 result, predicted, rationale, news 를 훑어 miss 패턴 파악
+# 각 stock 의 s['news_sentiment'], s['overnight_signal'], s['priced_in'],
+# s['rationale'], s['result']['outcome'], s['result']['actual_change_pct'] 를 보면 충분.
+
+d.setdefault("review", {})["analysis"] = {
+    "day_summary": "...",
+    "what_worked": {"lead": "...", "examples": [...], "takeaway": "..."},
+    "what_missed": {"lead": "...", "examples": [...], "takeaway": "..."},
+    "stocks": {
+        "<miss/partial code>": {"why": "..."},
+    },
+}
+p.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
+```
+
+그 다음 step 5 (재렌더) 로 넘어간다.
 
 ## 신호 기여도 판정 기준
 

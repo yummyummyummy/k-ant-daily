@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ date }} 리뷰 · k-ant-daily</title>
+<link rel="canonical" href="{{ base_url }}/accuracy/{{ date }}.html">
+<style>
+  :root {
+    --fg: #0f172a; --muted: #64748b; --bg: #fff; --accent: #0f766e; --border: #e2e8f0; --card: #f8fafc;
+    --pos: #dc2626; --pos-bg: rgba(220,38,38,0.08);
+    --neg: #2563eb; --neg-bg: rgba(37,99,235,0.08);
+    --partial: #d97706; --partial-bg: rgba(245,158,11,0.15);
+    --neu: #6b7280; --neu-bg: rgba(107,114,128,0.08);
+    --good: #16a34a; --good-bg: rgba(22,163,74,0.08);
+    --bad:  #b91c1c; --bad-bg:  rgba(185,28,28,0.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --fg: #e2e8f0; --muted: #94a3b8; --bg: #0f172a; --accent: #5eead4; --border: #1e293b; --card: #1e293b;
+      --pos: #f87171; --pos-bg: rgba(248,113,113,0.12);
+      --neg: #60a5fa; --neg-bg: rgba(96,165,250,0.12);
+      --neu: #94a3b8; --neu-bg: rgba(148,163,184,0.12);
+      --good: #4ade80; --good-bg: rgba(74,222,128,0.12);
+      --bad:  #f87171; --bad-bg:  rgba(248,113,113,0.12);
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+    line-height: 1.6; font-size: 16px; }
+  main { max-width: 780px; margin: 0 auto; padding: 24px 20px 64px; }
+  h1 { font-size: 24px; margin: 0 0 6px; }
+  header nav a { color: var(--accent); text-decoration: none; font-size: 14px; margin-right: 4px; }
+  header time { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; }
+  section { margin-top: 28px; }
+  section h2 { font-size: 16px; margin: 0 0 12px; }
+
+  .hero {
+    display: grid; grid-template-columns: auto 1fr; gap: 20px;
+    align-items: center;
+    background: linear-gradient(135deg, var(--card), transparent);
+    border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+  }
+  .hero .big { font-size: 42px; font-weight: 900; font-variant-numeric: tabular-nums;
+    color: var(--accent); line-height: 1; }
+  .hero .label { font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .hero .meta { font-size: 13px; color: var(--muted); }
+  .hero .meta strong { color: var(--fg); }
+
+  .session-row {
+    display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px;
+    color: var(--muted); margin-top: 8px;
+  }
+  .session-row .idx { display: inline-flex; align-items: baseline; gap: 6px; }
+  .session-row .idx .nm { color: var(--fg); font-weight: 700; font-size: 12px; letter-spacing: 0.02em; }
+  .session-row .idx .val { color: var(--fg); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .session-row .idx .chg { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .session-row .idx.up   .chg { color: var(--pos); }
+  .session-row .idx.down .chg { color: var(--neg); }
+  .session-row .idx.flat .chg { color: var(--muted); }
+
+  .day-summary {
+    background: var(--card); border-left: 3px solid var(--accent);
+    border-radius: 6px; padding: 12px 16px; font-size: 15px;
+  }
+
+  .two-col {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+  .two-col .block {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+  }
+  .two-col .block.worked { border-left: 3px solid var(--good); }
+  .two-col .block.missed { border-left: 3px solid var(--bad); }
+  .two-col .block h3 { font-size: 13px; margin: 0 0 8px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em; }
+  .two-col .block.worked h3 { color: var(--good); }
+  .two-col .block.missed h3 { color: var(--bad); }
+  .two-col .lead { margin: 0 0 10px; font-size: 14px; color: var(--fg); line-height: 1.5; }
+  .two-col .example-list { list-style: none; padding: 0; margin: 0 0 10px; display: flex; flex-direction: column; gap: 6px; }
+  .two-col .example-list li {
+    font-size: 13px; line-height: 1.45; display: grid;
+    grid-template-columns: auto 1fr; gap: 8px; align-items: baseline;
+  }
+  .two-col .chip {
+    display: inline-flex; align-items: baseline; gap: 4px;
+    padding: 2px 8px; border-radius: 999px;
+    background: var(--neu-bg); font-size: 11px; font-weight: 700;
+    white-space: nowrap;
+  }
+  .two-col .chip .nm { color: var(--fg); }
+  .two-col .chip .pct { font-variant-numeric: tabular-nums; letter-spacing: 0.01em; }
+  .two-col .chip.up   { background: var(--pos-bg); }
+  .two-col .chip.up   .pct { color: var(--pos); }
+  .two-col .chip.down { background: var(--neg-bg); }
+  .two-col .chip.down .pct { color: var(--neg); }
+  .two-col .chip.flat .pct { color: var(--muted); }
+  .two-col .reason { color: var(--muted); font-size: 13px; }
+  .two-col .takeaway {
+    font-size: 12px; color: var(--muted); padding-top: 8px;
+    border-top: 1px dashed var(--border); margin-top: 6px;
+  }
+  .two-col .prose p { margin: 0; font-size: 14px; }
+
+  .attrib-row {
+    display: flex; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--muted);
+    margin-top: 10px;
+  }
+  .attrib-row .chip {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 999px; padding: 3px 10px;
+  }
+  .attrib-row .chip .n { font-weight: 700; color: var(--fg); }
+
+  /* Per-stock list — always open, no details/summary */
+  .stock-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .stock-list .scard {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 16px;
+  }
+  .stock-list .shead {
+    display: grid; grid-template-columns: 1fr auto auto auto; gap: 12px;
+    align-items: center; padding-bottom: 10px; border-bottom: 1px dashed var(--border);
+    margin-bottom: 10px;
+  }
+  .stock-list .sname { font-weight: 700; font-size: 14px; }
+  .stock-list .scode { font-size: 11px; color: var(--muted); font-weight: 400; margin-left: 4px; font-variant-numeric: tabular-nums; }
+  .stock-list .spred { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; }
+  .stock-list .sactual {
+    font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums;
+    min-width: 64px; text-align: right;
+  }
+  .stock-list .sactual.up   { color: var(--pos); }
+  .stock-list .sactual.down { color: var(--neg); }
+  .stock-list .sactual.flat { color: var(--muted); }
+  .stock-list .verdict {
+    font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px;
+    letter-spacing: 0.02em;
+  }
+  .stock-list .verdict.hit     { background: var(--pos-bg);     color: var(--pos); }
+  .stock-list .verdict.partial { background: var(--partial-bg); color: var(--partial); }
+  .stock-list .verdict.miss    { background: var(--neg-bg);     color: var(--neg); }
+  .stock-list .verdict.na      { background: var(--neu-bg);     color: var(--neu); }
+
+  .stock-list .row { display: grid; grid-template-columns: 64px 1fr; gap: 10px; padding: 6px 0; }
+  .stock-list .row + .row { border-top: 1px dashed var(--border); }
+  .stock-list .row .k { color: var(--muted); font-weight: 600; font-size: 12px; padding-top: 1px; }
+  .stock-list .row .v { color: var(--fg); font-size: 13px; line-height: 1.5; }
+  .stock-list .row.why .v { color: var(--fg); }
+  .stock-list .missing-why {
+    color: var(--muted); font-style: italic; font-size: 12px;
+  }
+
+  /* Misread deep-dive block — shown inline when analysis.stocks[].misread exists */
+  .stock-list .misread {
+    margin-top: 10px; padding: 10px 14px;
+    background: var(--bad-bg); border-left: 3px solid var(--bad);
+    border-radius: 6px;
+  }
+  .stock-list .misread .mhead {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    color: var(--bad); text-transform: uppercase; margin-bottom: 6px;
+  }
+  .stock-list .misread .mrow {
+    display: grid; grid-template-columns: 90px 1fr; gap: 8px;
+    padding: 5px 0; border-top: 1px dashed rgba(185,28,28,0.2);
+    font-size: 13px; line-height: 1.5;
+  }
+  .stock-list .misread .mrow:first-of-type { border-top: none; }
+  .stock-list .misread .mk { color: var(--bad); font-weight: 600; font-size: 12px; }
+  .stock-list .misread .mv { color: var(--fg); }
+
+  /* Lessons section */
+  .lessons { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .lessons li.lesson {
+    background: var(--card); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px; padding: 12px 16px;
+  }
+  .lessons .l-title { font-weight: 700; font-size: 14px; margin-bottom: 5px; display: flex; gap: 8px; align-items: baseline; }
+  .lessons .l-title .num {
+    font-size: 11px; font-weight: 700; color: var(--accent);
+    background: var(--bg); padding: 1px 7px; border-radius: 999px;
+    border: 1px solid var(--accent);
+  }
+  .lessons .l-detail { font-size: 13px; color: var(--fg); line-height: 1.55; }
+  .lessons .l-rule {
+    font-size: 12px; color: var(--accent); font-weight: 600;
+    margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border);
+  }
+  .lessons .l-rule::before { content: "📏 "; }
+
+  footer { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 12px; text-align: center; }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <nav>
+      <a href="../{{ date }}.html">← 그날 아침 브리핑</a> ·
+      <a href="../accuracy.html">누적</a> ·
+      <a href="../archive.html">아카이브</a>
+    </nav>
+    <h1>🔍 {{ date }} 리뷰</h1>
+    <time>생성 {{ generated_at_display }} KST</time>
+  </header>
+
+  <section>
+    <div class="hero">
+      <div>
+        <div class="label">오늘 적중률</div>
+        <div class="big">{{ (accuracy.hit_rate * 100) | round(0) | int }}%</div>
+      </div>
+      <div class="meta">
+        총 <strong>{{ accuracy.total }}</strong>건 ·
+        ✅ <strong>{{ accuracy.hits }}</strong> ·
+        🟡 <strong>{{ accuracy.partial }}</strong> ·
+        ❌ <strong>{{ accuracy.misses }}</strong><br>
+        방향 정확도 <strong>{{ (accuracy.directional_accuracy * 100) | round(0) | int }}%</strong>
+        {% if session_indices %}
+        <div class="session-row">
+          {% for idx in session_indices %}
+          <span class="idx {{ idx.direction or 'flat' }}">
+            <span class="nm">{{ idx.name }}</span>
+            {% if idx.value %}<span class="val">{{ idx.value }}</span>{% endif %}
+            <span class="chg">
+              {%- if idx.direction == 'up' -%}↑ {% elif idx.direction == 'down' -%}↓ {% endif -%}
+              {{ idx.change_pct or idx.raw or '' }}
+              {%- if idx.change_abs %} (Δ{{ idx.change_abs }}){% endif -%}
+            </span>
+          </span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if attrib_sorted %}
+        <div class="attrib-row">
+          {% for key, count in attrib_sorted %}
+          <span class="chip">
+            {% if key == 'overnight_helped' %}🌙 간밤 적중 지원
+            {% elif key == 'news_misread' %}📰 뉴스 오독
+            {% elif key == 'overnight_misled' %}🌙 간밤 오도
+            {% elif key == 'priced_in_underestimated' %}⚠️ 선반영 과소평가
+            {% else %}{{ key }}{% endif %}
+            <span class="n">{{ count }}</span>
+          </span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% if analysis and analysis.day_summary %}
+  <section>
+    <div class="day-summary">📋 {{ analysis.day_summary }}</div>
+  </section>
+  {% endif %}
+
+  {% if analysis and (analysis.what_worked or analysis.what_missed) %}
+  <section>
+    <div class="two-col">
+      {% for kind, block in [('worked', analysis.what_worked), ('missed', analysis.what_missed)] if block %}
+      <div class="block {{ kind }}">
+        <h3>{% if kind == 'worked' %}✅ 잘된 것{% else %}❌ 빗나간 것{% endif %}</h3>
+        {% if block is mapping %}
+          {% if block.lead %}<p class="lead">{{ block.lead }}</p>{% endif %}
+          {% if block.examples %}
+          <ul class="example-list">
+            {% for ex in block.examples %}
+            {% set pct = ex.change_pct %}
+            {% set dir = 'up' if (pct or 0) > 0 else ('down' if (pct or 0) < 0 else 'flat') %}
+            {% set sign = '+' if (pct or 0) > 0 else '' %}
+            <li>
+              <span class="chip {{ dir }}">
+                <span class="nm">{{ ex.name }}</span>
+                <span class="pct">{% if pct is not none %}{{ sign }}{{ '%.2f' | format(pct) }}%{% endif %}</span>
+              </span>
+              <span class="reason">{{ ex.reason }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          {% if block.takeaway %}<div class="takeaway">💡 {{ block.takeaway }}</div>{% endif %}
+        {% else %}
+          <div class="prose"><p>{{ block }}</p></div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if analysis and analysis.lessons %}
+  <section>
+    <h2>🎓 오늘의 학습 <span style="font-weight:400;font-size:12px;color:var(--muted);">· 다음 판정 때 참고</span></h2>
+    <ul class="lessons">
+      {% for les in analysis.lessons %}
+      <li class="lesson">
+        <div class="l-title"><span class="num">{{ loop.index }}</span><span>{{ les.title }}</span></div>
+        <div class="l-detail">{{ les.detail }}</div>
+        {% if les.rule %}<div class="l-rule">{{ les.rule }}</div>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <section>
+    <h2>종목별</h2>
+    <ul class="stock-list">
+      {% for s in stocks %}
+      {% set verdict = (s.result.outcome) or 'n/a' %}
+      {% set vlabel = {'hit': '적중', 'partial': '부분', 'miss': '실패', 'n/a': '—'}[verdict] %}
+      {% set actual = s.result.actual_change_pct %}
+      {% set adir = 'up' if (actual or 0) > 0 else ('down' if (actual or 0) < 0 else 'flat') %}
+      {% set asign = '+' if (actual or 0) > 0 else '' %}
+      {% set why = (analysis.stocks[s.code].why) if (analysis and analysis.stocks and s.code in analysis.stocks) else None %}
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">{{ s.name }}</span><span class="scode">{{ s.code }}</span>
+          </span>
+          <span class="spred">{{ s.recommendation_label or s.recommendation }}</span>
+          <span class="sactual {{ adir }}">
+            {% if actual is not none %}{{ asign }}{{ '%.2f' | format(actual) }}%{% else %}—{% endif %}
+          </span>
+          <span class="verdict {{ verdict.replace('/', '') }}">{{ vlabel }}</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">{{ s.rationale or '—' }}</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+            {% if why %}{{ why }}
+            {% else %}<span class="missing-why">{% if verdict == 'hit' %}적중 — 별도 분석 생략{% else %}분석 미작성{% endif %}</span>
+            {% endif %}
+          </div>
+        </div>
+        {% set mr = (analysis.stocks[s.code].misread) if (analysis and analysis.stocks and s.code in analysis.stocks) else None %}
+        {% if mr %}
+        <div class="misread">
+          <div class="mhead">📖 뉴스 오독 분석</div>
+          {% if mr.news_cited %}
+          <div class="mrow"><div class="mk">본 뉴스</div><div class="mv">{{ mr.news_cited }}</div></div>
+          {% endif %}
+          {% if mr.how_interpreted %}
+          <div class="mrow"><div class="mk">이렇게 해석</div><div class="mv">{{ mr.how_interpreted }}</div></div>
+          {% endif %}
+          {% if mr.what_was_wrong %}
+          <div class="mrow"><div class="mk">어긋난 지점</div><div class="mv">{{ mr.what_was_wrong }}</div></div>
+          {% endif %}
+          {% if mr.lesson %}
+          <div class="mrow"><div class="mk">💡 배운 점</div><div class="mv">{{ mr.lesson }}</div></div>
+          {% endif %}
+        </div>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <footer>
+    k-ant-daily · <a href="https://github.com/yummyummyummy/k-ant-daily" target="_blank" rel="noopener">GitHub</a>
+  </footer>
+</main>
+</body>
+</html>

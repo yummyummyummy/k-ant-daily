@@ -184,9 +184,22 @@ def main(argv: list[str]) -> int:
     hit_rate = (hits + 0.5 * partial) / total if total else 0
     dir_acc = directional_correct / directional_total if directional_total else 0
 
+    def _idx_snap(key: str) -> dict:
+        idx = (news.get("macro", {}).get("indices", {}) or {}).get(key) or {}
+        raw = (news.get("macro", {}).get("indices", {}) or {}).get(f"{key}_change", "")
+        if isinstance(idx, dict) and idx:
+            return {
+                "value": idx.get("value"),
+                "change_abs": idx.get("change_abs"),
+                "change_pct": idx.get("change_pct"),
+                "direction": idx.get("direction"),
+                "raw": raw,
+            }
+        return {"raw": raw}
+
     session_change = {
-        "kospi":  (news.get("macro", {}).get("indices", {}) or {}).get("KOSPI_change", ""),
-        "kosdaq": (news.get("macro", {}).get("indices", {}) or {}).get("KOSDAQ_change", ""),
+        "kospi":  _idx_snap("KOSPI"),
+        "kosdaq": _idx_snap("KOSDAQ"),
     }
     review = {
         "generated_at": datetime.now(KST).isoformat(),

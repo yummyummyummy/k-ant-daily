@@ -76,6 +76,31 @@
   .card.medium .val { color: var(--fg); }
   .card.low    .val { color: var(--muted); opacity: 0.7; }
 
+  .day-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+  .day-list li {
+    display: grid; grid-template-columns: auto 1fr auto auto; gap: 10px;
+    align-items: baseline; padding: 8px 12px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    font-size: 13px;
+  }
+  .day-list .dt { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .day-list .score { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .day-list .score strong { color: var(--fg); }
+  .day-list .rate {
+    font-weight: 700; font-variant-numeric: tabular-nums;
+    padding: 2px 8px; border-radius: 999px;
+    background: var(--neu-bg); color: var(--neu);
+  }
+  .day-list .rate.good { background: var(--pos-bg); color: var(--pos); }
+  .day-list .rate.ok   { background: var(--partial-bg); color: var(--partial); }
+  .day-list .rate.bad  { background: var(--neg-bg); color: var(--neg); }
+  .day-list .retro-link {
+    color: var(--accent); text-decoration: none; font-size: 12px; font-weight: 600;
+    white-space: nowrap;
+  }
+  .day-list .retro-link:hover { text-decoration: underline; }
+  .day-list .no-retro { color: var(--muted); font-size: 11px; font-style: italic; }
+
   .attrib-list { list-style: none; padding: 0; margin: 0; }
   .attrib-list li {
     display: flex; justify-content: space-between; align-items: baseline;
@@ -130,6 +155,28 @@
         <span><span class="dot" style="background:var(--neg)"></span>실패</span>
       </div>
     </div>
+  </section>
+
+  <section>
+    <h2>일별 상세</h2>
+    <ul class="day-list">
+      {% for r in records | reverse %}
+      {% set rate_pct = (r.hit_rate * 100) | round(0) | int %}
+      {% set rate_cls = 'good' if rate_pct >= 60 else ('ok' if rate_pct >= 40 else 'bad') %}
+      <li>
+        <span class="dt">{{ r.date }}</span>
+        <span class="score">
+          <strong>{{ r.hits }}</strong> · {{ r.partial }} · {{ r.misses }} / {{ r.total }}건
+        </span>
+        <span class="rate {{ rate_cls }}">{{ rate_pct }}%</span>
+        {% if r.has_retro %}
+        <a class="retro-link" href="accuracy/{{ r.date }}.html">🔍 회고 →</a>
+        {% else %}
+        <span class="no-retro">회고 없음</span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
   </section>
 
   <section>
