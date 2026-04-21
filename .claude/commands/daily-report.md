@@ -66,7 +66,25 @@ description: Generate and publish today's pre-market stock briefing
    `docs/YYYY-MM-DD.summary.json` — a persistent copy that the evening `/daily-review`
    job reads back to compare predictions against actual closes.
 
-6. **Commit & push.** `git add docs/ stocks.yml; git commit -m "report: YYYY-MM-DD briefing"; git push`
+6. **Commit & push.**
+   ```bash
+   git add docs/ stocks.yml
+   git commit -m "report: YYYY-MM-DD briefing"
+
+   # Rebase onto origin in case a commit landed on main while we were running
+   # (e.g. a refactor push mid-briefing). Without this the final push fails
+   # non-fast-forward and the report never reaches GitHub Pages.
+   if ! git pull --rebase origin main; then
+     # 충돌 가능 파일: docs/index.html · archive.html · accuracy.html ·
+     # accuracy/*.html — 전부 render.py가 생성하는 집계 페이지라 우리 쪽
+     # 버전으로 잡고 재렌더하면 resolve 된다.
+     git checkout --ours -- docs/index.html docs/archive.html docs/accuracy.html docs/accuracy/ 2>/dev/null || true
+     .venv/bin/python scripts/render.py .tmp/summary.json
+     git add docs/
+     git rebase --continue
+   fi
+   git push
+   ```
 
 7. **Report the URL + one-line summary.**
 

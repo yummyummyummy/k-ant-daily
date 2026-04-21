@@ -42,6 +42,19 @@ description: Post-market review — compare morning prediction vs actual close
    ```bash
    git add docs/
    git commit -m "review: $(date +%Y-%m-%d) post-session review"
+
+   # 리뷰 실행 중 main에 다른 커밋이 올라왔을 수 있음 (e.g. 수동 refactor).
+   # 이 경우 바로 push 하면 non-fast-forward 로 실패하고 리뷰가 GitHub Pages 에
+   # 올라가지 않는다. rebase 한 번 태우고 push 재시도.
+   if ! git pull --rebase origin main; then
+     # 충돌 가능 파일: docs/index.html · archive.html · accuracy.html ·
+     # accuracy/*.html — 전부 render.py가 생성하는 집계 페이지라 우리 쪽
+     # 버전으로 잡고 재렌더하면 resolve 된다.
+     git checkout --ours -- docs/index.html docs/archive.html docs/accuracy.html docs/accuracy/ 2>/dev/null || true
+     .venv/bin/python scripts/render.py .tmp/summary.json
+     git add docs/
+     git rebase --continue
+   fi
    git push
    ```
 
