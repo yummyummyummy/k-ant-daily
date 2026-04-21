@@ -299,6 +299,45 @@ def compute_overnight_signal(proxies: list[str], changes: dict[str, float]) -> d
     }
 
 
+def fetch_upbit_tickers(markets: list[str]) -> dict:
+    """KRW-denominated crypto quotes from Upbit public API.
+
+    Used for the marquee's BTC/ETH initial server render so the page
+    isn't blank before the first client poll.
+    """
+    try:
+        r = requests.get(
+            "https://api.upbit.com/v1/ticker",
+            params={"markets": ",".join(markets)},
+            headers={"User-Agent": UA, "Accept": "application/json"},
+            timeout=10,
+        )
+        r.raise_for_status()
+        arr = r.json()
+    except Exception as e:
+        print(f"[warn] upbit fetch failed: {e}", file=sys.stderr)
+        return {}
+
+    out: dict = {}
+    for d in arr:
+        market = d.get("market")
+        if not market:
+            continue
+        direction = {"RISE": "up", "FALL": "down"}.get(d.get("change"), "flat")
+        price = float(d.get("trade_price") or 0)
+        abs_change = float(d.get("signed_change_price") or 0)
+        pct = float(d.get("signed_change_rate") or 0) * 100
+        abs_sign = "+" if abs_change > 0 else "-" if abs_change < 0 else ""
+        pct_sign = "+" if pct > 0 else ""
+        out[market] = {
+            "value": f"{round(price):,}",
+            "change_abs": f"{abs_sign}{abs(round(abs_change)):,}",
+            "change_pct": f"{pct_sign}{pct:.2f}%",
+            "direction": direction,
+        }
+    return out
+
+
 def fetch_overnight_markets() -> dict:
     """간밤 해외 시장 (US indices, VIX, commodities, dollar index) via yfinance."""
     import yfinance as yf  # lazy — slow import
@@ -377,6 +416,12 @@ def main() -> int:
     except Exception as e:
         print(f"[warn] overnight fetch failed: {e}", file=sys.stderr)
         data["macro"]["overnight"] = []
+
+    try:
+        data["macro"]["crypto_krw"] = fetch_upbit_tickers(["KRW-BTC", "KRW-ETH"])
+    except Exception as e:
+        print(f"[warn] crypto fetch failed: {e}", file=sys.stderr)
+        data["macro"]["crypto_krw"] = {}
 
     # Collect all overnight proxy tickers upfront for a single batched fetch
     all_proxies = sorted({

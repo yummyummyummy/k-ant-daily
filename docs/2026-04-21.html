@@ -53,6 +53,43 @@
   }
   main { max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; }
 
+  /* TICKER STRIP (marquee) — above everything, below browser chrome. */
+  .ticker-strip {
+    position: sticky; top: 0; z-index: 50;
+    overflow: hidden;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 6px 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .ticker-track {
+    display: inline-flex; gap: 36px; align-items: baseline;
+    white-space: nowrap;
+    width: max-content; padding-left: 36px;
+    animation: ticker-scroll 60s linear infinite;
+    will-change: transform;
+  }
+  .ticker-strip:hover .ticker-track,
+  .ticker-strip:active .ticker-track { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track { animation: none; }
+  }
+  @keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .ticker-item { display: inline-flex; gap: 6px; align-items: baseline; font-size: 13px; }
+  .ticker-item .name {
+    color: var(--muted); font-weight: 700; font-size: 11px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .ticker-item .value { color: var(--fg); font-weight: 700; }
+  .ticker-item .delta { font-weight: 600; }
+  .ticker-item .delta.up   { color: var(--pos); }
+  .ticker-item .delta.down { color: var(--neg); }
+  .ticker-item .delta.flat { color: var(--muted); }
+  .ticker-item .delta .pct { font-size: 11px; margin-left: 3px; opacity: 0.85; }
+
   header { border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 24px; }
   header h1 { font-size: 24px; margin: 0 0 8px; letter-spacing: -0.01em; }
   header .tldr { margin: 0; color: var(--fg); font-size: 17px; font-weight: 500; }
@@ -471,6 +508,70 @@
 </style>
 </head>
 <body>
+<div class="ticker-strip" id="ticker-strip">
+  <div class="ticker-track">
+      <span class="ticker-item" data-ticker="KOSPI">
+        <span class="name">KOSPI</span>
+        <span class="value">6,314.44</span>
+        <span class="delta up">
++95.35<span class="pct">+1.53%</span>        </span>
+      </span>
+      <span class="ticker-item" data-ticker="KOSDAQ">
+        <span class="name">KOSDAQ</span>
+        <span class="value">1,172.31</span>
+        <span class="delta up">
++2.54<span class="pct">-0.22%</span>        </span>
+      </span>
+      <span class="ticker-item" data-ticker="USDKRW">
+        <span class="name">USD/KRW</span>
+        <span class="value">1,472.70</span>
+        <span class="delta flat">
+0.40        </span>
+      </span>
+      <span class="ticker-item" data-ticker="BTC">
+        <span class="name">BTC</span>
+        <span class="value">112,410,000</span>
+        <span class="delta down">
+-45,000<span class="pct">-0.04%</span>        </span>
+      </span>
+      <span class="ticker-item" data-ticker="ETH">
+        <span class="name">ETH</span>
+        <span class="value">3,425,000</span>
+        <span class="delta down">
+-6,000<span class="pct">-0.17%</span>        </span>
+      </span>
+      <span class="ticker-item" data-ticker="KOSPI">
+        <span class="name">KOSPI</span>
+        <span class="value">6,314.44</span>
+        <span class="delta up">
++95.35<span class="pct">+1.53%</span>        </span>
+      </span>
+      <span class="ticker-item" data-ticker="KOSDAQ">
+        <span class="name">KOSDAQ</span>
+        <span class="value">1,172.31</span>
+        <span class="delta up">
++2.54<span class="pct">-0.22%</span>        </span>
+      </span>
+      <span class="ticker-item" data-ticker="USDKRW">
+        <span class="name">USD/KRW</span>
+        <span class="value">1,472.70</span>
+        <span class="delta flat">
+0.40        </span>
+      </span>
+      <span class="ticker-item" data-ticker="BTC">
+        <span class="name">BTC</span>
+        <span class="value">112,410,000</span>
+        <span class="delta down">
+-45,000<span class="pct">-0.04%</span>        </span>
+      </span>
+      <span class="ticker-item" data-ticker="ETH">
+        <span class="name">ETH</span>
+        <span class="value">3,425,000</span>
+        <span class="delta down">
+-6,000<span class="pct">-0.17%</span>        </span>
+      </span>
+  </div>
+</div>
 <main>
   <header>
     <h1>📰 2026-04-21 장전 브리핑</h1>
@@ -2132,7 +2233,9 @@
   // After deploying the Cloudflare Worker in ../worker/, paste its URL here.
   // Expected shape: https://<name>.<subdomain>.workers.dev/quote
   // Leave as "" to disable live polling (snapshot values render as-is).
-  const QUOTE_API = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/quote";
+  const QUOTE_API  = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/quote";
+  const TICKER_API = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/ticker";
+  const TICKER_ITEMS = ["KOSPI", "KOSDAQ", "USDKRW", "BTC", "ETH"];
   // ────────────────────────────────────────────────────────────────
 
   const POLL_MS = 60_000;
@@ -2215,6 +2318,41 @@
       // Force reflow so the animation restarts
       void priceEl.offsetWidth;
       priceEl.classList.add(cls);
+    }
+  }
+
+  function setTickerDelta(deltaEl, q) {
+    deltaEl.classList.remove("up", "down", "flat");
+    deltaEl.classList.add(q.direction || "flat");
+    while (deltaEl.firstChild) deltaEl.removeChild(deltaEl.firstChild);
+    if (q.change_abs) deltaEl.appendChild(document.createTextNode(q.change_abs));
+    if (q.change_pct) {
+      const pct = document.createElement("span");
+      pct.className = "pct";
+      pct.textContent = " " + q.change_pct;
+      deltaEl.appendChild(pct);
+    }
+  }
+
+  async function refreshTicker() {
+    if (!TICKER_API) return;
+    try {
+      const url = TICKER_API + "?items=" + encodeURIComponent(TICKER_ITEMS.join(","));
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) return;
+      const data = await res.json();
+      Object.entries(data).forEach(([key, q]) => {
+        // Each ticker symbol appears twice in the DOM (duplicated for
+        // seamless marquee loop) — update both.
+        document.querySelectorAll(`.ticker-item[data-ticker="${key}"]`).forEach((item) => {
+          const valEl   = item.querySelector(".value");
+          const deltaEl = item.querySelector(".delta");
+          if (valEl && q.value) valEl.textContent = q.value;
+          if (deltaEl) setTickerDelta(deltaEl, q);
+        });
+      });
+    } catch (err) {
+      /* silent — keep snapshot */
     }
   }
 
@@ -2340,6 +2478,13 @@
   }
 
   function init() {
+    // Ticker (indices + FX + crypto) polls 24/7 — crypto trades on weekends,
+    // and FX/indices just stop updating cleanly outside market hours.
+    if (TICKER_API) {
+      refreshTicker();
+      setInterval(refreshTicker, POLL_MS);
+    }
+
     if (!QUOTE_API) {
       setIndicator("closed", "⏸ 실시간 업데이트 비활성 (스냅샷)");
       return;
@@ -2350,7 +2495,7 @@
     }
     refreshQuotes();
     setInterval(refreshQuotes, POLL_MS);
-    // Re-check market-close boundary every minute; stop polling after 15:30.
+    // Re-check market-close boundary every minute; stop friend-stock polling after 15:30.
     setInterval(() => {
       if (!isMarketOpen()) {
         setIndicator("closed", "⏸ 장 마감 — 종가 표시 중");

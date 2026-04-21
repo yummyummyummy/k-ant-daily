@@ -86,6 +86,115 @@ async function fetchQuotes(codes) {
   return out;
 }
 
+// ─────────────────────────────────────────────────────────────────────
+// Ticker sources — market indices, FX, crypto. Each returns:
+//   { value, change_abs, change_pct, direction }
+// value/change_abs/change_pct are pre-formatted strings so the client can
+// drop them into spans without doing locale-specific rounding.
+// ─────────────────────────────────────────────────────────────────────
+
+function fmt(n, decimals) {
+  return Number(n).toLocaleString("ko-KR", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+}
+
+function signedAbs(n, decimals) {
+  const sign = n > 0 ? "+" : n < 0 ? "-" : "";
+  return sign + fmt(Math.abs(n), decimals);
+}
+
+function signedPct(n) {
+  const sign = n > 0 ? "+" : "";
+  return `${sign}${Number(n).toFixed(2)}%`;
+}
+
+// Naver SERVICE_INDEX. `nv` / `cv` are scaled by ×100 for index precision.
+async function fetchIndex(code) {
+  const url = `${NAVER_POLL}?query=${encodeURIComponent(`SERVICE_INDEX:${code}`)}`;
+  const res = await fetch(url, {
+    headers: { "User-Agent": UA, "Referer": "https://finance.naver.com/", "Accept": "application/json, text/plain, */*" },
+    cf: { cacheTtl: CACHE_TTL, cacheEverything: true },
+  });
+  if (!res.ok) return null;
+  const buf = await res.arrayBuffer();
+  const text = new TextDecoder("euc-kr").decode(buf);
+  let data;
+  try { data = JSON.parse(text); } catch { return null; }
+  const d = data?.result?.areas?.[0]?.datas?.[0];
+  if (!d) return null;
+  const value = d.nv / 100;
+  const abs   = d.cv / 100;
+  const pct   = d.cr;
+  const direction = rfToDirection(d.rf);
+  return {
+    value: fmt(value, 2),
+    change_abs: signedAbs(direction === "down" ? -Math.abs(abs) : Math.abs(abs), 2),
+    change_pct: signedPct(direction === "down" ? -Math.abs(pct) : Math.abs(pct)),
+    direction,
+  };
+}
+
+// Naver marketindex HTML scrape — no JSON endpoint for FX.
+async function fetchFxUsd() {
+  const res = await fetch("https://finance.naver.com/marketindex/", {
+    headers: { "User-Agent": UA, "Referer": "https://finance.naver.com/" },
+    cf: { cacheTtl: CACHE_TTL, cacheEverything: true },
+  });
+  if (!res.ok) return null;
+  const buf = await res.arrayBuffer();
+  const html = new TextDecoder("euc-kr").decode(buf);
+  // USD is the first li in ul#exchangeList. Capture value + change + rise/fall label.
+  const m = html.match(/미국 USD[\s\S]{0,2000}?<span class="value">([\d,.]+)<\/span>[\s\S]{0,500}?<span class="change">([\d,.]+)<\/span>[\s\S]{0,500}?<span class="blind">(상승|하락|보합)<\/span>/);
+  if (!m) return null;
+  const [, value, change, rise] = m;
+  const direction = rise === "상승" ? "up" : rise === "하락" ? "down" : "flat";
+  const sign = direction === "up" ? "+" : direction === "down" ? "-" : "";
+  return {
+    value,
+    change_abs: `${sign}${change}`,
+    change_pct: null,  // Korean FX convention: no percentage
+    direction,
+  };
+}
+
+// Upbit public ticker — KRW-denominated crypto.
+async function fetchUpbit(market) {
+  const res = await fetch(`https://api.upbit.com/v1/ticker?markets=${market}`, {
+    cf: { cacheTtl: CACHE_TTL, cacheEverything: true },
+  });
+  if (!res.ok) return null;
+  const arr = await res.json().catch(() => null);
+  const d = arr?.[0];
+  if (!d) return null;
+  const direction = d.change === "RISE" ? "up" : d.change === "FALL" ? "down" : "flat";
+  const absRaw = Number(d.signed_change_price || 0);
+  const pctRaw = Number(d.signed_change_rate || 0) * 100;
+  return {
+    value: fmt(Math.round(d.trade_price), 0),
+    change_abs: signedAbs(absRaw, 0),
+    change_pct: signedPct(pctRaw),
+    direction,
+  };
+}
+
+const TICKER_ITEMS = {
+  KOSPI:  () => fetchIndex("KOSPI"),
+  KOSDAQ: () => fetchIndex("KOSDAQ"),
+  USDKRW: () => fetchFxUsd(),
+  BTC:    () => fetchUpbit("KRW-BTC"),
+  ETH:    () => fetchUpbit("KRW-ETH"),
+};
+
+async function fetchTicker(items) {
+  const keys = items.filter((k) => k in TICKER_ITEMS);
+  const results = await Promise.all(keys.map((k) => TICKER_ITEMS[k]().catch(() => null)));
+  const out = {};
+  keys.forEach((k, i) => { if (results[i]) out[k] = results[i]; });
+  return out;
+}
+
 export default {
   async fetch(request, env, ctx) {
     if (request.method === "OPTIONS") {
@@ -96,6 +205,46 @@ export default {
     if (url.pathname === "/" || url.pathname === "/health") {
       return json({ ok: true, service: "k-ant-daily-quotes" });
     }
+    // Ticker strip — indices, FX, crypto.
+    if (url.pathname === "/ticker") {
+      const raw = url.searchParams.get("items") || "";
+      const items = raw.split(",").map((s) => s.trim().toUpperCase()).filter(Boolean).slice(0, 16);
+      if (!items.length) {
+        return json({ error: "missing ?items=KOSPI,KOSDAQ,USDKRW,BTC,ETH" }, 400);
+      }
+      const sortedItems = [...items].sort().join(",");
+      const cacheKey = new Request(`https://cache.k-ant-daily/ticker?items=${sortedItems}`);
+      const cache = caches.default;
+      const cached = await cache.match(cacheKey);
+      if (cached) {
+        const body = await cached.text();
+        return new Response(body, {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "Cache-Control": `public, max-age=${CACHE_TTL}`,
+            "X-Cache": "HIT",
+            ...CORS_HEADERS,
+          },
+        });
+      }
+      let data;
+      try { data = await fetchTicker(items); }
+      catch (e) { return json({ error: "upstream failed", detail: e.message }, 502); }
+      const body = JSON.stringify(data);
+      const resp = new Response(body, {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "Cache-Control": `public, max-age=${CACHE_TTL}`,
+          "X-Cache": "MISS",
+          ...CORS_HEADERS,
+        },
+      });
+      ctx.waitUntil(cache.put(cacheKey, resp.clone()));
+      return resp;
+    }
+
     if (url.pathname !== "/quote") {
       return json({ error: "not found" }, 404);
     }

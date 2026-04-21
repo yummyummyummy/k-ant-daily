@@ -329,6 +329,59 @@ def _coffee_buyer(stocks: list[dict]) -> dict | None:
     }
 
 
+def _build_ticker(news: dict) -> list[dict]:
+    """Initial (server-rendered) ticker-strip data from the latest news.json
+    scrape. The Worker refreshes these live on the client, but the values
+    need to be populated on first paint.
+    """
+    if not news:
+        return []
+    macro = news.get("macro") or {}
+    indices = macro.get("indices") or {}
+    fx = macro.get("fx") or []
+    crypto = macro.get("crypto_krw") or {}
+
+    def entry(key, name, value="", change_abs="", change_pct=None, direction=""):
+        return {
+            "key": key, "name": name, "value": value,
+            "change_abs": change_abs, "change_pct": change_pct, "direction": direction,
+        }
+
+    out: list[dict] = []
+
+    # KOSPI / KOSDAQ from structured indices
+    for code, label in (("KOSPI", "KOSPI"), ("KOSDAQ", "KOSDAQ")):
+        info = indices.get(code) or {}
+        if isinstance(info, dict) and info.get("value"):
+            out.append(entry(code, label,
+                             value=info.get("value", ""),
+                             change_abs=info.get("change_abs", ""),
+                             change_pct=info.get("change_pct", ""),
+                             direction=info.get("direction", "")))
+
+    # USD/KRW from fx list. fetch_fx returns 'name': '미국 USD'.
+    usd = next((f for f in fx if "USD" in (f.get("name") or "")), None)
+    if usd:
+        change = str(usd.get("change", "")).strip()
+        # fx scrape gives absolute change unsigned; no reliable direction from scrape.
+        # Leave direction "" so UI renders neutral. Live poll will supply proper direction.
+        out.append(entry("USDKRW", "USD/KRW",
+                         value=usd.get("value", ""),
+                         change_abs=change, change_pct=None, direction=""))
+
+    # BTC / ETH from Upbit snapshot
+    for key, market, label in (("BTC", "KRW-BTC", "BTC"), ("ETH", "KRW-ETH", "ETH")):
+        info = crypto.get(market) or {}
+        if info.get("value"):
+            out.append(entry(key, label,
+                             value=info.get("value", ""),
+                             change_abs=info.get("change_abs", ""),
+                             change_pct=info.get("change_pct", ""),
+                             direction=info.get("direction", "")))
+
+    return out
+
+
 def _friends_overview(stocks: list[dict]) -> list[dict]:
     """One card per friend-stock for the coffee banner, sorted by today's change desc."""
     out = [
@@ -360,6 +413,17 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
     _merge_config_from_stocks_yml(summary, ROOT / "stocks.yml")
     if news_path is not None:
         _merge_quotes_from_news(summary, news_path)
+    # Load news.json for the ticker's initial server-render values. Try the
+    # provided path first (sibling of summary.json), then the conventional
+    # .tmp/news.json fallback so re-rendering from docs/*.summary.json works.
+    news_data = {}
+    for candidate in (news_path, ROOT / ".tmp" / "news.json"):
+        if candidate and candidate.exists():
+            try:
+                news_data = json.loads(candidate.read_text(encoding="utf-8"))
+                break
+            except Exception:
+                continue
     summary = _normalize(summary)
     date = summary.get("date") or datetime.now(KST).strftime("%Y-%m-%d")
     filename = f"{date}.html"
@@ -392,6 +456,7 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
         coffee_buyer=_coffee_buyer(stocks),
         friends_overview=_friends_overview(stocks),
         review=summary.get("review") or None,
+        ticker=_build_ticker(news_data),
     )
     return filename, html
 
