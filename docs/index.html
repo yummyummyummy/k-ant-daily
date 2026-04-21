@@ -98,12 +98,54 @@
   section { margin-bottom: 32px; }
   section > h2 { font-size: 18px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
 
+  /* MOOD DASHBOARD — 5-axis grid above top stories */
+  .mood-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 8px; margin: 12px 0 16px;
+  }
+  .mood-cell {
+    padding: 10px 12px; border-radius: 8px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-left: 3px solid var(--muted);
+  }
+  .mood-cell.positive { border-left-color: var(--pos); }
+  .mood-cell.negative { border-left-color: var(--neg); }
+  .mood-cell.neutral  { border-left-color: var(--muted); }
+  .mood-cell .mood-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 6px;
+    font-size: 11px; font-weight: 700;
+  }
+  .mood-cell .mood-axis { color: var(--muted); letter-spacing: 0.02em; }
+  .mood-cell .mood-badge {
+    font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap;
+  }
+  .mood-cell.positive .mood-badge { color: var(--pos); background: var(--pos-bg); }
+  .mood-cell.negative .mood-badge { color: var(--neg); background: var(--neg-bg); }
+  .mood-cell.neutral  .mood-badge { color: var(--muted); background: var(--neu-bg); }
+  .mood-cell .mood-note { font-size: 13px; color: var(--fg); margin-top: 3px; line-height: 1.4; }
+
   /* TOP STORIES */
   .top-stories {
     background: linear-gradient(135deg, var(--card), transparent);
     border: 1px solid var(--border); border-left: 4px solid var(--accent);
     border-radius: 12px; padding: 16px 18px; margin-bottom: 24px;
   }
+  .top-stories .cat-tag {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    background: var(--bg); color: var(--muted);
+    border: 1px solid var(--border); margin-right: 4px;
+    letter-spacing: 0.02em; white-space: nowrap;
+  }
+  .top-stories-more > summary {
+    list-style: none; cursor: pointer; user-select: none; padding: 6px 0;
+    font-size: 13px; font-weight: 600; color: var(--accent);
+    display: inline-flex; align-items: center; gap: 4px; margin-top: 4px;
+  }
+  .top-stories-more > summary::-webkit-details-marker { display: none; }
+  .top-stories-more > summary::after { content: "▾"; font-size: 10px; }
+  .top-stories-more[open] > summary::after { content: "▴"; }
+  .top-stories-more ol { padding-top: 4px; }
 
   /* FOCUS (geopolitics / hot topic) */
   .focus {
@@ -834,11 +876,52 @@
       <span class="macro-mood neutral">
 🟡 중립/혼조      </span>
     </h2>
-<p class="point-detail" style="margin: -4px 0 12px; font-size: 14px;">어제 코스피는 SK하이닉스 실적 기대감에 +0.44% 상승해 6,219로 마감. 그러나 간밤 미국 증시는 유가 급등(WTI +2.8%)과 호르무즈 긴장에 소폭 하락(S&P -0.24%, 나스닥 -0.26%). VIX +8%로 불안심리 확대. 오늘 장은 중동 리스크와 실적 기대감이 상충하며 보합~소폭 약세 출발 예상</p>    <ol>
+<p class="point-detail" style="margin: -4px 0 12px; font-size: 14px;">어제 코스피는 SK하이닉스 실적 기대감에 +0.44% 상승해 6,219로 마감. 그러나 간밤 미국 증시는 유가 급등(WTI +2.8%)과 호르무즈 긴장에 소폭 하락(S&P -0.24%, 나스닥 -0.26%). VIX +8%로 불안심리 확대. 오늘 장은 중동 리스크와 실적 기대감이 상충하며 보합~소폭 약세 출발 예상</p>
+    <div class="mood-grid">
+        <div class="mood-cell neutral">
+          <div class="mood-head">
+            <span class="mood-axis">🏛️ 정책·규제</span>
+            <span class="mood-badge">
+🟡 혼조            </span>
+          </div>
+<div class="mood-note">주요 정책 이슈 부재</div>        </div>
+        <div class="mood-cell negative">
+          <div class="mood-head">
+            <span class="mood-axis">🌏 국제정세</span>
+            <span class="mood-badge">
+🔴 부담
+            </span>
+          </div>
+<div class="mood-note">호르무즈 재봉쇄, 휴전 만료 D-1</div>        </div>
+        <div class="mood-cell positive">
+          <div class="mood-head">
+            <span class="mood-axis">🌙 간밤 해외</span>
+            <span class="mood-badge">
+🟢 우호
+            </span>
+          </div>
+<div class="mood-note">SOX +2.43%, VIX -2.56%, S&P +1.20%</div>        </div>
+        <div class="mood-cell neutral">
+          <div class="mood-head">
+            <span class="mood-axis">🏭 섹터 기류</span>
+            <span class="mood-badge">
+🟡 혼조            </span>
+          </div>
+<div class="mood-note">반도체·바이오 강세 vs 정유·화학 약세</div>        </div>
+        <div class="mood-cell neutral">
+          <div class="mood-head">
+            <span class="mood-axis">💱 환율·원자재</span>
+            <span class="mood-badge">
+🟡 혼조            </span>
+          </div>
+<div class="mood-note">원/달러 1,472 안정, WTI -11.45%</div>        </div>
+    </div>
+
+    <ol>
       <li>
         <details>
           <summary>
-            <span class="title">미-이란 휴전 수요일 만료 예고, 호르무즈 재봉쇄 긴장 고조</span>
+<span class="cat-tag">🏭 섹터</span>            <span class="title">미-이란 휴전 수요일 만료 예고, 호르무즈 재봉쇄 긴장 고조</span>
 <span class="impact negative">악재</span>          </summary>
           <div class="body">
 <div class="why">트럼프 대통령이 수요일 휴전 종료 및 연장 '극히 어렵다'고 밝혀 중동 리스크 재점화. 미 해군이 이란 화물선 투스카호를 나포하며 긴장 극대화. WTI +2.8%, VIX +8%로 위험자산 전반에 부담. 다만 시장은 1차 협상 결렬에도 코스피 6,200을 방어해 '최악 시나리오' 배제 중</div>            <div class="sources">
@@ -849,7 +932,7 @@
       <li>
         <details>
           <summary>
-            <span class="title">SK하이닉스 1Q 영업익 +369% 전망, 골드만 코스피 8000 목표</span>
+<span class="cat-tag">🏭 섹터</span>            <span class="title">SK하이닉스 1Q 영업익 +369% 전망, 골드만 코스피 8000 목표</span>
 <span class="impact positive">호재</span>          </summary>
           <div class="body">
 <div class="why">골드만삭스가 코스피 목표를 8,000으로 상향. SK하이닉스 1분기 영업이익 +369% 컨센서스에 증권가 목표가 상향 릴레이. 어제 장중 신고가 경신 후 +3.37% 마감. 실적 시즌 본격화가 중동 불확실성을 상쇄하는 구도</div>            <div class="sources">
@@ -860,7 +943,7 @@
       <li>
         <details>
           <summary>
-            <span class="title">K바이오 AACR 2026 모멘텀 — 보로노이 VRN11 임상 성과 공개</span>
+<span class="cat-tag">🌏 국제</span>            <span class="title">K바이오 AACR 2026 모멘텀 — 보로노이 VRN11 임상 성과 공개</span>
 <span class="impact positive">호재</span>          </summary>
           <div class="body">
 <div class="why">AACR 2026에서 보로노이 차세대 폐암 표적치료제 VRN11의 유의미한 1상 데이터 공개. EGFR C797S 내성 환자군에서 높은 ORR 달성, 가속승인 기대. 어제 +11.6% 급등. 앱클론도 zCART·AM109 발표 예정으로 바이오 섹터 전반 관심 확대</div>            <div class="sources">

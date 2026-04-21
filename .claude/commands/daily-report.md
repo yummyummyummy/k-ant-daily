@@ -57,8 +57,18 @@ description: Generate and publish today's pre-market stock briefing
   "headline": "한 줄 헤드라인 (30자 이내)",
   "tldr": "카톡 미리보기용 한 줄 요약 (80자 이내, 투자 권유 금지)",
 
+  "mood_dashboard": {
+    "policy":      {"impact": "positive|neutral|negative", "note": "한 줄 근거 (30자 이내)"},
+    "geopolitics": {"impact": "...", "note": "..."},
+    "overnight":   {"impact": "...", "note": "..."},
+    "sectors":     {"impact": "...", "note": "..."},
+    "fx_macro":    {"impact": "...", "note": "..."}
+  },
+
   "top_stories": [
-    {"headline": "...", "why_it_matters": "...", "impact": "positive|neutral|negative",
+    {"category": "policy|geopolitics|macro|sector|market",
+     "headline": "...", "why_it_matters": "...",
+     "impact": "positive|neutral|negative",
      "sources": [{"title": "...", "url": "..."}]}
   ],
 
@@ -175,7 +185,20 @@ description: Generate and publish today's pre-market stock briefing
 - For deep_dive stocks, `deep_dive` 섹션 필수.
 - For no-material-news days, `recommendation: "hold"`, `confidence: "low"`, `rationale: "개별 뉴스 부재"` OK.
 - `news_sentiment`, `priced_in`, `overnight_signal`, `confidence` 는 **모든 종목에 필수**.
-- `top_stories`는 최대 3개. 거시 경제 해석은 `top_stories` 안으로 녹여 넣고, 별도 `macro.key_points`는 쓰지 않는다.
+- `top_stories` 규칙:
+  - **개별 종목 뉴스 금지**. "SK하이닉스 +3.37% 신고가" 같은 건 전체 "반도체 섹터 강세 — 간밤 SOX 상승"으로 흡수.
+  - 정책·규제·국제정세·거시·섹터 전반 동향 중심.
+  - **개수 제한 없음**. 오늘 새롭게 움직인 재료면 다 포함. 다만 "오늘 새 정보"여야 함 (어제 이미 나온 얘기는 생략).
+  - 각 항목에 `category` 필수: `policy` / `geopolitics` / `macro` / `sector` / `market`.
+  - 거시 경제 해석은 `top_stories` 안으로 녹여 넣고, 별도 `macro.key_points`는 쓰지 않는다.
+- `mood_dashboard` 5축 필수 작성:
+  - `policy` — 세제·감독·산업 육성책·밸류업·주주환원
+  - `geopolitics` — 전쟁·외교·무역·제재
+  - `overnight` — 어제 밤 미국·유럽 지수, VIX, SOX, XBI 등
+  - `sectors` — 주요 한국 섹터 (반도체/바이오/금융/에너지 등) 종합 기류
+  - `fx_macro` — 원/달러, WTI, 금, 비트코인, 원자재
+  - 각 축 값: `{"impact": "positive|neutral|negative", "note": "한 줄 근거 30자 이내"}`
+  - `neutral` 은 "혼조" 의미로도 씀 (긍정·부정 신호 섞여 있음).
 - 섹터/종목 `key_points` 각 항목엔 **반드시 `published_at` 을 채운다**. 참조한 뉴스의 발행시각(news.json의 `date` 필드, ISO-8601 또는 Naver식 `YYYY.MM.DD HH:MM` 모두 허용). 여러 소스가 있으면 가장 최신 소스 시각 기준. render가 자동으로 `X시간 전`으로 바꿔 표시하고 published_at 내림차순으로 정렬한다.
 - `impact` 해석:
   - KOSPI +1% → `positive` (상승=호재)

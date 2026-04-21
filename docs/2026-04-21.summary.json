@@ -22,7 +22,9 @@
           "url": "https://n.news.naver.com/mnews/article/119/0003082682"
         }
       ],
-      "impact_label": "악재"
+      "impact_label": "악재",
+      "category": "sector",
+      "category_label": "🏭 섹터"
     },
     {
       "headline": "SK하이닉스 1Q 영업익 +369% 전망, 골드만 코스피 8000 목표",
@@ -42,7 +44,9 @@
           "url": "https://n.news.naver.com/mnews/article/277/0005752210"
         }
       ],
-      "impact_label": "호재"
+      "impact_label": "호재",
+      "category": "sector",
+      "category_label": "🏭 섹터"
     },
     {
       "headline": "K바이오 AACR 2026 모멘텀 — 보로노이 VRN11 임상 성과 공개",
@@ -62,7 +66,9 @@
           "url": "https://n.news.naver.com/mnews/article/008/0005346739"
         }
       ],
-      "impact_label": "호재"
+      "impact_label": "호재",
+      "category": "geopolitics",
+      "category_label": "🌏 국제"
     }
   ],
   "focus": {
@@ -2199,5 +2205,32 @@
         "WMG"
       ]
     }
-  ]
+  ],
+  "mood_dashboard": {
+    "policy": {
+      "impact": "neutral",
+      "note": "주요 정책 이슈 부재",
+      "impact_label": "혼조"
+    },
+    "geopolitics": {
+      "impact": "negative",
+      "note": "호르무즈 재봉쇄, 휴전 만료 D-1",
+      "impact_label": "부담"
+    },
+    "overnight": {
+      "impact": "positive",
+      "note": "SOX +2.43%, VIX -2.56%, S&P +1.20%",
+      "impact_label": "우호"
+    },
+    "sectors": {
+      "impact": "neutral",
+      "note": "반도체·바이오 강세 vs 정유·화학 약세",
+      "impact_label": "혼조"
+    },
+    "fx_macro": {
+      "impact": "neutral",
+      "note": "원/달러 1,472 안정, WTI -11.45%",
+      "impact_label": "혼조"
+    }
+  }
 }

@@ -69,6 +69,21 @@ STATUS_LABEL = {
 SENTIMENT_LABEL = {"positive": "긍정", "neutral": "중립", "negative": "부정"}
 OVERNIGHT_LABEL = {"up": "강세", "neutral": "중립", "down": "약세"}
 CONFIDENCE_LABEL = {"high": "높음", "medium": "중간", "low": "낮음"}
+MOOD_LABEL = {"positive": "우호", "neutral": "혼조", "negative": "부담"}
+CATEGORY_LABEL = {
+    "policy":      "🏛️ 정책",
+    "geopolitics": "🌏 국제",
+    "macro":       "💱 거시",
+    "sector":      "🏭 섹터",
+    "market":      "📊 시장",
+}
+MOOD_AXES = [
+    {"key": "policy",      "emoji": "🏛️", "name": "정책·규제"},
+    {"key": "geopolitics", "emoji": "🌏", "name": "국제정세"},
+    {"key": "overnight",   "emoji": "🌙", "name": "간밤 해외"},
+    {"key": "sectors",     "emoji": "🏭", "name": "섹터 기류"},
+    {"key": "fx_macro",    "emoji": "💱", "name": "환율·원자재"},
+]
 
 
 def _infer_direction(change: str | None) -> str:
@@ -216,6 +231,14 @@ def _normalize(summary: dict) -> dict:
 
     for ts in summary.get("top_stories") or []:
         _annotate_impact(ts)
+        if ts.get("category") and "category_label" not in ts:
+            ts["category_label"] = CATEGORY_LABEL.get(ts["category"], ts["category"])
+
+    dash = summary.get("mood_dashboard")
+    if isinstance(dash, dict):
+        for axis_key, m in dash.items():
+            if isinstance(m, dict) and m.get("impact"):
+                m["impact_label"] = MOOD_LABEL.get(m["impact"], m["impact"])
 
     focus = summary.get("focus")
     if focus:
@@ -457,6 +480,8 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
         friends_overview=_friends_overview(stocks),
         review=summary.get("review") or None,
         ticker=_build_ticker(news_data),
+        mood_dashboard=summary.get("mood_dashboard") or None,
+        mood_axes=MOOD_AXES,
     )
     return filename, html
 

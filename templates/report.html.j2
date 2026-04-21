@@ -98,12 +98,54 @@
   section { margin-bottom: 32px; }
   section > h2 { font-size: 18px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
 
+  /* MOOD DASHBOARD — 5-axis grid above top stories */
+  .mood-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 8px; margin: 12px 0 16px;
+  }
+  .mood-cell {
+    padding: 10px 12px; border-radius: 8px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-left: 3px solid var(--muted);
+  }
+  .mood-cell.positive { border-left-color: var(--pos); }
+  .mood-cell.negative { border-left-color: var(--neg); }
+  .mood-cell.neutral  { border-left-color: var(--muted); }
+  .mood-cell .mood-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 6px;
+    font-size: 11px; font-weight: 700;
+  }
+  .mood-cell .mood-axis { color: var(--muted); letter-spacing: 0.02em; }
+  .mood-cell .mood-badge {
+    font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap;
+  }
+  .mood-cell.positive .mood-badge { color: var(--pos); background: var(--pos-bg); }
+  .mood-cell.negative .mood-badge { color: var(--neg); background: var(--neg-bg); }
+  .mood-cell.neutral  .mood-badge { color: var(--muted); background: var(--neu-bg); }
+  .mood-cell .mood-note { font-size: 13px; color: var(--fg); margin-top: 3px; line-height: 1.4; }
+
   /* TOP STORIES */
   .top-stories {
     background: linear-gradient(135deg, var(--card), transparent);
     border: 1px solid var(--border); border-left: 4px solid var(--accent);
     border-radius: 12px; padding: 16px 18px; margin-bottom: 24px;
   }
+  .top-stories .cat-tag {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    background: var(--bg); color: var(--muted);
+    border: 1px solid var(--border); margin-right: 4px;
+    letter-spacing: 0.02em; white-space: nowrap;
+  }
+  .top-stories-more > summary {
+    list-style: none; cursor: pointer; user-select: none; padding: 6px 0;
+    font-size: 13px; font-weight: 600; color: var(--accent);
+    display: inline-flex; align-items: center; gap: 4px; margin-top: 4px;
+  }
+  .top-stories-more > summary::-webkit-details-marker { display: none; }
+  .top-stories-more > summary::after { content: "▾"; font-size: 10px; }
+  .top-stories-more[open] > summary::after { content: "▴"; }
+  .top-stories-more ol { padding-top: 4px; }
 
   /* FOCUS (geopolitics / hot topic) */
   .focus {
@@ -623,7 +665,7 @@
   </section>
   {% endif %}
 
-  {% if top_stories %}
+  {% if top_stories or mood_dashboard %}
   <section class="top-stories">
     <h2>
       ⭐ 오늘의 핵심
@@ -636,11 +678,37 @@
       {% endif %}
     </h2>
     {% if macro.summary %}<p class="point-detail" style="margin: -4px 0 12px; font-size: 14px;">{{ macro.summary }}</p>{% endif %}
+
+    {% if mood_dashboard %}
+    <div class="mood-grid">
+      {% for axis in mood_axes %}
+        {% set m = mood_dashboard.get(axis.key) %}
+        {% if m %}
+        <div class="mood-cell {{ m.impact or 'neutral' }}">
+          <div class="mood-head">
+            <span class="mood-axis">{{ axis.emoji }} {{ axis.name }}</span>
+            <span class="mood-badge">
+              {% if m.impact == 'positive' %}🟢 우호
+              {% elif m.impact == 'negative' %}🔴 부담
+              {% else %}🟡 혼조{% endif %}
+            </span>
+          </div>
+          {% if m.note %}<div class="mood-note">{{ m.note }}</div>{% endif %}
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if top_stories %}
+    {% set visible = top_stories[:3] %}
+    {% set hidden = top_stories[3:] %}
     <ol>
-      {% for ts in top_stories %}
+      {% for ts in visible %}
       <li>
         <details>
           <summary>
+            {% if ts.category %}<span class="cat-tag">{{ ts.category_label or ts.category }}</span>{% endif %}
             <span class="title">{{ ts.headline }}</span>
             {% if ts.impact %}<span class="impact {{ ts.impact }}">{{ ts.impact_label or ts.impact }}</span>{% endif %}
           </summary>
@@ -656,6 +724,33 @@
       </li>
       {% endfor %}
     </ol>
+    {% if hidden %}
+    <details class="top-stories-more">
+      <summary>더 보기 ({{ hidden|length }}개)</summary>
+      <ol start="4">
+        {% for ts in hidden %}
+        <li>
+          <details>
+            <summary>
+              {% if ts.category %}<span class="cat-tag">{{ ts.category_label or ts.category }}</span>{% endif %}
+              <span class="title">{{ ts.headline }}</span>
+              {% if ts.impact %}<span class="impact {{ ts.impact }}">{{ ts.impact_label or ts.impact }}</span>{% endif %}
+            </summary>
+            <div class="body">
+              {% if ts.why_it_matters %}<div class="why">{{ ts.why_it_matters }}</div>{% endif %}
+              {% if ts.sources %}
+              <div class="sources">
+                {% for src in ts.sources %}<a href="{{ src.url }}" target="_blank" rel="noopener">{{ src.title }}</a>{% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          </details>
+        </li>
+        {% endfor %}
+      </ol>
+    </details>
+    {% endif %}
+    {% endif %}
   </section>
   {% endif %}
 
