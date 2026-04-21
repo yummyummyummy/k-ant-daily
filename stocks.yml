@@ -61,11 +61,6 @@ stocks:
     owners: ["이웅수", "주황선", "장한솔"]
     leader: "이웅수"
     overnight_proxy: ["XBI", "IBB"]
-    deep_dive: true
-    keywords:
-      - "큐리옥스"
-      - "Curiox"
-      - "Laminar Wash"
   - code: "009540"
     name: "HD한국조선해양"
     market: KOSPI
@@ -76,11 +71,6 @@ stocks:
     market: KOSDAQ
     owners: ["오병호"]
     overnight_proxy: ["XBI", "IBB"]
-    deep_dive: true
-    keywords:
-      - "앱클론"
-      - "AbClon"
-      - "CAR-T"
   - code: "298380"
     name: "에이비엘바이오"
     market: KOSDAQ
