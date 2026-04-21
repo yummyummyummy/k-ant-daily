@@ -604,7 +604,7 @@
     </span>
   {%- endif -%}
 {%- endmacro -%}
-<body>
+<body data-date="{{ date }}">
 {% if ticker %}
 <div class="ticker-strip" id="ticker-strip">
   <div class="ticker-track">
@@ -1134,6 +1134,16 @@
     return mins >= MARKET_OPEN_MIN && mins < MARKET_CLOSE_MIN;
   }
 
+  // The page is "live" (should poll for updates) only if its rendered date
+  // matches today's KST date. Archive pages freeze their snapshot.
+  function isLivePage() {
+    const pageDate = document.body.dataset.date;
+    if (!pageDate) return true; // fallback: behave as live if unmarked
+    const k = kstNow();
+    const todayKst = `${k.getFullYear()}-${String(k.getMonth() + 1).padStart(2, "0")}-${String(k.getDate()).padStart(2, "0")}`;
+    return pageDate === todayKst;
+  }
+
   function fmtKstTime(d) {
     const hh = String(d.getHours()).padStart(2, "0");
     const mm = String(d.getMinutes()).padStart(2, "0");
@@ -1379,8 +1389,17 @@
   });
 
   function init() {
-    // Ticker (indices + FX + crypto) polls 24/7 — crypto trades on weekends,
-    // and FX/indices just stop updating cleanly outside market hours.
+    // Archive pages (rendered date ≠ today) freeze — no polling, no ticker
+    // refresh. The snapshot baked into the HTML is the historical truth for
+    // that day and mustn't be overwritten by today's live prices.
+    if (!isLivePage()) {
+      setIndicator("closed", "📁 아카이브 — " + (document.body.dataset.date || "") + " 스냅샷");
+      return;
+    }
+
+    // Ticker (indices + FX + crypto) polls 24/7 on the live page — crypto
+    // trades on weekends, and FX/indices just stop updating cleanly outside
+    // market hours.
     if (TICKER_API) {
       refreshTicker();
       setInterval(refreshTicker, POLL_MS);
