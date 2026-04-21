@@ -101,3 +101,18 @@ stocks:
     market: KOSPI
     owners: ["장한솔"]
     overnight_proxy: ["SPOT", "WMG"]
+  - code: "329180"
+    name: "HD현대중공업"
+    market: KOSPI
+    owners: ["한윤근"]
+    overnight_proxy: ["XLI", "DAC"]
+  - code: "083450"
+    name: "GST"
+    market: KOSDAQ
+    owners: ["한윤근"]
+    overnight_proxy: ["^SOX", "AMAT"]
+  - code: "079550"
+    name: "LIG디펜스앤에어로스페이스"
+    market: KOSPI
+    owners: ["한윤근"]
+    overnight_proxy: ["ITA", "LMT", "RTX"]
