@@ -490,6 +490,25 @@
     display: flex; gap: 6px; flex-wrap: wrap;
   }
   .stock-news-block .news-meta .time-ago { color: var(--accent); font-weight: 600; }
+  /* Per-news feedback buttons */
+  .feedback-group {
+    display: inline-flex; gap: 2px; margin-left: 4px;
+  }
+  .feedback-btn {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 4px; cursor: pointer; padding: 0 5px;
+    font-size: 10px; line-height: 1.5; user-select: none;
+    opacity: 0.45; transition: opacity 0.15s, background 0.15s;
+  }
+  .feedback-btn:hover { opacity: 0.9; }
+  .feedback-btn.active { opacity: 1; font-weight: 700; }
+  .feedback-btn.up.active {
+    background: var(--pos-bg); color: var(--pos); border-color: var(--pos);
+  }
+  .feedback-btn.down.active {
+    background: var(--neg-bg); color: var(--neg); border-color: var(--neg);
+  }
+
   .stock-news-block .why-material,
   .sector-card .why-material {
     font-size: 12px; color: var(--accent); margin-top: 3px; line-height: 1.4;
@@ -754,6 +773,17 @@
       <span class="owner-popover">
         {%- for o in owners -%}<span class="owner-chip">👤 {{ o }}</span>{%- endfor -%}
       </span>
+    </span>
+  {%- endif -%}
+{%- endmacro -%}
+
+{#- Per-news feedback buttons (👍 useful / 👎 noise). State saved in
+    localStorage, keyed on news URL. Future iteration may sync to Worker. -#}
+{% macro feedback_buttons(url, stock_code='') -%}
+  {%- if url -%}
+    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="{{ url }}" data-rating="up" {% if stock_code %}data-stock="{{ stock_code }}"{% endif %} title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="{{ url }}" data-rating="down" {% if stock_code %}data-stock="{{ stock_code }}"{% endif %} title="노이즈였음">👎</button>
     </span>
   {%- endif -%}
 {%- endmacro -%}
@@ -1066,6 +1096,8 @@
           {% if n.source and n.source.title %}<span>· {{ n.source.title }}</span>
           {% elif n.sources %}{% for s in n.sources %}<span>· {{ s.title }}</span>{% endfor %}{% endif %}
           {% if n.impact %}<span class="impact {{ n.impact }}">{{ n.impact_label or n.impact }}</span>{% endif %}
+          {% set fb_url = (n.source.url if n.source and n.source.url) or (n.sources[0].url if n.sources and n.sources[0].url) or n.url %}
+          {{ feedback_buttons(fb_url) }}
         </div>
         {% if n.why_material %}<div class="why-material">📈 {{ n.why_material }}</div>{% endif %}
         {% if n.note %}<div class="news-note">{{ n.note }}</div>{% endif %}
@@ -1197,6 +1229,7 @@
                     {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
                     {% if n.source %}<span>· {% if n.source is mapping %}{{ n.source.title }}{% else %}{{ n.source }}{% endif %}</span>{% endif %}
                     {% if n.impact %}<span class="impact {{ n.impact }}">{{ n.impact_label or n.impact }}</span>{% endif %}
+                    {{ feedback_buttons(n.url or n.link, stock.code) }}
                   </div>
                   {% if n.why_material %}<div class="why-material">📈 {{ n.why_material }}</div>{% endif %}
                 </div>
@@ -1220,6 +1253,7 @@
                       {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
                       {% if n.source %}<span>· {% if n.source is mapping %}{{ n.source.title }}{% else %}{{ n.source }}{% endif %}</span>{% endif %}
                       {% if n.impact %}<span class="impact {{ n.impact }}">{{ n.impact_label or n.impact }}</span>{% endif %}
+                      {{ feedback_buttons(n.url or n.link, stock.code) }}
                     </div>
                     {% if n.why_material %}<div class="why-material">📈 {{ n.why_material }}</div>{% endif %}
                   </div>
@@ -1634,6 +1668,50 @@
       setIndicator("error", "⚠️ 실시간 업데이트 실패 (스냅샷 표시) · " + fmtKstTime(kstNow()));
     }
   }
+
+  // ── News feedback (👍 / 👎) — localStorage only for now ───────────────
+  // Stored as { [news_url]: { rating: "up"|"down", ts: unix_ms, stock?: code } }
+  // Iteration 2 will sync to a Worker endpoint for agent-side tuning.
+  const FB_KEY = "k-ant-daily:feedback";
+  function loadFeedback() {
+    try { return JSON.parse(localStorage.getItem(FB_KEY) || "{}"); }
+    catch { return {}; }
+  }
+  function saveFeedback(data) {
+    try { localStorage.setItem(FB_KEY, JSON.stringify(data)); } catch { /* storage full / disabled */ }
+  }
+  function renderFeedbackState() {
+    const fb = loadFeedback();
+    document.querySelectorAll(".feedback-btn[data-url]").forEach((btn) => {
+      const url = btn.dataset.url;
+      const rating = btn.dataset.rating;
+      const entry = fb[url];
+      btn.classList.toggle("active", entry && entry.rating === rating);
+    });
+  }
+  // Delegated click handler — stopPropagation keeps it from triggering
+  // parent click listeners (owner popover toggler, etc).
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".feedback-btn");
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const url = btn.dataset.url;
+    const rating = btn.dataset.rating;
+    if (!url || !rating) return;
+    const fb = loadFeedback();
+    const prev = fb[url] && fb[url].rating;
+    if (prev === rating) {
+      // Toggling off — clear
+      delete fb[url];
+    } else {
+      fb[url] = { rating, ts: Date.now(), stock: btn.dataset.stock || null };
+    }
+    saveFeedback(fb);
+    renderFeedbackState();
+  });
+  if (document.readyState !== "loading") renderFeedbackState();
+  else document.addEventListener("DOMContentLoaded", renderFeedbackState);
 
   // Owner popover tap toggle — needed on touch devices where :hover isn't reliable.
   // Also closes any other open popover when one is opened.

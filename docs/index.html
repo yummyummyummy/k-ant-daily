@@ -490,6 +490,25 @@
     display: flex; gap: 6px; flex-wrap: wrap;
   }
   .stock-news-block .news-meta .time-ago { color: var(--accent); font-weight: 600; }
+  /* Per-news feedback buttons */
+  .feedback-group {
+    display: inline-flex; gap: 2px; margin-left: 4px;
+  }
+  .feedback-btn {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 4px; cursor: pointer; padding: 0 5px;
+    font-size: 10px; line-height: 1.5; user-select: none;
+    opacity: 0.45; transition: opacity 0.15s, background 0.15s;
+  }
+  .feedback-btn:hover { opacity: 0.9; }
+  .feedback-btn.active { opacity: 1; font-weight: 700; }
+  .feedback-btn.up.active {
+    background: var(--pos-bg); color: var(--pos); border-color: var(--pos);
+  }
+  .feedback-btn.down.active {
+    background: var(--neg-bg); color: var(--neg); border-color: var(--neg);
+  }
+
   .stock-news-block .why-material,
   .sector-card .why-material {
     font-size: 12px; color: var(--accent); margin-top: 3px; line-height: 1.4;
@@ -1290,7 +1309,11 @@
         </div>
         <div class="news-meta">
 <span class="time-ago">10분 전</span><span>· 코스피 8000 간다…골드만삭스 목표 상향</span>
-<span class="impact positive">호재</span>        </div>
+<span class="impact positive">호재</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/011/0004612812" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/011/0004612812" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">골드만삭스가 한국 증시 목표를 8,000으로 올리며 반도체 실적 시즌 기대감 반영</div>      </div>
     </li>
     <li>
@@ -1301,7 +1324,11 @@
         </div>
         <div class="news-meta">
 <span class="time-ago">29분 전</span><span>· HBM 잔치 끝나면…IMF 경고가 던진 한국 반도체 민낯</span>
-<span class="impact negative">악재</span>        </div>
+<span class="impact negative">악재</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/119/0003082675" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/119/0003082675" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">IMF가 한국 반도체 쏠림 리스크를 경고. HBM 수퍼사이클 이후 다변화 필요성 제기</div>      </div>
     </li>
       </ul>
@@ -1315,7 +1342,11 @@
             <a href="https://n.news.naver.com/mnews/article/277/0005752210" target="_blank" rel="noopener">SK하이닉스 1Q 영업익 +369% 컨센서스, 목표가 200만원 논의</a>
         </div>
         <div class="news-meta">
-<span class="time-ago">1시간 전</span><span>· "진짜 200만닉스 가나" SK하이닉스 목표가 높이는 증권가</span><span>· 이란 변수에도 '굳건'…SK하닉, '수퍼사이클' 기대감에 신고가 랠리</span><span class="impact positive">호재</span>        </div>
+<span class="time-ago">1시간 전</span><span>· "진짜 200만닉스 가나" SK하이닉스 목표가 높이는 증권가</span><span>· 이란 변수에도 '굳건'…SK하닉, '수퍼사이클' 기대감에 신고가 랠리</span><span class="impact positive">호재</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/277/0005752210" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/277/0005752210" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">HBM 수퍼사이클 기대에 증권가 목표가 상향 행진. 어제 장중 신고가 경신</div>      </div>
     </li>
         </ul>
@@ -1341,7 +1372,11 @@
         </div>
         <div class="news-meta">
 <span class="time-ago">13시간 전</span><span>· '코스피 이전' 알테오젠, ETF 매수세 줄어드나</span>
-<span class="impact neutral">중립</span>        </div>
+<span class="impact neutral">중립</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/009/0005668723" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/009/0005668723" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">알테오젠의 코스피 이전 후 코스닥150 편출에 따른 ETF 패시브 자금 변동 가능성</div>      </div>
     </li>
     <li>
@@ -1352,7 +1387,11 @@
         </div>
         <div class="news-meta">
 <span class="time-ago">14시간 전</span><span>· 보로노이, 높아진 'VRN11' C797S 환자군 ORR…가속승인 기대</span>
-<span class="impact positive">호재</span>        </div>
+<span class="impact positive">호재</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/008/0005346739" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/008/0005346739" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">AACR 2026서 차세대 폐암 표적치료제 VRN11의 유의미한 임상1상 결과 공개. 가속승인 기대감 확대</div>      </div>
     </li>
       </ul>
@@ -1367,7 +1406,11 @@
         </div>
         <div class="news-meta">
 <span class="time-ago">15시간 전</span><span>· 빵 굽는 바이오·20년 적자 기업도 상한가… 코로나 변이 확산에 개미…</span>
-<span class="impact positive">호재</span>        </div>
+<span class="impact positive">호재</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/366/0001158288" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/366/0001158288" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">코로나 시카다 변이 국내 점유율 급증 소식에 셀리드 등 관련주 무더기 상승. 투자경고종목 지정 예고도 동반</div>      </div>
     </li>
         </ul>
@@ -1392,7 +1435,11 @@
         </div>
         <div class="news-meta">
 <span class="time-ago">6시간 전</span><span>· 몸집 키운 한화에 맞서… 경쟁사들 공동전선 구축</span>
-<span class="impact neutral">중립</span>        </div>
+<span class="impact neutral">중립</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/023/0003971993" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/023/0003971993" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">한화의 몸집 확대에 경쟁사들이 공동전선을 구축하고 있다는 보도. 인도 K9 자주포 현지 제조 60% 이전 논의 중</div>      </div>
     </li>
     <li>
@@ -1402,7 +1449,11 @@
             <a href="https://n.news.naver.com/mnews/article/123/0002381668" target="_blank" rel="noopener">HD한국조선해양 1Q 수주 전년비 50% 급증, 잠정실적 공시</a>
         </div>
         <div class="news-meta">
-<span class="time-ago">13시간 전</span><span>· HD한국조선해양, 1분기 수주 '순항'…전년 대비 50% 급증</span><span>· 'K조선 빅3' 1분기 합산 영업익 2조 육박</span><span class="impact positive">호재</span>        </div>
+<span class="time-ago">13시간 전</span><span>· HD한국조선해양, 1분기 수주 '순항'…전년 대비 50% 급증</span><span>· 'K조선 빅3' 1분기 합산 영업익 2조 육박</span><span class="impact positive">호재</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/123/0002381668" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/123/0002381668" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">K조선 빅3 합산 영업익 2조 육박 전망. 태국 호위함 8000억 수주전도 주목</div>      </div>
     </li>
       </ul>
@@ -1426,7 +1477,11 @@
         </div>
         <div class="news-meta">
 <span class="time-ago">40분 전</span><span>· 정유업계, 1Q 영업익 '4조 잭팟'?…'재고이익 착시' 우려</span>
-<span class="impact neutral">중립</span>        </div>
+<span class="impact neutral">중립</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/421/0008901449" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/421/0008901449" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">유가 급등에 정유사 1분기 실적 호조 예상되나 재고평가이익에 따른 착시 가능성 제기</div>      </div>
     </li>
     <li>
@@ -1437,7 +1492,11 @@
         </div>
         <div class="news-meta">
 <span class="time-ago">1일 전</span><span>· ETF 수익률 최고는 반도체가 아니었다…올 들어 두 배 오른 '건설'</span>
-<span class="impact positive">호재</span>        </div>
+<span class="impact positive">호재</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/011/0004612340" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/011/0004612340" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">삼성E&A 포함 건설 섹터 ETF가 올해 최고 수익률 기록. 중동 재건 기대감 반영</div>      </div>
     </li>
       </ul>
@@ -1462,7 +1521,11 @@
         </div>
         <div class="news-meta">
 <span class="time-ago">17시간 전</span><span>· 美대사관, '방시혁 출국금지 해제' 요청…서울경찰청 "아직 요청 받…"</span>
-<span class="impact positive">호재</span>        </div>
+<span class="impact positive">호재</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/138/0002225120" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/138/0002225120" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">BTS 월드투어 지원 명목으로 미 대사관이 출국금지 해제를 요청. 경찰청은 아직 요청 미수령 입장</div>      </div>
     </li>
     <li>
@@ -1473,7 +1536,11 @@
         </div>
         <div class="news-meta">
 <span class="time-ago">3일 전</span><span>· "하이브, 올 1분기 실적 예상치 밑돌 전망…목표가↓"-메리츠</span>
-<span class="impact negative">악재</span>        </div>
+<span class="impact negative">악재</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/015/0005276138" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/015/0005276138" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">메리츠증권이 하이브 1분기 실적이 예상치를 밑돌 것으로 전망하며 목표가를 하향 조정</div>      </div>
     </li>
       </ul>
@@ -1497,7 +1564,11 @@
         </div>
         <div class="news-meta">
 <span class="time-ago">29분 전</span><span>· [투자노트] 세계 '원전 르네상스'… '짓는 기업'에 돈 몰린다</span>
-<span class="impact positive">호재</span>        </div>
+<span class="impact positive">호재</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/366/0001158362" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/366/0001158362" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">글로벌 원전 건설 투자 확대 흐름에서 HD현대일렉트릭 등 전력기기 기업 수혜 전망</div>      </div>
     </li>
     <li>
@@ -1508,7 +1579,11 @@
         </div>
         <div class="news-meta">
 <span class="time-ago">15시간 전</span><span>· HD현대일렉·LS일렉·대한전선, 韓 전력3사 북미 대격돌</span>
-<span class="impact neutral">중립</span>        </div>
+<span class="impact neutral">중립</span>          <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/029/0003022682" data-rating="up"  title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/029/0003022682" data-rating="down"  title="노이즈였음">👎</button>
+    </span>
+        </div>
 <div class="news-note">한국 전력3사가 북미 시장에서 본격 경쟁. AI 데이터센터 전력 수요 확대가 배경</div>      </div>
     </li>
       </ul>
@@ -1562,7 +1637,11 @@
                     <a href="https://n.news.naver.com/mnews/article/001/0016032803" target="_blank" rel="noopener">스마트폰처럼 선박도 업데이트…울산시, AI특화 기반 개발·실증</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/001/0016032803" data-rating="up" data-stock="009540" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/001/0016032803" data-rating="down" data-stock="009540" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -1572,7 +1651,11 @@
                     <a href="https://n.news.naver.com/mnews/article/016/0002632746" target="_blank" rel="noopener">HD현대, 印 정부와 손잡고 현지 합작조선소 짓는다</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 헤럴드경제</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 헤럴드경제</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/016/0002632746" data-rating="up" data-stock="009540" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/016/0002632746" data-rating="down" data-stock="009540" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -1582,7 +1665,11 @@
                     <a href="https://n.news.naver.com/mnews/article/018/0006262262" target="_blank" rel="noopener">HD현대, 인도 합작조선소 설립 협력 확대</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/018/0006262262" data-rating="up" data-stock="009540" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/018/0006262262" data-rating="down" data-stock="009540" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -1592,7 +1679,11 @@
                     <a href="https://n.news.naver.com/mnews/article/018/0006262287" target="_blank" rel="noopener">포스코 ‘10조 인도 투자’ 신호탄…조선·車·에너지도 협력 확대</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/018/0006262287" data-rating="up" data-stock="009540" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/018/0006262287" data-rating="down" data-stock="009540" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -1602,7 +1693,11 @@
                     <a href="https://n.news.naver.com/mnews/article/050/0000105150" target="_blank" rel="noopener">인도 상륙한 K조선·배터리…"단순 수출 넘어 생산 거점으로"</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">9시간 전</span><span>· 한경비즈니스</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">9시간 전</span><span>· 한경비즈니스</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/050/0000105150" data-rating="up" data-stock="009540" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/050/0000105150" data-rating="down" data-stock="009540" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -1616,7 +1711,11 @@
                       <a href="https://n.news.naver.com/mnews/article/011/0004612727" target="_blank" rel="noopener">HD현대 조선소, 현대차는 3륜 EV 개발…李 “최적의 협력 파트너”</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">11시간 전</span><span>· 서울경제</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">11시간 전</span><span>· 서울경제</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/011/0004612727" data-rating="up" data-stock="009540" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/011/0004612727" data-rating="down" data-stock="009540" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -1626,7 +1725,11 @@
                       <a href="https://n.news.naver.com/mnews/article/011/0004612533" target="_blank" rel="noopener">포스코 10조 들여 인도에 제철소 설립....메가딜 성사</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">17시간 전</span><span>· 서울경제</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">17시간 전</span><span>· 서울경제</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/011/0004612533" data-rating="up" data-stock="009540" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/011/0004612533" data-rating="down" data-stock="009540" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -1718,7 +1821,11 @@
                     <a href="https://n.news.naver.com/mnews/article/030/0003419824" target="_blank" rel="noopener">KOIIA, 독일 하노버 산업박람회서 'AI in Manufacturi...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 전자신문</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 전자신문</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/030/0003419824" data-rating="up" data-stock="267260" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/030/0003419824" data-rating="down" data-stock="267260" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -1728,7 +1835,11 @@
                     <a href="https://n.news.naver.com/mnews/article/018/0006262354" target="_blank" rel="noopener">KOIIA, 하노버 산업박람회 한국관 운영</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/018/0006262354" data-rating="up" data-stock="267260" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/018/0006262354" data-rating="down" data-stock="267260" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -1738,7 +1849,11 @@
                     <a href="https://n.news.naver.com/mnews/article/366/0001158362" target="_blank" rel="noopener">[투자노트] 세계 ‘원전 르네상스’… ‘짓는 기업’에 돈 몰린다</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">29분 전</span><span>· 조선비즈</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">29분 전</span><span>· 조선비즈</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/366/0001158362" data-rating="up" data-stock="267260" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/366/0001158362" data-rating="down" data-stock="267260" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -1748,7 +1863,11 @@
                     <a href="https://n.news.naver.com/mnews/article/092/0002419396" target="_blank" rel="noopener">녹색산업 해외진출, ‘민관 한뜻’으로 지평 넓힌다</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">13시간 전</span><span>· 지디넷코리아</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">13시간 전</span><span>· 지디넷코리아</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/092/0002419396" data-rating="up" data-stock="267260" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/092/0002419396" data-rating="down" data-stock="267260" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -1758,7 +1877,11 @@
                     <a href="https://n.news.naver.com/mnews/article/629/0000492927" target="_blank" rel="noopener">녹색산업 민관 ‘국가대표팀’…패키지 수주로 해외시장 공략</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">17시간 전</span><span>· 더팩트</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">17시간 전</span><span>· 더팩트</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/629/0000492927" data-rating="up" data-stock="267260" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/629/0000492927" data-rating="down" data-stock="267260" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -1772,7 +1895,11 @@
                       <a href="https://n.news.naver.com/mnews/article/277/0005751930" target="_blank" rel="noopener">녹색산업 해외진출 '민관 원팀' 구축…에너지·플랜트까지 협의체 확.....</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">18시간 전</span><span>· 아시아경제</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">18시간 전</span><span>· 아시아경제</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/277/0005751930" data-rating="up" data-stock="267260" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/277/0005751930" data-rating="down" data-stock="267260" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -1782,7 +1909,11 @@
                       <a href="https://n.news.naver.com/mnews/article/374/0000505445" target="_blank" rel="noopener">기후부, '녹색산업 협의체'에 에너지·플랜트 추가</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">19시간 전</span><span>· SBS Biz</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">19시간 전</span><span>· SBS Biz</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/374/0000505445" data-rating="up" data-stock="267260" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/374/0000505445" data-rating="down" data-stock="267260" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -1866,7 +1997,11 @@
                     <a href="https://n.news.naver.com/mnews/article/119/0003082813" target="_blank" rel="noopener">벤츠 "한국 기업과 파트너십 확대"…2차전지주 급등세 [특징주]</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/119/0003082813" data-rating="up" data-stock="096770" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/119/0003082813" data-rating="down" data-stock="096770" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -1876,7 +2011,11 @@
                     <a href="https://n.news.naver.com/mnews/article/092/0002419447" target="_blank" rel="noopener">SDT, IPO 준비+역량강화 위해 SK 재무통 영입</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 지디넷코리아</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 지디넷코리아</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/092/0002419447" data-rating="up" data-stock="096770" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/092/0002419447" data-rating="down" data-stock="096770" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -1886,7 +2025,11 @@
                     <a href="https://n.news.naver.com/mnews/article/277/0005752432" target="_blank" rel="noopener">SDT, 최준희 스탠퍼드대 교수·강해웅 전 SK 재무실장 사외이사 영...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 아시아경제</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 아시아경제</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/277/0005752432" data-rating="up" data-stock="096770" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/277/0005752432" data-rating="down" data-stock="096770" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -1896,7 +2039,11 @@
                     <a href="https://n.news.naver.com/mnews/article/008/0005346961" target="_blank" rel="noopener">2차전지 반등 사이클 돌아오나…LG엔솔·삼성SDI 8%대 강세</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 머니투데이</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 머니투데이</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/008/0005346961" data-rating="up" data-stock="096770" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/008/0005346961" data-rating="down" data-stock="096770" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -1906,7 +2053,11 @@
                     <a href="https://n.news.naver.com/mnews/article/421/0008901449" target="_blank" rel="noopener">정유업계, 1Q 영업익 ‘4조 잭팟’?…'재고이익 착시' 우려</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">40분 전</span><span>· 뉴스1</span><span class="impact negative">악재</span>                  </div>
+<span class="time-ago">40분 전</span><span>· 뉴스1</span><span class="impact negative">악재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/421/0008901449" data-rating="up" data-stock="096770" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/421/0008901449" data-rating="down" data-stock="096770" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -1920,7 +2071,11 @@
                       <a href="https://n.news.naver.com/mnews/article/015/0005277414" target="_blank" rel="noopener">"전쟁 끝나면 주가 뛴다"…반토막 난 주식 '반전 전망' [종목+]</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">59분 전</span><span>· 한국경제</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">59분 전</span><span>· 한국경제</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/015/0005277414" data-rating="up" data-stock="096770" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/015/0005277414" data-rating="down" data-stock="096770" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -1930,7 +2085,11 @@
                       <a href="https://n.news.naver.com/mnews/article/003/0013899230" target="_blank" rel="noopener">中에 안방 위협받는 獨 완성차…K배터리와 '밀착 동맹'으로 반격</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">1시간 전</span><span>· 뉴시스</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">1시간 전</span><span>· 뉴시스</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/003/0013899230" data-rating="up" data-stock="096770" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/003/0013899230" data-rating="down" data-stock="096770" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -2018,7 +2177,11 @@
                     <a href="https://n.news.naver.com/mnews/article/092/0002419476" target="_blank" rel="noopener">中 D램 업체, HBM3 개발 지연…韓 추격 '난항'</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 지디넷코리아</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 지디넷코리아</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/092/0002419476" data-rating="up" data-stock="000660" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/092/0002419476" data-rating="down" data-stock="000660" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2028,7 +2191,11 @@
                     <a href="https://n.news.naver.com/mnews/article/055/0001350156" target="_blank" rel="noopener">[자막뉴스] "경쟁사들에 기회주는 '최악의 자책골'?" 외신들도 경고한...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· SBS</span><span class="impact negative">악재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· SBS</span><span class="impact negative">악재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/055/0001350156" data-rating="up" data-stock="000660" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/055/0001350156" data-rating="down" data-stock="000660" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2038,7 +2205,11 @@
                     <a href="https://n.news.naver.com/mnews/article/422/0000857203" target="_blank" rel="noopener">코스피, 사상 최고치 경신…장중 6,350선 돌파</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 연합뉴스TV</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 연합뉴스TV</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/422/0000857203" data-rating="up" data-stock="000660" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/422/0000857203" data-rating="down" data-stock="000660" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2048,7 +2219,11 @@
                     <a href="https://n.news.naver.com/mnews/article/001/0016033151" target="_blank" rel="noopener">한화운용 "글로벌HBM반도체 ETF 1년 수익률 375%…전체 1위"</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/001/0016033151" data-rating="up" data-stock="000660" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/001/0016033151" data-rating="down" data-stock="000660" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2058,7 +2233,11 @@
                     <a href="https://n.news.naver.com/mnews/article/011/0004612925" target="_blank" rel="noopener">‘RISE 삼전닉스채권혼합’, 채권혼합형 ETF 최단 기간 순자산 1조...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 서울경제</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 서울경제</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/011/0004612925" data-rating="up" data-stock="000660" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/011/0004612925" data-rating="down" data-stock="000660" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -2072,7 +2251,11 @@
                       <a href="https://n.news.naver.com/mnews/article/018/0006262478" target="_blank" rel="noopener">키움운용, 삼전닉스 채권혼합 ETF 상장…월분배에 특별분배까지</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/018/0006262478" data-rating="up" data-stock="000660" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/018/0006262478" data-rating="down" data-stock="000660" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -2082,7 +2265,11 @@
                       <a href="https://n.news.naver.com/mnews/article/119/0003082777" target="_blank" rel="noopener">KB운용 ‘RISE 삼성전자SK하이닉스채권혼합50’ 1조 클럽 입성</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/119/0003082777" data-rating="up" data-stock="000660" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/119/0003082777" data-rating="down" data-stock="000660" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -2174,7 +2361,11 @@
                     <a href="https://n.news.naver.com/mnews/article/008/0005346954" target="_blank" rel="noopener">전쟁해도 '그러려니'…외인 "사자"에 6350 사상 최고치 뚫은 코스피</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 머니투데이</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 머니투데이</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/008/0005346954" data-rating="up" data-stock="310210" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/008/0005346954" data-rating="down" data-stock="310210" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2184,7 +2375,11 @@
                     <a href="https://n.news.naver.com/mnews/article/011/0004612804" target="_blank" rel="noopener">차세대 항암 기술도 공개…글로벌 시장 파고드는 K바이오</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">29분 전</span><span>· 서울경제</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">29분 전</span><span>· 서울경제</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/011/0004612804" data-rating="up" data-stock="310210" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/011/0004612804" data-rating="down" data-stock="310210" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2194,7 +2389,11 @@
                     <a href="https://n.news.naver.com/mnews/article/018/0006262114" target="_blank" rel="noopener">보로노이, AACR2026서 ‘VRN10’ 데이터 공개…HER2 치료 ...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">12시간 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">12시간 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/018/0006262114" data-rating="up" data-stock="310210" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/018/0006262114" data-rating="down" data-stock="310210" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2204,7 +2403,11 @@
                     <a href="https://n.news.naver.com/mnews/article/018/0006261874" target="_blank" rel="noopener">보로노이, AACR2026서 ‘VRN10’ 데이터 공개…HER2 치료...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">17시간 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">17시간 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/018/0006261874" data-rating="up" data-stock="310210" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/018/0006261874" data-rating="down" data-stock="310210" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2214,7 +2417,11 @@
                     <a href="https://n.news.naver.com/mnews/article/008/0005346739" target="_blank" rel="noopener">보로노이, 높아진 'VRN11' C797S 환자군 ORR…가속승인 기대...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">14시간 전</span><span>· 머니투데이</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">14시간 전</span><span>· 머니투데이</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/008/0005346739" data-rating="up" data-stock="310210" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/008/0005346739" data-rating="down" data-stock="310210" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -2228,7 +2435,11 @@
                       <a href="https://n.news.naver.com/mnews/article/015/0005277201" target="_blank" rel="noopener">차세대 폐암치료제 보로노이, 1상 공개</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">14시간 전</span><span>· 한국경제</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">14시간 전</span><span>· 한국경제</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/015/0005277201" data-rating="up" data-stock="310210" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/015/0005277201" data-rating="down" data-stock="310210" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -2238,7 +2449,11 @@
                       <a href="https://n.news.naver.com/mnews/article/015/0005276914" target="_blank" rel="noopener">보로노이, 폐암 표적치료제 'VRN11' 임상 성과 소식에 강세</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">22시간 전</span><span>· 한국경제</span><span class="impact positive">호재</span>                    </div>
+<span class="time-ago">22시간 전</span><span>· 한국경제</span><span class="impact positive">호재</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/015/0005276914" data-rating="up" data-stock="310210" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/015/0005276914" data-rating="down" data-stock="310210" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -2329,7 +2544,11 @@
                     <a href="https://n.news.naver.com/mnews/article/011/0004612885" target="_blank" rel="noopener">‘중동 붐 재현’ 기대감…대우건설 15%대 급등 [이런국장 저런주식]</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 서울경제</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 서울경제</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/011/0004612885" data-rating="up" data-stock="028050" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/011/0004612885" data-rating="down" data-stock="028050" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2339,7 +2558,11 @@
                     <a href="https://n.news.naver.com/mnews/article/018/0006262370" target="_blank" rel="noopener">건설주, 중동 재건 수혜 기대에 일제히 강세…대우건설, 16%↑[특징주...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/018/0006262370" data-rating="up" data-stock="028050" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/018/0006262370" data-rating="down" data-stock="028050" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2349,7 +2572,11 @@
                     <a href="https://n.news.naver.com/mnews/article/018/0006262236" target="_blank" rel="noopener">중동 재건 수혜 기대 커진 건설주…“3년간 1400억달러 수주 가능”</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/018/0006262236" data-rating="up" data-stock="028050" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/018/0006262236" data-rating="down" data-stock="028050" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2359,7 +2586,11 @@
                     <a href="https://n.news.naver.com/mnews/article/366/0001158396" target="_blank" rel="noopener">NH證 “삼성E&A, 중동 재건 최대 수혜주…목표가 71%↑”</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 조선비즈</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 조선비즈</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/366/0001158396" data-rating="up" data-stock="028050" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/366/0001158396" data-rating="down" data-stock="028050" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2369,7 +2600,11 @@
                     <a href="https://n.news.naver.com/mnews/article/009/0005668884" target="_blank" rel="noopener">롤러코스터 탄 건설주, 美·이란 협상에 쏠린 눈…‘재건’ 수혜주는...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 매일경제</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 매일경제</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/009/0005668884" data-rating="up" data-stock="028050" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/009/0005668884" data-rating="down" data-stock="028050" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -2383,7 +2618,11 @@
                       <a href="https://n.news.naver.com/mnews/article/001/0016030430" target="_blank" rel="noopener">[특징주] 미-이란 2차 협상 불확실성에 건설주 장초반 약세</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">21시간 전</span><span>· 연합뉴스</span><span class="impact negative">악재</span>                    </div>
+<span class="time-ago">21시간 전</span><span>· 연합뉴스</span><span class="impact negative">악재</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/001/0016030430" data-rating="up" data-stock="028050" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/001/0016030430" data-rating="down" data-stock="028050" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -2393,7 +2632,11 @@
                       <a href="https://n.news.naver.com/mnews/article/055/0001349828" target="_blank" rel="noopener">[친절한 경제] 성과급만 7억?…경쟁 치열한 '닉스 고시'</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">22시간 전</span><span>· SBS</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">22시간 전</span><span>· SBS</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/055/0001349828" data-rating="up" data-stock="028050" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/055/0001349828" data-rating="down" data-stock="028050" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -2482,7 +2725,11 @@
                     <a href="https://n.news.naver.com/mnews/article/629/0000493214" target="_blank" rel="noopener">삼성·LG전자, '밀라노 디자인위크' 동시 출격…유럽 시장 정조준</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 더팩트</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 더팩트</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/629/0000493214" data-rating="up" data-stock="005930" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/629/0000493214" data-rating="down" data-stock="005930" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2492,7 +2739,11 @@
                     <a href="https://n.news.naver.com/mnews/article/092/0002419476" target="_blank" rel="noopener">中 D램 업체, HBM3 개발 지연…韓 추격 '난항'</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 지디넷코리아</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 지디넷코리아</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/092/0002419476" data-rating="up" data-stock="005930" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/092/0002419476" data-rating="down" data-stock="005930" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2502,7 +2753,11 @@
                     <a href="https://n.news.naver.com/mnews/article/055/0001350156" target="_blank" rel="noopener">[자막뉴스] "경쟁사들에 기회주는 '최악의 자책골'?" 외신들도 경고한...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· SBS</span><span class="impact negative">악재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· SBS</span><span class="impact negative">악재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/055/0001350156" data-rating="up" data-stock="005930" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/055/0001350156" data-rating="down" data-stock="005930" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2512,7 +2767,11 @@
                     <a href="https://n.news.naver.com/mnews/article/030/0003419901" target="_blank" rel="noopener">외신, 삼성전자 OLED TV 기술 호평</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 전자신문</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 전자신문</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/030/0003419901" data-rating="up" data-stock="005930" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/030/0003419901" data-rating="down" data-stock="005930" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2522,7 +2781,11 @@
                     <a href="https://n.news.naver.com/mnews/article/422/0000857203" target="_blank" rel="noopener">코스피, 사상 최고치 경신…장중 6,350선 돌파</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 연합뉴스TV</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 연합뉴스TV</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/422/0000857203" data-rating="up" data-stock="005930" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/422/0000857203" data-rating="down" data-stock="005930" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -2536,7 +2799,11 @@
                       <a href="https://n.news.naver.com/mnews/article/030/0003419898" target="_blank" rel="noopener">삼성전자, '밀라노 디자인위크' 참가…“AI 시대 사람 중심 디자인 강...</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 전자신문</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">방금 전</span><span>· 전자신문</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/030/0003419898" data-rating="up" data-stock="005930" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/030/0003419898" data-rating="down" data-stock="005930" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -2546,7 +2813,11 @@
                       <a href="https://n.news.naver.com/mnews/article/001/0016033151" target="_blank" rel="noopener">한화운용 "글로벌HBM반도체 ETF 1년 수익률 375%…전체 1위"</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/001/0016033151" data-rating="up" data-stock="005930" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/001/0016033151" data-rating="down" data-stock="005930" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -2639,7 +2910,11 @@
                     <a href="https://n.news.naver.com/mnews/article/016/0002632796" target="_blank" rel="noopener">전쟁 공포 이긴 SK하이닉스…호실적 기대에 코스피 전고점 뚫고 질주.....</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 헤럴드경제</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 헤럴드경제</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/016/0002632796" data-rating="up" data-stock="298380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/016/0002632796" data-rating="down" data-stock="298380" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2649,7 +2924,11 @@
                     <a href="https://n.news.naver.com/mnews/article/001/0016032851" target="_blank" rel="noopener">코스피, 장중 사상 최고치…SK하이닉스 '120만 닉스' 돌파(종합)</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/001/0016032851" data-rating="up" data-stock="298380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/001/0016032851" data-rating="down" data-stock="298380" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2659,7 +2938,11 @@
                     <a href="https://n.news.naver.com/mnews/article/119/0003082747" target="_blank" rel="noopener">코스피, 전쟁 리스크에도 6350선 ‘사상 최고치’ [시황]</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/119/0003082747" data-rating="up" data-stock="298380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/119/0003082747" data-rating="down" data-stock="298380" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2669,7 +2952,11 @@
                     <a href="https://n.news.naver.com/mnews/article/366/0001158419" target="_blank" rel="noopener">에이비엘바이오 “이중 항체 ADC 후보물질, 비임상서 항암 효과·안전....</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 조선비즈</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 조선비즈</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/366/0001158419" data-rating="up" data-stock="298380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/366/0001158419" data-rating="down" data-stock="298380" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2679,7 +2966,11 @@
                     <a href="https://n.news.naver.com/mnews/article/421/0008901683" target="_blank" rel="noopener">에이비엘바이오 "ABL209, 다양한 암종서 항암효과·안전성 확보"</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 뉴스1</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 뉴스1</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/421/0008901683" data-rating="up" data-stock="298380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/421/0008901683" data-rating="down" data-stock="298380" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -2693,7 +2984,11 @@
                       <a href="https://n.news.naver.com/mnews/article/011/0004612842" target="_blank" rel="noopener">에이비엘바이오 ‘ABL209’, 국제 학술지에 비임상 연구 데이터 논...</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 서울경제</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">방금 전</span><span>· 서울경제</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/011/0004612842" data-rating="up" data-stock="298380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/011/0004612842" data-rating="down" data-stock="298380" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -2703,7 +2998,11 @@
                       <a href="https://n.news.naver.com/mnews/article/277/0005752306" target="_blank" rel="noopener">에이비엘바이오, ABL209 비임상 데이터 AACR 국제 학술지 게재</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 아시아경제</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">방금 전</span><span>· 아시아경제</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/277/0005752306" data-rating="up" data-stock="298380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/277/0005752306" data-rating="down" data-stock="298380" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -2787,7 +3086,11 @@
                     <a href="https://n.news.naver.com/mnews/article/001/0016033003" target="_blank" rel="noopener">[테크스냅] 카카오메이커스, 출시 10년 누적 기부 34억원</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/001/0016033003" data-rating="up" data-stock="035720" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/001/0016033003" data-rating="down" data-stock="035720" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2797,7 +3100,11 @@
                     <a href="https://n.news.naver.com/mnews/article/014/0005510819" target="_blank" rel="noopener">카카오메이커스 10주년...311만 이용자·기부 34억</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 파이낸셜뉴스</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 파이낸셜뉴스</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/014/0005510819" data-rating="up" data-stock="035720" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/014/0005510819" data-rating="down" data-stock="035720" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2807,7 +3114,11 @@
                     <a href="https://n.news.naver.com/mnews/article/119/0003082759" target="_blank" rel="noopener">"누적 기부금 34억"…10살 카카오메이커스, 기념 캠페인 전개</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/119/0003082759" data-rating="up" data-stock="035720" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/119/0003082759" data-rating="down" data-stock="035720" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2817,7 +3128,11 @@
                     <a href="https://n.news.naver.com/mnews/article/018/0006262387" target="_blank" rel="noopener">카카오메이커스 10주년…누적 기부 34억·이용자 311만명</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/018/0006262387" data-rating="up" data-stock="035720" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/018/0006262387" data-rating="down" data-stock="035720" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2827,7 +3142,11 @@
                     <a href="https://n.news.naver.com/mnews/article/030/0003419821" target="_blank" rel="noopener">누적 기부금 34억·이용자 311만명…카카오메이커스, 10주년 감사 ...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 전자신문</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 전자신문</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/030/0003419821" data-rating="up" data-stock="035720" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/030/0003419821" data-rating="down" data-stock="035720" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -2841,7 +3160,11 @@
                       <a href="https://n.news.naver.com/mnews/article/421/0008901824" target="_blank" rel="noopener">카카오메이커스 10주년…누적 기부 34.6억 돌파</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 뉴스1</span><span class="impact positive">호재</span>                    </div>
+<span class="time-ago">방금 전</span><span>· 뉴스1</span><span class="impact positive">호재</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/421/0008901824" data-rating="up" data-stock="035720" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/421/0008901824" data-rating="down" data-stock="035720" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -2851,7 +3174,11 @@
                       <a href="https://n.news.naver.com/mnews/article/003/0013899482" target="_blank" rel="noopener">누적 기부 34억·이용자 311만명…카카오메이커스, 10주년 기념 캠...</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 뉴시스</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">방금 전</span><span>· 뉴시스</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/003/0013899482" data-rating="up" data-stock="035720" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/003/0013899482" data-rating="down" data-stock="035720" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -2935,7 +3262,11 @@
                     <a href="https://n.news.naver.com/mnews/article/374/0000505640" target="_blank" rel="noopener">IBK "하이브 목표주가 하향…투자의견 '매수' 유지"</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· SBS Biz</span><span class="impact negative">악재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· SBS Biz</span><span class="impact negative">악재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/374/0000505640" data-rating="up" data-stock="352820" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/374/0000505640" data-rating="down" data-stock="352820" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2945,7 +3276,11 @@
                     <a href="https://n.news.naver.com/mnews/article/215/0001249662" target="_blank" rel="noopener">'BTS 컴백' 효과 없었다...주가 전망 '암울'</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 한국경제TV</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 한국경제TV</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/215/0001249662" data-rating="up" data-stock="352820" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/215/0001249662" data-rating="down" data-stock="352820" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2955,7 +3290,11 @@
                     <a href="https://n.news.naver.com/mnews/article/001/0016032608" target="_blank" rel="noopener">IBK투자, 하이브 목표주가↓…"1분기 영업익 기대치 하회전망"</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact negative">악재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact negative">악재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/001/0016032608" data-rating="up" data-stock="352820" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/001/0016032608" data-rating="down" data-stock="352820" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2965,7 +3304,11 @@
                     <a href="https://n.news.naver.com/mnews/article/009/0005668872" target="_blank" rel="noopener">“하이브, BTS 커리어하이 갱신에도 실적·주가 전망 암울”…이유는.....</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 매일경제</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 매일경제</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/009/0005668872" data-rating="up" data-stock="352820" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/009/0005668872" data-rating="down" data-stock="352820" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -2975,7 +3318,11 @@
                     <a href="https://n.news.naver.com/mnews/article/640/0000087277" target="_blank" rel="noopener">Five K-pop leaders featured on 'Billboa...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">13시간 전</span><span>· 코리아중앙데일리</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">13시간 전</span><span>· 코리아중앙데일리</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/640/0000087277" data-rating="up" data-stock="352820" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/640/0000087277" data-rating="down" data-stock="352820" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -2989,7 +3336,11 @@
                       <a href="https://n.news.naver.com/mnews/article/008/0005346723" target="_blank" rel="noopener">한국판 코첼라 '패노미논' 훈풍도 잠깐…엔터 4사 주가, 다시 약세</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">14시간 전</span><span>· 머니투데이</span><span class="impact negative">악재</span>                    </div>
+<span class="time-ago">14시간 전</span><span>· 머니투데이</span><span class="impact negative">악재</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/008/0005346723" data-rating="up" data-stock="352820" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/008/0005346723" data-rating="down" data-stock="352820" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -2999,7 +3350,11 @@
                       <a href="https://n.news.naver.com/mnews/article/138/0002225120" target="_blank" rel="noopener">美대사관, ‘방시혁 출국금지 해제’ 요청…서울경찰청 "아직 요청 받.....</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">17시간 전</span><span>· 디지털데일리</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">17시간 전</span><span>· 디지털데일리</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/138/0002225120" data-rating="up" data-stock="352820" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/138/0002225120" data-rating="down" data-stock="352820" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -3090,7 +3445,11 @@
                     <a href="https://n.news.naver.com/mnews/article/293/0000083133" target="_blank" rel="noopener">지엠비코리아, 현대차·기아와 1289억 규모 공급계약</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 블로터</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 블로터</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/293/0000083133" data-rating="up" data-stock="005380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/293/0000083133" data-rating="down" data-stock="005380" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3100,7 +3459,11 @@
                     <a href="https://n.news.naver.com/mnews/article/009/0005668994" target="_blank" rel="noopener">글로벌 車기업 공략 가속화…미래 모빌리티 엔지니어링 KNC, 인도 제3...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 매일경제</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 매일경제</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/009/0005668994" data-rating="up" data-stock="005380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/009/0005668994" data-rating="down" data-stock="005380" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3110,7 +3473,11 @@
                     <a href="https://n.news.naver.com/mnews/article/629/0000493199" target="_blank" rel="noopener">고금리에도 수요 지속…카드론 잔액 43조 육박 '역대 최대'</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 더팩트</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 더팩트</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/629/0000493199" data-rating="up" data-stock="005380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/629/0000493199" data-rating="down" data-stock="005380" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3120,7 +3487,11 @@
                     <a href="https://n.news.naver.com/mnews/article/119/0003082751" target="_blank" rel="noopener">카드론 잔액 또 역대 최대…43조 육박하며 3개월째 증가</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/119/0003082751" data-rating="up" data-stock="005380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/119/0003082751" data-rating="down" data-stock="005380" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3130,7 +3501,11 @@
                     <a href="https://n.news.naver.com/mnews/article/648/0000046448" target="_blank" rel="noopener">현대차, 인도 맞춤형 3륜 EV 개발 나선다</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 비즈워치</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 비즈워치</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/648/0000046448" data-rating="up" data-stock="005380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/648/0000046448" data-rating="down" data-stock="005380" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -3144,7 +3519,11 @@
                       <a href="https://n.news.naver.com/mnews/article/050/0000105160" target="_blank" rel="noopener">“8년 전 모디 총리 부탁” 정의선 회장의 ‘결단’</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 한경비즈니스</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">방금 전</span><span>· 한경비즈니스</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/050/0000105160" data-rating="up" data-stock="005380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/050/0000105160" data-rating="down" data-stock="005380" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
                 <li>
@@ -3154,7 +3533,11 @@
                       <a href="https://n.news.naver.com/mnews/article/031/0001023560" target="_blank" rel="noopener">현대차, 인도 '국민차' 3륜차 시장 공략?TVS와 EV 공동개발 맞...</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 아이뉴스24</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">방금 전</span><span>· 아이뉴스24</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/031/0001023560" data-rating="up" data-stock="005380" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/031/0001023560" data-rating="down" data-stock="005380" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -3246,7 +3629,11 @@
                     <a href="https://n.news.naver.com/mnews/article/016/0002632796" target="_blank" rel="noopener">전쟁 공포 이긴 SK하이닉스…호실적 기대에 코스피 전고점 뚫고 질주....</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 헤럴드경제</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 헤럴드경제</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/016/0002632796" data-rating="up" data-stock="196170" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/016/0002632796" data-rating="down" data-stock="196170" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3256,7 +3643,11 @@
                     <a href="https://n.news.naver.com/mnews/article/001/0016032851" target="_blank" rel="noopener">코스피, 장중 사상 최고치…SK하이닉스 '120만 닉스' 돌파(종합)</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 연합뉴스</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/001/0016032851" data-rating="up" data-stock="196170" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/001/0016032851" data-rating="down" data-stock="196170" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3266,7 +3657,11 @@
                     <a href="https://n.news.naver.com/mnews/article/088/0001006470" target="_blank" rel="noopener">'갈 줄 알았는데 제자리걸음'…제약·바이오 반전은 이때?</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 매일신문</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 매일신문</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/088/0001006470" data-rating="up" data-stock="196170" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/088/0001006470" data-rating="down" data-stock="196170" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3276,7 +3671,11 @@
                     <a href="https://n.news.naver.com/mnews/article/119/0003082747" target="_blank" rel="noopener">코스피, 전쟁 리스크에도 6350선 ‘사상 최고치’ [시황]</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/119/0003082747" data-rating="up" data-stock="196170" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/119/0003082747" data-rating="down" data-stock="196170" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3286,7 +3685,11 @@
                     <a href="https://n.news.naver.com/mnews/article/018/0006262379" target="_blank" rel="noopener">코스피, 6350 넘어 ‘사상 최고치’…SK하이닉스 120만원 돌파</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/018/0006262379" data-rating="up" data-stock="196170" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/018/0006262379" data-rating="down" data-stock="196170" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -3300,7 +3703,11 @@
                       <a href="https://n.news.naver.com/mnews/article/277/0005752405" target="_blank" rel="noopener">코스피, 사상 최고가 경신…외인·기관이 끌었다</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 아시아경제</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">방금 전</span><span>· 아시아경제</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/277/0005752405" data-rating="up" data-stock="196170" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/277/0005752405" data-rating="down" data-stock="196170" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -3384,7 +3791,11 @@
                     <a href="https://n.news.naver.com/mnews/article/008/0005347024" target="_blank" rel="noopener">앤로보틱스 및 관계사, 제노코 지분 5% 취득 및 '경영참여' 선언…"...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 머니투데이</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 머니투데이</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/008/0005347024" data-rating="up" data-stock="012450" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/008/0005347024" data-rating="down" data-stock="012450" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3394,7 +3805,11 @@
                     <a href="https://n.news.naver.com/mnews/article/586/0000127401" target="_blank" rel="noopener">'종가 기준 최고치' 다시 넘어선 코스피</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 시사저널</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 시사저널</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/586/0000127401" data-rating="up" data-stock="012450" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/586/0000127401" data-rating="down" data-stock="012450" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3404,7 +3819,11 @@
                     <a href="https://n.news.naver.com/mnews/article/119/0003082747" target="_blank" rel="noopener">코스피, 전쟁 리스크에도 6350선 ‘사상 최고치’ [시황]</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 데일리안</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/119/0003082747" data-rating="up" data-stock="012450" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/119/0003082747" data-rating="down" data-stock="012450" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3414,7 +3833,11 @@
                     <a href="https://n.news.naver.com/mnews/article/018/0006262379" target="_blank" rel="noopener">코스피, 6350 넘어 ‘사상 최고치’…SK하이닉스 120만원 돌파</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 이데일리</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/018/0006262379" data-rating="up" data-stock="012450" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/018/0006262379" data-rating="down" data-stock="012450" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3424,7 +3847,11 @@
                     <a href="https://n.news.naver.com/mnews/article/277/0005752405" target="_blank" rel="noopener">코스피, 사상 최고가 경신…외인·기관이 끌었다</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 아시아경제</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">방금 전</span><span>· 아시아경제</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/277/0005752405" data-rating="up" data-stock="012450" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/277/0005752405" data-rating="down" data-stock="012450" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -3438,7 +3865,11 @@
                       <a href="https://n.news.naver.com/mnews/article/629/0000493134" target="_blank" rel="noopener">코스피, 중동 전쟁 이후 첫 6300선 넘었다…외국인 매수 확대</a>
                     </div>
                     <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· 더팩트</span><span class="impact neutral">중립</span>                    </div>
+<span class="time-ago">방금 전</span><span>· 더팩트</span><span class="impact neutral">중립</span>                      <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/629/0000493134" data-rating="up" data-stock="012450" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/629/0000493134" data-rating="down" data-stock="012450" title="노이즈였음">👎</button>
+    </span>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -3523,7 +3954,11 @@
                     <a href="https://n.news.naver.com/mnews/article/030/0003419721" target="_blank" rel="noopener">독성연, 국내 기업과 함께 베트남 비임상 연구기반 세운다</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">11시간 전</span><span>· 전자신문</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">11시간 전</span><span>· 전자신문</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/030/0003419721" data-rating="up" data-stock="166480" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/030/0003419721" data-rating="down" data-stock="166480" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3533,7 +3968,11 @@
                     <a href="https://n.news.naver.com/mnews/article/016/0002632120" target="_blank" rel="noopener">베트남에 한국형 ‘비임상 연구시설’ 만든다</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">21시간 전</span><span>· 헤럴드경제</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">21시간 전</span><span>· 헤럴드경제</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/016/0002632120" data-rating="up" data-stock="166480" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/016/0002632120" data-rating="down" data-stock="166480" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3543,7 +3982,11 @@
                     <a href="https://n.news.naver.com/mnews/article/584/0000037266" target="_blank" rel="noopener">[사이언스게시판] 과기정통부, 5대 핵심 협업 이슈 '다함께 스프린트....</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">13시간 전</span><span>· 동아사이언스</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">13시간 전</span><span>· 동아사이언스</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/584/0000037266" data-rating="up" data-stock="166480" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/584/0000037266" data-rating="down" data-stock="166480" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3553,7 +3996,11 @@
                     <a href="https://n.news.naver.com/mnews/article/009/0005668454" target="_blank" rel="noopener">K바이오 다시 뜬다…보로노이 15% 상승 [매경 자이앤트]</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">17시간 전</span><span>· 매일경제</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">17시간 전</span><span>· 매일경제</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/009/0005668454" data-rating="up" data-stock="166480" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/009/0005668454" data-rating="down" data-stock="166480" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -3640,7 +4087,11 @@
                     <a href="https://n.news.naver.com/mnews/article/374/0000505642" target="_blank" rel="noopener">[이 시각 시황] 2차전지주, 업황 개선·정책 기대감 속 상승폭 확대</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">방금 전</span><span>· SBS Biz</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">방금 전</span><span>· SBS Biz</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/374/0000505642" data-rating="up" data-stock="042700" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/374/0000505642" data-rating="down" data-stock="042700" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3650,7 +4101,11 @@
                     <a href="https://n.news.naver.com/mnews/article/023/0003972005" target="_blank" rel="noopener">반도체 효과… 삼성家, 국내 주식 부자 1~4위 싹쓸이</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">6시간 전</span><span>· 조선일보</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">6시간 전</span><span>· 조선일보</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/023/0003972005" data-rating="up" data-stock="042700" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/023/0003972005" data-rating="down" data-stock="042700" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3660,7 +4115,11 @@
                     <a href="https://n.news.naver.com/mnews/article/011/0004612511" target="_blank" rel="noopener">“환희에 팔았다”…상위 1%, SK하닉 신고가에 팔고 대한전선 담아 [...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">19시간 전</span><span>· 서울경제</span><span class="impact positive">호재</span>                  </div>
+<span class="time-ago">19시간 전</span><span>· 서울경제</span><span class="impact positive">호재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/011/0004612511" data-rating="up" data-stock="042700" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/011/0004612511" data-rating="down" data-stock="042700" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3670,7 +4129,11 @@
                     <a href="https://n.news.naver.com/mnews/article/023/0003971855" target="_blank" rel="noopener">반도체가 바꾼 국내 주식부자 지도…삼성가·한미반도체 약진, 코스닥...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">22시간 전</span><span>· 조선일보</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">22시간 전</span><span>· 조선일보</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/023/0003971855" data-rating="up" data-stock="042700" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/023/0003971855" data-rating="down" data-stock="042700" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -3753,7 +4216,11 @@
                     <a href="https://n.news.naver.com/mnews/article/243/0000096699" target="_blank" rel="noopener">파라다이스복지재단, 발달장애 청소년과 함께하는 ‘아이소리 페스티...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">15시간 전</span><span>· 이코노미스트</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">15시간 전</span><span>· 이코노미스트</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/243/0000096699" data-rating="up" data-stock="034230" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/243/0000096699" data-rating="down" data-stock="034230" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
               <li>
@@ -3763,7 +4230,11 @@
                     <a href="https://n.news.naver.com/mnews/article/003/0013898483" target="_blank" rel="noopener">오늘의 휴식 넘어 내일의 자립…파라다이스의 특별한 장애 청소년 지.....</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">15시간 전</span><span>· 뉴시스</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">15시간 전</span><span>· 뉴시스</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/003/0013898483" data-rating="up" data-stock="034230" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/003/0013898483" data-rating="down" data-stock="034230" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -3851,7 +4322,11 @@
                     <a href="https://n.news.naver.com/mnews/article/088/0001006283" target="_blank" rel="noopener">공매도·대차거래 사상 최대치 경신했는데…질주하는 증시에 '하락 베...</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">20시간 전</span><span>· 매일신문</span><span class="impact neutral">중립</span>                  </div>
+<span class="time-ago">20시간 전</span><span>· 매일신문</span><span class="impact neutral">중립</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/088/0001006283" data-rating="up" data-stock="233740" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/088/0001006283" data-rating="down" data-stock="233740" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -3942,7 +4417,11 @@
                     <a href="https://n.news.naver.com/mnews/article/366/0001158288" target="_blank" rel="noopener">빵 굽는 바이오·20년 적자 기업도 상한가… 코로나 변이 확산에 개미....</a>
                   </div>
                   <div class="news-meta">
-<span class="time-ago">15시간 전</span><span>· 조선비즈</span><span class="impact negative">악재</span>                  </div>
+<span class="time-ago">15시간 전</span><span>· 조선비즈</span><span class="impact negative">악재</span>                    <span class="feedback-group" aria-label="뉴스 피드백">
+      <button type="button" class="feedback-btn up" data-url="https://n.news.naver.com/mnews/article/366/0001158288" data-rating="up" data-stock="299660" title="유용했음">👍</button>
+      <button type="button" class="feedback-btn down" data-url="https://n.news.naver.com/mnews/article/366/0001158288" data-rating="down" data-stock="299660" title="노이즈였음">👎</button>
+    </span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -4459,6 +4938,50 @@
       setIndicator("error", "⚠️ 실시간 업데이트 실패 (스냅샷 표시) · " + fmtKstTime(kstNow()));
     }
   }
+
+  // ── News feedback (👍 / 👎) — localStorage only for now ───────────────
+  // Stored as { [news_url]: { rating: "up"|"down", ts: unix_ms, stock?: code } }
+  // Iteration 2 will sync to a Worker endpoint for agent-side tuning.
+  const FB_KEY = "k-ant-daily:feedback";
+  function loadFeedback() {
+    try { return JSON.parse(localStorage.getItem(FB_KEY) || "{}"); }
+    catch { return {}; }
+  }
+  function saveFeedback(data) {
+    try { localStorage.setItem(FB_KEY, JSON.stringify(data)); } catch { /* storage full / disabled */ }
+  }
+  function renderFeedbackState() {
+    const fb = loadFeedback();
+    document.querySelectorAll(".feedback-btn[data-url]").forEach((btn) => {
+      const url = btn.dataset.url;
+      const rating = btn.dataset.rating;
+      const entry = fb[url];
+      btn.classList.toggle("active", entry && entry.rating === rating);
+    });
+  }
+  // Delegated click handler — stopPropagation keeps it from triggering
+  // parent click listeners (owner popover toggler, etc).
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".feedback-btn");
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const url = btn.dataset.url;
+    const rating = btn.dataset.rating;
+    if (!url || !rating) return;
+    const fb = loadFeedback();
+    const prev = fb[url] && fb[url].rating;
+    if (prev === rating) {
+      // Toggling off — clear
+      delete fb[url];
+    } else {
+      fb[url] = { rating, ts: Date.now(), stock: btn.dataset.stock || null };
+    }
+    saveFeedback(fb);
+    renderFeedbackState();
+  });
+  if (document.readyState !== "loading") renderFeedbackState();
+  else document.addEventListener("DOMContentLoaded", renderFeedbackState);
 
   // Owner popover tap toggle — needed on touch devices where :hover isn't reliable.
   // Also closes any other open popover when one is opened.
