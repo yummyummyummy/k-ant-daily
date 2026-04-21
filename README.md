@@ -80,7 +80,7 @@ SK하이닉스 000660  🔥 7   +3.37%   매수   👤 이영준 +3
 
 **펼친 body 순서**:
 1. **📊 가격 맥락** — 20일 스파크라인(방향별 색상) + 52주 고점·저점 레인지 바 + 현재 위치 핀 + 고점 대비 %
-2. **📰 오늘의 뉴스** (**24시간 내** + material만, 5건 + 더보기) — 메인 콘텐츠. render가 24h 넘은 항목은 자동으로 drop. 각 뉴스에 호재/악재/중립 라벨(agent가 주요 건은 직접 라벨, 나머지는 render의 헤드라인 키워드 heuristic으로 자동 분류). 색상 dot + 칩 형태로 표시. 각 뉴스 우측에 👍/👎 피드백 버튼 — 상태는 localStorage 에 저장되어 다음 방문 시 유지 (Iteration 2에서 Worker sync 예정).
+2. **📰 오늘의 뉴스** (**24시간 내** + material만, 5건 + 더보기) — 메인 콘텐츠. render가 24h 넘은 항목은 자동으로 drop. 각 뉴스에 호재/악재/중립 라벨(agent가 주요 건은 직접 라벨, 나머지는 render의 헤드라인 키워드 heuristic으로 자동 분류). 색상 dot + 칩 형태로 표시.
 3. 결정 근거 블록 (뉴스톤 · 간밤 신호 · 반영 여부 · 신뢰도 · rationale)
 4. 🏁 리뷰 결과 (저녁 업데이트 후)
 5. 🔬 심층 분석 (`deep_dive: true` 만)
@@ -254,16 +254,6 @@ wrangler deploy        # 최초 1회 wrangler login 필요
 엔드포인트:
 - `GET /quote?codes=005930,000660,...` — 종목 시세 (Naver realtime polling)
 - `GET /ticker?items=KOSPI,KOSDAQ,USDKRW,BTC,ETH` — 지표·FX·암호화폐 통합
-- `POST /feedback` — 뉴스 피드백 수집 (body: `{url, rating, ts, stock?, session_date}`). KV namespace FEEDBACK 필요
-- `GET /feedback?date=YYYY-MM-DD` — 해당 날짜의 피드백 전체 (agent가 다음 날 활용)
-
-**KV 세팅** (최초 1회):
-```bash
-cd worker
-wrangler kv namespace create FEEDBACK
-# returned id 를 wrangler.toml 의 [[kv_namespaces]] 블록에 paste
-wrangler deploy
-```
 
 상세: [worker/README.md](worker/README.md).
 
@@ -322,7 +312,6 @@ Production과 동일 시퀀스는 `scripts/launchd/run-briefing.sh` / `run-revie
 - ✅ **스파크라인** (20일 종가 미니차트) — 추세 맥락 즉시 파악
 - ✅ **52주 고점·저점 거리** — 매매 심리 컨텍스트
 - ✅ **누적 리뷰 대시보드** — `/accuracy` 페이지. 전체 hit rate + 일별 stacked bar chart + 신뢰도 버킷별 + 신호 기여도. 데이터는 리뷰가 쌓이면서 자동 채워짐
-- ✅ **큐레이션 피드백 버튼** (👍👎) — localStorage + Worker /feedback POST 동기화. 다음 날 agent가 어제 피드백을 `GET /feedback?date=...` 로 가져와 큐레이션 튜닝에 참고
 
 **Phase 2 — 데이터 쌓인 후**
 - 큐레이션 기준 튜닝 (누적 리뷰 기반)
