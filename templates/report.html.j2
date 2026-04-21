@@ -1024,6 +1024,59 @@
     }
   }
 
+  function reorderFriendCards(data) {
+    const container = document.getElementById("friend-cards");
+    if (!container) return;
+    const cards = [...container.querySelectorAll(".friend-card[data-code]")];
+    if (cards.length < 2) return;
+
+    // Back off if the user is mid-interaction so a card doesn't move
+    // under the cursor/finger.
+    if (cards.some((c) => c.matches(":hover") || c.querySelector("details[open]"))) {
+      return;
+    }
+
+    // Stable sort by live change_pct desc; missing quotes keep original rank.
+    const withPct = cards.map((el, i) => ({
+      el,
+      code: el.dataset.code,
+      pct: typeof data[el.dataset.code]?.change_pct === "number"
+           ? data[el.dataset.code].change_pct : -Infinity,
+      origIdx: i,
+    }));
+    withPct.sort((a, b) => b.pct - a.pct || a.origIdx - b.origIdx);
+
+    // Only reshuffle if the top-3 order actually changed. Micro-wiggles in
+    // lower ranks stay put — the grid shouldn't bounce every poll.
+    const top3Before = cards.slice(0, 3).map((c) => c.dataset.code).join(",");
+    const top3After  = withPct.slice(0, 3).map((x) => x.code).join(",");
+    if (top3Before === top3After) return;
+
+    // FLIP: capture first position
+    const firstRects = new Map(cards.map((c) => [c, c.getBoundingClientRect()]));
+
+    // Reorder DOM (append of an existing node moves it — no duplication)
+    withPct.forEach((x) => container.append(x.el));
+
+    const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
+    // FLIP: measure delta, snap back, then animate to natural position
+    withPct.forEach((x) => {
+      const first = firstRects.get(x.el);
+      const last  = x.el.getBoundingClientRect();
+      const dx = first.left - last.left;
+      const dy = first.top  - last.top;
+      if (!dx && !dy) return;
+      x.el.style.transition = "transform 0s";
+      x.el.style.transform  = `translate(${dx}px, ${dy}px)`;
+      requestAnimationFrame(() => {
+        x.el.style.transition = "transform 0.35s cubic-bezier(0.2, 0, 0.1, 1)";
+        x.el.style.transform  = "";
+      });
+    });
+  }
+
   function updateCoffeeBanner(cards, data) {
     const banner = document.querySelector(".coffee-banner");
     if (!banner) return;
@@ -1084,6 +1137,7 @@
       });
       if (applied > 0) {
         updateCoffeeBanner(cards, data);
+        reorderFriendCards(data);
         setIndicator("live", "🟢 Live · 업데이트 " + fmtKstTime(kstNow()));
       }
     } catch (err) {
