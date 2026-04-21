@@ -12,11 +12,9 @@ compatibility_date = "2024-10-01"
 [observability]
 enabled = true
 
-# To enable the /feedback endpoint, create a KV namespace and paste its id:
-#   wrangler kv namespace create FEEDBACK
-# Then uncomment the block below with the returned id, and `wrangler deploy`.
-# Worker runs fine without this — /feedback just returns 503 until bound.
-#
-# [[kv_namespaces]]
-# binding = "FEEDBACK"
-# id = "PASTE_KV_NAMESPACE_ID_HERE"
+# KV namespace backing the /feedback endpoint.
+# (To re-create on a different Cloudflare account: `wrangler kv namespace create FEEDBACK`,
+#  then replace the id below with the returned value.)
+[[kv_namespaces]]
+binding = "FEEDBACK"
+id = "a46127f419094bb58cbff56ba8e07e0c"
