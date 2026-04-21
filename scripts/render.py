@@ -46,62 +46,17 @@ def _env() -> Environment:
     )
 
 
-IMPACT_LABEL = {
-    "positive": "호재",
-    "negative": "악재",
-    "neutral": "중립",
-}
+def _render_template(template_name: str, **context: object) -> str:
+    """Thin wrapper around `_env().get_template(...).render(...)` — the env
+    setup and extension suffix caveats are consolidated in one place."""
+    return _env().get_template(template_name).render(**context)
 
-RECOMMENDATION_LABEL = {
-    "strong_buy": "풀매수",
-    "buy": "매수",
-    "hold": "관망",
-    "sell": "매도",
-    "strong_sell": "풀매도",
-}
 
-OUTCOME_LABEL = {
-    "hit":     "적중",
-    "partial": "부분",
-    "miss":    "실패",
-    "n/a":     "데이터 없음",
-}
-
-STATUS_LABEL = {
-    "closed": "봉쇄",
-    "restricted": "제한 통행",
-    "open": "통행 중",
-}
-
-SENTIMENT_LABEL = {"positive": "긍정", "neutral": "중립", "negative": "부정"}
-OVERNIGHT_LABEL = {"up": "강세", "neutral": "중립", "down": "약세"}
-CONFIDENCE_LABEL = {"high": "높음", "medium": "중간", "low": "낮음"}
-MOOD_LABEL = {"positive": "우호", "neutral": "혼조", "negative": "부담"}
-CATEGORY_LABEL = {
-    "policy":      "🏛️ 정책",
-    "geopolitics": "🌏 국제",
-    "macro":       "💱 거시",
-    "sector":      "🏭 섹터",
-    "market":      "📊 시장",
-}
-MOOD_AXES = [
-    {"key": "policy",      "emoji": "🏛️", "name": "정책·규제"},
-    {"key": "geopolitics", "emoji": "🌏", "name": "국제정세"},
-    {"key": "overnight",   "emoji": "🌙", "name": "간밤 해외"},
-    {"key": "sectors",     "emoji": "🏭", "name": "섹터 기류"},
-    {"key": "fx_macro",    "emoji": "💱", "name": "환율·원자재"},
-]
-
-# Fallback emoji for sector cards when the agent doesn't supply one.
-SECTOR_EMOJI_FALLBACK = {
-    "반도체": "🔧", "바이오": "🧬", "건설": "🏗️", "EPC": "🏗️", "플랜트": "🏗️",
-    "조선": "🚢", "방산": "🚀", "조선·방산": "🚢",
-    "자동차": "🚗", "배터리": "🔋", "에너지": "⛽", "정유": "⛽",
-    "전력": "⚡", "통신": "📡", "엔터": "🎤", "게임": "🎮",
-    "철강": "🏭", "화학": "🧪", "금융": "🏦", "은행": "🏦", "증권": "📈",
-    "유통": "🛒", "식음료": "🍽️", "제약": "💊", "항공": "✈️",
-    "플랫폼": "💻", "인터넷": "🌐", "전기전자": "🔌",
-}
+from labels import (
+    IMPACT_LABEL, RECOMMENDATION_LABEL, OUTCOME_LABEL, STATUS_LABEL,
+    SENTIMENT_LABEL, OVERNIGHT_LABEL, CONFIDENCE_LABEL, MOOD_LABEL,
+    CATEGORY_LABEL, MOOD_AXES, SECTOR_EMOJI_FALLBACK,
+)
 
 
 def _infer_direction(change: str | None) -> str:
@@ -284,16 +239,21 @@ def _merge_quotes_from_news(summary: dict, news_path: Path) -> None:
             stock["history"] = dict(src["history"])
 
 
-def _normalize(summary: dict) -> dict:
-    """Fill derived fields the template relies on."""
-    # reference "now" for time-ago calculations: prefer generated_at, fallback to system now
+def _reference_now(summary: dict) -> datetime:
+    """Choose the reference instant for time-ago calculations. Prefer the
+    summary's own `generated_at` so re-renders stay stable (otherwise every
+    rebuild would tick time_ago forward)."""
     try:
         now = datetime.fromisoformat(summary.get("generated_at", ""))
         if now.tzinfo is None:
             now = now.replace(tzinfo=KST)
+        return now
     except Exception:
-        now = datetime.now(KST)
+        return datetime.now(KST)
 
+
+def _normalize_macro(summary: dict) -> None:
+    """Annotate macro.indicators/overnight/key_points with direction + labels."""
     macro = summary.get("macro", {}) or {}
     for ind in (macro.get("indicators") or []) + (macro.get("overnight") or []):
         # Legacy `change` split: treat %-bearing strings as percentage, others as absolute.
@@ -314,38 +274,45 @@ def _normalize(summary: dict) -> dict:
         if impact:
             macro[f"{key}_label"] = IMPACT_LABEL.get(impact, impact)
 
+
+def _normalize_top_stories(summary: dict) -> None:
     for ts in summary.get("top_stories") or []:
         _annotate_impact(ts)
         if ts.get("category") and "category_label" not in ts:
             ts["category_label"] = CATEGORY_LABEL.get(ts["category"], ts["category"])
 
+
+def _normalize_mood_dashboard(summary: dict) -> None:
     dash = summary.get("mood_dashboard")
-    if isinstance(dash, dict):
-        for axis_key, m in dash.items():
-            if isinstance(m, dict) and m.get("impact"):
-                m["impact_label"] = MOOD_LABEL.get(m["impact"], m["impact"])
+    if not isinstance(dash, dict):
+        return
+    for _axis_key, m in dash.items():
+        if isinstance(m, dict) and m.get("impact"):
+            m["impact_label"] = MOOD_LABEL.get(m["impact"], m["impact"])
 
+
+def _normalize_focus(summary: dict, now: datetime) -> None:
     focus = summary.get("focus")
-    if focus:
-        _annotate_impact(focus)
-        status = focus.get("status") or {}
-        if status:
-            lvl = status.get("level")
-            if lvl and "label" not in status:
-                status["label"] = STATUS_LABEL.get(lvl, lvl)
-        # news_items: sort by published_at desc, annotate time_ago + impact_label
-        items = focus.get("news_items") or []
-        for n in items:
-            _annotate_impact(n)
-            n["time_ago"] = _time_ago(n.get("published_at"), now)
-        items.sort(
-            key=lambda n: n.get("published_at") or "",
-            reverse=True,
-        )
-        focus["news_items"] = items
-        for pt in focus.get("key_points") or []:
-            _annotate_impact(pt)
+    if not focus:
+        return
+    _annotate_impact(focus)
+    status = focus.get("status") or {}
+    if status:
+        lvl = status.get("level")
+        if lvl and "label" not in status:
+            status["label"] = STATUS_LABEL.get(lvl, lvl)
+    # news_items: sort by published_at desc, annotate time_ago + impact_label
+    items = focus.get("news_items") or []
+    for n in items:
+        _annotate_impact(n)
+        n["time_ago"] = _time_ago(n.get("published_at"), now)
+    items.sort(key=lambda n: n.get("published_at") or "", reverse=True)
+    focus["news_items"] = items
+    for pt in focus.get("key_points") or []:
+        _annotate_impact(pt)
 
+
+def _normalize_sectors(summary: dict, now: datetime) -> None:
     for sec in summary.get("sectors") or []:
         _annotate_impact(sec)
         # Emoji fallback if agent didn't supply one.
@@ -379,6 +346,87 @@ def _normalize(summary: dict) -> dict:
         sec["news"] = news_items
         sec.pop("key_points", None)  # consolidate on `news`
 
+
+def _normalize_stock_quote(stock: dict) -> None:
+    """Derive price_display, price_change_* from stock.quote (pre-market snapshot
+    or evening close, same code path)."""
+    quote = stock.get("quote") or {}
+    pct_num = quote.get("change_pct_num")
+    if pct_num is None and quote.get("change_pct"):
+        try:
+            pct_num = float(str(quote["change_pct"]).replace("%", "").replace("+", ""))
+        except ValueError:
+            pct_num = None
+    if pct_num is not None:
+        stock["price_change_pct_num"] = pct_num
+        stock["price_direction"] = "up" if pct_num > 0 else ("down" if pct_num < 0 else "flat")
+        sign = "+" if pct_num > 0 else ""
+        stock["price_change_display"] = f"{sign}{pct_num:.2f}%"
+    if quote.get("price"):
+        stock["price_display"] = quote["price"]
+    if quote.get("change"):
+        direction = stock.get("price_direction") or quote.get("direction") or ""
+        raw = str(quote["change"]).strip()
+        bare = raw.lstrip("+-")
+        try:
+            if float(bare.replace(",", "")) == 0:
+                stock["price_change_abs_display"] = "—"
+            elif direction == "up":
+                stock["price_change_abs_display"] = f"▲ {bare}"
+            elif direction == "down":
+                stock["price_change_abs_display"] = f"▼ {bare}"
+            else:
+                stock["price_change_abs_display"] = raw
+        except ValueError:
+            stock["price_change_abs_display"] = raw
+
+
+def _normalize_stock_signals(stock: dict) -> None:
+    """Attach human-readable labels for the decision signals the template shows
+    in the confidence/rationale block (뉴스 톤, 간밤, 신뢰도) and for the
+    session-review outcome badge."""
+    if stock.get("news_sentiment"):
+        stock["news_sentiment_label"] = SENTIMENT_LABEL.get(stock["news_sentiment"], stock["news_sentiment"])
+    onsig = stock.get("overnight_signal")
+    if isinstance(onsig, dict) and onsig.get("direction"):
+        onsig["label"] = OVERNIGHT_LABEL.get(onsig["direction"], onsig["direction"])
+    if stock.get("confidence"):
+        stock["confidence_label"] = CONFIDENCE_LABEL.get(stock["confidence"], stock["confidence"])
+    result = stock.get("result")
+    if isinstance(result, dict) and result.get("outcome"):
+        result["label"] = OUTCOME_LABEL.get(result["outcome"], result["outcome"])
+
+
+def _normalize_stock_news(stock: dict, now: datetime) -> None:
+    """Filter stock news to the last 24h + annotate time_ago/impact. The 24h
+    cutoff prevents Naver's "top-10" stale articles (sometimes weeks old) from
+    crowding the trader's morning scan."""
+    stock_news = stock.get("news") or []
+    cutoff_24h = now - timedelta(hours=24)
+    kept = []
+    for n in stock_news:
+        # Uniform shape: treat `date` as the published timestamp.
+        if "published_at" not in n and n.get("date"):
+            n["published_at"] = n["date"]
+        dt = _parse_published(n.get("published_at"))
+        if dt is None:
+            continue
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=now.tzinfo or KST)
+        if dt < cutoff_24h:
+            continue
+        n["time_ago"] = _time_ago(n.get("published_at"), now)
+        if "url" not in n and n.get("link"):
+            n["url"] = n["link"]
+        if not n.get("impact"):
+            n["impact"] = _auto_impact(n.get("title", ""))
+        _annotate_impact(n)
+        kept.append(n)
+    stock["news"] = kept
+    stock["news_count"] = len(kept)
+
+
+def _normalize_stocks(summary: dict, now: datetime) -> None:
     for stock in summary.get("stocks") or []:
         # backward-compat: accept single `owner` as `owners: [owner]`
         if stock.get("owner") and not stock.get("owners"):
@@ -391,86 +439,20 @@ def _normalize(summary: dict) -> dict:
             legacy = {"positive": "buy", "negative": "sell", "neutral": "hold"}
             stock["recommendation"] = legacy.get(stock["sentiment"], "hold")
             stock["recommendation_label"] = RECOMMENDATION_LABEL[stock["recommendation"]]
-        # derive quote display fields
-        quote = stock.get("quote") or {}
-        pct_num = quote.get("change_pct_num")
-        if pct_num is None and quote.get("change_pct"):
-            try:
-                pct_num = float(str(quote["change_pct"]).replace("%", "").replace("+", ""))
-            except ValueError:
-                pct_num = None
-        if pct_num is not None:
-            stock["price_change_pct_num"] = pct_num
-            stock["price_direction"] = "up" if pct_num > 0 else ("down" if pct_num < 0 else "flat")
-            sign = "+" if pct_num > 0 else ""
-            stock["price_change_display"] = f"{sign}{pct_num:.2f}%"
-        # Absolute price + signed change amount (호가창 style)
-        if quote.get("price"):
-            stock["price_display"] = quote["price"]
-        if quote.get("change"):
-            direction = stock.get("price_direction") or quote.get("direction") or ""
-            raw = str(quote["change"]).strip()
-            # Strip any existing sign; re-sign from direction
-            bare = raw.lstrip("+-")
-            try:
-                if float(bare.replace(",", "")) == 0:
-                    stock["price_change_abs_display"] = "—"
-                elif direction == "up":
-                    stock["price_change_abs_display"] = f"▲ {bare}"
-                elif direction == "down":
-                    stock["price_change_abs_display"] = f"▼ {bare}"
-                else:
-                    stock["price_change_abs_display"] = raw
-            except ValueError:
-                stock["price_change_abs_display"] = raw
-        # decision-signal labels (news_sentiment, overnight_signal, confidence)
-        if stock.get("news_sentiment"):
-            stock["news_sentiment_label"] = SENTIMENT_LABEL.get(stock["news_sentiment"], stock["news_sentiment"])
-        onsig = stock.get("overnight_signal")
-        if isinstance(onsig, dict) and onsig.get("direction"):
-            onsig["label"] = OVERNIGHT_LABEL.get(onsig["direction"], onsig["direction"])
-        if stock.get("confidence"):
-            stock["confidence_label"] = CONFIDENCE_LABEL.get(stock["confidence"], stock["confidence"])
-        # session-review result label
-        result = stock.get("result")
-        if isinstance(result, dict) and result.get("outcome"):
-            result["label"] = OUTCOME_LABEL.get(result["outcome"], result["outcome"])
+
+        _normalize_stock_quote(stock)
+        _normalize_stock_signals(stock)
+
         pts = stock.get("key_points") or []
         for pt in pts:
             _annotate_impact(pt)
             pt["time_ago"] = _time_ago(pt.get("published_at"), now)
         pts.sort(key=lambda p: p.get("published_at") or "0", reverse=True)
         stock["key_points"] = pts
-        # Stock news from Naver scrape. Items have {title, link, source, date}.
-        # Compute time_ago + filter to the last 24h — a trader's morning check
-        # shouldn't surface weeks-old articles that Naver happens to keep in
-        # the top-10 list. Items without a parseable timestamp drop out.
-        stock_news = stock.get("news") or []
-        cutoff_24h = now - timedelta(hours=24)
-        kept = []
-        for n in stock_news:
-            # Uniform shape: treat `date` as the published timestamp.
-            if "published_at" not in n and n.get("date"):
-                n["published_at"] = n["date"]
-            dt = _parse_published(n.get("published_at"))
-            if dt is None:
-                continue
-            if dt.tzinfo is None:
-                dt = dt.replace(tzinfo=now.tzinfo or KST)
-            if dt < cutoff_24h:
-                continue
-            n["time_ago"] = _time_ago(n.get("published_at"), now)
-            # Convert `link` (fetcher key) to `url` for template uniformity.
-            if "url" not in n and n.get("link"):
-                n["url"] = n["link"]
-            # Fill in impact via heuristic if agent didn't label it.
-            if not n.get("impact"):
-                n["impact"] = _auto_impact(n.get("title", ""))
-            _annotate_impact(n)
-            kept.append(n)
-        stock["news"] = kept
-        stock["news_count"] = len(kept)
-        # Price-context block (sparkline + 52w range) if history is available
+
+        _normalize_stock_news(stock, now)
+
+        # Price-context block (sparkline + 52w range) if history is available.
         hist = stock.get("history") or {}
         closes = hist.get("closes_20d") or []
         if closes:
@@ -481,6 +463,19 @@ def _normalize(summary: dict) -> dict:
                 else "flat"
             )
             stock["history"] = hist
+
+
+def _normalize(summary: dict) -> dict:
+    """Fill derived fields the template relies on — labels, time_ago, price
+    display, sparklines, etc. Dispatches to concern-focused sub-functions;
+    order matters only for stock-level (needs rec first, signals next)."""
+    now = _reference_now(summary)
+    _normalize_macro(summary)
+    _normalize_top_stories(summary)
+    _normalize_mood_dashboard(summary)
+    _normalize_focus(summary, now)
+    _normalize_sectors(summary, now)
+    _normalize_stocks(summary, now)
     return summary
 
 
@@ -625,9 +620,8 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
         key=lambda s: (-(len(s.get("news") or [])), s.get("name", "")),
     )
 
-    env = _env()
-    tmpl = env.get_template("report.html.j2")
-    html = tmpl.render(
+    html = _render_template(
+        "report.html.j2",
         date=date,
         tldr=summary.get("tldr", ""),
         headline=summary.get("headline", ""),
@@ -764,9 +758,8 @@ def build_accuracy(base_url: str) -> str:
             attrib[k] = attrib.get(k, 0) + (v or 0)
     attrib_sorted = sorted(attrib.items(), key=lambda kv: kv[1], reverse=True)
 
-    env = _env()
-    tmpl = env.get_template("accuracy.html.j2")
-    return tmpl.render(
+    return _render_template(
+        "accuracy.html.j2",
         base_url=base_url,
         records=records,
         totals=totals,
@@ -846,9 +839,8 @@ def build_accuracy_day(summary: dict, base_url: str) -> str | None:
     attrib = review.get("signal_attribution") or {}
     attrib_sorted = sorted(((k, v) for k, v in attrib.items() if v), key=lambda kv: kv[1], reverse=True)
 
-    env = _env()
-    tmpl = env.get_template("accuracy_day.html.j2")
-    return tmpl.render(
+    return _render_template(
+        "accuracy_day.html.j2",
         base_url=base_url,
         date=summary.get("date") or "",
         session_indices=_session_indices(review.get("session_change")),
@@ -879,9 +871,7 @@ def build_archive_index(base_url: str) -> str:
         has_retro = (DOCS / "accuracy" / f"{date}.html").exists()
         entries.append({"date": date, "filename": p.name, "tldr": tldr, "has_retro": has_retro})
 
-    env = _env()
-    tmpl = env.get_template("archive.html.j2")
-    return tmpl.render(entries=entries, base_url=base_url)
+    return _render_template("archive.html.j2", entries=entries, base_url=base_url)
 
 
 def main(argv: list[str]) -> int:

@@ -20,31 +20,37 @@
 <meta name="twitter:description" content="미-이란 휴전 수요일 만료 예고에 유가 +2.8%, VIX +8% 급등. SK하이닉스 실적 기대감이 지수 방어 중">
 
 <style>
-  :root {
+:root {
     --fg: #0f172a;
     --muted: #64748b;
     --bg: #ffffff;
     --accent: #0f766e;
     --border: #e2e8f0;
     --card: #f8fafc;
-    --pos: #dc2626;        /* 한국 주식 관행: 상승=빨강 */
-    --pos-bg: rgba(220,38,38,0.08);
-    --neg: #2563eb;        /* 하락=파랑 */
-    --neg-bg: rgba(37,99,235,0.08);
-    --neu: #6b7280;
-    --neu-bg: rgba(107,114,128,0.08);
+    /* 한국 주식 관행: 상승=빨강 / 하락=파랑 */
+    --pos: #dc2626;     --pos-bg: rgba(220,38,38,0.08);
+    --neg: #2563eb;     --neg-bg: rgba(37,99,235,0.08);
+    --partial: #d97706; --partial-bg: rgba(245,158,11,0.15);
+    --neu: #6b7280;     --neu-bg: rgba(107,114,128,0.08);
+    --good: #16a34a;    --good-bg: rgba(22,163,74,0.08);
+    --bad:  #b91c1c;    --bad-bg:  rgba(185,28,28,0.08);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --fg: #e2e8f0; --muted: #94a3b8; --bg: #0f172a; --accent: #5eead4;
-      --border: #1e293b; --card: #1e293b;
-      --pos: #f87171; --pos-bg: rgba(248,113,113,0.12);
-      --neg: #60a5fa; --neg-bg: rgba(96,165,250,0.12);
-      --neu: #94a3b8; --neu-bg: rgba(148,163,184,0.12);
+      --fg: #e2e8f0;
+      --muted: #94a3b8;
+      --bg: #0f172a;
+      --accent: #5eead4;
+      --border: #1e293b;
+      --card: #1e293b;
+      --pos: #f87171;  --pos-bg: rgba(248,113,113,0.12);
+      --neg: #60a5fa;  --neg-bg: rgba(96,165,250,0.12);
+      --neu: #94a3b8;  --neu-bg: rgba(148,163,184,0.12);
+      --good: #4ade80; --good-bg: rgba(74,222,128,0.12);
+      --bad:  #f87171; --bad-bg:  rgba(248,113,113,0.12);
     }
   }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+  * { box-sizing: border-box; }  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
       "Pretendard", "Noto Sans KR", sans-serif;
@@ -769,21 +775,21 @@
       </span>
       <span class="ticker-item" data-ticker="USDKRW">
         <span class="name">USD/KRW</span>
-        <span class="value">1,469.30</span>
+        <span class="value">1,482.00</span>
         <span class="delta flat">
-3.00        </span>
+9.70        </span>
       </span>
       <span class="ticker-item" data-ticker="BTC">
         <span class="name">BTC</span>
-        <span class="value">113,238,000</span>
-        <span class="delta up">
-+783,000<span class="pct">+0.70%</span>        </span>
+        <span class="value">111,994,000</span>
+        <span class="delta down">
+-461,000<span class="pct">-0.41%</span>        </span>
       </span>
       <span class="ticker-item" data-ticker="ETH">
         <span class="name">ETH</span>
-        <span class="value">3,439,000</span>
-        <span class="delta up">
-+8,000<span class="pct">+0.23%</span>        </span>
+        <span class="value">3,425,000</span>
+        <span class="delta down">
+-6,000<span class="pct">-0.17%</span>        </span>
       </span>
       <span class="ticker-item" data-ticker="KOSPI">
         <span class="name">KOSPI</span>
@@ -799,21 +805,21 @@
       </span>
       <span class="ticker-item" data-ticker="USDKRW">
         <span class="name">USD/KRW</span>
-        <span class="value">1,469.30</span>
+        <span class="value">1,482.00</span>
         <span class="delta flat">
-3.00        </span>
+9.70        </span>
       </span>
       <span class="ticker-item" data-ticker="BTC">
         <span class="name">BTC</span>
-        <span class="value">113,238,000</span>
-        <span class="delta up">
-+783,000<span class="pct">+0.70%</span>        </span>
+        <span class="value">111,994,000</span>
+        <span class="delta down">
+-461,000<span class="pct">-0.41%</span>        </span>
       </span>
       <span class="ticker-item" data-ticker="ETH">
         <span class="name">ETH</span>
-        <span class="value">3,439,000</span>
-        <span class="delta up">
-+8,000<span class="pct">+0.23%</span>        </span>
+        <span class="value">3,425,000</span>
+        <span class="delta down">
+-6,000<span class="pct">-0.17%</span>        </span>
       </span>
   </div>
 </div>
