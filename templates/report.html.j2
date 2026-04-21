@@ -1024,6 +1024,49 @@
     }
   }
 
+  function updateCoffeeBanner(cards, data) {
+    const banner = document.querySelector(".coffee-banner");
+    if (!banner) return;
+    const headline = banner.querySelector(".headline");
+    const sub      = banner.querySelector(".sub");
+
+    // Build entries from the DOM so ownership/name info stays server-rendered
+    // (single source of truth); the Worker just supplies live numbers.
+    const entries = [];
+    cards.forEach((card) => {
+      const q = data[card.dataset.code];
+      if (!q || typeof q.change_pct !== "number") return;
+      const name = card.querySelector(".stock-name")?.textContent?.trim() || "";
+      const owners = [...card.querySelectorAll(".owner-chip")]
+        .map((el) => el.textContent.replace("👤", "").trim())
+        .filter(Boolean);
+      entries.push({ name, owners, pct: q.change_pct });
+    });
+
+    const positives = entries.filter((e) => e.pct > 0);
+    positives.sort((a, b) => b.pct - a.pct);
+    const top = positives[0];
+
+    if (top) {
+      banner.classList.remove("none");
+      if (headline) {
+        headline.textContent = "";
+        headline.append("☕ 오늘 커피는 ");
+        const strong = document.createElement("strong");
+        strong.textContent = top.owners.join("·");
+        headline.append(strong, "님이!");
+      }
+      if (sub) {
+        const sign = top.pct > 0 ? "+" : "";
+        sub.textContent = `${top.name} ${sign}${top.pct.toFixed(2)}% — 친구 보유 종목 중 최고 상승`;
+      }
+    } else {
+      banner.classList.add("none");
+      if (headline) headline.textContent = "☕ 오늘 커피는 각자 사기";
+      if (sub) sub.textContent = "친구 보유 종목 중 상승 종목 없음";
+    }
+  }
+
   async function refreshQuotes() {
     if (!QUOTE_API) return;
     const cards = document.querySelectorAll(".friend-card[data-code]");
@@ -1040,6 +1083,7 @@
         if (q) { applyQuote(card, q); applied += 1; }
       });
       if (applied > 0) {
+        updateCoffeeBanner(cards, data);
         setIndicator("live", "🟢 Live · 업데이트 " + fmtKstTime(kstNow()));
       }
     } catch (err) {
