@@ -364,20 +364,28 @@
   .owners-wrap .owner-more {
     cursor: pointer; opacity: 0.75;
     background: rgba(0,0,0,0.06);
-    transition: opacity 0.12s;
+    /* Fixed box dimensions so the chip keeps the same size when it morphs
+       between "+N" (text) and "✕" (::after pseudo). Without this, the chip
+       briefly grows/shrinks during reflow and looks jittery. 26px accom-
+       modates "+N" up to 1-digit cleanly; larger groups fall back to
+       natural width (rare in our portfolio). */
+    min-width: 26px;
+    padding: 2px 6px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: opacity 0.15s ease, background 0.15s ease;
   }
   .owners-wrap.open .owner-more,
   .owners-wrap:focus-within .owner-more { opacity: 1; }
-  /* When open the +N chip morphs into a close hint. `font-size: 0 !important`
-     is needed to beat the context-specific rules like `article.stock .owner-
-     chips .owner-chip { font-size: 10px }` (higher specificity). Original
-     "+N" text stays in DOM for screen readers; visual gets the ✕ pseudo. */
+  /* Open-state morph. `font-size: 0 !important` beats higher-specificity
+     `.owner-chip` font-size rules. `padding` stays the same so the box
+     doesn't resize when morphing; only the glyph swaps. */
   .owners-wrap.open .owner-more {
     font-size: 0 !important;
-    padding: 3px 6px;
   }
   .owners-wrap.open .owner-more::after {
-    content: "✕"; font-size: 11px; color: var(--muted);
+    content: "✕"; font-size: 11px; line-height: 1;
+    color: var(--muted);
   }
   .owner-chip.owner-leader {
     background: linear-gradient(135deg, rgba(255,214,0,0.25), rgba(255,214,0,0.08));
