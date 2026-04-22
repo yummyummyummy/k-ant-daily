@@ -631,7 +631,7 @@
       },
       "recommendation": "buy",
       "confidence": "medium",
-      "rationale": "퀄컴 CEO 직접 회동이라는 개별 촉매 + 간밤 SOX +0.5% 중립 + 선반영 아님. 뉴스 긍정·간밤 중립 조합으로 매수 판정.",
+      "rationale": "퀄컴 CEO 회동 + AI 반도체 협력 기대로 강보합 출발 예상. 뉴스 긍정·간밤 중립 조합으로 매수 판정. 간밤 SOX +0.5% 중립 + 선반영 아님.",
       "summary": "어제 219,000원(+2.10%) 마감, 52주 고가 223,000원까지 1.8% 남음. 퀄컴 아몬 CEO가 삼성·SK·LG 경영진과 AI 반도체 협력을 논의하며 글로벌 AI 밸류체인 내 한국 위상 재확인. 간밤 NVDA -1.08%가 부담이나 SOX +0.5%·MU +0.21%로 상쇄. 오늘 개장 초 소폭 강보합 출발 후 장중 미·이란 협상 뉴스에 따라 변동성 예상.",
       "key_points": [
         {
@@ -842,7 +842,12 @@
       "price_change_abs_display": "▲ 4,500",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
-      "news_count": 10
+      "news_count": 10,
+      "direction_arrow": "↑",
+      "direction_label": "상승 기대",
+      "direction_cls": "up",
+      "outlook_line": "퀄컴 CEO 회동 + AI 반도체 협력 기대로 강보합 출발 예상",
+      "sector": "반도체"
     },
     {
       "code": "000660",
@@ -871,7 +876,7 @@
       },
       "recommendation": "buy",
       "confidence": "medium",
-      "rationale": "퀄컴 CEO 회동 + AI 반도체 실적 기대로 뉴스 긍정. 간밤 SOX +0.5% 중립. 어제 +4.97%로 5% 미만이라 선반영 기준 미달.",
+      "rationale": "HBM 실적 모멘텀 강력, 상승 여력 존재. 1Q 영업익 +369% 컨센서스 + 목표가 200만원 논의 호재, 간밤 SOX +0.5% 중립 우호, 아직 선반영 안 됨.",
       "summary": "어제 1,224,000원(+4.97%) 마감, 52주 고가 1,228,000원까지 0.3%. '120만닉스' 돌파하며 사상 최고가 근접. 퀄컴 CEO 방한으로 HBM·AI 반도체 수요 재확인. 간밤 NVDA -1.08%가 유일한 부담이나 SOX·MU는 양호. 오늘 신고가 경신 시도 가능하나 미·이란 이벤트에 변동성 클 수 있음.",
       "key_points": [
         {
@@ -1089,7 +1094,12 @@
       "price_change_abs_display": "▲ 58,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
-      "news_count": 10
+      "news_count": 10,
+      "direction_arrow": "↑",
+      "direction_label": "상승 기대",
+      "direction_cls": "up",
+      "outlook_line": "HBM 실적 모멘텀 강력, 상승 여력 존재",
+      "sector": "반도체"
     },
     {
       "code": "267260",
@@ -1118,7 +1128,7 @@
       },
       "recommendation": "hold",
       "confidence": "low",
-      "rationale": "LS일렉 최대실적 등 전력기기 섹터 시황은 우호적이나 개별 촉매 부재. (어제 회고 교훈 반영: 섹터 시황 기사만 있어 뉴스 톤 중립으로 조정.) 간밤 중립, 관망 판정.",
+      "rationale": "섹터 시황 우호이나 개별 촉매 없어 관망 유지. LS일렉 최대실적 등 전력기기 섹터 시황은 우호적이나 종목 개별 재료 부재. 간밤 GEV/ETN 혼조.",
       "summary": "어제 1,058,000원(-2.67%) 마감, 최근 고점(1,087,000) 대비 소폭 조정 중. 동종 LS일렉트릭이 1분기 최대실적을 발표해 전력 슈퍼사이클 지속을 확인했으나, '전력기기 빅3 재무 뇌관' 경고 기사도 병존. 오늘 IR 개최 예정이나 실적 발표 전까지 방향성 제한적.",
       "key_points": [
         {
@@ -1269,7 +1279,12 @@
       "price_change_abs_display": "▼ 29,000",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 6
+      "news_count": 6,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "섹터 시황 우호이나 개별 촉매 없어 관망 유지",
+      "sector": "전력기기"
     },
     {
       "code": "196170",
@@ -1294,7 +1309,7 @@
       },
       "recommendation": "hold",
       "confidence": "low",
-      "rationale": "개별 뉴스 부재로 뉴스 톤 중립. 간밤 XBI -1.02%·IBB -1.01% 약세. 중립+약세 조합으로 관망.",
+      "rationale": "개별 촉매 없어 바이오 섹터 흐름 동조 예상. 뉴스 톤 중립, 간밤 XBI/IBB 중립·약세, 섹터 전반 차익실현 가능성.",
       "summary": "어제 369,000원(-0.67%) 마감, 52주 고가(569,000) 대비 -35%. 최근 20일간 박스권(354,000~374,500) 횡보 중. 오늘 개별 촉매 없이 간밤 바이오 섹터 약세가 그대로 반영될 가능성. 장중 미·이란 협상 결과에 따른 시장 전체 방향이 변수.",
       "key_points": [],
       "disclosures": [
@@ -1481,7 +1496,12 @@
       "price_change_abs_display": "▼ 2,500",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 9
+      "news_count": 9,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "개별 촉매 없어 바이오 섹터 흐름 동조 예상",
+      "sector": "바이오"
     },
     {
       "code": "042700",
@@ -1510,7 +1530,7 @@
       },
       "recommendation": "hold",
       "confidence": "low",
-      "rationale": "개별 촉매 부재. 숏커버링·주식부자 순위 등 섹터 시황 기사만 있어 뉴스 톤 중립. (어제 회고 교훈 반영: 시황 기사만으로 긍정 라벨 부여 금지.) 간밤 중립, 관망.",
+      "rationale": "개별 촉매 부재, 반도체 섹터 흐름 동조 예상. 간밤 SOX +0.5% 약한 우호 정도.",
       "summary": "어제 295,000원(+2.79%) 마감. 공매도 숏커버링 수혜 종목으로 언급되나 개별 실적·수주 뉴스 없음. 반도체 섹터 전체 분위기에 연동될 전망. 52주 고가(335,500) 대비 -12%로 아직 여유 있으나 독자적 모멘텀은 부족.",
       "key_points": [],
       "disclosures": [
@@ -1699,7 +1719,12 @@
       "price_change_abs_display": "▲ 8,000",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 9
+      "news_count": 9,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "개별 촉매 부재, 반도체 섹터 흐름 동조 예상",
+      "sector": "반도체"
     },
     {
       "code": "012450",
@@ -1728,7 +1753,7 @@
       },
       "recommendation": "hold",
       "confidence": "low",
-      "rationale": "K방산 22조 수출·미국 로비 확대 등 뉴스 긍정이나, 간밤 ITA -3.78%·RTX -4.4% 급락으로 상충. 뉴스 긍정+간밤 약세 = 관망.",
+      "rationale": "방산 호재 vs 간밤 미국 방산주 급락, 갭다운 우려. K방산 22조 수출·미국 로비 확대 등 뉴스 긍정이나 ITA -3.78%·RTX -4.4% 낙폭 부담.",
       "summary": "어제 1,391,000원(-2.39%) 마감, 최근 고점(1,537,000) 대비 조정 중. K방산 수출 22조·경제효과 46조 등 펀더멘털 확인에도 불구, 간밤 미국 방산 ETF(ITA) -3.78%·RTX -4.4% 급락이 오늘 갭다운 요인. 미 방산 로비 18배 확대 기사는 중장기 긍정이나 단기 주가 촉매로는 약함.",
       "key_points": [
         {
@@ -1943,7 +1968,12 @@
       "price_change_abs_display": "▼ 34,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
-      "news_count": 10
+      "news_count": 10,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "방산 호재 vs 간밤 미국 방산주 급락, 갭다운 우려",
+      "sector": "방산"
     },
     {
       "code": "096770",
@@ -2187,7 +2217,12 @@
       "price_change_abs_display": "▲ 4,700",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
-      "news_count": 10
+      "news_count": 10,
+      "direction_arrow": "↑",
+      "direction_label": "상승 기대",
+      "direction_cls": "up",
+      "outlook_line": "SK온 도쿄 지사 설립이라는 개별 촉매 + K배터리 부활 섹터 훈풍",
+      "sector": "에너지/정유"
     },
     {
       "code": "299660",
@@ -2316,7 +2351,12 @@
       "price_change_abs_display": "▼ 500",
       "news_sentiment_label": "부정",
       "confidence_label": "높음",
-      "news_count": 0
+      "news_count": 0,
+      "direction_arrow": "↓↓",
+      "direction_label": "강한 하락 경계",
+      "direction_cls": "down-strong",
+      "outlook_line": "투자경고종목 지정 예고 + 공매도 과열종목 지정 + 어제 -12.17% 폭락",
+      "sector": "바이오"
     },
     {
       "code": "233740",
@@ -2341,7 +2381,7 @@
       },
       "recommendation": "hold",
       "confidence": "low",
-      "rationale": "코스닥150 2배 추종 ETF. 간밤 나스닥 -0.59%·QQQ -0.38%로 약한 역풍. 코스닥 어제 +0.36% 소폭 상승에 그쳤고, 오늘 갭다운 출발 시 레버리지 효과로 하락폭 확대 가능.",
+      "rationale": "간밤 나스닥 약보합, 코스닥 우호 흐름 지연 예상. 코스닥150 2배 추종 ETF 특성상 변동성만 확대.",
       "summary": "어제 16,680원(+2.05%) 마감. 빚투 34조 사상 최고치 등 시장 과열 신호가 병존하는 가운데, 코스닥은 코스피 대비 상대적 부진(+0.36% vs +2.72%). 간밤 미 증시 하락으로 오늘 갭다운 가능성. 레버리지 특성상 하방 리스크 주의.",
       "key_points": [],
       "disclosures": [
@@ -2442,7 +2482,12 @@
       "price_change_abs_display": "▲ 335",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 1
+      "news_count": 1,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "간밤 나스닥 약보합, 코스닥 우호 흐름 지연 예상",
+      "sector": "ETF"
     },
     {
       "code": "028050",
@@ -2681,7 +2726,12 @@
       "price_change_abs_display": "▲ 2,400",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
-      "news_count": 10
+      "news_count": 10,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "NH증권 목표가 71% 상향 등 뉴스 강한 긍정이나, 20일간 +53% 급등으로 단기 과열 극심",
+      "sector": "건설/플랜트"
     },
     {
       "code": "310210",
@@ -2702,7 +2752,7 @@
       },
       "recommendation": "hold",
       "confidence": "low",
-      "rationale": "VRN11 임상 데이터 긍정이나 어제 -10.07% 급락으로 이미 반영. 간밤 XBI -1.02% 약세. 뉴스 긍정+간밤 약세 상충으로 관망. (어제 회고 교훈 반영: 전일 ±10% 급변동 후 재량 상향 금지.)",
+      "rationale": "VRN11 임상 긍정이나 어제 -10.07% 급락 후 쉬어감 전망. 이벤트 강도는 유지되나 단기 과열로 이미 반영.",
       "summary": "어제 308,000원(-10.07%) 급락 마감. 직전 세션 342,500원(+11.56%)에서 급등분을 대부분 반납. AACR2026에서 공개한 VRN11 EGFR C797S 내성 환자 데이터는 긍정적이나, 주가는 이미 '기대→반영→차익실현' 사이클을 완료. 오늘 추가 하락 또는 반등 모두 열려 있으나 방향 예측 어려움.",
       "key_points": [
         {
@@ -2849,7 +2899,12 @@
       "price_change_abs_display": "▼ 34,500",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
-      "news_count": 4
+      "news_count": 4,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "VRN11 임상 긍정이나 어제 -10.07% 급락 후 쉬어감 전망",
+      "sector": "바이오"
     },
     {
       "code": "445680",
@@ -2874,7 +2929,7 @@
       },
       "recommendation": "hold",
       "confidence": "low",
-      "rationale": "개별 뉴스 부재. 간밤 XBI -1.02%·IBB -1.01% 약세. (어제 회고 교훈 반영: 바이오 소형주는 프록시 약세에 민감, 매수 보류.)",
+      "rationale": "개별 촉매 없어 바이오 섹터 동조, 소형주 변동성 리스크. 섹터 전반 XBI 약세 흐름.",
       "summary": "어제 87,800원(-1.68%) 마감, 20일간 -24.89% 하락 추세 지속. 52주 고가(149,200) 대비 -41%. 최근 24시간 내 개별 촉매 없이 바이오 섹터 전체 약세에 연동될 전망. 소형 바이오 특성상 간밤 XBI 약세가 직접적 매도 압력으로 작용할 수 있음.",
       "key_points": [],
       "deep_dive": {
@@ -2998,7 +3053,12 @@
       "price_change_abs_display": "▼ 1,500",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 1
+      "news_count": 1,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "개별 촉매 없어 바이오 섹터 동조, 소형주 변동성 리스크",
+      "sector": "바이오"
     },
     {
       "code": "009540",
@@ -3232,7 +3292,12 @@
       "price_change_abs_display": "▲ 14,500",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
-      "news_count": 10
+      "news_count": 10,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "한-인도 조선 MOU·1분기 잠정실적 등 뉴스 긍정이나 어제 +3.51%에 이미 반영",
+      "sector": "조선"
     },
     {
       "code": "174900",
@@ -3257,7 +3322,7 @@
       },
       "recommendation": "hold",
       "confidence": "low",
-      "rationale": "이중항체 완전관해 데이터는 긍정적이나 어제 -12.72% 급락. 뉴스 긍정+간밤 약세 상충. (어제 회고 교훈 반영: 전일 ±10% 급변동 후 재량 상향 금지 + 바이오 소형주 XBI 약세 시 매수 보류.)",
+      "rationale": "어제 -12.72% 급락 여파로 관망, 반등 탄력 제한적. 이중항체 데이터 긍정이나 바이오 섹터 조정 + 종목 고유 촉매 부재.",
       "summary": "어제 48,700원(-12.72%) 급락 마감. 이중항체 신약 동물실험에서 극소량으로 완전관해 달성이라는 긍정적 데이터에도 불구, 직전 급등분(57,900→55,800→48,700) 차익실현 매물에 눌림. 간밤 XBI -1.02%도 부담. 오늘 추가 하락 가능성 있으나 완전관해 데이터가 중기 모멘텀으로 작용할 여지.",
       "key_points": [
         {
@@ -3399,7 +3464,12 @@
       "price_change_abs_display": "▼ 7,100",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
-      "news_count": 1
+      "news_count": 1,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "어제 -12.72% 급락 여파로 관망, 반등 탄력 제한적",
+      "sector": "바이오"
     },
     {
       "code": "298380",
@@ -3424,7 +3494,7 @@
       },
       "recommendation": "hold",
       "confidence": "low",
-      "rationale": "개별 촉매 부재, 시황 기사만 존재. (어제 회고 교훈 반영: 섹터 시황 기사만으로 긍정 라벨 부여 금지.) 간밤 XBI -1.02% 약세. 중립+약세 = 관망.",
+      "rationale": "개별 촉매 없고 XBI 약세, 섹터 흐름 그대로 노출. 시황 기사만 존재, 섹터 전반 차익실현 압력.",
       "summary": "어제 155,900원(-2.68%) 마감, 20일간 -9.52% 하락 추세. 52주 고가(257,500) 대비 -39%. 삼성에피스 ADC·CAR-T 기사는 간접 관련이나 개별 촉매 아님. 알고리즘 반등 조짐 분석 기사가 있으나 기술적 판단일 뿐. 간밤 XBI 약세에 추가 하락 가능.",
       "key_points": [],
       "disclosures": [
@@ -3611,7 +3681,12 @@
       "price_change_abs_display": "▼ 4,300",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 9
+      "news_count": 9,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "개별 촉매 없고 XBI 약세, 섹터 흐름 그대로 노출",
+      "sector": "바이오"
     },
     {
       "code": "166480",
@@ -3632,7 +3707,7 @@
       },
       "recommendation": "sell",
       "confidence": "medium",
-      "rationale": "2일 전 +12% 급등 후 어제 -4.93% 반락 시작. 추가 촉매 없음. (어제 회고 교훈 반영: 선반영 라벨을 붙이고도 관망은 논리 불일치 — 추가 촉매 없이 선반영이면 매도.) 간밤 XBI -1.02% 역풍.",
+      "rationale": "2일 전 급등 후 차익실현 압력 지속, 약세 지속 경계. 어제 -4.93% 반락으로 하락 추세 시작, 실체 촉매 미확정.",
       "summary": "어제 3,180원(-4.93%) 마감. 2일 전 2,985→3,345원(+12.06%) 급등분 반납 시작. 루게릭병 치료제 뉴로나타-알 허가 대기가 유일한 모멘텀이나 구체적 타임라인 불명. 비임상 연구시설 베트남 진출은 루틴 수준. 급등 후 차익실현 + XBI 약세 이중 압력.",
       "key_points": [],
       "disclosures": [
@@ -3718,7 +3793,12 @@
       "price_change_abs_display": "▼ 165",
       "news_sentiment_label": "중립",
       "confidence_label": "중간",
-      "news_count": 0
+      "news_count": 0,
+      "direction_arrow": "↓",
+      "direction_label": "하락 경계",
+      "direction_cls": "down",
+      "outlook_line": "2일 전 급등 후 차익실현 압력 지속, 약세 지속 경계",
+      "sector": "바이오"
     },
     {
       "code": "035720",
@@ -3747,7 +3827,7 @@
       },
       "recommendation": "hold",
       "confidence": "low",
-      "rationale": "개별 촉매 부재. 카카오모빌리티 실적·카카오톡 UI 변경은 주가 직접 영향 제한적. 간밤 META -0.31%·GOOGL -1.52% 약세. 중립+약세 = 관망.",
+      "rationale": "개별 촉매 없어 플랫폼 섹터 흐름 동조. 간밤 META/GOOGL 혼조, 특별한 방향성 없음.",
       "summary": "어제 48,950원(+0.20%) 보합 마감, 52주 고가(71,600) 대비 -32%. 구글 제미나이 크롬 한국 상륙 vs 네이버 AI탭 경쟁 구도에서 카카오 언급은 제한적. 카카오모빌리티 최대 실적은 자회사 호조이나 본체 주가 촉매로는 약함.",
       "key_points": [],
       "disclosures": [
@@ -3946,7 +4026,12 @@
       "price_change_abs_display": "▲ 100",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 10
+      "news_count": 10,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "개별 촉매 없어 플랫폼 섹터 흐름 동조",
+      "sector": "플랫폼/IT"
     },
     {
       "code": "005380",
@@ -3975,7 +4060,7 @@
       },
       "recommendation": "hold",
       "confidence": "low",
-      "rationale": "53만대 리콜(부정) vs 인도 3륜 전기차·4월 수출 최고(긍정) 혼재로 뉴스 톤 중립. 간밤 F -0.7%·GM -1.85% 약세. LG엔솔이 시총 추월한 점은 상대적 약세 신호.",
+      "rationale": "리콜 악재 vs 수출 호재 혼재, 중립적 흐름 예상. 53만대 리콜(부정) vs 인도 3륜 전기차·4월 수출 최고(긍정) 상충.",
       "summary": "어제 546,000원(+3.61%) 마감, 코스피 전체 랠리에 동반 상승. 다만 오늘 53만대 리콜 뉴스(산타페·제네시스 포함)가 센티먼트 부담. 간밤 미국 완성차(GM -1.85%) 약세로 갭다운 가능. LG엔솔에 시총 추월당한 것도 심리적 약세 요인.",
       "key_points": [
         {
@@ -4190,7 +4275,12 @@
       "price_change_abs_display": "▲ 19,000",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 10
+      "news_count": 10,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "리콜 악재 vs 수출 호재 혼재, 중립적 흐름 예상",
+      "sector": "자동차"
     },
     {
       "code": "034230",
@@ -4219,7 +4309,7 @@
       },
       "recommendation": "hold",
       "confidence": "low",
-      "rationale": "1분기 실적 기대 이하(부정)이나 비중확대 의견 유지(긍정), 환율 수혜(긍정) 혼재. 종합 중립. 간밤 카지노 프록시 혼조(LVS +0.61%·WYNN -1.04%). 관망.",
+      "rationale": "실적 부진 우려 지속, 환율 수혜도 단기 동력 약함. 1Q 실적 기대 이하(부정)이나 비중확대 의견 유지(긍정) 혼재.",
       "summary": "어제 15,350원(-0.71%) 소폭 하락. 증권가는 1분기 실적 기대 이하이나 비중확대 의견을 유지. 방문객 증가에도 VIP 매출 감소(-40%)가 부담. 원화 약세(1,482원)로 외국인 큰손 유입 기대가 유일한 긍정 요인. 20일간 -9.55% 하락 추세.",
       "key_points": [],
       "disclosures": [
@@ -4330,7 +4420,12 @@
       "price_change_abs_display": "▼ 110",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 2
+      "news_count": 2,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "실적 부진 우려 지속, 환율 수혜도 단기 동력 약함",
+      "sector": "카지노/레저"
     },
     {
       "code": "352820",
@@ -4584,7 +4679,12 @@
       "price_change_abs_display": "▼ 6,000",
       "news_sentiment_label": "부정",
       "confidence_label": "높음",
-      "news_count": 10
+      "news_count": 10,
+      "direction_arrow": "↓↓",
+      "direction_label": "강한 하락 경계",
+      "direction_cls": "down-strong",
+      "outlook_line": "방시혁 구속영장 신청이라는 초대형 오너리스크",
+      "sector": "엔터"
     },
     {
       "code": "329180",
@@ -4594,7 +4694,7 @@
       "priced_in": true,
       "recommendation": "hold",
       "confidence": "medium",
-      "rationale": "한·미 무인함대 공동개발 + 동남아 K-방산 수출 + 1Q 잠정실적 호재로 뉴스 톤 긍정. 그러나 20일 +21% 급등(474,500→576,000)으로 상당 부분 선반영, 간밤 XLI -1.41%·DAC -2.27% (-1.84%) 약세로 갭다운 리스크. 관망으로 방어.",
+      "rationale": "방산 호재 vs 20일 +21% 과열, 갭다운 후 쉬어가는 흐름 예상. 한·미 무인함대·K-방산 수출·1Q 실적 긍정이나 상당 부분 선반영, 간밤 XLI/DAC 약세로 부담.",
       "summary": "어제 576,000원(보합) 마감, 20일 누적 +21% 급등 후 단기 쉬어가는 구간. 아침에 美·韓 무인함대 공동 제작·차세대 해전 게임체인저·동남아 K-방산 수출 등 긍정 헤드라인이 줄줄이 등장하고 1Q 잠정실적 공시도 나왔으나, 간밤 XLI·DAC 모두 약세로 마감해 오늘 개장 초 갭다운 후 흐름 재정비 가능성. 중장기 방산·조선 복합 모멘텀은 유효.",
       "key_points": [
         {
@@ -4847,7 +4947,12 @@
       "price_change_abs_display": "▲ 52,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
-      "news_count": 10
+      "news_count": 10,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "방산 호재 vs 20일 +21% 과열, 갭다운 후 쉬어가는 흐름 예상",
+      "sector": "조선"
     },
     {
       "code": "083450",
@@ -4857,7 +4962,7 @@
       "priced_in": false,
       "recommendation": "hold",
       "confidence": "low",
-      "rationale": "당일 개별 촉매 부재 (최근 종목 기사는 4/13 '사상 최대 실적 가시화' 이후 9일 경과). 간밤 SOX +0.5%·AMAT +0.69% 중립-우호. 어제 보합 마감. 뚜렷한 방향성 없어 관망.",
+      "rationale": "개별 촉매 부재, 반도체 장비 섹터 흐름 동조. 4/13 이후 신규 모멘텀 없음, 간밤 SOX/AMAT 약한 우호.",
       "summary": "어제 43,250원(보합) 마감, 20일 누적 +9%. 반도체 진공 스크러버·액침냉각 솔루션이 핵심 사업으로 MWC 2026 공개 호재는 3월에 소화된 상태. 4/13 '사상 최대 실적 가시화'로 7% 급등한 이후 새로운 개별 재료 부재. 간밤 반도체 장비 프록시(^SOX·AMAT) 중립-우호로 장세에 휩쓸리는 흐름 예상.",
       "key_points": [
         {
@@ -4996,7 +5101,12 @@
       "price_change_abs_display": "▲ 100",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 1
+      "news_count": 1,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "개별 촉매 부재, 반도체 장비 섹터 흐름 동조",
+      "sector": "반도체"
     },
     {
       "code": "079550",
@@ -5006,7 +5116,7 @@
       "priced_in": false,
       "recommendation": "hold",
       "confidence": "medium",
-      "rationale": "중동발 특수로 방산 4사 영업익 30%+ 성장, K-방산 수출 154억달러 회복, 말레이시아 DSA 2026 참가, 단일공급계약 공시 등 긍정 재료 多. 그러나 간밤 ITA -3.78%·RTX -4.4%·LMT -1.61% (-3.26%)로 美 방산 전반 강한 약세 → 오늘 개장 갭다운 리스크 명백. 관망으로 대응.",
+      "rationale": "방산 호재 다수이나 간밤 ITA -3.78%·RTX -4.4% 급락으로 갭다운 리스크. 중동 특수·K방산 수출·DSA 2026 참가·계약 공시 긍정이나 해외 섹터 약세가 강함.",
       "summary": "어제 909,000원(보합) 마감. 4/9 LIG넥스원에서 사명 변경 완료, 전일 단일공급계약 공시 + 말레이시아 DSA 2026 참가로 동남아 방공 시장 공략 속도. 중동 분쟁 수혜주로도 재부각. 그러나 간밤 美 방산 ETF ITA -3.78%·RTX -4.4% 등 섹터 전반 폭락에 가까운 약세 → 오늘 개장 초 갭다운 후 뉴스 호재에 반등 시도할지, 글로벌 방산 약세에 휩쓸려 밀릴지 관찰 필요.",
       "key_points": [
         {
@@ -5213,7 +5323,12 @@
       "price_change_abs_display": "▼ 12,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
-      "news_count": 4
+      "news_count": 4,
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "방산 호재 다수이나 간밤 ITA -3.78%·RTX -4.4% 급락으로 갭다운 리스크",
+      "sector": "방산"
     }
   ]
 }

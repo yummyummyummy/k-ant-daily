@@ -2,117 +2,140 @@ stocks:
   - code: "005930"
     name: "삼성전자"
     market: KOSPI
+    sector: "반도체"
     owners: ["장윤영", "장한솔"]
     overnight_proxy: ["^SOX", "NVDA", "MU"]
   - code: "000660"
     name: "SK하이닉스"
     market: KOSPI
+    sector: "반도체"
     owners: ["한윤근", "장한솔", "장윤영", "이영준"]
     overnight_proxy: ["^SOX", "NVDA", "MU"]
   - code: "267260"
     name: "HD현대일렉트릭"
     market: KOSPI
+    sector: "전력기기"
     owners: ["한윤근"]
     overnight_proxy: ["GEV", "ETN", "XLU"]
   - code: "196170"
     name: "알테오젠"
     market: KOSDAQ
+    sector: "바이오"
     owners: ["한윤근"]
     overnight_proxy: ["XBI", "IBB"]
   - code: "042700"
     name: "한미반도체"
     market: KOSPI
+    sector: "반도체"
     owners: ["한윤근", "장한솔"]
     overnight_proxy: ["^SOX", "AMAT", "NVDA"]
   - code: "012450"
     name: "한화에어로스페이스"
     market: KOSPI
+    sector: "방산"
     owners: ["한윤근"]
     overnight_proxy: ["ITA", "LMT", "RTX"]
   - code: "096770"
     name: "SK이노베이션"
     market: KOSPI
+    sector: "에너지/정유"
     owners: ["한윤근"]
     overnight_proxy: ["XLE", "CL=F", "TSLA"]
   - code: "299660"
     name: "셀리드"
     market: KOSDAQ
+    sector: "바이오"
     owners: ["이웅수", "한윤근"]
     overnight_proxy: ["XBI", "MRNA"]
   - code: "233740"
     name: "KODEX 코스닥150 레버리지"
     market: KOSPI
+    sector: "ETF"
     is_etf: true
     owners: ["한윤근", "하우찬"]
     overnight_proxy: ["^IXIC", "QQQ"]
   - code: "028050"
     name: "삼성E&A"
     market: KOSPI
+    sector: "건설/플랜트"
     owners: ["장한솔"]
     overnight_proxy: ["XLE", "FLR"]
   - code: "310210"
     name: "보로노이"
     market: KOSDAQ
+    sector: "바이오"
     owners: ["하우찬"]
     overnight_proxy: ["XBI"]
   - code: "445680"
     name: "큐리옥스바이오시스템즈"
     market: KOSDAQ
+    sector: "바이오"
     owners: ["이웅수", "주황선", "장한솔"]
     leader: "이웅수"
     overnight_proxy: ["XBI", "IBB"]
   - code: "009540"
     name: "HD한국조선해양"
     market: KOSPI
+    sector: "조선"
     owners: ["오병호"]
     overnight_proxy: ["XLI", "DAC"]
   - code: "174900"
     name: "앱클론"
     market: KOSDAQ
+    sector: "바이오"
     owners: ["오병호"]
     overnight_proxy: ["XBI", "IBB"]
   - code: "298380"
     name: "에이비엘바이오"
     market: KOSDAQ
+    sector: "바이오"
     owners: ["우동희"]
     overnight_proxy: ["XBI", "IBB"]
   - code: "166480"
     name: "코아스템켐온"
     market: KOSDAQ
+    sector: "바이오"
     owners: ["이정수"]
     overnight_proxy: ["XBI"]
   - code: "035720"
     name: "카카오"
     market: KOSPI
+    sector: "플랫폼/IT"
     owners: ["장한솔"]
     overnight_proxy: ["META", "GOOGL", "^IXIC"]
   - code: "005380"
     name: "현대차"
     market: KOSPI
+    sector: "자동차"
     owners: ["장한솔"]
     overnight_proxy: ["F", "GM", "STLA"]
   - code: "034230"
     name: "파라다이스"
     market: KOSDAQ
+    sector: "카지노/레저"
     owners: ["장한솔"]
     overnight_proxy: ["LVS", "WYNN", "MGM"]
   - code: "352820"
     name: "하이브"
     market: KOSPI
+    sector: "엔터"
     owners: ["장한솔"]
     overnight_proxy: ["SPOT", "WMG"]
   - code: "329180"
     name: "HD현대중공업"
     market: KOSPI
+    sector: "조선"
     owners: ["한윤근"]
     overnight_proxy: ["XLI", "DAC"]
   - code: "083450"
     name: "GST"
     market: KOSDAQ
+    sector: "반도체"
     owners: ["한윤근"]
     overnight_proxy: ["^SOX", "AMAT"]
   - code: "079550"
     name: "LIG디펜스앤에어로스페이스"
     market: KOSPI
+    sector: "방산"
     owners: ["한윤근"]
     overnight_proxy: ["ITA", "LMT", "RTX"]

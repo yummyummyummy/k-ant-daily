@@ -207,7 +207,7 @@ def _merge_config_from_stocks_yml(summary: dict, yml_path: Path) -> None:
         src = by_code.get(stock.get("code"))
         if not src:
             continue
-        for key in ("owners", "overnight_proxy", "is_etf", "leader"):
+        for key in ("owners", "overnight_proxy", "is_etf", "leader", "sector"):
             if src.get(key) is not None and not stock.get(key):
                 stock[key] = src[key]
 
@@ -477,6 +477,13 @@ def _normalize_stocks(summary: dict, now: datetime) -> None:
         _normalize_stock_quote(stock)
         _normalize_stock_signals(stock)
 
+        # Forward-looking direction + one-line outlook for the card summary row.
+        dir_meta = DIRECTION_META.get(stock.get("recommendation"), DIRECTION_META["hold"])
+        stock["direction_arrow"] = dir_meta["arrow"]
+        stock["direction_label"] = dir_meta["label"]
+        stock["direction_cls"]   = dir_meta["cls"]
+        stock["outlook_line"]    = _outlook_line(stock.get("rationale"))
+
         pts = stock.get("key_points") or []
         for pt in pts:
             _annotate_impact(pt)
@@ -658,6 +665,9 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
     # own block with a header; within a group we keep the news-desc order.
     # Groups with 0 stocks are suppressed by the template.
     stock_groups = _group_stocks_by_recommendation(stocks_display)
+    # Section-top aggregate view: "친구들 포트폴리오 오늘 전망" — answers
+    # "대체로 오르는 날 vs 내리는 날?" before the reader scans individual cards.
+    portfolio_snapshot = _portfolio_snapshot(stocks_display)
 
     html = _render_template(
         "report.html.j2",
@@ -673,6 +683,7 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
         sectors=summary.get("sectors", []) or [],
         stocks=stocks_display,
         stock_groups=stock_groups,
+        portfolio_snapshot=portfolio_snapshot,
         coffee_buyer=_coffee_buyer(stocks),
         friends_overview=_friends_overview(stocks),
         review=summary.get("review") or None,
@@ -692,6 +703,77 @@ STOCK_GROUP_META = [
     {"key": "sell",        "label": "매도",   "emoji": "🔴", "accent": "sell"},
     {"key": "strong_sell", "label": "풀매도", "emoji": "⛔", "accent": "strong_sell"},
 ]
+
+# Forward-looking direction language for the per-card chip + portfolio snapshot.
+# Separate from the action-oriented label (매수/매도) above; answers "오늘 이
+# 종목이 오를까?" rather than "지금 사/팔까?".
+DIRECTION_META = {
+    "strong_buy":  {"arrow": "↑↑", "label": "강한 상승 기대",   "cls": "up-strong"},
+    "buy":         {"arrow": "↑",  "label": "상승 기대",        "cls": "up"},
+    "hold":        {"arrow": "—",  "label": "관망",            "cls": "flat"},
+    "sell":        {"arrow": "↓",  "label": "하락 경계",        "cls": "down"},
+    "strong_sell": {"arrow": "↓↓", "label": "강한 하락 경계",   "cls": "down-strong"},
+}
+
+
+# Matches a sentence boundary: a period, exclamation, or question mark followed
+# by whitespace OR end-of-string. Keeps the punctuation with the sentence.
+_SENT_END = re.compile(r'(?<=[.!?])(\s+|$)')
+
+
+def _outlook_line(rationale: str | None, max_len: int = 60) -> str:
+    """Extract the per-stock 'oneline outlook' for the card summary row.
+    Per the /daily-report skill convention, rationale's first sentence is
+    supposed to be a ~50-char forward-looking lede; we take that and truncate
+    with an ellipsis if it's longer than ``max_len``. Returns empty string if
+    the rationale is missing or empty."""
+    if not rationale:
+        return ""
+    s = str(rationale).strip()
+    if not s:
+        return ""
+    parts = _SENT_END.split(s, maxsplit=1)
+    first = parts[0].rstrip(" .!?").strip()
+    if len(first) > max_len:
+        first = first[: max_len - 1].rstrip() + "…"
+    return first
+
+
+def _portfolio_snapshot(stocks: list[dict]) -> dict:
+    """Aggregate all tracked stocks into the section-top 'friends portfolio'
+    snapshot: count by forward-looking direction and breakdown by sector.
+    Sectors come from stocks.yml; stocks without a sector field fall into a
+    '기타' bucket."""
+    from collections import defaultdict
+
+    by_direction = {"up_strong": 0, "up": 0, "flat": 0, "down": 0, "down_strong": 0}
+    sector_buckets: dict[str, dict] = defaultdict(lambda: {"count": 0, "up": 0, "down": 0})
+    dir_key_from_rec = {
+        "strong_buy": "up_strong",
+        "buy": "up",
+        "hold": "flat",
+        "sell": "down",
+        "strong_sell": "down_strong",
+    }
+    for s in stocks:
+        rec = s.get("recommendation") or "hold"
+        dkey = dir_key_from_rec.get(rec, "flat")
+        by_direction[dkey] += 1
+        sector = s.get("sector") or "기타"
+        sector_buckets[sector]["count"] += 1
+        if dkey in ("up_strong", "up"):
+            sector_buckets[sector]["up"] += 1
+        elif dkey in ("down_strong", "down"):
+            sector_buckets[sector]["down"] += 1
+    sectors_list = sorted(
+        ({"name": name, **data} for name, data in sector_buckets.items()),
+        key=lambda d: (-d["count"], d["name"]),
+    )
+    return {
+        "total": len(stocks),
+        "by_direction": by_direction,
+        "by_sector": sectors_list,
+    }
 
 
 def _group_stocks_by_recommendation(stocks: list[dict]) -> list[dict]:

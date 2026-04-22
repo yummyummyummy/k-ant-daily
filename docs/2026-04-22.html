@@ -639,6 +639,82 @@
   }
   .points .sources a:hover { text-decoration: underline; }
 
+  /* PORTFOLIO SNAPSHOT — "오늘 친구들 포트폴리오 전망" aggregate view */
+  .portfolio-snapshot {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px;
+    margin: 8px 0 18px;
+  }
+  .portfolio-snapshot .ps-lead {
+    font-size: 13px; color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .portfolio-snapshot .ps-lead strong { color: var(--fg); font-weight: 700; }
+  .portfolio-snapshot .ps-row {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .portfolio-snapshot .ps-dir {
+    font-size: 12px; padding: 3px 10px; border-radius: 999px;
+    display: inline-flex; align-items: baseline; gap: 4px;
+    background: var(--bg); border: 1px solid var(--border);
+  }
+  .portfolio-snapshot .ps-dir b { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .portfolio-snapshot .ps-dir.up-strong { border-color: #dc2626; color: #dc2626; }
+  .portfolio-snapshot .ps-dir.up        { border-color: var(--pos); color: var(--pos); }
+  .portfolio-snapshot .ps-dir.flat      { border-color: var(--border); color: var(--muted); }
+  .portfolio-snapshot .ps-dir.down      { border-color: var(--neg); color: var(--neg); }
+  .portfolio-snapshot .ps-dir.down-strong { border-color: #1d4ed8; color: #1d4ed8; }
+  .portfolio-snapshot .ps-sectors {
+    font-size: 12px; color: var(--muted);
+    display: flex; gap: 6px; flex-wrap: wrap; align-items: baseline;
+    padding-top: 8px; border-top: 1px dashed var(--border);
+  }
+  .portfolio-snapshot .ps-sectors-label {
+    font-weight: 700; color: var(--fg); margin-right: 2px;
+  }
+  .portfolio-snapshot .ps-sec-chip {
+    padding: 2px 8px; border-radius: 4px;
+    background: var(--bg); border: 1px solid var(--border);
+    font-variant-numeric: tabular-nums;
+  }
+  .portfolio-snapshot .ps-sec-chip b { font-weight: 700; color: var(--fg); }
+  .portfolio-snapshot .ps-sec-chip .s-up   { color: var(--pos); font-weight: 700; }
+  .portfolio-snapshot .ps-sec-chip .s-down { color: var(--neg); font-weight: 700; }
+
+  /* STOCK CARD SUMMARY — forward-looking layout.
+     Summary row: name · direction chip · confidence chip  (+ outcome 저녁엔)
+                  outlook 한 줄
+                  owner chips (우측 정렬) */
+  article.stock > details > summary .s-head {
+    display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+    width: 100%;
+  }
+  article.stock > details > summary .s-outlook {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.5; margin-top: 4px; padding-right: 20px;
+  }
+  article.stock > details > summary .s-foot {
+    display: flex; justify-content: flex-end; margin-top: 6px;
+  }
+  article.stock .direction {
+    font-size: 11px; font-weight: 700;
+    padding: 2px 8px; border-radius: 999px;
+    letter-spacing: 0.02em; white-space: nowrap;
+  }
+  article.stock .direction.up-strong   { background: #dc2626; color: white; }
+  article.stock .direction.up          { background: var(--pos-bg); color: var(--pos); }
+  article.stock .direction.flat        { background: var(--neu-bg); color: var(--muted); }
+  article.stock .direction.down        { background: var(--neg-bg); color: var(--neg); }
+  article.stock .direction.down-strong { background: #1d4ed8; color: white; }
+  article.stock .conf {
+    font-size: 11px; color: var(--muted);
+    padding: 1px 7px; border-radius: 4px;
+    background: var(--bg); border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  article.stock .conf.high { color: var(--accent); border-color: var(--accent); }
+
   /* STOCK GROUPING — action-first layout (매수/관망/매도 buckets) */
   .stock-group { margin-bottom: 20px; }
   .stock-group-head {
@@ -1739,6 +1815,40 @@
 
   <section>
     <h2>📈 종목별 <span class="section-sub" style="font-size: 13px; margin-left: 4px;">(클릭하면 상세 펼침)</span></h2>
+
+    <div class="portfolio-snapshot">
+      <div class="ps-lead">📊 친구들 포트폴리오 오늘 전망 · <strong>23종목</strong></div>
+      <div class="ps-row">
+<span class="ps-dir up">🟢 상승 기대 <b>3</b></span><span class="ps-dir flat">🟡 관망 <b>17</b></span><span class="ps-dir down">🔴 하락 경계 <b>1</b></span><span class="ps-dir down-strong">⛔ 강한 하락 경계 <b>2</b></span>      </div>
+      <div class="ps-sectors">
+        <span class="ps-sectors-label">섹터별</span>
+        <span class="ps-sec-chip" title="하락 경계 2">
+          바이오 <b>7</b> <span class="s-down">↓2</span>        </span>
+        <span class="ps-sec-chip" title="상승 기대 2">
+          반도체 <b>4</b> <span class="s-up">↑2</span>        </span>
+        <span class="ps-sec-chip" title="">
+          방산 <b>2</b>        </span>
+        <span class="ps-sec-chip" title="">
+          조선 <b>2</b>        </span>
+        <span class="ps-sec-chip" title="">
+          ETF <b>1</b>        </span>
+        <span class="ps-sec-chip" title="">
+          건설/플랜트 <b>1</b>        </span>
+        <span class="ps-sec-chip" title="상승 기대 1">
+          에너지/정유 <b>1</b> <span class="s-up">↑1</span>        </span>
+        <span class="ps-sec-chip" title="하락 경계 1">
+          엔터 <b>1</b> <span class="s-down">↓1</span>        </span>
+        <span class="ps-sec-chip" title="">
+          자동차 <b>1</b>        </span>
+        <span class="ps-sec-chip" title="">
+          전력기기 <b>1</b>        </span>
+        <span class="ps-sec-chip" title="">
+          카지노/레저 <b>1</b>        </span>
+        <span class="ps-sec-chip" title="">
+          플랫폼/IT <b>1</b>        </span>
+      </div>
+    </div>
+
     <div class="stock-group accent-buy">
       <div class="stock-group-head">
         <span class="g-emoji">🟢</span>
@@ -1749,11 +1859,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">SK이노베이션</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
-          <span class="price-change up" title="어제 종가 기준">+3.65%</span>
-          <span class="rec buy">매수</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          <div class="s-head">
+            <span class="name">SK이노베이션</span>
+            <span class="direction up" title="오늘 방향 예측">
+              ↑ 상승 기대
+            </span>
+            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+          </div>
+          <div class="s-outlook">SK온 도쿄 지사 설립이라는 개별 촉매 + K배터리 부활 섹터 훈풍</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -1930,16 +2046,22 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">SK하이닉스</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
-          <span class="price-change up" title="어제 종가 기준">+4.97%</span>
-          <span class="rec buy">매수</span>
-          <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
+          <div class="s-head">
+            <span class="name">SK하이닉스</span>
+            <span class="direction up" title="오늘 방향 예측">
+              ↑ 상승 기대
+            </span>
+            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+          </div>
+          <div class="s-outlook">HBM 실적 모멘텀 강력, 상승 여력 존재</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 이영준</span>
       <span class="owner-chip owner-more" aria-label="+3명 더 보기">+3</span>
       <span class="owner-popover">
         <span class="owner-chip owner-leader">👑 이영준</span><span class="owner-chip">👤 장윤영</span><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 한윤근</span></span>
     </span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -2087,7 +2209,7 @@
 <span class="p up">^SOX ▲ 0.50%</span> · <span class="p down">NVDA ▼ 1.08%</span> · <span class="p up">MU ▲ 0.21%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">퀄컴 CEO 회동 + AI 반도체 실적 기대로 뉴스 긍정. 간밤 SOX +0.5% 중립. 어제 +4.97%로 5% 미만이라 선반영 기준 미달.</div>          </div>
+<div class="rationale">HBM 실적 모멘텀 강력, 상승 여력 존재. 1Q 영업익 +369% 컨센서스 + 목표가 200만원 논의 호재, 간밤 SOX +0.5% 중립 우호, 아직 선반영 안 됨.</div>          </div>
 
 
 <p class="stock-summary">어제 1,224,000원(+4.97%) 마감, 52주 고가 1,228,000원까지 0.3%. &#39;120만닉스&#39; 돌파하며 사상 최고가 근접. 퀄컴 CEO 방한으로 HBM·AI 반도체 수요 재확인. 간밤 NVDA -1.08%가 유일한 부담이나 SOX·MU는 양호. 오늘 신고가 경신 시도 가능하나 미·이란 이벤트에 변동성 클 수 있음.</p>
@@ -2116,16 +2238,22 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">삼성전자</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
-          <span class="price-change up" title="어제 종가 기준">+2.10%</span>
-          <span class="rec buy">매수</span>
-          <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
+          <div class="s-head">
+            <span class="name">삼성전자</span>
+            <span class="direction up" title="오늘 방향 예측">
+              ↑ 상승 기대
+            </span>
+            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+          </div>
+          <div class="s-outlook">퀄컴 CEO 회동 + AI 반도체 협력 기대로 강보합 출발 예상</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 장윤영</span>
       <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
       <span class="owner-popover">
         <span class="owner-chip owner-leader">👑 장윤영</span><span class="owner-chip">👤 장한솔</span></span>
     </span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -2273,7 +2401,7 @@
 <span class="p up">^SOX ▲ 0.50%</span> · <span class="p down">NVDA ▼ 1.08%</span> · <span class="p up">MU ▲ 0.21%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">퀄컴 CEO 직접 회동이라는 개별 촉매 + 간밤 SOX +0.5% 중립 + 선반영 아님. 뉴스 긍정·간밤 중립 조합으로 매수 판정.</div>          </div>
+<div class="rationale">퀄컴 CEO 회동 + AI 반도체 협력 기대로 강보합 출발 예상. 뉴스 긍정·간밤 중립 조합으로 매수 판정. 간밤 SOX +0.5% 중립 + 선반영 아님.</div>          </div>
 
 
 <p class="stock-summary">어제 219,000원(+2.10%) 마감, 52주 고가 223,000원까지 1.8% 남음. 퀄컴 아몬 CEO가 삼성·SK·LG 경영진과 AI 반도체 협력을 논의하며 글로벌 AI 밸류체인 내 한국 위상 재확인. 간밤 NVDA -1.08%가 부담이나 SOX +0.5%·MU +0.21%로 상쇄. 오늘 개장 초 소폭 강보합 출발 후 장중 미·이란 협상 뉴스에 따라 변동성 예상.</p>
@@ -2314,11 +2442,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">HD한국조선해양</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
-          <span class="price-change up" title="어제 종가 기준">+3.51%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></span>
+          <div class="s-head">
+            <span class="name">HD한국조선해양</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">한-인도 조선 MOU·1분기 잠정실적 등 뉴스 긍정이나 어제 +3.51%에 이미 반영</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -2498,11 +2632,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">HD현대중공업</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
-          <span class="price-change up" title="어제 종가 기준">+9.92%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          <div class="s-head">
+            <span class="name">HD현대중공업</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+          </div>
+          <div class="s-outlook">방산 호재 vs 20일 +21% 과열, 갭다운 후 쉬어가는 흐름 예상</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -2650,7 +2790,7 @@
 <span class="p down">XLI ▼ 1.41%</span> · <span class="p down">DAC ▼ 2.27%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">이미 어제 주가에 반영</span></div>
-<div class="rationale">한·미 무인함대 공동개발 + 동남아 K-방산 수출 + 1Q 잠정실적 호재로 뉴스 톤 긍정. 그러나 20일 +21% 급등(474,500→576,000)으로 상당 부분 선반영, 간밤 XLI -1.41%·DAC -2.27% (-1.84%) 약세로 갭다운 리스크. 관망으로 방어.</div>          </div>
+<div class="rationale">방산 호재 vs 20일 +21% 과열, 갭다운 후 쉬어가는 흐름 예상. 한·미 무인함대·K-방산 수출·1Q 실적 긍정이나 상당 부분 선반영, 간밤 XLI/DAC 약세로 부담.</div>          </div>
 
 
 <p class="stock-summary">어제 576,000원(보합) 마감, 20일 누적 +21% 급등 후 단기 쉬어가는 구간. 아침에 美·韓 무인함대 공동 제작·차세대 해전 게임체인저·동남아 K-방산 수출 등 긍정 헤드라인이 줄줄이 등장하고 1Q 잠정실적 공시도 나왔으나, 간밤 XLI·DAC 모두 약세로 마감해 오늘 개장 초 갭다운 후 흐름 재정비 가능성. 중장기 방산·조선 복합 모멘텀은 유효.</p>
@@ -2691,11 +2831,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">삼성E&amp;A</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
-          <span class="price-change up" title="어제 종가 기준">+4.87%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          <div class="s-head">
+            <span class="name">삼성E&amp;A</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+          </div>
+          <div class="s-outlook">NH증권 목표가 71% 상향 등 뉴스 강한 긍정이나, 20일간 +53% 급등으로 단기 과열 극심</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -2872,11 +3018,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">카카오</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
-          <span class="price-change up" title="어제 종가 기준">+0.20%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          <div class="s-head">
+            <span class="name">카카오</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">개별 촉매 없어 플랫폼 섹터 흐름 동조</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -3024,7 +3176,7 @@
 <span class="p down">META ▼ 0.31%</span> · <span class="p down">GOOGL ▼ 1.52%</span> · <span class="p down">^IXIC ▼ 0.59%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">개별 촉매 부재. 카카오모빌리티 실적·카카오톡 UI 변경은 주가 직접 영향 제한적. 간밤 META -0.31%·GOOGL -1.52% 약세. 중립+약세 = 관망.</div>          </div>
+<div class="rationale">개별 촉매 없어 플랫폼 섹터 흐름 동조. 간밤 META/GOOGL 혼조, 특별한 방향성 없음.</div>          </div>
 
 
 <p class="stock-summary">어제 48,950원(+0.20%) 보합 마감, 52주 고가(71,600) 대비 -32%. 구글 제미나이 크롬 한국 상륙 vs 네이버 AI탭 경쟁 구도에서 카카오 언급은 제한적. 카카오모빌리티 최대 실적은 자회사 호조이나 본체 주가 촉매로는 약함.</p>
@@ -3044,11 +3196,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">한화에어로스페이스</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
-          <span class="price-change down" title="어제 종가 기준">-2.39%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          <div class="s-head">
+            <span class="name">한화에어로스페이스</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">방산 호재 vs 간밤 미국 방산주 급락, 갭다운 우려</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -3196,7 +3354,7 @@
 <span class="p down">ITA ▼ 3.78%</span> · <span class="p down">LMT ▼ 1.61%</span> · <span class="p down">RTX ▼ 4.40%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">K방산 22조 수출·미국 로비 확대 등 뉴스 긍정이나, 간밤 ITA -3.78%·RTX -4.4% 급락으로 상충. 뉴스 긍정+간밤 약세 = 관망.</div>          </div>
+<div class="rationale">방산 호재 vs 간밤 미국 방산주 급락, 갭다운 우려. K방산 22조 수출·미국 로비 확대 등 뉴스 긍정이나 ITA -3.78%·RTX -4.4% 낙폭 부담.</div>          </div>
 
 
 <p class="stock-summary">어제 1,391,000원(-2.39%) 마감, 최근 고점(1,537,000) 대비 조정 중. K방산 수출 22조·경제효과 46조 등 펀더멘털 확인에도 불구, 간밤 미국 방산 ETF(ITA) -3.78%·RTX -4.4% 급락이 오늘 갭다운 요인. 미 방산 로비 18배 확대 기사는 중장기 긍정이나 단기 주가 촉매로는 약함.</p>
@@ -3225,11 +3383,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">현대차</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
-          <span class="price-change up" title="어제 종가 기준">+3.61%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          <div class="s-head">
+            <span class="name">현대차</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">리콜 악재 vs 수출 호재 혼재, 중립적 흐름 예상</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -3377,7 +3541,7 @@
 <span class="p down">F ▼ 0.70%</span> · <span class="p down">GM ▼ 1.85%</span> · <span class="p down">STLA ▼ 1.15%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">53만대 리콜(부정) vs 인도 3륜 전기차·4월 수출 최고(긍정) 혼재로 뉴스 톤 중립. 간밤 F -0.7%·GM -1.85% 약세. LG엔솔이 시총 추월한 점은 상대적 약세 신호.</div>          </div>
+<div class="rationale">리콜 악재 vs 수출 호재 혼재, 중립적 흐름 예상. 53만대 리콜(부정) vs 인도 3륜 전기차·4월 수출 최고(긍정) 상충.</div>          </div>
 
 
 <p class="stock-summary">어제 546,000원(+3.61%) 마감, 코스피 전체 랠리에 동반 상승. 다만 오늘 53만대 리콜 뉴스(산타페·제네시스 포함)가 센티먼트 부담. 간밤 미국 완성차(GM -1.85%) 약세로 갭다운 가능. LG엔솔에 시총 추월당한 것도 심리적 약세 요인.</p>
@@ -3406,11 +3570,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">알테오젠</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 9건">🔥 9</span>
-          <span class="price-change down" title="어제 종가 기준">-0.67%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          <div class="s-head">
+            <span class="name">알테오젠</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">개별 촉매 없어 바이오 섹터 흐름 동조 예상</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -3548,7 +3718,7 @@
 <span class="p down">XBI ▼ 1.02%</span> · <span class="p down">IBB ▼ 1.01%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">개별 뉴스 부재로 뉴스 톤 중립. 간밤 XBI -1.02%·IBB -1.01% 약세. 중립+약세 조합으로 관망.</div>          </div>
+<div class="rationale">개별 촉매 없어 바이오 섹터 흐름 동조 예상. 뉴스 톤 중립, 간밤 XBI/IBB 중립·약세, 섹터 전반 차익실현 가능성.</div>          </div>
 
 
 <p class="stock-summary">어제 369,000원(-0.67%) 마감, 52주 고가(569,000) 대비 -35%. 최근 20일간 박스권(354,000~374,500) 횡보 중. 오늘 개별 촉매 없이 간밤 바이오 섹터 약세가 그대로 반영될 가능성. 장중 미·이란 협상 결과에 따른 시장 전체 방향이 변수.</p>
@@ -3568,11 +3738,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">에이비엘바이오</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 9건">🔥 9</span>
-          <span class="price-change down" title="어제 종가 기준">-2.68%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 우동희</span></span></span>
+          <div class="s-head">
+            <span class="name">에이비엘바이오</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">개별 촉매 없고 XBI 약세, 섹터 흐름 그대로 노출</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 우동희</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -3710,7 +3886,7 @@
 <span class="p down">XBI ▼ 1.02%</span> · <span class="p down">IBB ▼ 1.01%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">개별 촉매 부재, 시황 기사만 존재. (어제 회고 교훈 반영: 섹터 시황 기사만으로 긍정 라벨 부여 금지.) 간밤 XBI -1.02% 약세. 중립+약세 = 관망.</div>          </div>
+<div class="rationale">개별 촉매 없고 XBI 약세, 섹터 흐름 그대로 노출. 시황 기사만 존재, 섹터 전반 차익실현 압력.</div>          </div>
 
 
 <p class="stock-summary">어제 155,900원(-2.68%) 마감, 20일간 -9.52% 하락 추세. 52주 고가(257,500) 대비 -39%. 삼성에피스 ADC·CAR-T 기사는 간접 관련이나 개별 촉매 아님. 알고리즘 반등 조짐 분석 기사가 있으나 기술적 판단일 뿐. 간밤 XBI 약세에 추가 하락 가능.</p>
@@ -3730,16 +3906,22 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">한미반도체</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 9건">🔥 9</span>
-          <span class="price-change up" title="어제 종가 기준">+2.79%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
+          <div class="s-head">
+            <span class="name">한미반도체</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">개별 촉매 부재, 반도체 섹터 흐름 동조 예상</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 장한솔</span>
       <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
       <span class="owner-popover">
         <span class="owner-chip owner-leader">👑 장한솔</span><span class="owner-chip">👤 한윤근</span></span>
     </span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -3877,7 +4059,7 @@
 <span class="p up">^SOX ▲ 0.50%</span> · <span class="p up">AMAT ▲ 0.69%</span> · <span class="p down">NVDA ▼ 1.08%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">개별 촉매 부재. 숏커버링·주식부자 순위 등 섹터 시황 기사만 있어 뉴스 톤 중립. (어제 회고 교훈 반영: 시황 기사만으로 긍정 라벨 부여 금지.) 간밤 중립, 관망.</div>          </div>
+<div class="rationale">개별 촉매 부재, 반도체 섹터 흐름 동조 예상. 간밤 SOX +0.5% 약한 우호 정도.</div>          </div>
 
 
 <p class="stock-summary">어제 295,000원(+2.79%) 마감. 공매도 숏커버링 수혜 종목으로 언급되나 개별 실적·수주 뉴스 없음. 반도체 섹터 전체 분위기에 연동될 전망. 52주 고가(335,500) 대비 -12%로 아직 여유 있으나 독자적 모멘텀은 부족.</p>
@@ -3897,11 +4079,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">HD현대일렉트릭</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 6건">🔥 6</span>
-          <span class="price-change down" title="어제 종가 기준">-2.67%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          <div class="s-head">
+            <span class="name">HD현대일렉트릭</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">섹터 시황 우호이나 개별 촉매 없어 관망 유지</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -4009,7 +4197,7 @@
 <span class="p up">GEV ▲ 0.11%</span> · <span class="p up">ETN ▲ 0.52%</span> · <span class="p down">XLU ▼ 1.75%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">LS일렉 최대실적 등 전력기기 섹터 시황은 우호적이나 개별 촉매 부재. (어제 회고 교훈 반영: 섹터 시황 기사만 있어 뉴스 톤 중립으로 조정.) 간밤 중립, 관망 판정.</div>          </div>
+<div class="rationale">섹터 시황 우호이나 개별 촉매 없어 관망 유지. LS일렉 최대실적 등 전력기기 섹터 시황은 우호적이나 종목 개별 재료 부재. 간밤 GEV/ETN 혼조.</div>          </div>
 
 
 <p class="stock-summary">어제 1,058,000원(-2.67%) 마감, 최근 고점(1,087,000) 대비 소폭 조정 중. 동종 LS일렉트릭이 1분기 최대실적을 발표해 전력 슈퍼사이클 지속을 확인했으나, &#39;전력기기 빅3 재무 뇌관&#39; 경고 기사도 병존. 오늘 IR 개최 예정이나 실적 발표 전까지 방향성 제한적.</p>
@@ -4034,11 +4222,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">LIG디펜스앤에어로스페이스</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 4건">🔥 4</span>
-          <span class="price-change down" title="어제 종가 기준">-1.30%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          <div class="s-head">
+            <span class="name">LIG디펜스앤에어로스페이스</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+          </div>
+          <div class="s-outlook">방산 호재 다수이나 간밤 ITA -3.78%·RTX -4.4% 급락으로 갭다운 리스크</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -4121,7 +4315,7 @@
 <span class="p down">ITA ▼ 3.78%</span> · <span class="p down">LMT ▼ 1.61%</span> · <span class="p down">RTX ▼ 4.40%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">중동발 특수로 방산 4사 영업익 30%+ 성장, K-방산 수출 154억달러 회복, 말레이시아 DSA 2026 참가, 단일공급계약 공시 등 긍정 재료 多. 그러나 간밤 ITA -3.78%·RTX -4.4%·LMT -1.61% (-3.26%)로 美 방산 전반 강한 약세 → 오늘 개장 갭다운 리스크 명백. 관망으로 대응.</div>          </div>
+<div class="rationale">방산 호재 다수이나 간밤 ITA -3.78%·RTX -4.4% 급락으로 갭다운 리스크. 중동 특수·K방산 수출·DSA 2026 참가·계약 공시 긍정이나 해외 섹터 약세가 강함.</div>          </div>
 
 
 <p class="stock-summary">어제 909,000원(보합) 마감. 4/9 LIG넥스원에서 사명 변경 완료, 전일 단일공급계약 공시 + 말레이시아 DSA 2026 참가로 동남아 방공 시장 공략 속도. 중동 분쟁 수혜주로도 재부각. 그러나 간밤 美 방산 ETF ITA -3.78%·RTX -4.4% 등 섹터 전반 폭락에 가까운 약세 → 오늘 개장 초 갭다운 후 뉴스 호재에 반등 시도할지, 글로벌 방산 약세에 휩쓸려 밀릴지 관찰 필요.</p>
@@ -4169,11 +4363,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">보로노이</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 4건">🔥 4</span>
-          <span class="price-change down" title="어제 종가 기준">-10.07%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 하우찬</span></span></span>
+          <div class="s-head">
+            <span class="name">보로노이</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">VRN11 임상 긍정이나 어제 -10.07% 급락 후 쉬어감 전망</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 하우찬</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -4256,7 +4456,7 @@
 <span class="p down">XBI ▼ 1.02%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">이미 어제 주가에 반영</span></div>
-<div class="rationale">VRN11 임상 데이터 긍정이나 어제 -10.07% 급락으로 이미 반영. 간밤 XBI -1.02% 약세. 뉴스 긍정+간밤 약세 상충으로 관망. (어제 회고 교훈 반영: 전일 ±10% 급변동 후 재량 상향 금지.)</div>          </div>
+<div class="rationale">VRN11 임상 긍정이나 어제 -10.07% 급락 후 쉬어감 전망. 이벤트 강도는 유지되나 단기 과열로 이미 반영.</div>          </div>
 
 
 <p class="stock-summary">어제 308,000원(-10.07%) 급락 마감. 직전 세션 342,500원(+11.56%)에서 급등분을 대부분 반납. AACR2026에서 공개한 VRN11 EGFR C797S 내성 환자 데이터는 긍정적이나, 주가는 이미 &#39;기대→반영→차익실현&#39; 사이클을 완료. 오늘 추가 하락 또는 반등 모두 열려 있으나 방향 예측 어려움.</p>
@@ -4285,11 +4485,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">파라다이스</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 2건">🔥 2</span>
-          <span class="price-change down" title="어제 종가 기준">-0.71%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          <div class="s-head">
+            <span class="name">파라다이스</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">실적 부진 우려 지속, 환율 수혜도 단기 동력 약함</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -4352,7 +4558,7 @@
 <span class="p up">LVS ▲ 0.61%</span> · <span class="p down">WYNN ▼ 1.04%</span> · <span class="p down">MGM ▼ 0.74%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">1분기 실적 기대 이하(부정)이나 비중확대 의견 유지(긍정), 환율 수혜(긍정) 혼재. 종합 중립. 간밤 카지노 프록시 혼조(LVS +0.61%·WYNN -1.04%). 관망.</div>          </div>
+<div class="rationale">실적 부진 우려 지속, 환율 수혜도 단기 동력 약함. 1Q 실적 기대 이하(부정)이나 비중확대 의견 유지(긍정) 혼재.</div>          </div>
 
 
 <p class="stock-summary">어제 15,350원(-0.71%) 소폭 하락. 증권가는 1분기 실적 기대 이하이나 비중확대 의견을 유지. 방문객 증가에도 VIP 매출 감소(-40%)가 부담. 원화 약세(1,482원)로 외국인 큰손 유입 기대가 유일한 긍정 요인. 20일간 -9.55% 하락 추세.</p>
@@ -4372,11 +4578,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">GST</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 1건">🔥 1</span>
-          <span class="price-change up" title="어제 종가 기준">+0.23%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          <div class="s-head">
+            <span class="name">GST</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">개별 촉매 부재, 반도체 장비 섹터 흐름 동조</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -4429,7 +4641,7 @@
 <span class="p up">^SOX ▲ 0.50%</span> · <span class="p up">AMAT ▲ 0.69%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">당일 개별 촉매 부재 (최근 종목 기사는 4/13 &#39;사상 최대 실적 가시화&#39; 이후 9일 경과). 간밤 SOX +0.5%·AMAT +0.69% 중립-우호. 어제 보합 마감. 뚜렷한 방향성 없어 관망.</div>          </div>
+<div class="rationale">개별 촉매 부재, 반도체 장비 섹터 흐름 동조. 4/13 이후 신규 모멘텀 없음, 간밤 SOX/AMAT 약한 우호.</div>          </div>
 
 
 <p class="stock-summary">어제 43,250원(보합) 마감, 20일 누적 +9%. 반도체 진공 스크러버·액침냉각 솔루션이 핵심 사업으로 MWC 2026 공개 호재는 3월에 소화된 상태. 4/13 &#39;사상 최대 실적 가시화&#39;로 7% 급등한 이후 새로운 개별 재료 부재. 간밤 반도체 장비 프록시(^SOX·AMAT) 중립-우호로 장세에 휩쓸리는 흐름 예상.</p>
@@ -4463,16 +4675,22 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">KODEX 코스닥150 레버리지</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 1건">🔥 1</span>
-          <span class="price-change up" title="어제 종가 기준">+2.05%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
+          <div class="s-head">
+            <span class="name">KODEX 코스닥150 레버리지</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">간밤 나스닥 약보합, 코스닥 우호 흐름 지연 예상</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 하우찬</span>
       <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
       <span class="owner-popover">
         <span class="owner-chip owner-leader">👑 하우찬</span><span class="owner-chip">👤 한윤근</span></span>
     </span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -4525,7 +4743,7 @@
 <span class="p down">^IXIC ▼ 0.59%</span> · <span class="p down">QQQ ▼ 0.38%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">코스닥150 2배 추종 ETF. 간밤 나스닥 -0.59%·QQQ -0.38%로 약한 역풍. 코스닥 어제 +0.36% 소폭 상승에 그쳤고, 오늘 갭다운 출발 시 레버리지 효과로 하락폭 확대 가능.</div>          </div>
+<div class="rationale">간밤 나스닥 약보합, 코스닥 우호 흐름 지연 예상. 코스닥150 2배 추종 ETF 특성상 변동성만 확대.</div>          </div>
 
 
 <p class="stock-summary">어제 16,680원(+2.05%) 마감. 빚투 34조 사상 최고치 등 시장 과열 신호가 병존하는 가운데, 코스닥은 코스피 대비 상대적 부진(+0.36% vs +2.72%). 간밤 미 증시 하락으로 오늘 갭다운 가능성. 레버리지 특성상 하방 리스크 주의.</p>
@@ -4545,11 +4763,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">앱클론</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 1건">🔥 1</span>
-          <span class="price-change down" title="어제 종가 기준">-12.72%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></span>
+          <div class="s-head">
+            <span class="name">앱클론</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">어제 -12.72% 급락 여파로 관망, 반등 탄력 제한적</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -4602,7 +4826,7 @@
 <span class="p down">XBI ▼ 1.02%</span> · <span class="p down">IBB ▼ 1.01%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">이중항체 완전관해 데이터는 긍정적이나 어제 -12.72% 급락. 뉴스 긍정+간밤 약세 상충. (어제 회고 교훈 반영: 전일 ±10% 급변동 후 재량 상향 금지 + 바이오 소형주 XBI 약세 시 매수 보류.)</div>          </div>
+<div class="rationale">어제 -12.72% 급락 여파로 관망, 반등 탄력 제한적. 이중항체 데이터 긍정이나 바이오 섹터 조정 + 종목 고유 촉매 부재.</div>          </div>
 
 
 <p class="stock-summary">어제 48,700원(-12.72%) 급락 마감. 이중항체 신약 동물실험에서 극소량으로 완전관해 달성이라는 긍정적 데이터에도 불구, 직전 급등분(57,900→55,800→48,700) 차익실현 매물에 눌림. 간밤 XBI -1.02%도 부담. 오늘 추가 하락 가능성 있으나 완전관해 데이터가 중기 모멘텀으로 작용할 여지.</p>
@@ -4658,16 +4882,22 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">큐리옥스바이오시스템즈</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 1건">🔥 1</span>
-          <span class="price-change down" title="어제 종가 기준">-1.68%</span>
-          <span class="rec hold">관망</span>
-          <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
+          <div class="s-head">
+            <span class="name">큐리옥스바이오시스템즈</span>
+            <span class="direction flat" title="오늘 방향 예측">
+              — 관망
+            </span>
+            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+          </div>
+          <div class="s-outlook">개별 촉매 없어 바이오 섹터 동조, 소형주 변동성 리스크</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 이웅수</span>
       <span class="owner-chip owner-more" aria-label="+2명 더 보기">+2</span>
       <span class="owner-popover">
         <span class="owner-chip owner-leader">👑 이웅수</span><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 주황선</span></span>
     </span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -4720,7 +4950,7 @@
 <span class="p down">XBI ▼ 1.02%</span> · <span class="p down">IBB ▼ 1.01%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">아직 반영 안 됨 (신선함)</span></div>
-<div class="rationale">개별 뉴스 부재. 간밤 XBI -1.02%·IBB -1.01% 약세. (어제 회고 교훈 반영: 바이오 소형주는 프록시 약세에 민감, 매수 보류.)</div>          </div>
+<div class="rationale">개별 촉매 없어 바이오 섹터 동조, 소형주 변동성 리스크. 섹터 전반 XBI 약세 흐름.</div>          </div>
 
 
 <p class="stock-summary">어제 87,800원(-1.68%) 마감, 20일간 -24.89% 하락 추세 지속. 52주 고가(149,200) 대비 -41%. 최근 24시간 내 개별 촉매 없이 바이오 섹터 전체 약세에 연동될 전망. 소형 바이오 특성상 간밤 XBI 약세가 직접적 매도 압력으로 작용할 수 있음.</p>
@@ -4776,10 +5006,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">코아스템켐온</span>
-          <span class="price-change down" title="어제 종가 기준">-4.93%</span>
-          <span class="rec sell">매도</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 이정수</span></span></span>
+          <div class="s-head">
+            <span class="name">코아스템켐온</span>
+            <span class="direction down" title="오늘 방향 예측">
+              ↓ 하락 경계
+            </span>
+            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+          </div>
+          <div class="s-outlook">2일 전 급등 후 차익실현 압력 지속, 약세 지속 경계</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 이정수</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -4817,7 +5054,7 @@
 <span class="p down">XBI ▼ 1.02%</span>              </span>
             </div>
             <div class="row"><span class="label">뉴스 반영</span><span class="value">이미 어제 주가에 반영</span></div>
-<div class="rationale">2일 전 +12% 급등 후 어제 -4.93% 반락 시작. 추가 촉매 없음. (어제 회고 교훈 반영: 선반영 라벨을 붙이고도 관망은 논리 불일치 — 추가 촉매 없이 선반영이면 매도.) 간밤 XBI -1.02% 역풍.</div>          </div>
+<div class="rationale">2일 전 급등 후 차익실현 압력 지속, 약세 지속 경계. 어제 -4.93% 반락으로 하락 추세 시작, 실체 촉매 미확정.</div>          </div>
 
 
 <p class="stock-summary">어제 3,180원(-4.93%) 마감. 2일 전 2,985→3,345원(+12.06%) 급등분 반납 시작. 루게릭병 치료제 뉴로나타-알 허가 대기가 유일한 모멘텀이나 구체적 타임라인 불명. 비임상 연구시설 베트남 진출은 루틴 수준. 급등 후 차익실현 + XBI 약세 이중 압력.</p>
@@ -4846,11 +5083,17 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">하이브</span>
-          <span class="news-count-chip" title="오늘 새 뉴스 10건">🔥 10</span>
-          <span class="price-change down" title="어제 종가 기준">-2.35%</span>
-          <span class="rec strong_sell">풀매도</span>
-          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          <div class="s-head">
+            <span class="name">하이브</span>
+            <span class="direction down-strong" title="오늘 방향 예측">
+              ↓↓ 강한 하락 경계
+            </span>
+            <span class="conf high" title="예측 신뢰도">신뢰 높음</span>
+          </div>
+          <div class="s-outlook">방시혁 구속영장 신청이라는 초대형 오너리스크</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">
@@ -5034,15 +5277,22 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">셀리드</span>
-          <span class="price-change down" title="어제 종가 기준">-12.17%</span>
-          <span class="rec strong_sell">풀매도</span>
-          <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
+          <div class="s-head">
+            <span class="name">셀리드</span>
+            <span class="direction down-strong" title="오늘 방향 예측">
+              ↓↓ 강한 하락 경계
+            </span>
+            <span class="conf high" title="예측 신뢰도">신뢰 높음</span>
+          </div>
+          <div class="s-outlook">투자경고종목 지정 예고 + 공매도 과열종목 지정 + 어제 -12.17% 폭락</div>
+          <div class="s-foot">
+            <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 이웅수</span>
       <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
       <span class="owner-popover">
         <span class="owner-chip owner-leader">👑 이웅수</span><span class="owner-chip">👤 한윤근</span></span>
     </span></span>
+          </div>
         </summary>
         <div class="body">
           <div class="price-context">

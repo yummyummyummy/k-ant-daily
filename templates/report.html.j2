@@ -591,6 +591,82 @@
   }
   .points .sources a:hover { text-decoration: underline; }
 
+  /* PORTFOLIO SNAPSHOT — "오늘 친구들 포트폴리오 전망" aggregate view */
+  .portfolio-snapshot {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px;
+    margin: 8px 0 18px;
+  }
+  .portfolio-snapshot .ps-lead {
+    font-size: 13px; color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .portfolio-snapshot .ps-lead strong { color: var(--fg); font-weight: 700; }
+  .portfolio-snapshot .ps-row {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .portfolio-snapshot .ps-dir {
+    font-size: 12px; padding: 3px 10px; border-radius: 999px;
+    display: inline-flex; align-items: baseline; gap: 4px;
+    background: var(--bg); border: 1px solid var(--border);
+  }
+  .portfolio-snapshot .ps-dir b { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .portfolio-snapshot .ps-dir.up-strong { border-color: #dc2626; color: #dc2626; }
+  .portfolio-snapshot .ps-dir.up        { border-color: var(--pos); color: var(--pos); }
+  .portfolio-snapshot .ps-dir.flat      { border-color: var(--border); color: var(--muted); }
+  .portfolio-snapshot .ps-dir.down      { border-color: var(--neg); color: var(--neg); }
+  .portfolio-snapshot .ps-dir.down-strong { border-color: #1d4ed8; color: #1d4ed8; }
+  .portfolio-snapshot .ps-sectors {
+    font-size: 12px; color: var(--muted);
+    display: flex; gap: 6px; flex-wrap: wrap; align-items: baseline;
+    padding-top: 8px; border-top: 1px dashed var(--border);
+  }
+  .portfolio-snapshot .ps-sectors-label {
+    font-weight: 700; color: var(--fg); margin-right: 2px;
+  }
+  .portfolio-snapshot .ps-sec-chip {
+    padding: 2px 8px; border-radius: 4px;
+    background: var(--bg); border: 1px solid var(--border);
+    font-variant-numeric: tabular-nums;
+  }
+  .portfolio-snapshot .ps-sec-chip b { font-weight: 700; color: var(--fg); }
+  .portfolio-snapshot .ps-sec-chip .s-up   { color: var(--pos); font-weight: 700; }
+  .portfolio-snapshot .ps-sec-chip .s-down { color: var(--neg); font-weight: 700; }
+
+  /* STOCK CARD SUMMARY — forward-looking layout.
+     Summary row: name · direction chip · confidence chip  (+ outcome 저녁엔)
+                  outlook 한 줄
+                  owner chips (우측 정렬) */
+  article.stock > details > summary .s-head {
+    display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+    width: 100%;
+  }
+  article.stock > details > summary .s-outlook {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.5; margin-top: 4px; padding-right: 20px;
+  }
+  article.stock > details > summary .s-foot {
+    display: flex; justify-content: flex-end; margin-top: 6px;
+  }
+  article.stock .direction {
+    font-size: 11px; font-weight: 700;
+    padding: 2px 8px; border-radius: 999px;
+    letter-spacing: 0.02em; white-space: nowrap;
+  }
+  article.stock .direction.up-strong   { background: #dc2626; color: white; }
+  article.stock .direction.up          { background: var(--pos-bg); color: var(--pos); }
+  article.stock .direction.flat        { background: var(--neu-bg); color: var(--muted); }
+  article.stock .direction.down        { background: var(--neg-bg); color: var(--neg); }
+  article.stock .direction.down-strong { background: #1d4ed8; color: white; }
+  article.stock .conf {
+    font-size: 11px; color: var(--muted);
+    padding: 1px 7px; border-radius: 4px;
+    background: var(--bg); border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  article.stock .conf.high { color: var(--accent); border-color: var(--accent); }
+
   /* STOCK GROUPING — action-first layout (매수/관망/매도 buckets) */
   .stock-group { margin-bottom: 20px; }
   .stock-group-head {
@@ -1139,6 +1215,31 @@
 
   <section>
     <h2>📈 종목별 <span class="section-sub" style="font-size: 13px; margin-left: 4px;">(클릭하면 상세 펼침)</span></h2>
+
+    {% if portfolio_snapshot %}
+    <div class="portfolio-snapshot">
+      <div class="ps-lead">📊 친구들 포트폴리오 오늘 전망 · <strong>{{ portfolio_snapshot.total }}종목</strong></div>
+      <div class="ps-row">
+        {% set d = portfolio_snapshot.by_direction %}
+        {% if d.up_strong %}<span class="ps-dir up-strong">🔥 강한 상승 기대 <b>{{ d.up_strong }}</b></span>{% endif %}
+        {% if d.up %}<span class="ps-dir up">🟢 상승 기대 <b>{{ d.up }}</b></span>{% endif %}
+        {% if d.flat %}<span class="ps-dir flat">🟡 관망 <b>{{ d.flat }}</b></span>{% endif %}
+        {% if d.down %}<span class="ps-dir down">🔴 하락 경계 <b>{{ d.down }}</b></span>{% endif %}
+        {% if d.down_strong %}<span class="ps-dir down-strong">⛔ 강한 하락 경계 <b>{{ d.down_strong }}</b></span>{% endif %}
+      </div>
+      {% if portfolio_snapshot.by_sector %}
+      <div class="ps-sectors">
+        <span class="ps-sectors-label">섹터별</span>
+        {% for sec in portfolio_snapshot.by_sector %}
+        <span class="ps-sec-chip" title="{% if sec.up %}상승 기대 {{ sec.up }}{% endif %}{% if sec.up and sec.down %} · {% endif %}{% if sec.down %}하락 경계 {{ sec.down }}{% endif %}">
+          {{ sec.name }} <b>{{ sec.count }}</b>{% if sec.up %} <span class="s-up">↑{{ sec.up }}</span>{% endif %}{% if sec.down %} <span class="s-down">↓{{ sec.down }}</span>{% endif %}
+        </span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+
     {% for group in stock_groups %}
     <div class="stock-group accent-{{ group.accent }}">
       <div class="stock-group-head">
@@ -1151,24 +1252,30 @@
     <article class="stock">
       <details>
         <summary>
-          <span class="name">{{ stock.name }}</span>
-          {% if stock.news_count %}
-          <span class="news-count-chip" title="오늘 새 뉴스 {{ stock.news_count }}건">🔥 {{ stock.news_count }}</span>
-          {% endif %}
-          {% if stock.price_change_display %}
-          <span class="price-change {{ stock.price_direction }}" title="어제 종가 기준">{{ stock.price_change_display }}</span>
-          {% endif %}
-          {% if stock.recommendation %}
-          <span class="rec {{ stock.recommendation }}">{{ stock.recommendation_label or stock.recommendation }}</span>
-          {% endif %}
-          {% if stock.result and stock.result.outcome and stock.result.outcome != 'n/a' %}
-          <span class="outcome-badge {{ stock.result.outcome }}" title="아침 예측 대비 실제 결과">
-            {% if stock.result.outcome == 'hit' %}✅{% elif stock.result.outcome == 'partial' %}🟡{% elif stock.result.outcome == 'miss' %}❌{% endif %}
-            {% if stock.result.actual_change_pct is not none %}{{ '%+.2f'|format(stock.result.actual_change_pct) }}%{% endif %}
-          </span>
+          <div class="s-head">
+            <span class="name">{{ stock.name }}</span>
+            {% if stock.direction_label %}
+            <span class="direction {{ stock.direction_cls }}" title="오늘 방향 예측">
+              {{ stock.direction_arrow }} {{ stock.direction_label }}
+            </span>
+            {% endif %}
+            {% if stock.confidence %}
+            <span class="conf {{ stock.confidence }}" title="예측 신뢰도">신뢰 {{ stock.confidence_label or stock.confidence }}</span>
+            {% endif %}
+            {% if stock.result and stock.result.outcome and stock.result.outcome != 'n/a' %}
+            <span class="outcome-badge {{ stock.result.outcome }}" title="아침 예측 대비 실제 결과">
+              {% if stock.result.outcome == 'hit' %}✅{% elif stock.result.outcome == 'partial' %}🟡{% elif stock.result.outcome == 'miss' %}❌{% endif %}
+              {% if stock.result.actual_change_pct is not none %}{{ '%+.2f'|format(stock.result.actual_change_pct) }}%{% endif %}
+            </span>
+            {% endif %}
+          </div>
+          {% if stock.outlook_line %}
+          <div class="s-outlook">{{ stock.outlook_line }}</div>
           {% endif %}
           {% if stock.owners %}
-          <span class="owner-chips">{{ owner_chips(stock.owners) }}</span>
+          <div class="s-foot">
+            <span class="owner-chips">{{ owner_chips(stock.owners) }}</span>
+          </div>
           {% endif %}
         </summary>
         <div class="body">

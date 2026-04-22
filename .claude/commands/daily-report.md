@@ -166,7 +166,7 @@ description: Generate and publish today's pre-market stock briefing
       "overnight_signal": "up|neutral|down",
       "recommendation": "strong_buy|buy|hold|sell|strong_sell",
       "confidence": "high|medium|low",
-      "rationale": "한 문장 근거 — 뉴스·어제종가·간밤신호의 조합 설명",
+      "rationale": "첫 문장은 50자 내외 forward-looking 한 줄 전망 (종목 카드 요약에 추출됨). 이후 문장은 신호 조합·근거 상술.",
       "summary": "오늘 세션 예측 2~3문장 (forward-looking)",
       "key_points": [
         {"point": "...", "detail": "...", "impact": "...",
@@ -239,6 +239,24 @@ description: Generate and publish today's pre-market stock briefing
 - **개수**: 한 문장에 **1~2개** 만. 3개 이상이면 다 하이라이트한 것처럼 되어 무의미해짐.
 - 보안: 필터가 HTML-escape 먼저 한 뒤 `**X**` 만 `<mark>` 로 치환하므로 다른
   HTML 문법(`<b>` 등) 은 그대로 escape 돼서 안전함. 마커만 쓸 것.
+
+## `rationale` 구조 — **첫 문장 = 요약 전망, 이후 = 근거**
+
+`rationale` 의 **첫 문장**은 render 가 종목 카드 요약 row 에 한 줄 outlook 으로
+추출한다 (`_outlook_line` 헬퍼가 첫 마침표까지 잘라 최대 60자 + 말줄임). 따라서
+첫 문장은 아래 조건을 충족해야 독자 카드에서 의미 있다:
+
+- **Forward-looking**: "오늘 어떻게 움직일지" 를 말할 것. 과거 수치 나열 금지.
+- **50자 내외**: 60자 넘으면 잘림. 30~50자가 이상적.
+- **자기완결**: 그 한 줄만 읽어도 오늘 전망이 이해되도록.
+
+이후 문장들은 근거·신호 조합·선반영 여부·리스크 등 상술. `rationale` 전체는
+결정 근거 블록(펼친 body)에 그대로 노출되므로 충실히 써도 OK.
+
+**예시**
+- ✅ "HBM 실적 모멘텀 강력, 상승 여력 존재. 1Q 영업익 +369% 컨센서스 + 목표가 200만원 논의, 간밤 SOX +0.5% 중립 우호, 아직 선반영 아님."
+- ✅ "뉴스 긍정 vs 간밤 약세 상충, 갭다운 후 쉬어가는 흐름 예상. 20일 +21% 급등으로 상당 부분 선반영 + 간밤 XLI/DAC 약세."
+- ❌ "한·미 무인함대 공동개발 + 동남아 K-방산 수출 + 1Q 잠정실적 호재로 뉴스 톤 긍정. 그러나 20일 +21% 급등으로 상당 부분 선반영…" (첫 문장이 재료 나열만, 결론 없음)
 
 ## `rationale` 서술 — 코드·영어 스키마 용어 금지
 
