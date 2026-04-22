@@ -1,17 +1,21 @@
 // k-ant-daily quote proxy — Cloudflare Worker
 //
-// Proxies Naver Finance's realtime polling endpoint and adds CORS so the
-// static GitHub Pages site can hit it from the browser.
+// Proxies Naver Finance's realtime polling + news endpoints and adds CORS
+// so the static GitHub Pages site can hit them from the browser.
 //
 // GET /quote?codes=005930,000660,...
 //   → { "005930": {price, change, change_pct, direction, name, ts}, ... }
+// GET /stock-news?codes=005930,000660,...
+//   → { "005930": {news: [{title, url, source, published_at}], latest_at}, ... }
 //
-// Edge-cached for 30s per unique code-set — one upstream call serves all
-// concurrent visitors until the cache expires.
+// Edge-cached per unique code-set — one upstream call serves all concurrent
+// visitors until the cache expires. Quote: 30s, news: 5 min.
 
 const NAVER_POLL = "https://polling.finance.naver.com/api/realtime";
+const NAVER_ITEM = "https://finance.naver.com/item";
 const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36";
-const CACHE_TTL = 30; // seconds
+const CACHE_TTL = 30;       // seconds — quote / ticker
+const NEWS_CACHE_TTL = 300; // seconds — stock-news (5 min)
 const MAX_CODES = 32;
 
 const CORS_HEADERS = {
@@ -195,6 +199,118 @@ async function fetchTicker(items) {
   return out;
 }
 
+// ─────────────────────────────────────────────────────────────────────
+// Stock news — HTML scrape of the per-item news tab on Naver Finance.
+// Used by the browser's intraday news-refresh polling; replaces the old
+// launchd-based "crawl + commit every 10 min" workflow.
+// ─────────────────────────────────────────────────────────────────────
+
+// "2026.04.22 10:15" or "2026.04.22 10:15:30" → ISO-8601 + KST.
+function parseNaverDate(s) {
+  const m = String(s || "").match(/(\d{4})\.(\d{2})\.(\d{2})\s+(\d{2}):(\d{2})(?::(\d{2}))?/);
+  if (!m) return null;
+  return `${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:${m[6] || "00"}+09:00`;
+}
+
+function stripTags(s) {
+  return String(s || "").replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
+}
+
+// HTML entity decoder for Naver headlines — named entities we see commonly
+// plus numeric references. We keep this small because Korean headlines almost
+// never use the full HTML5 named-entity set; anything exotic falls through
+// untouched, which is better than URL-corrupting it.
+const NAMED_ENTITIES = {
+  amp: "&", lt: "<", gt: ">", quot: '"', apos: "'",
+  nbsp: " ",
+  hellip: "…", middot: "·", bull: "•",
+  ldquo: "“", rdquo: "”", lsquo: "‘", rsquo: "’",
+  uarr: "↑", darr: "↓", larr: "←", rarr: "→",
+  times: "×", divide: "÷",
+};
+function unescHtml(s) {
+  return String(s || "").replace(/&(#x?[0-9a-f]+|[a-z]+);/gi, (m, name) => {
+    if (name.startsWith("#x") || name.startsWith("#X")) {
+      const code = parseInt(name.slice(2), 16);
+      return isNaN(code) ? m : String.fromCodePoint(code);
+    }
+    if (name.startsWith("#")) {
+      const code = parseInt(name.slice(1), 10);
+      return isNaN(code) ? m : String.fromCodePoint(code);
+    }
+    return NAMED_ENTITIES[name.toLowerCase()] || m;
+  });
+}
+
+async function fetchStockNews(code, limit = 10) {
+  const pageUrl = `${NAVER_ITEM}/news_news.naver?code=${code}&page=1&sm=title_entity_id.basic&clusterId=`;
+  const referer = `${NAVER_ITEM}/main.naver?code=${code}`;
+  const res = await fetch(pageUrl, {
+    headers: {
+      "User-Agent": UA,
+      "Referer": referer,
+      "Accept": "text/html,application/xhtml+xml",
+      "Accept-Language": "ko-KR,ko;q=0.9",
+    },
+    cf: { cacheTtl: NEWS_CACHE_TTL, cacheEverything: true },
+  });
+  if (!res.ok) return [];
+  const buf = await res.arrayBuffer();
+  const html = new TextDecoder("euc-kr").decode(buf);
+
+  // Don't try to bound the extraction by the outer <table class="type5">.
+  // Naver nests its own cluster <table class="type5"> inside `relation_lst`
+  // rows, which breaks any non-greedy `</table>` match. Iterate every <tr>
+  // in the document and filter by attributes + presence of the title anchor.
+  const items = [];
+  const trRegex = /<tr([^>]*)>([\s\S]*?)<\/tr>/g;
+  let m;
+  while ((m = trRegex.exec(html)) !== null) {
+    const attrs = m[1];
+    // Skip cluster-related rows and hidden news rows Naver interleaves.
+    if (/class\s*=\s*"[^"]*relation_lst/i.test(attrs)) continue;
+    if (/class\s*=\s*"[^"]*hide_news/i.test(attrs)) continue;
+    const row = m[2];
+
+    // <td class="title"> <a class="tit" href="…">title</a></td>
+    const titleMatch = row.match(
+      /<td[^>]*class="[^"]*title[^"]*"[^>]*>[\s\S]*?<a[^>]*href="([^"]*)"[^>]*class="[^"]*tit[^"]*"[^>]*>([\s\S]*?)<\/a>/i,
+    );
+    if (!titleMatch) continue;
+    let href = unescHtml(titleMatch[1]);
+    if (href.startsWith("/")) href = "https://finance.naver.com" + href;
+    const title = unescHtml(stripTags(titleMatch[2]));
+    if (!title) continue;
+
+    const infoMatch = row.match(/<td[^>]*class="[^"]*info[^"]*"[^>]*>([\s\S]*?)<\/td>/i);
+    const source = infoMatch ? unescHtml(stripTags(infoMatch[1])) : "";
+
+    const dateMatch = row.match(/<td[^>]*class="[^"]*date[^"]*"[^>]*>([\s\S]*?)<\/td>/i);
+    const rawDate = dateMatch ? stripTags(dateMatch[1]) : "";
+    const published_at = parseNaverDate(rawDate);
+
+    items.push({ title, url: href, source, published_at });
+    if (items.length >= limit) break;
+  }
+  // Newest first — the Naver table is already ordered that way, but enforce
+  // in case the markup shifts.
+  items.sort((a, b) => (b.published_at || "").localeCompare(a.published_at || ""));
+  return items;
+}
+
+async function fetchAllStockNews(codes) {
+  const results = await Promise.all(codes.map((c) => fetchStockNews(c).catch(() => [])));
+  const out = {};
+  codes.forEach((code, i) => {
+    const news = results[i] || [];
+    out[code] = {
+      news,
+      latest_at: news.length > 0 ? news[0].published_at : null,
+    };
+  });
+  return out;
+}
+
 export default {
   async fetch(request, env, ctx) {
     if (request.method === "OPTIONS") {
@@ -237,6 +353,53 @@ export default {
         headers: {
           "Content-Type": "application/json; charset=utf-8",
           "Cache-Control": `public, max-age=${CACHE_TTL}`,
+          "X-Cache": "MISS",
+          ...CORS_HEADERS,
+        },
+      });
+      ctx.waitUntil(cache.put(cacheKey, resp.clone()));
+      return resp;
+    }
+
+    // Per-stock news tab scrape — serves the browser's intraday news polling.
+    if (url.pathname === "/stock-news") {
+      const raw = url.searchParams.get("codes") || "";
+      const codes = raw
+        .split(",")
+        .map((c) => c.trim())
+        .filter((c) => /^\d{6}$/.test(c))
+        .slice(0, MAX_CODES);
+      if (!codes.length) {
+        return json({ error: "missing or invalid ?codes=005930,000660" }, 400);
+      }
+
+      const sorted = [...codes].sort().join(",");
+      const cacheKey = new Request(`https://cache.k-ant-daily/stock-news?codes=${sorted}`, { method: "GET" });
+      const cache = caches.default;
+      const cached = await cache.match(cacheKey);
+      if (cached) {
+        const body = await cached.text();
+        return new Response(body, {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "Cache-Control": `public, max-age=${NEWS_CACHE_TTL}`,
+            "X-Cache": "HIT",
+            ...CORS_HEADERS,
+          },
+        });
+      }
+
+      let data;
+      try { data = await fetchAllStockNews(codes); }
+      catch (e) { return json({ error: "upstream failed", detail: e.message }, 502); }
+
+      const body = JSON.stringify(data);
+      const resp = new Response(body, {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "Cache-Control": `public, max-age=${NEWS_CACHE_TTL}`,
           "X-Cache": "MISS",
           ...CORS_HEADERS,
         },

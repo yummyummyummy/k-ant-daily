@@ -1296,7 +1296,7 @@
       </div>
       <div class="stock-grid">
     {% for stock in group.stocks %}
-    <article class="stock">
+    <article class="stock" data-code="{{ stock.code }}">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="{{ stock.name }} 상세 보기">
         <div class="s-head">
           <span class="name">{{ stock.name }}</span>
@@ -1568,12 +1568,14 @@
   // After deploying the Cloudflare Worker in ../worker/, paste its URL here.
   // Expected shape: https://<name>.<subdomain>.workers.dev/quote
   // Leave as "" to disable live polling (snapshot values render as-is).
-  const QUOTE_API    = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/quote";
-  const TICKER_API   = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/ticker";
-  const TICKER_ITEMS = ["KOSPI", "KOSDAQ", "USDKRW", "BTC", "ETH"];
+  const QUOTE_API      = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/quote";
+  const TICKER_API     = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/ticker";
+  const STOCK_NEWS_API = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/stock-news";
+  const TICKER_ITEMS   = ["KOSPI", "KOSDAQ", "USDKRW", "BTC", "ETH"];
   // ────────────────────────────────────────────────────────────────
 
   const POLL_MS = 60_000;
+  const NEWS_POLL_MS = 5 * 60_000;       // every 5 min on a live page
   const MARKET_OPEN_MIN  = 9 * 60;       // 09:00 KST
   const MARKET_CLOSE_MIN = 15 * 60 + 30; // 15:30 KST
 
@@ -1803,6 +1805,133 @@
     }
   }
 
+  // ── Intraday stock news refresh — fetches /stock-news for each live card
+  // and rewrites each dialog's news list + the 📰 chip on the card head.
+  // Replaces the old 10-min launchd refresh that was committing HTML diffs.
+  function timeAgoFromIso(iso) {
+    if (!iso) return "";
+    const dt = new Date(iso);
+    if (isNaN(dt.getTime())) return "";
+    const secs = Math.max(0, Math.floor((Date.now() - dt.getTime()) / 1000));
+    if (secs < 60)   return "방금 전";
+    if (secs < 3600) return `${Math.floor(secs / 60)}분 전`;
+    if (secs < 86400) return `${Math.floor(secs / 3600)}시간 전`;
+    const days = Math.floor(secs / 86400);
+    if (days < 7)    return `${days}일 전`;
+    return `${String(dt.getMonth() + 1).padStart(2, "0")}/${String(dt.getDate()).padStart(2, "0")}`;
+  }
+
+  function escHtml(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
+  // Mirror of scripts/render.py `_auto_impact` — same keyword regexes so
+  // client-rendered impact labels match the Python-rendered ones.
+  const POS_RE = /(상승|급등|강세|반등|신고가|최고치|돌파|호실적|실적\s*개선|영업이익\s*증가|어닝\s*서프라이즈|상향|수주|체결|공급\s*계약|라이선스|승인|허가|특허|자사주\s*매입|자사주\s*소각|배당\s*(인상|증가|확대)|흑자\s*전환|수혜|성장|호재|랠리|폭등|대박|인수|인수\s*합병|M&A|골든크로스|최대\s*실적|사상\s*최대|어닝\s*비트|목표가\s*상향|매수\s*추천|투자의견\s*상향|긍정적|기대감|수주잔고|호조|낙관)/;
+  const NEG_RE = /(하락|급락|약세|부진|적자|쇼크|저조|감소|하향|실패|철회|취소|리스크|부담|제재|과징금|횡령|배임|소송|경고|우려|손실|위기|낙폭|추락|불안|악재|하회|둔화|슬럼프|논란|감원|구조조정|적자\s*전환|매도\s*추천|투자의견\s*하향|목표가\s*하향|부정적|데드크로스|실망감|어닝\s*쇼크|실적\s*쇼크|규제|조사|경영권\s*분쟁)/;
+  const IMPACT_LABEL = { positive: "호재", negative: "악재", neutral: "중립" };
+  function autoImpact(title) {
+    if (!title) return "neutral";
+    const pos = POS_RE.test(title);
+    const neg = NEG_RE.test(title);
+    if (pos && !neg) return "positive";
+    if (neg && !pos) return "negative";
+    return "neutral";
+  }
+
+  function renderNewsItemHTML(n) {
+    const impact = n.impact || autoImpact(n.title);
+    const ago    = timeAgoFromIso(n.published_at);
+    const src    = n.source || "";
+    const url    = n.url || "";
+    const titleEsc = escHtml(n.title || "");
+    const srcEsc   = escHtml(src);
+    const urlEsc   = escHtml(url);
+    const impactLbl = IMPACT_LABEL[impact] || impact;
+    const titleHtml = url
+      ? `<a href="${urlEsc}" target="_blank" rel="noopener">${titleEsc}</a>`
+      : titleEsc;
+    return `<li>
+      <span class="news-dot ${impact}"></span>
+      <div class="news-body">
+        <div class="news-title">${titleHtml}</div>
+        <div class="news-meta">
+          ${ago ? `<span class="time-ago">${escHtml(ago)}</span>` : ""}
+          ${src ? `<span>· ${srcEsc}</span>` : ""}
+          <span class="impact ${impact}">${escHtml(impactLbl)}</span>
+        </div>
+      </div>
+    </li>`;
+  }
+
+  function updateStockNewsBlock(article, entry) {
+    // 1) Update the 📰 n분 전 chip on the card head (add one if missing).
+    const head = article.querySelector(".s-head");
+    let freshChip = article.querySelector(".news-fresh");
+    const agoText = timeAgoFromIso(entry.latest_at);
+    if (agoText) {
+      if (!freshChip && head) {
+        freshChip = document.createElement("span");
+        freshChip.className = "news-fresh";
+        freshChip.title = "가장 최근 뉴스 시각";
+        const name = head.querySelector(".name");
+        if (name && name.nextSibling) head.insertBefore(freshChip, name.nextSibling);
+        else head.appendChild(freshChip);
+      }
+      if (freshChip) freshChip.textContent = "📰 " + agoText;
+    }
+
+    // 2) Rebuild the dialog's news block from scratch. If the block doesn't
+    // exist yet (morning baseline had `news: []`), create it.
+    const body = article.querySelector(".dialog-body");
+    if (!body) return;
+    let block = body.querySelector(".stock-news-block");
+    const news = (entry.news || []).slice(0, 10);
+    if (!news.length) return;  // nothing to show; leave existing baseline alone
+    const visible = news.slice(0, 5);
+    const hidden  = news.slice(5);
+    const hiddenHtml = hidden.length
+      ? `<details class="news-more"><summary>더 보기 (${hidden.length}건)</summary><ul>${hidden.map(renderNewsItemHTML).join("")}</ul></details>`
+      : "";
+    const inner = `<h4>📰 오늘의 뉴스 (${news.length}건, 최신순)</h4>
+      <ul>${visible.map(renderNewsItemHTML).join("")}</ul>
+      ${hiddenHtml}`;
+    if (block) {
+      block.innerHTML = inner;
+    } else {
+      block = document.createElement("div");
+      block.className = "stock-news-block";
+      block.innerHTML = inner;
+      // Prefer inserting right after the price-context block so ordering
+      // matches the baseline template.
+      const after = body.querySelector(".price-context");
+      if (after && after.parentNode) after.parentNode.insertBefore(block, after.nextSibling);
+      else body.insertBefore(block, body.firstChild);
+    }
+  }
+
+  async function refreshStockNews() {
+    if (!STOCK_NEWS_API) return;
+    const articles = [...document.querySelectorAll("article.stock[data-code]")];
+    if (!articles.length) return;
+    const codes = articles.map((a) => a.dataset.code).filter((c) => /^\d{6}$/.test(c));
+    if (!codes.length) return;
+    try {
+      const url = STOCK_NEWS_API + "?codes=" + encodeURIComponent(codes.join(","));
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) return;
+      const data = await res.json();
+      articles.forEach((a) => {
+        const entry = data[a.dataset.code];
+        if (entry) updateStockNewsBlock(a, entry);
+      });
+    } catch (err) {
+      // Silent — baseline news stays visible. Next interval retries.
+    }
+  }
+
   async function refreshQuotes() {
     if (!QUOTE_API) return;
     const cards = document.querySelectorAll(".friend-card[data-code]");
@@ -1897,6 +2026,14 @@
     }
     refreshQuotes();
     setInterval(refreshQuotes, POLL_MS);
+    // Per-stock news refresh — browser polls the Worker /stock-news endpoint
+    // every 5 min so the aggregate 📰 chip + each dialog's news list stay
+    // fresh without any git commit. First call runs after a short delay so
+    // the page renders with baseline news first, then upgrades in place.
+    if (STOCK_NEWS_API) {
+      setTimeout(refreshStockNews, 2000);
+      setInterval(refreshStockNews, NEWS_POLL_MS);
+    }
     // Re-check market-close boundary every minute; stop friend-stock polling after 15:30.
     setInterval(() => {
       if (!isMarketOpen()) {

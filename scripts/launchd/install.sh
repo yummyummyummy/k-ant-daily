@@ -1,9 +1,12 @@
 #!/bin/bash
-# Install the three LaunchAgents:
+# Install the two LaunchAgents:
 #   - briefing  07:30 weekdays (morning prediction)
 #   - review    20:10 weekdays (post-session verification)
-#   - refresh   every 10 min weekdays 09:00–15:30 (intraday news/quote pull)
-# Run once, then all schedules are live.
+#
+# Intraday news refresh used to live here as a third agent (10-min cron);
+# it's now served by the browser polling the Cloudflare Worker /stock-news
+# endpoint, so no server-side cron is needed. The `refresh` plist + wrapper
+# are kept in the repo as reference but are no longer installed by default.
 set -e
 
 SRC="$(cd "$(dirname "$0")" && pwd)"
@@ -12,7 +15,17 @@ LOGS="$HOME/Library/Logs/k-ant-daily"
 
 mkdir -p "$DST" "$LOGS"
 
-for name in com.yummyummyummy.k-ant-daily.briefing com.yummyummyummy.k-ant-daily.review com.yummyummyummy.k-ant-daily.refresh; do
+# If a previous install put the refresh agent in place, make sure it's
+# unloaded — leaving it around would force redundant commits that the
+# browser-side refresh now avoids.
+LEGACY="$DST/com.yummyummyummy.k-ant-daily.refresh.plist"
+if [ -f "$LEGACY" ]; then
+    launchctl unload -w "$LEGACY" 2>/dev/null || true
+    rm -f "$LEGACY"
+    echo "· removed legacy refresh agent (news now refreshed client-side via Worker)"
+fi
+
+for name in com.yummyummyummy.k-ant-daily.briefing com.yummyummyummy.k-ant-daily.review; do
     plist="$DST/$name.plist"
     # Copy (not symlink) — launchctl dislikes symlinks in LaunchAgents.
     cp -f "$SRC/$name.plist" "$plist"
@@ -30,5 +43,5 @@ launchctl list | grep k-ant-daily || true
 echo ""
 echo "Logs: $LOGS"
 echo ""
-echo "To disable later:  launchctl unload -w $DST/com.yummyummyummy.k-ant-daily.{briefing,review,refresh}.plist"
-echo "To test manually:  $SRC/run-briefing.sh   |   $SRC/run-refresh.sh"
+echo "To disable later:  launchctl unload -w $DST/com.yummyummyummy.k-ant-daily.{briefing,review}.plist"
+echo "To test manually:  $SRC/run-briefing.sh"
