@@ -168,8 +168,7 @@
     display: inline-flex; align-items: center; gap: 4px; margin-top: 4px;
   }
   .top-stories-more > summary::-webkit-details-marker { display: none; }
-  .top-stories-more > summary::after { content: "▾"; font-size: 10px; }
-  .top-stories-more[open] > summary::after { content: "▴"; }
+  /* chevron handled by shared rule below */
   .top-stories-more ol { padding-top: 4px; }
 
   /* FOCUS (geopolitics / hot topic) */
@@ -394,8 +393,7 @@
     padding: 4px 12px; margin-top: 4px;
   }
   .section-toggle > summary::-webkit-details-marker { display: none; }
-  .section-toggle > summary::after { content: "▾"; font-size: 10px; }
-  .section-toggle[open] > summary::after { content: "▴"; }
+  /* section-toggle chevron handled by shared rule below */
   .section-toggle .section-body { padding-top: 12px; }
 
   /* SECTOR toggle — wider, fills the row */
@@ -406,8 +404,7 @@
     color: var(--fg); font-size: 14px; list-style: none;
   }
   .sector-toggle > summary::-webkit-details-marker { display: none; }
-  .sector-toggle > summary::after { content: "▾"; font-size: 11px; color: var(--muted); margin-left: auto; }
-  .sector-toggle[open] > summary::after { content: "▴"; }
+  /* sector-toggle chevron handled by shared rule below (color: muted, pushed right) */
   .sector-toggle > summary .sector-name { font-weight: 600; }
   .sector-toggle .section-body { padding: 10px 14px 2px; }
 
@@ -539,8 +536,7 @@
     padding: 6px 0 0; display: inline-flex; align-items: center; gap: 4px;
   }
   .stock-news-block details.news-more > summary::-webkit-details-marker { display: none; }
-  .stock-news-block details.news-more > summary::after { content: "▾"; font-size: 10px; }
-  .stock-news-block details.news-more[open] > summary::after { content: "▴"; }
+  /* chevron handled by shared rule below */
 
   /* STOCK CARD owner chips (right-aligned on trigger row) */
   article.stock .owner-chips {
@@ -557,23 +553,40 @@
   .top-stories li:last-child { border-bottom: none; }
   .top-stories details > summary {
     list-style: none; cursor: pointer; display: flex; align-items: center;
-    gap: 6px; flex-wrap: wrap; user-select: none; padding: 4px 0;
+    gap: 6px; flex-wrap: nowrap; user-select: none; padding: 4px 0;
   }
   .top-stories details > summary::-webkit-details-marker { display: none; }
-  .top-stories details > summary::after {
-    content: "자세히 ▾"; font-size: 11px; color: var(--accent);
-    background: var(--bg); padding: 2px 8px; border-radius: 4px;
-    border: 1px solid var(--border); margin-left: auto;
-    white-space: nowrap; font-weight: 500;
+  /* chevron-only (no "자세히/접기" text), accent color, pushed right */
+  .top-stories .title {
+    font-weight: 600; flex: 1 1 auto; min-width: 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
-  .top-stories details[open] > summary::after { content: "접기 ▴"; }
-  .top-stories .title { font-weight: 600; flex: 1; min-width: 0; }
   .top-stories .body { padding: 6px 0 4px; }
   .top-stories .why { color: var(--muted); font-size: 14px; margin-top: 2px; }
   .top-stories .sources { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
   .top-stories .sources a {
     font-size: 12px; color: var(--accent); text-decoration: none;
     background: var(--bg); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border);
+  }
+
+  /* Narrow viewports: stack the top-stories summary into two rows — title
+     on its own line (ellipsis) + cat-tag/impact chips below. Prevents the
+     category label from eating the headline's horizontal space. */
+  @media (max-width: 640px) {
+    .top-stories details > summary {
+      flex-wrap: wrap;
+      align-items: baseline;
+      column-gap: 6px; row-gap: 4px;
+      position: relative;
+      padding-right: 22px;  /* room for absolute-positioned chevron */
+    }
+    .top-stories .title { flex: 1 1 100%; order: 1; }
+    .top-stories .cat-tag { order: 2; }
+    .top-stories .impact  { order: 3; margin-left: 0; }
+    .top-stories details > summary::after {
+      position: absolute; top: 10px; right: 2px;
+      margin-left: 0;
+    }
   }
 
   /* FOCUS: collapsible details toggle */
@@ -586,8 +599,7 @@
     padding: 6px 14px; margin-top: 4px;
   }
   .focus-toggle > summary::-webkit-details-marker { display: none; }
-  .focus-toggle > summary::after { content: "▾"; font-size: 11px; }
-  .focus-toggle[open] > summary::after { content: "▴"; }
+  /* chevron handled by shared rule below */
   .focus-toggle .focus-body { padding-top: 12px; }
 
   /* IMPACT BADGES */
@@ -916,8 +928,44 @@
     display: inline-flex; align-items: center; gap: 4px;
   }
   .sector-card details.sec-more > summary::-webkit-details-marker { display: none; }
-  .sector-card details.sec-more > summary::after { content: "▾"; font-size: 10px; }
-  .sector-card details.sec-more[open] > summary::after { content: "▴"; }
+  /* chevron handled by shared rule below */
+
+  /* ─── Unified disclosure chevron ───────────────────────────────────
+     Replaces the ▾/▴ filled triangles across every <details> toggle.
+     Pure CSS "L-shape" drawn via two borders, rotated 45° (closed ▾)
+     or -135° (open ▴) — crisp at any size, no font dependency, smooth
+     animated state transition. `currentColor` lets each selector keep
+     its own color theme. */
+  .top-stories-more > summary::after,
+  .top-stories details > summary::after,
+  .section-toggle > summary::after,
+  .sector-toggle > summary::after,
+  .focus-toggle > summary::after,
+  .stock-news-block details.news-more > summary::after,
+  .sector-card details.sec-more > summary::after {
+    content: ""; display: inline-block;
+    width: 7px; height: 7px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translate(-1px, -1px);
+    transform-origin: center;
+    transition: transform 0.18s ease;
+    margin-left: 6px;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+  .top-stories-more[open] > summary::after,
+  .top-stories details[open] > summary::after,
+  .section-toggle[open] > summary::after,
+  .sector-toggle[open] > summary::after,
+  .focus-toggle[open] > summary::after,
+  .stock-news-block details.news-more[open] > summary::after,
+  .sector-card details.sec-more[open] > summary::after {
+    transform: rotate(-135deg) translate(-1px, -1px);
+  }
+  /* Chevrons that should sit at the far right of their row */
+  .top-stories details > summary::after { color: var(--accent); margin-left: auto; }
+  .sector-toggle > summary::after       { color: var(--muted);  margin-left: auto; }
 
   footer {
     margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border);
