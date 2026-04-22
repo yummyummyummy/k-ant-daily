@@ -711,15 +711,48 @@
   }
   .stock-grid article.stock { margin-bottom: 0; }  /* gap handles spacing */
 
-  /* STOCK CARD — clickable button that opens a <dialog> modal with detail view */
-  article.stock { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+  /* STOCK CARD — clickable button that opens a <dialog> modal with detail view.
+     Affordance cues (mobile-friendly since `:hover` doesn't exist on touch):
+       • right chevron `›` → "tap to drill in"
+       • subtle elevation shadow that intensifies on hover
+       • :active scale-down for tap feedback
+       • article-level hover (not trigger-level) so visual fills the whole
+         grid cell even when this card is shorter than its 2-col sibling. */
+  article.stock {
+    background: var(--card);
+    border: 1px solid var(--border); border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: background 0.12s, box-shadow 0.15s, transform 0.08s;
+  }
+  article.stock:hover {
+    background: var(--bg);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  }
+  article.stock:active { transform: scale(0.997); }
+  /* Right chevron ›, vertically centered. pointer-events: none so clicks
+     pass through to the button below. */
+  article.stock::after {
+    content: ""; position: absolute;
+    right: 14px; top: 50%;
+    width: 7px; height: 7px;
+    border-right: 1.5px solid var(--muted);
+    border-top: 1.5px solid var(--muted);
+    transform: translateY(-50%) rotate(45deg);
+    transition: border-color 0.12s;
+    pointer-events: none;
+  }
+  article.stock:hover::after { border-color: var(--accent); }
+
   article.stock .stock-trigger {
     width: 100%; border: none; background: transparent;
     font: inherit; color: inherit; text-align: left; cursor: pointer;
-    padding: 14px 16px; display: block;
-    transition: background 0.12s;
+    padding: 14px 40px 14px 16px;  /* right padding reserves room for chevron */
+    display: block;
+    -webkit-tap-highlight-color: transparent;  /* custom :active flash instead */
   }
-  article.stock .stock-trigger:hover  { background: var(--bg); }
   article.stock .stock-trigger:focus-visible {
     outline: 2px solid var(--accent); outline-offset: -2px;
   }
