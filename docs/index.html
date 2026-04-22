@@ -356,11 +356,11 @@
     justify-content: flex-end;
   }
   .owners-wrap .owner-chip.extra { display: none; }
+  /* Click/tap to toggle on both desktop and mobile — no hover shortcut. The
+     old `@media (hover: hover) :hover` rule made PC feel inconsistent with
+     the +N chip also having a click handler. One interaction, one behavior. */
   .owners-wrap.open .owner-chip.extra,
   .owners-wrap:focus-within .owner-chip.extra { display: inline-flex; }
-  @media (hover: hover) {
-    .owners-wrap:hover .owner-chip.extra { display: inline-flex; }
-  }
   .owners-wrap .owner-more {
     cursor: pointer; opacity: 0.75;
     background: rgba(0,0,0,0.06);
