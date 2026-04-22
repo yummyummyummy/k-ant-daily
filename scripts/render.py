@@ -1047,11 +1047,17 @@ def build_archive_index(base_url: str) -> str:
 
 
 def main(argv: list[str]) -> int:
-    if len(argv) < 2:
-        print("usage: render.py <summary.json> [base_url]", file=sys.stderr)
+    args = [a for a in argv[1:] if not a.startswith("--")]
+    flags = {a for a in argv[1:] if a.startswith("--")}
+    if not args:
+        print("usage: render.py <summary.json> [base_url] [--intraday]", file=sys.stderr)
         return 2
-    summary_path = Path(argv[1])
-    base_url = argv[2] if len(argv) > 2 else DEFAULT_BASE_URL
+    # `--intraday` skips the aggregate pages (archive / accuracy / per-day
+    # retrospective) — those only change when the evening review runs, so
+    # regenerating them on every 10-min refresh just churns timestamps.
+    intraday = "--intraday" in flags
+    summary_path = Path(args[0])
+    base_url = args[1] if len(args) > 1 else DEFAULT_BASE_URL
 
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     DOCS.mkdir(exist_ok=True)
@@ -1069,20 +1075,21 @@ def main(argv: list[str]) -> int:
     index = DOCS / "index.html"
     shutil.copyfile(dated, index)
 
-    archive_html = build_archive_index(base_url)
-    (DOCS / "archive.html").write_text(archive_html, encoding="utf-8")
+    if not intraday:
+        archive_html = build_archive_index(base_url)
+        (DOCS / "archive.html").write_text(archive_html, encoding="utf-8")
 
-    accuracy_html = build_accuracy(base_url)
-    (DOCS / "accuracy.html").write_text(accuracy_html, encoding="utf-8")
+        accuracy_html = build_accuracy(base_url)
+        (DOCS / "accuracy.html").write_text(accuracy_html, encoding="utf-8")
 
-    # Per-day retrospective — emitted only once the evening review block exists.
-    day_html = build_accuracy_day(summary, base_url)
-    if day_html:
-        day_dir = DOCS / "accuracy"
-        day_dir.mkdir(exist_ok=True)
-        day_path = day_dir / f"{date_key}.html"
-        day_path.write_text(day_html, encoding="utf-8")
-        print(f"✓ Wrote {day_path.relative_to(ROOT)}")
+        # Per-day retrospective — emitted only once the evening review block exists.
+        day_html = build_accuracy_day(summary, base_url)
+        if day_html:
+            day_dir = DOCS / "accuracy"
+            day_dir.mkdir(exist_ok=True)
+            day_path = day_dir / f"{date_key}.html"
+            day_path.write_text(day_html, encoding="utf-8")
+            print(f"✓ Wrote {day_path.relative_to(ROOT)}")
 
     # .nojekyll for GitHub Pages (skip Jekyll processing)
     (DOCS / ".nojekyll").touch()
@@ -1090,7 +1097,10 @@ def main(argv: list[str]) -> int:
     print(f"✓ Wrote {dated.relative_to(ROOT)}")
     print(f"✓ Wrote {artifact.relative_to(ROOT)}")
     print(f"✓ Updated {index.relative_to(ROOT)}")
-    print(f"✓ Updated archive.html")
+    if not intraday:
+        print(f"✓ Updated archive.html + accuracy.html")
+    else:
+        print(f"  (intraday mode — skipping archive/accuracy regeneration)")
     return 0
 
 

@@ -41,8 +41,11 @@ fi
     exit 1
 }
 
-# Re-render from today's summary (agent analysis stays, news + quotes update)
-.venv/bin/python scripts/render.py "$SUMMARY" || {
+# Re-render from today's summary (agent analysis stays, news + quotes update).
+# --intraday skips archive.html / accuracy.html / accuracy/*.html — those are
+# driven by the evening review block which only changes once per day, so
+# regenerating them every 10 min just churns timestamps into git.
+.venv/bin/python scripts/render.py "$SUMMARY" --intraday || {
     echo "render failed"
     exit 1
 }
@@ -58,7 +61,7 @@ fi
 git commit -m "refresh: $(date +%Y-%m-%d' '%H:%M) intraday news/quote update"
 if ! git pull --rebase origin main; then
     git checkout --ours -- docs/index.html docs/archive.html docs/accuracy.html docs/accuracy/ 2>/dev/null || true
-    .venv/bin/python scripts/render.py "$SUMMARY"
+    .venv/bin/python scripts/render.py "$SUMMARY" --intraday
     git add docs/
     git rebase --continue
 fi
