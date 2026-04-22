@@ -4,7 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ date }} 리뷰 · k-ant-daily</title>
+{% set day_summary = (analysis.day_summary if analysis else None) or ((accuracy.hit_rate * 100) | round(0) | int | string + '% 적중 · ' + (accuracy.total | string) + '건 예측 회고') %}
+<meta name="description" content="{{ day_summary }}">
 <link rel="canonical" href="{{ base_url }}/accuracy/{{ date }}.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ date }} 리뷰">
+<meta property="og:description" content="{{ day_summary }}">
+<meta property="og:url" content="{{ base_url }}/accuracy/{{ date }}.html">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="k-ant-daily">
+<meta property="og:image" content="{{ base_url }}/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="k-ant-daily — 회고 페이지">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ date }} 리뷰">
+<meta name="twitter:description" content="{{ day_summary }}">
+<meta name="twitter:image" content="{{ base_url }}/og-image.png">
+
 <style>
 {% include '_theme.css.j2' %}
   body { margin: 0; background: var(--bg); color: var(--fg);

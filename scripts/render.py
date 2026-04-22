@@ -688,6 +688,7 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
         headline=summary.get("headline", ""),
         generated_at=summary.get("generated_at", ""),
         generated_at_display=_display_time(summary.get("generated_at", "")),
+        base_url=base_url,
         canonical_url=canonical,
         top_stories=summary.get("top_stories", []) or [],
         focus=summary.get("focus") or None,
