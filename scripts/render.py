@@ -1079,13 +1079,10 @@ def main(argv: list[str]) -> int:
     shutil.copyfile(dated, index)
 
     if not intraday:
-        archive_html = build_archive_index(base_url)
-        (DOCS / "archive.html").write_text(archive_html, encoding="utf-8")
-
-        accuracy_html = build_accuracy(base_url)
-        (DOCS / "accuracy.html").write_text(accuracy_html, encoding="utf-8")
-
-        # Per-day retrospective — emitted only once the evening review block exists.
+        # Per-day retrospective FIRST — its existence on disk drives the
+        # `has_retro` flag inside build_accuracy / build_archive_index, so the
+        # cumulative page correctly shows a "🔍 회고" link for today on the
+        # same pass that just generated the retrospective file.
         day_html = build_accuracy_day(summary, base_url)
         if day_html:
             day_dir = DOCS / "accuracy"
@@ -1093,6 +1090,12 @@ def main(argv: list[str]) -> int:
             day_path = day_dir / f"{date_key}.html"
             day_path.write_text(day_html, encoding="utf-8")
             print(f"✓ Wrote {day_path.relative_to(ROOT)}")
+
+        archive_html = build_archive_index(base_url)
+        (DOCS / "archive.html").write_text(archive_html, encoding="utf-8")
+
+        accuracy_html = build_accuracy(base_url)
+        (DOCS / "accuracy.html").write_text(accuracy_html, encoding="utf-8")
 
     # .nojekyll for GitHub Pages (skip Jekyll processing)
     (DOCS / ".nojekyll").touch()
