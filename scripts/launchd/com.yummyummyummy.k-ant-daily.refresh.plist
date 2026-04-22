@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.yummyummyummy.k-ant-daily.refresh</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/woong/projects/k-ant-daily/scripts/launchd/run-refresh.sh</string>
+    </array>
+
+    <!-- Fire every 10 minutes. The wrapper self-gates to 09:00–15:30 KST on
+         weekdays, so off-hours runs are no-ops that exit in a few ms. -->
+    <key>StartInterval</key>
+    <integer>600</integer>
+
+    <key>RunAtLoad</key><false/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/woong/Library/Logs/k-ant-daily/launchd-refresh.out</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/woong/Library/Logs/k-ant-daily/launchd-refresh.err</string>
+
+    <key>ProcessType</key><string>Background</string>
+
+    <!-- Nice so the crawler never competes with foreground work. -->
+    <key>Nice</key><integer>10</integer>
+</dict>
+</plist>

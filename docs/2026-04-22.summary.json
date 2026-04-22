@@ -847,7 +847,9 @@
       "direction_label": "상승 기대",
       "direction_cls": "up",
       "outlook_line": "퀄컴 CEO 회동 + AI 반도체 협력 기대로 강보합 출발 예상",
-      "sector": "반도체"
+      "sector": "반도체",
+      "latest_news_at": "2026-04-22T08:12:00+09:00",
+      "latest_news_ago": "방금 전"
     },
     {
       "code": "000660",
@@ -1099,7 +1101,9 @@
       "direction_label": "상승 기대",
       "direction_cls": "up",
       "outlook_line": "HBM 실적 모멘텀 강력, 상승 여력 존재",
-      "sector": "반도체"
+      "sector": "반도체",
+      "latest_news_at": "2026-04-22T08:07:00+09:00",
+      "latest_news_ago": "방금 전"
     },
     {
       "code": "267260",
@@ -1284,7 +1288,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "섹터 시황 우호이나 개별 촉매 없어 관망 유지",
-      "sector": "전력기기"
+      "sector": "전력기기",
+      "latest_news_at": "2026-04-22T06:00:00+09:00",
+      "latest_news_ago": "1시간 전"
     },
     {
       "code": "196170",
@@ -1352,17 +1358,6 @@
           "impact_label": "중립"
         },
         {
-          "title": "韓주식 부자 순위, “삼성家 싹쓸이”…SK하닉은 어디",
-          "link": "https://n.news.naver.com/mnews/article/050/0000105177",
-          "source": "한경비즈니스",
-          "date": "2026.04.21 15:06",
-          "published_at": "2026.04.21 15:06",
-          "time_ago": "16시간 전",
-          "url": "https://n.news.naver.com/mnews/article/050/0000105177",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
           "title": "전쟁 리스크에도 웃은 코스피…6380선 돌파하며 최고치",
           "link": "https://n.news.naver.com/mnews/article/656/0000174424",
           "source": "대전일보",
@@ -1381,17 +1376,6 @@
           "published_at": "2026.04.21 16:49",
           "time_ago": "14시간 전",
           "url": "https://n.news.naver.com/mnews/article/029/0003022946",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "특구재단, 5극3특 연구개발특구 딥테크 지원사업 추진",
-          "link": "https://n.news.naver.com/mnews/article/119/0003082970",
-          "source": "데일리안",
-          "date": "2026.04.21 16:09",
-          "published_at": "2026.04.21 16:09",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/119/0003082970",
           "impact": "neutral",
           "impact_label": "중립"
         },
@@ -1438,6 +1422,28 @@
           "url": "https://n.news.naver.com/mnews/article/417/0001139973",
           "impact": "positive",
           "impact_label": "호재"
+        },
+        {
+          "title": "특구재단, 5극3특 연구개발특구 딥테크 지원사업 추진",
+          "link": "https://n.news.naver.com/mnews/article/119/0003082970",
+          "source": "데일리안",
+          "date": "2026.04.21 16:09",
+          "published_at": "2026.04.21 16:09",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/119/0003082970",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "韓주식 부자 순위, “삼성家 싹쓸이”…SK하닉은 어디",
+          "link": "https://n.news.naver.com/mnews/article/050/0000105177",
+          "source": "한경비즈니스",
+          "date": "2026.04.21 15:06",
+          "published_at": "2026.04.21 15:06",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/050/0000105177",
+          "impact": "neutral",
+          "impact_label": "중립"
         }
       ],
       "owners": [
@@ -1501,7 +1507,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "개별 촉매 없어 바이오 섹터 흐름 동조 예상",
-      "sector": "바이오"
+      "sector": "바이오",
+      "latest_news_at": "2026-04-21T22:58:00+09:00",
+      "latest_news_ago": "8시간 전"
     },
     {
       "code": "042700",
@@ -1595,17 +1603,6 @@
           "impact_label": "중립"
         },
         {
-          "title": "韓주식 부자 순위, “삼성家 싹쓸이”…SK하닉은 어디",
-          "link": "https://n.news.naver.com/mnews/article/050/0000105177",
-          "source": "한경비즈니스",
-          "date": "2026.04.21 15:06",
-          "published_at": "2026.04.21 15:06",
-          "time_ago": "16시간 전",
-          "url": "https://n.news.naver.com/mnews/article/050/0000105177",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
           "title": "\"위기를 기회로\"… 인사 영입으로 재도약 나선 중견·中企들",
           "link": "https://n.news.naver.com/mnews/article/014/0005511188",
           "source": "파이낸셜뉴스",
@@ -1613,17 +1610,6 @@
           "published_at": "2026.04.21 18:20",
           "time_ago": "13시간 전",
           "url": "https://n.news.naver.com/mnews/article/014/0005511188",
-          "impact": "negative",
-          "impact_label": "악재"
-        },
-        {
-          "title": "\"위기를 기회로 바꾸자\" 인사 영입 통해 재도약 나선 기업들",
-          "link": "https://n.news.naver.com/mnews/article/014/0005511042",
-          "source": "파이낸셜뉴스",
-          "date": "2026.04.21 15:14",
-          "published_at": "2026.04.21 15:14",
-          "time_ago": "16시간 전",
-          "url": "https://n.news.naver.com/mnews/article/014/0005511042",
           "impact": "negative",
           "impact_label": "악재"
         },
@@ -1637,6 +1623,28 @@
           "url": "https://n.news.naver.com/mnews/article/030/0003420133",
           "impact": "positive",
           "impact_label": "호재"
+        },
+        {
+          "title": "\"위기를 기회로 바꾸자\" 인사 영입 통해 재도약 나선 기업들",
+          "link": "https://n.news.naver.com/mnews/article/014/0005511042",
+          "source": "파이낸셜뉴스",
+          "date": "2026.04.21 15:14",
+          "published_at": "2026.04.21 15:14",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005511042",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "韓주식 부자 순위, “삼성家 싹쓸이”…SK하닉은 어디",
+          "link": "https://n.news.naver.com/mnews/article/050/0000105177",
+          "source": "한경비즈니스",
+          "date": "2026.04.21 15:06",
+          "published_at": "2026.04.21 15:06",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/050/0000105177",
+          "impact": "neutral",
+          "impact_label": "중립"
         },
         {
           "title": "6000억 장비가 내 책상에?…ASML 직원들도 난리 난 이유",
@@ -1724,7 +1732,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "개별 촉매 부재, 반도체 섹터 흐름 동조 예상",
-      "sector": "반도체"
+      "sector": "반도체",
+      "latest_news_at": "2026-04-22T08:00:00+09:00",
+      "latest_news_ago": "방금 전"
     },
     {
       "code": "012450",
@@ -1973,7 +1983,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "방산 호재 vs 간밤 미국 방산주 급락, 갭다운 우려",
-      "sector": "방산"
+      "sector": "방산",
+      "latest_news_at": "2026-04-22T07:00:00+09:00",
+      "latest_news_ago": "30분 전"
     },
     {
       "code": "096770",
@@ -2222,7 +2234,9 @@
       "direction_label": "상승 기대",
       "direction_cls": "up",
       "outlook_line": "SK온 도쿄 지사 설립이라는 개별 촉매 + K배터리 부활 섹터 훈풍",
-      "sector": "에너지/정유"
+      "sector": "에너지/정유",
+      "latest_news_at": "2026-04-22T07:00:00+09:00",
+      "latest_news_ago": "30분 전"
     },
     {
       "code": "299660",
@@ -2487,7 +2501,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "간밤 나스닥 약보합, 코스닥 우호 흐름 지연 예상",
-      "sector": "ETF"
+      "sector": "ETF",
+      "latest_news_at": "2026-04-22T00:18:00+09:00",
+      "latest_news_ago": "7시간 전"
     },
     {
       "code": "028050",
@@ -2593,17 +2609,6 @@
           "impact_label": "중립"
         },
         {
-          "title": "삼성물산 건설노조 “중동 직원 위험 수당 지급하라… 경쟁사는 복지.....",
-          "link": "https://n.news.naver.com/mnews/article/366/0001158593",
-          "source": "조선비즈",
-          "date": "2026.04.21 15:56",
-          "published_at": "2026.04.21 15:56",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/366/0001158593",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
           "title": "'코스피 새 역사'…반도체 끌고 이차전지·건설주 밀고",
           "link": "https://n.news.naver.com/mnews/article/421/0008903485",
           "source": "뉴스1",
@@ -2611,6 +2616,17 @@
           "published_at": "2026.04.21 17:30",
           "time_ago": "14시간 전",
           "url": "https://n.news.naver.com/mnews/article/421/0008903485",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성물산 건설노조 “중동 직원 위험 수당 지급하라… 경쟁사는 복지.....",
+          "link": "https://n.news.naver.com/mnews/article/366/0001158593",
+          "source": "조선비즈",
+          "date": "2026.04.21 15:56",
+          "published_at": "2026.04.21 15:56",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/366/0001158593",
           "impact": "neutral",
           "impact_label": "중립"
         },
@@ -2648,17 +2664,6 @@
           "impact_label": "호재"
         },
         {
-          "title": "중동 재건 수혜 기대 커진 건설주…“3년간 1400억달러 수주 가능”",
-          "link": "https://n.news.naver.com/mnews/article/018/0006262236",
-          "source": "이데일리",
-          "date": "2026.04.21 07:57",
-          "published_at": "2026.04.21 07:57",
-          "time_ago": "23시간 전",
-          "url": "https://n.news.naver.com/mnews/article/018/0006262236",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
           "title": "NH證 “삼성E&A, 중동 재건 최대 수혜주…목표가 71%↑”",
           "link": "https://n.news.naver.com/mnews/article/366/0001158396",
           "source": "조선비즈",
@@ -2666,6 +2671,17 @@
           "published_at": "2026.04.21 09:03",
           "time_ago": "22시간 전",
           "url": "https://n.news.naver.com/mnews/article/366/0001158396",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "중동 재건 수혜 기대 커진 건설주…“3년간 1400억달러 수주 가능”",
+          "link": "https://n.news.naver.com/mnews/article/018/0006262236",
+          "source": "이데일리",
+          "date": "2026.04.21 07:57",
+          "published_at": "2026.04.21 07:57",
+          "time_ago": "23시간 전",
+          "url": "https://n.news.naver.com/mnews/article/018/0006262236",
           "impact": "positive",
           "impact_label": "호재"
         }
@@ -2731,7 +2747,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "NH증권 목표가 71% 상향 등 뉴스 강한 긍정이나, 20일간 +53% 급등으로 단기 과열 극심",
-      "sector": "건설/플랜트"
+      "sector": "건설/플랜트",
+      "latest_news_at": "2026-04-22T07:49:00+09:00",
+      "latest_news_ago": "방금 전"
     },
     {
       "code": "310210",
@@ -2904,7 +2922,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "VRN11 임상 긍정이나 어제 -10.07% 급락 후 쉬어감 전망",
-      "sector": "바이오"
+      "sector": "바이오",
+      "latest_news_at": "2026-04-22T08:02:00+09:00",
+      "latest_news_ago": "방금 전"
     },
     {
       "code": "445680",
@@ -3058,7 +3078,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "개별 촉매 없어 바이오 섹터 동조, 소형주 변동성 리스크",
-      "sector": "바이오"
+      "sector": "바이오",
+      "latest_news_at": "2026-04-21T14:51:00+09:00",
+      "latest_news_ago": "16시간 전"
     },
     {
       "code": "009540",
@@ -3297,7 +3319,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "한-인도 조선 MOU·1분기 잠정실적 등 뉴스 긍정이나 어제 +3.51%에 이미 반영",
-      "sector": "조선"
+      "sector": "조선",
+      "latest_news_at": "2026-04-22T06:07:00+09:00",
+      "latest_news_ago": "1시간 전"
     },
     {
       "code": "174900",
@@ -3469,7 +3493,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "어제 -12.72% 급락 여파로 관망, 반등 탄력 제한적",
-      "sector": "바이오"
+      "sector": "바이오",
+      "latest_news_at": "2026-04-21T15:47:00+09:00",
+      "latest_news_ago": "15시간 전"
     },
     {
       "code": "298380",
@@ -3548,17 +3574,6 @@
           "impact_label": "중립"
         },
         {
-          "title": "韓주식 부자 순위, “삼성家 싹쓸이”…SK하닉은 어디",
-          "link": "https://n.news.naver.com/mnews/article/050/0000105177",
-          "source": "한경비즈니스",
-          "date": "2026.04.21 15:06",
-          "published_at": "2026.04.21 15:06",
-          "time_ago": "16시간 전",
-          "url": "https://n.news.naver.com/mnews/article/050/0000105177",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
           "title": "전쟁 리스크에도 웃은 코스피…6380선 돌파하며 최고치",
           "link": "https://n.news.naver.com/mnews/article/656/0000174424",
           "source": "대전일보",
@@ -3623,6 +3638,17 @@
           "url": "https://n.news.naver.com/mnews/article/081/0003637311",
           "impact": "positive",
           "impact_label": "호재"
+        },
+        {
+          "title": "韓주식 부자 순위, “삼성家 싹쓸이”…SK하닉은 어디",
+          "link": "https://n.news.naver.com/mnews/article/050/0000105177",
+          "source": "한경비즈니스",
+          "date": "2026.04.21 15:06",
+          "published_at": "2026.04.21 15:06",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/050/0000105177",
+          "impact": "neutral",
+          "impact_label": "중립"
         }
       ],
       "owners": [
@@ -3686,7 +3712,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "개별 촉매 없고 XBI 약세, 섹터 흐름 그대로 노출",
-      "sector": "바이오"
+      "sector": "바이오",
+      "latest_news_at": "2026-04-22T07:14:00+09:00",
+      "latest_news_ago": "16분 전"
     },
     {
       "code": "166480",
@@ -3947,17 +3975,6 @@
           "impact_label": "중립"
         },
         {
-          "title": "'최대 실적' 카카오모빌리티…류긍선 대표 \"'피지컬 AI'로 다음 도...",
-          "link": "https://n.news.naver.com/mnews/article/008/0005347074",
-          "source": "머니투데이",
-          "date": "2026.04.21 11:48",
-          "published_at": "2026.04.21 11:48",
-          "time_ago": "19시간 전",
-          "url": "https://n.news.naver.com/mnews/article/008/0005347074",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
           "title": "제미나이 입은 크롬 韓 상륙…네이버 ‘AI탭’으로 맞불",
           "link": "https://n.news.naver.com/mnews/article/011/0004613116",
           "source": "서울경제",
@@ -3967,6 +3984,17 @@
           "url": "https://n.news.naver.com/mnews/article/011/0004613116",
           "impact": "neutral",
           "impact_label": "중립"
+        },
+        {
+          "title": "'최대 실적' 카카오모빌리티…류긍선 대표 \"'피지컬 AI'로 다음 도...",
+          "link": "https://n.news.naver.com/mnews/article/008/0005347074",
+          "source": "머니투데이",
+          "date": "2026.04.21 11:48",
+          "published_at": "2026.04.21 11:48",
+          "time_ago": "19시간 전",
+          "url": "https://n.news.naver.com/mnews/article/008/0005347074",
+          "impact": "positive",
+          "impact_label": "호재"
         }
       ],
       "owners": [
@@ -4031,7 +4059,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "개별 촉매 없어 플랫폼 섹터 흐름 동조",
-      "sector": "플랫폼/IT"
+      "sector": "플랫폼/IT",
+      "latest_news_at": "2026-04-22T07:48:00+09:00",
+      "latest_news_ago": "방금 전"
     },
     {
       "code": "005380",
@@ -4280,7 +4310,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "리콜 악재 vs 수출 호재 혼재, 중립적 흐름 예상",
-      "sector": "자동차"
+      "sector": "자동차",
+      "latest_news_at": "2026-04-22T08:09:00+09:00",
+      "latest_news_ago": "방금 전"
     },
     {
       "code": "034230",
@@ -4425,7 +4457,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "실적 부진 우려 지속, 환율 수혜도 단기 동력 약함",
-      "sector": "카지노/레저"
+      "sector": "카지노/레저",
+      "latest_news_at": "2026-04-22T08:06:00+09:00",
+      "latest_news_ago": "방금 전"
     },
     {
       "code": "352820",
@@ -4579,17 +4613,6 @@
           "impact_label": "중립"
         },
         {
-          "title": "‘육천피’에도 K자형 장세는 여전…4월 목표가 하향 리포트 201건",
-          "link": "https://n.news.naver.com/mnews/article/016/0002632892",
-          "source": "헤럴드경제",
-          "date": "2026.04.21 11:15",
-          "published_at": "2026.04.21 11:15",
-          "time_ago": "20시간 전",
-          "url": "https://n.news.naver.com/mnews/article/016/0002632892",
-          "impact": "negative",
-          "impact_label": "악재"
-        },
-        {
           "title": "‘BTS 아빠’ 방시혁, 구속영장 신청…‘오너리스크’ 하이브, 중대 기...",
           "link": "https://n.news.naver.com/mnews/article/009/0005669464",
           "source": "매일경제",
@@ -4621,6 +4644,17 @@
           "url": "https://n.news.naver.com/mnews/article/001/0016034611",
           "impact": "neutral",
           "impact_label": "중립"
+        },
+        {
+          "title": "‘육천피’에도 K자형 장세는 여전…4월 목표가 하향 리포트 201건",
+          "link": "https://n.news.naver.com/mnews/article/016/0002632892",
+          "source": "헤럴드경제",
+          "date": "2026.04.21 11:15",
+          "published_at": "2026.04.21 11:15",
+          "time_ago": "20시간 전",
+          "url": "https://n.news.naver.com/mnews/article/016/0002632892",
+          "impact": "negative",
+          "impact_label": "악재"
         }
       ],
       "owners": [
@@ -4684,7 +4718,9 @@
       "direction_label": "강한 하락 경계",
       "direction_cls": "down-strong",
       "outlook_line": "방시혁 구속영장 신청이라는 초대형 오너리스크",
-      "sector": "엔터"
+      "sector": "엔터",
+      "latest_news_at": "2026-04-22T08:09:00+09:00",
+      "latest_news_ago": "방금 전"
     },
     {
       "code": "329180",
@@ -4952,7 +4988,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "방산 호재 vs 20일 +21% 과열, 갭다운 후 쉬어가는 흐름 예상",
-      "sector": "조선"
+      "sector": "조선",
+      "latest_news_at": "2026-04-22T06:31:00+09:00",
+      "latest_news_ago": "59분 전"
     },
     {
       "code": "083450",
@@ -5106,7 +5144,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "개별 촉매 부재, 반도체 장비 섹터 흐름 동조",
-      "sector": "반도체"
+      "sector": "반도체",
+      "latest_news_at": "2026-04-21T11:54:00+09:00",
+      "latest_news_ago": "19시간 전"
     },
     {
       "code": "079550",
@@ -5328,7 +5368,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "방산 호재 다수이나 간밤 ITA -3.78%·RTX -4.4% 급락으로 갭다운 리스크",
-      "sector": "방산"
+      "sector": "방산",
+      "latest_news_at": "2026-04-22T05:00:00+09:00",
+      "latest_news_ago": "2시간 전"
     }
   ]
 }

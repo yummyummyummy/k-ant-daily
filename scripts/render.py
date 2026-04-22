@@ -244,13 +244,12 @@ def _merge_quotes_from_news(summary: dict, news_path: Path) -> None:
             }
         elif not existing and news_sig:
             stock["overnight_signal"] = dict(news_sig)
-        # Stock news list — backfill from raw Naver scrape when the summary
-        # doesn't carry any curated news (absent or empty list). Agent-curated
-        # `key_points` carry the high-signal material; the news block is a
-        # chronological reference feed of the last 24h. An empty list from the
-        # agent is treated the same as absent so a single dry day doesn't wipe
-        # the block entirely.
-        if not stock.get("news") and src.get("news"):
+        # Stock news list — **always** overwrite from the raw 24h scrape so
+        # intraday refresh runs (10-min crawl during market hours) surface new
+        # articles as they appear. Agent-curated high-signal items live in
+        # `key_points`; the news block is a chronological reference feed, not
+        # an editorial selection.
+        if src.get("news"):
             stock["news"] = list(src["news"])
         if not stock.get("disclosures") and src.get("disclosures"):
             stock["disclosures"] = list(src["disclosures"])
@@ -434,10 +433,13 @@ def _normalize_stock_signals(stock: dict) -> None:
 def _normalize_stock_news(stock: dict, now: datetime) -> None:
     """Filter stock news to the last 24h + annotate time_ago/impact. The 24h
     cutoff prevents Naver's "top-10" stale articles (sometimes weeks old) from
-    crowding the trader's morning scan."""
+    crowding the trader's morning scan. Also caches the most recent news
+    timestamp (`latest_news_at` / `latest_news_ago`) so the card header can
+    show "n분 전" before the user expands the card."""
     stock_news = stock.get("news") or []
     cutoff_24h = now - timedelta(hours=24)
     kept = []
+    latest_dt: datetime | None = None
     for n in stock_news:
         # Uniform shape: treat `date` as the published timestamp.
         if "published_at" not in n and n.get("date"):
@@ -456,8 +458,15 @@ def _normalize_stock_news(stock: dict, now: datetime) -> None:
             n["impact"] = _auto_impact(n.get("title", ""))
         _annotate_impact(n)
         kept.append(n)
+        if latest_dt is None or dt > latest_dt:
+            latest_dt = dt
+    # Sort most recent first so the card's news list shows newest at top.
+    kept.sort(key=lambda n: n.get("published_at") or "", reverse=True)
     stock["news"] = kept
     stock["news_count"] = len(kept)
+    if latest_dt is not None:
+        stock["latest_news_at"] = latest_dt.isoformat()
+        stock["latest_news_ago"] = _time_ago(stock["latest_news_at"], now)
 
 
 def _normalize_stocks(summary: dict, now: datetime) -> None:
@@ -655,11 +664,14 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
         else:
             s["owners"] = sorted(owners)
     # Display order within each recommendation group: stocks with the most
-    # fresh news today surface first (trader morning check), ties broken by 가나다.
-    stocks_display = sorted(
-        stocks,
-        key=lambda s: (-(len(s.get("news") or [])), s.get("name", "")),
-    )
+    # recent news surface first (the trader's "what moved in the last hour?"
+    # scan). Stocks without news go to the bottom, ordered by 가나다. ISO
+    # timestamp strings compare lexically so reverse sort = newest first.
+    with_news    = [s for s in stocks if s.get("latest_news_at")]
+    without_news = [s for s in stocks if not s.get("latest_news_at")]
+    with_news.sort(key=lambda s: s["latest_news_at"], reverse=True)
+    without_news.sort(key=lambda s: s.get("name", ""))
+    stocks_display = with_news + without_news
 
     # Group by recommendation — action-first layout. Each group shown as its
     # own block with a header; within a group we keep the news-desc order.
@@ -695,13 +707,15 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
 
 
 # Metadata for the 📈 종목별 grouping view. Order = display order (top→down).
-# Each entry carries the enum key, user-facing label, and a color accent.
+# Group labels are forward-looking (direction-oriented) — they mirror the
+# DIRECTION_META labels so the group header serves as the per-card direction
+# indicator; individual cards no longer need a separate direction badge.
 STOCK_GROUP_META = [
-    {"key": "strong_buy",  "label": "풀매수", "emoji": "🔥", "accent": "strong_buy"},
-    {"key": "buy",         "label": "매수",   "emoji": "🟢", "accent": "buy"},
-    {"key": "hold",        "label": "관망",   "emoji": "🟡", "accent": "hold"},
-    {"key": "sell",        "label": "매도",   "emoji": "🔴", "accent": "sell"},
-    {"key": "strong_sell", "label": "풀매도", "emoji": "⛔", "accent": "strong_sell"},
+    {"key": "strong_buy",  "label": "강한 상승 기대", "emoji": "🔥", "accent": "strong_buy"},
+    {"key": "buy",         "label": "상승 기대",     "emoji": "🟢", "accent": "buy"},
+    {"key": "hold",        "label": "관망",          "emoji": "🟡", "accent": "hold"},
+    {"key": "sell",        "label": "하락 경계",     "emoji": "🔴", "accent": "sell"},
+    {"key": "strong_sell", "label": "강한 하락 경계", "emoji": "⛔", "accent": "strong_sell"},
 ]
 
 # Forward-looking direction language for the per-card chip + portfolio snapshot.

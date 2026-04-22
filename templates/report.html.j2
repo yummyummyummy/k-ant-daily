@@ -666,6 +666,12 @@
     white-space: nowrap;
   }
   article.stock .conf.high { color: var(--accent); border-color: var(--accent); }
+  article.stock .news-fresh {
+    font-size: 11px; color: var(--accent);
+    padding: 1px 7px; border-radius: 4px;
+    background: var(--bg); border: 1px solid var(--accent);
+    white-space: nowrap; font-variant-numeric: tabular-nums;
+  }
 
   /* STOCK GROUPING — action-first layout (매수/관망/매도 buckets) */
   .stock-group { margin-bottom: 20px; }
@@ -1254,10 +1260,8 @@
         <summary>
           <div class="s-head">
             <span class="name">{{ stock.name }}</span>
-            {% if stock.direction_label %}
-            <span class="direction {{ stock.direction_cls }}" title="오늘 방향 예측">
-              {{ stock.direction_arrow }} {{ stock.direction_label }}
-            </span>
+            {% if stock.latest_news_ago %}
+            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 {{ stock.latest_news_ago }}</span>
             {% endif %}
             {% if stock.confidence %}
             <span class="conf {{ stock.confidence }}" title="예측 신뢰도">신뢰 {{ stock.confidence_label or stock.confidence }}</span>
