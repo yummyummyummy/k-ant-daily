@@ -244,11 +244,13 @@ def _merge_quotes_from_news(summary: dict, news_path: Path) -> None:
             }
         elif not existing and news_sig:
             stock["overnight_signal"] = dict(news_sig)
-        # Stock news list — only backfill from raw Naver scrape if the summary
-        # never declared a `news` field at all. An explicit `"news": []` from
-        # the agent means "no material news today — don't show the block" and
-        # must NOT be overwritten by the raw scrape.
-        if "news" not in stock and src.get("news"):
+        # Stock news list — backfill from raw Naver scrape when the summary
+        # doesn't carry any curated news (absent or empty list). Agent-curated
+        # `key_points` carry the high-signal material; the news block is a
+        # chronological reference feed of the last 24h. An empty list from the
+        # agent is treated the same as absent so a single dry day doesn't wipe
+        # the block entirely.
+        if not stock.get("news") and src.get("news"):
             stock["news"] = list(src["news"])
         if not stock.get("disclosures") and src.get("disclosures"):
             stock["disclosures"] = list(src["disclosures"])
@@ -366,8 +368,11 @@ def _normalize_sectors(summary: dict, now: datetime) -> None:
 
 
 def _normalize_stock_quote(stock: dict) -> None:
-    """Derive price_display, price_change_* from stock.quote (pre-market snapshot
-    or evening close, same code path)."""
+    """Derive price_display, price_change_* from stock.quote. At 07:30 KST
+    (pre-market) Naver's realtime endpoint returns change=0 because today's
+    session hasn't started — in that case fall back to the 어제 intraday move
+    computed from history.closes_20d so the display shows the most recent
+    completed session's performance rather than a useless 0%."""
     quote = stock.get("quote") or {}
     pct_num = quote.get("change_pct_num")
     if pct_num is None and quote.get("change_pct"):
@@ -375,6 +380,17 @@ def _normalize_stock_quote(stock: dict) -> None:
             pct_num = float(str(quote["change_pct"]).replace("%", "").replace("+", ""))
         except ValueError:
             pct_num = None
+
+    change_abs_raw = quote.get("change")
+
+    # Pre-market fallback: quote says 0 → try yesterday's intraday delta from history.
+    if not pct_num:
+        closes = ((stock.get("history") or {}).get("closes_20d")) or []
+        if len(closes) >= 2 and closes[-2]:
+            prev, last = closes[-2], closes[-1]
+            pct_num = round((last - prev) / prev * 100, 2)
+            change_abs_raw = f"{abs(last - prev):,.0f}"
+
     if pct_num is not None:
         stock["price_change_pct_num"] = pct_num
         stock["price_direction"] = "up" if pct_num > 0 else ("down" if pct_num < 0 else "flat")
@@ -382,9 +398,9 @@ def _normalize_stock_quote(stock: dict) -> None:
         stock["price_change_display"] = f"{sign}{pct_num:.2f}%"
     if quote.get("price"):
         stock["price_display"] = quote["price"]
-    if quote.get("change"):
+    if change_abs_raw:
         direction = stock.get("price_direction") or quote.get("direction") or ""
-        raw = str(quote["change"]).strip()
+        raw = str(change_abs_raw).strip()
         bare = raw.lstrip("+-")
         try:
             if float(bare.replace(",", "")) == 0:

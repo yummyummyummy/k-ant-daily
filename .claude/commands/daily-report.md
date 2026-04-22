@@ -323,8 +323,9 @@ JSON 필드 자체(예: `"priced_in": false`) 는 스키마라 영어 그대로 
 ```
 
 - `why_material` **필수**: "실적 기대치 상향" / "대형 수주 발표" / "신약 허가 임박" 등. 제외 기준 아닌 이유를 한 줄로.
-- 종목별 큐레이션 결과 **3~7건** 권장. 정말 material 한 게 없으면 `"news": []` (빈 배열) — UI에서 블록 자체가 사라짐.
-- 섹터도 동일. 큐레이션 후 3~5건 권장.
+- **종목의 `news` 필드는 보통 생략하면 된다**. render 가 `.tmp/news.json` 의 raw 스크랩(최근 24h)을 backfill 해서 "📰 오늘의 뉴스" 블록에 시간순으로 붙여준다. agent 의 역할은 `key_points` 에 high-signal material 3~5개를 `why_material` 과 함께 엄선하는 것. raw 뉴스 피드는 사용자가 직접 훑는 참고용.
+- 특수 케이스 — 에이전트가 **직접 선별**해서 `news` 블록을 덮어쓰고 싶으면 curated 리스트(`title`, `url`, `source`, `published_at`, `impact`, 선택적 `why_material`) 을 넣어라. 넣으면 raw backfill 안 일어남. 이 경우도 **빈 배열로 덮어쓰지 말 것** — 빈 배열은 "raw backfill 허용" 으로 해석된다.
+- 섹터 `news` 는 동일. 큐레이션 후 3~5건 권장.
 
 ### 섹터 news vs 종목 news 역할
 
@@ -335,8 +336,8 @@ JSON 필드 자체(예: `"priced_in": false`) 는 스키마라 영어 그대로 
 
 ## 렌더 편의
 
-- Render가 `published_at` 내림차순 자동 정렬, `time_ago` 계산, impact 라벨.
-- `"news": []` 는 "오늘 material 없음"으로 해석돼 블록 자체 숨김 + 🔥 N 뱃지 안 뜸.
+- Render 가 `published_at` 내림차순 자동 정렬, `time_ago` 계산, impact 라벨 부여.
+- 종목 `news` 필드를 **생략하거나 빈 배열로 두면** render 가 `.tmp/news.json` 의 raw Naver 스크랩을 24h 필터 통과시켜 backfill. 24h 내 기사가 하나도 없으면 "📰 오늘의 뉴스" 블록 + 🔥 N 뱃지가 자동으로 안 뜸.
 - `impact` 해석:
   - KOSPI +1% → `positive` (상승=호재)
   - USD/KRW 상승: 수출주 긍정/수입주 부담 → 종합 `neutral` 기본값

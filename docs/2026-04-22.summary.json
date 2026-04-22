@@ -672,7 +672,118 @@
           "date": "26.04.09"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "삼성전자, 프리미엄 후드일체형 '인피니트' 인덕션 출시",
+          "link": "https://n.news.naver.com/mnews/article/629/0000493494",
+          "source": "더팩트",
+          "date": "2026.04.22 08:12",
+          "published_at": "2026.04.22 08:12",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/629/0000493494",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성전자, 인피니트 라인 후드 일체형 인덕션 출시",
+          "link": "https://n.news.naver.com/mnews/article/001/0016035041",
+          "source": "연합뉴스",
+          "date": "2026.04.22 08:08",
+          "published_at": "2026.04.22 08:08",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016035041",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성전자, 인피니트 라인 후드 일체형 인덕션 출시",
+          "link": "https://n.news.naver.com/mnews/article/001/0016035042",
+          "source": "연합뉴스",
+          "date": "2026.04.22 08:08",
+          "published_at": "2026.04.22 08:08",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016035042",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[클릭 e종목]\"삼화전기, AI 데이터센터 타고 재평가…고부가 제품 확...",
+          "link": "https://n.news.naver.com/mnews/article/277/0005752897",
+          "source": "아시아경제",
+          "date": "2026.04.22 08:07",
+          "published_at": "2026.04.22 08:07",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/277/0005752897",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[마켓뷰] '사상 최고' 코스피, 숨고르기 여부 주목",
+          "link": "https://n.news.naver.com/mnews/article/001/0016035040",
+          "source": "연합뉴스",
+          "date": "2026.04.22 08:07",
+          "published_at": "2026.04.22 08:07",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016035040",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "“난 사람이 아닙니다 체크하세요”…AI 에이전트 인증절차 만든다는...",
+          "link": "https://n.news.naver.com/mnews/article/009/0005669514",
+          "source": "매일경제",
+          "date": "2026.04.22 08:06",
+          "published_at": "2026.04.22 08:06",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005669514",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "경총회장 “기업들, 노조 전성시대에 위축…잠재적 범죄자 취급 안돼...",
+          "link": "https://n.news.naver.com/mnews/article/009/0005669513",
+          "source": "매일경제",
+          "date": "2026.04.22 08:06",
+          "published_at": "2026.04.22 08:06",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005669513",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"악마는 아이폰 대신 갤럭시 쓴다\"…삼성의 '대담한 도발' [테크로그]",
+          "link": "https://n.news.naver.com/mnews/article/015/0005277976",
+          "source": "한국경제",
+          "date": "2026.04.22 08:01",
+          "published_at": "2026.04.22 08:01",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005277976",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "ETF 시장서도 반도체가 대세…'삼전닉스' 담은 상품 우후죽순",
+          "link": "https://n.news.naver.com/mnews/article/001/0016035036",
+          "source": "연합뉴스",
+          "date": "2026.04.22 08:00",
+          "published_at": "2026.04.22 08:00",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016035036",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "전쟁 공포 삼킨 '수출의 힘'…코스피, 반도체 업고 최고가",
+          "link": "https://n.news.naver.com/mnews/article/437/0000488432",
+          "source": "JTBC",
+          "date": "2026.04.22 07:59",
+          "published_at": "2026.04.22 07:59",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/437/0000488432",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
       "owners": [
         "장윤영",
         "장한솔"
@@ -724,14 +835,14 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 2.1,
+      "price_direction": "up",
+      "price_change_display": "+2.10%",
       "price_display": "219,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 4,500",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
-      "news_count": 0
+      "news_count": 10
     },
     {
       "code": "000660",
@@ -806,7 +917,118 @@
           "date": "2026.03.25"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "[클릭 e종목]\"삼화전기, AI 데이터센터 타고 재평가…고부가 제품 확...",
+          "link": "https://n.news.naver.com/mnews/article/277/0005752897",
+          "source": "아시아경제",
+          "date": "2026.04.22 08:07",
+          "published_at": "2026.04.22 08:07",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/277/0005752897",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[마켓뷰] '사상 최고' 코스피, 숨고르기 여부 주목",
+          "link": "https://n.news.naver.com/mnews/article/001/0016035040",
+          "source": "연합뉴스",
+          "date": "2026.04.22 08:07",
+          "published_at": "2026.04.22 08:07",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016035040",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "ETF 시장서도 반도체가 대세…'삼전닉스' 담은 상품 우후죽순",
+          "link": "https://n.news.naver.com/mnews/article/001/0016035036",
+          "source": "연합뉴스",
+          "date": "2026.04.22 08:00",
+          "published_at": "2026.04.22 08:00",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016035036",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "전쟁 공포 삼킨 '수출의 힘'…코스피, 반도체 업고 최고가",
+          "link": "https://n.news.naver.com/mnews/article/437/0000488432",
+          "source": "JTBC",
+          "date": "2026.04.22 07:59",
+          "published_at": "2026.04.22 07:59",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/437/0000488432",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[애프터마켓 리뷰] 삼성SDI 전기차 배터리, 독일 3사에 모두 들어간...",
+          "link": "https://n.news.naver.com/mnews/article/374/0000505863",
+          "source": "SBS Biz",
+          "date": "2026.04.22 07:53",
+          "published_at": "2026.04.22 07:53",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/374/0000505863",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "트럼프 지지율 37% 최저…유가 급등에 한국전쟁 긴급법 DPA 발동",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613266",
+          "source": "서울경제",
+          "date": "2026.04.22 07:49",
+          "published_at": "2026.04.22 07:49",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613266",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "HD현대-안두릴 무인함정 시제함 건조 착수…10월 시험 운항 목표",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613263",
+          "source": "서울경제",
+          "date": "2026.04.22 07:48",
+          "published_at": "2026.04.22 07:48",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613263",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "전쟁 충격 딛고 전고점 뚫은 코스피…“진짜 랠리는 지금부터”",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613261",
+          "source": "서울경제",
+          "date": "2026.04.22 07:47",
+          "published_at": "2026.04.22 07:47",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613261",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "채용업계 정보보호 투자 확대…사람인 IT 예산 45% 보안에 배정",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613262",
+          "source": "서울경제",
+          "date": "2026.04.22 07:47",
+          "published_at": "2026.04.22 07:47",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613262",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[스타트 경제] 트럼프 \"이란이 통일된 제안 낼 때까지 휴전 연장\" 발...",
+          "link": "https://n.news.naver.com/mnews/article/052/0002344036",
+          "source": "YTN",
+          "date": "2026.04.22 07:30",
+          "published_at": "2026.04.22 07:30",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/052/0002344036",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
       "owners": [
         "이영준",
         "장윤영",
@@ -860,14 +1082,14 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 4.97,
+      "price_direction": "up",
+      "price_change_display": "+4.97%",
       "price_display": "1,224,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 58,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
-      "news_count": 0
+      "news_count": 10
     },
     {
       "code": "267260",
@@ -922,7 +1144,74 @@
           "date": "26.04.21"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "한 주당 300만원 뚫은 효성중공업…美 전력 '슈퍼 사이클' 수혜",
+          "link": "https://n.news.naver.com/mnews/article/119/0003083109",
+          "source": "데일리안",
+          "date": "2026.04.22 06:00",
+          "published_at": "2026.04.22 06:00",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/119/0003083109",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "'AI·북미' 전력 훈풍 타고…LS일렉 1분기 최대실적",
+          "link": "https://n.news.naver.com/mnews/article/009/0005669347",
+          "source": "매일경제",
+          "date": "2026.04.21 17:33",
+          "published_at": "2026.04.21 17:33",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005669347",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "미국-이란 2차 협상 기대감 속 코스피 6380선 돌파… SK하이닉스 ...",
+          "link": "https://n.news.naver.com/mnews/article/310/0000135944",
+          "source": "여성신문",
+          "date": "2026.04.21 16:42",
+          "published_at": "2026.04.21 16:42",
+          "time_ago": "14시간 전",
+          "url": "https://n.news.naver.com/mnews/article/310/0000135944",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "[외부감사 진단] 전력기기 빅3, 수주잭팟에 가려진 재무 뇌관",
+          "link": "https://n.news.naver.com/mnews/article/293/0000083149",
+          "source": "블로터",
+          "date": "2026.04.21 14:30",
+          "published_at": "2026.04.21 14:30",
+          "time_ago": "17시간 전",
+          "url": "https://n.news.naver.com/mnews/article/293/0000083149",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "KOIIA, 독일 하노버 산업박람회서 'AI in Manufacturi...",
+          "link": "https://n.news.naver.com/mnews/article/030/0003419824",
+          "source": "전자신문",
+          "date": "2026.04.21 09:35",
+          "published_at": "2026.04.21 09:35",
+          "time_ago": "21시간 전",
+          "url": "https://n.news.naver.com/mnews/article/030/0003419824",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "KOIIA, 하노버 산업박람회 한국관 운영",
+          "link": "https://n.news.naver.com/mnews/article/018/0006262354",
+          "source": "이데일리",
+          "date": "2026.04.21 09:06",
+          "published_at": "2026.04.21 09:06",
+          "time_ago": "22시간 전",
+          "url": "https://n.news.naver.com/mnews/article/018/0006262354",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
       "owners": [
         "한윤근"
       ],
@@ -973,14 +1262,14 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -2.67,
+      "price_direction": "down",
+      "price_change_display": "-2.67%",
       "price_display": "1,058,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 29,000",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 0
+      "news_count": 6
     },
     {
       "code": "196170",
@@ -1035,7 +1324,107 @@
           "date": "2026.03.23"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "반도체가 싹 바꾼 ‘韓주식 부자 순위’…한미반도체家 30계단 ‘수직.....",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613187",
+          "source": "서울경제",
+          "date": "2026.04.21 22:58",
+          "published_at": "2026.04.21 22:58",
+          "time_ago": "8시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613187",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "韓주식 부자 순위, “삼성家 싹쓸이”…SK하닉은 어디",
+          "link": "https://n.news.naver.com/mnews/article/050/0000105177",
+          "source": "한경비즈니스",
+          "date": "2026.04.21 15:06",
+          "published_at": "2026.04.21 15:06",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/050/0000105177",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "전쟁 리스크에도 웃은 코스피…6380선 돌파하며 최고치",
+          "link": "https://n.news.naver.com/mnews/article/656/0000174424",
+          "source": "대전일보",
+          "date": "2026.04.21 17:22",
+          "published_at": "2026.04.21 17:22",
+          "time_ago": "14시간 전",
+          "url": "https://n.news.naver.com/mnews/article/656/0000174424",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"연구개발특구를 딥테크 요람으로\"… 창업부터 스케일업까지 지원",
+          "link": "https://n.news.naver.com/mnews/article/029/0003022946",
+          "source": "디지털타임스",
+          "date": "2026.04.21 16:49",
+          "published_at": "2026.04.21 16:49",
+          "time_ago": "14시간 전",
+          "url": "https://n.news.naver.com/mnews/article/029/0003022946",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "특구재단, 5극3특 연구개발특구 딥테크 지원사업 추진",
+          "link": "https://n.news.naver.com/mnews/article/119/0003082970",
+          "source": "데일리안",
+          "date": "2026.04.21 16:09",
+          "published_at": "2026.04.21 16:09",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/119/0003082970",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "코스피, 역대 최고치 경신…SK하이닉스 '120만 닉스' 돌파",
+          "link": "https://n.news.naver.com/mnews/article/448/0000605636",
+          "source": "TV조선",
+          "date": "2026.04.21 16:21",
+          "published_at": "2026.04.21 16:21",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/448/0000605636",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "코스피 6,388선 터치, 역대최고…SK하이닉스 '120만 닉스' 돌...",
+          "link": "https://n.news.naver.com/mnews/article/001/0016034366",
+          "source": "연합뉴스",
+          "date": "2026.04.21 16:15",
+          "published_at": "2026.04.21 16:15",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016034366",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "코스피 2.7% 올라 6388 마감…전쟁 뚫고 사상 최고 [시황종합]",
+          "link": "https://n.news.naver.com/mnews/article/421/0008903261",
+          "source": "뉴스1",
+          "date": "2026.04.21 16:15",
+          "published_at": "2026.04.21 16:15",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/421/0008903261",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[오늘증시]코스피, '2.7% 급등' 6380선 마감…사상 최고치 돌파",
+          "link": "https://n.news.naver.com/mnews/article/417/0001139973",
+          "source": "동행미디어 시대",
+          "date": "2026.04.21 16:13",
+          "published_at": "2026.04.21 16:13",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/417/0001139973",
+          "impact": "positive",
+          "impact_label": "호재"
+        }
+      ],
       "owners": [
         "한윤근"
       ],
@@ -1085,14 +1474,14 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -0.67,
+      "price_direction": "down",
+      "price_change_display": "-0.67%",
       "price_display": "369,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 2,500",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 0
+      "news_count": 9
     },
     {
       "code": "042700",
@@ -1151,7 +1540,107 @@
           "date": "2026.03.20"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "ETF 시장서도 반도체가 대세…'삼전닉스' 담은 상품 우후죽순",
+          "link": "https://n.news.naver.com/mnews/article/001/0016035036",
+          "source": "연합뉴스",
+          "date": "2026.04.22 08:00",
+          "published_at": "2026.04.22 08:00",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016035036",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "공매도 집중 공격 종목, 되레 올랐다…숏커버링에 주가 뜀박질 [fn마켓...",
+          "link": "https://n.news.naver.com/mnews/article/014/0005511338",
+          "source": "파이낸셜뉴스",
+          "date": "2026.04.22 06:07",
+          "published_at": "2026.04.22 06:07",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005511338",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "반도체가 싹 바꾼 ‘韓주식 부자 순위’…한미반도체家 30계단 ‘수직.....",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613187",
+          "source": "서울경제",
+          "date": "2026.04.21 22:58",
+          "published_at": "2026.04.21 22:58",
+          "time_ago": "8시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613187",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "韓주식 부자 순위, “삼성家 싹쓸이”…SK하닉은 어디",
+          "link": "https://n.news.naver.com/mnews/article/050/0000105177",
+          "source": "한경비즈니스",
+          "date": "2026.04.21 15:06",
+          "published_at": "2026.04.21 15:06",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/050/0000105177",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"위기를 기회로\"… 인사 영입으로 재도약 나선 중견·中企들",
+          "link": "https://n.news.naver.com/mnews/article/014/0005511188",
+          "source": "파이낸셜뉴스",
+          "date": "2026.04.21 18:20",
+          "published_at": "2026.04.21 18:20",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005511188",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "\"위기를 기회로 바꾸자\" 인사 영입 통해 재도약 나선 기업들",
+          "link": "https://n.news.naver.com/mnews/article/014/0005511042",
+          "source": "파이낸셜뉴스",
+          "date": "2026.04.21 15:14",
+          "published_at": "2026.04.21 15:14",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005511042",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "코스피 또 새 역사…외국인·기관 쌍끌이에 6388선 돌파",
+          "link": "https://n.news.naver.com/mnews/article/030/0003420133",
+          "source": "전자신문",
+          "date": "2026.04.21 15:50",
+          "published_at": "2026.04.21 15:50",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/030/0003420133",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "6000억 장비가 내 책상에?…ASML 직원들도 난리 난 이유",
+          "link": "https://n.news.naver.com/mnews/article/015/0005277645",
+          "source": "한국경제",
+          "date": "2026.04.21 14:37",
+          "published_at": "2026.04.21 14:37",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005277645",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[이 시각 시황] 2차전지주, 업황 개선·정책 기대감 속 상승폭 확대",
+          "link": "https://n.news.naver.com/mnews/article/374/0000505642",
+          "source": "SBS Biz",
+          "date": "2026.04.21 09:42",
+          "published_at": "2026.04.21 09:42",
+          "time_ago": "21시간 전",
+          "url": "https://n.news.naver.com/mnews/article/374/0000505642",
+          "impact": "positive",
+          "impact_label": "호재"
+        }
+      ],
       "owners": [
         "장한솔",
         "한윤근"
@@ -1203,14 +1692,14 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 2.79,
+      "price_direction": "up",
+      "price_change_display": "+2.79%",
       "price_display": "295,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 8,000",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 0
+      "news_count": 9
     },
     {
       "code": "012450",
@@ -1285,7 +1774,118 @@
           "date": "2026.04.09"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "\"우리도 올랐어요\"…SK하닉 넘어 코스피 전반 신고가 행진",
+          "link": "https://n.news.naver.com/mnews/article/003/0013901803",
+          "source": "뉴시스",
+          "date": "2026.04.22 07:00",
+          "published_at": "2026.04.22 07:00",
+          "time_ago": "30분 전",
+          "url": "https://n.news.naver.com/mnews/article/003/0013901803",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "“22조 수출로 46조 효과”… K방산 급성장 ‘전쟁의 역설’",
+          "link": "https://n.news.naver.com/mnews/article/005/0001844599",
+          "source": "국민일보",
+          "date": "2026.04.22 00:31",
+          "published_at": "2026.04.22 00:31",
+          "time_ago": "6시간 전",
+          "url": "https://n.news.naver.com/mnews/article/005/0001844599",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "제조업 중심 벗어나 해양수산 등 양질 일자리 창출해야",
+          "link": "https://n.news.naver.com/mnews/article/658/0000141743",
+          "source": "국제신문",
+          "date": "2026.04.21 19:51",
+          "published_at": "2026.04.21 19:51",
+          "time_ago": "11시간 전",
+          "url": "https://n.news.naver.com/mnews/article/658/0000141743",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "‘중동발 특수’ 국내 방산 4사, 영업익 30% 이상 성장",
+          "link": "https://n.news.naver.com/mnews/article/082/0001377170",
+          "source": "부산일보",
+          "date": "2026.04.21 18:20",
+          "published_at": "2026.04.21 18:20",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/082/0001377170",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "[한화에어로 줌인] 다음 스텝은 워싱턴…美 방산 로비 18배 늘렸다",
+          "link": "https://n.news.naver.com/mnews/article/293/0000083185",
+          "source": "블로터",
+          "date": "2026.04.21 18:07",
+          "published_at": "2026.04.21 18:07",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/293/0000083185",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[현장연결] 코스피 6380 돌파 '사상 최고'…122만닉스·21만전자",
+          "link": "https://n.news.naver.com/mnews/article/374/0000505815",
+          "source": "SBS Biz",
+          "date": "2026.04.21 18:01",
+          "published_at": "2026.04.21 18:01",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/374/0000505815",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "\"코스피 일냈다\" 6388.47로 사상 최고치 돌파…7000선 기대감↑",
+          "link": "https://n.news.naver.com/mnews/article/243/0000096779",
+          "source": "이코노미스트",
+          "date": "2026.04.21 18:01",
+          "published_at": "2026.04.21 18:01",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/243/0000096779",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "韓 제조 능력·美 AI 기술 시너지…미래 해전 ‘게임체인저’ 양산",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613120",
+          "source": "서울경제",
+          "date": "2026.04.21 17:51",
+          "published_at": "2026.04.21 17:51",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613120",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "‘전쟁의 역설’ K방산 급성장…생산유발효과 46조, 고용 창출 10.1...",
+          "link": "https://n.news.naver.com/mnews/article/005/0001844529",
+          "source": "국민일보",
+          "date": "2026.04.21 17:02",
+          "published_at": "2026.04.21 17:02",
+          "time_ago": "14시간 전",
+          "url": "https://n.news.naver.com/mnews/article/005/0001844529",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "지난해 22조원 방산 수출, 효과는? “고용 10만명, 생산 46조원...",
+          "link": "https://n.news.naver.com/mnews/article/028/0002801708",
+          "source": "한겨레",
+          "date": "2026.04.21 15:32",
+          "published_at": "2026.04.21 15:32",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/028/0002801708",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
       "owners": [
         "한윤근"
       ],
@@ -1336,14 +1936,14 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -2.39,
+      "price_direction": "down",
+      "price_change_display": "-2.39%",
       "price_display": "1,391,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 34,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
-      "news_count": 0
+      "news_count": 10
     },
     {
       "code": "096770",
@@ -1418,7 +2018,118 @@
           "date": "2026.03.24"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "SK온, 日 도쿄에 지사 설립…닛산 협력·ESS 시장 정조준",
+          "link": "https://n.news.naver.com/mnews/article/050/0000105197",
+          "source": "한경비즈니스",
+          "date": "2026.04.22 07:00",
+          "published_at": "2026.04.22 07:00",
+          "time_ago": "30분 전",
+          "url": "https://n.news.naver.com/mnews/article/050/0000105197",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"'이것' 돈 된다\"…5천억 폐식용유 기업 태핑 나선 HD현대 속내",
+          "link": "https://n.news.naver.com/mnews/article/648/0000046473",
+          "source": "비즈워치",
+          "date": "2026.04.22 06:50",
+          "published_at": "2026.04.22 06:50",
+          "time_ago": "40분 전",
+          "url": "https://n.news.naver.com/mnews/article/648/0000046473",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "“K배터리 부활 신호탄”…LG엔솔, 현대차 시총 제쳤다 [마켓시그널]",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613231",
+          "source": "서울경제",
+          "date": "2026.04.22 06:31",
+          "published_at": "2026.04.22 06:31",
+          "time_ago": "59분 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613231",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "中 CATL \"10→98% 6분27초…초고속 충전 배터리 공개\"",
+          "link": "https://n.news.naver.com/mnews/article/031/0001023801",
+          "source": "아이뉴스24",
+          "date": "2026.04.21 23:09",
+          "published_at": "2026.04.21 23:09",
+          "time_ago": "8시간 전",
+          "url": "https://n.news.naver.com/mnews/article/031/0001023801",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "SK온, 일본 지사 설립 추진…\"고객 밀착 대응으로 신규 수주 확보\"",
+          "link": "https://n.news.naver.com/mnews/article/119/0003083086",
+          "source": "데일리안",
+          "date": "2026.04.21 21:27",
+          "published_at": "2026.04.21 21:27",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/119/0003083086",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "[단독] SK온 도쿄지사 설립…車배터리 영토확장",
+          "link": "https://n.news.naver.com/mnews/article/009/0005669457",
+          "source": "매일경제",
+          "date": "2026.04.21 19:52",
+          "published_at": "2026.04.21 19:52",
+          "time_ago": "11시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005669457",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "SK온, 日 도쿄 지사 설립…전기차 배터리·ESS 공략 시동",
+          "link": "https://n.news.naver.com/mnews/article/421/0008903649",
+          "source": "뉴스1",
+          "date": "2026.04.21 19:32",
+          "published_at": "2026.04.21 19:32",
+          "time_ago": "11시간 전",
+          "url": "https://n.news.naver.com/mnews/article/421/0008903649",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "SK온, 도쿄 거점 만든다…일본 지사 4월말 출범",
+          "link": "https://n.news.naver.com/mnews/article/277/0005752801",
+          "source": "아시아경제",
+          "date": "2026.04.21 19:11",
+          "published_at": "2026.04.21 19:11",
+          "time_ago": "12시간 전",
+          "url": "https://n.news.naver.com/mnews/article/277/0005752801",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "SK온 일본 도쿄 지사 설립…성장 거점 삼는다",
+          "link": "https://n.news.naver.com/mnews/article/030/0003420251",
+          "source": "전자신문",
+          "date": "2026.04.21 18:46",
+          "published_at": "2026.04.21 18:46",
+          "time_ago": "12시간 전",
+          "url": "https://n.news.naver.com/mnews/article/030/0003420251",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "SK온, 일본 지사 설립 추진…배터리·ESS 시장 동시 공략",
+          "link": "https://n.news.naver.com/mnews/article/001/0016034664",
+          "source": "연합뉴스",
+          "date": "2026.04.21 18:35",
+          "published_at": "2026.04.21 18:35",
+          "time_ago": "12시간 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016034664",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
       "owners": [
         "한윤근"
       ],
@@ -1469,14 +2180,14 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 3.65,
+      "price_direction": "up",
+      "price_change_display": "+3.65%",
       "price_display": "133,500",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 4,700",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
-      "news_count": 0
+      "news_count": 10
     },
     {
       "code": "299660",
@@ -1598,11 +2309,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "풀매도",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -12.17,
+      "price_direction": "down",
+      "price_change_display": "-12.17%",
       "price_display": "3,610",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 500",
       "news_sentiment_label": "부정",
       "confidence_label": "높음",
       "news_count": 0
@@ -1660,7 +2371,19 @@
           "date": "2026.01.07"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "증시로 다시 돈 몰린다… 빚투 자금도 34조 ‘사상 최고치’",
+          "link": "https://n.news.naver.com/mnews/article/005/0001844594",
+          "source": "국민일보",
+          "date": "2026.04.22 00:18",
+          "published_at": "2026.04.22 00:18",
+          "time_ago": "7시간 전",
+          "url": "https://n.news.naver.com/mnews/article/005/0001844594",
+          "impact": "positive",
+          "impact_label": "호재"
+        }
+      ],
       "owners": [
         "하우찬",
         "한윤근"
@@ -1712,14 +2435,14 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 2.05,
+      "price_direction": "up",
+      "price_change_display": "+2.05%",
       "price_display": "16,680",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 335",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 0
+      "news_count": 1
     },
     {
       "code": "028050",
@@ -1790,7 +2513,118 @@
           "date": "2026.04.08"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "“반도체주 단기 소강상태 진입할 것…낙수효과 기대 업종은”",
+          "link": "https://n.news.naver.com/mnews/article/018/0006263068",
+          "source": "이데일리",
+          "date": "2026.04.22 07:49",
+          "published_at": "2026.04.22 07:49",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/018/0006263068",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"중동 전쟁 끝나면 내가 대장\"…목표가 71% 오른 이 종목 [클릭 e...",
+          "link": "https://n.news.naver.com/mnews/article/277/0005752850",
+          "source": "아시아경제",
+          "date": "2026.04.22 06:01",
+          "published_at": "2026.04.22 06:01",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/277/0005752850",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성물산 건설노조 \"중동 지역 위험…타사처럼 해외 수당 더 줘야\"",
+          "link": "https://n.news.naver.com/mnews/article/422/0000857405",
+          "source": "연합뉴스TV",
+          "date": "2026.04.21 18:37",
+          "published_at": "2026.04.21 18:37",
+          "time_ago": "12시간 전",
+          "url": "https://n.news.naver.com/mnews/article/422/0000857405",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성물산 건설노조 “중동 직원 위험 수당 지급하라… 경쟁사는 복지.....",
+          "link": "https://n.news.naver.com/mnews/article/366/0001158593",
+          "source": "조선비즈",
+          "date": "2026.04.21 15:56",
+          "published_at": "2026.04.21 15:56",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/366/0001158593",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "'코스피 새 역사'…반도체 끌고 이차전지·건설주 밀고",
+          "link": "https://n.news.naver.com/mnews/article/421/0008903485",
+          "source": "뉴스1",
+          "date": "2026.04.21 17:30",
+          "published_at": "2026.04.21 17:30",
+          "time_ago": "14시간 전",
+          "url": "https://n.news.naver.com/mnews/article/421/0008903485",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "이찬희 삼성 준감위원장 \"노조 파업, 권리지만 신중히 생각을\"",
+          "link": "https://n.news.naver.com/mnews/article/092/0002419517",
+          "source": "지디넷코리아",
+          "date": "2026.04.21 15:13",
+          "published_at": "2026.04.21 15:13",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/092/0002419517",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "‘중동 붐 재현’ 기대감…대우건설 15%대 급등 [이런국장 저런주식]",
+          "link": "https://n.news.naver.com/mnews/article/011/0004612885",
+          "source": "서울경제",
+          "date": "2026.04.21 09:53",
+          "published_at": "2026.04.21 09:53",
+          "time_ago": "21시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004612885",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "건설주, 중동 재건 수혜 기대에 일제히 강세…대우건설, 16%↑[특징주...",
+          "link": "https://n.news.naver.com/mnews/article/018/0006262370",
+          "source": "이데일리",
+          "date": "2026.04.21 09:26",
+          "published_at": "2026.04.21 09:26",
+          "time_ago": "22시간 전",
+          "url": "https://n.news.naver.com/mnews/article/018/0006262370",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "중동 재건 수혜 기대 커진 건설주…“3년간 1400억달러 수주 가능”",
+          "link": "https://n.news.naver.com/mnews/article/018/0006262236",
+          "source": "이데일리",
+          "date": "2026.04.21 07:57",
+          "published_at": "2026.04.21 07:57",
+          "time_ago": "23시간 전",
+          "url": "https://n.news.naver.com/mnews/article/018/0006262236",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "NH證 “삼성E&A, 중동 재건 최대 수혜주…목표가 71%↑”",
+          "link": "https://n.news.naver.com/mnews/article/366/0001158396",
+          "source": "조선비즈",
+          "date": "2026.04.21 09:03",
+          "published_at": "2026.04.21 09:03",
+          "time_ago": "22시간 전",
+          "url": "https://n.news.naver.com/mnews/article/366/0001158396",
+          "impact": "positive",
+          "impact_label": "호재"
+        }
+      ],
       "owners": [
         "장한솔"
       ],
@@ -1840,14 +2674,14 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 4.87,
+      "price_direction": "up",
+      "price_change_display": "+4.87%",
       "price_display": "51,700",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 2,400",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
-      "news_count": 0
+      "news_count": 10
     },
     {
       "code": "310210",
@@ -1914,7 +2748,52 @@
           "date": "2026.03.20"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "재무에 '빨간불' 진원생명과학, CB로 66억 현금 마련에 上[바이오맥...",
+          "link": "https://n.news.naver.com/mnews/article/018/0006263086",
+          "source": "이데일리",
+          "date": "2026.04.22 08:02",
+          "published_at": "2026.04.22 08:02",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/018/0006263086",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[애프터마켓 브리핑] 코스피, 6380선 돌파…역대 최고치 경신",
+          "link": "https://n.news.naver.com/mnews/article/374/0000505791",
+          "source": "SBS Biz",
+          "date": "2026.04.21 16:50",
+          "published_at": "2026.04.21 16:50",
+          "time_ago": "14시간 전",
+          "url": "https://n.news.naver.com/mnews/article/374/0000505791",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "전쟁 공포 꺾은 SK하이닉스 실적 기대감...코스피, 6370선 눈앞",
+          "link": "https://n.news.naver.com/mnews/article/008/0005347113",
+          "source": "머니투데이",
+          "date": "2026.04.21 13:52",
+          "published_at": "2026.04.21 13:52",
+          "time_ago": "17시간 전",
+          "url": "https://n.news.naver.com/mnews/article/008/0005347113",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "전쟁해도 '그러려니'…외인 \"사자\"에 6350 사상 최고치 뚫은 코스피",
+          "link": "https://n.news.naver.com/mnews/article/008/0005346954",
+          "source": "머니투데이",
+          "date": "2026.04.21 09:31",
+          "published_at": "2026.04.21 09:31",
+          "time_ago": "21시간 전",
+          "url": "https://n.news.naver.com/mnews/article/008/0005346954",
+          "impact": "positive",
+          "impact_label": "호재"
+        }
+      ],
       "owners": [
         "하우찬"
       ],
@@ -1963,14 +2842,14 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -10.07,
+      "price_direction": "down",
+      "price_change_display": "-10.07%",
       "price_display": "308,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 34,500",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
-      "news_count": 0
+      "news_count": 4
     },
     {
       "code": "445680",
@@ -2047,7 +2926,19 @@
           "date": "2026.03.18"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "오늘의 메모[4월 22일]",
+          "link": "https://n.news.naver.com/mnews/article/011/0004612996",
+          "source": "서울경제",
+          "date": "2026.04.21 14:51",
+          "published_at": "2026.04.21 14:51",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004612996",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
       "owners": [
         "이웅수",
         "장한솔",
@@ -2100,14 +2991,14 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -1.68,
+      "price_direction": "down",
+      "price_change_display": "-1.68%",
       "price_display": "87,800",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 1,500",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 0
+      "news_count": 1
     },
     {
       "code": "009540",
@@ -2173,7 +3064,118 @@
           "date": "26.04.20"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "공매도 집중 공격 종목, 되레 올랐다…숏커버링에 주가 뜀박질 [fn마켓...",
+          "link": "https://n.news.naver.com/mnews/article/014/0005511338",
+          "source": "파이낸셜뉴스",
+          "date": "2026.04.22 06:07",
+          "published_at": "2026.04.22 06:07",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005511338",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "울산, AI로 자율 운항하는 선박 만든다… 국비 207억 확보",
+          "link": "https://n.news.naver.com/mnews/article/020/0003714287",
+          "source": "동아일보",
+          "date": "2026.04.22 04:33",
+          "published_at": "2026.04.22 04:33",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/020/0003714287",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "현대차, ‘인도 맞춤형’ 3륜 전기차 만든다… 8년 협의 결실",
+          "link": "https://n.news.naver.com/mnews/article/020/0003714241",
+          "source": "동아일보",
+          "date": "2026.04.22 00:31",
+          "published_at": "2026.04.22 00:31",
+          "time_ago": "6시간 전",
+          "url": "https://n.news.naver.com/mnews/article/020/0003714241",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "李 인도 순방에 재계 총출동…포스코·HD현대·현대차 '투자' 행렬",
+          "link": "https://n.news.naver.com/mnews/article/138/0002225360",
+          "source": "디지털데일리",
+          "date": "2026.04.21 18:57",
+          "published_at": "2026.04.21 18:57",
+          "time_ago": "12시간 전",
+          "url": "https://n.news.naver.com/mnews/article/138/0002225360",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"인도는 HD현대의 새 성장동력\"… 정기선의 포부가 현실로",
+          "link": "https://n.news.naver.com/mnews/article/469/0000926711",
+          "source": "한국일보",
+          "date": "2026.04.21 17:01",
+          "published_at": "2026.04.21 17:01",
+          "time_ago": "14시간 전",
+          "url": "https://n.news.naver.com/mnews/article/469/0000926711",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "[증시 인사이트] 코스피 장중 사상 최고치 경신…\"6400선도 눈앞에\"",
+          "link": "https://n.news.naver.com/mnews/article/374/0000505789",
+          "source": "SBS Biz",
+          "date": "2026.04.21 16:40",
+          "published_at": "2026.04.21 16:40",
+          "time_ago": "14시간 전",
+          "url": "https://n.news.naver.com/mnews/article/374/0000505789",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "LIG D&A·HD현대重, SAS 참가…美 함정건조 공백 공략",
+          "link": "https://n.news.naver.com/mnews/article/123/0002381744",
+          "source": "조세일보",
+          "date": "2026.04.21 16:39",
+          "published_at": "2026.04.21 16:39",
+          "time_ago": "14시간 전",
+          "url": "https://n.news.naver.com/mnews/article/123/0002381744",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "한·인도 기업, 조선·철강·디지털·에너지 등 협력 MOU 20건 체결",
+          "link": "https://n.news.naver.com/mnews/article/032/0003441170",
+          "source": "경향신문",
+          "date": "2026.04.21 16:08",
+          "published_at": "2026.04.21 16:08",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/032/0003441170",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "한-인도, 4800만달러 계약…첨단산업 협력 확대",
+          "link": "https://n.news.naver.com/mnews/article/031/0001023703",
+          "source": "아이뉴스24",
+          "date": "2026.04.21 15:19",
+          "published_at": "2026.04.21 15:19",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/031/0001023703",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "한-인도 첨단산업 협력 확대…조선·철강 등 4800만弗 MOU",
+          "link": "https://n.news.naver.com/mnews/article/003/0013900691",
+          "source": "뉴시스",
+          "date": "2026.04.21 14:49",
+          "published_at": "2026.04.21 14:49",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/003/0013900691",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
       "owners": [
         "오병호"
       ],
@@ -2223,14 +3225,14 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 3.51,
+      "price_direction": "up",
+      "price_change_display": "+3.51%",
       "price_display": "427,500",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 14,500",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
-      "news_count": 0
+      "news_count": 10
     },
     {
       "code": "174900",
@@ -2328,7 +3330,19 @@
           "date": "2026.03.13"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "앱클론 “이중항체 신약, 동물실험서 극소량으로 완전관해 달성”",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613027",
+          "source": "서울경제",
+          "date": "2026.04.21 15:47",
+          "published_at": "2026.04.21 15:47",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613027",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
       "owners": [
         "오병호"
       ],
@@ -2378,14 +3392,14 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -12.72,
+      "price_direction": "down",
+      "price_change_display": "-12.72%",
       "price_display": "48,700",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 7,100",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
-      "news_count": 0
+      "news_count": 1
     },
     {
       "code": "298380",
@@ -2440,7 +3454,107 @@
           "date": "2026.03.12"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "삼성에피스·베리스모, 고형암 신약 ‘ADC·CAR-T’로 공략한다",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613252",
+          "source": "서울경제",
+          "date": "2026.04.22 07:14",
+          "published_at": "2026.04.22 07:14",
+          "time_ago": "16분 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613252",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "반도체가 싹 바꾼 ‘韓주식 부자 순위’…한미반도체家 30계단 ‘수직.....",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613187",
+          "source": "서울경제",
+          "date": "2026.04.21 22:58",
+          "published_at": "2026.04.21 22:58",
+          "time_ago": "8시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613187",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "韓주식 부자 순위, “삼성家 싹쓸이”…SK하닉은 어디",
+          "link": "https://n.news.naver.com/mnews/article/050/0000105177",
+          "source": "한경비즈니스",
+          "date": "2026.04.21 15:06",
+          "published_at": "2026.04.21 15:06",
+          "time_ago": "16시간 전",
+          "url": "https://n.news.naver.com/mnews/article/050/0000105177",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "전쟁 리스크에도 웃은 코스피…6380선 돌파하며 최고치",
+          "link": "https://n.news.naver.com/mnews/article/656/0000174424",
+          "source": "대전일보",
+          "date": "2026.04.21 17:22",
+          "published_at": "2026.04.21 17:22",
+          "time_ago": "14시간 전",
+          "url": "https://n.news.naver.com/mnews/article/656/0000174424",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[마켓PRO] 알고리즘 종목 Pick : \"에이비엘바이오, 반등 조짐 ...",
+          "link": "https://n.news.naver.com/mnews/article/015/0005277723",
+          "source": "한국경제",
+          "date": "2026.04.21 16:23",
+          "published_at": "2026.04.21 16:23",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005277723",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "‘전인미답’ 코스피, 종가·장중 최고치 모두 갈아치웠다…6380선 마....",
+          "link": "https://n.news.naver.com/mnews/article/016/0002633134",
+          "source": "헤럴드경제",
+          "date": "2026.04.21 16:17",
+          "published_at": "2026.04.21 16:17",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/016/0002633134",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "코스피 2.7% 올라 6388 마감…전쟁 뚫고 사상 최고 [시황종합]",
+          "link": "https://n.news.naver.com/mnews/article/421/0008903261",
+          "source": "뉴스1",
+          "date": "2026.04.21 16:15",
+          "published_at": "2026.04.21 16:15",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/421/0008903261",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[오늘증시]코스피, '2.7% 급등' 6380선 마감…사상 최고치 돌파",
+          "link": "https://n.news.naver.com/mnews/article/417/0001139973",
+          "source": "동행미디어 시대",
+          "date": "2026.04.21 16:13",
+          "published_at": "2026.04.21 16:13",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/417/0001139973",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "[서울데이터랩] 코스닥 1179.03으로 마감…개인 순매수에도 상승폭 ...",
+          "link": "https://n.news.naver.com/mnews/article/081/0003637311",
+          "source": "서울신문",
+          "date": "2026.04.21 16:11",
+          "published_at": "2026.04.21 16:11",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/081/0003637311",
+          "impact": "positive",
+          "impact_label": "호재"
+        }
+      ],
       "owners": [
         "우동희"
       ],
@@ -2490,14 +3604,14 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -2.68,
+      "price_direction": "down",
+      "price_change_display": "-2.68%",
       "price_display": "155,900",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 4,300",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 0
+      "news_count": 9
     },
     {
       "code": "166480",
@@ -2597,11 +3711,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "매도",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -4.93,
+      "price_direction": "down",
+      "price_change_display": "-4.93%",
       "price_display": "3,180",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 165",
       "news_sentiment_label": "중립",
       "confidence_label": "중간",
       "news_count": 0
@@ -2663,7 +3777,118 @@
           "date": "2026.03.26"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "HD현대-안두릴 무인함정 시제함 건조 착수…10월 시험 운항 목표",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613263",
+          "source": "서울경제",
+          "date": "2026.04.22 07:48",
+          "published_at": "2026.04.22 07:48",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613263",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "전쟁 충격 딛고 전고점 뚫은 코스피…“진짜 랠리는 지금부터”",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613261",
+          "source": "서울경제",
+          "date": "2026.04.22 07:47",
+          "published_at": "2026.04.22 07:47",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613261",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "코스닥 상장 최소 1000억 요구…IPO 더 빡세졌다",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613260",
+          "source": "서울경제",
+          "date": "2026.04.22 07:46",
+          "published_at": "2026.04.22 07:46",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613260",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[기자노트]미토스발 AI 해킹 충격…절실한 자성의 목소리",
+          "link": "https://n.news.naver.com/mnews/article/417/0001140013",
+          "source": "동행미디어 시대",
+          "date": "2026.04.22 06:10",
+          "published_at": "2026.04.22 06:10",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/417/0001140013",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "고지서 열람·세금 납부 한번에…ETAX 전자사서함 서비스 시행",
+          "link": "https://n.news.naver.com/mnews/article/001/0016034941",
+          "source": "연합뉴스",
+          "date": "2026.04.22 06:00",
+          "published_at": "2026.04.22 06:00",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016034941",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "네이버, 70% 검색 점유율… \"생성형AI 검색 후 다시 네이버로\"",
+          "link": "https://n.news.naver.com/mnews/article/006/0000135357",
+          "source": "미디어오늘",
+          "date": "2026.04.22 06:00",
+          "published_at": "2026.04.22 06:00",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/006/0000135357",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "“국민 메신저 확 바뀌었다” 10년 동안 쓰던 ‘이 기능’ 사라지고 ....",
+          "link": "https://n.news.naver.com/mnews/article/016/0002633228",
+          "source": "헤럴드경제",
+          "date": "2026.04.21 21:41",
+          "published_at": "2026.04.21 21:41",
+          "time_ago": "9시간 전",
+          "url": "https://n.news.naver.com/mnews/article/016/0002633228",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "류긍선 카카오모빌리티 대표, 미래 모빌리티 혁신 가속",
+          "link": "https://n.news.naver.com/mnews/article/037/0000038035",
+          "source": "주간동아",
+          "date": "2026.04.21 18:41",
+          "published_at": "2026.04.21 18:41",
+          "time_ago": "12시간 전",
+          "url": "https://n.news.naver.com/mnews/article/037/0000038035",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "'최대 실적' 카카오모빌리티…류긍선 대표 \"'피지컬 AI'로 다음 도...",
+          "link": "https://n.news.naver.com/mnews/article/008/0005347074",
+          "source": "머니투데이",
+          "date": "2026.04.21 11:48",
+          "published_at": "2026.04.21 11:48",
+          "time_ago": "19시간 전",
+          "url": "https://n.news.naver.com/mnews/article/008/0005347074",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "제미나이 입은 크롬 韓 상륙…네이버 ‘AI탭’으로 맞불",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613116",
+          "source": "서울경제",
+          "date": "2026.04.21 17:48",
+          "published_at": "2026.04.21 17:48",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613116",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
       "owners": [
         "장한솔"
       ],
@@ -2714,14 +3939,14 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 0.2,
+      "price_direction": "up",
+      "price_change_display": "+0.20%",
       "price_display": "48,950",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 100",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 0
+      "news_count": 10
     },
     {
       "code": "005380",
@@ -2796,7 +4021,118 @@
           "date": "2026.04.01"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "\"안전띠 설계 미흡\" 싼타페·레이·토레스 등 17개 차종 리콜",
+          "link": "https://n.news.naver.com/mnews/article/422/0000857548",
+          "source": "연합뉴스TV",
+          "date": "2026.04.22 08:09",
+          "published_at": "2026.04.22 08:09",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/422/0000857548",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "레이·싼타페·토레스 등 53만대 제작결함…자발적 시정조치",
+          "link": "https://n.news.naver.com/mnews/article/056/0012167125",
+          "source": "KBS",
+          "date": "2026.04.22 07:51",
+          "published_at": "2026.04.22 07:51",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/056/0012167125",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "현대·기아·KG모빌리티 등 53만2144대 무더기 시정조치(리콜)",
+          "link": "https://n.news.naver.com/mnews/article/658/0000141757",
+          "source": "국제신문",
+          "date": "2026.04.22 06:29",
+          "published_at": "2026.04.22 06:29",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/658/0000141757",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "'안전띠 설계 미흡' 산타페·제네시스 등 53만대 리콜",
+          "link": "https://n.news.naver.com/mnews/article/374/0000505850",
+          "source": "SBS Biz",
+          "date": "2026.04.22 06:27",
+          "published_at": "2026.04.22 06:27",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/374/0000505850",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "케이지모빌리티·기아 등 4개사 17개 차종 53만2144대 리콜",
+          "link": "https://n.news.naver.com/mnews/article/119/0003083113",
+          "source": "데일리안",
+          "date": "2026.04.22 06:02",
+          "published_at": "2026.04.22 06:02",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/119/0003083113",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "국토부, 현대·기아·토요타 등 17개 차종 53만 대 리콜",
+          "link": "https://n.news.naver.com/mnews/article/214/0001494357",
+          "source": "MBC",
+          "date": "2026.04.22 06:02",
+          "published_at": "2026.04.22 06:02",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/214/0001494357",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "싼타페 등 현대차 24만대 '안전띠 고정장치 설계 미흡' 리콜",
+          "link": "https://n.news.naver.com/mnews/article/079/0004139280",
+          "source": "노컷뉴스",
+          "date": "2026.04.22 06:01",
+          "published_at": "2026.04.22 06:01",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/079/0004139280",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "국토부, 수입·국산차 총 53만대 리콜조치",
+          "link": "https://n.news.naver.com/mnews/article/016/0002633264",
+          "source": "헤럴드경제",
+          "date": "2026.04.22 06:01",
+          "published_at": "2026.04.22 06:01",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/016/0002633264",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "현대·기아·토요타·KG모빌리티 제작 차량서 결함…53만대 리콜",
+          "link": "https://n.news.naver.com/mnews/article/003/0013901776",
+          "source": "뉴시스",
+          "date": "2026.04.22 06:00",
+          "published_at": "2026.04.22 06:00",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/003/0013901776",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "기아 레이·현대차 싼타페 등 53만여대 제작 결함 리콜",
+          "link": "https://n.news.naver.com/mnews/article/421/0008903867",
+          "source": "뉴스1",
+          "date": "2026.04.22 06:00",
+          "published_at": "2026.04.22 06:00",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/421/0008903867",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
       "owners": [
         "장한솔"
       ],
@@ -2847,14 +4183,14 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 3.61,
+      "price_direction": "up",
+      "price_change_display": "+3.61%",
       "price_display": "546,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 19,000",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 0
+      "news_count": 10
     },
     {
       "code": "034230",
@@ -2913,7 +4249,30 @@
           "date": "2026.03.19"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "파라다이스, 신평사 신용등급 ‘A+’ 상향…실적·재무 ‘쌍끌이’",
+          "link": "https://n.news.naver.com/mnews/article/119/0003083137",
+          "source": "데일리안",
+          "date": "2026.04.22 08:06",
+          "published_at": "2026.04.22 08:06",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/119/0003083137",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "파라다이스, 투자 확대 속 재무 안정성 입증…신용등급 ‘A+’",
+          "link": "https://n.news.naver.com/mnews/article/003/0013901822",
+          "source": "뉴시스",
+          "date": "2026.04.22 07:38",
+          "published_at": "2026.04.22 07:38",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/003/0013901822",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
       "owners": [
         "장한솔"
       ],
@@ -2964,14 +4323,14 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -0.71,
+      "price_direction": "down",
+      "price_change_display": "-0.71%",
       "price_display": "15,350",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 110",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
-      "news_count": 0
+      "news_count": 2
     },
     {
       "code": "352820",
@@ -3057,7 +4416,118 @@
           "date": "2026.04.01"
         }
       ],
-      "news": [],
+      "news": [
+        {
+          "title": "“두 달 만에 40% 빠졌다”…하이브 주주들 비명 터졌는데 목표주가도....",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613272",
+          "source": "서울경제",
+          "date": "2026.04.22 08:09",
+          "published_at": "2026.04.22 08:09",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004613272",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[클릭 e종목]\"BTS 컴백…당장은 아쉽지만 호실적 예상되는 하이브\"",
+          "link": "https://n.news.naver.com/mnews/article/277/0005752844",
+          "source": "아시아경제",
+          "date": "2026.04.22 06:00",
+          "published_at": "2026.04.22 06:00",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/277/0005752844",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "한 입으로 두 말?…‘엔터 황제’ 방시혁 구속되나?",
+          "link": "https://n.news.naver.com/mnews/article/056/0012167030",
+          "source": "KBS",
+          "date": "2026.04.21 23:24",
+          "published_at": "2026.04.21 23:24",
+          "time_ago": "8시간 전",
+          "url": "https://n.news.naver.com/mnews/article/056/0012167030",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "‘과즙세연’과 협업에 발칵…화장품 판매 종료에 공식사과, 무슨일",
+          "link": "https://n.news.naver.com/mnews/article/025/0003517869",
+          "source": "중앙일보",
+          "date": "2026.04.21 21:12",
+          "published_at": "2026.04.21 21:12",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/025/0003517869",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[데일리안 오늘뉴스 종합] 李대통령, 베트남 하노이 도착…내일 럼 서....",
+          "link": "https://n.news.naver.com/mnews/article/119/0003083085",
+          "source": "데일리안",
+          "date": "2026.04.21 21:00",
+          "published_at": "2026.04.21 21:00",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/119/0003083085",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "‘내 주식은 언제 올라?’ 이 와중에 목표가 떨어지는 종목 ‘수두룩.....",
+          "link": "https://n.news.naver.com/mnews/article/016/0002633210",
+          "source": "헤럴드경제",
+          "date": "2026.04.21 20:41",
+          "published_at": "2026.04.21 20:41",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/016/0002633210",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "‘육천피’에도 K자형 장세는 여전…4월 목표가 하향 리포트 201건",
+          "link": "https://n.news.naver.com/mnews/article/016/0002632892",
+          "source": "헤럴드경제",
+          "date": "2026.04.21 11:15",
+          "published_at": "2026.04.21 11:15",
+          "time_ago": "20시간 전",
+          "url": "https://n.news.naver.com/mnews/article/016/0002632892",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "‘BTS 아빠’ 방시혁, 구속영장 신청…‘오너리스크’ 하이브, 중대 기...",
+          "link": "https://n.news.naver.com/mnews/article/009/0005669464",
+          "source": "매일경제",
+          "date": "2026.04.21 20:33",
+          "published_at": "2026.04.21 20:33",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005669464",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "방시혁 구속? 두달만에 40% ‘폭싹’ 하이브 주가",
+          "link": "https://n.news.naver.com/mnews/article/021/0002786365",
+          "source": "문화일보",
+          "date": "2026.04.21 18:07",
+          "published_at": "2026.04.21 18:07",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/021/0002786365",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "방시혁 영장신청에…'K팝 왕국' 하이브, 창사 20여년만 중대기로",
+          "link": "https://n.news.naver.com/mnews/article/001/0016034611",
+          "source": "연합뉴스",
+          "date": "2026.04.21 17:48",
+          "published_at": "2026.04.21 17:48",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016034611",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
       "owners": [
         "장한솔"
       ],
@@ -3107,14 +4577,14 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "풀매도",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -2.35,
+      "price_direction": "down",
+      "price_change_display": "-2.35%",
       "price_display": "249,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 6,000",
       "news_sentiment_label": "부정",
       "confidence_label": "높음",
-      "news_count": 0
+      "news_count": 10
     },
     {
       "code": "329180",
@@ -3370,11 +4840,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 9.92,
+      "price_direction": "up",
+      "price_change_display": "+9.92%",
       "price_display": "576,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 52,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "news_count": 10
@@ -3519,11 +4989,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 0.23,
+      "price_direction": "up",
+      "price_change_display": "+0.23%",
       "price_display": "43,250",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 100",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 1
@@ -3736,11 +5206,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -1.3,
+      "price_direction": "down",
+      "price_change_display": "-1.30%",
       "price_display": "909,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 12,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "news_count": 4
