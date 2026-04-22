@@ -320,9 +320,14 @@
   }
   .owners-wrap.open .owner-more,
   .owners-wrap:focus-within .owner-more { opacity: 1; }
-  /* When open the +N chip morphs into a close hint. Uses ::after so the
-     original "+N" text stays in DOM for screen readers. */
-  .owners-wrap.open .owner-more { font-size: 0; padding: 3px 6px; }
+  /* When open the +N chip morphs into a close hint. `font-size: 0 !important`
+     is needed to beat the context-specific rules like `article.stock .owner-
+     chips .owner-chip { font-size: 10px }` (higher specificity). Original
+     "+N" text stays in DOM for screen readers; visual gets the ✕ pseudo. */
+  .owners-wrap.open .owner-more {
+    font-size: 0 !important;
+    padding: 3px 6px;
+  }
   .owners-wrap.open .owner-more::after {
     content: "✕"; font-size: 11px; color: var(--muted);
   }
