@@ -710,12 +710,15 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
 # Group labels are forward-looking (direction-oriented) — they mirror the
 # DIRECTION_META labels so the group header serves as the per-card direction
 # indicator; individual cards no longer need a separate direction badge.
+# Directional groups (상승/하락) come first since the reader cares about
+# action-worthy stocks most; `hold` is the tail bucket — same-day 관망 is
+# less scannable and typically the largest group.
 STOCK_GROUP_META = [
     {"key": "strong_buy",  "label": "강한 상승 기대", "emoji": "🔥", "accent": "strong_buy"},
     {"key": "buy",         "label": "상승 기대",     "emoji": "🟢", "accent": "buy"},
-    {"key": "hold",        "label": "관망",          "emoji": "🟡", "accent": "hold"},
     {"key": "sell",        "label": "하락 경계",     "emoji": "🔴", "accent": "sell"},
     {"key": "strong_sell", "label": "강한 하락 경계", "emoji": "⛔", "accent": "strong_sell"},
+    {"key": "hold",        "label": "관망",          "emoji": "🟡", "accent": "hold"},
 ]
 
 # Forward-looking direction language for the per-card chip + portfolio snapshot.
