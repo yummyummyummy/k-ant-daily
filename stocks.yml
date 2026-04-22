@@ -70,7 +70,7 @@ stocks:
     name: "큐리옥스바이오시스템즈"
     market: KOSDAQ
     sector: "바이오"
-    owners: ["이웅수", "주황선", "장한솔"]
+    owners: ["이웅수", "주황선"]
     leader: "이웅수"
     overnight_proxy: ["XBI", "IBB"]
   - code: "009540"
