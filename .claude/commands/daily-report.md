@@ -101,7 +101,6 @@ description: Generate and publish today's pre-market stock briefing
     "policy":      {"impact": "positive|neutral|negative", "note": "한 줄 근거 (30자 이내)"},
     "geopolitics": {"impact": "...", "note": "..."},
     "overnight":   {"impact": "...", "note": "..."},
-    "sectors":     {"impact": "...", "note": "..."},
     "fx_macro":    {"impact": "...", "note": "..."}
   },
 
@@ -287,14 +286,14 @@ JSON 필드 자체(예: `"priced_in": false`) 는 스키마라 영어 그대로 
   - **개수 제한 없음**. 오늘 새롭게 움직인 재료면 다 포함. 다만 "오늘 새 정보"여야 함 (어제 이미 나온 얘기는 생략).
   - 각 항목에 `category` 필수: `policy` / `geopolitics` / `macro` / `sector` / `market`.
   - 거시 경제 해석은 `top_stories` 안으로 녹여 넣고, 별도 `macro.key_points`는 쓰지 않는다.
-- `mood_dashboard` 5축 필수 작성:
+- `mood_dashboard` 4축 필수 작성:
   - `policy` — 세제·감독·산업 육성책·밸류업·주주환원
   - `geopolitics` — 전쟁·외교·무역·제재
   - `overnight` — 어제 밤 미국·유럽 지수, VIX, SOX, XBI 등
-  - `sectors` — 주요 한국 섹터 (반도체/바이오/금융/에너지 등) 종합 기류
   - `fx_macro` — 원/달러, WTI, 금, 비트코인, 원자재
   - 각 축 값: `{"impact": "positive|neutral|negative", "note": "한 줄 근거 30자 이내"}`
   - `neutral` 은 "혼조" 의미로도 씀 (긍정·부정 신호 섞여 있음).
+  - 참고: 이전에 있던 `sectors` 축은 제거됨 (전용 🏭 섹터 흐름 섹션과 📈 종목별 섹터 breakdown 이 중복 커버하므로).
 
 ---
 

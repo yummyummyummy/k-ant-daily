@@ -51,8 +51,9 @@ MOOD_AXES = [
     {"key": "policy",      "emoji": "🏛️", "name": "정책·규제"},
     {"key": "geopolitics", "emoji": "🌏", "name": "국제정세"},
     {"key": "overnight",   "emoji": "🌙", "name": "간밤 해외"},
-    {"key": "sectors",     "emoji": "🏭", "name": "섹터 기류"},
     {"key": "fx_macro",    "emoji": "💱", "name": "환율·원자재"},
+    # Note: `sectors` axis removed — the dedicated 🏭 섹터 흐름 section and
+    # the 📈 종목별 섹터 breakdown now cover this territory more directly.
 ]
 
 # Fallback emoji for sector cards when the agent doesn't supply one.
