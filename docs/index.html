@@ -542,9 +542,7 @@
   .stock-news-block details.news-more > summary::after { content: "▾"; font-size: 10px; }
   .stock-news-block details.news-more[open] > summary::after { content: "▴"; }
 
-  /* STOCK CARD owner chips (right-aligned on summary row) */
-  article.stock > details > summary { position: relative; padding-right: 30px; }
-  article.stock > details > summary::after { position: absolute; right: 12px; top: 14px; margin-left: 0; }
+  /* STOCK CARD owner chips (right-aligned on trigger row) */
   article.stock .owner-chips {
     display: inline-flex; flex-wrap: wrap; gap: 3px; margin-left: auto;
   }
@@ -686,15 +684,15 @@
      Summary row: name · direction chip · confidence chip  (+ outcome 저녁엔)
                   outlook 한 줄
                   owner chips (우측 정렬) */
-  article.stock > details > summary .s-head {
+  article.stock .stock-trigger .s-head {
     display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
     width: 100%;
   }
-  article.stock > details > summary .s-outlook {
+  article.stock .stock-trigger .s-outlook {
     font-size: 13px; color: var(--muted);
-    line-height: 1.5; margin-top: 4px; padding-right: 20px;
+    line-height: 1.5; margin-top: 4px;
   }
-  article.stock > details > summary .s-foot {
+  article.stock .stock-trigger .s-foot {
     display: flex; justify-content: flex-end; margin-top: 6px;
   }
   article.stock .direction {
@@ -749,20 +747,63 @@
   }
   .stock-grid article.stock { margin-bottom: 0; }  /* gap handles spacing */
 
-  /* STOCK CARD */
+  /* STOCK CARD — clickable button that opens a <dialog> modal with detail view */
   article.stock { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
-  article.stock > details > summary {
-    list-style: none; cursor: pointer; padding: 14px 16px;
-    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-    user-select: none;
+  article.stock .stock-trigger {
+    width: 100%; border: none; background: transparent;
+    font: inherit; color: inherit; text-align: left; cursor: pointer;
+    padding: 14px 16px; display: block;
+    transition: background 0.12s;
   }
-  article.stock > details > summary::-webkit-details-marker { display: none; }
-  article.stock > details > summary::after {
-    content: "▸"; color: var(--muted); font-size: 14px; margin-left: auto; transition: transform 0.15s;
+  article.stock .stock-trigger:hover  { background: var(--bg); }
+  article.stock .stock-trigger:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: -2px;
   }
-  article.stock > details[open] > summary::after { transform: rotate(90deg); }
-  article.stock > details[open] > summary { border-bottom: 1px solid var(--border); }
-  article.stock .body { padding: 12px 16px 16px; }
+
+  /* Native <dialog> — centered on desktop, full-screen on narrow viewports.
+     Browser handles focus trap + ESC key; JS only wires click-to-open + X button. */
+  dialog.stock-dialog {
+    border: 1px solid var(--border); border-radius: 12px;
+    background: var(--bg); color: var(--fg);
+    padding: 0;
+    max-width: 720px; width: min(90vw, 720px);
+    max-height: 85vh; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+  dialog.stock-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(2px);
+  }
+  @media (max-width: 640px) {
+    dialog.stock-dialog {
+      width: 100vw; max-width: 100vw;
+      height: 100vh; max-height: 100vh;
+      margin: 0; border-radius: 0; border: none;
+    }
+  }
+  dialog.stock-dialog .dialog-head {
+    position: sticky; top: 0; z-index: 2;
+    background: var(--card);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px; border-bottom: 1px solid var(--border);
+  }
+  dialog.stock-dialog .dialog-title {
+    font-size: 17px; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  dialog.stock-dialog .dialog-close {
+    background: transparent; border: none; cursor: pointer;
+    color: var(--muted); font-size: 18px; line-height: 1;
+    padding: 6px 10px; border-radius: 6px;
+  }
+  dialog.stock-dialog .dialog-close:hover  { color: var(--fg); background: var(--border); }
+  dialog.stock-dialog .dialog-body {
+    padding: 16px; overflow-y: auto;
+    max-height: calc(85vh - 50px);
+  }
+  @media (max-width: 640px) {
+    dialog.stock-dialog .dialog-body { max-height: calc(100vh - 50px); }
+  }
   article.stock .owner-tag {
     display: inline-flex; align-items: center; gap: 4px;
     font-size: 12px; font-weight: 700; color: var(--accent);
@@ -1855,24 +1896,31 @@
       </div>
       <div class="stock-grid">
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">삼성전자</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
-          </div>
-          <div class="s-outlook">퀄컴 CEO 회동 + AI 반도체 협력 기대로 강보합 출발 예상</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="삼성전자 상세 보기">
+        <div class="s-head">
+          <span class="name">삼성전자</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+        </div>
+        <div class="s-outlook">퀄컴 CEO 회동 + AI 반도체 협력 기대로 강보합 출발 예상</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 장윤영</span>
       <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
       <span class="owner-popover">
         <span class="owner-chip owner-leader">👑 장윤영</span><span class="owner-chip">👤 장한솔</span></span>
     </span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-005930-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-005930-title">
+            삼성전자
+            <span class="rec buy">매수</span>
           </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -2045,27 +2093,34 @@
             <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1628875&amp;code=005930&amp;page_notice=" target="_blank" rel="noopener">삼성전자(주) 변경상장(주식소각)</a><span class="date">26.04.09</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">SK하이닉스</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
-          </div>
-          <div class="s-outlook">HBM 실적 모멘텀 강력, 상승 여력 존재</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="SK하이닉스 상세 보기">
+        <div class="s-head">
+          <span class="name">SK하이닉스</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+        </div>
+        <div class="s-outlook">HBM 실적 모멘텀 강력, 상승 여력 존재</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 이영준</span>
       <span class="owner-chip owner-more" aria-label="+3명 더 보기">+3</span>
       <span class="owner-popover">
         <span class="owner-chip owner-leader">👑 이영준</span><span class="owner-chip">👤 장윤영</span><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 한윤근</span></span>
     </span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-000660-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-000660-title">
+            SK하이닉스
+            <span class="rec buy">매수</span>
           </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -2235,22 +2290,29 @@
             <li><a href="" target="_blank" rel="noopener">에스케이하이닉스(주) 정기주주총회결과</a><span class="date">2026.03.25</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">SK이노베이션</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="SK이노베이션 상세 보기">
+        <div class="s-head">
+          <span class="name">SK이노베이션</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+        </div>
+        <div class="s-outlook">SK온 도쿄 지사 설립이라는 개별 촉매 + K배터리 부활 섹터 훈풍</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-096770-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-096770-title">
+            SK이노베이션
+            <span class="rec buy">매수</span>
           </div>
-          <div class="s-outlook">SK온 도쿄 지사 설립이라는 개별 촉매 + K배터리 부활 섹터 훈풍</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -2420,7 +2482,7 @@
             <li><a href="" target="_blank" rel="noopener">SK이노베이션(주) 정기주주총회결과</a><span class="date">2026.03.24</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
       </div>
     </div>
@@ -2432,19 +2494,26 @@
       </div>
       <div class="stock-grid">
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">HD현대중공업</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="HD현대중공업 상세 보기">
+        <div class="s-head">
+          <span class="name">HD현대중공업</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+        </div>
+        <div class="s-outlook">방산 호재 vs 20일 +21% 과열, 갭다운 후 쉬어가는 흐름 예상</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-329180-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-329180-title">
+            HD현대중공업
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">방산 호재 vs 20일 +21% 과열, 갭다운 후 쉬어가는 흐름 예상</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -2626,22 +2695,29 @@
             <li><a href="" target="_blank" rel="noopener">에이치디현대중공업(주) 생산중단</a><span class="date">2026.04.15</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">LIG디펜스앤에어로스페이스</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="LIG디펜스앤에어로스페이스 상세 보기">
+        <div class="s-head">
+          <span class="name">LIG디펜스앤에어로스페이스</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+        </div>
+        <div class="s-outlook">방산 호재 다수이나 간밤 ITA -3.78%·RTX -4.4% 급락으로 갭다운 리스크</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-079550-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-079550-title">
+            LIG디펜스앤에어로스페이스
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">방산 호재 다수이나 간밤 ITA -3.78%·RTX -4.4% 급락으로 갭다운 리스크</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -2810,22 +2886,29 @@
             <li><a href="" target="_blank" rel="noopener">엘아이지넥스원(주) 주식선물 2단계 가격제한폭 확대요건 도달(상승)</a><span class="date">2026.04.09</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">한화에어로스페이스</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="한화에어로스페이스 상세 보기">
+        <div class="s-head">
+          <span class="name">한화에어로스페이스</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">방산 호재 vs 간밤 미국 방산주 급락, 갭다운 우려</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-012450-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-012450-title">
+            한화에어로스페이스
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">방산 호재 vs 간밤 미국 방산주 급락, 갭다운 우려</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -2995,22 +3078,29 @@
             <li><a href="" target="_blank" rel="noopener">한화에어로스페이스(주) (정정)기타 경영사항(자율공시)(기업지배구조헌장...</a><span class="date">2026.04.09</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">현대차</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="현대차 상세 보기">
+        <div class="s-head">
+          <span class="name">현대차</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">리콜 악재 vs 수출 호재 혼재, 중립적 흐름 예상</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-005380-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-005380-title">
+            현대차
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">리콜 악재 vs 수출 호재 혼재, 중립적 흐름 예상</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -3180,22 +3270,29 @@
             <li><a href="" target="_blank" rel="noopener">현대자동차(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승...</a><span class="date">2026.04.01</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">카카오</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="카카오 상세 보기">
+        <div class="s-head">
+          <span class="name">카카오</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">개별 촉매 없어 플랫폼 섹터 흐름 동조</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-035720-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-035720-title">
+            카카오
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">개별 촉매 없어 플랫폼 섹터 흐름 동조</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark down" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -3356,22 +3453,29 @@
             <li><a href="" target="_blank" rel="noopener">(주)카카오 정기주주총회결과</a><span class="date">2026.03.26</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">삼성E&amp;A</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="삼성E&amp;A 상세 보기">
+        <div class="s-head">
+          <span class="name">삼성E&amp;A</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+        </div>
+        <div class="s-outlook">NH증권 목표가 71% 상향 등 뉴스 강한 긍정이나, 20일간 +53% 급등으로 단기 과열 극심</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-028050-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-028050-title">
+            삼성E&amp;A
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">NH증권 목표가 71% 상향 등 뉴스 강한 긍정이나, 20일간 +53% 급등으로 단기 과열 극심</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -3541,22 +3645,29 @@
             <li><a href="" target="_blank" rel="noopener">삼성이앤에이(주) 주식선물 2단계 가격제한폭 확대요건 도달(상승)</a><span class="date">2026.04.08</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">알테오젠</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="알테오젠 상세 보기">
+        <div class="s-head">
+          <span class="name">알테오젠</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">개별 촉매 없어 바이오 섹터 흐름 동조 예상</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-196170-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-196170-title">
+            알테오젠
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">개별 촉매 없어 바이오 섹터 흐름 동조 예상</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark down" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -3717,22 +3828,29 @@
             <li><a href="" target="_blank" rel="noopener">(주)알테오젠 감사보고서 제출</a><span class="date">2026.03.23</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">보로노이</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="보로노이 상세 보기">
+        <div class="s-head">
+          <span class="name">보로노이</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">VRN11 임상 긍정이나 어제 -10.07% 급락 후 쉬어감 전망</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 하우찬</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-310210-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-310210-title">
+            보로노이
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">VRN11 임상 긍정이나 어제 -10.07% 급락 후 쉬어감 전망</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 하우찬</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark down" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -3882,22 +4000,29 @@
             <li><a href="" target="_blank" rel="noopener">보로노이(주) 감사보고서 제출</a><span class="date">2026.03.20</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">에이비엘바이오</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="에이비엘바이오 상세 보기">
+        <div class="s-head">
+          <span class="name">에이비엘바이오</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">개별 촉매 없고 XBI 약세, 섹터 흐름 그대로 노출</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 우동희</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-298380-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-298380-title">
+            에이비엘바이오
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">개별 촉매 없고 XBI 약세, 섹터 흐름 그대로 노출</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 우동희</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark down" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -4058,22 +4183,29 @@
             <li><a href="" target="_blank" rel="noopener">에이비엘바이오(주) 주주총회소집결의</a><span class="date">2026.03.12</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">HD한국조선해양</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="HD한국조선해양 상세 보기">
+        <div class="s-head">
+          <span class="name">HD한국조선해양</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">한-인도 조선 MOU·1분기 잠정실적 등 뉴스 긍정이나 어제 +3.51%에 이미 반영</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-009540-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-009540-title">
+            HD한국조선해양
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">한-인도 조선 MOU·1분기 잠정실적 등 뉴스 긍정이나 어제 +3.51%에 이미 반영</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -4246,22 +4378,29 @@
             <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1631823&amp;code=009540&amp;page_notice=" target="_blank" rel="noopener">영업(잠정)실적(공정공시)</a><span class="date">26.04.20</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">파라다이스</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="파라다이스 상세 보기">
+        <div class="s-head">
+          <span class="name">파라다이스</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">실적 부진 우려 지속, 환율 수혜도 단기 동력 약함</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-034230-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-034230-title">
+            파라다이스
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">실적 부진 우려 지속, 환율 수혜도 단기 동력 약함</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark down" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -4347,27 +4486,34 @@
             <li><a href="" target="_blank" rel="noopener">(주)파라다이스 감사보고서 제출</a><span class="date">2026.03.19</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">한미반도체</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
-          </div>
-          <div class="s-outlook">개별 촉매 부재, 반도체 섹터 흐름 동조 예상</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="한미반도체 상세 보기">
+        <div class="s-head">
+          <span class="name">한미반도체</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">개별 촉매 부재, 반도체 섹터 흐름 동조 예상</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 장한솔</span>
       <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
       <span class="owner-popover">
         <span class="owner-chip owner-leader">👑 장한솔</span><span class="owner-chip">👤 한윤근</span></span>
     </span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-042700-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-042700-title">
+            한미반도체
+            <span class="rec hold">관망</span>
           </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -4518,22 +4664,29 @@
             <li><a href="" target="_blank" rel="noopener">한미반도체(주) 기업가치 제고 계획(자율공시)</a><span class="date">2026.03.20</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">HD현대일렉트릭</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="HD현대일렉트릭 상세 보기">
+        <div class="s-head">
+          <span class="name">HD현대일렉트릭</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">섹터 시황 우호이나 개별 촉매 없어 관망 유지</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-267260-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-267260-title">
+            HD현대일렉트릭
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">섹터 시황 우호이나 개별 촉매 없어 관망 유지</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -4669,27 +4822,34 @@
             <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1632306&amp;code=267260&amp;page_notice=" target="_blank" rel="noopener">HD현대일렉트릭 IR 개최</a><span class="date">26.04.21</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">KODEX 코스닥150 레버리지</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 7시간 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
-          </div>
-          <div class="s-outlook">간밤 나스닥 약보합, 코스닥 우호 흐름 지연 예상</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="KODEX 코스닥150 레버리지 상세 보기">
+        <div class="s-head">
+          <span class="name">KODEX 코스닥150 레버리지</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 7시간 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">간밤 나스닥 약보합, 코스닥 우호 흐름 지연 예상</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 하우찬</span>
       <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
       <span class="owner-popover">
         <span class="owner-chip owner-leader">👑 하우찬</span><span class="owner-chip">👤 한윤근</span></span>
     </span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-233740-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-233740-title">
+            KODEX 코스닥150 레버리지
+            <span class="rec hold">관망</span>
           </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark down" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -4755,22 +4915,29 @@
             <li><a href="" target="_blank" rel="noopener">삼성 KODEX 코스닥150 레버리지증권상장지수투자신탁(주식-파생형) ...</a><span class="date">2026.01.07</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">앱클론</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 15시간 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="앱클론 상세 보기">
+        <div class="s-head">
+          <span class="name">앱클론</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 15시간 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">어제 -12.72% 급락 여파로 관망, 반등 탄력 제한적</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-174900-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-174900-title">
+            앱클론
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">어제 -12.72% 급락 여파로 관망, 반등 탄력 제한적</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 오병호</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark down" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -4872,27 +5039,34 @@
             <li><a href="" target="_blank" rel="noopener">앱클론(주) 관리종목 해제(매출액 30억 미달 사유 해소)</a><span class="date">2026.03.13</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">큐리옥스바이오시스템즈</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 16시간 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
-          </div>
-          <div class="s-outlook">개별 촉매 없어 바이오 섹터 동조, 소형주 변동성 리스크</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="큐리옥스바이오시스템즈 상세 보기">
+        <div class="s-head">
+          <span class="name">큐리옥스바이오시스템즈</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 16시간 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">개별 촉매 없어 바이오 섹터 동조, 소형주 변동성 리스크</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 이웅수</span>
       <span class="owner-chip owner-more" aria-label="+2명 더 보기">+2</span>
       <span class="owner-popover">
         <span class="owner-chip owner-leader">👑 이웅수</span><span class="owner-chip">👤 장한솔</span><span class="owner-chip">👤 주황선</span></span>
     </span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-445680-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-445680-title">
+            큐리옥스바이오시스템즈
+            <span class="rec hold">관망</span>
           </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark down" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -4985,22 +5159,29 @@
             <li><a href="" target="_blank" rel="noopener">큐리옥스바이오시스템즈(주) [투자주의]투자경고종목 지정예고</a><span class="date">2026.03.18</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">GST</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 19시간 전</span>
-            <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="GST 상세 보기">
+        <div class="s-head">
+          <span class="name">GST</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 19시간 전</span>
+          <span class="conf low" title="예측 신뢰도">신뢰 낮음</span>
+        </div>
+        <div class="s-outlook">개별 촉매 부재, 반도체 장비 섹터 흐름 동조</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-083450-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-083450-title">
+            GST
+            <span class="rec hold">관망</span>
           </div>
-          <div class="s-outlook">개별 촉매 부재, 반도체 장비 섹터 흐름 동조</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 한윤근</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -5080,7 +5261,7 @@
             <li><a href="" target="_blank" rel="noopener">(주)글로벌스탠다드테크놀로지 감사보고서 제출</a><span class="date">2026.03.18</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
       </div>
     </div>
@@ -5092,19 +5273,26 @@
       </div>
       <div class="stock-grid">
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">코아스템켐온</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="코아스템켐온 상세 보기">
+        <div class="s-head">
+          <span class="name">코아스템켐온</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf medium" title="예측 신뢰도">신뢰 중간</span>
+        </div>
+        <div class="s-outlook">2일 전 급등 후 차익실현 압력 지속, 약세 지속 경계</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 이정수</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-166480-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-166480-title">
+            코아스템켐온
+            <span class="rec sell">매도</span>
           </div>
-          <div class="s-outlook">2일 전 급등 후 차익실현 압력 지속, 약세 지속 경계</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 이정수</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -5170,7 +5358,7 @@
             <li><a href="" target="_blank" rel="noopener">코아스템켐온 주식회사 [투자주의]투자경고종목 지정해제 및 재지정 예고</a><span class="date">2026.02.12</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
       </div>
     </div>
@@ -5182,19 +5370,26 @@
       </div>
       <div class="stock-grid">
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">하이브</span>
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
-            <span class="conf high" title="예측 신뢰도">신뢰 높음</span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="하이브 상세 보기">
+        <div class="s-head">
+          <span class="name">하이브</span>
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 방금 전</span>
+          <span class="conf high" title="예측 신뢰도">신뢰 높음</span>
+        </div>
+        <div class="s-outlook">방시혁 구속영장 신청이라는 초대형 오너리스크</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-352820-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-352820-title">
+            하이브
+            <span class="rec strong_sell">풀매도</span>
           </div>
-          <div class="s-outlook">방시혁 구속영장 신청이라는 초대형 오너리스크</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap"><span class="owner-chip">👤 장한솔</span></span></span>
-          </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark down" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -5371,26 +5566,33 @@
             <li><a href="" target="_blank" rel="noopener">(주)하이브 (정정)유상증자결정(종속회사의 주요경영사항)</a><span class="date">2026.04.01</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">셀리드</span>
-            <span class="conf high" title="예측 신뢰도">신뢰 높음</span>
-          </div>
-          <div class="s-outlook">투자경고종목 지정 예고 + 공매도 과열종목 지정 + 어제 -12.17% 폭락</div>
-          <div class="s-foot">
-            <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="셀리드 상세 보기">
+        <div class="s-head">
+          <span class="name">셀리드</span>
+          <span class="conf high" title="예측 신뢰도">신뢰 높음</span>
+        </div>
+        <div class="s-outlook">투자경고종목 지정 예고 + 공매도 과열종목 지정 + 어제 -12.17% 폭락</div>
+        <div class="s-foot">
+          <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 이웅수</span>
       <span class="owner-chip owner-more" aria-label="+1명 더 보기">+1</span>
       <span class="owner-popover">
         <span class="owner-chip owner-leader">👑 이웅수</span><span class="owner-chip">👤 한윤근</span></span>
     </span></span>
+        </div>
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-299660-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-299660-title">
+            셀리드
+            <span class="rec strong_sell">풀매도</span>
           </div>
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           <div class="price-context">
             <div class="spark-wrap">
               <svg class="spark up" viewBox="0 0 80 24" preserveAspectRatio="none">
@@ -5454,7 +5656,7 @@
             <li><a href="https://finance.naver.com/item/news_notice_read.naver?no=1632035&amp;code=299660&amp;page_notice=" target="_blank" rel="noopener">투자경고종목 지정예고</a><span class="date">26.04.20</span></li>
           </ul>
         </div>
-      </details>
+      </dialog>
     </article>
       </div>
     </div>
@@ -5752,6 +5954,31 @@
         wrap.classList.toggle("open");
       }
     }
+  });
+
+  // Stock card → modal dialog. Each card has:
+  //   <button class="stock-trigger">…summary…</button>
+  //   <dialog class="stock-dialog">…detail body…</dialog>
+  // Native <dialog> handles focus trap + ESC; we only wire click-to-open,
+  // backdrop-click to close, and the X button.
+  document.querySelectorAll("article.stock").forEach((article) => {
+    const trigger = article.querySelector(".stock-trigger");
+    const dialog  = article.querySelector("dialog.stock-dialog");
+    if (!trigger || !dialog) return;
+    trigger.addEventListener("click", (e) => {
+      // Don't open the modal if the click was on an interactive child
+      // (owner popover, a chip link etc.) — let that handler take it.
+      if (e.target.closest("a, .owners-wrap")) return;
+      if (typeof dialog.showModal === "function") dialog.showModal();
+      else dialog.setAttribute("open", "");  // graceful fallback (no focus trap)
+    });
+    // Backdrop click closes. `e.target === dialog` means the user clicked the
+    // transparent outer region, not inner content.
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    const closeBtn = dialog.querySelector(".dialog-close");
+    if (closeBtn) closeBtn.addEventListener("click", () => dialog.close());
   });
 
   function init() {

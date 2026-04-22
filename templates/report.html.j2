@@ -494,9 +494,7 @@
   .stock-news-block details.news-more > summary::after { content: "▾"; font-size: 10px; }
   .stock-news-block details.news-more[open] > summary::after { content: "▴"; }
 
-  /* STOCK CARD owner chips (right-aligned on summary row) */
-  article.stock > details > summary { position: relative; padding-right: 30px; }
-  article.stock > details > summary::after { position: absolute; right: 12px; top: 14px; margin-left: 0; }
+  /* STOCK CARD owner chips (right-aligned on trigger row) */
   article.stock .owner-chips {
     display: inline-flex; flex-wrap: wrap; gap: 3px; margin-left: auto;
   }
@@ -638,15 +636,15 @@
      Summary row: name · direction chip · confidence chip  (+ outcome 저녁엔)
                   outlook 한 줄
                   owner chips (우측 정렬) */
-  article.stock > details > summary .s-head {
+  article.stock .stock-trigger .s-head {
     display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
     width: 100%;
   }
-  article.stock > details > summary .s-outlook {
+  article.stock .stock-trigger .s-outlook {
     font-size: 13px; color: var(--muted);
-    line-height: 1.5; margin-top: 4px; padding-right: 20px;
+    line-height: 1.5; margin-top: 4px;
   }
-  article.stock > details > summary .s-foot {
+  article.stock .stock-trigger .s-foot {
     display: flex; justify-content: flex-end; margin-top: 6px;
   }
   article.stock .direction {
@@ -701,20 +699,63 @@
   }
   .stock-grid article.stock { margin-bottom: 0; }  /* gap handles spacing */
 
-  /* STOCK CARD */
+  /* STOCK CARD — clickable button that opens a <dialog> modal with detail view */
   article.stock { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
-  article.stock > details > summary {
-    list-style: none; cursor: pointer; padding: 14px 16px;
-    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-    user-select: none;
+  article.stock .stock-trigger {
+    width: 100%; border: none; background: transparent;
+    font: inherit; color: inherit; text-align: left; cursor: pointer;
+    padding: 14px 16px; display: block;
+    transition: background 0.12s;
   }
-  article.stock > details > summary::-webkit-details-marker { display: none; }
-  article.stock > details > summary::after {
-    content: "▸"; color: var(--muted); font-size: 14px; margin-left: auto; transition: transform 0.15s;
+  article.stock .stock-trigger:hover  { background: var(--bg); }
+  article.stock .stock-trigger:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: -2px;
   }
-  article.stock > details[open] > summary::after { transform: rotate(90deg); }
-  article.stock > details[open] > summary { border-bottom: 1px solid var(--border); }
-  article.stock .body { padding: 12px 16px 16px; }
+
+  /* Native <dialog> — centered on desktop, full-screen on narrow viewports.
+     Browser handles focus trap + ESC key; JS only wires click-to-open + X button. */
+  dialog.stock-dialog {
+    border: 1px solid var(--border); border-radius: 12px;
+    background: var(--bg); color: var(--fg);
+    padding: 0;
+    max-width: 720px; width: min(90vw, 720px);
+    max-height: 85vh; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+  dialog.stock-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(2px);
+  }
+  @media (max-width: 640px) {
+    dialog.stock-dialog {
+      width: 100vw; max-width: 100vw;
+      height: 100vh; max-height: 100vh;
+      margin: 0; border-radius: 0; border: none;
+    }
+  }
+  dialog.stock-dialog .dialog-head {
+    position: sticky; top: 0; z-index: 2;
+    background: var(--card);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px; border-bottom: 1px solid var(--border);
+  }
+  dialog.stock-dialog .dialog-title {
+    font-size: 17px; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  dialog.stock-dialog .dialog-close {
+    background: transparent; border: none; cursor: pointer;
+    color: var(--muted); font-size: 18px; line-height: 1;
+    padding: 6px 10px; border-radius: 6px;
+  }
+  dialog.stock-dialog .dialog-close:hover  { color: var(--fg); background: var(--border); }
+  dialog.stock-dialog .dialog-body {
+    padding: 16px; overflow-y: auto;
+    max-height: calc(85vh - 50px);
+  }
+  @media (max-width: 640px) {
+    dialog.stock-dialog .dialog-body { max-height: calc(100vh - 50px); }
+  }
   article.stock .owner-tag {
     display: inline-flex; align-items: center; gap: 4px;
     font-size: 12px; font-weight: 700; color: var(--accent);
@@ -1256,33 +1297,42 @@
       <div class="stock-grid">
     {% for stock in group.stocks %}
     <article class="stock">
-      <details>
-        <summary>
-          <div class="s-head">
-            <span class="name">{{ stock.name }}</span>
-            {% if stock.latest_news_ago %}
-            <span class="news-fresh" title="가장 최근 뉴스 시각">📰 {{ stock.latest_news_ago }}</span>
-            {% endif %}
-            {% if stock.confidence %}
-            <span class="conf {{ stock.confidence }}" title="예측 신뢰도">신뢰 {{ stock.confidence_label or stock.confidence }}</span>
-            {% endif %}
-            {% if stock.result and stock.result.outcome and stock.result.outcome != 'n/a' %}
-            <span class="outcome-badge {{ stock.result.outcome }}" title="아침 예측 대비 실제 결과">
-              {% if stock.result.outcome == 'hit' %}✅{% elif stock.result.outcome == 'partial' %}🟡{% elif stock.result.outcome == 'miss' %}❌{% endif %}
-              {% if stock.result.actual_change_pct is not none %}{{ '%+.2f'|format(stock.result.actual_change_pct) }}%{% endif %}
-            </span>
+      <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="{{ stock.name }} 상세 보기">
+        <div class="s-head">
+          <span class="name">{{ stock.name }}</span>
+          {% if stock.latest_news_ago %}
+          <span class="news-fresh" title="가장 최근 뉴스 시각">📰 {{ stock.latest_news_ago }}</span>
+          {% endif %}
+          {% if stock.confidence %}
+          <span class="conf {{ stock.confidence }}" title="예측 신뢰도">신뢰 {{ stock.confidence_label or stock.confidence }}</span>
+          {% endif %}
+          {% if stock.result and stock.result.outcome and stock.result.outcome != 'n/a' %}
+          <span class="outcome-badge {{ stock.result.outcome }}" title="아침 예측 대비 실제 결과">
+            {% if stock.result.outcome == 'hit' %}✅{% elif stock.result.outcome == 'partial' %}🟡{% elif stock.result.outcome == 'miss' %}❌{% endif %}
+            {% if stock.result.actual_change_pct is not none %}{{ '%+.2f'|format(stock.result.actual_change_pct) }}%{% endif %}
+          </span>
+          {% endif %}
+        </div>
+        {% if stock.outlook_line %}
+        <div class="s-outlook">{{ stock.outlook_line }}</div>
+        {% endif %}
+        {% if stock.owners %}
+        <div class="s-foot">
+          <span class="owner-chips">{{ owner_chips(stock.owners) }}</span>
+        </div>
+        {% endif %}
+      </button>
+      <dialog class="stock-dialog" aria-labelledby="stock-dlg-{{ stock.code }}-title">
+        <div class="dialog-head">
+          <div class="dialog-title" id="stock-dlg-{{ stock.code }}-title">
+            {{ stock.name }}
+            {% if stock.recommendation_label %}
+            <span class="rec {{ stock.recommendation }}">{{ stock.recommendation_label }}</span>
             {% endif %}
           </div>
-          {% if stock.outlook_line %}
-          <div class="s-outlook">{{ stock.outlook_line }}</div>
-          {% endif %}
-          {% if stock.owners %}
-          <div class="s-foot">
-            <span class="owner-chips">{{ owner_chips(stock.owners) }}</span>
-          </div>
-          {% endif %}
-        </summary>
-        <div class="body">
+          <button type="button" class="dialog-close" aria-label="닫기">✕</button>
+        </div>
+        <div class="dialog-body">
           {% if stock.history and stock.history.sparkline_path %}
           <div class="price-context">
             <div class="spark-wrap">
@@ -1493,7 +1543,7 @@
           </ul>
           {% endif %}
         </div>
-      </details>
+      </dialog>
     </article>
     {% endfor %}
       </div>
@@ -1793,6 +1843,31 @@
         wrap.classList.toggle("open");
       }
     }
+  });
+
+  // Stock card → modal dialog. Each card has:
+  //   <button class="stock-trigger">…summary…</button>
+  //   <dialog class="stock-dialog">…detail body…</dialog>
+  // Native <dialog> handles focus trap + ESC; we only wire click-to-open,
+  // backdrop-click to close, and the X button.
+  document.querySelectorAll("article.stock").forEach((article) => {
+    const trigger = article.querySelector(".stock-trigger");
+    const dialog  = article.querySelector("dialog.stock-dialog");
+    if (!trigger || !dialog) return;
+    trigger.addEventListener("click", (e) => {
+      // Don't open the modal if the click was on an interactive child
+      // (owner popover, a chip link etc.) — let that handler take it.
+      if (e.target.closest("a, .owners-wrap")) return;
+      if (typeof dialog.showModal === "function") dialog.showModal();
+      else dialog.setAttribute("open", "");  // graceful fallback (no focus trap)
+    });
+    // Backdrop click closes. `e.target === dialog` means the user clicked the
+    // transparent outer region, not inner content.
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    const closeBtn = dialog.querySelector(".dialog-close");
+    if (closeBtn) closeBtn.addEventListener("click", () => dialog.close());
   });
 
   function init() {
