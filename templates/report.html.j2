@@ -306,6 +306,10 @@
     display: inline-flex; gap: 2px; align-items: center;
     flex-wrap: wrap;  /* long owner lists wrap to next line gracefully */
     justify-content: flex-end;
+    /* Isolate layout changes inside the wrap so toggling extras doesn't
+       force the article (and its 2-col grid neighbors) to re-layout and
+       re-paint the box-shadow. */
+    contain: layout;
   }
   .owners-wrap .owner-chip.extra { display: none; }
   /* Click/tap to toggle on both desktop and mobile — no hover shortcut. The
@@ -755,16 +759,23 @@
     background: var(--bg);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
   }
-  article.stock:active { transform: scale(0.997); }
-  /* Right chevron ›, vertically centered. pointer-events: none so clicks
-     pass through to the button below. */
+  /* Press-feedback scale is intentional tap affordance on touch devices,
+     but on desktop mouse it registers as a mousedown→mouseup pulse that
+     looks like the card grows/shrinks when clicking interactive children
+     (owner chips, etc). Scope to non-hover (touch) environments only. */
+  @media (hover: none) {
+    article.stock:active { transform: scale(0.997); }
+  }
+  /* Right chevron › — pin to a fixed pixel Y (not 50%) so it doesn't wander
+     vertically when card content height shifts (e.g. owner extras wrapping).
+     pointer-events: none lets clicks pass through to the button below. */
   article.stock::after {
     content: ""; position: absolute;
-    right: 14px; top: 50%;
+    right: 14px; top: 22px;
     width: 7px; height: 7px;
     border-right: 1.5px solid var(--muted);
     border-top: 1.5px solid var(--muted);
-    transform: translateY(-50%) rotate(45deg);
+    transform: rotate(45deg);
     transition: border-color 0.12s;
     pointer-events: none;
   }
