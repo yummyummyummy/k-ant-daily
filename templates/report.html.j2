@@ -2061,11 +2061,16 @@
   // Owner group inline toggle — taps on "+N" (or anywhere on the wrap) open
   // the extras on the same row; any other tap closes open wraps. Needed on
   // touch devices since :hover / :focus-within can't survive a tap lift.
+  //
+  // Note on blur(): `.owners-wrap` has tabindex=0, so clicking anything inside
+  // it focuses the wrap. Our CSS has `:focus-within` as an open trigger — if
+  // we leave focus on the wrap after closing, extras stay visible and the
+  // user sees no collapse effect. blur() drops focus so only `.open` governs.
   document.addEventListener("click", (e) => {
     const wrap = e.target.closest(".owners-wrap");
     // Close any wrap other than the one just clicked.
     document.querySelectorAll(".owners-wrap.open").forEach((el) => {
-      if (el !== wrap) el.classList.remove("open");
+      if (el !== wrap) { el.classList.remove("open"); el.blur(); }
     });
     // Only toggle when the wrap actually has extras to show (multi-owner).
     if (wrap && wrap.querySelector(".owner-chip.extra")) {
@@ -2074,6 +2079,7 @@
         // Stop the click from bubbling to the article.stock → dialog trigger.
         e.stopPropagation();
         wrap.classList.toggle("open");
+        if (!wrap.classList.contains("open")) wrap.blur();
       }
     }
   });
