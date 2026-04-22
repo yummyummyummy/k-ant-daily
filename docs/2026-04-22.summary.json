@@ -674,6 +674,94 @@
       ],
       "news": [
         {
+          "title": "“귀걸이인 줄 알았네”…삼성 차세대 이어버드 디자인 엿보니",
+          "link": "https://n.news.naver.com/mnews/article/009/0005669676",
+          "source": "매일경제",
+          "date": "2026.04.22 11:19",
+          "published_at": "2026.04.22 11:19",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005669676",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "코스피, 종전 협상 불안감에 약세…코스닥도 하락",
+          "link": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "source": "한국경제",
+          "date": "2026.04.22 11:18",
+          "published_at": "2026.04.22 11:18",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "“사람이 하기 싫은 일부터 없앤다”…블루칼라 AI의 물류 혁신",
+          "link": "https://n.news.naver.com/mnews/article/018/0006263339",
+          "source": "이데일리",
+          "date": "2026.04.22 11:17",
+          "published_at": "2026.04.22 11:17",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/018/0006263339",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "“와우 고점에 산 것도 다 회복”…주식으로 돈 날렸다던 미나, 대박.....",
+          "link": "https://n.news.naver.com/mnews/article/009/0005669669",
+          "source": "매일경제",
+          "date": "2026.04.22 11:13",
+          "published_at": "2026.04.22 11:13",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005669669",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "코스피, 장 초반 6400 돌파 뒤 등락 혼조세",
+          "link": "https://n.news.naver.com/mnews/article/028/0002801825",
+          "source": "한겨레",
+          "date": "2026.04.22 11:12",
+          "published_at": "2026.04.22 11:12",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/028/0002801825",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "전쟁도 못 막은 코스피 질주…중동 리스크 상수 됐나?",
+          "link": "https://n.news.naver.com/mnews/article/629/0000493601",
+          "source": "더팩트",
+          "date": "2026.04.22 11:12",
+          "published_at": "2026.04.22 11:12",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/629/0000493601",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "정재헌 SK텔레콤 대표, 李 베트남 순방 동행 위해 출국",
+          "link": "https://n.news.naver.com/mnews/article/421/0008904681",
+          "source": "뉴스1",
+          "date": "2026.04.22 11:10",
+          "published_at": "2026.04.22 11:10",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/421/0008904681",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성운용 ‘美S&P500액티브’ ETF, 상장후 수익률 60%",
+          "link": "https://n.news.naver.com/mnews/article/016/0002633535",
+          "source": "헤럴드경제",
+          "date": "2026.04.22 11:09",
+          "published_at": "2026.04.22 11:09",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/016/0002633535",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
           "title": "금호건설, ‘고덕신도시 아테라’ 본격 분양…630가구 공급",
           "link": "https://n.news.naver.com/mnews/article/016/0002633530",
           "source": "헤럴드경제",
@@ -685,101 +773,13 @@
           "impact_label": "중립"
         },
         {
-          "title": "사상 첫 6400 뚫은 코스피…등락 거듭하며 숨고르기",
-          "link": "https://n.news.naver.com/mnews/article/053/0000057702",
-          "source": "주간조선",
-          "date": "2026.04.22 11:05",
-          "published_at": "2026.04.22 11:05",
+          "title": "삼성운용, 'KODEX 미국S&P500액티브' 상장후 수익률 60%",
+          "link": "https://n.news.naver.com/mnews/article/277/0005753127",
+          "source": "아시아경제",
+          "date": "2026.04.22 10:57",
+          "published_at": "2026.04.22 10:57",
           "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/053/0000057702",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "삼성·LG전자, 월드IT쇼 참가… AI 제품 대거 전시",
-          "link": "https://n.news.naver.com/mnews/article/366/0001158776",
-          "source": "조선비즈",
-          "date": "2026.04.22 11:04",
-          "published_at": "2026.04.22 11:04",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/366/0001158776",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "ETF, ‘삼전·하닉’만 있으면 뜬다···삼전닉스 ETF 줄줄이 출시하...",
-          "link": "https://n.news.naver.com/mnews/article/032/0003441384",
-          "source": "경향신문",
-          "date": "2026.04.22 11:04",
-          "published_at": "2026.04.22 11:04",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/032/0003441384",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "고령화에서 기회 엿보는 생보업계…\"성장 가로막는 규제 완화해야\"",
-          "link": "https://n.news.naver.com/mnews/article/008/0005347642",
-          "source": "머니투데이",
-          "date": "2026.04.22 11:01",
-          "published_at": "2026.04.22 11:01",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/008/0005347642",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "언제 이렇게 올랐지…코스닥서 '전기·전자' 업종 비중 1위",
-          "link": "https://n.news.naver.com/mnews/article/015/0005278122",
-          "source": "한국경제",
-          "date": "2026.04.22 10:59",
-          "published_at": "2026.04.22 10:59",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/015/0005278122",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "사상 최고치 찍고 숨고르는 코스피…실적 엔진 달고 정말 팔천피 갈까",
-          "link": "https://n.news.naver.com/mnews/article/088/0001006673",
-          "source": "매일신문",
-          "date": "2026.04.22 10:59",
-          "published_at": "2026.04.22 10:59",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/088/0001006673",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
-          "title": "“노조의 무도한 요구에 맞서자” 500만 삼전 주주 ‘맞불 집회’ 예....",
-          "link": "https://n.news.naver.com/mnews/article/011/0004613381",
-          "source": "서울경제",
-          "date": "2026.04.22 10:58",
-          "published_at": "2026.04.22 10:58",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/011/0004613381",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "삼성·LG전자, '2026 월드IT쇼'서 혁신기술 대거 공개",
-          "link": "https://n.news.naver.com/mnews/article/082/0001377252",
-          "source": "부산일보",
-          "date": "2026.04.22 10:58",
-          "published_at": "2026.04.22 10:58",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/082/0001377252",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "삼성·LG전자, '2026 월드IT쇼' 참가…혁신제품 대거 공개",
-          "link": "https://n.news.naver.com/mnews/article/001/0016035299",
-          "source": "연합뉴스",
-          "date": "2026.04.22 10:00",
-          "published_at": "2026.04.22 10:00",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/001/0016035299",
+          "url": "https://n.news.naver.com/mnews/article/277/0005753127",
           "impact": "neutral",
           "impact_label": "중립"
         }
@@ -794,10 +794,10 @@
         "MU"
       ],
       "quote": {
-        "price": "216,500",
-        "change": "2,500",
-        "change_pct": "-1.14",
-        "change_pct_num": -1.14,
+        "price": "218,000",
+        "change": "1,000",
+        "change_pct": "-0.46",
+        "change_pct_num": -0.46,
         "direction": "down"
       },
       "history": {
@@ -822,24 +822,24 @@
           216000.0,
           214500.0,
           219000.0,
-          217500.0
+          216750.0
         ],
         "fifty_two_week_high": 223000.0,
         "fifty_two_week_low": 53700.0,
-        "last_close": 217500.0,
-        "change_20d_pct": 20.77,
-        "pos_52w_pct": 96.8,
-        "from_high_pct": -2.47,
+        "last_close": 216750.0,
+        "change_20d_pct": 20.35,
+        "pos_52w_pct": 96.3,
+        "from_high_pct": -2.8,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,18.0 L4.2,18.0 L8.4,19.8 L12.6,24.0 L16.8,13.6 L21.1,18.8 L25.3,15.2 L29.5,12.0 L33.7,10.4 L37.9,3.9 L42.1,6.9 L46.3,6.0 L50.5,8.3 L54.7,5.8 L58.9,3.7 L63.2,0.7 L67.4,1.4 L71.6,2.1 L75.8,0.0 L80.0,0.7",
+        "sparkline_path": "M0.0,18.0 L4.2,18.0 L8.4,19.8 L12.6,24.0 L16.8,13.6 L21.1,18.8 L25.3,15.2 L29.5,12.0 L33.7,10.4 L37.9,3.9 L42.1,6.9 L46.3,6.0 L50.5,8.3 L54.7,5.8 L58.9,3.7 L63.2,0.7 L67.4,1.4 L71.6,2.1 L75.8,0.0 L80.0,1.0",
         "sparkline_direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": -1.14,
+      "price_change_pct_num": -0.46,
       "price_direction": "down",
-      "price_change_display": "-1.14%",
-      "price_display": "216,500",
-      "price_change_abs_display": "▼ 2,500",
+      "price_change_display": "-0.46%",
+      "price_display": "218,000",
+      "price_change_abs_display": "▼ 1,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "news_count": 10,
@@ -848,7 +848,7 @@
       "direction_cls": "up",
       "outlook_line": "퀄컴 CEO 회동 + AI 반도체 협력 기대로 강보합 출발 예상",
       "sector": "반도체",
-      "latest_news_at": "2026-04-22T11:07:00+09:00",
+      "latest_news_at": "2026-04-22T11:19:00+09:00",
       "latest_news_ago": "방금 전"
     },
     {
@@ -926,6 +926,39 @@
       ],
       "news": [
         {
+          "title": "코스피, 종전 협상 불안감에 약세…코스닥도 하락",
+          "link": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "source": "한국경제",
+          "date": "2026.04.22 11:18",
+          "published_at": "2026.04.22 11:18",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "코스피, 장 초반 6400 돌파 뒤 등락 혼조세",
+          "link": "https://n.news.naver.com/mnews/article/028/0002801825",
+          "source": "한겨레",
+          "date": "2026.04.22 11:12",
+          "published_at": "2026.04.22 11:12",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/028/0002801825",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "전쟁도 못 막은 코스피 질주…중동 리스크 상수 됐나?",
+          "link": "https://n.news.naver.com/mnews/article/629/0000493601",
+          "source": "더팩트",
+          "date": "2026.04.22 11:12",
+          "published_at": "2026.04.22 11:12",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/629/0000493601",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
           "title": "사상 첫 6400 뚫은 코스피…등락 거듭하며 숨고르기",
           "link": "https://n.news.naver.com/mnews/article/053/0000057702",
           "source": "주간조선",
@@ -948,17 +981,6 @@
           "impact_label": "중립"
         },
         {
-          "title": "사상 최고치 찍고 숨고르는 코스피…실적 엔진 달고 정말 팔천피 갈까",
-          "link": "https://n.news.naver.com/mnews/article/088/0001006673",
-          "source": "매일신문",
-          "date": "2026.04.22 10:59",
-          "published_at": "2026.04.22 10:59",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/088/0001006673",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
           "title": "언제 이렇게 올랐지…코스닥서 '전기·전자' 업종 비중 1위",
           "link": "https://n.news.naver.com/mnews/article/015/0005278122",
           "source": "한국경제",
@@ -970,35 +992,13 @@
           "impact_label": "중립"
         },
         {
-          "title": "\"출근할 맛 나겠네\"…주가 폭등에 '웃음꽃'",
-          "link": "https://n.news.naver.com/mnews/article/215/0001249814",
-          "source": "한국경제TV",
-          "date": "2026.04.22 10:54",
-          "published_at": "2026.04.22 10:54",
+          "title": "사상 최고치 찍고 숨고르는 코스피…실적 엔진 달고 정말 팔천피 갈까",
+          "link": "https://n.news.naver.com/mnews/article/088/0001006673",
+          "source": "매일신문",
+          "date": "2026.04.22 10:59",
+          "published_at": "2026.04.22 10:59",
           "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/215/0001249814",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
-          "title": "주식 가치 10억 넘긴 삼전·하이닉스 비오너 임원 173명",
-          "link": "https://n.news.naver.com/mnews/article/055/0001350475",
-          "source": "SBS",
-          "date": "2026.04.22 10:32",
-          "published_at": "2026.04.22 10:32",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/055/0001350475",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "삼전·닉스 랠리에 ‘10억 클럽’ 임원 173명...노태문 사장, 2...",
-          "link": "https://n.news.naver.com/mnews/article/011/0004613348",
-          "source": "서울경제",
-          "date": "2026.04.22 10:15",
-          "published_at": "2026.04.22 10:15",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/011/0004613348",
+          "url": "https://n.news.naver.com/mnews/article/088/0001006673",
           "impact": "positive",
           "impact_label": "호재"
         },
@@ -1048,10 +1048,10 @@
         "MU"
       ],
       "quote": {
-        "price": "1,206,000",
-        "change": "18,000",
-        "change_pct": "-1.47",
-        "change_pct_num": -1.47,
+        "price": "1,213,000",
+        "change": "11,000",
+        "change_pct": "-0.90",
+        "change_pct_num": -0.9,
         "direction": "down"
       },
       "history": {
@@ -1076,24 +1076,24 @@
           1128000.0,
           1166000.0,
           1224000.0,
-          1206000.0
+          1205000.0
         ],
         "fifty_two_week_high": 1233000.0,
         "fifty_two_week_low": 173300.0,
-        "last_close": 1206000.0,
-        "change_20d_pct": 29.26,
-        "pos_52w_pct": 97.5,
-        "from_high_pct": -2.19,
+        "last_close": 1205000.0,
+        "change_20d_pct": 29.15,
+        "pos_52w_pct": 97.4,
+        "from_high_pct": -2.27,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,16.7 L4.2,16.7 L8.4,20.2 L12.6,24.0 L16.8,18.8 L21.1,22.7 L25.3,20.0 L29.5,19.5 L33.7,17.7 L37.9,11.0 L42.1,13.0 L46.3,11.3 L50.5,10.6 L54.7,7.0 L58.9,5.1 L63.2,4.0 L67.4,5.5 L71.6,3.3 L75.8,0.0 L80.0,1.0",
+        "sparkline_path": "M0.0,16.7 L4.2,16.7 L8.4,20.2 L12.6,24.0 L16.8,18.8 L21.1,22.7 L25.3,20.0 L29.5,19.5 L33.7,17.7 L37.9,11.0 L42.1,13.0 L46.3,11.3 L50.5,10.6 L54.7,7.0 L58.9,5.1 L63.2,4.0 L67.4,5.5 L71.6,3.3 L75.8,0.0 L80.0,1.1",
         "sparkline_direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": -1.47,
+      "price_change_pct_num": -0.9,
       "price_direction": "down",
-      "price_change_display": "-1.47%",
-      "price_display": "1,206,000",
-      "price_change_abs_display": "▼ 18,000",
+      "price_change_display": "-0.90%",
+      "price_display": "1,213,000",
+      "price_change_abs_display": "▼ 11,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "news_count": 10,
@@ -1102,7 +1102,7 @@
       "direction_cls": "up",
       "outlook_line": "HBM 실적 모멘텀 강력, 상승 여력 존재",
       "sector": "반도체",
-      "latest_news_at": "2026-04-22T11:05:00+09:00",
+      "latest_news_at": "2026-04-22T11:18:00+09:00",
       "latest_news_ago": "방금 전"
     },
     {
@@ -1268,10 +1268,10 @@
         "XLU"
       ],
       "quote": {
-        "price": "1,050,500",
-        "change": "7,500",
-        "change_pct": "-0.71",
-        "change_pct_num": -0.71,
+        "price": "1,052,000",
+        "change": "6,000",
+        "change_pct": "-0.57",
+        "change_pct_num": -0.57,
         "direction": "down"
       },
       "history": {
@@ -1296,24 +1296,24 @@
           1087000.0,
           1087000.0,
           1058000.0,
-          1048500.0
+          1051000.0
         ],
         "fifty_two_week_high": 1116000.0,
         "fifty_two_week_low": 291500.0,
-        "last_close": 1048500.0,
-        "change_20d_pct": 8.65,
-        "pos_52w_pct": 91.8,
-        "from_high_pct": -6.05,
+        "last_close": 1051000.0,
+        "change_20d_pct": 8.91,
+        "pos_52w_pct": 92.1,
+        "from_high_pct": -5.82,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,11.5 L4.2,16.2 L8.4,20.2 L12.6,24.0 L16.8,17.9 L21.1,19.3 L25.3,19.2 L29.5,18.2 L33.7,18.4 L37.9,10.1 L42.1,10.1 L46.3,8.3 L50.5,7.5 L54.7,2.4 L58.9,3.5 L63.2,0.2 L67.4,0.0 L71.6,0.0 L75.8,2.7 L80.0,3.6",
+        "sparkline_path": "M0.0,11.5 L4.2,16.2 L8.4,20.2 L12.6,24.0 L16.8,17.9 L21.1,19.3 L25.3,19.2 L29.5,18.2 L33.7,18.4 L37.9,10.1 L42.1,10.1 L46.3,8.3 L50.5,7.5 L54.7,2.4 L58.9,3.5 L63.2,0.2 L67.4,0.0 L71.6,0.0 L75.8,2.7 L80.0,3.4",
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -0.71,
+      "price_change_pct_num": -0.57,
       "price_direction": "down",
-      "price_change_display": "-0.71%",
-      "price_display": "1,050,500",
-      "price_change_abs_display": "▼ 7,500",
+      "price_change_display": "-0.57%",
+      "price_display": "1,052,000",
+      "price_change_abs_display": "▼ 6,000",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 9,
@@ -1379,6 +1379,17 @@
         }
       ],
       "news": [
+        {
+          "title": "코스피, 종전 협상 불안감에 약세…코스닥도 하락",
+          "link": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "source": "한국경제",
+          "date": "2026.04.22 11:18",
+          "published_at": "2026.04.22 11:18",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
         {
           "title": "사상 첫 6400 뚫은 코스피…등락 거듭하며 숨고르기",
           "link": "https://n.news.naver.com/mnews/article/053/0000057702",
@@ -1477,17 +1488,6 @@
           "url": "https://n.news.naver.com/mnews/article/018/0006263231",
           "impact": "positive",
           "impact_label": "호재"
-        },
-        {
-          "title": "연일 사상 최고치 기록한 코스피…‘6400피’ 돌파 후 방향성 탐색 [...",
-          "link": "https://n.news.naver.com/mnews/article/011/0004613323",
-          "source": "서울경제",
-          "date": "2026.04.22 09:42",
-          "published_at": "2026.04.22 09:42",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/011/0004613323",
-          "impact": "positive",
-          "impact_label": "호재"
         }
       ],
       "owners": [
@@ -1498,10 +1498,10 @@
         "IBB"
       ],
       "quote": {
-        "price": "361,500",
-        "change": "7,500",
-        "change_pct": "-2.03",
-        "change_pct_num": -2.03,
+        "price": "361,000",
+        "change": "8,000",
+        "change_pct": "-2.17",
+        "change_pct_num": -2.17,
         "direction": "down"
       },
       "history": {
@@ -1526,24 +1526,24 @@
           366000.0,
           371500.0,
           369000.0,
-          362000.0
+          361750.0
         ],
         "fifty_two_week_high": 569000.0,
         "fifty_two_week_low": 315500.0,
-        "last_close": 362000.0,
-        "change_20d_pct": -4.99,
-        "pos_52w_pct": 18.3,
-        "from_high_pct": -36.38,
+        "last_close": 361750.0,
+        "change_20d_pct": -5.05,
+        "pos_52w_pct": 18.2,
+        "from_high_pct": -36.42,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,0.0 L4.2,0.0 L8.4,16.1 L12.6,24.0 L16.8,12.8 L21.1,17.6 L25.3,9.4 L29.5,11.5 L33.7,16.4 L37.9,3.9 L42.1,6.7 L46.3,11.8 L50.5,16.7 L54.7,17.0 L58.9,4.9 L63.2,7.0 L67.4,9.1 L71.6,5.8 L75.8,7.3 L80.0,11.5",
+        "sparkline_path": "M0.0,0.0 L4.2,0.0 L8.4,16.1 L12.6,24.0 L16.8,12.8 L21.1,17.6 L25.3,9.4 L29.5,11.5 L33.7,16.4 L37.9,3.9 L42.1,6.7 L46.3,11.8 L50.5,16.7 L54.7,17.0 L58.9,4.9 L63.2,7.0 L67.4,9.1 L71.6,5.8 L75.8,7.3 L80.0,11.7",
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -2.03,
+      "price_change_pct_num": -2.17,
       "price_direction": "down",
-      "price_change_display": "-2.03%",
-      "price_display": "361,500",
-      "price_change_abs_display": "▼ 7,500",
+      "price_change_display": "-2.17%",
+      "price_display": "361,000",
+      "price_change_abs_display": "▼ 8,000",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 10,
@@ -1552,7 +1552,7 @@
       "direction_cls": "flat",
       "outlook_line": "개별 촉매 없어 바이오 섹터 흐름 동조 예상",
       "sector": "바이오",
-      "latest_news_at": "2026-04-22T11:05:00+09:00",
+      "latest_news_at": "2026-04-22T11:18:00+09:00",
       "latest_news_ago": "방금 전"
     },
     {
@@ -1723,10 +1723,10 @@
         "NVDA"
       ],
       "quote": {
-        "price": "288,000",
-        "change": "7,000",
-        "change_pct": "-2.37",
-        "change_pct_num": -2.37,
+        "price": "289,000",
+        "change": "6,000",
+        "change_pct": "-2.03",
+        "change_pct_num": -2.03,
         "direction": "down"
       },
       "history": {
@@ -1764,11 +1764,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -2.37,
+      "price_change_pct_num": -2.03,
       "price_direction": "down",
-      "price_change_display": "-2.37%",
-      "price_display": "288,000",
-      "price_change_abs_display": "▼ 7,000",
+      "price_change_display": "-2.03%",
+      "price_display": "289,000",
+      "price_change_abs_display": "▼ 6,000",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 9,
@@ -1855,112 +1855,112 @@
       ],
       "news": [
         {
-          "title": "한화그룹, 캐나다 잠수함 수주 총력전… 앨버타주와 전방위 협력",
-          "link": "https://n.news.naver.com/mnews/article/366/0001158777",
-          "source": "조선비즈",
-          "date": "2026.04.22 11:05",
-          "published_at": "2026.04.22 11:05",
+          "title": "코스피, 종전 협상 불안감에 약세…코스닥도 하락",
+          "link": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "source": "한국경제",
+          "date": "2026.04.22 11:18",
+          "published_at": "2026.04.22 11:18",
           "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/366/0001158777",
-          "impact": "positive",
-          "impact_label": "호재"
+          "url": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "impact": "negative",
+          "impact_label": "악재"
         },
         {
-          "title": "사상 첫 6400 뚫은 코스피…등락 거듭하며 숨고르기",
-          "link": "https://n.news.naver.com/mnews/article/053/0000057702",
-          "source": "주간조선",
-          "date": "2026.04.22 11:05",
-          "published_at": "2026.04.22 11:05",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/053/0000057702",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "\"한국산 미사일 사려 중동 줄 섰다\"…요원한 종전에 방산업 '불기둥'",
-          "link": "https://n.news.naver.com/mnews/article/008/0005347641",
-          "source": "머니투데이",
-          "date": "2026.04.22 11:00",
-          "published_at": "2026.04.22 11:00",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/008/0005347641",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "한화, 북미 전선 본격 확대…에너지·조선·방산 ‘총력전’",
-          "link": "https://n.news.naver.com/mnews/article/117/0004056785",
-          "source": "마이데일리",
-          "date": "2026.04.22 10:35",
-          "published_at": "2026.04.22 10:35",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/117/0004056785",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "한화, 캐나다 앨버타주와 포괄 협력…잠수함 수주전 총력",
-          "link": "https://n.news.naver.com/mnews/article/082/0001377236",
+          "title": "한화에어로, 美 노스롭과 장거리 미사일 공동개발",
+          "link": "https://n.news.naver.com/mnews/article/082/0001377258",
           "source": "부산일보",
-          "date": "2026.04.22 10:22",
-          "published_at": "2026.04.22 10:22",
+          "date": "2026.04.22 11:15",
+          "published_at": "2026.04.22 11:15",
           "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/082/0001377236",
-          "impact": "positive",
-          "impact_label": "호재"
+          "url": "https://n.news.naver.com/mnews/article/082/0001377258",
+          "impact": "neutral",
+          "impact_label": "중립"
         },
         {
-          "title": "한화, 캐나다 앨버타주와 전방위 협력… 70조 잠수함 수주전 총력전",
-          "link": "https://n.news.naver.com/mnews/article/023/0003972323",
-          "source": "조선일보",
-          "date": "2026.04.22 10:15",
-          "published_at": "2026.04.22 10:15",
+          "title": "한화에어로, 美 방산업체와 장거리 미사일 체계 공동개발",
+          "link": "https://n.news.naver.com/mnews/article/011/0004613364",
+          "source": "서울경제",
+          "date": "2026.04.22 10:29",
+          "published_at": "2026.04.22 10:29",
           "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/023/0003972323",
-          "impact": "positive",
-          "impact_label": "호재"
+          "url": "https://n.news.naver.com/mnews/article/011/0004613364",
+          "impact": "neutral",
+          "impact_label": "중립"
         },
         {
-          "title": "한화, 캐나다 앨버타주와 사업협력 MOU?잠수함 수주 지원",
-          "link": "https://n.news.naver.com/mnews/article/031/0001023831",
-          "source": "아이뉴스24",
-          "date": "2026.04.22 09:23",
-          "published_at": "2026.04.22 09:23",
+          "title": "한화에어로, B-2 폭격기 만든 美 노스롭그루먼과 차세대 미사일 추진...",
+          "link": "https://n.news.naver.com/mnews/article/020/0003714381",
+          "source": "동아일보",
+          "date": "2026.04.22 10:17",
+          "published_at": "2026.04.22 10:17",
           "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/031/0001023831",
-          "impact": "positive",
-          "impact_label": "호재"
+          "url": "https://n.news.naver.com/mnews/article/020/0003714381",
+          "impact": "neutral",
+          "impact_label": "중립"
         },
         {
-          "title": "한화그룹, 캐나다 잠수함 수주전에 총력…앨버타주 정부와 경제협력 .....",
-          "link": "https://n.news.naver.com/mnews/article/422/0000857563",
-          "source": "연합뉴스TV",
+          "title": "한화에어로, 미국 노스롭그루먼과 장거리 미사일 공동개발",
+          "link": "https://n.news.naver.com/mnews/article/215/0001249802",
+          "source": "한국경제TV",
+          "date": "2026.04.22 09:59",
+          "published_at": "2026.04.22 09:59",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/215/0001249802",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "한화에어로, 노스롭그루먼과 장거리 미사일 체계 공동 개발",
+          "link": "https://n.news.naver.com/mnews/article/366/0001158741",
+          "source": "조선비즈",
+          "date": "2026.04.22 09:50",
+          "published_at": "2026.04.22 09:50",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/366/0001158741",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "한화에어로, 노스롭그루먼과 미사일 추진체 공동 개발…美 방산시장 .....",
+          "link": "https://n.news.naver.com/mnews/article/003/0013902027",
+          "source": "뉴시스",
+          "date": "2026.04.22 09:31",
+          "published_at": "2026.04.22 09:31",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/003/0013902027",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "한화에어로·노스롭그루먼, 신형 장거리 미사일 체계 개발 ‘맞손’",
+          "link": "https://n.news.naver.com/mnews/article/016/0002633381",
+          "source": "헤럴드경제",
+          "date": "2026.04.22 09:21",
+          "published_at": "2026.04.22 09:21",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/016/0002633381",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "한화에어로, 신형 장거리 미사일 개발 나서…글로벌 방산업체와 협력",
+          "link": "https://n.news.naver.com/mnews/article/629/0000493514",
+          "source": "더팩트",
           "date": "2026.04.22 09:14",
           "published_at": "2026.04.22 09:14",
           "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/422/0000857563",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
-          "title": "한화그룹, 캐나다 앨버타주와 에너지·방산 협력…\"60조원 잠수함 수....",
-          "link": "https://n.news.naver.com/mnews/article/003/0013901946",
-          "source": "뉴시스",
-          "date": "2026.04.22 09:05",
-          "published_at": "2026.04.22 09:05",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/003/0013901946",
+          "url": "https://n.news.naver.com/mnews/article/629/0000493514",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "한화, 加 앨버타 주정부와 에너지·방산·조선 협력 확대",
-          "link": "https://n.news.naver.com/mnews/article/016/0002633356",
-          "source": "헤럴드경제",
-          "date": "2026.04.22 09:01",
-          "published_at": "2026.04.22 09:01",
+          "title": "한화에어로, 美 방위산업 업체와 장거리 미사일 체계 공동개발",
+          "link": "https://n.news.naver.com/mnews/article/008/0005347516",
+          "source": "머니투데이",
+          "date": "2026.04.22 09:08",
+          "published_at": "2026.04.22 09:08",
           "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/016/0002633356",
+          "url": "https://n.news.naver.com/mnews/article/008/0005347516",
           "impact": "neutral",
           "impact_label": "중립"
         }
@@ -1974,10 +1974,10 @@
         "RTX"
       ],
       "quote": {
-        "price": "1,416,000",
-        "change": "25,000",
-        "change_pct": "+1.80",
-        "change_pct_num": 1.8,
+        "price": "1,413,000",
+        "change": "22,000",
+        "change_pct": "+1.58",
+        "change_pct_num": 1.58,
         "direction": "up"
       },
       "history": {
@@ -2002,24 +2002,24 @@
           1423000.0,
           1425000.0,
           1391000.0,
-          1416000.0
+          1419000.0
         ],
         "fifty_two_week_high": 1655000.0,
         "fifty_two_week_low": 751000.0,
-        "last_close": 1416000.0,
-        "change_20d_pct": 3.43,
-        "pos_52w_pct": 73.6,
-        "from_high_pct": -14.44,
+        "last_close": 1419000.0,
+        "change_20d_pct": 3.65,
+        "pos_52w_pct": 73.9,
+        "from_high_pct": -14.26,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,14.0 L4.2,14.0 L8.4,19.1 L12.6,24.0 L16.8,17.2 L21.1,10.0 L25.3,7.3 L29.5,7.2 L33.7,0.0 L37.9,4.4 L42.1,7.2 L46.3,2.5 L50.5,0.6 L54.7,1.2 L58.9,2.3 L63.2,1.5 L67.4,9.5 L71.6,9.3 L75.8,12.2 L80.0,10.1",
+        "sparkline_path": "M0.0,14.0 L4.2,14.0 L8.4,19.1 L12.6,24.0 L16.8,17.2 L21.1,10.0 L25.3,7.3 L29.5,7.2 L33.7,0.0 L37.9,4.4 L42.1,7.2 L46.3,2.5 L50.5,0.6 L54.7,1.2 L58.9,2.3 L63.2,1.5 L67.4,9.5 L71.6,9.3 L75.8,12.2 L80.0,9.8",
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 1.8,
+      "price_change_pct_num": 1.58,
       "price_direction": "up",
-      "price_change_display": "+1.80%",
-      "price_display": "1,416,000",
-      "price_change_abs_display": "▲ 25,000",
+      "price_change_display": "+1.58%",
+      "price_display": "1,413,000",
+      "price_change_abs_display": "▲ 22,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
       "news_count": 10,
@@ -2028,7 +2028,7 @@
       "direction_cls": "flat",
       "outlook_line": "방산 호재 vs 간밤 미국 방산주 급락, 갭다운 우려",
       "sector": "방산",
-      "latest_news_at": "2026-04-22T11:05:00+09:00",
+      "latest_news_at": "2026-04-22T11:18:00+09:00",
       "latest_news_ago": "방금 전"
     },
     {
@@ -2225,10 +2225,10 @@
         "TSLA"
       ],
       "quote": {
-        "price": "132,300",
-        "change": "1,200",
-        "change_pct": "-0.90",
-        "change_pct_num": -0.9,
+        "price": "132,800",
+        "change": "700",
+        "change_pct": "-0.52",
+        "change_pct_num": -0.52,
         "direction": "down"
       },
       "history": {
@@ -2253,24 +2253,24 @@
           129400.0,
           128800.0,
           133500.0,
-          131800.0
+          132200.0
         ],
         "fifty_two_week_high": 141300.0,
         "fifty_two_week_low": 80800.0,
-        "last_close": 131800.0,
-        "change_20d_pct": 18.42,
-        "pos_52w_pct": 84.3,
-        "from_high_pct": -6.72,
+        "last_close": 132200.0,
+        "change_20d_pct": 18.78,
+        "pos_52w_pct": 85.0,
+        "from_high_pct": -6.44,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,21.5 L4.2,21.4 L8.4,19.5 L12.6,24.0 L16.8,18.4 L21.1,17.4 L25.3,14.8 L29.5,10.0 L33.7,11.3 L37.9,12.7 L42.1,9.2 L46.3,10.7 L50.5,11.6 L54.7,11.5 L58.9,11.5 L63.2,6.8 L67.4,4.0 L71.6,4.5 L75.8,0.0 L80.0,1.6",
+        "sparkline_path": "M0.0,21.5 L4.2,21.4 L8.4,19.5 L12.6,24.0 L16.8,18.4 L21.1,17.4 L25.3,14.8 L29.5,10.0 L33.7,11.3 L37.9,12.7 L42.1,9.2 L46.3,10.7 L50.5,11.6 L54.7,11.5 L58.9,11.5 L63.2,6.8 L67.4,4.0 L71.6,4.5 L75.8,0.0 L80.0,1.3",
         "sparkline_direction": "up"
       },
       "recommendation_label": "매수",
-      "price_change_pct_num": -0.9,
+      "price_change_pct_num": -0.52,
       "price_direction": "down",
-      "price_change_display": "-0.90%",
-      "price_display": "132,300",
-      "price_change_abs_display": "▼ 1,200",
+      "price_change_display": "-0.52%",
+      "price_display": "132,800",
+      "price_change_abs_display": "▼ 700",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "news_count": 10,
@@ -2361,10 +2361,10 @@
         "MRNA"
       ],
       "quote": {
-        "price": "3,540",
-        "change": "70",
-        "change_pct": "-1.94",
-        "change_pct_num": -1.94,
+        "price": "3,525",
+        "change": "85",
+        "change_pct": "-2.35",
+        "change_pct_num": -2.35,
         "direction": "down"
       },
       "history": {
@@ -2402,11 +2402,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "풀매도",
-      "price_change_pct_num": -1.94,
+      "price_change_pct_num": -2.35,
       "price_direction": "down",
-      "price_change_display": "-1.94%",
-      "price_display": "3,540",
-      "price_change_abs_display": "▼ 70",
+      "price_change_display": "-2.35%",
+      "price_display": "3,525",
+      "price_change_abs_display": "▼ 85",
       "news_sentiment_label": "부정",
       "confidence_label": "높음",
       "news_count": 0,
@@ -2492,10 +2492,10 @@
       ],
       "is_etf": true,
       "quote": {
-        "price": "16,170",
-        "change": "510",
-        "change_pct": "-3.06",
-        "change_pct_num": -3.06,
+        "price": "16,160",
+        "change": "520",
+        "change_pct": "-3.12",
+        "change_pct_num": -3.12,
         "direction": "down"
       },
       "history": {
@@ -2533,11 +2533,11 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -3.06,
+      "price_change_pct_num": -3.12,
       "price_direction": "down",
-      "price_change_display": "-3.06%",
-      "price_display": "16,170",
-      "price_change_abs_display": "▼ 510",
+      "price_change_display": "-3.12%",
+      "price_display": "16,160",
+      "price_change_abs_display": "▼ 520",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 1,
@@ -2738,10 +2738,10 @@
         "FLR"
       ],
       "quote": {
-        "price": "49,650",
-        "change": "2,050",
-        "change_pct": "-3.97",
-        "change_pct_num": -3.97,
+        "price": "49,600",
+        "change": "2,100",
+        "change_pct": "-4.06",
+        "change_pct_num": -4.06,
         "direction": "down"
       },
       "history": {
@@ -2766,24 +2766,24 @@
           49550.0,
           49300.0,
           51700.0,
-          49550.0
+          49700.0
         ],
         "fifty_two_week_high": 54500.0,
         "fifty_two_week_low": 18700.0,
-        "last_close": 49550.0,
-        "change_20d_pct": 50.61,
-        "pos_52w_pct": 86.2,
-        "from_high_pct": -9.08,
+        "last_close": 49700.0,
+        "change_20d_pct": 51.06,
+        "pos_52w_pct": 86.6,
+        "from_high_pct": -8.81,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,24.0 L4.2,23.8 L8.4,23.6 L12.6,20.6 L16.8,17.8 L21.1,21.3 L25.3,14.6 L29.5,8.3 L33.7,5.7 L37.9,2.3 L42.1,1.4 L46.3,1.5 L50.5,3.5 L54.7,0.7 L58.9,0.0 L63.2,2.5 L67.4,3.5 L71.6,3.8 L75.8,0.9 L80.0,3.5",
+        "sparkline_path": "M0.0,24.0 L4.2,23.8 L8.4,23.6 L12.6,20.6 L16.8,17.8 L21.1,21.3 L25.3,14.6 L29.5,8.3 L33.7,5.7 L37.9,2.3 L42.1,1.4 L46.3,1.5 L50.5,3.5 L54.7,0.7 L58.9,0.0 L63.2,2.5 L67.4,3.5 L71.6,3.8 L75.8,0.9 L80.0,3.3",
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -3.97,
+      "price_change_pct_num": -4.06,
       "price_direction": "down",
-      "price_change_display": "-3.97%",
-      "price_display": "49,650",
-      "price_change_abs_display": "▼ 2,050",
+      "price_change_display": "-4.06%",
+      "price_display": "49,600",
+      "price_change_abs_display": "▼ 2,100",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "news_count": 10,
@@ -2996,16 +2996,16 @@
           307000.0,
           342500.0,
           308000.0,
-          303500.0
+          303000.0
         ],
         "fifty_two_week_high": 375500.0,
         "fifty_two_week_low": 89800.0,
-        "last_close": 303500.0,
-        "change_20d_pct": -3.96,
-        "pos_52w_pct": 74.8,
-        "from_high_pct": -19.17,
+        "last_close": 303000.0,
+        "change_20d_pct": -4.11,
+        "pos_52w_pct": 74.6,
+        "from_high_pct": -19.31,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,9.0 L4.2,9.9 L8.4,7.7 L12.6,12.1 L16.8,8.0 L21.1,20.6 L25.3,21.6 L29.5,24.0 L33.7,23.7 L37.9,21.3 L42.1,20.6 L46.3,18.9 L50.5,15.5 L54.7,21.4 L58.9,16.0 L63.2,14.1 L67.4,12.1 L71.6,0.0 L75.8,11.7 L80.0,13.3",
+        "sparkline_path": "M0.0,9.0 L4.2,9.9 L8.4,7.7 L12.6,12.1 L16.8,8.0 L21.1,20.6 L25.3,21.6 L29.5,24.0 L33.7,23.7 L37.9,21.3 L42.1,20.6 L46.3,18.9 L50.5,15.5 L54.7,21.4 L58.9,16.0 L63.2,14.1 L67.4,12.1 L71.6,0.0 L75.8,11.7 L80.0,13.4",
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
@@ -3123,10 +3123,10 @@
       ],
       "leader": "이웅수",
       "quote": {
-        "price": "92,200",
-        "change": "4,400",
-        "change_pct": "+5.01",
-        "change_pct_num": 5.01,
+        "price": "92,700",
+        "change": "4,900",
+        "change_pct": "+5.58",
+        "change_pct_num": 5.58,
         "direction": "up"
       },
       "history": {
@@ -3151,24 +3151,24 @@
           90800.0,
           89300.0,
           87800.0,
-          91100.0
+          92700.0
         ],
         "fifty_two_week_high": 149200.0,
         "fifty_two_week_low": 23050.0,
-        "last_close": 91100.0,
-        "change_20d_pct": -21.94,
-        "pos_52w_pct": 53.9,
-        "from_high_pct": -38.94,
+        "last_close": 92700.0,
+        "change_20d_pct": -20.57,
+        "pos_52w_pct": 55.2,
+        "from_high_pct": -37.87,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,0.0 L4.2,2.0 L8.4,4.0 L12.6,8.7 L16.8,16.6 L21.1,22.2 L25.3,22.2 L29.5,21.0 L33.7,21.5 L37.9,18.2 L42.1,22.5 L46.3,24.0 L50.5,19.4 L54.7,14.8 L58.9,13.3 L63.2,14.7 L67.4,14.7 L71.6,15.5 L75.8,16.4 L80.0,14.5",
+        "sparkline_path": "M0.0,0.0 L4.2,2.0 L8.4,4.0 L12.6,8.7 L16.8,16.6 L21.1,22.2 L25.3,22.2 L29.5,21.0 L33.7,21.5 L37.9,18.2 L42.1,22.5 L46.3,24.0 L50.5,19.4 L54.7,14.8 L58.9,13.3 L63.2,14.7 L67.4,14.7 L71.6,15.5 L75.8,16.4 L80.0,13.6",
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 5.01,
+      "price_change_pct_num": 5.58,
       "price_direction": "up",
-      "price_change_display": "+5.01%",
-      "price_display": "92,200",
-      "price_change_abs_display": "▲ 4,400",
+      "price_change_display": "+5.58%",
+      "price_display": "92,700",
+      "price_change_abs_display": "▲ 4,900",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 1,
@@ -3245,6 +3245,17 @@
         }
       ],
       "news": [
+        {
+          "title": "HD현대重, 美 데이터센터 첫 진출...6271억 발전설비 공급",
+          "link": "https://n.news.naver.com/mnews/article/014/0005511550",
+          "source": "파이낸셜뉴스",
+          "date": "2026.04.22 11:11",
+          "published_at": "2026.04.22 11:11",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005511550",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
         {
           "title": "HD현대重, 美 데이터센터에 6200억 원 규모 발전설비 공급",
           "link": "https://n.news.naver.com/mnews/article/421/0008904658",
@@ -3343,17 +3354,6 @@
           "url": "https://n.news.naver.com/mnews/article/014/0005511380",
           "impact": "positive",
           "impact_label": "호재"
-        },
-        {
-          "title": "HD한국조선해양, 계열사 이익에 외형 성장 전망-목표가 상향…LS증권",
-          "link": "https://n.news.naver.com/mnews/article/008/0005347500",
-          "source": "머니투데이",
-          "date": "2026.04.22 08:41",
-          "published_at": "2026.04.22 08:41",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/008/0005347500",
-          "impact": "positive",
-          "impact_label": "호재"
         }
       ],
       "owners": [
@@ -3364,10 +3364,10 @@
         "DAC"
       ],
       "quote": {
-        "price": "453,000",
-        "change": "25,500",
-        "change_pct": "+5.96",
-        "change_pct_num": 5.96,
+        "price": "457,000",
+        "change": "29,500",
+        "change_pct": "+6.90",
+        "change_pct_num": 6.9,
         "direction": "up"
       },
       "history": {
@@ -3392,24 +3392,24 @@
           419500.0,
           413000.0,
           427500.0,
-          450000.0
+          451500.0
         ],
         "fifty_two_week_high": 494500.0,
         "fifty_two_week_low": 222000.0,
-        "last_close": 450000.0,
-        "change_20d_pct": 20.0,
-        "pos_52w_pct": 83.7,
-        "from_high_pct": -9.0,
+        "last_close": 451500.0,
+        "change_20d_pct": 20.4,
+        "pos_52w_pct": 84.2,
+        "from_high_pct": -8.7,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,17.0 L4.2,18.8 L8.4,23.3 L12.6,24.0 L16.8,17.5 L21.1,22.5 L25.3,17.0 L29.5,17.8 L33.7,16.8 L37.9,13.7 L42.1,13.4 L46.3,12.7 L50.5,13.9 L54.7,12.1 L58.9,11.0 L63.2,9.5 L67.4,6.9 L71.6,8.4 L75.8,5.1 L80.0,0.0",
+        "sparkline_path": "M0.0,17.1 L4.2,18.9 L8.4,23.3 L12.6,24.0 L16.8,17.6 L21.1,22.5 L25.3,17.1 L29.5,17.9 L33.7,16.9 L37.9,13.8 L42.1,13.5 L46.3,12.8 L50.5,14.1 L54.7,12.3 L58.9,11.2 L63.2,9.7 L67.4,7.1 L71.6,8.6 L75.8,5.4 L80.0,0.0",
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 5.96,
+      "price_change_pct_num": 6.9,
       "price_direction": "up",
-      "price_change_display": "+5.96%",
-      "price_display": "453,000",
-      "price_change_abs_display": "▲ 25,500",
+      "price_change_display": "+6.90%",
+      "price_display": "457,000",
+      "price_change_abs_display": "▲ 29,500",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
       "news_count": 10,
@@ -3418,7 +3418,7 @@
       "direction_cls": "flat",
       "outlook_line": "한-인도 조선 MOU·1분기 잠정실적 등 뉴스 긍정이나 어제 +3.51%에 이미 반영",
       "sector": "조선",
-      "latest_news_at": "2026-04-22T11:07:00+09:00",
+      "latest_news_at": "2026-04-22T11:11:00+09:00",
       "latest_news_ago": "방금 전"
     },
     {
@@ -3538,10 +3538,10 @@
         "IBB"
       ],
       "quote": {
-        "price": "48,500",
-        "change": "200",
-        "change_pct": "-0.41",
-        "change_pct_num": -0.41,
+        "price": "48,650",
+        "change": "50",
+        "change_pct": "-0.10",
+        "change_pct_num": -0.1,
         "direction": "down"
       },
       "history": {
@@ -3566,24 +3566,24 @@
           55800.0,
           55800.0,
           48700.0,
-          49000.0
+          48900.0
         ],
         "fifty_two_week_high": 95800.0,
         "fifty_two_week_low": 8770.0,
-        "last_close": 49000.0,
-        "change_20d_pct": -35.27,
-        "pos_52w_pct": 46.2,
-        "from_high_pct": -48.85,
+        "last_close": 48900.0,
+        "change_20d_pct": -35.4,
+        "pos_52w_pct": 46.1,
+        "from_high_pct": -48.96,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,0.0 L4.2,3.5 L8.4,10.0 L12.6,16.9 L16.8,13.3 L21.1,16.5 L25.3,17.2 L29.5,22.8 L33.7,22.0 L37.9,19.7 L42.1,22.2 L46.3,22.6 L50.5,22.7 L54.7,22.2 L58.9,20.4 L63.2,15.8 L67.4,17.7 L71.6,17.7 L75.8,24.0 L80.0,23.7",
+        "sparkline_path": "M0.0,0.0 L4.2,3.5 L8.4,10.0 L12.6,16.9 L16.8,13.3 L21.1,16.5 L25.3,17.2 L29.5,22.8 L33.7,22.0 L37.9,19.7 L42.1,22.2 L46.3,22.6 L50.5,22.7 L54.7,22.2 L58.9,20.4 L63.2,15.8 L67.4,17.7 L71.6,17.7 L75.8,24.0 L80.0,23.8",
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -0.41,
+      "price_change_pct_num": -0.1,
       "price_direction": "down",
-      "price_change_display": "-0.41%",
-      "price_display": "48,500",
-      "price_change_abs_display": "▼ 200",
+      "price_change_display": "-0.10%",
+      "price_display": "48,650",
+      "price_change_abs_display": "▼ 50",
       "news_sentiment_label": "긍정",
       "confidence_label": "낮음",
       "news_count": 1,
@@ -3649,6 +3649,17 @@
         }
       ],
       "news": [
+        {
+          "title": "코스피, 종전 협상 불안감에 약세…코스닥도 하락",
+          "link": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "source": "한국경제",
+          "date": "2026.04.22 11:18",
+          "published_at": "2026.04.22 11:18",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
         {
           "title": "사상 첫 6400 뚫은 코스피…등락 거듭하며 숨고르기",
           "link": "https://n.news.naver.com/mnews/article/053/0000057702",
@@ -3747,17 +3758,6 @@
           "url": "https://n.news.naver.com/mnews/article/011/0004613323",
           "impact": "positive",
           "impact_label": "호재"
-        },
-        {
-          "title": "코스피 6400 터치 후 숨고르기…이란 협상지연에 '미지근'",
-          "link": "https://n.news.naver.com/mnews/article/008/0005347542",
-          "source": "머니투데이",
-          "date": "2026.04.22 09:29",
-          "published_at": "2026.04.22 09:29",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/008/0005347542",
-          "impact": "neutral",
-          "impact_label": "중립"
         }
       ],
       "owners": [
@@ -3768,10 +3768,10 @@
         "IBB"
       ],
       "quote": {
-        "price": "149,300",
-        "change": "6,600",
-        "change_pct": "-4.23",
-        "change_pct_num": -4.23,
+        "price": "149,500",
+        "change": "6,400",
+        "change_pct": "-4.11",
+        "change_pct_num": -4.11,
         "direction": "down"
       },
       "history": {
@@ -3796,24 +3796,24 @@
           161500.0,
           160200.0,
           155900.0,
-          149600.0
+          150000.0
         ],
         "fifty_two_week_high": 257500.0,
         "fifty_two_week_low": 57700.0,
-        "last_close": 149600.0,
-        "change_20d_pct": -16.84,
-        "pos_52w_pct": 46.0,
-        "from_high_pct": -41.9,
+        "last_close": 150000.0,
+        "change_20d_pct": -16.62,
+        "pos_52w_pct": 46.2,
+        "from_high_pct": -41.75,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,0.2 L4.2,0.0 L8.4,6.7 L12.6,11.2 L16.8,0.1 L21.1,16.0 L25.3,18.3 L29.5,20.2 L33.7,20.7 L37.9,17.1 L42.1,19.3 L46.3,17.6 L50.5,19.8 L54.7,19.0 L58.9,12.8 L63.2,12.7 L67.4,14.6 L71.6,15.7 L75.8,19.0 L80.0,24.0",
+        "sparkline_path": "M0.0,0.2 L4.2,0.0 L8.4,6.8 L12.6,11.3 L16.8,0.1 L21.1,16.2 L25.3,18.6 L29.5,20.5 L33.7,21.0 L37.9,17.3 L42.1,19.5 L46.3,17.9 L50.5,20.0 L54.7,19.3 L58.9,13.0 L63.2,12.9 L67.4,14.8 L71.6,15.9 L75.8,19.3 L80.0,24.0",
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -4.23,
+      "price_change_pct_num": -4.11,
       "price_direction": "down",
-      "price_change_display": "-4.23%",
-      "price_display": "149,300",
-      "price_change_abs_display": "▼ 6,600",
+      "price_change_display": "-4.11%",
+      "price_display": "149,500",
+      "price_change_abs_display": "▼ 6,400",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 10,
@@ -3822,7 +3822,7 @@
       "direction_cls": "flat",
       "outlook_line": "개별 촉매 없고 XBI 약세, 섹터 흐름 그대로 노출",
       "sector": "바이오",
-      "latest_news_at": "2026-04-22T11:05:00+09:00",
+      "latest_news_at": "2026-04-22T11:18:00+09:00",
       "latest_news_ago": "방금 전"
     },
     {
@@ -3894,10 +3894,10 @@
         "XBI"
       ],
       "quote": {
-        "price": "3,245",
-        "change": "65",
-        "change_pct": "+2.04",
-        "change_pct_num": 2.04,
+        "price": "3,215",
+        "change": "35",
+        "change_pct": "+1.10",
+        "change_pct_num": 1.1,
         "direction": "up"
       },
       "history": {
@@ -3922,24 +3922,24 @@
           2985.0,
           3345.0,
           3180.0,
-          3215.0
+          3220.0
         ],
         "fifty_two_week_high": 4310.0,
         "fifty_two_week_low": 1014.0,
-        "last_close": 3215.0,
-        "change_20d_pct": 36.81,
-        "pos_52w_pct": 66.8,
-        "from_high_pct": -25.41,
+        "last_close": 3220.0,
+        "change_20d_pct": 37.02,
+        "pos_52w_pct": 66.9,
+        "from_high_pct": -25.29,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,22.6 L4.2,18.4 L8.4,22.1 L12.6,22.2 L16.8,18.5 L21.1,21.3 L25.3,21.2 L29.5,23.3 L33.7,24.0 L37.9,21.4 L42.1,21.8 L46.3,20.1 L50.5,20.1 L54.7,18.1 L58.9,15.7 L63.2,8.1 L67.4,8.2 L71.6,0.0 L75.8,3.8 L80.0,3.0",
+        "sparkline_path": "M0.0,22.6 L4.2,18.4 L8.4,22.1 L12.6,22.2 L16.8,18.5 L21.1,21.3 L25.3,21.2 L29.5,23.3 L33.7,24.0 L37.9,21.4 L42.1,21.8 L46.3,20.1 L50.5,20.1 L54.7,18.1 L58.9,15.7 L63.2,8.1 L67.4,8.2 L71.6,0.0 L75.8,3.8 L80.0,2.8",
         "sparkline_direction": "up"
       },
       "recommendation_label": "매도",
-      "price_change_pct_num": 2.04,
+      "price_change_pct_num": 1.1,
       "price_direction": "up",
-      "price_change_display": "+2.04%",
-      "price_display": "3,245",
-      "price_change_abs_display": "▲ 65",
+      "price_change_display": "+1.10%",
+      "price_display": "3,215",
+      "price_change_abs_display": "▲ 35",
       "news_sentiment_label": "중립",
       "confidence_label": "중간",
       "news_count": 1,
@@ -4157,16 +4157,16 @@
           50000.0,
           48850.0,
           48950.0,
-          48150.0
+          48250.0
         ],
         "fifty_two_week_high": 71600.0,
         "fifty_two_week_low": 36300.0,
-        "last_close": 48150.0,
-        "change_20d_pct": -1.03,
-        "pos_52w_pct": 33.6,
-        "from_high_pct": -32.75,
+        "last_close": 48250.0,
+        "change_20d_pct": -0.82,
+        "pos_52w_pct": 33.9,
+        "from_high_pct": -32.61,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,8.1 L4.2,8.1 L8.4,14.6 L12.6,20.0 L16.8,10.2 L21.1,21.7 L25.3,22.5 L29.5,24.0 L33.7,17.5 L37.9,11.5 L42.1,13.8 L46.3,12.1 L50.5,15.0 L54.7,10.4 L58.9,4.2 L63.2,0.0 L67.4,2.5 L71.6,7.3 L75.8,6.9 L80.0,10.2",
+        "sparkline_path": "M0.0,8.1 L4.2,8.1 L8.4,14.6 L12.6,20.0 L16.8,10.2 L21.1,21.7 L25.3,22.5 L29.5,24.0 L33.7,17.5 L37.9,11.5 L42.1,13.8 L46.3,12.1 L50.5,15.0 L54.7,10.4 L58.9,4.2 L63.2,0.0 L67.4,2.5 L71.6,7.3 L75.8,6.9 L80.0,9.8",
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
@@ -4261,6 +4261,50 @@
       ],
       "news": [
         {
+          "title": "코스피, 종전 협상 불안감에 약세…코스닥도 하락",
+          "link": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "source": "한국경제",
+          "date": "2026.04.22 11:18",
+          "published_at": "2026.04.22 11:18",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "코스피, 장 초반 6400 돌파 뒤 등락 혼조세",
+          "link": "https://n.news.naver.com/mnews/article/028/0002801825",
+          "source": "한겨레",
+          "date": "2026.04.22 11:12",
+          "published_at": "2026.04.22 11:12",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/028/0002801825",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "베이징모터쇼 24일 개막…전시 차량만 1451대",
+          "link": "https://n.news.naver.com/mnews/article/031/0001023875",
+          "source": "아이뉴스24",
+          "date": "2026.04.22 11:12",
+          "published_at": "2026.04.22 11:12",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/031/0001023875",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "정재헌 SK텔레콤 대표, 李 베트남 순방 동행 위해 출국",
+          "link": "https://n.news.naver.com/mnews/article/421/0008904681",
+          "source": "뉴스1",
+          "date": "2026.04.22 11:10",
+          "published_at": "2026.04.22 11:10",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/421/0008904681",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
           "title": "어느새 신고가 삼성SDI…\"유럽 전기차 가뭄 끝나간다\"",
           "link": "https://n.news.naver.com/mnews/article/243/0000096804",
           "source": "이코노미스트",
@@ -4316,59 +4360,15 @@
           "impact_label": "중립"
         },
         {
-          "title": "현대건설, 압구정3구역 재건축 청사진 '원 시티' 공개",
-          "link": "https://n.news.naver.com/mnews/article/018/0006263311",
-          "source": "이데일리",
-          "date": "2026.04.22 10:54",
-          "published_at": "2026.04.22 10:54",
+          "title": "레이·싼타페·토레스 등 53만 대 자발적 시정조치",
+          "link": "https://n.news.naver.com/mnews/article/056/0012167266",
+          "source": "KBS",
+          "date": "2026.04.22 10:25",
+          "published_at": "2026.04.22 10:25",
           "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/018/0006263311",
+          "url": "https://n.news.naver.com/mnews/article/056/0012167266",
           "impact": "neutral",
           "impact_label": "중립"
-        },
-        {
-          "title": "“세계적 랜드마크 만든다”…현대건설, 압구정3구역 ‘ONE City’...",
-          "link": "https://n.news.naver.com/mnews/article/138/0002225421",
-          "source": "디지털데일리",
-          "date": "2026.04.22 10:48",
-          "published_at": "2026.04.22 10:48",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/138/0002225421",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "현대건설, 압구정3구역 ‘ONE City’ 공개…65층·5175가구 ...",
-          "link": "https://n.news.naver.com/mnews/article/011/0004613373",
-          "source": "서울경제",
-          "date": "2026.04.22 10:46",
-          "published_at": "2026.04.22 10:46",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/011/0004613373",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "현대건설 “압구정3구역, ‘단 하나의 대도시’ 완성”",
-          "link": "https://n.news.naver.com/mnews/article/016/0002633496",
-          "source": "헤럴드경제",
-          "date": "2026.04.22 10:39",
-          "published_at": "2026.04.22 10:39",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/016/0002633496",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "NH증권 \"삼성SDI, 유럽 수주 2028년부터 본격 매출화…목표가↑...",
-          "link": "https://n.news.naver.com/mnews/article/001/0016035060",
-          "source": "연합뉴스",
-          "date": "2026.04.22 08:34",
-          "published_at": "2026.04.22 08:34",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/001/0016035060",
-          "impact": "positive",
-          "impact_label": "호재"
         }
       ],
       "owners": [
@@ -4380,10 +4380,10 @@
         "STLA"
       ],
       "quote": {
-        "price": "534,000",
-        "change": "12,000",
-        "change_pct": "-2.20",
-        "change_pct_num": -2.2,
+        "price": "535,000",
+        "change": "11,000",
+        "change_pct": "-2.01",
+        "change_pct_num": -2.01,
         "direction": "down"
       },
       "history": {
@@ -4408,24 +4408,24 @@
           538000.0,
           527000.0,
           546000.0,
-          534000.0
+          533000.0
         ],
         "fifty_two_week_high": 687000.0,
         "fifty_two_week_low": 179300.0,
-        "last_close": 534000.0,
-        "change_20d_pct": 8.98,
-        "pos_52w_pct": 69.9,
-        "from_high_pct": -22.27,
+        "last_close": 533000.0,
+        "change_20d_pct": 8.78,
+        "pos_52w_pct": 69.7,
+        "from_high_pct": -22.42,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,13.4 L4.2,12.2 L8.4,18.3 L12.6,24.0 L16.8,14.0 L21.1,19.2 L25.3,17.9 L29.5,18.4 L33.7,17.4 L37.9,9.1 L42.1,13.5 L46.3,13.5 L50.5,16.1 L54.7,13.0 L58.9,9.1 L63.2,2.9 L67.4,1.9 L71.6,4.5 L75.8,0.0 L80.0,2.9",
+        "sparkline_path": "M0.0,13.4 L4.2,12.2 L8.4,18.3 L12.6,24.0 L16.8,14.0 L21.1,19.2 L25.3,17.9 L29.5,18.4 L33.7,17.4 L37.9,9.1 L42.1,13.5 L46.3,13.5 L50.5,16.1 L54.7,13.0 L58.9,9.1 L63.2,2.9 L67.4,1.9 L71.6,4.5 L75.8,0.0 L80.0,3.1",
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": -2.2,
+      "price_change_pct_num": -2.01,
       "price_direction": "down",
-      "price_change_display": "-2.20%",
-      "price_display": "534,000",
-      "price_change_abs_display": "▼ 12,000",
+      "price_change_display": "-2.01%",
+      "price_display": "535,000",
+      "price_change_abs_display": "▼ 11,000",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 10,
@@ -4434,7 +4434,7 @@
       "direction_cls": "flat",
       "outlook_line": "리콜 악재 vs 수출 호재 혼재, 중립적 흐름 예상",
       "sector": "자동차",
-      "latest_news_at": "2026-04-22T11:06:00+09:00",
+      "latest_news_at": "2026-04-22T11:18:00+09:00",
       "latest_news_ago": "방금 전"
     },
     {
@@ -4538,10 +4538,10 @@
         "MGM"
       ],
       "quote": {
-        "price": "15,370",
-        "change": "20",
-        "change_pct": "+0.13",
-        "change_pct_num": 0.13,
+        "price": "15,380",
+        "change": "30",
+        "change_pct": "+0.20",
+        "change_pct_num": 0.2,
         "direction": "up"
       },
       "history": {
@@ -4566,24 +4566,24 @@
           15710.0,
           15460.0,
           15350.0,
-          15360.0
+          15395.0
         ],
         "fifty_two_week_high": 24000.0,
         "fifty_two_week_low": 11720.0,
-        "last_close": 15360.0,
-        "change_20d_pct": -9.59,
-        "pos_52w_pct": 29.6,
-        "from_high_pct": -36.0,
+        "last_close": 15395.0,
+        "change_20d_pct": -9.39,
+        "pos_52w_pct": 29.9,
+        "from_high_pct": -35.85,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,6.2 L4.2,0.0 L8.4,9.9 L12.6,12.9 L16.8,6.9 L21.1,10.0 L25.3,20.9 L29.5,22.4 L33.7,24.0 L37.9,22.1 L42.1,22.4 L46.3,19.8 L50.5,19.8 L54.7,18.1 L58.9,18.1 L63.2,14.2 L67.4,15.8 L71.6,17.6 L75.8,18.4 L80.0,18.4",
+        "sparkline_path": "M0.0,6.2 L4.2,0.0 L8.4,9.9 L12.6,12.9 L16.8,6.9 L21.1,10.0 L25.3,20.9 L29.5,22.4 L33.7,24.0 L37.9,22.1 L42.1,22.4 L46.3,19.8 L50.5,19.8 L54.7,18.1 L58.9,18.1 L63.2,14.2 L67.4,15.8 L71.6,17.6 L75.8,18.4 L80.0,18.1",
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.13,
+      "price_change_pct_num": 0.2,
       "price_direction": "up",
-      "price_change_display": "+0.13%",
-      "price_display": "15,370",
-      "price_change_abs_display": "▲ 20",
+      "price_change_display": "+0.20%",
+      "price_display": "15,380",
+      "price_change_abs_display": "▲ 30",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 3,
@@ -4799,10 +4799,10 @@
         "WMG"
       ],
       "quote": {
-        "price": "251,000",
-        "change": "2,000",
-        "change_pct": "+0.80",
-        "change_pct_num": 0.8,
+        "price": "250,000",
+        "change": "1,000",
+        "change_pct": "+0.40",
+        "change_pct_num": 0.4,
         "direction": "up"
       },
       "history": {
@@ -4827,24 +4827,24 @@
           262500.0,
           255000.0,
           249000.0,
-          252500.0
+          251500.0
         ],
         "fifty_two_week_high": 405500.0,
         "fifty_two_week_low": 226500.0,
-        "last_close": 252500.0,
-        "change_20d_pct": -16.94,
-        "pos_52w_pct": 14.5,
-        "from_high_pct": -37.73,
+        "last_close": 251500.0,
+        "change_20d_pct": -17.27,
+        "pos_52w_pct": 14.0,
+        "from_high_pct": -37.98,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,1.2 L4.2,0.0 L8.4,1.8 L12.6,3.1 L16.8,6.8 L21.1,15.0 L25.3,14.4 L29.5,14.0 L33.7,19.9 L37.9,18.1 L42.1,20.1 L46.3,20.7 L50.5,22.2 L54.7,24.0 L58.9,20.1 L63.2,15.2 L67.4,17.4 L71.6,20.3 L75.8,22.6 L80.0,21.3",
+        "sparkline_path": "M0.0,1.2 L4.2,0.0 L8.4,1.8 L12.6,3.1 L16.8,6.8 L21.1,15.0 L25.3,14.4 L29.5,14.0 L33.7,19.9 L37.9,18.1 L42.1,20.1 L46.3,20.7 L50.5,22.2 L54.7,24.0 L58.9,20.1 L63.2,15.2 L67.4,17.4 L71.6,20.3 L75.8,22.6 L80.0,21.7",
         "sparkline_direction": "down"
       },
       "recommendation_label": "풀매도",
-      "price_change_pct_num": 0.8,
+      "price_change_pct_num": 0.4,
       "price_direction": "up",
-      "price_change_display": "+0.80%",
-      "price_display": "251,000",
-      "price_change_abs_display": "▲ 2,000",
+      "price_change_display": "+0.40%",
+      "price_display": "250,000",
+      "price_change_abs_display": "▲ 1,000",
       "news_sentiment_label": "부정",
       "confidence_label": "높음",
       "news_count": 10,
@@ -4916,10 +4916,10 @@
         "DAC"
       ],
       "quote": {
-        "price": "587,000",
-        "change": "11,000",
-        "change_pct": "+1.91",
-        "change_pct_num": 1.91,
+        "price": "607,000",
+        "change": "31,000",
+        "change_pct": "+5.38",
+        "change_pct_num": 5.38,
         "direction": "up"
       },
       "overnight_signal": {
@@ -4938,6 +4938,39 @@
         "label": "약세"
       },
       "news": [
+        {
+          "title": "HD현대중, 미국 데이터센터에 6천271억원 발전설비 공급",
+          "link": "https://n.news.naver.com/mnews/article/001/0016035668",
+          "source": "연합뉴스",
+          "date": "2026.04.22 11:18",
+          "published_at": "2026.04.22 11:18",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016035668",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "코스피, 종전 협상 불안감에 약세…코스닥도 하락",
+          "link": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "source": "한국경제",
+          "date": "2026.04.22 11:18",
+          "published_at": "2026.04.22 11:18",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005278134",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "HD현대重, 美 데이터센터 첫 진출...6271억 발전설비 공급",
+          "link": "https://n.news.naver.com/mnews/article/014/0005511550",
+          "source": "파이낸셜뉴스",
+          "date": "2026.04.22 11:11",
+          "published_at": "2026.04.22 11:11",
+          "time_ago": "방금 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005511550",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
         {
           "title": "HD현대重, 美 데이터센터에 6200억 원 규모 발전설비 공급",
           "link": "https://n.news.naver.com/mnews/article/421/0008904658",
@@ -5014,39 +5047,6 @@
           "url": "https://n.news.naver.com/mnews/article/023/0003972321",
           "impact": "positive",
           "impact_label": "호재"
-        },
-        {
-          "title": "HD현대중공업, 韓 최초 해외 쇄빙전용선 수주… 유럽 강국 제쳤다",
-          "link": "https://n.news.naver.com/mnews/article/366/0001158739",
-          "source": "조선비즈",
-          "date": "2026.04.22 09:46",
-          "published_at": "2026.04.22 09:46",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/366/0001158739",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
-          "title": "HD현대중공업, 쇄빙전용선 첫 해외수주 계약 체결…5157억원 규모",
-          "link": "https://n.news.naver.com/mnews/article/293/0000083199",
-          "source": "블로터",
-          "date": "2026.04.22 09:33",
-          "published_at": "2026.04.22 09:33",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/293/0000083199",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
-          "title": "HD현대중공업, 국내 최초 해외쇄빙선 수주…북유럽 강국 제쳐",
-          "link": "https://n.news.naver.com/mnews/article/001/0016035184",
-          "source": "연합뉴스",
-          "date": "2026.04.22 09:29",
-          "published_at": "2026.04.22 09:29",
-          "time_ago": "방금 전",
-          "url": "https://n.news.naver.com/mnews/article/001/0016035184",
-          "impact": "positive",
-          "impact_label": "호재"
         }
       ],
       "disclosures": [
@@ -5098,24 +5098,24 @@
           514000.0,
           524000.0,
           576000.0,
-          583000.0
+          581000.0
         ],
         "fifty_two_week_high": 652000.0,
         "fifty_two_week_low": 347500.0,
-        "last_close": 583000.0,
-        "change_20d_pct": 14.09,
-        "pos_52w_pct": 77.3,
-        "from_high_pct": -10.58,
+        "last_close": 581000.0,
+        "change_20d_pct": 13.7,
+        "pos_52w_pct": 76.7,
+        "from_high_pct": -10.89,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,12.0 L4.2,14.1 L8.4,17.2 L12.6,19.7 L16.8,22.1 L21.1,24.0 L25.3,17.2 L29.5,18.7 L33.7,18.8 L37.9,16.4 L42.1,18.8 L46.3,18.0 L50.5,20.0 L54.7,17.3 L58.9,18.1 L63.2,14.9 L67.4,11.5 L71.6,9.8 L75.8,1.2 L80.0,0.0",
+        "sparkline_path": "M0.0,11.8 L4.2,13.9 L8.4,17.1 L12.6,19.6 L16.8,22.1 L21.1,24.0 L25.3,17.2 L29.5,18.6 L33.7,18.8 L37.9,16.3 L42.1,18.7 L46.3,17.9 L50.5,19.9 L54.7,17.2 L58.9,18.0 L63.2,14.8 L67.4,11.3 L71.6,9.6 L75.8,0.8 L80.0,0.0",
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 1.91,
+      "price_change_pct_num": 5.38,
       "price_direction": "up",
-      "price_change_display": "+1.91%",
-      "price_display": "587,000",
-      "price_change_abs_display": "▲ 11,000",
+      "price_change_display": "+5.38%",
+      "price_display": "607,000",
+      "price_change_abs_display": "▲ 31,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "news_count": 10,
@@ -5124,7 +5124,7 @@
       "direction_cls": "flat",
       "outlook_line": "방산 호재 vs 20일 +21% 과열, 갭다운 후 쉬어가는 흐름 예상",
       "sector": "조선",
-      "latest_news_at": "2026-04-22T11:07:00+09:00",
+      "latest_news_at": "2026-04-22T11:18:00+09:00",
       "latest_news_ago": "방금 전"
     },
     {
@@ -5172,10 +5172,10 @@
         "AMAT"
       ],
       "quote": {
-        "price": "43,750",
-        "change": "500",
-        "change_pct": "+1.16",
-        "change_pct_num": 1.16,
+        "price": "43,850",
+        "change": "600",
+        "change_pct": "+1.39",
+        "change_pct_num": 1.39,
         "direction": "up"
       },
       "overnight_signal": {
@@ -5255,24 +5255,24 @@
           42500.0,
           43150.0,
           43250.0,
-          43850.0
+          43950.0
         ],
-        "fifty_two_week_high": 44100.0,
+        "fifty_two_week_high": 44300.0,
         "fifty_two_week_low": 16780.0,
-        "last_close": 43850.0,
-        "change_20d_pct": 58.02,
-        "pos_52w_pct": 99.1,
-        "from_high_pct": -0.57,
+        "last_close": 43950.0,
+        "change_20d_pct": 58.38,
+        "pos_52w_pct": 98.7,
+        "from_high_pct": -0.79,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,20.3 L4.2,21.2 L8.4,23.1 L12.6,24.0 L16.8,20.9 L21.1,23.1 L25.3,22.7 L29.5,22.8 L33.7,21.1 L37.9,18.0 L42.1,16.8 L46.3,14.5 L50.5,8.8 L54.7,6.0 L58.9,5.3 L63.2,2.6 L67.4,1.7 L71.6,0.9 L75.8,0.8 L80.0,0.0",
+        "sparkline_path": "M0.0,20.3 L4.2,21.2 L8.4,23.1 L12.6,24.0 L16.8,20.9 L21.1,23.1 L25.3,22.7 L29.5,22.8 L33.7,21.1 L37.9,18.0 L42.1,16.9 L46.3,14.5 L50.5,8.8 L54.7,6.1 L58.9,5.4 L63.2,2.8 L67.4,1.8 L71.6,1.0 L75.8,0.9 L80.0,0.0",
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 1.16,
+      "price_change_pct_num": 1.39,
       "price_direction": "up",
-      "price_change_display": "+1.16%",
-      "price_display": "43,750",
-      "price_change_abs_display": "▲ 500",
+      "price_change_display": "+1.39%",
+      "price_display": "43,850",
+      "price_change_abs_display": "▲ 600",
       "news_sentiment_label": "중립",
       "confidence_label": "낮음",
       "news_count": 1,
@@ -5360,10 +5360,10 @@
         "RTX"
       ],
       "quote": {
-        "price": "1,021,000",
-        "change": "112,000",
-        "change_pct": "+12.32",
-        "change_pct_num": 12.32,
+        "price": "1,008,000",
+        "change": "99,000",
+        "change_pct": "+10.89",
+        "change_pct_num": 10.89,
         "direction": "up"
       },
       "overnight_signal": {
@@ -5535,24 +5535,24 @@
           876000.0,
           921000.0,
           909000.0,
-          1014000.0
+          1012000.0
         ],
         "fifty_two_week_high": 1118000.0,
         "fifty_two_week_low": 287500.0,
-        "last_close": 1014000.0,
-        "change_20d_pct": 37.96,
-        "pos_52w_pct": 87.5,
-        "from_high_pct": -9.3,
+        "last_close": 1012000.0,
+        "change_20d_pct": 37.69,
+        "pos_52w_pct": 87.2,
+        "from_high_pct": -9.48,
         "as_of": "2026-04-22",
-        "sparkline_path": "M0.0,16.6 L4.2,16.6 L8.4,19.5 L12.6,24.0 L16.8,13.1 L21.1,13.7 L25.3,9.2 L29.5,12.1 L33.7,11.1 L37.9,10.8 L42.1,7.6 L46.3,5.5 L50.5,4.5 L54.7,4.8 L58.9,7.2 L63.2,7.8 L67.4,8.2 L71.6,5.5 L75.8,6.3 L80.0,0.0",
+        "sparkline_path": "M0.0,16.6 L4.2,16.6 L8.4,19.5 L12.6,24.0 L16.8,13.0 L21.1,13.6 L25.3,9.1 L29.5,12.1 L33.7,11.1 L37.9,10.7 L42.1,7.5 L46.3,5.4 L50.5,4.4 L54.7,4.7 L58.9,7.1 L63.2,7.7 L67.4,8.1 L71.6,5.4 L75.8,6.2 L80.0,0.0",
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 12.32,
+      "price_change_pct_num": 10.89,
       "price_direction": "up",
-      "price_change_display": "+12.32%",
-      "price_display": "1,021,000",
-      "price_change_abs_display": "▲ 112,000",
+      "price_change_display": "+10.89%",
+      "price_display": "1,008,000",
+      "price_change_abs_display": "▲ 99,000",
       "news_sentiment_label": "긍정",
       "confidence_label": "중간",
       "news_count": 9,
