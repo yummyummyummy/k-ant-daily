@@ -297,14 +297,34 @@
     .friend-card .owner-chip { background: rgba(255,255,255,0.12); }
   }
 
-  /* Owner popover — applies to both coffee friend-cards and stock-card rows */
+  /* Owner chips — inline left-expanding group.
+     Collapsed shows only leader + "+N"; opening toggles .extra chips inline
+     on the same row. Since parent containers (.s-foot / .friend-owner) use
+     justify-content: flex-end, appending extras grows the group leftward
+     while +N stays pinned to the right edge — no popover, no overflow. */
   .owners-wrap {
-    position: relative;
     display: inline-flex; gap: 2px; align-items: center;
+    flex-wrap: wrap;  /* long owner lists wrap to next line gracefully */
+    justify-content: flex-end;
+  }
+  .owners-wrap .owner-chip.extra { display: none; }
+  .owners-wrap.open .owner-chip.extra,
+  .owners-wrap:focus-within .owner-chip.extra { display: inline-flex; }
+  @media (hover: hover) {
+    .owners-wrap:hover .owner-chip.extra { display: inline-flex; }
   }
   .owners-wrap .owner-more {
     cursor: pointer; opacity: 0.75;
     background: rgba(0,0,0,0.06);
+    transition: opacity 0.12s;
+  }
+  .owners-wrap.open .owner-more,
+  .owners-wrap:focus-within .owner-more { opacity: 1; }
+  /* When open the +N chip morphs into a close hint. Uses ::after so the
+     original "+N" text stays in DOM for screen readers. */
+  .owners-wrap.open .owner-more { font-size: 0; padding: 3px 6px; }
+  .owners-wrap.open .owner-more::after {
+    content: "✕"; font-size: 11px; color: var(--muted);
   }
   .owner-chip.owner-leader {
     background: linear-gradient(135deg, rgba(255,214,0,0.25), rgba(255,214,0,0.08));
@@ -317,24 +337,8 @@
       background: linear-gradient(135deg, rgba(255,214,0,0.2), rgba(255,214,0,0.06));
       border-color: rgba(255,214,0,0.4);
     }
-  }
-  @media (prefers-color-scheme: dark) {
     .owners-wrap .owner-more { background: rgba(255,255,255,0.08); }
   }
-  .owner-popover {
-    display: none;
-    position: absolute; top: calc(100% + 4px); right: 0;
-    z-index: 100;
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 6px; padding: 6px;
-    gap: 3px; flex-wrap: wrap; min-width: 120px; max-width: 220px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-  }
-  @media (hover: hover) {
-    .owners-wrap:hover .owner-popover { display: flex; }
-  }
-  .owners-wrap:focus-within .owner-popover,
-  .owners-wrap.open .owner-popover { display: flex; }
 
   /* MACRO / SECTOR collapse toggle (reuses focus-toggle styling) */
   .section-toggle > summary {
@@ -657,7 +661,10 @@
     line-height: 1.5; margin-top: 4px;
   }
   article.stock .stock-trigger .s-foot {
-    display: flex; justify-content: flex-end; margin-top: 6px;
+    display: flex; justify-content: flex-end;
+    /* Pin to the card's bottom — critical for 2-col alignment where sibling
+       cards may have taller outlook/chip rows above. */
+    margin-top: auto; padding-top: 6px;
   }
   article.stock .direction {
     font-size: 11px; font-weight: 700;
@@ -722,10 +729,11 @@
     background: var(--card);
     border: 1px solid var(--border); border-radius: 12px;
     margin-bottom: 10px;
-    /* NOTE: no `overflow: hidden` here — the owner popover is absolute-
-       positioned and needs to escape the card's bottom edge (especially on
-       mobile). border-radius clips children visually anyway since nothing
-       inside the card exceeds its bounding box. */
+    /* Flex column so .stock-trigger fills the grid cell height — required
+       for .s-foot (owner chips) to consistently sit at the bottom of the
+       card via `margin-top: auto`, regardless of the 2-col neighbor's
+       taller outlook content. */
+    display: flex; flex-direction: column;
     position: relative;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     transition: background 0.12s, box-shadow 0.15s, transform 0.08s;
@@ -753,7 +761,11 @@
     width: 100%; border: none; background: transparent;
     font: inherit; color: inherit; text-align: left; cursor: pointer;
     padding: 14px 40px 14px 16px;  /* right padding reserves room for chevron */
-    display: block;
+    /* Flex column so .s-foot (owner chips) can be pushed to the bottom with
+       margin-top: auto — keeps chip position consistent across siblings in
+       the 2-col grid even when outlook lines vary in height. */
+    display: flex; flex-direction: column;
+    flex: 1 1 auto;
     -webkit-tap-highlight-color: transparent;  /* custom :active flash instead */
   }
   article.stock .stock-trigger:focus-visible {
@@ -965,8 +977,11 @@
   }
 </style>
 </head>
-{#- Owner chips with collapsed "primary + (+N)" view and hover/tap popover.
-    `owners` is expected to be sorted (leader first, then 가나다 순). -#}
+{#- Owner chips with inline left-expanding view. Collapsed shows only the
+    leader + "+N"; tapping "+N" expands the rest of the owners inline on the
+    same row, pushing to the left (since the row is `justify-content: flex-end`
+    in .s-foot, extra chips grow leftward). `owners` is expected to be sorted
+    (leader first, then 가나다 순). -#}
 {%- macro owner_chips(owners) -%}
   {%- set n = owners | length -%}
   {%- if n == 0 -%}
@@ -974,14 +989,15 @@
     {# Single owner — no leader emphasis needed. #}
     <span class="owners-wrap"><span class="owner-chip">👤 {{ owners[0] }}</span></span>
   {%- else -%}
-    {# Multi-owner — first owner is the 대장 (render.py sorts leader→rest 가나다). #}
+    {# Multi-owner — leader first (natural reading order), then extras
+       (hidden by default, shown inline when .owners-wrap.open), then the
+       +N toggle chip. Row uses justify-content: flex-end in .s-foot so
+       adding extras grows the group leftward while keeping the +N chip
+       pinned to the right edge. #}
     <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 {{ owners[0] }}</span>
-      <span class="owner-chip owner-more" aria-label="+{{ n - 1 }}명 더 보기">+{{ n - 1 }}</span>
-      <span class="owner-popover">
-        <span class="owner-chip owner-leader">👑 {{ owners[0] }}</span>
-        {%- for o in owners[1:] -%}<span class="owner-chip">👤 {{ o }}</span>{%- endfor -%}
-      </span>
+      {%- for o in owners[1:] -%}<span class="owner-chip extra">👤 {{ o }}</span>{%- endfor -%}
+      <span class="owner-chip owner-more" aria-label="+{{ n - 1 }}명 더 보기 / 접기">+{{ n - 1 }}</span>
     </span>
   {%- endif -%}
 {%- endmacro -%}
@@ -1853,10 +1869,11 @@
       const q = data[card.dataset.code];
       if (!q || typeof q.change_pct !== "number") return;
       const name = card.querySelector(".stock-name")?.textContent?.trim() || "";
-      // Only pick up chips inside the popover (which is the full owner list).
-      // Falls back to top-level chips when there's no popover (single-owner card).
-      const pop = card.querySelector(".owner-popover");
-      const chipScope = pop || card.querySelector(".owners-wrap") || card.querySelector(".owners");
+      // Owner list now lives inline inside .owners-wrap (leader + extras),
+      // no more absolute-positioned popover. The wrap DOES contain all the
+      // chips (extras are just hidden via CSS when collapsed), so querying
+      // .owner-chip within the wrap gives the full owner list.
+      const chipScope = card.querySelector(".owners-wrap") || card.querySelector(".owners");
       const rawChips = chipScope ? [...chipScope.querySelectorAll(".owner-chip")] : [];
       const owners = rawChips
         .filter((el) => !el.classList.contains("owner-more"))
@@ -2041,18 +2058,21 @@
     }
   }
 
-  // Owner popover tap toggle — needed on touch devices where :hover isn't reliable.
-  // Also closes any other open popover when one is opened.
+  // Owner group inline toggle — taps on "+N" (or anywhere on the wrap) open
+  // the extras on the same row; any other tap closes open wraps. Needed on
+  // touch devices since :hover / :focus-within can't survive a tap lift.
   document.addEventListener("click", (e) => {
     const wrap = e.target.closest(".owners-wrap");
+    // Close any wrap other than the one just clicked.
     document.querySelectorAll(".owners-wrap.open").forEach((el) => {
       if (el !== wrap) el.classList.remove("open");
     });
-    if (wrap && wrap.querySelector(".owner-popover")) {
-      // Don't toggle if the user clicked a link/button inside; only when
-      // the target was the wrap itself, the primary chip, or the +N chip.
+    // Only toggle when the wrap actually has extras to show (multi-owner).
+    if (wrap && wrap.querySelector(".owner-chip.extra")) {
       const t = e.target;
       if (t === wrap || t.classList.contains("owner-chip")) {
+        // Stop the click from bubbling to the article.stock → dialog trigger.
+        e.stopPropagation();
         wrap.classList.toggle("open");
       }
     }
