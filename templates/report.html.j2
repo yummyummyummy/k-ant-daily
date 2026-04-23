@@ -232,6 +232,16 @@
   .coffee-banner .headline { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
   .coffee-banner .sub { font-size: 12px; opacity: 0.85; }
   .coffee-banner.none { background: var(--card); color: var(--fg); border: 1px dashed var(--border); }
+  /* Coffee banner is now <details> — the <summary> holds headline + sub and
+     stays visible in both open/closed states. Everything after (friend-cards,
+     live-indicator) is hidden when collapsed. Chevron rotation lives in the
+     unified chevron rule further down. */
+  .coffee-banner > summary {
+    list-style: none; cursor: pointer; user-select: none;
+    padding-right: 20px;  /* room for the chevron glyph */
+  }
+  .coffee-banner > summary::-webkit-details-marker { display: none; }
+  .coffee-banner[open] > summary { margin-bottom: 8px; }
   /* Compact 2-column card: [name + owners] | [price + delta] */
   .friend-cards {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1022,7 +1032,8 @@
   .sector-toggle > summary::after,
   .focus-toggle > summary::after,
   .stock-news-block details.news-more > summary::after,
-  .sector-card details.sec-more > summary::after {
+  .sector-card details.sec-more > summary::after,
+  .coffee-banner > summary::after {
     content: ""; display: inline-block;
     width: 7px; height: 7px;
     border-right: 1.5px solid currentColor;
@@ -1040,9 +1051,16 @@
   .sector-toggle[open] > summary::after,
   .focus-toggle[open] > summary::after,
   .stock-news-block details.news-more[open] > summary::after,
-  .sector-card details.sec-more[open] > summary::after {
+  .sector-card details.sec-more[open] > summary::after,
+  .coffee-banner[open] > summary::after {
     transform: rotate(-135deg) translate(-1px, -1px);
   }
+  /* Coffee banner chevron: pin top-right so it doesn't crowd the headline. */
+  .coffee-banner > summary::after {
+    position: absolute; right: 18px; top: 22px;
+    margin-left: 0;
+  }
+  .coffee-banner { position: relative; }
   /* Chevrons that should sit at the far right of their row */
   .top-stories details > summary::after { color: var(--accent); margin-left: auto; }
   .sector-toggle > summary::after       { color: var(--muted);  margin-left: auto; }
@@ -1114,10 +1132,20 @@
   </header>
 
   {% if friends_overview %}
-    {% if coffee_buyer %}
-    <div class="coffee-banner">
-      <div class="headline">☕ 오늘 커피는 <strong>{{ coffee_buyer.owners | join('·') }}</strong>님이!</div>
-      <div class="sub">{{ coffee_buyer.name }} {{ coffee_buyer.change_display }} — 친구 보유 종목 중 최고 상승</div>
+    {#- Coffee banner — collapsible <details>. Open by default (so first-load
+        readers see the full portfolio), collapsible to show only the
+        headline + top-gainer sub. -#}
+    {% set coffee_cls = 'coffee-banner' if coffee_buyer else 'coffee-banner none' %}
+    {% set coffee_headline = '☕ 오늘 커피는 ' ~ (coffee_buyer.owners | join('·')) ~ '님이!' if coffee_buyer else '☕ 오늘 커피는 각자 사기' %}
+    {% set coffee_sub = (coffee_buyer.name ~ ' ' ~ coffee_buyer.change_display ~ ' — 친구 보유 종목 중 최고 상승') if coffee_buyer else '친구 보유 종목 중 상승 종목 없음' %}
+    <details class="{{ coffee_cls }}" open>
+      <summary>
+        <div class="headline">
+          {% if coffee_buyer %}☕ 오늘 커피는 <strong>{{ coffee_buyer.owners | join('·') }}</strong>님이!
+          {% else %}☕ 오늘 커피는 각자 사기{% endif %}
+        </div>
+        <div class="sub">{{ coffee_sub }}</div>
+      </summary>
       <div class="friend-cards" id="friend-cards">
         {% for f in friends_overview %}
         <div class="friend-card" data-code="{{ f.code }}">
@@ -1134,29 +1162,7 @@
         {% endfor %}
       </div>
       <div class="live-indicator" id="live-indicator" aria-live="polite"></div>
-    </div>
-    {% else %}
-    <div class="coffee-banner none">
-      <div class="headline">☕ 오늘 커피는 각자 사기</div>
-      <div class="sub">친구 보유 종목 중 상승 종목 없음</div>
-      <div class="friend-cards" id="friend-cards">
-        {% for f in friends_overview %}
-        <div class="friend-card" data-code="{{ f.code }}">
-          <div class="stock-name">{{ f.name }}</div>
-          <div class="quote {{ f.direction or 'flat' }}">
-            <div class="price">{{ f.price_display or '-' }}</div>
-            <div class="deltas">
-              <span class="abs">{{ f.abs_change_display or '' }}</span>
-              <span class="pct">{{ f.change_display }}</span>
-            </div>
-          </div>
-          <div class="owners">{{ owner_chips(f.owners) }}</div>
-        </div>
-        {% endfor %}
-      </div>
-      <div class="live-indicator" id="live-indicator" aria-live="polite"></div>
-    </div>
-    {% endif %}
+    </details>
   {% endif %}
 
   {% if review %}
