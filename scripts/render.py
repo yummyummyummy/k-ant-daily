@@ -796,9 +796,12 @@ def _portfolio_snapshot(stocks: list[dict]) -> dict:
 
 def _group_stocks_by_recommendation(stocks: list[dict]) -> list[dict]:
     """Partition the pre-sorted stocks list into blocks keyed by recommendation.
-    Returns ``[{key, label, emoji, accent, stocks: [...]}]`` in display order.
-    Unrecognized/missing recommendations fall into a trailing "기타" group so
-    nothing gets silently dropped."""
+    Returns ``[{key, label, emoji, accent, stocks: [...]}]`` in display order —
+    **always all 5 STOCK_GROUP_META buckets**, even empty ones, so the client-
+    side NXT adjustment code can move cards between any two groups (including
+    into groups that had zero stocks at 07:30). The template hides empty
+    groups via CSS `:has()` — no visual clutter, full DOM for JS.
+    Unrecognized/missing recommendations fall into a trailing "기타" group."""
     buckets = {meta["key"]: [] for meta in STOCK_GROUP_META}
     other = []
     for s in stocks:
@@ -807,10 +810,7 @@ def _group_stocks_by_recommendation(stocks: list[dict]) -> list[dict]:
             buckets[rec].append(s)
         else:
             other.append(s)
-    groups = []
-    for meta in STOCK_GROUP_META:
-        if buckets[meta["key"]]:
-            groups.append({**meta, "stocks": buckets[meta["key"]]})
+    groups = [{**meta, "stocks": buckets[meta["key"]]} for meta in STOCK_GROUP_META]
     if other:
         groups.append({
             "key": "other", "label": "기타", "emoji": "·", "accent": "other",
