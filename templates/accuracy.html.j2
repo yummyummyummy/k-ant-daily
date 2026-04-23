@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>누적 정확도 · k-ant-daily</title>
+<title>통계 · k-ant-daily</title>
 <link rel="canonical" href="{{ base_url }}/accuracy.html">
 <style>
 {% include '_theme.css.j2' %}
@@ -104,8 +104,8 @@
 <body>
 <main>
   <header>
-    <nav><a href="index.html">← 오늘자</a> · <a href="archive.html">아카이브</a></nav>
-    <h1>📊 누적 정확도</h1>
+    <nav><a href="index.html">← 오늘자</a> · <a href="archive.html">📋 예측</a> · <a href="review.html">🎓 리뷰</a></nav>
+    <h1>📊 통계</h1>
     <time>생성 {{ generated_at_display }} KST · 데이터 {{ totals.days }}일 누적</time>
   </header>
 
@@ -141,28 +141,6 @@
         <span><span class="dot" style="background:var(--neg)"></span>실패</span>
       </div>
     </div>
-  </section>
-
-  <section>
-    <h2>일별 상세</h2>
-    <ul class="day-list">
-      {% for r in records | reverse %}
-      {% set rate_pct = (r.hit_rate * 100) | round(0) | int %}
-      {% set rate_cls = 'good' if rate_pct >= 60 else ('ok' if rate_pct >= 40 else 'bad') %}
-      <li>
-        <span class="dt">{{ r.date }}</span>
-        <span class="score">
-          <strong>{{ r.hits }}</strong> · {{ r.partial }} · {{ r.misses }} / {{ r.total }}건
-        </span>
-        <span class="rate {{ rate_cls }}">{{ rate_pct }}%</span>
-        {% if r.has_retro %}
-        <a class="retro-link" href="accuracy/{{ r.date }}.html">🔍 회고 →</a>
-        {% else %}
-        <span class="no-retro">회고 없음</span>
-        {% endif %}
-      </li>
-      {% endfor %}
-    </ul>
   </section>
 
   <section>
