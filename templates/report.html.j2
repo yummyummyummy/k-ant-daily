@@ -2261,28 +2261,61 @@
     }
   }
 
-  async function refreshQuotes() {
-    if (!QUOTE_API) return;
+  // Coffee-section quote refresh. `source` is "krx" (uses /quote) or "nxt"
+  // (uses /nxt-quotes). Both endpoints now return the same shape
+  // ({price, change, change_pct, direction}) so downstream DOM updates don't
+  // need to branch.
+  async function refreshQuotesFrom(source) {
+    const api = source === "nxt" ? NXT_API : QUOTE_API;
+    if (!api) return;
     const cards = document.querySelectorAll(".friend-card[data-code]");
     if (!cards.length) return;
     const codes = [...cards].map((el) => el.dataset.code);
+    const endpoint = source === "nxt"
+      ? api + "?codes=" + encodeURIComponent(codes.join(","))
+      : api + "?codes=" + encodeURIComponent(codes.join(","));
     try {
-      const url = QUOTE_API + "?codes=" + encodeURIComponent(codes.join(","));
-      const res = await fetch(url, { cache: "no-store" });
+      const res = await fetch(endpoint, { cache: "no-store" });
       if (!res.ok) throw new Error("status " + res.status);
       const data = await res.json();
       let applied = 0;
       cards.forEach((card) => {
         const q = data[card.dataset.code];
-        if (q) { applyQuote(card, q); applied += 1; }
+        if (q && q.price != null) { applyQuote(card, q); applied += 1; }
       });
       if (applied > 0) {
         updateCoffeeBanner(cards, data);
         reorderFriendCards(data);
-        setIndicator("live", "🟢 Live · 업데이트 " + fmtKstTime(kstNow()));
+        const label = source === "nxt" ? "🟢 NXT Live" : "🟢 Live";
+        setIndicator("live", label + " · 업데이트 " + fmtKstTime(kstNow()));
       }
     } catch (err) {
       setIndicator("error", "⚠️ 실시간 업데이트 실패 (스냅샷 표시) · " + fmtKstTime(kstNow()));
+    }
+  }
+
+  function refreshQuotes()    { return refreshQuotesFrom("krx"); }
+  function refreshQuotesNxt() { return refreshQuotesFrom("nxt"); }
+
+  // Dispatches coffee-section polling based on the current KST session.
+  // Keeps a single 60s heartbeat — the dispatcher picks the right source
+  // (or idles) so 09:00 KRX-open and 15:30 KRX-close transitions are handled
+  // without restarting timers. NXT covers 08:00-09:00 and 15:30-20:00;
+  // outside those windows we just update the indicator.
+  function refreshCoffee() {
+    const now = kstNow();
+    const day = now.getDay();
+    if (day === 0 || day === 6) {
+      setIndicator("closed", "⏸ 주말 — 종가 표시 중");
+      return;
+    }
+    const mm = now.getHours() * 60 + now.getMinutes();
+    if (mm >= MARKET_OPEN_MIN && mm < MARKET_CLOSE_MIN) {
+      refreshQuotes();
+    } else if (mm >= 8 * 60 && mm < 20 * 60) {
+      refreshQuotesNxt();
+    } else {
+      setIndicator("closed", "⏸ 장 마감 — 종가 표시 중");
     }
   }
 
@@ -2394,12 +2427,11 @@
       setIndicator("closed", "⏸ 실시간 업데이트 비활성 (스냅샷)");
       return;
     }
-    if (!isMarketOpen()) {
-      setIndicator("closed", "⏸ 장 마감 — 종가 표시 중");
-      return;
-    }
-    refreshQuotes();
-    setInterval(refreshQuotes, POLL_MS);
+    // Coffee section — polls continuously across KRX + NXT sessions (08:00-20:00
+    // KST weekdays). refreshCoffee picks the right source per tick so KRX↔NXT
+    // transitions at 09:00/15:30 are handled without timer juggling.
+    refreshCoffee();
+    setInterval(refreshCoffee, POLL_MS);
     // Per-stock news refresh — browser polls the Worker /stock-news endpoint
     // every 5 min so the aggregate 📰 chip + each dialog's news list stay
     // fresh without any git commit. First call runs after a short delay so
@@ -2423,12 +2455,6 @@
     if (NXT_API) {
       scheduleNxt();
     }
-    // Re-check market-close boundary every minute; stop friend-stock polling after 15:30.
-    setInterval(() => {
-      if (!isMarketOpen()) {
-        setIndicator("closed", "⏸ 장 마감 — 종가 표시 중");
-      }
-    }, 60_000);
   }
 
   if (document.readyState === "loading") {

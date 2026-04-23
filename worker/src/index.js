@@ -360,20 +360,33 @@ async function fetchNxtPage(url) {
       if (/^[+-]?\d+\.\d+%$/.test(cells[i])) { pctIdx = i; break; }
     }
     if (pctIdx < 3) continue;
-    const pctStr = cells[pctIdx];
-    const price  = cells[pctIdx - 3];
+    const pctStr   = cells[pctIdx];
+    const price    = cells[pctIdx - 3];
+    const absStr   = cells[pctIdx - 1];
     if (!/^[\d,]+$/.test(price)) continue;
     const direction = cells[pctIdx - 2];  // 상승/하락/보합
     const pctNum = parseFloat(pctStr.replace("%", ""));
     if (isNaN(pctNum)) continue;
-    // Naver's fall page renders pct without explicit "-" prefix but marks
+    const absNum = parseFloat(absStr.replace(/,/g, ""));
+    const priceNum = parseFloat(price.replace(/,/g, ""));
+    // Naver's fall page renders pct/abs without explicit "-" prefix but marks
     // direction as "하락"; normalize the sign.
-    const signedPct = direction === "하락" ? -Math.abs(pctNum) : Math.abs(pctNum);
+    const sign = direction === "하락" ? -1 : 1;
+    const signedPct    = sign * Math.abs(pctNum);
+    const signedChange = sign * Math.abs(isNaN(absNum) ? 0 : absNum);
     const dirCode = direction === "상승" ? "up"
                   : direction === "하락" ? "down"
                   : "flat";
     if (!out[code]) {
-      out[code] = { price, change_pct: signedPct, direction: dirCode };
+      // `price` is numeric so the client's fmtPrice (Number.toLocaleString)
+      // works on it the same way it does for /quote responses — NXT becomes
+      // a drop-in source for coffee-section updates during its session hours.
+      out[code] = {
+        price: isNaN(priceNum) ? null : priceNum,
+        change: signedChange,
+        change_pct: signedPct,
+        direction: dirCode,
+      };
     }
   }
   return out;

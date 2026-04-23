@@ -251,7 +251,7 @@ Wrapper 안전장치:
 
 ## 실시간 시세 인프라 (Cloudflare Worker)
 
-커피 배너 · 상단 ticker 모두 **장중 60초 폴링**. Worker가 CORS 프록시 + 30초 edge 캐시:
+커피 배너 · 상단 ticker 모두 **60초 폴링**. Worker가 CORS 프록시 + edge 캐시. 커피 섹션은 NXT 시간대도 포함해 08:00-20:00 KST 평일 내내 실시간 (09:00-15:30 KRX `/quote`, 08:00-09:00·15:30-20:00 NXT `/nxt-quotes`):
 
 ```bash
 cd worker
