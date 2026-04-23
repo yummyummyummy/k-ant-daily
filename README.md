@@ -153,9 +153,8 @@ SK하이닉스 000660  🔥 7   +3.37%   매수   👤 이영준 +3
 - **신호 기여도**: 실패 케이스를 `news_misread` / `overnight_misled` / `priced_in_underestimated` / `speculative_flow` (거래량 20일 평균의 2× 이상) 로 분류. 누적되면 `stocks.yml` 의 `overnight_proxy` 매핑 또는 종목 선정 조정 근거. 종목 카드에는 실시간으로 `🚨 거래량 X×` 배지가 뜸 — 서버 예측은 건드리지 않고 사용자 경계만 환기.
 - **회고 분석 (review.analysis)**: agent가 직접 쓰는 서술형 요약 — `day_summary` 한 줄, `what_worked` / `what_missed` (lead + examples 3~5건 + takeaway), 그리고 miss·partial 종목별 `why` 가설. 별도 페이지 `docs/accuracy/YYYY-MM-DD.html` 로 렌더링됨. 스키마·작성 규칙은 [.claude/commands/daily-review.md](.claude/commands/daily-review.md).
 
-**네비게이션 (3 단 구조)**:
-- [`📋 예측`](https://yummyummyummy.github.io/k-ant-daily/archive.html) (`archive.html`) — 일별 아침 브리핑 아카이브
-- [`🎓 리뷰`](https://yummyummyummy.github.io/k-ant-daily/review.html) (`review.html`) — 일별 회고 리스트, 각 날짜의 `accuracy/YYYY-MM-DD.html` 상세로 진입
+**네비게이션 (2 단 구조)**:
+- [`📋 예측`](https://yummyummyummy.github.io/k-ant-daily/archive.html) (`archive.html`) — 일별 아침 브리핑 아카이브. 각 행에 `🔍 회고` 버튼이 있어 해당 날짜의 `accuracy/YYYY-MM-DD.html` 상세로 바로 진입
 - [`📊 통계`](https://yummyummyummy.github.io/k-ant-daily/accuracy.html) (`accuracy.html`) — 누적 hit rate · 신뢰도별 정확도 · 신호 기여도
 
 ---
@@ -173,7 +172,6 @@ k-ant-daily/
 ├── templates/
 │   ├── report.html.j2                  # 일간 브리핑 (모든 UI)
 │   ├── accuracy.html.j2                # 📊 통계 — 누적 지표
-│   ├── review.html.j2                  # 🎓 리뷰 — 일별 회고 리스트
 │   ├── accuracy_day.html.j2            # 일별 회고 페이지
 │   └── archive.html.j2                 # 아카이브 목록
 ├── worker/                             # Cloudflare Worker (실시간 시세 프록시)
@@ -188,9 +186,8 @@ k-ant-daily/
 │   ├── YYYY-MM-DD.summary.json         # 영구 아티팩트 (저녁 리뷰가 읽음)
 │   ├── accuracy.html                   # 📊 통계 — 누적 지표
 │   ├── accuracy/YYYY-MM-DD.html        # 일별 회고 (예측 ↔ 결과 서술 분석)
-│   ├── review.html                     # 🎓 리뷰 — 일별 회고 리스트
 │   ├── index.html                      # 최신본 사본
-│   └── archive.html                    # 📋 예측 — 날짜별 브리핑 리스트
+│   └── archive.html                    # 📋 예측 — 날짜별 브리핑 리스트 (각 행에 🔍 회고 링크)
 └── .tmp/                               # 런타임 scratch (gitignored)
     ├── news.json                       # fetch_news.py 출력
     └── summary.json                    # agent가 작성 → render 입력

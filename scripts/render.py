@@ -1057,38 +1057,6 @@ def build_accuracy_day(summary: dict, base_url: str) -> str | None:
     )
 
 
-def build_review_index(base_url: str) -> str:
-    """일별 회고 리스트 전용 페이지. 누적 통계 페이지 (accuracy.html) 의
-    '일별 상세' 섹션을 독립 페이지로 승격 — main nav 가 3 단 구조
-    (예측 / 리뷰 / 통계) 가 되면서 리뷰 엔트리포인트가 필요해짐."""
-    records = []
-    for p in sorted(DOCS.glob("*.summary.json")):
-        try:
-            data = json.loads(p.read_text(encoding="utf-8"))
-        except Exception:
-            continue
-        review = data.get("review")
-        if not review:
-            continue
-        acc = review.get("accuracy") or {}
-        date = data.get("date") or p.stem.replace(".summary", "")
-        records.append({
-            "date": date,
-            "hits":    acc.get("hits") or 0,
-            "partial": acc.get("partial") or 0,
-            "misses":  acc.get("misses") or 0,
-            "total":   acc.get("total") or 0,
-            "hit_rate": acc.get("hit_rate") or 0,
-            "has_retro": (DOCS / "accuracy" / f"{date}.html").exists(),
-        })
-    return _render_template(
-        "review.html.j2",
-        base_url=base_url,
-        records=records,
-        generated_at_display=datetime.now(KST).strftime("%Y-%m-%d %H:%M"),
-    )
-
-
 def build_archive_index(base_url: str) -> str:
     entries: list[dict] = []
     pattern = re.compile(r"^(\d{4}-\d{2}-\d{2})\.html$")
@@ -1165,9 +1133,6 @@ def main(argv: list[str]) -> int:
         archive_html = build_archive_index(base_url)
         (DOCS / "archive.html").write_text(archive_html, encoding="utf-8")
 
-        review_html = build_review_index(base_url)
-        (DOCS / "review.html").write_text(review_html, encoding="utf-8")
-
         accuracy_html = build_accuracy(base_url)
         (DOCS / "accuracy.html").write_text(accuracy_html, encoding="utf-8")
 
@@ -1178,7 +1143,7 @@ def main(argv: list[str]) -> int:
     print(f"✓ Wrote {artifact.relative_to(ROOT)}")
     print(f"✓ Updated {index.relative_to(ROOT)}")
     if not intraday:
-        print(f"✓ Updated archive.html + review.html + accuracy.html")
+        print(f"✓ Updated archive.html + accuracy.html")
     else:
         print(f"  (intraday mode — skipping archive/accuracy regeneration)")
     return 0
