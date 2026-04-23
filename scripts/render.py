@@ -366,12 +366,15 @@ def _normalize_sectors(summary: dict, now: datetime) -> None:
         sec.pop("key_points", None)  # consolidate on `news`
 
 
-def _normalize_stock_quote(stock: dict) -> None:
-    """Derive price_display, price_change_* from stock.quote. At 07:30 KST
-    (pre-market) Naver's realtime endpoint returns change=0 because today's
-    session hasn't started — in that case fall back to the 어제 intraday move
-    computed from history.closes_20d so the display shows the most recent
-    completed session's performance rather than a useless 0%."""
+def _normalize_stock_quote(stock: dict, *, pre_market: bool = False) -> None:
+    """Derive price_display, price_change_* from stock.quote.
+
+    When pre_market=True (07:30 baseline render, no review yet), we force
+    pct=0 / abs=— on every card because Naver's item endpoint at 07:30 still
+    returns yesterday's intraday delta — showing that as 'today's move' is
+    misleading. The client then overlays live values during 08:00-20:00;
+    the 20:10 review re-renders with pre_market=False so 20:00 NXT close
+    (plus 15:30 KRX close for NXT-uncovered names) sticks in the archive."""
     quote = stock.get("quote") or {}
     pct_num = quote.get("change_pct_num")
     if pct_num is None and quote.get("change_pct"):
@@ -382,13 +385,12 @@ def _normalize_stock_quote(stock: dict) -> None:
 
     change_abs_raw = quote.get("change")
 
-    # Pre-market fallback: quote says 0 → try yesterday's intraday delta from history.
-    if not pct_num:
-        closes = ((stock.get("history") or {}).get("closes_20d")) or []
-        if len(closes) >= 2 and closes[-2]:
-            prev, last = closes[-2], closes[-1]
-            pct_num = round((last - prev) / prev * 100, 2)
-            change_abs_raw = f"{abs(last - prev):,.0f}"
+    if pre_market:
+        pct_num = 0.0
+        change_abs_raw = 0
+    elif not pct_num:
+        pct_num = 0.0
+        change_abs_raw = 0
 
     if pct_num is not None:
         stock["price_change_pct_num"] = pct_num
@@ -397,20 +399,24 @@ def _normalize_stock_quote(stock: dict) -> None:
         stock["price_change_display"] = f"{sign}{pct_num:.2f}%"
     if quote.get("price"):
         stock["price_display"] = quote["price"]
-    if change_abs_raw:
+    # Always reset abs-change display — summary.json persists prior renders,
+    # and a stale "▲ 32,000" survives across re-renders if we only overwrite
+    # on truthy raw values. Treat falsy or numeric-zero as explicit no-move.
+    raw = str(change_abs_raw).strip() if change_abs_raw not in (None, "") else ""
+    try:
+        bare_num = float(raw.lstrip("+-").replace(",", "")) if raw else 0
+    except ValueError:
+        bare_num = None
+    if not raw or bare_num == 0:
+        stock["price_change_abs_display"] = "—"
+    else:
         direction = stock.get("price_direction") or quote.get("direction") or ""
-        raw = str(change_abs_raw).strip()
         bare = raw.lstrip("+-")
-        try:
-            if float(bare.replace(",", "")) == 0:
-                stock["price_change_abs_display"] = "—"
-            elif direction == "up":
-                stock["price_change_abs_display"] = f"▲ {bare}"
-            elif direction == "down":
-                stock["price_change_abs_display"] = f"▼ {bare}"
-            else:
-                stock["price_change_abs_display"] = raw
-        except ValueError:
+        if direction == "up":
+            stock["price_change_abs_display"] = f"▲ {bare}"
+        elif direction == "down":
+            stock["price_change_abs_display"] = f"▼ {bare}"
+        else:
             stock["price_change_abs_display"] = raw
 
 
@@ -470,6 +476,10 @@ def _normalize_stock_news(stock: dict, now: datetime) -> None:
 
 
 def _normalize_stocks(summary: dict, now: datetime) -> None:
+    # Pre-market = before today's session has produced a review. Once review
+    # (compute_review.py) runs at 20:10, stock.quote carries real KRX 15:30
+    # close / NXT 20:00 overlay and we should NOT zero them out.
+    pre_market = not summary.get("review")
     for stock in summary.get("stocks") or []:
         # backward-compat: accept single `owner` as `owners: [owner]`
         if stock.get("owner") and not stock.get("owners"):
@@ -483,7 +493,7 @@ def _normalize_stocks(summary: dict, now: datetime) -> None:
             stock["recommendation"] = legacy.get(stock["sentiment"], "hold")
             stock["recommendation_label"] = RECOMMENDATION_LABEL[stock["recommendation"]]
 
-        _normalize_stock_quote(stock)
+        _normalize_stock_quote(stock, pre_market=pre_market)
         _normalize_stock_signals(stock)
 
         # Forward-looking direction + one-line outlook for the card summary row.
@@ -599,7 +609,9 @@ def _build_ticker(news: dict) -> list[dict]:
 
 
 def _friends_overview(stocks: list[dict]) -> list[dict]:
-    """One card per friend-stock for the coffee banner, sorted by today's change desc."""
+    """One card per friend-stock for the coffee banner. Primary sort: today's
+    change% desc. Tiebreak: name 가나다순 — needed because pre-market all
+    pcts are 0 and we still want a stable, readable order."""
     out = [
         {
             "owners": s.get("owners") or [],
@@ -613,7 +625,7 @@ def _friends_overview(stocks: list[dict]) -> list[dict]:
         }
         for s in stocks if s.get("owners")
     ]
-    out.sort(key=lambda c: c["pct"], reverse=True)
+    out.sort(key=lambda c: (-c["pct"], c["name"]))
     return out
 
 

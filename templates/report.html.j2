@@ -1902,44 +1902,43 @@
     }
   }
 
-  // Coffee section sort policy: order is frozen at page-load time.
-  //
-  //   - Server render seeds the initial order by whatever pct the baseline
-  //     snapshot has (07:30 전일 종가 / 20:00 NXT 종가 archive).
-  //   - On the first successful live poll, we snap-sort to that moment's
-  //     pct — so a user who opens the page during KRX hours sees "가장 많이
-  //     오른 종목이 위" for the current %, not for the baseline.
-  //   - After that single client-side sort, cards stay put. Price/% values
-  //     keep refreshing in place; ranks don't thrash.
-  let friendsSortedAtLoad = false;
-
+  // Coffee section sort policy: realtime resort on every poll during
+  // 08:00-20:00. Pre-market (before 08:00) there's no polling and all cards
+  // are 0% — server renders them in 가나다순. During the live window we
+  // read each card's displayed pct (mixes NXT-covered live values with
+  // NXT-uncovered baselines) and re-sort pct desc, tiebreak by Korean name.
+  // FLIP animation + hover/interaction guards keep the movement smooth.
   function reorderFriendCards(data) {
-    if (friendsSortedAtLoad) return;
     const container = document.getElementById("friend-cards");
     if (!container) return;
     const cards = [...container.querySelectorAll(".friend-card[data-code]")];
-    if (cards.length < 2) { friendsSortedAtLoad = true; return; }
+    if (cards.length < 2) return;
 
-    // Sort by each card's currently-displayed pct, not the polling response.
-    // The response (`data`) may be NXT-only (14/23 covered) — reading the
-    // DOM gives us the freshest value per card: live NXT for listed codes,
-    // server-baseline for the rest. That matches what the user visibly
-    // sees after the first applyQuote pass.
+    // Back off if the user is mid-interaction — don't yank a card out from
+    // under a hover/tap.
+    if (cards.some((c) => c.matches(":hover") || c.querySelector("details[open]") || c.querySelector(".owners-wrap.open"))) {
+      return;
+    }
+
     const withPct = cards.map((el, i) => {
       const txt = (el.querySelector(".pct")?.textContent || "").trim();
       const n = parseFloat(txt.replace("%", "").replace("+", ""));
+      const name = el.querySelector(".stock-name")?.textContent?.trim() || "";
       return {
         el,
         code: el.dataset.code,
         pct: isNaN(n) ? -Infinity : n,
+        name,
         origIdx: i,
       };
     });
-    withPct.sort((a, b) => b.pct - a.pct || a.origIdx - b.origIdx);
-
-    // Commit the freeze regardless of whether the order actually changed —
-    // the intent is "use this moment's order from here on".
-    friendsSortedAtLoad = true;
+    // Primary: pct desc. Tiebreak: name asc (가나다) — keeps pre-market
+    // and tied mid-session ranks stable across polls.
+    withPct.sort((a, b) => {
+      if (b.pct !== a.pct) return b.pct - a.pct;
+      if (a.name && b.name) return a.name.localeCompare(b.name, "ko");
+      return a.origIdx - b.origIdx;
+    });
 
     const sameOrder = withPct.every((x, i) => x.el === cards[i]);
     if (sameOrder) return;
