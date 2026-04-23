@@ -6649,12 +6649,16 @@
 
   async function refreshNxt() {
     if (!NXT_API) return;
-    // Only poll during NXT active hours: 08:00 ~ 15:30 KST weekdays.
+    // NXT trades in three contiguous sessions on weekdays:
+    //   08:00~09:00  pre-market (gap discovery)
+    //   09:00~15:30  regular (alongside KRX)
+    //   15:30~20:00  after-hours (post-close sentiment)
+    // Poll across all three — review runs at 20:10 right after NXT closes.
     const now = kstNow();
     const day = now.getDay();           // 0=Sun, 6=Sat
     if (day === 0 || day === 6) return;
     const mm = now.getHours() * 60 + now.getMinutes();
-    if (mm < 8 * 60 || mm > 15 * 60 + 30) return;
+    if (mm < 8 * 60 || mm > 20 * 60) return;
     const articles = [...document.querySelectorAll("article.stock[data-code]")];
     if (!articles.length) return;
     const codes = articles.map((a) => a.dataset.code).filter((c) => /^\d{6}$/.test(c));
