@@ -6424,27 +6424,44 @@
     }
   }
 
-  // Coffee-section quote refresh. `source` is "krx" (uses /quote) or "nxt"
-  // (uses /nxt-quotes). Both endpoints now return the same shape
-  // ({price, change, change_pct, direction}) so downstream DOM updates don't
-  // need to branch.
+  // Coffee-section quote refresh.
+  //   source="krx" (09:00-15:30): fetch /quote only — all 24 codes covered.
+  //   source="nxt" (08:00-09:00, 15:30-20:00): fetch BOTH /nxt-quotes and
+  //     /quote in parallel. NXT-listed codes (~20/24) use live NXT; the 4
+  //     non-listed (코아스템켐온·앱클론·KODEX 코스닥150·셀리드) fall back
+  //     to KRX — before 09:00 = yesterday's close (0%), after 15:30 = today's
+  //     15:30 close. Keeps the whole section coherent.
   async function refreshQuotesFrom(source) {
-    const api = source === "nxt" ? NXT_API : QUOTE_API;
-    if (!api) return;
+    if (!QUOTE_API) return;
     const cards = document.querySelectorAll(".friend-card[data-code]");
     if (!cards.length) return;
     const codes = [...cards].map((el) => el.dataset.code);
-    const endpoint = source === "nxt"
-      ? api + "?codes=" + encodeURIComponent(codes.join(","))
-      : api + "?codes=" + encodeURIComponent(codes.join(","));
+    const codesParam = encodeURIComponent(codes.join(","));
     try {
-      const res = await fetch(endpoint, { cache: "no-store" });
-      if (!res.ok) throw new Error("status " + res.status);
-      const data = await res.json();
+      const krxPromise = fetch(QUOTE_API + "?codes=" + codesParam, { cache: "no-store" });
+      const nxtPromise = source === "nxt" && NXT_API
+        ? fetch(NXT_API + "?codes=" + codesParam, { cache: "no-store" })
+        : Promise.resolve(null);
+      const [krxRes, nxtRes] = await Promise.all([krxPromise, nxtPromise]);
+
+      let krxData = {};
+      if (krxRes && krxRes.ok) krxData = await krxRes.json();
+
+      let nxtData = {};
+      if (nxtRes && nxtRes.ok) nxtData = await nxtRes.json();
+
+      // Merge per-code: NXT takes priority when present, KRX is the fallback.
+      const data = {};
+      codes.forEach((c) => {
+        const nxt = nxtData[c];
+        if (nxt && nxt.price != null) data[c] = nxt;
+        else if (krxData[c] && krxData[c].price != null) data[c] = krxData[c];
+      });
+
       let applied = 0;
       cards.forEach((card) => {
         const q = data[card.dataset.code];
-        if (q && q.price != null) { applyQuote(card, q); applied += 1; }
+        if (q) { applyQuote(card, q); applied += 1; }
       });
       if (applied > 0) {
         updateCoffeeBanner(cards, data);

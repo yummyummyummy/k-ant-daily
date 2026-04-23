@@ -318,11 +318,15 @@ async function fetchAllStockNews(codes) {
 // list pages (상승·하락·시총). Scrape all three, merge by stock code.
 // ─────────────────────────────────────────────────────────────────────
 
-const NXT_PAGES = [
-  "https://finance.naver.com/sise/nxt_sise_rise.naver",
-  "https://finance.naver.com/sise/nxt_sise_fall.naver",
-  "https://finance.naver.com/sise/nxt_sise_market_sum.naver",
-];
+// Paginated NXT market-cap listings cover all ~644 NXT-listed stocks
+// (KOSPI ~359 / KOSDAQ ~285 as of 2026-04). The rise/fall pages are subsets
+// of the same rows and redundant now that we paginate market_sum.
+const NXT_PAGES = (() => {
+  const urls = [];
+  for (let p = 1; p <= 8; p++) urls.push(`https://finance.naver.com/sise/nxt_sise_market_sum.naver?sosok=0&page=${p}`);
+  for (let p = 1; p <= 6; p++) urls.push(`https://finance.naver.com/sise/nxt_sise_market_sum.naver?sosok=1&page=${p}`);
+  return urls;
+})();
 
 async function fetchNxtPage(url) {
   const res = await fetch(url, {
