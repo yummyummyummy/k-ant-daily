@@ -1182,8 +1182,18 @@
     </div>
     <div class="rv-sub">
       방향 정확도 {{ (review.accuracy.directional_accuracy * 100) | round(0) | int }}%
-      {% if review.session_change.kospi %} · KOSPI {{ review.session_change.kospi }}{% endif %}
-      {% if review.session_change.kosdaq %} · KOSDAQ {{ review.session_change.kosdaq }}{% endif %}
+      {% if review.session_change.kospi %}
+        · KOSPI
+        {% if review.session_change.kospi is mapping %}
+          {{ review.session_change.kospi.value or review.session_change.kospi.raw or '' }}{% if review.session_change.kospi.change_pct %} <span class="{{ review.session_change.kospi.direction or 'flat' }}">({{ review.session_change.kospi.change_pct }})</span>{% endif %}
+        {% else %}{{ review.session_change.kospi }}{% endif %}
+      {% endif %}
+      {% if review.session_change.kosdaq %}
+        · KOSDAQ
+        {% if review.session_change.kosdaq is mapping %}
+          {{ review.session_change.kosdaq.value or review.session_change.kosdaq.raw or '' }}{% if review.session_change.kosdaq.change_pct %} <span class="{{ review.session_change.kosdaq.direction or 'flat' }}">({{ review.session_change.kosdaq.change_pct }})</span>{% endif %}
+        {% else %}{{ review.session_change.kosdaq }}{% endif %}
+      {% endif %}
     </div>
     <div class="rv-breakdown">
       <span class="rv-chip hit">✅ 적중 {{ review.accuracy.hits }}</span>
