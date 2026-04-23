@@ -2240,18 +2240,12 @@
     });
   }
 
+  // NXT freeze semantics: we treat 08:45 KST as the single "second prediction"
+  // moment of the day. After it, both group placement and chip value stay
+  // frozen — no further polling. Scheduling logic lives in init(); this
+  // function is just "fetch current NXT and apply everything".
   async function refreshNxt() {
     if (!NXT_API) return;
-    // NXT trades in three contiguous sessions on weekdays:
-    //   08:00~09:00  pre-market (gap discovery)
-    //   09:00~15:30  regular (alongside KRX)
-    //   15:30~20:00  after-hours (post-close sentiment)
-    // Poll across all three — review runs at 20:10 right after NXT closes.
-    const now = kstNow();
-    const day = now.getDay();           // 0=Sun, 6=Sat
-    if (day === 0 || day === 6) return;
-    const mm = now.getHours() * 60 + now.getMinutes();
-    if (mm < 8 * 60 || mm > 20 * 60) return;
     const articles = [...document.querySelectorAll("article.stock[data-code]")];
     if (!articles.length) return;
     const codes = articles.map((a) => a.dataset.code).filter((c) => /^\d{6}$/.test(c));
@@ -2263,7 +2257,7 @@
       const data = await res.json();
       articles.forEach((a) => applyNxtAdjustment(a, data[a.dataset.code]));
     } catch (err) {
-      // Silent — baseline stays visible. Next tick retries.
+      // Silent — baseline stays visible.
     }
   }
 
@@ -2343,6 +2337,42 @@
     if (closeBtn) closeBtn.addEventListener("click", () => dialog.close());
   });
 
+  // NXT scheduler — fires refreshNxt on a strict weekday 08:00→08:45 window,
+  // with the 08:45 firing being the "freeze" event. After 08:45 no more work
+  // is scheduled; the page stays on the locked snapshot until reload.
+  function scheduleNxt() {
+    const now = kstNow();
+    const day = now.getDay();
+    if (day === 0 || day === 6) return;  // weekend — no NXT
+    const NXT_OPEN_MIN   = 8 * 60;
+    const NXT_CUTOFF_MIN = 8 * 60 + 45;   // 08:45 = freeze boundary
+    const mm = now.getHours() * 60 + now.getMinutes();
+
+    // Already past the freeze point: single fire = current NXT locks in.
+    if (mm >= NXT_CUTOFF_MIN) {
+      setTimeout(refreshNxt, 3000);
+      return;
+    }
+
+    // Before NXT opens: wait out the gap, then recurse into the same scheduler
+    // at 08:00 so the poll loop + cutoff timer start from a clean slate.
+    if (mm < NXT_OPEN_MIN) {
+      const waitMs = (NXT_OPEN_MIN - mm) * 60_000;
+      setTimeout(scheduleNxt, waitMs);
+      return;
+    }
+
+    // 08:00 ≤ mm < 08:45: poll every 5 min; cutoff timer guarantees a freeze
+    // fire at exactly 08:45 and tears down the interval.
+    setTimeout(refreshNxt, 3000);
+    const tick = setInterval(refreshNxt, NXT_POLL_MS);
+    const msToCutoff = (NXT_CUTOFF_MIN - mm) * 60_000;
+    setTimeout(() => {
+      clearInterval(tick);
+      refreshNxt();  // final freeze at 08:45
+    }, msToCutoff);
+  }
+
   function init() {
     // Archive pages (rendered date ≠ today) freeze — no polling, no ticker
     // refresh. The snapshot baked into the HTML is the historical truth for
@@ -2378,12 +2408,20 @@
       setTimeout(refreshStockNews, 2000);
       setInterval(refreshStockNews, NEWS_POLL_MS);
     }
-    // NXT pre-open / intraday adjustment — polls /nxt-quotes on the same
-    // 5-min cadence, self-gated to 08:00-15:30 KST on weekdays. Shifts each
-    // card's group placement based on NXT gap vs yesterday's KRX close.
+    // NXT "second prediction" — one-shot freeze at 08:45 KST.
+    //
+    //   07:30   baseline (server-rendered, no NXT)
+    //   08:00   NXT opens; chip can start appearing on cards
+    //   08:45   single refresh → groups re-sort, chip value locks in
+    //   >08:45  frozen — no further polling, no value updates
+    //
+    // Behavior by load time (weekday only — weekends/archive: do nothing):
+    //   mm <  08:00  ─ wait until 08:00, poll every 5 min until 08:45, then
+    //                  final run at exactly 08:45 and stop.
+    //   08:00 ≤ mm < 08:45  ─ poll every 5 min, plus final run at 08:45, stop.
+    //   mm ≥ 08:45          ─ single fire (current NXT = the locked snapshot).
     if (NXT_API) {
-      setTimeout(refreshNxt, 3000);
-      setInterval(refreshNxt, NXT_POLL_MS);
+      scheduleNxt();
     }
     // Re-check market-close boundary every minute; stop friend-stock polling after 15:30.
     setInterval(() => {

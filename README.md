@@ -261,6 +261,16 @@ wrangler deploy        # 최초 1회 wrangler login 필요
 엔드포인트:
 - `GET /quote?codes=005930,000660,...` — 종목 시세 (Naver realtime polling)
 - `GET /ticker?items=KOSPI,KOSDAQ,USDKRW,BTC,ETH` — 지표·FX·암호화폐 통합
+- `GET /stock-news?codes=...` — 종목별 뉴스 (EUC-KR 디코드, 5분 edge 캐시)
+- `GET /nxt-quotes?codes=...` — NXT 대체거래 등락률 (2분 edge 캐시)
+
+### NXT 2차 예측 (08:45 freeze)
+
+하루에 예측이 **두 번** 반영됨:
+1. **07:30** — 서버 사이드 baseline (launchd → `/daily-report`). NXT 미개장 상태.
+2. **08:45** — 브라우저가 `/nxt-quotes` 한 번 더 fetch해서 NXT pre-open gap 을 카드에 반영. 그룹(상승 기대/관망/하락 경계 등) 재배치 + "장전엔 'X' 였는데 NXT +Y%로 'Z' 상향" 주석 + NXT 칩.
+
+08:45 이후엔 **그룹 위치도 NXT 칩 값도 동결** — 추가 폴링 없음. 08:45 이전에 페이지를 열어두면 브라우저가 5분마다 poll 하다가 08:45 에 최종 freeze, 그 이후에 연 경우엔 로드 직후 1회 fetch 로 freeze. 주말·아카이브는 스킵.
 
 상세: [worker/README.md](worker/README.md).
 
