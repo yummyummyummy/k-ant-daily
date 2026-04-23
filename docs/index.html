@@ -6071,19 +6071,21 @@
     const cards = [...container.querySelectorAll(".friend-card[data-code]")];
     if (cards.length < 2) { friendsSortedAtLoad = true; return; }
 
-    // Require a pct for every card before committing — if some codes haven't
-    // resolved yet, hold the sort so partial data doesn't lock a bad order.
-    const allResolved = cards.every((el) =>
-      typeof data[el.dataset.code]?.change_pct === "number"
-    );
-    if (!allResolved) return;
-
-    const withPct = cards.map((el, i) => ({
-      el,
-      code: el.dataset.code,
-      pct: data[el.dataset.code].change_pct,
-      origIdx: i,
-    }));
+    // Sort by each card's currently-displayed pct, not the polling response.
+    // The response (`data`) may be NXT-only (14/23 covered) — reading the
+    // DOM gives us the freshest value per card: live NXT for listed codes,
+    // server-baseline for the rest. That matches what the user visibly
+    // sees after the first applyQuote pass.
+    const withPct = cards.map((el, i) => {
+      const txt = (el.querySelector(".pct")?.textContent || "").trim();
+      const n = parseFloat(txt.replace("%", "").replace("+", ""));
+      return {
+        el,
+        code: el.dataset.code,
+        pct: isNaN(n) ? -Infinity : n,
+        origIdx: i,
+      };
+    });
     withPct.sort((a, b) => b.pct - a.pct || a.origIdx - b.origIdx);
 
     // Commit the freeze regardless of whether the order actually changed —
