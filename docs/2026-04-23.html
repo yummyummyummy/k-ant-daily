@@ -759,9 +759,35 @@
     background: var(--bg); border: 1px solid var(--accent);
     white-space: nowrap; font-variant-numeric: tabular-nums;
   }
+  /* NXT pre-open gap chip — added by client JS when NXT shows direction.
+     Red for up / blue for down (Korean market convention). */
+  article.stock .nxt-chip {
+    font-size: 11px; font-weight: 700;
+    padding: 1px 7px; border-radius: 4px;
+    background: var(--bg); border: 1px solid var(--border);
+    white-space: nowrap; font-variant-numeric: tabular-nums;
+  }
+  article.stock .nxt-chip.up   { color: var(--pos); border-color: var(--pos); }
+  article.stock .nxt-chip.down { color: var(--neg); border-color: var(--neg); }
+  article.stock .nxt-chip.flat { color: var(--muted); }
+  /* Adjustment annotation line — shown when NXT moves the card to a
+     different group than 07:30 baseline. Placed between .s-outlook and
+     .s-foot inside the trigger. */
+  article.stock .nxt-adjust {
+    font-size: 12px; color: var(--muted); line-height: 1.4;
+    margin-top: 6px;
+    padding: 4px 8px; border-left: 2px solid var(--accent);
+    background: linear-gradient(90deg, rgba(14,165,233,0.06), transparent);
+  }
+  article.stock .nxt-adjust b { color: var(--fg); font-weight: 700; }
+  article.stock .nxt-adjust .arrow { color: var(--accent); font-weight: 700; }
 
   /* STOCK GROUPING — action-first layout (매수/관망/매도 buckets) */
   .stock-group { margin-bottom: 20px; }
+  /* All 5 groups are always rendered so client JS can move cards between
+     them after NXT adjustment; hide empty groups via :has() — falls out of
+     the layout without DOM teardown. */
+  .stock-group:not(:has(article.stock)) { display: none; }
   .stock-group-head {
     display: flex; align-items: baseline; gap: 6px;
     font-size: 13px; font-weight: 700;
@@ -2022,14 +2048,14 @@
       </div>
     </div>
 
-    <div class="stock-group accent-strong_buy">
+    <div class="stock-group accent-strong_buy" data-group-key="strong_buy" data-group-label="강한 상승 기대">
       <div class="stock-group-head">
         <span class="g-emoji">🔥</span>
         <span class="g-label">강한 상승 기대</span>
-        <span class="g-count">· 2건</span>
+        <span class="g-count" data-original-count="2">· 2건</span>
       </div>
       <div class="stock-grid">
-    <article class="stock" data-code="000660">
+    <article class="stock" data-code="000660" data-baseline-rec="strong_buy" data-baseline-label="풀매수">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="SK하이닉스 상세 보기">
         <div class="s-head">
           <span class="name">SK하이닉스</span>
@@ -2235,7 +2261,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="267260">
+    <article class="stock" data-code="267260" data-baseline-rec="strong_buy" data-baseline-label="풀매수">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="HD현대일렉트릭 상세 보기">
         <div class="s-head">
           <span class="name">HD현대일렉트릭</span>
@@ -2439,14 +2465,14 @@
     </article>
       </div>
     </div>
-    <div class="stock-group accent-buy">
+    <div class="stock-group accent-buy" data-group-key="buy" data-group-label="상승 기대">
       <div class="stock-group-head">
         <span class="g-emoji">🟢</span>
         <span class="g-label">상승 기대</span>
-        <span class="g-count">· 10건</span>
+        <span class="g-count" data-original-count="10">· 10건</span>
       </div>
       <div class="stock-grid">
-    <article class="stock" data-code="009540">
+    <article class="stock" data-code="009540" data-baseline-rec="buy" data-baseline-label="매수">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="HD한국조선해양 상세 보기">
         <div class="s-head">
           <span class="name">HD한국조선해양</span>
@@ -2649,7 +2675,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="329180">
+    <article class="stock" data-code="329180" data-baseline-rec="buy" data-baseline-label="매수">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="HD현대중공업 상세 보기">
         <div class="s-head">
           <span class="name">HD현대중공업</span>
@@ -2852,7 +2878,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="012450">
+    <article class="stock" data-code="012450" data-baseline-rec="buy" data-baseline-label="매수">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="한화에어로스페이스 상세 보기">
         <div class="s-head">
           <span class="name">한화에어로스페이스</span>
@@ -3058,7 +3084,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="035720">
+    <article class="stock" data-code="035720" data-baseline-rec="buy" data-baseline-label="매수">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="카카오 상세 보기">
         <div class="s-head">
           <span class="name">카카오</span>
@@ -3250,7 +3276,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="042700">
+    <article class="stock" data-code="042700" data-baseline-rec="buy" data-baseline-label="매수">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="한미반도체 상세 보기">
         <div class="s-head">
           <span class="name">한미반도체</span>
@@ -3444,7 +3470,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="028050">
+    <article class="stock" data-code="028050" data-baseline-rec="buy" data-baseline-label="매수">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="삼성E&amp;A 상세 보기">
         <div class="s-head">
           <span class="name">삼성E&amp;A</span>
@@ -3603,7 +3629,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="233740">
+    <article class="stock" data-code="233740" data-baseline-rec="buy" data-baseline-label="매수">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="KODEX 코스닥150 레버리지 상세 보기">
         <div class="s-head">
           <span class="name">KODEX 코스닥150 레버리지</span>
@@ -3693,7 +3719,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="034230">
+    <article class="stock" data-code="034230" data-baseline-rec="buy" data-baseline-label="매수">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="파라다이스 상세 보기">
         <div class="s-head">
           <span class="name">파라다이스</span>
@@ -3830,7 +3856,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="166480">
+    <article class="stock" data-code="166480" data-baseline-rec="buy" data-baseline-label="매수">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="코아스템켐온 상세 보기">
         <div class="s-head">
           <span class="name">코아스템켐온</span>
@@ -3927,7 +3953,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="083450">
+    <article class="stock" data-code="083450" data-baseline-rec="buy" data-baseline-label="매수">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="GST 상세 보기">
         <div class="s-head">
           <span class="name">GST</span>
@@ -4010,14 +4036,14 @@
     </article>
       </div>
     </div>
-    <div class="stock-group accent-sell">
+    <div class="stock-group accent-sell" data-group-key="sell" data-group-label="하락 경계">
       <div class="stock-group-head">
         <span class="g-emoji">🔴</span>
         <span class="g-label">하락 경계</span>
-        <span class="g-count">· 2건</span>
+        <span class="g-count" data-original-count="2">· 2건</span>
       </div>
       <div class="stock-grid">
-    <article class="stock" data-code="005380">
+    <article class="stock" data-code="005380" data-baseline-rec="sell" data-baseline-label="매도">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="현대차 상세 보기">
         <div class="s-head">
           <span class="name">현대차</span>
@@ -4209,7 +4235,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="299660">
+    <article class="stock" data-code="299660" data-baseline-rec="sell" data-baseline-label="매도">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="셀리드 상세 보기">
         <div class="s-head">
           <span class="name">셀리드</span>
@@ -4301,14 +4327,23 @@
     </article>
       </div>
     </div>
-    <div class="stock-group accent-hold">
+    <div class="stock-group accent-strong_sell" data-group-key="strong_sell" data-group-label="강한 하락 경계">
+      <div class="stock-group-head">
+        <span class="g-emoji">⛔</span>
+        <span class="g-label">강한 하락 경계</span>
+        <span class="g-count" data-original-count="0">· 0건</span>
+      </div>
+      <div class="stock-grid">
+      </div>
+    </div>
+    <div class="stock-group accent-hold" data-group-key="hold" data-group-label="관망">
       <div class="stock-group-head">
         <span class="g-emoji">🟡</span>
         <span class="g-label">관망</span>
-        <span class="g-count">· 9건</span>
+        <span class="g-count" data-original-count="9">· 9건</span>
       </div>
       <div class="stock-grid">
-    <article class="stock" data-code="005930">
+    <article class="stock" data-code="005930" data-baseline-rec="hold" data-baseline-label="관망">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="삼성전자 상세 보기">
         <div class="s-head">
           <span class="name">삼성전자</span>
@@ -4505,7 +4540,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="196170">
+    <article class="stock" data-code="196170" data-baseline-rec="hold" data-baseline-label="관망">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="알테오젠 상세 보기">
         <div class="s-head">
           <span class="name">알테오젠</span>
@@ -4688,7 +4723,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="079550">
+    <article class="stock" data-code="079550" data-baseline-rec="hold" data-baseline-label="관망">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="LIG디펜스앤에어로스페이스 상세 보기">
         <div class="s-head">
           <span class="name">LIG디펜스앤에어로스페이스</span>
@@ -4883,7 +4918,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="096770">
+    <article class="stock" data-code="096770" data-baseline-rec="hold" data-baseline-label="관망">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="SK이노베이션 상세 보기">
         <div class="s-head">
           <span class="name">SK이노베이션</span>
@@ -5075,7 +5110,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="352820">
+    <article class="stock" data-code="352820" data-baseline-rec="hold" data-baseline-label="관망">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="하이브 상세 보기">
         <div class="s-head">
           <span class="name">하이브</span>
@@ -5274,7 +5309,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="174900">
+    <article class="stock" data-code="174900" data-baseline-rec="hold" data-baseline-label="관망">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="앱클론 상세 보기">
         <div class="s-head">
           <span class="name">앱클론</span>
@@ -5371,7 +5406,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="298380">
+    <article class="stock" data-code="298380" data-baseline-rec="hold" data-baseline-label="관망">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="에이비엘바이오 상세 보기">
         <div class="s-head">
           <span class="name">에이비엘바이오</span>
@@ -5554,7 +5589,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="310210">
+    <article class="stock" data-code="310210" data-baseline-rec="hold" data-baseline-label="관망">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="보로노이 상세 보기">
         <div class="s-head">
           <span class="name">보로노이</span>
@@ -5707,7 +5742,7 @@
         </div>
       </dialog>
     </article>
-    <article class="stock" data-code="445680">
+    <article class="stock" data-code="445680" data-baseline-rec="hold" data-baseline-label="관망">
       <button type="button" class="stock-trigger" aria-haspopup="dialog" aria-label="큐리옥스바이오시스템즈 상세 보기">
         <div class="s-head">
           <span class="name">큐리옥스바이오시스템즈</span>
@@ -5805,11 +5840,13 @@
   const QUOTE_API      = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/quote";
   const TICKER_API     = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/ticker";
   const STOCK_NEWS_API = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/stock-news";
+  const NXT_API        = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/nxt-quotes";
   const TICKER_ITEMS   = ["KOSPI", "KOSDAQ", "USDKRW", "BTC", "ETH"];
   // ────────────────────────────────────────────────────────────────
 
   const POLL_MS = 60_000;
   const NEWS_POLL_MS = 5 * 60_000;       // every 5 min on a live page
+  const NXT_POLL_MS  = 5 * 60_000;       // NXT pre-open + continuous session
   const MARKET_OPEN_MIN  = 9 * 60;       // 09:00 KST
   const MARKET_CLOSE_MIN = 15 * 60 + 30; // 15:30 KST
 
@@ -6167,6 +6204,141 @@
     }
   }
 
+  // ── NXT (pre-open 대체거래소) adjustment ─────────────────────────────
+  // 07:30 briefing baseline → NXT shows significant gap → client JS
+  // re-classifies the card to a matching group and annotates the shift.
+  // Pure DOM mutation, no git commit. Mirrors the news-refresh pattern.
+
+  // Step delta based on NXT change%. Mirrors the threshold table documented
+  // in daily-report.md. Returned integer is # of steps to move along
+  // REC_ORDER (positive = more bullish, negative = more bearish).
+  const REC_ORDER = ["strong_sell", "sell", "hold", "buy", "strong_buy"];
+  const REC_LABEL = {
+    strong_sell: "강한 하락 경계", sell: "하락 경계",
+    hold: "관망",
+    buy: "상승 기대", strong_buy: "강한 상승 기대",
+  };
+  function nxtSteps(pct) {
+    if (pct >= 3)    return 2;
+    if (pct >= 1.5)  return 1;
+    if (pct <= -3)   return -2;
+    if (pct <= -1.5) return -1;
+    return 0;
+  }
+  function clampIdx(i) { return Math.max(0, Math.min(REC_ORDER.length - 1, i)); }
+
+  function applyNxtAdjustment(article, entry) {
+    // Remove any previous NXT DOM (idempotent — poll may run multiple times).
+    article.querySelectorAll(".nxt-chip, .nxt-adjust").forEach((el) => el.remove());
+    if (!entry) return;
+    const pct = entry.change_pct;
+    const dir = entry.direction;
+    // 1) NXT chip in s-head — always show if we have data (even flat).
+    const head = article.querySelector(".s-head");
+    if (head) {
+      const chip = document.createElement("span");
+      chip.className = "nxt-chip " + (dir || "flat");
+      chip.title = "NXT 대체거래 현재 등락률";
+      const sign = pct > 0 ? "+" : "";
+      const arrow = pct >= 1.5 ? "↑" : pct <= -1.5 ? "↓" : "—";
+      chip.textContent = `NXT ${arrow} ${sign}${pct.toFixed(2)}%`;
+      head.appendChild(chip);
+    }
+    // 2) Recommendation adjustment — step along REC_ORDER.
+    const baseline = article.dataset.baselineRec;
+    const baselineIdx = REC_ORDER.indexOf(baseline);
+    if (baselineIdx < 0) return;
+    const steps = nxtSteps(pct);
+    if (steps === 0) return;  // no group change needed
+    const adjustedIdx = clampIdx(baselineIdx + steps);
+    if (adjustedIdx === baselineIdx) return;  // already capped at same pos
+    const adjustedRec = REC_ORDER[adjustedIdx];
+    const baselineLabel = article.dataset.baselineLabel || REC_LABEL[baseline];
+    const adjustedLabel = REC_LABEL[adjustedRec];
+    // 3) Annotation line "장전엔 'X' 였는데 NXT Y%로 'Z' 상/하향"
+    const trigger = article.querySelector(".stock-trigger");
+    const foot    = article.querySelector(".s-foot");
+    if (trigger) {
+      const note = document.createElement("div");
+      note.className = "nxt-adjust";
+      const shiftWord = adjustedIdx > baselineIdx ? "상향" : "하향";
+      const arrow = adjustedIdx > baselineIdx ? "↗" : "↘";
+      const sign = pct > 0 ? "+" : "";
+      note.innerHTML = `<span class="arrow">${arrow}</span> 장전엔 '<b>${baselineLabel}</b>' 였는데 NXT ${sign}${pct.toFixed(2)}%로 '<b>${adjustedLabel}</b>' ${shiftWord}`;
+      if (foot) trigger.insertBefore(note, foot);
+      else trigger.appendChild(note);
+    }
+    // 4) Move the card to the adjusted group.
+    const targetGroup = document.querySelector(`.stock-group[data-group-key="${adjustedRec}"] .stock-grid`);
+    if (targetGroup && !targetGroup.contains(article)) {
+      targetGroup.appendChild(article);
+    }
+    updateGroupCounts();
+    updateSnapshotCounts();
+  }
+
+  function updateGroupCounts() {
+    document.querySelectorAll(".stock-group").forEach((group) => {
+      const n = group.querySelectorAll("article.stock").length;
+      const countEl = group.querySelector(".g-count");
+      if (countEl) countEl.textContent = "· " + n + "건";
+    });
+  }
+
+  function updateSnapshotCounts() {
+    // Re-count articles per data-group-key, reflect into .portfolio-snapshot
+    const counts = { strong_buy: 0, buy: 0, hold: 0, sell: 0, strong_sell: 0 };
+    document.querySelectorAll(".stock-group[data-group-key]").forEach((g) => {
+      const k = g.dataset.groupKey;
+      if (k in counts) counts[k] = g.querySelectorAll("article.stock").length;
+    });
+    const map = {
+      "up-strong":   counts.strong_buy,
+      "up":          counts.buy,
+      "flat":        counts.hold,
+      "down":        counts.sell,
+      "down-strong": counts.strong_sell,
+    };
+    document.querySelectorAll(".portfolio-snapshot .ps-dir").forEach((chip) => {
+      for (const cls in map) {
+        if (chip.classList.contains(cls)) {
+          const b = chip.querySelector("b");
+          if (b) b.textContent = map[cls];
+          // hide chip when 0, show when >0
+          chip.style.display = map[cls] > 0 ? "" : "none";
+          break;
+        }
+      }
+    });
+  }
+
+  async function refreshNxt() {
+    if (!NXT_API) return;
+    // NXT trades in three contiguous sessions on weekdays:
+    //   08:00~09:00  pre-market (gap discovery)
+    //   09:00~15:30  regular (alongside KRX)
+    //   15:30~20:00  after-hours (post-close sentiment)
+    // Poll across all three — review runs at 20:10 right after NXT closes.
+    const now = kstNow();
+    const day = now.getDay();           // 0=Sun, 6=Sat
+    if (day === 0 || day === 6) return;
+    const mm = now.getHours() * 60 + now.getMinutes();
+    if (mm < 8 * 60 || mm > 20 * 60) return;
+    const articles = [...document.querySelectorAll("article.stock[data-code]")];
+    if (!articles.length) return;
+    const codes = articles.map((a) => a.dataset.code).filter((c) => /^\d{6}$/.test(c));
+    if (!codes.length) return;
+    try {
+      const url = NXT_API + "?codes=" + encodeURIComponent(codes.join(","));
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) return;
+      const data = await res.json();
+      articles.forEach((a) => applyNxtAdjustment(a, data[a.dataset.code]));
+    } catch (err) {
+      // Silent — baseline stays visible. Next tick retries.
+    }
+  }
+
   async function refreshQuotes() {
     if (!QUOTE_API) return;
     const cards = document.querySelectorAll(".friend-card[data-code]");
@@ -6277,6 +6449,13 @@
     if (STOCK_NEWS_API) {
       setTimeout(refreshStockNews, 2000);
       setInterval(refreshStockNews, NEWS_POLL_MS);
+    }
+    // NXT pre-open / intraday adjustment — polls /nxt-quotes on the same
+    // 5-min cadence, self-gated to 08:00-15:30 KST on weekdays. Shifts each
+    // card's group placement based on NXT gap vs yesterday's KRX close.
+    if (NXT_API) {
+      setTimeout(refreshNxt, 3000);
+      setInterval(refreshNxt, NXT_POLL_MS);
     }
     // Re-check market-close boundary every minute; stop friend-stock polling after 15:30.
     setInterval(() => {

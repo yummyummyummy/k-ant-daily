@@ -1076,8 +1076,17 @@ def main(argv: list[str]) -> int:
     date_key = filename.removesuffix(".html")
     artifact = persist_summary_artifact(summary, date_key)
 
+    # index.html = MOST RECENT dated report (not necessarily the one we just
+    # rendered). Prevents a backfill render for 2026-04-22 from overwriting
+    # index with yesterday's content when 2026-04-23 already exists.
     index = DOCS / "index.html"
-    shutil.copyfile(dated, index)
+    _dated_name = re.compile(r"^(\d{4}-\d{2}-\d{2})\.html$")
+    _latest = None
+    for p in DOCS.glob("*.html"):
+        m = _dated_name.match(p.name)
+        if m and (_latest is None or m.group(1) > _latest[0]):
+            _latest = (m.group(1), p)
+    shutil.copyfile(_latest[1] if _latest else dated, index)
 
     if not intraday:
         # Per-day retrospective FIRST — its existence on disk drives the
