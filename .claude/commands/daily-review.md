@@ -8,7 +8,8 @@ description: Post-market review — compare morning prediction vs actual close
 
 입력:
 - `docs/YYYY-MM-DD.summary.json` — 오늘 아침 예측 아티팩트 (render.py가 자동 생성해 커밋해 둠)
-- NXT 마감 후 스크랩한 실제 종가 (fetch_news.py를 evening에 다시 돌리면 quote에 오늘 종가 들어옴)
+- KRX 15:30 종가 (fetch_news.py 재실행 → news.json 의 stock quote) — 적중률 계산에 사용
+- NXT 20:00 종가 (compute_review.py 가 Worker `/nxt-quotes` 호출) — 아카이브 표시에 overlay, 커피 섹션·종목 카드의 "오늘 움직임" 이 full-day (KRX + NXT after-hours) 반영
 
 출력:
 - 같은 URL `docs/YYYY-MM-DD.html` 에 리뷰 배너 + 종목별 적중 뱃지 + "오늘 세션 결과" 블록 덧씌움

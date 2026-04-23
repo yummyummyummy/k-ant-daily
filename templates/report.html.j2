@@ -2314,8 +2314,13 @@
       refreshQuotes();
     } else if (mm >= 8 * 60 && mm < 20 * 60) {
       refreshQuotesNxt();
+    } else if (mm >= 20 * 60) {
+      // NXT closed at 20:00 — the page freezes on the last pre-close snapshot.
+      // The 20:10 daily-review re-render bakes the server-side 20:00 NXT
+      // close into the HTML, so any fresh page load from then on shows that.
+      setIndicator("closed", "⏸ NXT 20:00 종가 — 오늘 아카이브");
     } else {
-      setIndicator("closed", "⏸ 장 마감 — 종가 표시 중");
+      setIndicator("closed", "⏸ 장 시작 전 — 전일 종가 표시");
     }
   }
 

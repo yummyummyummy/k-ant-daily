@@ -17,11 +17,14 @@ from __future__ import annotations
 
 import json
 import sys
+import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 KST = timezone(timedelta(hours=9))
+
+WORKER_NXT_URL = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/nxt-quotes"
 
 
 def classify(rec: str, pct: float) -> tuple[str, str]:
@@ -75,6 +78,42 @@ def matrix_direction(rec: str) -> str:
     if rec == "hold":
         return "flat"
     return ""
+
+
+def _fetch_nxt_closes(codes: list[str]) -> dict:
+    """Pull 20:00 NXT closing prices from the Worker endpoint. Called from the
+    20:10 review so the archived HTML reflects the full-day picture (KRX +
+    NXT after-hours) rather than 15:30 KRX close. Returns {} on any failure;
+    the caller falls back to the KRX close already in stock["quote"]."""
+    codes = [c for c in codes if c and c.isdigit()]
+    if not codes:
+        return {}
+    try:
+        url = f"{WORKER_NXT_URL}?codes={','.join(codes)}"
+        with urllib.request.urlopen(url, timeout=15) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        print(f"[warn] NXT close fetch failed: {e}", file=sys.stderr)
+        return {}
+
+
+def _nxt_to_quote(nxt: dict) -> dict:
+    """Shape an NXT endpoint entry into the same fields _normalize_stock_quote
+    in render.py expects — the KRX 'news.json' quote shape."""
+    if not nxt or nxt.get("price") is None:
+        return {}
+    price_num = nxt["price"]
+    change_num = nxt.get("change") or 0
+    pct_num = nxt.get("change_pct") or 0
+    direction = nxt.get("direction") or "flat"
+    sign = "+" if pct_num > 0 else ""
+    return {
+        "price": f"{int(round(price_num)):,}",
+        "change": f"{int(round(abs(change_num))):,}",
+        "change_pct": f"{sign}{pct_num:.2f}%",
+        "change_pct_num": pct_num,
+        "direction": direction,
+    }
 
 
 def _parse_pct(raw) -> float | None:
@@ -226,8 +265,37 @@ def main(argv: list[str]) -> int:
     # Update the top-level generated_at so the page header shows the review time.
     prediction["generated_at"] = review["generated_at"]
 
+    # 20:00 NXT close overlay — accuracy above has already been computed from
+    # the 15:30 KRX close, so this only affects the archived display (coffee
+    # section gainers, per-stock price card). Stocks without NXT listings
+    # keep their KRX close; the overlay is best-effort.
+    #
+    # We mirror the overlay into news.json quote fields too — render.py runs
+    # after this and calls _merge_quotes_from_news which would otherwise
+    # re-merge news.json's KRX close OVER our NXT overlay. Writing NXT into
+    # news.json makes that merge idempotent.
+    stocks_list = prediction.get("stocks") or []
+    nxt_map = _fetch_nxt_closes([s.get("code", "") for s in stocks_list])
+    news_stocks_by_code = {s.get("code"): s for s in (news.get("stocks") or [])}
+    overlaid = 0
+    for stock in stocks_list:
+        entry = nxt_map.get(stock.get("code"))
+        if not entry:
+            continue
+        quoted = _nxt_to_quote(entry)
+        if not quoted:
+            continue
+        stock["quote"] = {**stock.get("quote", {}), **quoted}
+        news_stock = news_stocks_by_code.get(stock.get("code"))
+        if news_stock is not None:
+            news_stock["quote"] = {**news_stock.get("quote", {}), **quoted}
+        overlaid += 1
+    print(f"  NXT close overlay: {overlaid}/{len(stocks_list)} stocks")
+
     out_path.parent.mkdir(exist_ok=True)
     out_path.write_text(json.dumps(prediction, ensure_ascii=False, indent=2), encoding="utf-8")
+    if overlaid:
+        news_path.write_text(json.dumps(news, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"✓ Wrote {out_path.relative_to(ROOT)}")
     print(f"  Hits/Partial/Misses: {hits}/{partial}/{misses} (total {total})")

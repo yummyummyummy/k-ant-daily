@@ -272,6 +272,12 @@ wrangler deploy        # 최초 1회 wrangler login 필요
 
 08:45 이후엔 **그룹 위치도 NXT 칩 값도 동결** — 추가 폴링 없음. 08:45 이전에 페이지를 열어두면 브라우저가 5분마다 poll 하다가 08:45 에 최종 freeze, 그 이후에 연 경우엔 로드 직후 1회 fetch 로 freeze. 주말·아카이브는 스킵.
 
+### 20:00 NXT 마감 후 아카이브
+
+- 커피 섹션은 08:00-20:00 동안 KRX/NXT 자동 분기 polling (09:00/15:30 전환 자연스러움)
+- 20:00 NXT 마감 즉시 polling 중단, 마지막 값이 화면에 남음
+- 20:10 `/daily-review` 재렌더 시 `compute_review.py` 가 Worker `/nxt-quotes` 호출해서 **20:00 NXT 종가를 summary.json 에 박음** → 이후 해당 날짜 페이지를 열면 full-day (KRX + NXT after-hours) 종가가 보임. 적중률 계산은 KRX 15:30 종가 기준 그대로 (aggregation 안정성).
+
 상세: [worker/README.md](worker/README.md).
 
 **아카이브 무결성**:
