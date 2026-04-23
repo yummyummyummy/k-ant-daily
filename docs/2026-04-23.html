@@ -6053,33 +6053,45 @@
     }
   }
 
+  // Coffee section sort policy: order is frozen at page-load time.
+  //
+  //   - Server render seeds the initial order by whatever pct the baseline
+  //     snapshot has (07:30 전일 종가 / 20:00 NXT 종가 archive).
+  //   - On the first successful live poll, we snap-sort to that moment's
+  //     pct — so a user who opens the page during KRX hours sees "가장 많이
+  //     오른 종목이 위" for the current %, not for the baseline.
+  //   - After that single client-side sort, cards stay put. Price/% values
+  //     keep refreshing in place; ranks don't thrash.
+  let friendsSortedAtLoad = false;
+
   function reorderFriendCards(data) {
+    if (friendsSortedAtLoad) return;
     const container = document.getElementById("friend-cards");
     if (!container) return;
     const cards = [...container.querySelectorAll(".friend-card[data-code]")];
-    if (cards.length < 2) return;
+    if (cards.length < 2) { friendsSortedAtLoad = true; return; }
 
-    // Back off if the user is mid-interaction so a card doesn't move
-    // under the cursor/finger.
-    if (cards.some((c) => c.matches(":hover") || c.querySelector("details[open]") || c.querySelector(".owners-wrap.open"))) {
-      return;
-    }
+    // Require a pct for every card before committing — if some codes haven't
+    // resolved yet, hold the sort so partial data doesn't lock a bad order.
+    const allResolved = cards.every((el) =>
+      typeof data[el.dataset.code]?.change_pct === "number"
+    );
+    if (!allResolved) return;
 
-    // Stable sort by live change_pct desc; missing quotes keep original rank.
     const withPct = cards.map((el, i) => ({
       el,
       code: el.dataset.code,
-      pct: typeof data[el.dataset.code]?.change_pct === "number"
-           ? data[el.dataset.code].change_pct : -Infinity,
+      pct: data[el.dataset.code].change_pct,
       origIdx: i,
     }));
     withPct.sort((a, b) => b.pct - a.pct || a.origIdx - b.origIdx);
 
-    // Only reshuffle if the top-3 order actually changed. Micro-wiggles in
-    // lower ranks stay put — the grid shouldn't bounce every poll.
-    const top3Before = cards.slice(0, 3).map((c) => c.dataset.code).join(",");
-    const top3After  = withPct.slice(0, 3).map((x) => x.code).join(",");
-    if (top3Before === top3After) return;
+    // Commit the freeze regardless of whether the order actually changed —
+    // the intent is "use this moment's order from here on".
+    friendsSortedAtLoad = true;
+
+    const sameOrder = withPct.every((x, i) => x.el === cards[i]);
+    if (sameOrder) return;
 
     // FLIP: capture first position
     const firstRects = new Map(cards.map((c) => [c, c.getBoundingClientRect()]));
