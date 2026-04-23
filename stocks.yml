@@ -139,3 +139,9 @@ stocks:
     sector: "방산"
     owners: ["한윤근"]
     overnight_proxy: ["ITA", "LMT", "RTX"]
+  - code: "036570"
+    name: "엔씨소프트"
+    market: KOSPI
+    sector: "게임"
+    owners: ["장윤영"]
+    overnight_proxy: ["TTWO", "EA", "^IXIC"]
