@@ -59,7 +59,26 @@ description: Post-market review — compare morning prediction vs actual close
    git push
    ```
 
-7. **결과 요약 보고.** 적중률, 방향 정확도, 가장 맞춘 / 틀린 종목 각 1개, 기여도 요약을 한 단락으로.
+7. **결과 요약 보고.** 다음 고정 포맷으로 한 단락. JSON 필드를 그대로 문자열화해서 붙여넣지 말 것 — 숫자·값만 뽑아서 자연어로 기술.
+
+   ```
+   적중률 X% (hits/partial/misses) · 방향 정확도 Y%
+   · KOSPI <값> (<부호+-><pct>) · KOSDAQ <값> (<부호+-><pct>)
+   · 가장 맞춘 종목: <이름> <부호+-><실제%> (<rec_label> 예측)
+   · 가장 틀린 종목: <이름> <부호+-><실제%> (<rec_label> 예측)
+   · 기여도: news_misread N / overnight_misled N / priced_in_underestimated N / overnight_helped N
+   ```
+
+   예시:
+   ```
+   적중률 45% (8/2/12) · 방향 정확도 54%
+   · KOSPI 6,475.81 (+0.90%) · KOSDAQ 1,174.31 (+0.58%)
+   · 가장 맞춘 종목: HD현대일렉트릭 +3.02% (풀매수 예측)
+   · 가장 틀린 종목: LIG디펜스앤에어로스페이스 -4.80% (관망 예측)
+   · 기여도: news_misread 3 / overnight_misled 1 / priced_in_underestimated 2 / overnight_helped 4
+   ```
+
+   값 출처는 `.tmp/summary.json` 의 `review.accuracy`, `review.session_change`, `stocks[].result`, `review.signal_attribution`. session_change 는 dict 이므로 `kospi.value` · `kospi.change_pct` 식으로 필드 접근해서 포맷.
 
 ## 환경 셋업 (필요시)
 

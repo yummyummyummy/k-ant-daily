@@ -189,7 +189,10 @@ def _parse_index_change(raw: str) -> dict:
     """Parse '27.17 +0.44% 상승' → {abs, pct, direction}.
 
     Naver formats: '<abs> <pct_with_sign> 상승|하락|보합'.
-    Abs is unsigned in the raw; we re-sign it based on the rise/fall label."""
+    Abs is unsigned; re-sign from the rise/fall label. Pct comes with a sign
+    already, but Naver's DOM occasionally ships a mismatched sign (e.g.
+    '6.81 -0.58% 상승' for a +0.58 move) — the 상승/하락 label is the reliable
+    source of truth, so we strip any existing pct sign and re-apply it."""
     parts = raw.split()
     if len(parts) < 3:
         return {"abs": "", "pct": "", "direction": "flat"}
@@ -200,9 +203,10 @@ def _parse_index_change(raw: str) -> dict:
         direction, sign = "down", "-"
     else:
         direction, sign = "flat", ""
+    pct_clean = raw_pct.lstrip("+-")
     return {
         "abs": f"{sign}{raw_abs}" if sign else raw_abs,
-        "pct": raw_pct,  # already signed
+        "pct": f"{sign}{pct_clean}" if sign else pct_clean,
         "direction": direction,
     }
 
