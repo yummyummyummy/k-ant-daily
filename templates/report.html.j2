@@ -316,12 +316,37 @@
        re-paint the box-shadow. */
     contain: layout;
   }
-  .owners-wrap .owner-chip.extra { display: none; }
-  /* Click/tap to toggle on both desktop and mobile — no hover shortcut. The
-     old `@media (hover: hover) :hover` rule made PC feel inconsistent with
-     the +N chip also having a click handler. One interaction, one behavior. */
-  .owners-wrap.open .owner-chip.extra,
-  .owners-wrap:focus-within .owner-chip.extra { display: inline-flex; }
+  /* Extras live inside `.owner-popover`. Default: the wrapper itself is
+     hidden (no box, no children rendered) — equivalent to hiding all extras. */
+  .owners-wrap .owner-popover { display: none; }
+
+  /* ── STOCK CARD: inline left-expand.
+     `display: contents` on the wrapper means the wrapper box itself is
+     removed from layout — the extra chips become direct flex items of
+     .owners-wrap and slide into the row between leader and +N. */
+  article.stock .owners-wrap.open .owner-popover,
+  article.stock .owners-wrap:focus-within .owner-popover {
+    display: contents;
+  }
+
+  /* ── FRIEND CARD (coffee banner): floating popover below the wrap.
+     Friend-card's 120px grid column can't fit inline extras, so the
+     wrapper reconstructs itself as an absolute-positioned popover.
+     Reuses the card's background palette for contrast against the banner. */
+  .friend-card .owners-wrap { position: relative; }
+  .friend-card .owners-wrap.open .owner-popover,
+  .friend-card .owners-wrap:focus-within .owner-popover {
+    display: inline-flex; gap: 3px; flex-wrap: wrap;
+    position: absolute; top: calc(100% + 4px); left: 0;
+    z-index: 100; max-width: 180px;
+    background: var(--card); color: var(--fg);
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 5px 7px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  }
+  .friend-card .owners-wrap .owner-popover .owner-chip {
+    display: inline-flex;  /* force-show when inside opened popover */
+  }
   .owners-wrap .owner-more {
     cursor: pointer; opacity: 0.75;
     background: rgba(0,0,0,0.06);
@@ -1044,14 +1069,17 @@
     {# Single owner — no leader emphasis needed. #}
     <span class="owners-wrap"><span class="owner-chip">👤 {{ owners[0] }}</span></span>
   {%- else -%}
-    {# Multi-owner — leader first (natural reading order), then extras
-       (hidden by default, shown inline when .owners-wrap.open), then the
-       +N toggle chip. Row uses justify-content: flex-end in .s-foot so
-       adding extras grows the group leftward while keeping the +N chip
-       pinned to the right edge. #}
+    {# Multi-owner — leader first, then extras wrapped in `.owner-popover`,
+       then the +N toggle chip. The popover wrapper adapts its behavior via
+       CSS `display: contents` vs `display: flex; position: absolute`:
+       - stock card (wide): inline left-expand (popover wrapper has no box)
+       - friend card (narrow): floating popover below the wrap (absolute)
+       Same macro, two layouts — via context-scoped CSS. #}
     <span class="owners-wrap" tabindex="0">
       <span class="owner-chip owner-leader">👑 {{ owners[0] }}</span>
-      {%- for o in owners[1:] -%}<span class="owner-chip extra">👤 {{ o }}</span>{%- endfor -%}
+      <span class="owner-popover">
+        {%- for o in owners[1:] -%}<span class="owner-chip extra">👤 {{ o }}</span>{%- endfor -%}
+      </span>
       <span class="owner-chip owner-more" aria-label="+{{ n - 1 }}명 더 보기 / 접기">+{{ n - 1 }}</span>
     </span>
   {%- endif -%}

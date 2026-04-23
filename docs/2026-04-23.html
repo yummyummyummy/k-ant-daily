@@ -364,12 +364,37 @@
        re-paint the box-shadow. */
     contain: layout;
   }
-  .owners-wrap .owner-chip.extra { display: none; }
-  /* Click/tap to toggle on both desktop and mobile — no hover shortcut. The
-     old `@media (hover: hover) :hover` rule made PC feel inconsistent with
-     the +N chip also having a click handler. One interaction, one behavior. */
-  .owners-wrap.open .owner-chip.extra,
-  .owners-wrap:focus-within .owner-chip.extra { display: inline-flex; }
+  /* Extras live inside `.owner-popover`. Default: the wrapper itself is
+     hidden (no box, no children rendered) — equivalent to hiding all extras. */
+  .owners-wrap .owner-popover { display: none; }
+
+  /* ── STOCK CARD: inline left-expand.
+     `display: contents` on the wrapper means the wrapper box itself is
+     removed from layout — the extra chips become direct flex items of
+     .owners-wrap and slide into the row between leader and +N. */
+  article.stock .owners-wrap.open .owner-popover,
+  article.stock .owners-wrap:focus-within .owner-popover {
+    display: contents;
+  }
+
+  /* ── FRIEND CARD (coffee banner): floating popover below the wrap.
+     Friend-card's 120px grid column can't fit inline extras, so the
+     wrapper reconstructs itself as an absolute-positioned popover.
+     Reuses the card's background palette for contrast against the banner. */
+  .friend-card .owners-wrap { position: relative; }
+  .friend-card .owners-wrap.open .owner-popover,
+  .friend-card .owners-wrap:focus-within .owner-popover {
+    display: inline-flex; gap: 3px; flex-wrap: wrap;
+    position: absolute; top: calc(100% + 4px); left: 0;
+    z-index: 100; max-width: 180px;
+    background: var(--card); color: var(--fg);
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 5px 7px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  }
+  .friend-card .owners-wrap .owner-popover .owner-chip {
+    display: inline-flex;  /* force-show when inside opened popover */
+  }
   .owners-wrap .owner-more {
     cursor: pointer; opacity: 0.75;
     background: rgba(0,0,0,0.06);
@@ -1198,7 +1223,9 @@
             </div>
           </div>
           <div class="owners">    <span class="owners-wrap" tabindex="0">
-      <span class="owner-chip owner-leader">👑 이웅수</span><span class="owner-chip extra">👤 주황선</span><span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
+      <span class="owner-chip owner-leader">👑 이웅수</span>
+      <span class="owner-popover"><span class="owner-chip extra">👤 주황선</span></span>
+      <span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
     </span></div>
         </div>
         <div class="friend-card" data-code="083450">
@@ -1288,7 +1315,9 @@
             </div>
           </div>
           <div class="owners">    <span class="owners-wrap" tabindex="0">
-      <span class="owner-chip owner-leader">👑 이영준</span><span class="owner-chip extra">👤 장윤영</span><span class="owner-chip extra">👤 장한솔</span><span class="owner-chip extra">👤 한윤근</span><span class="owner-chip owner-more" aria-label="+3명 더 보기 / 접기">+3</span>
+      <span class="owner-chip owner-leader">👑 이영준</span>
+      <span class="owner-popover"><span class="owner-chip extra">👤 장윤영</span><span class="owner-chip extra">👤 장한솔</span><span class="owner-chip extra">👤 한윤근</span></span>
+      <span class="owner-chip owner-more" aria-label="+3명 더 보기 / 접기">+3</span>
     </span></div>
         </div>
         <div class="friend-card" data-code="233740">
@@ -1301,7 +1330,9 @@
             </div>
           </div>
           <div class="owners">    <span class="owners-wrap" tabindex="0">
-      <span class="owner-chip owner-leader">👑 하우찬</span><span class="owner-chip extra">👤 한윤근</span><span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
+      <span class="owner-chip owner-leader">👑 하우찬</span>
+      <span class="owner-popover"><span class="owner-chip extra">👤 한윤근</span></span>
+      <span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
     </span></div>
         </div>
         <div class="friend-card" data-code="042700">
@@ -1314,7 +1345,9 @@
             </div>
           </div>
           <div class="owners">    <span class="owners-wrap" tabindex="0">
-      <span class="owner-chip owner-leader">👑 장한솔</span><span class="owner-chip extra">👤 한윤근</span><span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
+      <span class="owner-chip owner-leader">👑 장한솔</span>
+      <span class="owner-popover"><span class="owner-chip extra">👤 한윤근</span></span>
+      <span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
     </span></div>
         </div>
         <div class="friend-card" data-code="005930">
@@ -1327,7 +1360,9 @@
             </div>
           </div>
           <div class="owners">    <span class="owners-wrap" tabindex="0">
-      <span class="owner-chip owner-leader">👑 장윤영</span><span class="owner-chip extra">👤 장한솔</span><span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
+      <span class="owner-chip owner-leader">👑 장윤영</span>
+      <span class="owner-popover"><span class="owner-chip extra">👤 장한솔</span></span>
+      <span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
     </span></div>
         </div>
         <div class="friend-card" data-code="005380">
@@ -1417,7 +1452,9 @@
             </div>
           </div>
           <div class="owners">    <span class="owners-wrap" tabindex="0">
-      <span class="owner-chip owner-leader">👑 이웅수</span><span class="owner-chip extra">👤 한윤근</span><span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
+      <span class="owner-chip owner-leader">👑 이웅수</span>
+      <span class="owner-popover"><span class="owner-chip extra">👤 한윤근</span></span>
+      <span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
     </span></div>
         </div>
       </div>
@@ -2065,7 +2102,9 @@
         <div class="s-outlook">MU +8.5% 급등에 HBM 수혜 기대 극대화, 오늘 추가 상승 여력 충분</div>
         <div class="s-foot">
           <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
-      <span class="owner-chip owner-leader">👑 이영준</span><span class="owner-chip extra">👤 장윤영</span><span class="owner-chip extra">👤 장한솔</span><span class="owner-chip extra">👤 한윤근</span><span class="owner-chip owner-more" aria-label="+3명 더 보기 / 접기">+3</span>
+      <span class="owner-chip owner-leader">👑 이영준</span>
+      <span class="owner-popover"><span class="owner-chip extra">👤 장윤영</span><span class="owner-chip extra">👤 장한솔</span><span class="owner-chip extra">👤 한윤근</span></span>
+      <span class="owner-chip owner-more" aria-label="+3명 더 보기 / 접기">+3</span>
     </span></span>
         </div>
       </button>
@@ -3286,7 +3325,9 @@
         <div class="s-outlook">SOX +2.7% 간밤 강세에 동반 갭업 기대</div>
         <div class="s-foot">
           <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
-      <span class="owner-chip owner-leader">👑 장한솔</span><span class="owner-chip extra">👤 한윤근</span><span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
+      <span class="owner-chip owner-leader">👑 장한솔</span>
+      <span class="owner-popover"><span class="owner-chip extra">👤 한윤근</span></span>
+      <span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
     </span></span>
         </div>
       </button>
@@ -3639,7 +3680,9 @@
         <div class="s-outlook">간밤 나스닥 +1.6% 강세에 코스닥 레버리지 소폭 갭업 기대</div>
         <div class="s-foot">
           <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
-      <span class="owner-chip owner-leader">👑 하우찬</span><span class="owner-chip extra">👤 한윤근</span><span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
+      <span class="owner-chip owner-leader">👑 하우찬</span>
+      <span class="owner-popover"><span class="owner-chip extra">👤 한윤근</span></span>
+      <span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
     </span></span>
         </div>
       </button>
@@ -4244,7 +4287,9 @@
         <div class="s-outlook">공매도 과열·투자경고 종목 지정예고로 추가 하락 위험</div>
         <div class="s-foot">
           <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
-      <span class="owner-chip owner-leader">👑 이웅수</span><span class="owner-chip extra">👤 한윤근</span><span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
+      <span class="owner-chip owner-leader">👑 이웅수</span>
+      <span class="owner-popover"><span class="owner-chip extra">👤 한윤근</span></span>
+      <span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
     </span></span>
         </div>
       </button>
@@ -4353,7 +4398,9 @@
         <div class="s-outlook">간밤 MU +8.5% 급등으로 갭업 기대되나, 노조 3만명 총파업 리스크가 상충</div>
         <div class="s-foot">
           <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
-      <span class="owner-chip owner-leader">👑 장윤영</span><span class="owner-chip extra">👤 장한솔</span><span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
+      <span class="owner-chip owner-leader">👑 장윤영</span>
+      <span class="owner-popover"><span class="owner-chip extra">👤 장한솔</span></span>
+      <span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
     </span></span>
         </div>
       </button>
@@ -5751,7 +5798,9 @@
         <div class="s-outlook">개별 뉴스 부재, 방향성 없어 관망 적절</div>
         <div class="s-foot">
           <span class="owner-chips">    <span class="owners-wrap" tabindex="0">
-      <span class="owner-chip owner-leader">👑 이웅수</span><span class="owner-chip extra">👤 주황선</span><span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
+      <span class="owner-chip owner-leader">👑 이웅수</span>
+      <span class="owner-popover"><span class="owner-chip extra">👤 주황선</span></span>
+      <span class="owner-chip owner-more" aria-label="+1명 더 보기 / 접기">+1</span>
     </span></span>
         </div>
       </button>
