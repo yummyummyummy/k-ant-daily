@@ -1194,7 +1194,7 @@
     <time>생성: 2026-04-23 07:30 KST · <a href="archive.html">아카이브</a> · <a href="accuracy.html">📊 정확도</a></time>
   </header>
 
-    <details class="coffee-banner" open>
+    <details class="coffee-banner" id="coffee-banner">
       <summary>
         <div class="headline">
 ☕ 오늘 커피는 <strong>한윤근</strong>님이!
@@ -1482,6 +1482,14 @@
       </div>
       <div class="live-indicator" id="live-indicator" aria-live="polite"></div>
     </details>
+    <script>
+      /* Default: collapsed (no `open` attr in HTML) so mobile stays closed
+         with zero flash. On desktop (≥ 640px), add `open` synchronously —
+         this runs right after </details> is parsed, before first paint. */
+      if (!window.matchMedia || !window.matchMedia("(max-width: 640px)").matches) {
+        document.getElementById("coffee-banner")?.setAttribute("open", "");
+      }
+    </script>
 
 
   <section class="top-stories">

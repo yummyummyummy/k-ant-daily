@@ -1138,7 +1138,7 @@
     {% set coffee_cls = 'coffee-banner' if coffee_buyer else 'coffee-banner none' %}
     {% set coffee_headline = '☕ 오늘 커피는 ' ~ (coffee_buyer.owners | join('·')) ~ '님이!' if coffee_buyer else '☕ 오늘 커피는 각자 사기' %}
     {% set coffee_sub = (coffee_buyer.name ~ ' ' ~ coffee_buyer.change_display ~ ' — 친구 보유 종목 중 최고 상승') if coffee_buyer else '친구 보유 종목 중 상승 종목 없음' %}
-    <details class="{{ coffee_cls }}" open>
+    <details class="{{ coffee_cls }}" id="coffee-banner">
       <summary>
         <div class="headline">
           {% if coffee_buyer %}☕ 오늘 커피는 <strong>{{ coffee_buyer.owners | join('·') }}</strong>님이!
@@ -1163,6 +1163,14 @@
       </div>
       <div class="live-indicator" id="live-indicator" aria-live="polite"></div>
     </details>
+    <script>
+      /* Default: collapsed (no `open` attr in HTML) so mobile stays closed
+         with zero flash. On desktop (≥ 640px), add `open` synchronously —
+         this runs right after </details> is parsed, before first paint. */
+      if (!window.matchMedia || !window.matchMedia("(max-width: 640px)").matches) {
+        document.getElementById("coffee-banner")?.setAttribute("open", "");
+      }
+    </script>
   {% endif %}
 
   {% if review %}
