@@ -88,6 +88,20 @@ def fetch_stock_quote(code: str) -> dict:
                 except ValueError:
                     pass
             out["direction"] = direction
+    # 거래량 (today's cumulative volume) — used with history.volume_20d_avg
+    # to compute volume_ratio; triggers the 🚨 거래량 X× speculative-flow
+    # badge when today's activity clearly outruns the 20-day norm.
+    for th in soup.select("table.rwidth th, table.lwidth th, th"):
+        label = th.get_text(strip=True)
+        if label == "거래량":
+            td = th.find_next("em") or th.find_next("td")
+            if td:
+                vol_text = td.get_text(strip=True).replace(",", "")
+                try:
+                    out["volume"] = int(vol_text)
+                except ValueError:
+                    pass
+            break
     return out
 
 
@@ -337,6 +351,12 @@ def fetch_stock_history(code: str, market: str) -> dict:
     low_52w  = float(h["Low"].min()) if not h.empty else None
     last_close = float(closes[-1]) if closes else None
 
+    # 20-day average daily volume for speculative-flow detection
+    # (today's cumulative volume / 20d_avg ≥ 2× → "거래량 급증" badge).
+    volumes = h["Volume"].tolist() if "Volume" in h else []
+    last20_vol = [float(v) for v in volumes[-20:] if v]
+    volume_20d_avg = round(sum(last20_vol) / len(last20_vol)) if last20_vol else None
+
     # 20-day change %: compare last close to first close of the last-20 window.
     change_20d_pct = None
     if len(last20) >= 2 and last20[0]:
@@ -360,6 +380,7 @@ def fetch_stock_history(code: str, market: str) -> dict:
         "change_20d_pct": change_20d_pct,
         "pos_52w_pct": pos_52w_pct,
         "from_high_pct": from_high_pct,
+        "volume_20d_avg": volume_20d_avg,
         "as_of": str(h.index[-1].date()),
     }
 

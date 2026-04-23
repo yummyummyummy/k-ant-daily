@@ -420,6 +420,22 @@ def _normalize_stock_quote(stock: dict, *, pre_market: bool = False) -> None:
             stock["price_change_abs_display"] = raw
 
 
+def _normalize_volume_signal(stock: dict) -> None:
+    """Derive volume_ratio = today's cumulative volume / 20-day average.
+
+    Triggers the 🚨 배지 at the template level when the ratio clears
+    VOLUME_SPIKE_THRESHOLD (2.0×) — a proxy for intraday speculative inflow
+    that exceeds normal trading rhythm. compute_review.py reads the same
+    ratio at end-of-day to populate the speculative_flow attribution."""
+    vol_today = (stock.get("quote") or {}).get("volume")
+    vol_avg = (stock.get("history") or {}).get("volume_20d_avg")
+    if not vol_today or not vol_avg or vol_avg <= 0:
+        return
+    ratio = vol_today / vol_avg
+    stock["volume_ratio"] = round(ratio, 2)
+    stock["volume_spike"] = ratio >= 2.0
+
+
 def _normalize_stock_signals(stock: dict) -> None:
     """Attach human-readable labels for the decision signals the template shows
     in the confidence/rationale block (뉴스 톤, 간밤, 신뢰도) and for the
@@ -494,6 +510,7 @@ def _normalize_stocks(summary: dict, now: datetime) -> None:
             stock["recommendation_label"] = RECOMMENDATION_LABEL[stock["recommendation"]]
 
         _normalize_stock_quote(stock, pre_market=pre_market)
+        _normalize_volume_signal(stock)
         _normalize_stock_signals(stock)
 
         # Forward-looking direction + one-line outlook for the card summary row.

@@ -746,6 +746,18 @@
     background: var(--bg); border: 1px solid var(--accent);
     white-space: nowrap; font-variant-numeric: tabular-nums;
   }
+  /* 🚨 거래량 급증 경고 배지 — 오늘 누적 거래량이 20일 평균의 2배
+     이상일 때 뜸. 투기성 수급 가능성에 대한 사용자 경고 (서버 예측은
+     그대로 유지, baseline 정합성은 건드리지 않음). */
+  article.stock .vol-alert {
+    font-size: 11px; font-weight: 600; color: #92400e;
+    padding: 1px 7px; border-radius: 4px;
+    background: #fef3c7; border: 1px solid #f59e0b;
+    white-space: nowrap; font-variant-numeric: tabular-nums;
+  }
+  [data-theme="dark"] article.stock .vol-alert {
+    color: #fde68a; background: rgba(245, 158, 11, 0.2); border-color: #f59e0b;
+  }
   /* NXT pre-open gap chip — added by client JS when NXT shows direction.
      Red for up / blue for down (Korean market convention). */
   article.stock .nxt-chip {
@@ -1215,7 +1227,8 @@
       {% if a.overnight_helped %}간밤 적중 {{ a.overnight_helped }}건 · {% endif %}
       {% if a.news_misread %}뉴스 오독 {{ a.news_misread }}건 · {% endif %}
       {% if a.overnight_misled %}간밤 오도 {{ a.overnight_misled }}건 · {% endif %}
-      {% if a.priced_in_underestimated %}반영 과소추정 {{ a.priced_in_underestimated }}건{% endif %}
+      {% if a.priced_in_underestimated %}반영 과소추정 {{ a.priced_in_underestimated }}건{% if a.speculative_flow %} · {% endif %}{% endif %}
+      {% if a.speculative_flow %}🚨 투기 수급 {{ a.speculative_flow }}건{% endif %}
     </div>
     {% endif %}
   </section>
@@ -1512,6 +1525,9 @@
           {% endif %}
           {% if stock.confidence %}
           <span class="conf {{ stock.confidence }}" title="예측 신뢰도">신뢰 {{ stock.confidence_label or stock.confidence }}</span>
+          {% endif %}
+          {% if stock.volume_spike %}
+          <span class="vol-alert" title="오늘 거래량이 20일 평균의 {{ stock.volume_ratio }}배 — 투기 수급 의심">🚨 거래량 {{ '%.1f'|format(stock.volume_ratio) }}×</span>
           {% endif %}
           {% if stock.result and stock.result.outcome and stock.result.outcome != 'n/a' %}
           <span class="outcome-badge {{ stock.result.outcome }}" title="아침 예측 대비 실제 결과">

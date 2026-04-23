@@ -148,7 +148,13 @@ def main(argv: list[str]) -> int:
     conf_buckets: dict[str, list[float]] = {"high": [0, 0], "medium": [0, 0], "low": [0, 0]}
     directional_correct = 0
     directional_total = 0
-    attrib = {"news_misread": 0, "overnight_misled": 0, "priced_in_underestimated": 0, "overnight_helped": 0}
+    attrib = {
+        "news_misread": 0,
+        "overnight_misled": 0,
+        "priced_in_underestimated": 0,
+        "overnight_helped": 0,
+        "speculative_flow": 0,
+    }
 
     for stock in prediction.get("stocks") or []:
         code = stock["code"]
@@ -216,6 +222,13 @@ def main(argv: list[str]) -> int:
                 attrib["overnight_misled"] += 1
             if stock.get("priced_in") is False and abs(actual_pct) < 0.5:
                 attrib["priced_in_underestimated"] += 1
+            # Speculative flow: end-of-day volume clearly above 20d norm on a
+            # missed prediction — the move was driven by money, not rationale
+            # our agent saw in the news. Signals something to catch next time.
+            vol_today = (stock.get("quote") or {}).get("volume")
+            vol_avg = (stock.get("history") or {}).get("volume_20d_avg")
+            if vol_today and vol_avg and vol_avg > 0 and vol_today / vol_avg >= 2.0:
+                attrib["speculative_flow"] += 1
         elif outcome == "hit" and onsig_dir in ("up", "down") and onsig_dir == actual_dir:
             attrib["overnight_helped"] += 1
 

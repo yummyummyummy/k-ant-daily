@@ -27,7 +27,7 @@ description: Post-market review — compare morning prediction vs actual close
 3. **리뷰 계산.** `.venv/bin/python scripts/compute_review.py [YYYY-MM-DD]`
    - 예측 vs 실제 매칭 → 종목별 `result.outcome` (hit/partial/miss)
    - 집계 지표: hit_rate, directional_accuracy, by_confidence
-   - 신호 기여도: news_misread, overnight_misled, priced_in_underestimated, overnight_helped
+   - 신호 기여도: news_misread, overnight_misled, priced_in_underestimated, overnight_helped, speculative_flow
    - `.tmp/summary.json` 에 병합 결과 저장
 
 4. **회고 분석 작성.** `.tmp/summary.json` 을 읽고 `review.analysis` 섹션을 직접 편집해서 채워 넣는다.
@@ -66,7 +66,7 @@ description: Post-market review — compare morning prediction vs actual close
    · KOSPI <값> (<부호+-><pct>) · KOSDAQ <값> (<부호+-><pct>)
    · 가장 맞춘 종목: <이름> <부호+-><실제%> (<rec_label> 예측)
    · 가장 틀린 종목: <이름> <부호+-><실제%> (<rec_label> 예측)
-   · 기여도: news_misread N / overnight_misled N / priced_in_underestimated N / overnight_helped N
+   · 기여도: news_misread N / overnight_misled N / priced_in_underestimated N / overnight_helped N / speculative_flow N
    ```
 
    예시:
@@ -75,7 +75,7 @@ description: Post-market review — compare morning prediction vs actual close
    · KOSPI 6,475.81 (+0.90%) · KOSDAQ 1,174.31 (+0.58%)
    · 가장 맞춘 종목: HD현대일렉트릭 +3.02% (풀매수 예측)
    · 가장 틀린 종목: LIG디펜스앤에어로스페이스 -4.80% (관망 예측)
-   · 기여도: news_misread 3 / overnight_misled 1 / priced_in_underestimated 2 / overnight_helped 4
+   · 기여도: news_misread 3 / overnight_misled 1 / priced_in_underestimated 2 / overnight_helped 4 / speculative_flow 2
    ```
 
    값 출처는 `.tmp/summary.json` 의 `review.accuracy`, `review.session_change`, `stocks[].result`, `review.signal_attribution`. session_change 는 dict 이므로 `kospi.value` · `kospi.change_pct` 식으로 필드 접근해서 포맷.
@@ -233,8 +233,9 @@ p.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
 - `overnight_misled`: 예측 실패 + 간밤 신호와 실제 방향이 정반대
 - `priced_in_underestimated`: 예측 실패 + priced_in=false 였는데 실제 거의 무변동 (|Δ|<0.5%)
 - `overnight_helped`: 예측 적중 + 간밤 신호와 실제 방향이 일치
+- `speculative_flow`: 예측 실패 + 오늘 거래량이 20일 평균의 2× 이상 — 뉴스 근거로는 설명 안 되는 수급 급등/급락. `stocks[].history.volume_20d_avg` 와 `stocks[].quote.volume` 비교로 compute_review.py 가 자동 집계.
 
-이 수치가 누적되면 `stocks.yml` 의 `overnight_proxy` 매핑을 조정할 근거가 된다 (예: 간밤 오도가 반복되는 프록시는 교체).
+이 수치가 누적되면 `stocks.yml` 의 `overnight_proxy` 매핑이나 종목 선정 자체를 조정할 근거가 된다 (예: 투기 수급이 반복되는 종목은 rationale 에 "거래량 쏠림 주의" 태그 추가).
 
 ## Rules
 
