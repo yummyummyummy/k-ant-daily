@@ -1289,7 +1289,7 @@
         "sparkline_path": "M0.0,17.3 L4.2,20.8 L8.4,24.0 L12.6,18.7 L16.8,20.0 L21.1,19.9 L25.3,19.0 L29.5,19.2 L33.7,12.0 L37.9,12.0 L42.1,10.5 L46.3,9.9 L50.5,5.5 L54.7,6.4 L58.9,3.6 L63.2,3.4 L67.4,3.4 L71.6,5.7 L75.8,3.2 L80.0,0.0",
         "sparkline_direction": "up"
       },
-      "recommendation_label": "매수",
+      "recommendation_label": "상승 기대",
       "price_change_pct_num": 0.0,
       "price_direction": "flat",
       "price_change_display": "0.00%",
@@ -1952,7 +1952,7 @@
         "sparkline_path": "M0.0,21.4 L4.2,19.5 L8.4,24.0 L12.6,18.5 L16.8,17.5 L21.1,15.0 L25.3,10.2 L29.5,11.6 L33.7,12.9 L37.9,9.5 L42.1,11.0 L46.3,11.9 L50.5,11.8 L54.7,11.8 L58.9,7.1 L63.2,4.4 L67.4,4.9 L71.6,0.5 L75.8,0.0 L80.0,0.8",
         "sparkline_direction": "up"
       },
-      "recommendation_label": "매수",
+      "recommendation_label": "상승 기대",
       "price_change_pct_num": 0.0,
       "price_direction": "flat",
       "price_change_display": "0.00%",
@@ -2084,7 +2084,7 @@
         "sparkline_path": "M0.0,20.9 L4.2,21.9 L8.4,22.6 L12.6,20.5 L16.8,22.8 L21.1,23.1 L25.3,23.3 L29.5,23.7 L33.7,24.0 L37.9,23.5 L42.1,22.8 L46.3,22.5 L50.5,21.4 L54.7,18.3 L58.9,16.2 L63.2,4.1 L67.4,0.0 L71.6,6.9 L75.8,9.8 L80.0,11.0",
         "sparkline_direction": "up"
       },
-      "recommendation_label": "풀매도",
+      "recommendation_label": "강한 하락 경계",
       "price_change_pct_num": 0.0,
       "price_direction": "flat",
       "price_change_display": "0.00%",
@@ -3021,7 +3021,7 @@
         "sparkline_path": "M0.0,19.4 L4.2,23.4 L8.4,24.0 L12.6,18.3 L16.8,22.7 L21.1,17.7 L25.3,18.5 L29.5,17.5 L33.7,14.8 L37.9,14.5 L42.1,13.9 L46.3,15.0 L50.5,13.4 L54.7,12.4 L58.9,11.1 L63.2,8.8 L67.4,10.1 L71.6,7.2 L75.8,0.0 L80.0,0.4",
         "sparkline_direction": "up"
       },
-      "recommendation_label": "매수",
+      "recommendation_label": "상승 기대",
       "price_change_pct_num": 0.0,
       "price_direction": "flat",
       "price_change_display": "0.00%",
@@ -4204,7 +4204,7 @@
         "sparkline_path": "M0.0,0.0 L4.2,9.9 L8.4,12.9 L12.6,6.9 L16.8,10.0 L21.1,20.9 L25.3,22.4 L29.5,24.0 L33.7,22.1 L37.9,22.4 L42.1,19.8 L46.3,19.8 L50.5,18.1 L54.7,18.1 L58.9,14.2 L63.2,15.8 L67.4,17.6 L71.6,18.4 L75.8,18.2 L80.0,18.9",
         "sparkline_direction": "down"
       },
-      "recommendation_label": "매도",
+      "recommendation_label": "하락 경계",
       "price_change_pct_num": 0.0,
       "price_direction": "flat",
       "price_change_display": "0.00%",
@@ -4436,7 +4436,7 @@
         "sparkline_path": "M0.0,0.0 L4.2,1.8 L8.4,3.1 L12.6,6.8 L16.8,15.0 L21.1,14.4 L25.3,14.0 L29.5,19.9 L33.7,18.1 L37.9,20.1 L42.1,20.7 L46.3,22.2 L50.5,24.0 L54.7,20.1 L58.9,15.2 L63.2,17.4 L67.4,20.3 L71.6,22.6 L75.8,22.2 L80.0,23.6",
         "sparkline_direction": "down"
       },
-      "recommendation_label": "매도",
+      "recommendation_label": "하락 경계",
       "price_change_pct_num": 0.0,
       "price_direction": "flat",
       "price_change_display": "0.00%",

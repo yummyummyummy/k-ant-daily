@@ -265,7 +265,7 @@ description: Generate and publish today's pre-market stock briefing
 | `priced_in=False` / `priced_in 아님` | "선반영 아님" · "아직 주가에 반영 안 됨" |
 | `overnight_signal=up/down/neutral` | "간밤 강세/약세/중립" |
 | `news_sentiment=positive/neutral/negative` | "뉴스 톤 긍정/중립/부정" |
-| `hold` / `buy` / `sell` / `strong_buy` / `strong_sell` (영어 그대로) | "관망/매수/매도/풀매수/풀매도" |
+| `hold` / `buy` / `sell` / `strong_buy` / `strong_sell` (영어 그대로) | "관망/상승 기대/하락 경계/강한 상승 기대/강한 하락 경계" |
 | `override` | "한 단계 상향/하향" · "재량 조정" |
 | `confidence=high/medium/low` | "신뢰도 높음/중간/낮음" |
 

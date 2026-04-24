@@ -73,8 +73,8 @@ description: Post-market review — compare morning prediction vs actual close
    ```
    적중률 45% (8/2/12) · 방향 정확도 54%
    · KOSPI 6,475.81 (+0.90%) · KOSDAQ 1,174.31 (+0.58%)
-   · 가장 맞춘 종목: HD현대일렉트릭 +3.02% (풀매수 예측)
-   · 가장 틀린 종목: LIG디펜스앤에어로스페이스 -4.80% (관망 예측)
+   · 가장 맞춘 종목: HD현대일렉트릭 +3.02% (강한 상승 기대 예측)
+   · 가장 틀린 종목: 알테오젠 -4.80% (관망 예측)
    · 기여도: news_misread 3 / overnight_misled 1 / priced_in_underestimated 2 / overnight_helped 4 / speculative_flow 2
    ```
 
@@ -188,7 +188,7 @@ python3 -m venv .venv 2>/dev/null || true
 | `priced_in=False` | "아직 주가에 반영 안 됨" · "선반영 아님" |
 | `overnight_signal=neutral/up/down` | "간밤 해외 신호 중립/강세/약세" |
 | `news_sentiment=positive/neutral/negative` | "뉴스 톤 긍정/중립/부정" |
-| `recommendation=buy/sell/hold/strong_buy/strong_sell` | "매수/매도/관망/풀매수/풀매도" |
+| `recommendation=buy/sell/hold/strong_buy/strong_sell` | "상승 기대/하락 경계/관망/강한 상승 기대/강한 하락 경계" |
 | `hit/partial/miss` (영어 그대로) | "적중/부분 적중/실패·빗나감" |
 | `hit rate` · `hit_rate` | "적중률" |
 | `override` · `override한` | "한 단계 상향/하향" · "재량 조정" |

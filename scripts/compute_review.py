@@ -31,16 +31,16 @@ def classify(rec: str, pct: float) -> tuple[str, str]:
     """Map (recommendation, actual change%) → (outcome, note)."""
     if rec == "strong_buy":
         if pct >= 2.0:
-            return "hit", f"풀매수 · 실제 +{pct:.2f}% · 강한 상승 확인"
+            return "hit", f"강한 상승 기대 · 실제 +{pct:.2f}% · 강한 상승 확인"
         if pct >= 0.0:
-            return "partial", f"풀매수 · 실제 +{pct:.2f}% · 방향은 맞았으나 강도 약함"
-        return "miss", f"풀매수 · 실제 {pct:+.2f}% · 방향 틀림"
+            return "partial", f"강한 상승 기대 · 실제 +{pct:.2f}% · 방향은 맞았으나 강도 약함"
+        return "miss", f"강한 상승 기대 · 실제 {pct:+.2f}% · 방향 틀림"
     if rec == "buy":
         if pct > 0.5:
-            return "hit", f"매수 · 실제 +{pct:.2f}% · 상승 적중"
+            return "hit", f"상승 기대 · 실제 +{pct:.2f}% · 상승 적중"
         if pct >= -0.5:
-            return "partial", f"매수 · 실제 {pct:+.2f}% · 사실상 보합"
-        return "miss", f"매수 · 실제 {pct:.2f}% · 하락"
+            return "partial", f"상승 기대 · 실제 {pct:+.2f}% · 사실상 보합"
+        return "miss", f"상승 기대 · 실제 {pct:.2f}% · 하락"
     if rec == "hold":
         if abs(pct) < 1.5:
             return "hit", f"관망 · 실제 {pct:+.2f}% · 보합 구간 적중"
@@ -49,16 +49,16 @@ def classify(rec: str, pct: float) -> tuple[str, str]:
         return "miss", f"관망 · 실제 {pct:+.2f}% · 큰 변동 놓침"
     if rec == "sell":
         if pct < -0.5:
-            return "hit", f"매도 · 실제 {pct:.2f}% · 하락 적중"
+            return "hit", f"하락 경계 · 실제 {pct:.2f}% · 하락 적중"
         if pct <= 0.5:
-            return "partial", f"매도 · 실제 {pct:+.2f}% · 사실상 보합"
-        return "miss", f"매도 · 실제 +{pct:.2f}% · 상승"
+            return "partial", f"하락 경계 · 실제 {pct:+.2f}% · 사실상 보합"
+        return "miss", f"하락 경계 · 실제 +{pct:.2f}% · 상승"
     if rec == "strong_sell":
         if pct <= -2.0:
-            return "hit", f"풀매도 · 실제 {pct:.2f}% · 강한 하락 확인"
+            return "hit", f"강한 하락 경계 · 실제 {pct:.2f}% · 강한 하락 확인"
         if pct <= 0.0:
-            return "partial", f"풀매도 · 실제 {pct:.2f}% · 방향은 맞았으나 강도 약함"
-        return "miss", f"풀매도 · 실제 +{pct:.2f}% · 방향 틀림"
+            return "partial", f"강한 하락 경계 · 실제 {pct:.2f}% · 방향은 맞았으나 강도 약함"
+        return "miss", f"강한 하락 경계 · 실제 +{pct:.2f}% · 방향 틀림"
     return "n/a", "투자의견 없음"
 
 

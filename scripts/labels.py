@@ -14,12 +14,16 @@ IMPACT_LABEL = {
     "neutral": "중립",
 }
 
+# Forward-looking direction labels — answer "오늘 이 종목이 오를까/내릴까?"
+# rather than action-first "사라/팔아라". Previously split into two scales
+# (action "매수/매도" vs outlook "상승 기대/하락 경계"); unified because the
+# distinction confused the UI and our predictions are directional anyway.
 RECOMMENDATION_LABEL = {
-    "strong_buy": "풀매수",
-    "buy": "매수",
+    "strong_buy": "강한 상승 기대",
+    "buy": "상승 기대",
     "hold": "관망",
-    "sell": "매도",
-    "strong_sell": "풀매도",
+    "sell": "하락 경계",
+    "strong_sell": "강한 하락 경계",
 }
 
 OUTCOME_LABEL = {

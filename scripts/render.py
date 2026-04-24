@@ -504,7 +504,10 @@ def _normalize_stocks(summary: dict, now: datetime) -> None:
         if stock.get("owner") and not stock.get("owners"):
             stock["owners"] = [stock["owner"]]
         rec = stock.get("recommendation")
-        if rec and "recommendation_label" not in stock:
+        # Always derive from the current label mapping so renaming the mapping
+        # (e.g., 매수 → 상승 기대) flows through on the next render, even if
+        # the summary.json has a stale label baked in from a prior render.
+        if rec:
             stock["recommendation_label"] = RECOMMENDATION_LABEL.get(rec, rec)
         # backward compat: accept sentiment as alias
         if not rec and stock.get("sentiment"):
