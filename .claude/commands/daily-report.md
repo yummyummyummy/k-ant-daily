@@ -286,6 +286,11 @@ JSON 필드 자체(예: `"priced_in": false`) 는 스키마라 영어 그대로 
   - **개수 제한 없음**. 오늘 새롭게 움직인 재료면 다 포함. 다만 "오늘 새 정보"여야 함 (어제 이미 나온 얘기는 생략).
   - 각 항목에 `category` 필수: `policy` / `geopolitics` / `macro` / `sector` / `market`.
   - 거시 경제 해석은 `top_stories` 안으로 녹여 넣고, 별도 `macro.key_points`는 쓰지 않는다.
+- `focus.status.ship_count` 갱신 규칙 (호르무즈 통과량처럼 **일일 공개 지표가 아닌 데이터**):
+  - 매일 아침 WebSearch/Naver 로 "호르무즈 통과" 같은 키워드로 **최신 24-48시간** 기사 탐색.
+  - 새 기사에 구체 숫자 있으면 `value` · `date` · `source` 모두 교체.
+  - 새 숫자 못 찾으면 기존 `value`/`source` 유지하되 **`date` 는 인용 기사 실제 발행일로 정확히 기재** (오늘 날짜로 바꾸지 말 것). 렌더가 `(오늘 − date)` 기준으로 `📅 N일 전 기준` 배지를 자동 표시.
+  - focus 자체가 바뀐 주제 (예: 호르무즈 → 다른 지정학 이슈) 면 `ship_count` 구조 자체를 새 데이터로 대체하거나 생략.
 - `mood_dashboard` 4축 필수 작성:
   - `policy` — 세제·감독·산업 육성책·밸류업·주주환원
   - `geopolitics` — 전쟁·외교·무역·제재
