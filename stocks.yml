@@ -29,12 +29,6 @@ stocks:
     sector: "반도체"
     owners: ["한윤근", "장한솔"]
     overnight_proxy: ["^SOX", "AMAT", "NVDA"]
-  - code: "012450"
-    name: "한화에어로스페이스"
-    market: KOSPI
-    sector: "방산"
-    owners: []
-    overnight_proxy: ["ITA", "LMT", "RTX"]
   - code: "096770"
     name: "SK이노베이션"
     market: KOSPI
@@ -121,24 +115,12 @@ stocks:
     sector: "엔터"
     owners: ["장한솔"]
     overnight_proxy: ["SPOT", "WMG"]
-  - code: "329180"
-    name: "HD현대중공업"
-    market: KOSPI
-    sector: "조선"
-    owners: []
-    overnight_proxy: ["XLI", "DAC"]
   - code: "083450"
     name: "GST"
     market: KOSDAQ
     sector: "반도체"
     owners: ["한윤근"]
     overnight_proxy: ["^SOX", "AMAT"]
-  - code: "079550"
-    name: "LIG디펜스앤에어로스페이스"
-    market: KOSPI
-    sector: "방산"
-    owners: []
-    overnight_proxy: ["ITA", "LMT", "RTX"]
   - code: "036570"
     name: "엔씨소프트"
     market: KOSPI
