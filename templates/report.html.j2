@@ -155,20 +155,6 @@
     .status-badge.open       { background: #15803d; }
   }
   .status-detail { font-size: 13px; color: var(--muted); }
-  .ship-count   { font-size: 13px; color: var(--fg); }
-  .ship-count strong { font-size: 15px; color: var(--accent); }
-  /* 📅 N일 전 기준 — 호르무즈 통과량 같은 비-일일 지표는 인용 기사가
-     며칠 묵을 수 있음. 서버가 days_ago ≥ 2 이면 is_stale 을 찍어주고
-     템플릿이 이 배지로 "최신 아님" 을 가시화. */
-  .stale-badge {
-    display: inline-block; font-size: 11px; font-weight: 600;
-    color: #92400e; background: #fef3c7; border: 1px solid #f59e0b;
-    padding: 1px 7px; border-radius: 4px; margin-left: 4px;
-    white-space: nowrap;
-  }
-  [data-theme="dark"] .stale-badge {
-    color: #fde68a; background: rgba(245, 158, 11, 0.2);
-  }
 
   .news-items { list-style: none; padding: 0; margin: 8px 0 0; }
   .news-items li {
@@ -1350,19 +1336,6 @@
       </span>
       {% endif %}
       {% if focus.status.detail %}<span class="status-detail">{{ focus.status.detail }}</span>{% endif %}
-      {% if focus.status.ship_count %}
-      <span class="ship-count">
-        🚢 <strong>{{ focus.status.ship_count.value }}</strong>
-        {% if focus.status.ship_count.date %}({{ focus.status.ship_count.date }}){% endif %}
-        {% if focus.status.ship_count.is_stale %}
-        <span class="stale-badge" title="이 숫자는 {{ focus.status.ship_count.days_ago }}일 전 기사 기준 — 이후 공개된 최신 수치 없음">📅 {{ focus.status.ship_count.days_ago }}일 전 기준</span>
-        {% endif %}
-        {% if focus.status.ship_count.note %} · {{ focus.status.ship_count.note }}{% endif %}
-        {% if focus.status.ship_count.source %}
-        <a href="{{ focus.status.ship_count.source.url }}" target="_blank" rel="noopener" style="color: var(--accent); margin-left: 4px;">({{ focus.status.ship_count.source.title }})</a>
-        {% endif %}
-      </span>
-      {% endif %}
     </div>
     {% endif %}
     {% if focus.summary or focus.news_items %}

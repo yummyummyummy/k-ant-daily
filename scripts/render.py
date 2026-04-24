@@ -320,23 +320,9 @@ def _normalize_focus(summary: dict, now: datetime) -> None:
         lvl = status.get("level")
         if lvl and "label" not in status:
             status["label"] = STATUS_LABEL.get(lvl, lvl)
-        # Ship-count data isn't published daily (news-angle only), so the
-        # cited article can be days old. Compute staleness so the template
-        # can warn the reader explicitly instead of letting the date sit
-        # silently in parentheses.
-        ship = status.get("ship_count") or {}
-        date_str = ship.get("date")
-        today = summary.get("date") or now.date().isoformat()
-        if date_str and today:
-            m = re.match(r"(\d{4}-\d{2}-\d{2})", str(date_str))
-            if m:
-                try:
-                    d1 = datetime.strptime(m.group(1), "%Y-%m-%d").date()
-                    d2 = datetime.strptime(today, "%Y-%m-%d").date()
-                    ship["days_ago"] = max(0, (d2 - d1).days)
-                    ship["is_stale"] = ship["days_ago"] >= 2
-                except ValueError:
-                    pass
+        # Drop ship_count if agent still populates it — the field was retired
+        # because daily transit counts aren't reliably publishable.
+        status.pop("ship_count", None)
     # news_items: sort by published_at desc, annotate time_ago + impact_label
     items = focus.get("news_items") or []
     for n in items:

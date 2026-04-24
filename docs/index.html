@@ -203,20 +203,6 @@
     .status-badge.open       { background: #15803d; }
   }
   .status-detail { font-size: 13px; color: var(--muted); }
-  .ship-count   { font-size: 13px; color: var(--fg); }
-  .ship-count strong { font-size: 15px; color: var(--accent); }
-  /* 📅 N일 전 기준 — 호르무즈 통과량 같은 비-일일 지표는 인용 기사가
-     며칠 묵을 수 있음. 서버가 days_ago ≥ 2 이면 is_stale 을 찍어주고
-     템플릿이 이 배지로 "최신 아님" 을 가시화. */
-  .stale-badge {
-    display: inline-block; font-size: 11px; font-weight: 600;
-    color: #92400e; background: #fef3c7; border: 1px solid #f59e0b;
-    padding: 1px 7px; border-radius: 4px; margin-left: 4px;
-    white-space: nowrap;
-  }
-  [data-theme="dark"] .stale-badge {
-    color: #fde68a; background: rgba(245, 158, 11, 0.2);
-  }
 
   .news-items { list-style: none; padding: 0; margin: 8px 0 0; }
   .news-items li {
@@ -1640,12 +1626,7 @@
       <span class="status-badge restricted">
 ⚠️        선별 통제 중
       </span>
-<span class="status-detail">이란 항구 출입 선박 중심 선별 봉쇄, 비관련 선박 통과 가능</span>      <span class="ship-count">
-        🚢 <strong>일 4~10척 통과</strong>
-(2026-04-20 (일))        <span class="stale-badge" title="이 숫자는 4일 전 기사 기준 — 이후 공개된 최신 수치 없음">📅 4일 전 기준</span>
- · 전쟁 전 일 135척 대비 급감        <a href="https://imnews.imbc.com/replay/2026/nwdesk/article/6815521_37004.html" target="_blank" rel="noopener" style="color: var(--accent); margin-left: 4px;">(통과하려다 회항 속출…호르무즈 &#39;역봉쇄&#39; 현실화?)</a>
-      </span>
-    </div>
+<span class="status-detail">이란 항구 출입 선박 중심 선별 봉쇄, 비관련 선박 통과 가능</span>    </div>
     <details class="focus-toggle">
       <summary>자세히 보기</summary>
       <div class="focus-body">
