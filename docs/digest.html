@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-04-27 장 마감 후 뉴스 · k-ant-daily</title>
+<meta name="description" content="한국 장 마감 후부터 다음 브리핑 전까지의 시장 영향 뉴스 다이제스트">
+<link rel="canonical" href="https://yummyummyummy.github.io/k-ant-daily/digest.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-04-27 장 마감 후 뉴스">
+<meta property="og:description" content="한국 장 마감 후부터 다음 브리핑 전까지의 시장 영향 뉴스 다이제스트">
+<meta property="og:url" content="https://yummyummyummy.github.io/k-ant-daily/digest.html">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="k-ant-daily">
+<meta property="og:image" content="https://yummyummyummy.github.io/k-ant-daily/og-image.png">
+
+<style>
+:root {
+    --fg: #0f172a;
+    --muted: #64748b;
+    --bg: #ffffff;
+    --accent: #0f766e;
+    --border: #e2e8f0;
+    --card: #f8fafc;
+    /* 한국 주식 관행: 상승=빨강 / 하락=파랑 */
+    --pos: #dc2626;     --pos-bg: rgba(220,38,38,0.08);
+    --neg: #2563eb;     --neg-bg: rgba(37,99,235,0.08);
+    --partial: #d97706; --partial-bg: rgba(245,158,11,0.15);
+    --neu: #6b7280;     --neu-bg: rgba(107,114,128,0.08);
+    --good: #16a34a;    --good-bg: rgba(22,163,74,0.08);
+    --bad:  #b91c1c;    --bad-bg:  rgba(185,28,28,0.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fg: #e2e8f0;
+      --muted: #94a3b8;
+      --bg: #0f172a;
+      --accent: #5eead4;
+      --border: #1e293b;
+      --card: #1e293b;
+      --pos: #f87171;  --pos-bg: rgba(248,113,113,0.12);
+      --neg: #60a5fa;  --neg-bg: rgba(96,165,250,0.12);
+      --neu: #94a3b8;  --neu-bg: rgba(148,163,184,0.12);
+      --good: #4ade80; --good-bg: rgba(74,222,128,0.12);
+      --bad:  #f87171; --bad-bg:  rgba(248,113,113,0.12);
+    }
+  }
+  * { box-sizing: border-box; }
+
+  /* 하이라이터 — macro.summary · rationale 등 agent 가 `**...**` 로 감싼 구절이
+     이 스타일로 렌더된다. 장중 변동성 핵심 변수나 주요 예측 문구를 시각적으로
+     부각하는 용도. 내용은 `highlight` Jinja 필터가 생성. */
+  mark.driver {
+    background: rgba(250, 204, 21, 0.35);
+    color: inherit;
+    font-weight: 700;
+    padding: 1px 4px;
+    border-radius: 3px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  @media (prefers-color-scheme: dark) {
+    mark.driver {
+      background: rgba(250, 204, 21, 0.22);
+      color: var(--fg);
+    }
+  }  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+      "Pretendard", "Noto Sans KR", sans-serif;
+    line-height: 1.6; font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; }
+
+  header h1 { font-size: 24px; margin: 0 0 6px; }
+  header time { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; }
+  header nav { margin-top: 4px; }
+  header nav a { color: var(--accent); text-decoration: none; font-size: 14px; }
+  header .next-brief { color: var(--muted); font-size: 12px; margin-top: 6px; }
+
+  section { margin-top: 28px; }
+  section h2 {
+    font-size: 16px; margin: 0 0 12px;
+    border-left: 3px solid var(--accent); padding-left: 8px;
+  }
+
+  /* Generic news list — used by 한국 마감 후 / 매크로 / 미국 시초 헤드라인 / 공시 */
+  .news-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .news-list li {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 14px; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .news-list .dot {
+    flex: 0 0 6px; width: 6px; height: 6px; border-radius: 50%;
+    margin-top: 8px; background: var(--neu);
+  }
+  .news-list .dot.positive { background: var(--pos); }
+  .news-list .dot.negative { background: var(--neg); }
+  .news-list .body { flex: 1; min-width: 0; }
+  .news-list .headline { font-size: 14px; line-height: 1.4; color: var(--fg); }
+  .news-list .headline a { color: var(--fg); text-decoration: none; }
+  .news-list .headline a:hover { color: var(--accent); }
+  .news-list .summary { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+  .news-list .meta { font-size: 11px; color: var(--muted); margin-top: 4px; display: flex; gap: 8px; }
+  .news-list .meta .time-ago { color: var(--accent); font-weight: 600; }
+  .news-list .impact-chip {
+    font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px;
+    background: var(--neu-bg); color: var(--neu); white-space: nowrap;
+  }
+  .news-list .impact-chip.positive { background: var(--pos-bg); color: var(--pos); }
+  .news-list .impact-chip.negative { background: var(--neg-bg); color: var(--neg); }
+
+  /* 미국 시초 — 인덱스 + 프록시 종목 그리드 */
+  .us-tape { display: flex; flex-direction: column; gap: 10px; }
+  .us-tape .row {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .us-tape .row-title { font-size: 11px; color: var(--muted); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .us-tape .items { display: flex; flex-wrap: wrap; gap: 14px; font-variant-numeric: tabular-nums; }
+  .us-tape .item { font-size: 13px; }
+  .us-tape .item .name { color: var(--muted); margin-right: 4px; font-weight: 600; }
+  .us-tape .item .value { color: var(--fg); font-weight: 700; }
+  .us-tape .item .pct.up   { color: var(--pos); margin-left: 4px; }
+  .us-tape .item .pct.down { color: var(--neg); margin-left: 4px; }
+  .us-tape .item .pct.flat { color: var(--muted); margin-left: 4px; }
+
+  .empty-state { color: var(--muted); font-size: 13px; padding: 12px; text-align: center;
+    background: var(--card); border: 1px dashed var(--border); border-radius: 8px; }
+
+  footer { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 12px; text-align: center; }
+  .live-indicator { font-size: 12px; color: var(--muted); margin-left: 8px; }
+  .live-indicator.live { color: var(--pos); }
+</style>
+</head>
+<body data-date="2026-04-27">
+<main>
+  <header>
+    <nav><a href="archive.html">📋 예측</a> · <a href="accuracy.html">📊 통계</a></nav>
+    <h1>🌙 장 마감 후 뉴스</h1>
+    <time>2026-04-27 22:50 KST 발행<span class="live-indicator" id="live-indicator"></span></time>
+  </header>
+
+
+
+
+
+  <section>
+    <div class="empty-state">아직 수집된 시장 영향 뉴스가 없습니다. 23:00 자동 발행 후 이 페이지가 채워집니다.</div>
+  </section>
+
+  <footer>k-ant-daily · <a href="https://github.com/yummyummyummy/keyword-stock-daily" target="_blank" rel="noopener">GitHub</a></footer>
+</main>
+
+<script>
+  /* US ticker live polling — page is meant to be left open between 23:00
+     KST and the next briefing, so refresh indices + proxy prices every 60s
+     using the existing Worker /ticker endpoint. */
+  const TICKER_API = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/ticker";
+  const POLL_MS = 60_000;
+
+  function kstNow() {
+    const utc = Date.now() + new Date().getTimezoneOffset() * 60_000;
+    return new Date(utc + 9 * 60 * 60_000);
+  }
+  function setIndicator(state, text) {
+    const el = document.getElementById("live-indicator");
+    if (!el) return;
+    el.classList.remove("live");
+    if (state === "live") el.classList.add("live");
+    el.textContent = text;
+  }
+  function fmtKstTime(d) {
+    return ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+  }
+
+  // Map index/proxy DOM by .name → element so we can update value+pct in place.
+  function indexUsTape() {
+    const out = {};
+    document.querySelectorAll(".us-tape .item").forEach((el) => {
+      const name = el.querySelector(".name")?.textContent.trim();
+      if (name) out[name] = el;
+    });
+    return out;
+  }
+
+  async function refreshUsTape() {
+    if (!TICKER_API) return;
+    const map = indexUsTape();
+    const symbols = Object.keys(map);
+    if (!symbols.length) return;
+    try {
+      const url = TICKER_API + "?items=" + encodeURIComponent(symbols.join(","));
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) return;
+      const data = await res.json();
+      let applied = 0;
+      Object.entries(data).forEach(([name, q]) => {
+        const el = map[name];
+        if (!el || !q) return;
+        const valEl = el.querySelector(".value");
+        const pctEl = el.querySelector(".pct");
+        if (valEl && q.value) valEl.textContent = q.value;
+        if (pctEl) {
+          pctEl.classList.remove("up", "down", "flat");
+          pctEl.classList.add(q.direction || "flat");
+          if (q.change_pct) pctEl.textContent = q.change_pct;
+        }
+        applied += 1;
+      });
+      if (applied > 0) setIndicator("live", "🟢 Live · " + fmtKstTime(kstNow()));
+    } catch {
+      /* silent */
+    }
+  }
+
+  if (TICKER_API) {
+    refreshUsTape();
+    setInterval(refreshUsTape, POLL_MS);
+  }
+</script>
+</body>
+</html>

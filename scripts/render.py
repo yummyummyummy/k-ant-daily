@@ -1063,6 +1063,97 @@ def build_accuracy_day(summary: dict, base_url: str) -> str | None:
     )
 
 
+def build_digest(digest: dict, base_url: str) -> str:
+    """Render the post-market news digest (장 마감 후 23:00 KST 발행).
+    Pure news aggregation — no per-stock predictions, no today recap. The
+    `digest` dict comes from `/post-market-digest` skill which curates
+    items into 4 sections (korea_after_close, us_market, macro, disclosures).
+    Empty sections auto-hide via `{% if %}` guards in the template."""
+    now = _reference_now(digest)
+    for n in (digest.get("korea_after_close") or []):
+        _annotate_impact(n)
+        n["time_ago"] = _time_ago(n.get("published_at"), now)
+    for n in (digest.get("macro") or []):
+        _annotate_impact(n)
+        n["time_ago"] = _time_ago(n.get("published_at"), now)
+    us = digest.get("us_market") or {}
+    for n in (us.get("headlines") or []):
+        _annotate_impact(n)
+        n["time_ago"] = _time_ago(n.get("published_at"), now)
+    for d in (digest.get("disclosures") or []):
+        _annotate_impact(d)
+        d["time_ago"] = _time_ago(d.get("published_at"), now)
+
+    date = digest.get("date") or now.date().isoformat()
+    generated_at = digest.get("generated_at") or now.isoformat()
+    try:
+        gen_dt = datetime.fromisoformat(generated_at)
+        generated_at_display = gen_dt.strftime("%H:%M") + " KST"
+    except Exception:
+        generated_at_display = generated_at
+
+    return _render_template(
+        "digest.html.j2",
+        base_url=base_url,
+        date=date,
+        generated_at=generated_at,
+        generated_at_display=generated_at_display,
+        tldr=digest.get("tldr"),
+        next_briefing=digest.get("next_briefing"),
+        korea_after_close=digest.get("korea_after_close") or [],
+        us_market=us if (us.get("indices") or us.get("proxies") or us.get("headlines")) else None,
+        macro=digest.get("macro") or [],
+        disclosures=digest.get("disclosures") or [],
+    )
+
+
+def build_index_router(latest_date: str | None, base_url: str) -> str:
+    """Tiny JS-routed index.html. Picks digest.html (after 23:00 KST or on
+    weekends) or the latest dated briefing otherwise. <noscript> falls back
+    to the briefing so non-JS clients (and crawlers indexing the homepage)
+    still see real content."""
+    fallback = f"{latest_date}.html" if latest_date else "archive.html"
+    return f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>k-ant-daily</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="{base_url}/{fallback}">
+<style>
+  body {{ background: #f9fafb; color: #6b7280;
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; margin: 0; }}
+  @media (prefers-color-scheme: dark) {{
+    body {{ background: #0f172a; color: #94a3b8; }}
+  }}
+  .loading {{ font-size: 14px; }}
+</style>
+</head>
+<body>
+<div class="loading">로딩 중…</div>
+<script>
+  const utc = Date.now() + new Date().getTimezoneOffset() * 60000;
+  const kst = new Date(utc + 9 * 60 * 60000);
+  const day = kst.getDay();
+  const isWeekend = day === 0 || day === 6;
+  const mm = kst.getHours() * 60 + kst.getMinutes();
+  // 평일 23:00 ~ 다음날 07:30, 또는 주말 → digest.html
+  // 그 외 → 그날 브리핑
+  const showDigest = isWeekend || mm >= 23 * 60 || mm < 7 * 60 + 30;
+  location.replace(showDigest ? "digest.html" : "{fallback}");
+</script>
+<noscript>
+  <meta http-equiv="refresh" content="0; url={fallback}">
+  <p>JavaScript 가 비활성화돼 있어 <a href="{fallback}">최신 브리핑</a>으로 이동합니다.</p>
+</noscript>
+</body>
+</html>
+"""
+
+
 def build_archive_index(base_url: str) -> str:
     entries: list[dict] = []
     pattern = re.compile(r"^(\d{4}-\d{2}-\d{2})\.html$")
@@ -1095,11 +1186,24 @@ def main(argv: list[str]) -> int:
     # retrospective) — those only change when the evening review runs, so
     # regenerating them on every 10-min refresh just churns timestamps.
     intraday = "--intraday" in flags
+    digest_mode = "--digest" in flags
     summary_path = Path(args[0])
     base_url = args[1] if len(args) > 1 else DEFAULT_BASE_URL
 
-    summary = json.loads(summary_path.read_text(encoding="utf-8"))
     DOCS.mkdir(exist_ok=True)
+
+    if digest_mode:
+        # Post-market digest path — input is digest.json, output is digest.html
+        # only. index.html JS-routing is updated separately by the morning
+        # briefing render so it stays in sync with the latest dated file.
+        digest = json.loads(summary_path.read_text(encoding="utf-8"))
+        html = build_digest(digest, base_url)
+        digest_path = DOCS / "digest.html"
+        digest_path.write_text(html, encoding="utf-8")
+        print(f"✓ Wrote {digest_path.relative_to(ROOT)}")
+        return 0
+
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
 
     # Auto-merge scraped quote data from sibling news.json when available.
     news_path = summary_path.parent / "news.json"
@@ -1111,9 +1215,9 @@ def main(argv: list[str]) -> int:
     date_key = filename.removesuffix(".html")
     artifact = persist_summary_artifact(summary, date_key)
 
-    # index.html = MOST RECENT dated report (not necessarily the one we just
-    # rendered). Prevents a backfill render for 2026-04-22 from overwriting
-    # index with yesterday's content when 2026-04-23 already exists.
+    # index.html = JS-routed shim. Picks digest.html (after-hours/weekends)
+    # or the latest dated briefing otherwise. Reads MOST RECENT dated file —
+    # backfilling an older date doesn't repoint index.
     index = DOCS / "index.html"
     _dated_name = re.compile(r"^(\d{4}-\d{2}-\d{2})\.html$")
     _latest = None
@@ -1121,7 +1225,8 @@ def main(argv: list[str]) -> int:
         m = _dated_name.match(p.name)
         if m and (_latest is None or m.group(1) > _latest[0]):
             _latest = (m.group(1), p)
-    shutil.copyfile(_latest[1] if _latest else dated, index)
+    latest_date = _latest[0] if _latest else date_key
+    index.write_text(build_index_router(latest_date, base_url), encoding="utf-8")
 
     if not intraday:
         # Per-day retrospective FIRST — its existence on disk drives the

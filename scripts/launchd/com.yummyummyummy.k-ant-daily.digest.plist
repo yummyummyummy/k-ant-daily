@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.yummyummyummy.k-ant-daily.digest</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/woong/projects/k-ant-daily/scripts/launchd/run-digest.sh</string>
+    </array>
+
+    <!-- 23:00 every day (Mon-Sun). 30 min after US market open (~22:30 KST
+         during DST), gives the digest fresh US session data. Weekend runs
+         use the same wrapper but the skill switches to weekend mode (US +
+         macro only — no Korean session). Local timezone Asia/Seoul. -->
+    <key>StartCalendarInterval</key>
+    <array>
+        <dict><key>Weekday</key><integer>0</integer><key>Hour</key><integer>23</integer><key>Minute</key><integer>0</integer></dict>
+        <dict><key>Weekday</key><integer>1</integer><key>Hour</key><integer>23</integer><key>Minute</key><integer>0</integer></dict>
+        <dict><key>Weekday</key><integer>2</integer><key>Hour</key><integer>23</integer><key>Minute</key><integer>0</integer></dict>
+        <dict><key>Weekday</key><integer>3</integer><key>Hour</key><integer>23</integer><key>Minute</key><integer>0</integer></dict>
+        <dict><key>Weekday</key><integer>4</integer><key>Hour</key><integer>23</integer><key>Minute</key><integer>0</integer></dict>
+        <dict><key>Weekday</key><integer>5</integer><key>Hour</key><integer>23</integer><key>Minute</key><integer>0</integer></dict>
+        <dict><key>Weekday</key><integer>6</integer><key>Hour</key><integer>23</integer><key>Minute</key><integer>0</integer></dict>
+    </array>
+
+    <key>RunAtLoad</key><false/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/woong/Library/Logs/k-ant-daily/launchd-digest.out</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/woong/Library/Logs/k-ant-daily/launchd-digest.err</string>
+
+    <key>ProcessType</key><string>Background</string>
+</dict>
+</plist>

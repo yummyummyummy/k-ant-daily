@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ date }} 장 마감 후 뉴스 · k-ant-daily</title>
+<meta name="description" content="{{ tldr or '한국 장 마감 후부터 다음 브리핑 전까지의 시장 영향 뉴스 다이제스트' }}">
+<link rel="canonical" href="{{ base_url }}/digest.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ date }} 장 마감 후 뉴스">
+<meta property="og:description" content="{{ tldr or '한국 장 마감 후부터 다음 브리핑 전까지의 시장 영향 뉴스 다이제스트' }}">
+<meta property="og:url" content="{{ base_url }}/digest.html">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="k-ant-daily">
+<meta property="og:image" content="{{ base_url }}/og-image.png">
+
+<style>
+{% include '_theme.css.j2' %}
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+      "Pretendard", "Noto Sans KR", sans-serif;
+    line-height: 1.6; font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; }
+
+  header h1 { font-size: 24px; margin: 0 0 6px; }
+  header time { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; }
+  header nav { margin-top: 4px; }
+  header nav a { color: var(--accent); text-decoration: none; font-size: 14px; }
+  header .next-brief { color: var(--muted); font-size: 12px; margin-top: 6px; }
+
+  section { margin-top: 28px; }
+  section h2 {
+    font-size: 16px; margin: 0 0 12px;
+    border-left: 3px solid var(--accent); padding-left: 8px;
+  }
+
+  /* Generic news list — used by 한국 마감 후 / 매크로 / 미국 시초 헤드라인 / 공시 */
+  .news-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .news-list li {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 14px; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .news-list .dot {
+    flex: 0 0 6px; width: 6px; height: 6px; border-radius: 50%;
+    margin-top: 8px; background: var(--neu);
+  }
+  .news-list .dot.positive { background: var(--pos); }
+  .news-list .dot.negative { background: var(--neg); }
+  .news-list .body { flex: 1; min-width: 0; }
+  .news-list .headline { font-size: 14px; line-height: 1.4; color: var(--fg); }
+  .news-list .headline a { color: var(--fg); text-decoration: none; }
+  .news-list .headline a:hover { color: var(--accent); }
+  .news-list .summary { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+  .news-list .meta { font-size: 11px; color: var(--muted); margin-top: 4px; display: flex; gap: 8px; }
+  .news-list .meta .time-ago { color: var(--accent); font-weight: 600; }
+  .news-list .impact-chip {
+    font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px;
+    background: var(--neu-bg); color: var(--neu); white-space: nowrap;
+  }
+  .news-list .impact-chip.positive { background: var(--pos-bg); color: var(--pos); }
+  .news-list .impact-chip.negative { background: var(--neg-bg); color: var(--neg); }
+
+  /* 미국 시초 — 인덱스 + 프록시 종목 그리드 */
+  .us-tape { display: flex; flex-direction: column; gap: 10px; }
+  .us-tape .row {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .us-tape .row-title { font-size: 11px; color: var(--muted); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .us-tape .items { display: flex; flex-wrap: wrap; gap: 14px; font-variant-numeric: tabular-nums; }
+  .us-tape .item { font-size: 13px; }
+  .us-tape .item .name { color: var(--muted); margin-right: 4px; font-weight: 600; }
+  .us-tape .item .value { color: var(--fg); font-weight: 700; }
+  .us-tape .item .pct.up   { color: var(--pos); margin-left: 4px; }
+  .us-tape .item .pct.down { color: var(--neg); margin-left: 4px; }
+  .us-tape .item .pct.flat { color: var(--muted); margin-left: 4px; }
+
+  .empty-state { color: var(--muted); font-size: 13px; padding: 12px; text-align: center;
+    background: var(--card); border: 1px dashed var(--border); border-radius: 8px; }
+
+  footer { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 12px; text-align: center; }
+  .live-indicator { font-size: 12px; color: var(--muted); margin-left: 8px; }
+  .live-indicator.live { color: var(--pos); }
+</style>
+</head>
+<body data-date="{{ date }}">
+<main>
+  <header>
+    <nav><a href="archive.html">📋 예측</a> · <a href="accuracy.html">📊 통계</a></nav>
+    <h1>🌙 장 마감 후 뉴스</h1>
+    <time>{{ date }} {{ generated_at_display }} 발행<span class="live-indicator" id="live-indicator"></span></time>
+    {% if next_briefing %}<div class="next-brief">다음 브리핑 — {{ next_briefing }}</div>{% endif %}
+  </header>
+
+  {# 🇰🇷 한국 장 마감 후 — 평일에만, 15:30~발행시점 사이 뉴스 #}
+  {% if korea_after_close %}
+  <section>
+    <h2>🇰🇷 한국 장 마감 후</h2>
+    <ul class="news-list">
+      {% for n in korea_after_close %}
+      <li>
+        <span class="dot {{ n.impact or 'neutral' }}"></span>
+        <div class="body">
+          <div class="headline">
+            {% if n.url %}<a href="{{ n.url }}" target="_blank" rel="noopener">{{ n.headline }}</a>
+            {% else %}{{ n.headline }}{% endif %}
+          </div>
+          {% if n.summary %}<div class="summary">{{ n.summary }}</div>{% endif %}
+          <div class="meta">
+            {% if n.impact_label %}<span class="impact-chip {{ n.impact }}">{{ n.impact_label }}</span>{% endif %}
+            {% if n.source %}<span>{{ n.source }}</span>{% endif %}
+            {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {# 🇺🇸 미국 장 시초 — 발행 시점은 23:00, 미장 30분 진행됨 #}
+  {% if us_market and (us_market.indices or us_market.proxies or us_market.headlines) %}
+  <section>
+    <h2>🇺🇸 미국 장 (시초)</h2>
+    <div class="us-tape">
+      {% if us_market.indices %}
+      <div class="row">
+        <div class="row-title">주요 지수</div>
+        <div class="items">
+          {% for idx in us_market.indices %}
+          <span class="item">
+            <span class="name">{{ idx.name }}</span>
+            <span class="value">{{ idx.value }}</span>
+            <span class="pct {{ idx.direction or 'flat' }}">{{ idx.change_pct }}</span>
+          </span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      {% if us_market.proxies %}
+      <div class="row">
+        <div class="row-title">간밤 프록시 종목</div>
+        <div class="items">
+          {% for p in us_market.proxies %}
+          <span class="item">
+            <span class="name">{{ p.symbol }}</span>
+            <span class="value">{{ p.value }}</span>
+            <span class="pct {{ p.direction or 'flat' }}">{{ p.change_pct }}</span>
+          </span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    {% if us_market.headlines %}
+    <ul class="news-list" style="margin-top:10px">
+      {% for n in us_market.headlines %}
+      <li>
+        <span class="dot {{ n.impact or 'neutral' }}"></span>
+        <div class="body">
+          <div class="headline">
+            {% if n.url %}<a href="{{ n.url }}" target="_blank" rel="noopener">{{ n.headline }}</a>
+            {% else %}{{ n.headline }}{% endif %}
+          </div>
+          {% if n.summary %}<div class="summary">{{ n.summary }}</div>{% endif %}
+          <div class="meta">
+            {% if n.impact_label %}<span class="impact-chip {{ n.impact }}">{{ n.impact_label }}</span>{% endif %}
+            {% if n.source %}<span>{{ n.source }}</span>{% endif %}
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {# 🌏 글로벌 매크로 #}
+  {% if macro %}
+  <section>
+    <h2>🌏 글로벌 매크로</h2>
+    <ul class="news-list">
+      {% for n in macro %}
+      <li>
+        <span class="dot {{ n.impact or 'neutral' }}"></span>
+        <div class="body">
+          <div class="headline">
+            {% if n.url %}<a href="{{ n.url }}" target="_blank" rel="noopener">{{ n.headline }}</a>
+            {% else %}{{ n.headline }}{% endif %}
+          </div>
+          {% if n.summary %}<div class="summary">{{ n.summary }}</div>{% endif %}
+          <div class="meta">
+            {% if n.impact_label %}<span class="impact-chip {{ n.impact }}">{{ n.impact_label }}</span>{% endif %}
+            {% if n.source %}<span>{{ n.source }}</span>{% endif %}
+            {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {# 💼 포트폴리오 시간외 공시 — 평일에만, 한국 종목 공시 #}
+  {% if disclosures %}
+  <section>
+    <h2>💼 포트폴리오 시간외 공시</h2>
+    <ul class="news-list">
+      {% for d in disclosures %}
+      <li>
+        <span class="dot {{ d.impact or 'neutral' }}"></span>
+        <div class="body">
+          <div class="headline">
+            <strong>{{ d.name }}</strong> —
+            {% if d.url %}<a href="{{ d.url }}" target="_blank" rel="noopener">{{ d.title }}</a>
+            {% else %}{{ d.title }}{% endif %}
+          </div>
+          <div class="meta">
+            {% if d.impact_label %}<span class="impact-chip {{ d.impact }}">{{ d.impact_label }}</span>{% endif %}
+            {% if d.time_ago %}<span class="time-ago">{{ d.time_ago }}</span>{% endif %}
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {# 모든 섹션이 비었을 때만 빈 상태 안내 #}
+  {% if not korea_after_close and not us_market and not macro and not disclosures %}
+  <section>
+    <div class="empty-state">아직 수집된 시장 영향 뉴스가 없습니다. 23:00 자동 발행 후 이 페이지가 채워집니다.</div>
+  </section>
+  {% endif %}
+
+  <footer>k-ant-daily · <a href="https://github.com/yummyummyummy/keyword-stock-daily" target="_blank" rel="noopener">GitHub</a></footer>
+</main>
+
+<script>
+  /* US ticker live polling — page is meant to be left open between 23:00
+     KST and the next briefing, so refresh indices + proxy prices every 60s
+     using the existing Worker /ticker endpoint. */
+  const TICKER_API = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/ticker";
+  const POLL_MS = 60_000;
+
+  function kstNow() {
+    const utc = Date.now() + new Date().getTimezoneOffset() * 60_000;
+    return new Date(utc + 9 * 60 * 60_000);
+  }
+  function setIndicator(state, text) {
+    const el = document.getElementById("live-indicator");
+    if (!el) return;
+    el.classList.remove("live");
+    if (state === "live") el.classList.add("live");
+    el.textContent = text;
+  }
+  function fmtKstTime(d) {
+    return ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+  }
+
+  // Map index/proxy DOM by .name → element so we can update value+pct in place.
+  function indexUsTape() {
+    const out = {};
+    document.querySelectorAll(".us-tape .item").forEach((el) => {
+      const name = el.querySelector(".name")?.textContent.trim();
+      if (name) out[name] = el;
+    });
+    return out;
+  }
+
+  async function refreshUsTape() {
+    if (!TICKER_API) return;
+    const map = indexUsTape();
+    const symbols = Object.keys(map);
+    if (!symbols.length) return;
+    try {
+      const url = TICKER_API + "?items=" + encodeURIComponent(symbols.join(","));
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) return;
+      const data = await res.json();
+      let applied = 0;
+      Object.entries(data).forEach(([name, q]) => {
+        const el = map[name];
+        if (!el || !q) return;
+        const valEl = el.querySelector(".value");
+        const pctEl = el.querySelector(".pct");
+        if (valEl && q.value) valEl.textContent = q.value;
+        if (pctEl) {
+          pctEl.classList.remove("up", "down", "flat");
+          pctEl.classList.add(q.direction || "flat");
+          if (q.change_pct) pctEl.textContent = q.change_pct;
+        }
+        applied += 1;
+      });
+      if (applied > 0) setIndicator("live", "🟢 Live · " + fmtKstTime(kstNow()));
+    } catch {
+      /* silent */
+    }
+  }
+
+  if (TICKER_API) {
+    refreshUsTape();
+    setInterval(refreshUsTape, POLL_MS);
+  }
+</script>
+</body>
+</html>

@@ -12,14 +12,16 @@
 ## 하루 사이클
 
 ```
-  07:30 KST               15:30 KST          20:00 KST            20:10 KST
-  [/daily-report]   →   KRX 마감   →   NXT 마감   →   [/daily-review]
-     ↓ 예측                                             ↓ 검증 + 리포트
-  docs/YYYY-MM-DD.html                                같은 페이지에 오버레이
-   (예측만)                                            (예측 + 실제 결과)
+  07:30 KST           15:30 KST       20:00 KST     20:10 KST     23:00 KST
+  [/daily-report]  →  KRX 마감  →  NXT 마감  →  [/daily-review]  →  [/post-market-digest]
+     ↓ 예측                                       ↓ 검증 + 리포트     ↓ 다이제스트
+  docs/YYYY-MM-DD.html                          같은 페이지에 오버레이  docs/digest.html
+   (예측만)                                      (예측 + 실제 결과)    (장 마감 후 뉴스)
 ```
 
-매일 같은 URL(`docs/YYYY-MM-DD.html`)이 두 번 갱신됩니다. 아침은 예측, 저녁은 예측+검증.
+`docs/YYYY-MM-DD.html` 은 아침/저녁 두 번 갱신 (예측 → 검증 오버레이). 23:00 부터 다음 날 07:30 까지는 index 가 `digest.html` 로 라우팅 — 한국 장 마감 후 발생한 시장 영향 뉴스 + 미국 장 시초 + 글로벌 매크로 + 포트폴리오 시간외 공시.
+
+주말은 `/post-market-digest` 만 23:00 KST 발행 (한국 장 휴장 → 글로벌 매크로 + 미국 장 위주).
 
 ---
 
@@ -157,6 +159,11 @@ SK하이닉스 000660  🔥 7   +3.37%   매수   👤 이영준 +3
 - [`📋 예측`](https://yummyummyummy.github.io/k-ant-daily/archive.html) (`archive.html`) — 일별 아침 브리핑 아카이브. 각 행에 `🔍 회고` 버튼이 있어 해당 날짜의 `accuracy/YYYY-MM-DD.html` 상세로 바로 진입
 - [`📊 통계`](https://yummyummyummy.github.io/k-ant-daily/accuracy.html) (`accuracy.html`) — 누적 hit rate · 신뢰도별 정확도 · 신호 기여도
 
+**index.html 라우팅** — 작은 JS shim 이 KST 시간 보고 분기:
+- 평일 07:30 ~ 23:00 → 그날 브리핑 (`YYYY-MM-DD.html`)
+- 평일 23:00 ~ 다음날 07:30 + 주말 → `digest.html`
+- `<noscript>` 폴백은 항상 최신 브리핑
+
 ---
 
 ## 디렉터리 구조
@@ -180,13 +187,15 @@ k-ant-daily/
 │   └── README.md
 ├── .claude/commands/
 │   ├── daily-report.md                 # 아침 브리핑 스킬 (스키마 · 큐레이션 기준)
-│   └── daily-review.md                 # 저녁 리뷰 스킬
+│   ├── daily-review.md                 # 저녁 리뷰 스킬
+│   └── post-market-digest.md           # 23:00 장 마감 후 뉴스 다이제스트 스킬
 ├── docs/                               # GitHub Pages
 │   ├── YYYY-MM-DD.html                 # 일간 리포트 (아침 발행 + 저녁 오버레이)
 │   ├── YYYY-MM-DD.summary.json         # 영구 아티팩트 (저녁 리뷰가 읽음)
 │   ├── accuracy.html                   # 📊 통계 — 누적 지표
 │   ├── accuracy/YYYY-MM-DD.html        # 일별 회고 (예측 ↔ 결과 서술 분석)
-│   ├── index.html                      # 최신본 사본
+│   ├── digest.html                     # 🌙 장 마감 후 뉴스 다이제스트 (23:00 KST 발행)
+│   ├── index.html                      # JS-router (시간대 보고 digest vs 최신 브리핑 분기)
 │   └── archive.html                    # 📋 예측 — 날짜별 브리핑 리스트 (각 행에 🔍 회고 링크)
 └── .tmp/                               # 런타임 scratch (gitignored)
     ├── news.json                       # fetch_news.py 출력
