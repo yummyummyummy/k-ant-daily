@@ -1052,6 +1052,18 @@
   .sec-bucket-head.cold   { border-left-color: var(--neg); }
   .sec-bucket-head.mixed  { border-left-color: var(--muted); }
   .sec-bucket-count { color: var(--muted); font-weight: 500; margin-left: 2px; }
+  /* Per-bucket 2-column grid (≥640px). Each bucket has its own grid so the
+     card next to a positive card is also positive. align-items: start lets
+     a card grow taller (e.g. when the user opens "더 보기") without forcing
+     its row neighbor to match height — uneven bottoms preferred over big
+     whitespace gaps. */
+  .sector-grid {
+    display: grid; grid-template-columns: 1fr; gap: 12px;
+  }
+  @media (min-width: 640px) {
+    .sector-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  }
+  .sector-grid .sector-card { margin-bottom: 0; }
   .sector-card .sec-head {
     display: flex; align-items: center; justify-content: space-between;
     gap: 8px; flex-wrap: wrap;
@@ -1741,6 +1753,7 @@
   <section>
     <h2>🏭 섹터 흐름</h2>
     <h3 class="sec-bucket-head hot">🔥 오늘 핫할 것 같은 섹터 <span class="sec-bucket-count">· 4</span></h3>
+    <div class="sector-grid">
     <div class="sector-card positive">
       <div class="sec-head">
         <div class="sec-title">
@@ -1890,7 +1903,9 @@
     </li>
       </ul>
     </div>
+    </div>
     <h3 class="sec-bucket-head cold">⚠️ 오늘 어려울 것 같은 섹터 <span class="sec-bucket-count">· 1</span></h3>
+    <div class="sector-grid">
     <div class="sector-card negative">
       <div class="sec-head">
         <div class="sec-title">
@@ -1916,7 +1931,9 @@
     </li>
       </ul>
     </div>
+    </div>
     <h3 class="sec-bucket-head mixed">😐 그냥 그런 섹터 <span class="sec-bucket-count">· 3</span></h3>
+    <div class="sector-grid">
     <div class="sector-card neutral">
       <div class="sec-head">
         <div class="sec-title">
@@ -2010,6 +2027,7 @@
 <div class="why-material">📈 실적과 전망 괴리 주의</div>      </div>
     </li>
       </ul>
+    </div>
     </div>
   </section>
 
