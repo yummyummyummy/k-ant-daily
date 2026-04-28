@@ -439,6 +439,52 @@ def _normalize_volume_signal(stock: dict) -> None:
     stock["volume_spike"] = ratio >= 2.0
 
 
+def _normalize_nxt_snapshot(stock: dict) -> None:
+    """Derive display fields from `nxt_pre_open` (baked by snapshot_nxt.py
+    at 08:45 KST) and the optional `nxt_adjusted_recommendation`. Sets:
+      - `nxt_chip`        : {"text", "cls"} — the small "NXT ↑ +1.20%" badge
+      - `nxt_adjustment`  : {"baseline_label", "adjusted_label", "shift_word",
+                             "arrow", "pct_str"} — the "장전엔 X 였는데 NXT
+                             Y%로 Z 상향" annotation. Only set when the
+                             baseline group actually changed.
+    Leaves both fields unset when there's no snapshot yet (07:30 baseline
+    period before 08:45) — the template hides them via {% if %} guards."""
+    snap = stock.get("nxt_pre_open")
+    if not snap or "change_pct" not in snap:
+        return
+    pct = float(snap.get("change_pct") or 0)
+    direction = snap.get("direction") or "flat"
+    sign = "+" if pct > 0 else ""
+    arrow = "↑" if pct >= 1.5 else ("↓" if pct <= -1.5 else "—")
+    stock["nxt_chip"] = {
+        "text": f"NXT {arrow} {sign}{pct:.2f}%",
+        "cls": direction,
+    }
+
+    # Group-shift annotation — only when adjusted differs from baseline.
+    baseline_rec = stock.get("recommendation")
+    adjusted_rec = stock.get("nxt_adjusted_recommendation")
+    if not adjusted_rec or adjusted_rec == baseline_rec:
+        return
+    if baseline_rec not in RECOMMENDATION_LABEL or adjusted_rec not in RECOMMENDATION_LABEL:
+        return
+    rec_order = ["strong_sell", "sell", "hold", "buy", "strong_buy"]
+    try:
+        b_idx = rec_order.index(baseline_rec)
+        a_idx = rec_order.index(adjusted_rec)
+    except ValueError:
+        return
+    shift_word = "상향" if a_idx > b_idx else "하향"
+    annotation_arrow = "↗" if a_idx > b_idx else "↘"
+    stock["nxt_adjustment"] = {
+        "baseline_label": RECOMMENDATION_LABEL[baseline_rec],
+        "adjusted_label": RECOMMENDATION_LABEL[adjusted_rec],
+        "shift_word":  shift_word,
+        "arrow":       annotation_arrow,
+        "pct_str":     f"{sign}{pct:.2f}%",
+    }
+
+
 def _normalize_stock_signals(stock: dict) -> None:
     """Attach human-readable labels for the decision signals the template shows
     in the confidence/rationale block (뉴스 톤, 간밤, 신뢰도) and for the
@@ -518,6 +564,7 @@ def _normalize_stocks(summary: dict, now: datetime) -> None:
         _normalize_stock_quote(stock, pre_market=pre_market)
         _normalize_volume_signal(stock)
         _normalize_stock_signals(stock)
+        _normalize_nxt_snapshot(stock)
 
         # Forward-looking direction + one-line outlook for the card summary row.
         dir_meta = DIRECTION_META.get(stock.get("recommendation"), DIRECTION_META["hold"])
@@ -832,15 +879,19 @@ def _portfolio_snapshot(stocks: list[dict]) -> dict:
 def _group_stocks_by_recommendation(stocks: list[dict]) -> list[dict]:
     """Partition the pre-sorted stocks list into blocks keyed by recommendation.
     Returns ``[{key, label, emoji, accent, stocks: [...]}]`` in display order —
-    **always all 5 STOCK_GROUP_META buckets**, even empty ones, so the client-
-    side NXT adjustment code can move cards between any two groups (including
-    into groups that had zero stocks at 07:30). The template hides empty
-    groups via CSS `:has()` — no visual clutter, full DOM for JS.
+    **always all 5 STOCK_GROUP_META buckets**, even empty ones (kept as DOM
+    placeholders even though no client JS moves cards anymore — handy if
+    we re-introduce client-side overrides later).
+
+    Grouping uses `nxt_adjusted_recommendation` when set (baked by the 08:45
+    `snapshot_nxt.py` job), otherwise falls back to the 07:30 baseline
+    `recommendation`. The original baseline stays accessible via
+    `recommendation` for the chip/annotation that explains the shift.
     Unrecognized/missing recommendations fall into a trailing "기타" group."""
     buckets = {meta["key"]: [] for meta in STOCK_GROUP_META}
     other = []
     for s in stocks:
-        rec = s.get("recommendation")
+        rec = s.get("nxt_adjusted_recommendation") or s.get("recommendation")
         if rec in buckets:
             buckets[rec].append(s)
         else:

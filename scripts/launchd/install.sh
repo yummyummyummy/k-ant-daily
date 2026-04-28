@@ -1,8 +1,9 @@
 #!/bin/bash
-# Install the three LaunchAgents:
-#   - briefing  07:30 weekdays (morning prediction)
-#   - review    20:10 weekdays (post-session verification)
-#   - digest    23:00 daily    (post-market news digest, US-open + 30min)
+# Install the four LaunchAgents:
+#   - briefing      07:30 weekdays (morning prediction)
+#   - nxt-snapshot  08:45 weekdays (NXT pre-open snapshot baked to summary.json)
+#   - review        20:10 weekdays (post-session verification)
+#   - digest        23:00 daily    (post-market news digest, US-open + 30min)
 #
 # Intraday news refresh used to live here as a fourth agent (10-min cron);
 # it's now served by the browser polling the Cloudflare Worker /stock-news
@@ -26,7 +27,7 @@ if [ -f "$LEGACY" ]; then
     echo "· removed legacy refresh agent (news now refreshed client-side via Worker)"
 fi
 
-for name in com.yummyummyummy.k-ant-daily.briefing com.yummyummyummy.k-ant-daily.review com.yummyummyummy.k-ant-daily.digest; do
+for name in com.yummyummyummy.k-ant-daily.briefing com.yummyummyummy.k-ant-daily.nxt-snapshot com.yummyummyummy.k-ant-daily.review com.yummyummyummy.k-ant-daily.digest; do
     plist="$DST/$name.plist"
     # Copy (not symlink) — launchctl dislikes symlinks in LaunchAgents.
     cp -f "$SRC/$name.plist" "$plist"
@@ -44,5 +45,5 @@ launchctl list | grep k-ant-daily || true
 echo ""
 echo "Logs: $LOGS"
 echo ""
-echo "To disable later:  launchctl unload -w $DST/com.yummyummyummy.k-ant-daily.{briefing,review,digest}.plist"
-echo "To test manually:  $SRC/run-briefing.sh   (or run-review.sh / run-digest.sh)"
+echo "To disable later:  launchctl unload -w $DST/com.yummyummyummy.k-ant-daily.{briefing,nxt-snapshot,review,digest}.plist"
+echo "To test manually:  $SRC/run-briefing.sh   (or run-nxt-snapshot.sh / run-review.sh / run-digest.sh)"

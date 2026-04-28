@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.yummyummyummy.k-ant-daily.nxt-snapshot</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/woong/projects/k-ant-daily/scripts/launchd/run-nxt-snapshot.sh</string>
+    </array>
+
+    <!-- 08:45 weekdays (Mon-Fri) — 15 min before KRX open. NXT pre-open
+         (08:00-09:00) gives us enough fresh data; we capture once and bake
+         into summary.json so the rest of the day is consistent across
+         reloads/devices. Local timezone Asia/Seoul. -->
+    <key>StartCalendarInterval</key>
+    <array>
+        <dict><key>Weekday</key><integer>1</integer><key>Hour</key><integer>8</integer><key>Minute</key><integer>45</integer></dict>
+        <dict><key>Weekday</key><integer>2</integer><key>Hour</key><integer>8</integer><key>Minute</key><integer>45</integer></dict>
+        <dict><key>Weekday</key><integer>3</integer><key>Hour</key><integer>8</integer><key>Minute</key><integer>45</integer></dict>
+        <dict><key>Weekday</key><integer>4</integer><key>Hour</key><integer>8</integer><key>Minute</key><integer>45</integer></dict>
+        <dict><key>Weekday</key><integer>5</integer><key>Hour</key><integer>8</integer><key>Minute</key><integer>45</integer></dict>
+    </array>
+
+    <key>RunAtLoad</key><false/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/woong/Library/Logs/k-ant-daily/launchd-nxt-snapshot.out</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/woong/Library/Logs/k-ant-daily/launchd-nxt-snapshot.err</string>
+
+    <key>ProcessType</key><string>Background</string>
+</dict>
+</plist>

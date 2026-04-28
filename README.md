@@ -12,14 +12,14 @@
 ## 하루 사이클
 
 ```
-  07:30 KST           15:30 KST       20:00 KST     20:10 KST     23:00 KST
-  [/daily-report]  →  KRX 마감  →  NXT 마감  →  [/daily-review]  →  [/post-market-digest]
-     ↓ 예측                                       ↓ 검증 + 리포트     ↓ 다이제스트
-  docs/YYYY-MM-DD.html                          같은 페이지에 오버레이  docs/digest.html
-   (예측만)                                      (예측 + 실제 결과)    (장 마감 후 뉴스)
+  07:30 KST     08:45 KST       15:30 KST   20:00 KST   20:10 KST       23:00 KST
+  [/report]  →  [snapshot_nxt]  →  KRX     →   NXT    →  [/review]  →  [/digest]
+   ↓ 예측         ↓ NXT pre-open      마감       마감     ↓ 검증           ↓ 다이제스트
+  YYYY-MM-DD     같은 파일에 baked              오버레이                 docs/digest.html
+   (07:30 baseline)  (08:45 그룹 보정)
 ```
 
-`docs/YYYY-MM-DD.html` 은 아침/저녁 두 번 갱신 (예측 → 검증 오버레이). 23:00 부터 다음 날 07:30 까지는 index 가 `digest.html` 로 라우팅 — 한국 장 마감 후 발생한 시장 영향 뉴스 + 미국 장 시초 + 글로벌 매크로 + 포트폴리오 시간외 공시.
+`docs/YYYY-MM-DD.html` 은 하루 3 번 갱신 (07:30 baseline → 08:45 NXT 반영 → 20:10 검증 오버레이). 08:45 NXT pre-open 데이터를 그 시점에 한 번 capture 해서 summary.json 에 baked-in — 같은 날 페이지를 언제 reload 해도 그룹 배치가 동일. 23:00 부터 다음 날 07:30 까지는 index 가 `digest.html` 로 라우팅 — 한국 장 마감 후 발생한 시장 영향 뉴스 + 미국 장 시초 + 글로벌 매크로 + 포트폴리오 시간외 공시.
 
 주말은 `/post-market-digest` 만 23:00 KST 발행 (한국 장 휴장 → 글로벌 매크로 + 미국 장 위주).
 
@@ -175,6 +175,7 @@ k-ant-daily/
 │   ├── fetch_news.py                   # Naver/yfinance/Upbit에서 news.json 조립
 │   ├── render.py                       # summary.json → HTML + 영구 summary.json 아티팩트
 │   ├── compute_review.py               # 예측 vs 실제 매칭
+│   ├── snapshot_nxt.py                 # 08:45 NXT pre-open 스냅샷 → summary.json baked
 │   └── launchd/                        # macOS 로컬 스케줄 (install.sh / plists / README.md)
 ├── templates/
 │   ├── report.html.j2                  # 일간 브리핑 (모든 UI)

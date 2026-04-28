@@ -1526,6 +1526,9 @@
           {% if stock.volume_spike %}
           <span class="vol-alert" title="오늘 거래량이 20일 평균의 {{ stock.volume_ratio }}배 — 투기 수급 의심">🚨 거래량 {{ '%.1f'|format(stock.volume_ratio) }}×</span>
           {% endif %}
+          {% if stock.nxt_chip %}
+          <span class="nxt-chip {{ stock.nxt_chip.cls }}" title="NXT 대체거래 08:45 스냅샷">{{ stock.nxt_chip.text }}</span>
+          {% endif %}
           {% if stock.result and stock.result.outcome and stock.result.outcome != 'n/a' %}
           <span class="outcome-badge {{ stock.result.outcome }}" title="아침 예측 대비 실제 결과">
             {% if stock.result.outcome == 'hit' %}✅{% elif stock.result.outcome == 'partial' %}🟡{% elif stock.result.outcome == 'miss' %}❌{% endif %}
@@ -1535,6 +1538,14 @@
         </div>
         {% if stock.outlook_line %}
         <div class="s-outlook">{{ stock.outlook_line }}</div>
+        {% endif %}
+        {% if stock.nxt_adjustment %}
+        <div class="nxt-adjust">
+          <span class="arrow">{{ stock.nxt_adjustment.arrow }}</span>
+          장전엔 '<b>{{ stock.nxt_adjustment.baseline_label }}</b>' 였는데
+          NXT {{ stock.nxt_adjustment.pct_str }}로
+          '<b>{{ stock.nxt_adjustment.adjusted_label }}</b>' {{ stock.nxt_adjustment.shift_word }}
+        </div>
         {% endif %}
         {% if stock.owners %}
         <div class="s-foot">
@@ -1797,7 +1808,6 @@
 
   const POLL_MS = 60_000;
   const NEWS_POLL_MS = 5 * 60_000;       // every 5 min on a live page
-  const NXT_POLL_MS  = 5 * 60_000;       // NXT pre-open + continuous session
   const MARKET_OPEN_MIN  = 9 * 60;       // 09:00 KST
   const MARKET_CLOSE_MIN = 15 * 60 + 30; // 15:30 KST
 
@@ -2169,133 +2179,12 @@
   }
 
   // ── NXT (pre-open 대체거래소) adjustment ─────────────────────────────
-  // 07:30 briefing baseline → NXT shows significant gap → client JS
-  // re-classifies the card to a matching group and annotates the shift.
-  // Pure DOM mutation, no git commit. Mirrors the news-refresh pattern.
-
-  // Step delta based on NXT change%. Mirrors the threshold table documented
-  // in daily-report.md. Returned integer is # of steps to move along
-  // REC_ORDER (positive = more bullish, negative = more bearish).
-  const REC_ORDER = ["strong_sell", "sell", "hold", "buy", "strong_buy"];
-  const REC_LABEL = {
-    strong_sell: "강한 하락 경계", sell: "하락 경계",
-    hold: "관망",
-    buy: "상승 기대", strong_buy: "강한 상승 기대",
-  };
-  function nxtSteps(pct) {
-    if (pct >= 3)    return 2;
-    if (pct >= 1.5)  return 1;
-    if (pct <= -3)   return -2;
-    if (pct <= -1.5) return -1;
-    return 0;
-  }
-  function clampIdx(i) { return Math.max(0, Math.min(REC_ORDER.length - 1, i)); }
-
-  function applyNxtAdjustment(article, entry) {
-    // Remove any previous NXT DOM (idempotent — poll may run multiple times).
-    article.querySelectorAll(".nxt-chip, .nxt-adjust").forEach((el) => el.remove());
-    if (!entry) return;
-    const pct = entry.change_pct;
-    const dir = entry.direction;
-    // 1) NXT chip in s-head — always show if we have data (even flat).
-    const head = article.querySelector(".s-head");
-    if (head) {
-      const chip = document.createElement("span");
-      chip.className = "nxt-chip " + (dir || "flat");
-      chip.title = "NXT 대체거래 현재 등락률";
-      const sign = pct > 0 ? "+" : "";
-      const arrow = pct >= 1.5 ? "↑" : pct <= -1.5 ? "↓" : "—";
-      chip.textContent = `NXT ${arrow} ${sign}${pct.toFixed(2)}%`;
-      head.appendChild(chip);
-    }
-    // 2) Recommendation adjustment — step along REC_ORDER.
-    const baseline = article.dataset.baselineRec;
-    const baselineIdx = REC_ORDER.indexOf(baseline);
-    if (baselineIdx < 0) return;
-    const steps = nxtSteps(pct);
-    if (steps === 0) return;  // no group change needed
-    const adjustedIdx = clampIdx(baselineIdx + steps);
-    if (adjustedIdx === baselineIdx) return;  // already capped at same pos
-    const adjustedRec = REC_ORDER[adjustedIdx];
-    const baselineLabel = article.dataset.baselineLabel || REC_LABEL[baseline];
-    const adjustedLabel = REC_LABEL[adjustedRec];
-    // 3) Annotation line "장전엔 'X' 였는데 NXT Y%로 'Z' 상/하향"
-    const trigger = article.querySelector(".stock-trigger");
-    const foot    = article.querySelector(".s-foot");
-    if (trigger) {
-      const note = document.createElement("div");
-      note.className = "nxt-adjust";
-      const shiftWord = adjustedIdx > baselineIdx ? "상향" : "하향";
-      const arrow = adjustedIdx > baselineIdx ? "↗" : "↘";
-      const sign = pct > 0 ? "+" : "";
-      note.innerHTML = `<span class="arrow">${arrow}</span> 장전엔 '<b>${baselineLabel}</b>' 였는데 NXT ${sign}${pct.toFixed(2)}%로 '<b>${adjustedLabel}</b>' ${shiftWord}`;
-      if (foot) trigger.insertBefore(note, foot);
-      else trigger.appendChild(note);
-    }
-    // 4) Move the card to the adjusted group.
-    const targetGroup = document.querySelector(`.stock-group[data-group-key="${adjustedRec}"] .stock-grid`);
-    if (targetGroup && !targetGroup.contains(article)) {
-      targetGroup.appendChild(article);
-    }
-    updateGroupCounts();
-    updateSnapshotCounts();
-  }
-
-  function updateGroupCounts() {
-    document.querySelectorAll(".stock-group").forEach((group) => {
-      const n = group.querySelectorAll("article.stock").length;
-      const countEl = group.querySelector(".g-count");
-      if (countEl) countEl.textContent = "· " + n + "건";
-    });
-  }
-
-  function updateSnapshotCounts() {
-    // Re-count articles per data-group-key, reflect into .portfolio-snapshot
-    const counts = { strong_buy: 0, buy: 0, hold: 0, sell: 0, strong_sell: 0 };
-    document.querySelectorAll(".stock-group[data-group-key]").forEach((g) => {
-      const k = g.dataset.groupKey;
-      if (k in counts) counts[k] = g.querySelectorAll("article.stock").length;
-    });
-    const map = {
-      "up-strong":   counts.strong_buy,
-      "up":          counts.buy,
-      "flat":        counts.hold,
-      "down":        counts.sell,
-      "down-strong": counts.strong_sell,
-    };
-    document.querySelectorAll(".portfolio-snapshot .ps-dir").forEach((chip) => {
-      for (const cls in map) {
-        if (chip.classList.contains(cls)) {
-          const b = chip.querySelector("b");
-          if (b) b.textContent = map[cls];
-          // hide chip when 0, show when >0
-          chip.style.display = map[cls] > 0 ? "" : "none";
-          break;
-        }
-      }
-    });
-  }
-
-  // NXT freeze semantics: we treat 08:45 KST as the single "second prediction"
-  // moment of the day. After it, both group placement and chip value stay
-  // frozen — no further polling. Scheduling logic lives in init(); this
-  // function is just "fetch current NXT and apply everything".
-  async function refreshNxt() {
-    if (!NXT_API) return;
-    const articles = [...document.querySelectorAll("article.stock[data-code]")];
-    if (!articles.length) return;
-    const codes = articles.map((a) => a.dataset.code).filter((c) => /^\d{6}$/.test(c));
-    if (!codes.length) return;
-    try {
-      const url = NXT_API + "?codes=" + encodeURIComponent(codes.join(","));
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) return;
-      const data = await res.json();
-      articles.forEach((a) => applyNxtAdjustment(a, data[a.dataset.code]));
-    } catch (err) {
-      // Silent — baseline stays visible.
-    }
-  }
+  // Server-side baking only — `scripts/snapshot_nxt.py` runs on launchd at
+  // 08:45 KST weekdays, fetches NXT prices once, computes adjusted groups,
+  // and persists the snapshot into `docs/<date>.summary.json`. render.py
+  // reads `nxt_pre_open` + `nxt_adjusted_recommendation` and emits the chip
+  // + annotation directly into HTML, so the page is consistent across
+  // reloads and devices. No client-side polling for the stock section.
 
   // Coffee-section quote refresh.
   //   source="krx" (09:00-15:30): fetch /quote only — all 24 codes covered.
@@ -2428,42 +2317,6 @@
     if (closeBtn) closeBtn.addEventListener("click", () => dialog.close());
   });
 
-  // NXT scheduler — fires refreshNxt on a strict weekday 08:00→08:45 window,
-  // with the 08:45 firing being the "freeze" event. After 08:45 no more work
-  // is scheduled; the page stays on the locked snapshot until reload.
-  function scheduleNxt() {
-    const now = kstNow();
-    const day = now.getDay();
-    if (day === 0 || day === 6) return;  // weekend — no NXT
-    const NXT_OPEN_MIN   = 8 * 60;
-    const NXT_CUTOFF_MIN = 8 * 60 + 45;   // 08:45 = freeze boundary
-    const mm = now.getHours() * 60 + now.getMinutes();
-
-    // Already past the freeze point: single fire = current NXT locks in.
-    if (mm >= NXT_CUTOFF_MIN) {
-      setTimeout(refreshNxt, 3000);
-      return;
-    }
-
-    // Before NXT opens: wait out the gap, then recurse into the same scheduler
-    // at 08:00 so the poll loop + cutoff timer start from a clean slate.
-    if (mm < NXT_OPEN_MIN) {
-      const waitMs = (NXT_OPEN_MIN - mm) * 60_000;
-      setTimeout(scheduleNxt, waitMs);
-      return;
-    }
-
-    // 08:00 ≤ mm < 08:45: poll every 5 min; cutoff timer guarantees a freeze
-    // fire at exactly 08:45 and tears down the interval.
-    setTimeout(refreshNxt, 3000);
-    const tick = setInterval(refreshNxt, NXT_POLL_MS);
-    const msToCutoff = (NXT_CUTOFF_MIN - mm) * 60_000;
-    setTimeout(() => {
-      clearInterval(tick);
-      refreshNxt();  // final freeze at 08:45
-    }, msToCutoff);
-  }
-
   function init() {
     // Archive pages (rendered date ≠ today) freeze — no polling, no ticker
     // refresh. The snapshot baked into the HTML is the historical truth for
@@ -2498,21 +2351,8 @@
       setTimeout(refreshStockNews, 2000);
       setInterval(refreshStockNews, NEWS_POLL_MS);
     }
-    // NXT "second prediction" — one-shot freeze at 08:45 KST.
-    //
-    //   07:30   baseline (server-rendered, no NXT)
-    //   08:00   NXT opens; chip can start appearing on cards
-    //   08:45   single refresh → groups re-sort, chip value locks in
-    //   >08:45  frozen — no further polling, no value updates
-    //
-    // Behavior by load time (weekday only — weekends/archive: do nothing):
-    //   mm <  08:00  ─ wait until 08:00, poll every 5 min until 08:45, then
-    //                  final run at exactly 08:45 and stop.
-    //   08:00 ≤ mm < 08:45  ─ poll every 5 min, plus final run at 08:45, stop.
-    //   mm ≥ 08:45          ─ single fire (current NXT = the locked snapshot).
-    if (NXT_API) {
-      scheduleNxt();
-    }
+    // NXT "second prediction" — server-baked at 08:45 by snapshot_nxt.py.
+    // No client-side polling needed; the page is consistent across reloads.
   }
 
   if (document.readyState === "loading") {
