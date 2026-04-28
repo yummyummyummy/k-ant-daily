@@ -1961,9 +1961,7 @@
           "date": "2026.03.24"
         }
       ],
-      "owners": [
-        "한윤근"
-      ],
+      "owners": [],
       "overnight_proxy": [
         "XLE",
         "CL=F",
@@ -2205,8 +2203,7 @@
         }
       ],
       "owners": [
-        "이웅수",
-        "한윤근"
+        "이웅수"
       ],
       "overnight_proxy": [
         "XBI",
@@ -2325,8 +2322,7 @@
         }
       ],
       "owners": [
-        "하우찬",
-        "한윤근"
+        "하우찬"
       ],
       "overnight_proxy": [
         "^IXIC",
@@ -2488,7 +2484,8 @@
       ],
       "owners": [
         "장윤영",
-        "장한솔"
+        "장한솔",
+        "한윤근"
       ],
       "overnight_proxy": [
         "XLE",
@@ -4475,140 +4472,6 @@
       "nxt_chip": {
         "text": "NXT — +0.60%",
         "cls": "up"
-      }
-    },
-    {
-      "code": "083450",
-      "name": "GST",
-      "market": "KOSDAQ",
-      "news_sentiment": "neutral",
-      "priced_in": true,
-      "overnight_signal": {
-        "direction": "down",
-        "avg_pct": -1.96,
-        "proxies": [
-          {
-            "symbol": "^SOX",
-            "change_pct": -1.0
-          },
-          {
-            "symbol": "AMAT",
-            "change_pct": -2.92
-          }
-        ],
-        "label": "약세"
-      },
-      "recommendation": "sell",
-      "confidence": "medium",
-      "rationale": "20일 +90% 극심 과열 + 간밤 SOX·AMAT 약세, 차익실현 하락 경계. 최근 개별 뉴스 없이 모멘텀만으로 급등. 투자주의(소수계좌 거래집중) 경고까지 발동. 간밤 SOX -1%, AMAT -2.92%로 반도체 장비 프록시 약세. (회고 교훈 반영: 섹터 시황 기사만 → 중립 / +40% 초과 관망 강제, 프록시 약세 겹쳐 매도)",
-      "summary": "20일 +90% 극심 과열 상태. 최근 개별 뉴스 없이 데이터센터 액침냉각 테마로 급등했으나 간밤 SOX -1%, AMAT -2.92% 프록시 약세. 소수계좌 거래집중 투자주의 경고도 발동돼 차익실현 압력 강할 전망.",
-      "key_points": [
-        {
-          "point": "투자주의 — 15일간 상승종목의 소수계좌 거래집중",
-          "detail": "거래소가 소수 계좌 집중 거래 투자주의 경고 발동. 수급 편중 리스크.",
-          "impact": "negative",
-          "published_at": "2026-04-27T00:00:00+09:00",
-          "sources": [
-            {
-              "title": "거래소 공시",
-              "url": "https://finance.naver.com/item/news_notice_read.naver?no=1634422&code=083450&page_notice="
-            }
-          ],
-          "impact_label": "악재",
-          "time_ago": "1일 전"
-        }
-      ],
-      "disclosures": [
-        {
-          "title": "(주)글로벌스탠다드테크놀로지 [투자주의]15일간 상승종목의 당일 소수계좌 거래집중",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1634422&code=083450&page_notice=",
-          "date": "26.04.27"
-        }
-      ],
-      "owners": [
-        "한윤근"
-      ],
-      "overnight_proxy": [
-        "^SOX",
-        "AMAT"
-      ],
-      "sector": "반도체",
-      "quote": {
-        "price": "47,150",
-        "change": "2,750",
-        "change_pct": "+6.19",
-        "change_pct_num": 6.19,
-        "direction": "up",
-        "volume": 32242
-      },
-      "news": [],
-      "history": {
-        "symbol": "083450.KQ",
-        "closes_20d": [
-          24800.0,
-          27250.0,
-          25550.0,
-          25850.0,
-          25750.0,
-          27100.0,
-          29550.0,
-          30500.0,
-          32350.0,
-          36900.0,
-          39100.0,
-          39650.0,
-          41750.0,
-          42500.0,
-          43150.0,
-          43250.0,
-          44750.0,
-          45350.0,
-          44400.0,
-          47150.0
-        ],
-        "fifty_two_week_high": 47600.0,
-        "fifty_two_week_low": 17000.0,
-        "last_close": 47150.0,
-        "change_20d_pct": 90.12,
-        "pos_52w_pct": 98.5,
-        "from_high_pct": -0.95,
-        "volume_20d_avg": 487821,
-        "as_of": "2026-04-27",
-        "sparkline_path": "M0.0,24.0 L4.2,21.4 L8.4,23.2 L12.6,22.9 L16.8,23.0 L21.1,21.5 L25.3,18.9 L29.5,17.9 L33.7,15.9 L37.9,11.0 L42.1,8.6 L46.3,8.1 L50.5,5.8 L54.7,5.0 L58.9,4.3 L63.2,4.2 L67.4,2.6 L71.6,1.9 L75.8,3.0 L80.0,0.0",
-        "sparkline_direction": "up"
-      },
-      "recommendation_label": "하락 경계",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
-      "price_display": "47,150",
-      "price_change_abs_display": "—",
-      "volume_ratio": 0.07,
-      "volume_spike": false,
-      "news_sentiment_label": "중립",
-      "confidence_label": "중간",
-      "direction_arrow": "↓",
-      "direction_label": "하락 경계",
-      "direction_cls": "down",
-      "outlook_line": "20일 +90% 극심 과열 + 간밤 SOX·AMAT 약세, 차익실현 하락 경계",
-      "news_count": 0,
-      "nxt_pre_open": {
-        "change_pct": -3.08,
-        "change": -1450,
-        "direction": "down",
-        "captured_at": "2026-04-28T10:36:39.101554+09:00"
-      },
-      "nxt_adjusted_recommendation": "strong_sell",
-      "nxt_chip": {
-        "text": "NXT ↓ -3.08%",
-        "cls": "down"
-      },
-      "nxt_adjustment": {
-        "baseline_label": "하락 경계",
-        "adjusted_label": "강한 하락 경계",
-        "shift_word": "하향",
-        "arrow": "↘",
-        "pct_str": "-3.08%"
       }
     },
     {

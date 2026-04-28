@@ -33,26 +33,26 @@ stocks:
     name: "SK이노베이션"
     market: KOSPI
     sector: "에너지/정유"
-    owners: ["한윤근"]
+    owners: []
     overnight_proxy: ["XLE", "CL=F", "TSLA"]
   - code: "299660"
     name: "셀리드"
     market: KOSDAQ
     sector: "바이오"
-    owners: ["이웅수", "한윤근"]
+    owners: ["이웅수"]
     overnight_proxy: ["XBI", "MRNA"]
   - code: "233740"
     name: "KODEX 코스닥150 레버리지"
     market: KOSPI
     sector: "ETF"
     is_etf: true
-    owners: ["한윤근", "하우찬"]
+    owners: ["하우찬"]
     overnight_proxy: ["^IXIC", "QQQ"]
   - code: "028050"
     name: "삼성E&A"
     market: KOSPI
     sector: "건설/플랜트"
-    owners: ["장한솔", "장윤영"]
+    owners: ["장한솔", "장윤영", "한윤근"]
     overnight_proxy: ["XLE", "FLR"]
   - code: "310210"
     name: "보로노이"
@@ -115,12 +115,6 @@ stocks:
     sector: "엔터"
     owners: ["장한솔"]
     overnight_proxy: ["SPOT", "WMG"]
-  - code: "083450"
-    name: "GST"
-    market: KOSDAQ
-    sector: "반도체"
-    owners: ["한윤근"]
-    overnight_proxy: ["^SOX", "AMAT"]
   - code: "036570"
     name: "엔씨소프트"
     market: KOSPI
