@@ -969,39 +969,45 @@ def persist_summary_artifact(summary: dict, date: str) -> Path:
 
 
 def _timeline_svg(records: list[dict], width: int = 680, height: int = 120) -> str:
-    """Stacked bar chart — one column per day, stacking hits/partial/misses."""
+    """100% stacked bar chart — one column per day, total height fixed across
+    days so the eye compares ratios (hit / partial / miss) directly.
+
+    Stack order from bottom up: hits (good) → partial → misses (bad).
+    Days with zero total render as a single empty placeholder bar so the
+    column position stays aligned with the x-axis labels.
+    """
     if not records:
         return ""
     pad_top, pad_bottom, pad_left, pad_right = 6, 18, 28, 6
     plot_w = width - pad_left - pad_right
     plot_h = height - pad_top - pad_bottom
     n = len(records)
-    # Bar width with small gap between bars
     bw = max(2.0, plot_w / n * 0.78)
     step = plot_w / n
-    # Y scale based on max total calls across days
-    max_total = max((r.get("total") or 0) for r in records) or 1
 
     parts = [f'<svg viewBox="0 0 {width} {height}" preserveAspectRatio="none">']
-    # Y gridlines (25%, 50%, 75%, 100%)
-    for frac in (0.25, 0.5, 0.75, 1.0):
+    # Y gridlines at 0/25/50/75/100% — fixed scale, every day fills the same height.
+    for frac in (0.0, 0.25, 0.5, 0.75, 1.0):
         y = pad_top + plot_h * (1 - frac)
         parts.append(f'<line class="grid-line" x1="{pad_left}" x2="{width - pad_right}" y1="{y:.1f}" y2="{y:.1f}"/>')
-        parts.append(f'<text class="y-label" x="{pad_left - 3}" y="{y + 3:.1f}" text-anchor="end">{int(max_total * frac)}</text>')
+        parts.append(f'<text class="y-label" x="{pad_left - 3}" y="{y + 3:.1f}" text-anchor="end">{int(frac * 100)}%</text>')
 
-    # Bars
     for i, r in enumerate(records):
         hits    = r.get("hits") or 0
         partial = r.get("partial") or 0
         misses  = r.get("misses") or 0
+        total = hits + partial + misses
         x = pad_left + step * i + (step - bw) / 2
-        y_cursor = pad_top + plot_h  # bottom
-        for val, cls in ((hits, "bar-hit"), (partial, "bar-partial"), (misses, "bar-miss")):
-            if val <= 0:
-                continue
-            h = (val / max_total) * plot_h
-            y_cursor -= h
-            parts.append(f'<rect class="{cls}" x="{x:.1f}" y="{y_cursor:.1f}" width="{bw:.1f}" height="{h:.1f}"/>')
+        if total <= 0:
+            parts.append(f'<rect class="bar-empty" x="{x:.1f}" y="{pad_top:.1f}" width="{bw:.1f}" height="{plot_h:.1f}"/>')
+        else:
+            y_cursor = pad_top + plot_h
+            for val, cls in ((hits, "bar-hit"), (partial, "bar-partial"), (misses, "bar-miss")):
+                if val <= 0:
+                    continue
+                h = (val / total) * plot_h
+                y_cursor -= h
+                parts.append(f'<rect class="{cls}" x="{x:.1f}" y="{y_cursor:.1f}" width="{bw:.1f}" height="{h:.1f}"/>')
         # X label (MM/DD) — only every ~6 days to avoid crowding
         if n <= 14 or i % max(1, n // 7) == 0:
             date = r.get("date", "")

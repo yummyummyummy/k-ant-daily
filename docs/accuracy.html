@@ -90,6 +90,7 @@
   .timeline .bar-hit     { fill: var(--pos); }
   .timeline .bar-partial { fill: var(--partial); }
   .timeline .bar-miss    { fill: var(--neg); }
+  .timeline .bar-empty   { fill: var(--border); opacity: 0.4; }
   .timeline .y-label     { font-size: 9px; fill: var(--muted); }
   .timeline .x-label     { font-size: 9px; fill: var(--muted); }
   .timeline-legend {
@@ -154,7 +155,7 @@
   <header>
     <nav><a href="index.html">← 오늘자</a> · <a href="archive.html">📋 예측</a></nav>
     <h1>📊 통계</h1>
-    <time>생성 2026-04-28 15:44 KST · 데이터 5일 누적</time>
+    <time>생성 2026-04-28 16:02 KST · 데이터 5일 누적</time>
   </header>
 
 
@@ -177,7 +178,7 @@
   <section>
     <h2>일별 추이</h2>
     <div class="timeline">
-      <svg viewBox="0 0 680 120" preserveAspectRatio="none"><line class="grid-line" x1="28" x2="674" y1="78.0" y2="78.0"/><text class="y-label" x="25" y="81.0" text-anchor="end">5</text><line class="grid-line" x1="28" x2="674" y1="54.0" y2="54.0"/><text class="y-label" x="25" y="57.0" text-anchor="end">11</text><line class="grid-line" x1="28" x2="674" y1="30.0" y2="30.0"/><text class="y-label" x="25" y="33.0" text-anchor="end">17</text><line class="grid-line" x1="28" x2="674" y1="6.0" y2="6.0"/><text class="y-label" x="25" y="9.0" text-anchor="end">23</text><rect class="bar-hit" x="42.2" y="64.4" width="100.8" height="37.6"/><rect class="bar-partial" x="42.2" y="47.7" width="100.8" height="16.7"/><rect class="bar-miss" x="42.2" y="18.5" width="100.8" height="29.2"/><text class="x-label" x="92.6" y="113" text-anchor="middle">04-21</text><rect class="bar-hit" x="171.4" y="72.8" width="100.8" height="29.2"/><rect class="bar-partial" x="171.4" y="51.9" width="100.8" height="20.9"/><rect class="bar-miss" x="171.4" y="6.0" width="100.8" height="45.9"/><text class="x-label" x="221.8" y="113" text-anchor="middle">04-22</text><rect class="bar-hit" x="300.6" y="60.3" width="100.8" height="41.7"/><rect class="bar-partial" x="300.6" y="35.2" width="100.8" height="25.0"/><rect class="bar-miss" x="300.6" y="6.0" width="100.8" height="29.2"/><text class="x-label" x="351.0" y="113" text-anchor="middle">04-23</text><rect class="bar-hit" x="429.8" y="72.8" width="100.8" height="29.2"/><rect class="bar-partial" x="429.8" y="47.7" width="100.8" height="25.0"/><rect class="bar-miss" x="429.8" y="14.3" width="100.8" height="33.4"/><text class="x-label" x="480.2" y="113" text-anchor="middle">04-24</text><rect class="bar-hit" x="559.0" y="72.8" width="100.8" height="29.2"/><rect class="bar-partial" x="559.0" y="47.7" width="100.8" height="25.0"/><rect class="bar-miss" x="559.0" y="14.3" width="100.8" height="33.4"/><text class="x-label" x="609.4" y="113" text-anchor="middle">04-27</text></svg>
+      <svg viewBox="0 0 680 120" preserveAspectRatio="none"><line class="grid-line" x1="28" x2="674" y1="102.0" y2="102.0"/><text class="y-label" x="25" y="105.0" text-anchor="end">0%</text><line class="grid-line" x1="28" x2="674" y1="78.0" y2="78.0"/><text class="y-label" x="25" y="81.0" text-anchor="end">25%</text><line class="grid-line" x1="28" x2="674" y1="54.0" y2="54.0"/><text class="y-label" x="25" y="57.0" text-anchor="end">50%</text><line class="grid-line" x1="28" x2="674" y1="30.0" y2="30.0"/><text class="y-label" x="25" y="33.0" text-anchor="end">75%</text><line class="grid-line" x1="28" x2="674" y1="6.0" y2="6.0"/><text class="y-label" x="25" y="9.0" text-anchor="end">100%</text><rect class="bar-hit" x="42.2" y="58.8" width="100.8" height="43.2"/><rect class="bar-partial" x="42.2" y="39.6" width="100.8" height="19.2"/><rect class="bar-miss" x="42.2" y="6.0" width="100.8" height="33.6"/><text class="x-label" x="92.6" y="113" text-anchor="middle">04-21</text><rect class="bar-hit" x="171.4" y="72.8" width="100.8" height="29.2"/><rect class="bar-partial" x="171.4" y="51.9" width="100.8" height="20.9"/><rect class="bar-miss" x="171.4" y="6.0" width="100.8" height="45.9"/><text class="x-label" x="221.8" y="113" text-anchor="middle">04-22</text><rect class="bar-hit" x="300.6" y="60.3" width="100.8" height="41.7"/><rect class="bar-partial" x="300.6" y="35.2" width="100.8" height="25.0"/><rect class="bar-miss" x="300.6" y="6.0" width="100.8" height="29.2"/><text class="x-label" x="351.0" y="113" text-anchor="middle">04-23</text><rect class="bar-hit" x="429.8" y="70.0" width="100.8" height="32.0"/><rect class="bar-partial" x="429.8" y="42.6" width="100.8" height="27.4"/><rect class="bar-miss" x="429.8" y="6.0" width="100.8" height="36.6"/><text class="x-label" x="480.2" y="113" text-anchor="middle">04-24</text><rect class="bar-hit" x="559.0" y="70.0" width="100.8" height="32.0"/><rect class="bar-partial" x="559.0" y="42.6" width="100.8" height="27.4"/><rect class="bar-miss" x="559.0" y="6.0" width="100.8" height="36.6"/><text class="x-label" x="609.4" y="113" text-anchor="middle">04-27</text></svg>
       <div class="timeline-legend">
         <span><span class="dot" style="background:var(--pos)"></span>적중</span>
         <span><span class="dot" style="background:var(--partial)"></span>부분</span>
