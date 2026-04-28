@@ -28,18 +28,23 @@ WORKER_NXT_URL = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/nxt-quote
 
 
 def classify(rec: str, pct: float) -> tuple[str, str]:
-    """Map (recommendation, actual change%) → (outcome, note)."""
+    """Map (recommendation, actual change%) → (outcome, note).
+
+    Partial 기준은 'directionally correct + 강도 약함' 으로 strict 하게 잡음
+    — 전엔 0% 부근까지 partial 로 인정해서 hit_rate 가 directional accuracy
+    대비 ~15%p 부풀어 있었음. 이제 hit_rate ≈ directional accuracy 로 수렴.
+    """
     if rec == "strong_buy":
         if pct >= 2.0:
             return "hit", f"강한 상승 기대 · 실제 +{pct:.2f}% · 강한 상승 확인"
-        if pct >= 0.0:
+        if pct >= 0.5:
             return "partial", f"강한 상승 기대 · 실제 +{pct:.2f}% · 방향은 맞았으나 강도 약함"
         return "miss", f"강한 상승 기대 · 실제 {pct:+.2f}% · 방향 틀림"
     if rec == "buy":
         if pct > 0.5:
             return "hit", f"상승 기대 · 실제 +{pct:.2f}% · 상승 적중"
-        if pct >= -0.5:
-            return "partial", f"상승 기대 · 실제 {pct:+.2f}% · 사실상 보합"
+        if pct >= 0:
+            return "partial", f"상승 기대 · 실제 +{pct:.2f}% · 약한 상승"
         return "miss", f"상승 기대 · 실제 {pct:.2f}% · 하락"
     if rec == "hold":
         if abs(pct) < 1.5:
@@ -50,15 +55,15 @@ def classify(rec: str, pct: float) -> tuple[str, str]:
     if rec == "sell":
         if pct < -0.5:
             return "hit", f"하락 경계 · 실제 {pct:.2f}% · 하락 적중"
-        if pct <= 0.5:
-            return "partial", f"하락 경계 · 실제 {pct:+.2f}% · 사실상 보합"
+        if pct <= 0:
+            return "partial", f"하락 경계 · 실제 {pct:.2f}% · 약한 하락"
         return "miss", f"하락 경계 · 실제 +{pct:.2f}% · 상승"
     if rec == "strong_sell":
         if pct <= -2.0:
             return "hit", f"강한 하락 경계 · 실제 {pct:.2f}% · 강한 하락 확인"
-        if pct <= 0.0:
+        if pct <= -0.5:
             return "partial", f"강한 하락 경계 · 실제 {pct:.2f}% · 방향은 맞았으나 강도 약함"
-        return "miss", f"강한 하락 경계 · 실제 +{pct:.2f}% · 방향 틀림"
+        return "miss", f"강한 하락 경계 · 실제 {pct:+.2f}% · 방향 틀림"
     return "n/a", "투자의견 없음"
 
 
@@ -227,7 +232,7 @@ def main(argv: list[str]) -> int:
             # our agent saw in the news. Signals something to catch next time.
             vol_today = (stock.get("quote") or {}).get("volume")
             vol_avg = (stock.get("history") or {}).get("volume_20d_avg")
-            if vol_today and vol_avg and vol_avg > 0 and vol_today / vol_avg >= 2.0:
+            if vol_today and vol_avg and vol_avg > 0 and vol_today / vol_avg >= 1.5:
                 attrib["speculative_flow"] += 1
         elif outcome == "hit" and onsig_dir in ("up", "down") and onsig_dir == actual_dir:
             attrib["overnight_helped"] += 1

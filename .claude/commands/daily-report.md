@@ -209,10 +209,19 @@ description: Generate and publish today's pre-market stock briefing
 
 **이 매트릭스는 기본값**입니다. 개별 종목의 강한 특수 이벤트(실적 쇼크·규제·M&A 공시) 는 한 단계 override 가능. 단, override 시 `rationale`에 명시.
 
-### 단계 3: `confidence` 부여
-- `high`: 세 신호가 모두 같은 방향
-- `medium`: 두 신호가 같은 방향, 하나만 다름
-- `low`: 신호들이 상충하거나, 종목 뉴스 부재 + 섹터만 있음
+### 단계 3: `confidence` 부여 (calibration 강화)
+
+**기준 신호:** `news_sentiment` 와 `overnight_signal` 두 directional 신호의 일치도. `priced_in` 은 modifier (역신호 작용).
+
+- `high`: news 와 overnight 가 명확히 같은 방향 (둘 다 positive/up 또는 둘 다 negative/down) **+ priced_in=False**
+- `medium`: 두 directional 신호가 같은 방향이지만 priced_in=True (선반영 → 동력 약화), **또는** 한 신호만 명확하고 다른 하나는 정확히 neutral (반대 방향 X)
+- `low`: 두 directional 신호가 상충 (positive vs down 등), 둘 다 neutral, 종목 뉴스 부재, 또는 어떤 신호라도 명백히 반대 방향
+
+**금지 (4/21~4/27 5일치 누적 분석 결과 반영):**
+- 어떤 신호라도 반대 방향이면 medium 부여 X — low 로 분류. 이전 정의 ("2 신호 동의" = medium) 가 너무 관대해서 medium(45%) < low(50%) calibration 역전 발생.
+- "애매하니 medium" 식 default 회피 금지 — 신호 약하면 low 가 정답.
+
+**기대 효과:** medium 의 정보 가치 회복. 누적 5일 데이터에서 medium 51건 중 절반 정도가 low 로 재분류될 것으로 예상.
 
 ## Forward-looking 언어 가이드
 

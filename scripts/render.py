@@ -427,16 +427,19 @@ def _normalize_volume_signal(stock: dict) -> None:
     """Derive volume_ratio = today's cumulative volume / 20-day average.
 
     Triggers the 🚨 배지 at the template level when the ratio clears
-    VOLUME_SPIKE_THRESHOLD (2.0×) — a proxy for intraday speculative inflow
+    VOLUME_SPIKE_THRESHOLD (1.5×) — a proxy for intraday speculative inflow
     that exceeds normal trading rhythm. compute_review.py reads the same
-    ratio at end-of-day to populate the speculative_flow attribution."""
+    ratio at end-of-day to populate the speculative_flow attribution.
+
+    Threshold lowered from 2.0× → 1.5× after first 5 days produced 0
+    speculative_flow detections (likely too strict)."""
     vol_today = (stock.get("quote") or {}).get("volume")
     vol_avg = (stock.get("history") or {}).get("volume_20d_avg")
     if not vol_today or not vol_avg or vol_avg <= 0:
         return
     ratio = vol_today / vol_avg
     stock["volume_ratio"] = round(ratio, 2)
-    stock["volume_spike"] = ratio >= 2.0
+    stock["volume_spike"] = ratio >= 1.5
 
 
 def _normalize_nxt_snapshot(stock: dict) -> None:
