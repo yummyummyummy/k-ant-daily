@@ -172,7 +172,20 @@ description: Generate and publish today's pre-market stock briefing
       ],
       "deep_dive": { "business": "...", "market": "...", "competitors": [...],
                      "research_notes": "...", "risks": "...", "sources": [...] },
-      "disclosures": [{"title": "...", "url": "...", "date": "YY.MM.DD"}]
+      "disclosures": [{"title": "...", "url": "...", "date": "YY.MM.DD"}],
+      "action_plan": {
+        "position_size": "4%",
+        "entry_zone": "224,000 ~ 226,000",
+        "stop_loss": "-2.0%",
+        "target": "+3.5%",
+        "horizon": "1-3일 단기",
+        "scenarios": {
+          "if_gap_up":     "갭상승 +1% 이내 시초가 매수, +2% 이상이면 5분봉 음봉 1개 보고 재진입",
+          "if_gap_down":   "갭다운 -1% 이상 진입 보류, -2% 이상 손절 자동 발동",
+          "if_target_hit": "+3.5% 도달 시 절반 익절, 나머지 trailing stop -1%",
+          "if_stop_hit":   "즉시 청산, 다음 날 재진입 금지"
+        }
+      }
     }
   ]
 }
@@ -220,6 +233,75 @@ description: Generate and publish today's pre-market stock briefing
 **금지 (4/21~4/27 5일치 누적 분석 결과 반영):**
 - 어떤 신호라도 반대 방향이면 medium 부여 X — low 로 분류. 이전 정의 ("2 신호 동의" = medium) 가 너무 관대해서 medium(45%) < low(50%) calibration 역전 발생.
 - "애매하니 medium" 식 default 회피 금지 — 신호 약하면 low 가 정답.
+
+## `action_plan` — 운용 가이드 (필수)
+
+기관 트레이더 룰북 형식. 종목별 진입/손절/익절/비중을 정량화. **가상 시나리오** 임을 disclaimer 에서 명시.
+
+### 비중 (`position_size`) — confidence × recommendation
+
+| recommendation | high | medium | low |
+|---|---|---|---|
+| **strong_buy** | 5% | 3% | skip (`"0%"`) |
+| **buy** | 3% | 2% | skip |
+| **hold** | "0% — 신규 진입 X" | 동일 | 동일 |
+| **sell** | "보유 시 청산 — 신규 진입 X" | 동일 | 동일 |
+| **strong_sell** | "즉시 청산 (보유 시)" | 동일 | 동일 |
+
+매수만 가능한 환경 가정 (공매도 제외) — sell/strong_sell 은 진입 가이드가 아닌 **보유 시 행동** 가이드.
+
+### 진입가 (`entry_zone`) — 전일 종가 ±0.5% 기본
+
+- 평상시: `"<전일종가 - 0.5%> ~ <전일종가 + 0.5%>"` (예: `"224,000 ~ 226,000"`)
+- 강한 호재 + 갭 가능성: `"224,000 ~ 228,000 (갭상승 +1% 이내까지)"`
+- 강한 악재: `"전일 저가 근처 ~ 전일 종가"` (지지선 매수)
+- hold/sell: `"신규 진입 권장 X"` 또는 생략
+
+### 손절 (`stop_loss`) — recommendation 별 기본값
+
+| recommendation | stop_loss |
+|---|---|
+| strong_buy | `"-2.5%"` (변동성 큰 종목은 -3%) |
+| buy | `"-2.0%"` |
+| hold | `"-3% (보유 시 trailing)"` |
+| sell | `"+2.0% (반등 시 cut)"` |
+| strong_sell | `"+2.5% (반등 시 cut)"` |
+
+종목 변동성 큰 (전일 변동폭 ±5% 이상 또는 KOSDAQ 소형 바이오) 면 ±0.5%p 추가 여유. rationale 에 사유 명시.
+
+### 익절 (`target`) — recommendation × 기대 강도
+
+| recommendation | target |
+|---|---|
+| strong_buy | `"+5~8%"` (직전 저항선 또는 52주 고점) |
+| buy | `"+3~5%"` |
+| hold | 생략 또는 `"전일 고가 도달 시 평가"` |
+| sell | `"-3~5%"` (지지선 도달 시 청산) |
+| strong_sell | `"-5~8%"` |
+
+### 시간 (`horizon`)
+
+기본 `"1-3일 단기"` — 그날 신호 기반 단기 트레이딩 전제. 강한 모멘텀 (실적 발표 직후 등) 은 `"1-2주 스윙"`.
+
+### 시나리오 (`scenarios`) — dict, 모두 선택
+
+`if_gap_up`, `if_gap_down`, `if_target_hit`, `if_stop_hit` 4개 키. 각각 한 줄.
+
+**예시 (강한 상승 기대):**
+```json
+"scenarios": {
+  "if_gap_up":     "갭상승 +1% 이내 시초가 매수, +2% 이상이면 5분봉 음봉 1개 보고 재진입",
+  "if_gap_down":   "갭다운 -1% 이상 진입 보류, -2% 이상 손절 자동 발동",
+  "if_target_hit": "+3.5% 도달 시 절반 익절, 나머지 trailing stop -1%",
+  "if_stop_hit":   "즉시 청산, 다음 날 재진입 금지"
+}
+```
+
+매트릭스가 `hold` 또는 약한 신호면 시나리오 자체 생략 가능 (필드 완전 제거).
+
+### Disclaimer 강화 필수
+
+action_plan 은 **가상 운용 시나리오 시뮬레이션**. 실제 매매 권유 절대 아님. 페이지 footer disclaimer 에 이 내용 명시 (template 처리됨)..
 
 **기대 효과:** medium 의 정보 가치 회복. 누적 5일 데이터에서 medium 51건 중 절반 정도가 low 로 재분류될 것으로 예상.
 

@@ -461,6 +461,61 @@
   .confidence-chip.medium { color: var(--fg); }
   .confidence-chip.low    { opacity: 0.65; }
 
+  /* Action plan box — 다이얼로그 최상단의 '운용 가이드' (비중/진입/손절/
+     익절/시간 + 시나리오). agent 가 작성, 가상 시뮬레이션 disclaimer 포함. */
+  .action-plan {
+    background: linear-gradient(180deg, var(--card), var(--bg));
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 14px; margin: 4px 0 14px;
+  }
+  .action-plan .ap-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 8px; margin-bottom: 10px;
+  }
+  .action-plan .ap-title { font-size: 14px; font-weight: 700; color: var(--fg); }
+  .action-plan .ap-disclaimer {
+    font-size: 10px; color: var(--muted); font-weight: 500;
+    background: var(--neu-bg); padding: 1px 6px; border-radius: 4px;
+  }
+  .action-plan .ap-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 6px 12px;
+  }
+  .action-plan .ap-cell {
+    display: flex; flex-direction: column; gap: 1px;
+    padding: 6px 8px; background: var(--bg);
+    border-radius: 6px; border-left: 3px solid var(--border);
+  }
+  .action-plan .ap-key {
+    font-size: 10px; color: var(--muted); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .action-plan .ap-val {
+    font-size: 13px; font-weight: 700; color: var(--fg);
+    font-variant-numeric: tabular-nums;
+  }
+  .action-plan .ap-val.pos { color: var(--pos); }
+  .action-plan .ap-val.neg { color: var(--neg); }
+  .action-plan .ap-scenarios {
+    list-style: none; padding: 0; margin: 10px 0 0;
+    display: flex; flex-direction: column; gap: 4px;
+    font-size: 12px; color: var(--fg); line-height: 1.5;
+  }
+  .action-plan .ap-scenarios li {
+    padding: 5px 8px; background: var(--bg);
+    border-radius: 4px;
+  }
+  .action-plan .ap-scn-tag {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    padding: 1px 5px; border-radius: 3px; margin-right: 6px;
+    background: var(--neu-bg); color: var(--neu);
+    white-space: nowrap;
+  }
+  .action-plan .ap-scn-tag.up   { background: var(--pos-bg); color: var(--pos); }
+  .action-plan .ap-scn-tag.down { background: var(--neg-bg); color: var(--neg); }
+  .action-plan .ap-scn-tag.pos  { background: var(--pos-bg); color: var(--pos); }
+  .action-plan .ap-scn-tag.neg  { background: var(--neg-bg); color: var(--neg); }
+
   /* Price context block (sparkline + 52w range) inside expanded stock body */
   .price-context {
     background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
@@ -1584,6 +1639,40 @@
           <button type="button" class="dialog-close" aria-label="닫기">✕</button>
         </div>
         <div class="dialog-body">
+          {% if stock.action_plan %}
+          {% set ap = stock.action_plan %}
+          <div class="action-plan">
+            <div class="ap-head">
+              <span class="ap-title">🎯 운용 가이드</span>
+              <span class="ap-disclaimer">가상 시나리오 — 매매 권유 X</span>
+            </div>
+            <div class="ap-grid">
+              {% if ap.position_size %}
+              <div class="ap-cell"><span class="ap-key">비중</span><span class="ap-val">{{ ap.position_size }}</span></div>
+              {% endif %}
+              {% if ap.entry_zone %}
+              <div class="ap-cell"><span class="ap-key">진입가</span><span class="ap-val">{{ ap.entry_zone }}</span></div>
+              {% endif %}
+              {% if ap.stop_loss %}
+              <div class="ap-cell"><span class="ap-key">손절</span><span class="ap-val neg">{{ ap.stop_loss }}</span></div>
+              {% endif %}
+              {% if ap.target %}
+              <div class="ap-cell"><span class="ap-key">익절</span><span class="ap-val pos">{{ ap.target }}</span></div>
+              {% endif %}
+              {% if ap.horizon %}
+              <div class="ap-cell"><span class="ap-key">시간</span><span class="ap-val">{{ ap.horizon }}</span></div>
+              {% endif %}
+            </div>
+            {% if ap.scenarios %}
+            <ul class="ap-scenarios">
+              {% if ap.scenarios.if_gap_up %}<li><span class="ap-scn-tag up">갭상승 시</span>{{ ap.scenarios.if_gap_up }}</li>{% endif %}
+              {% if ap.scenarios.if_gap_down %}<li><span class="ap-scn-tag down">갭하락 시</span>{{ ap.scenarios.if_gap_down }}</li>{% endif %}
+              {% if ap.scenarios.if_target_hit %}<li><span class="ap-scn-tag pos">익절선 도달</span>{{ ap.scenarios.if_target_hit }}</li>{% endif %}
+              {% if ap.scenarios.if_stop_hit %}<li><span class="ap-scn-tag neg">손절선 도달</span>{{ ap.scenarios.if_stop_hit }}</li>{% endif %}
+            </ul>
+            {% endif %}
+          </div>
+          {% endif %}
           {% if stock.history and stock.history.sparkline_path %}
           <div class="price-context">
             <div class="spark-wrap">
@@ -1808,6 +1897,7 @@
       개인 참고용이며, 투자 자문·권유가 아닙니다. 투자 판단과 책임은 전적으로 본인에게 있습니다.
       '강한 상승 기대/상승 기대/관망/하락 경계/강한 하락 경계' 의견은 AI 의 단기 뉴스 흐름 해석일
       뿐이며, 종목의 내재가치나 장기 전망을 반영하지 않습니다.
+      <strong>각 종목의 진입가·손절선·익절선·비중 등 '운용 가이드' 는 가상 시나리오 시뮬레이션입니다 — 실제 매매 권유 절대 아닙니다.</strong>
     </div>
     <p>k-ant-daily · 자동 생성 리포트 · <a href="https://github.com/yummyummyummy/k-ant-daily" target="_blank" rel="noopener">GitHub</a></p>
   </footer>
