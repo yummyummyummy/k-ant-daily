@@ -820,7 +820,17 @@
       "outlook_line": "SOX -3.6% 급락 미반영, 오늘 갭다운 출발 불가피",
       "news_count": 10,
       "latest_news_at": "2026-04-29T07:29:00+09:00",
-      "latest_news_ago": "1분 전"
+      "latest_news_ago": "1분 전",
+      "nxt_pre_open": {
+        "change_pct": -2.03,
+        "change": -4500,
+        "direction": "down",
+        "captured_at": "2026-04-29T08:45:05.755373+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT ↓ -2.03%",
+        "cls": "down"
+      }
     },
     {
       "code": "000660",
@@ -1089,7 +1099,17 @@
       "outlook_line": "SOX -3.6% 급락 + 20일 +45% 극과열, 하락 압력 강력",
       "news_count": 10,
       "latest_news_at": "2026-04-29T07:29:00+09:00",
-      "latest_news_ago": "1분 전"
+      "latest_news_ago": "1분 전",
+      "nxt_pre_open": {
+        "change_pct": -1.54,
+        "change": -20000,
+        "direction": "down",
+        "captured_at": "2026-04-29T08:45:05.755431+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT ↓ -1.54%",
+        "cls": "down"
+      }
     },
     {
       "code": "267260",
@@ -1335,7 +1355,25 @@
       "outlook_line": "실적 호조와 간밤 약세 상충, 관망이 적절",
       "news_count": 10,
       "latest_news_at": "2026-04-29T06:03:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 1.53,
+        "change": 19000,
+        "direction": "up",
+        "captured_at": "2026-04-29T08:45:05.755451+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +1.53%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+1.53%"
+      }
     },
     {
       "code": "196170",
@@ -1556,7 +1594,17 @@
       "outlook_line": "개별 촉매 부재 속 간밤 바이오 약세, 관망 적절",
       "news_count": 10,
       "latest_news_at": "2026-04-29T07:01:00+09:00",
-      "latest_news_ago": "29분 전"
+      "latest_news_ago": "29분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.13,
+        "change": 500,
+        "direction": "up",
+        "captured_at": "2026-04-29T08:45:05.755465+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.13%",
+        "cls": "up"
+      }
     },
     {
       "code": "042700",
@@ -1802,7 +1850,25 @@
       "outlook_line": "SOX·AMAT 급락 + 20일 +34% 과열, 조정 불가피",
       "news_count": 10,
       "latest_news_at": "2026-04-29T06:47:00+09:00",
-      "latest_news_ago": "43분 전"
+      "latest_news_ago": "43분 전",
+      "nxt_pre_open": {
+        "change_pct": -3.68,
+        "change": -13500,
+        "direction": "down",
+        "captured_at": "2026-04-29T08:45:05.755481+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -3.68%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "하락 경계",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-3.68%"
+      }
     },
     {
       "code": "096770",
@@ -2049,7 +2115,17 @@
       "outlook_line": "WTI $99 돌파에 에너지주 수혜, 소폭 상승 기대",
       "news_count": 10,
       "latest_news_at": "2026-04-29T06:02:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 1.05,
+        "change": 1400,
+        "direction": "up",
+        "captured_at": "2026-04-29T08:45:05.755492+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.05%",
+        "cls": "up"
+      }
     },
     {
       "code": "299660",
@@ -2457,7 +2533,17 @@
       "outlook_line": "중동재건 수혜 기대이나 20일 +49% 극과열, 관망",
       "news_count": 1,
       "latest_news_at": "2026-04-28T16:44:00+09:00",
-      "latest_news_ago": "14시간 전"
+      "latest_news_ago": "14시간 전",
+      "nxt_pre_open": {
+        "change_pct": -1.24,
+        "change": -700,
+        "direction": "down",
+        "captured_at": "2026-04-29T08:45:05.755505+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -1.24%",
+        "cls": "down"
+      }
     },
     {
       "code": "310210",
@@ -2580,7 +2666,17 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "개별 촉매 부재 + XBI 약세, 관망 적절",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": 0.33,
+        "change": 1000,
+        "direction": "up",
+        "captured_at": "2026-04-29T08:45:05.755514+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.33%",
+        "cls": "up"
+      }
     },
     {
       "code": "445680",
@@ -2708,7 +2804,17 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "개별 촉매 부재, 간밤 바이오 약세에 관망",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -0.32,
+        "change": -300,
+        "direction": "down",
+        "captured_at": "2026-04-29T08:45:05.755522+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.32%",
+        "cls": "down"
+      }
     },
     {
       "code": "009540",
@@ -2929,7 +3035,25 @@
       "outlook_line": "뉴스·프록시 모두 중립, 관망 적절",
       "news_count": 10,
       "latest_news_at": "2026-04-29T06:00:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": -1.6,
+        "change": -7500,
+        "direction": "down",
+        "captured_at": "2026-04-29T08:45:05.755530+09:00"
+      },
+      "nxt_adjusted_recommendation": "sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -1.60%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-1.60%"
+      }
     },
     {
       "code": "174900",
@@ -3288,7 +3412,25 @@
       "outlook_line": "전일 -19% 급락 이미 반영, 기술적 반등 가능성 존재",
       "news_count": 10,
       "latest_news_at": "2026-04-29T06:25:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 2.15,
+        "change": 3000,
+        "direction": "up",
+        "captured_at": "2026-04-29T08:45:05.755541+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +2.15%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+2.15%"
+      }
     },
     {
       "code": "166480",
@@ -3667,7 +3809,17 @@
       "outlook_line": "나스닥 약세 + 네카오 소외 분위기 지속, 관망",
       "news_count": 10,
       "latest_news_at": "2026-04-29T06:30:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 0.1,
+        "change": 50,
+        "direction": "up",
+        "captured_at": "2026-04-29T08:45:05.755551+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.10%",
+        "cls": "up"
+      }
     },
     {
       "code": "005380",
@@ -3908,7 +4060,17 @@
       "outlook_line": "아반떼 수출 호조이나 전일 +5.9% 급등 선반영, 관망",
       "news_count": 10,
       "latest_news_at": "2026-04-29T07:29:00+09:00",
-      "latest_news_ago": "1분 전"
+      "latest_news_ago": "1분 전",
+      "nxt_pre_open": {
+        "change_pct": 1.44,
+        "change": 8000,
+        "direction": "up",
+        "captured_at": "2026-04-29T08:45:05.755560+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.44%",
+        "cls": "up"
+      }
     },
     {
       "code": "034230",
@@ -4056,7 +4218,17 @@
       "outlook_line": "카지노 1Q 실적 전망 약세, 보유 시 축소 검토",
       "news_count": 1,
       "latest_news_at": "2026-04-28T14:59:00+09:00",
-      "latest_news_ago": "16시간 전"
+      "latest_news_ago": "16시간 전",
+      "nxt_pre_open": {
+        "change_pct": 0.68,
+        "change": 110,
+        "direction": "up",
+        "captured_at": "2026-04-29T08:45:05.755569+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.68%",
+        "cls": "up"
+      }
     },
     {
       "code": "352820",
@@ -4292,7 +4464,17 @@
       "outlook_line": "SPOT 급락은 Spotify 고유 이슈, 한국 엔터 직접 영향 제한",
       "news_count": 10,
       "latest_news_at": "2026-04-29T06:01:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 0.8,
+        "change": 2000,
+        "direction": "up",
+        "captured_at": "2026-04-29T08:45:05.755577+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.80%",
+        "cls": "up"
+      }
     },
     {
       "code": "036570",
@@ -4531,7 +4713,17 @@
       "outlook_line": "뉴스·프록시 모두 중립, 뚜렷한 방향성 없음",
       "news_count": 8,
       "latest_news_at": "2026-04-29T00:31:00+09:00",
-      "latest_news_ago": "6시간 전"
+      "latest_news_ago": "6시간 전",
+      "nxt_pre_open": {
+        "change_pct": 0.37,
+        "change": 1000,
+        "direction": "up",
+        "captured_at": "2026-04-29T08:45:05.755585+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.37%",
+        "cls": "up"
+      }
     },
     {
       "code": "039490",
@@ -4778,7 +4970,17 @@
       "outlook_line": "회사채 2.6조 흥행으로 신용도 재평가 기대",
       "news_count": 10,
       "latest_news_at": "2026-04-29T07:00:00+09:00",
-      "latest_news_ago": "30분 전"
+      "latest_news_ago": "30분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.0,
+        "change": 0,
+        "direction": "flat",
+        "captured_at": "2026-04-29T08:45:05.755596+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — 0.00%",
+        "cls": "flat"
+      }
     },
     {
       "code": "071050",
@@ -5024,7 +5226,18 @@
       "outlook_line": "뉴스·프록시 모두 중립, 방향성 불확실",
       "news_count": 10,
       "latest_news_at": "2026-04-29T07:01:00+09:00",
-      "latest_news_ago": "29분 전"
+      "latest_news_ago": "29분 전",
+      "nxt_pre_open": {
+        "change_pct": -1.35,
+        "change": -3500,
+        "direction": "down",
+        "captured_at": "2026-04-29T08:45:05.755604+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -1.35%",
+        "cls": "down"
+      }
     }
-  ]
+  ],
+  "nxt_snapshot_at": "2026-04-29T08:45:05.755610+09:00"
 }
