@@ -166,11 +166,12 @@
     <ul class="attrib-list">
       {% for key, count in attrib_sorted %}
       <li>
-        <span class="{% if 'help' in key %}help{% elif 'mis' in key or 'underestimated' in key %}hurt{% endif %}">
+        <span class="{% if 'help' in key %}help{% elif 'mis' in key or 'underestimated' in key or 'speculative' in key %}hurt{% endif %}">
           {% if key == 'overnight_helped' %}🌙 간밤 신호 적중 지원
           {% elif key == 'news_misread' %}📰 뉴스 톤 오독
           {% elif key == 'overnight_misled' %}🌙 간밤 신호가 오도
           {% elif key == 'priced_in_underestimated' %}⚠️ 선반영 과소평가
+          {% elif key == 'speculative_flow' %}🚨 거래량 급증 (수급 쏠림)
           {% else %}{{ key }}{% endif %}
         </span>
         <span class="count">{{ count }}건</span>
