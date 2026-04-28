@@ -1041,6 +1041,17 @@
   .sector-card.positive { border-left-color: var(--pos); }
   .sector-card.negative { border-left-color: var(--neg); }
   .sector-card.neutral  { border-left-color: var(--muted); }
+  /* 3 buckets header — 🔥 핫 / ⚠️ 어려울 / 😐 그냥 그런 섹터로 묶어 표시 */
+  .sec-bucket-head {
+    font-size: 13px; font-weight: 700; margin: 18px 0 8px;
+    padding: 6px 0 6px 8px; border-left: 3px solid var(--border);
+    color: var(--fg); letter-spacing: 0.02em;
+  }
+  .sec-bucket-head:first-of-type { margin-top: 8px; }
+  .sec-bucket-head.hot    { border-left-color: var(--pos); }
+  .sec-bucket-head.cold   { border-left-color: var(--neg); }
+  .sec-bucket-head.mixed  { border-left-color: var(--muted); }
+  .sec-bucket-count { color: var(--muted); font-weight: 500; margin-left: 2px; }
   .sector-card .sec-head {
     display: flex; align-items: center; justify-content: space-between;
     gap: 8px; flex-wrap: wrap;
@@ -1726,8 +1737,10 @@
   </section>
 
 
+
   <section>
     <h2>🏭 섹터 흐름</h2>
+    <h3 class="sec-bucket-head hot">🔥 오늘 핫할 것 같은 섹터 <span class="sec-bucket-count">· 4</span></h3>
     <div class="sector-card positive">
       <div class="sec-head">
         <div class="sec-title">
@@ -1791,41 +1804,6 @@
         </ul>
       </details>
     </div>
-    <div class="sector-card neutral">
-      <div class="sec-head">
-        <div class="sec-title">
-<span class="sec-emoji">⚡</span>          전력기기
-        </div>
-        <span class="macro-mood neutral">
-🟡 혼조        </span>
-      </div>
-<div class="sec-headline">효성중공업 TP 500만원 등 K변압기 전성시대, 프록시 약세가 부담</div>
-
-      <ul class="sec-news">
-    <li>
-      <span class="news-dot positive"></span>
-      <div class="news-body">
-        <div class="news-title">
-            <a href="https://n.news.naver.com/mnews/article/005/0001845727" target="_blank" rel="noopener">&#39;K변압기&#39; 전성시대… 효성중공업 목표주가 500만원까지 상향</a>
-        </div>
-        <div class="news-meta">
-<span class="time-ago">7시간 전</span><span>· 국민일보</span>
-<span class="impact positive">호재</span>        </div>
-<div class="why-material">📈 전력기기 섹터 TP 상향 릴레이</div>      </div>
-    </li>
-    <li>
-      <span class="news-dot positive"></span>
-      <div class="news-body">
-        <div class="news-title">
-            <a href="https://n.news.naver.com/mnews/article/658/0000142222" target="_blank" rel="noopener">HD현대 시총 200조 달성 — AI·조선·전력기기 쌍끌이</a>
-        </div>
-        <div class="news-meta">
-<span class="time-ago">12시간 전</span><span>· 국제신문</span>
-<span class="impact positive">호재</span>        </div>
-<div class="why-material">📈 그룹 밸류에이션 재평가</div>      </div>
-    </li>
-      </ul>
-    </div>
     <div class="sector-card positive">
       <div class="sec-head">
         <div class="sec-title">
@@ -1859,6 +1837,118 @@
 <span class="time-ago">10시간 전</span><span>· 경향신문</span>
 <span class="impact positive">호재</span>        </div>
 <div class="why-material">📈 미국 방산 시장 진출 촉매</div>      </div>
+    </li>
+      </ul>
+    </div>
+    <div class="sector-card positive">
+      <div class="sec-head">
+        <div class="sec-title">
+<span class="sec-emoji">🏗️</span>          건설/플랜트
+        </div>
+        <span class="macro-mood positive">
+🟢 우호
+        </span>
+      </div>
+<div class="sec-headline">중동재건 특수 기대감, FLR +7.15% 프록시 강세</div>
+
+      <ul class="sec-news">
+    <li>
+      <span class="news-dot positive"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/018/0006267888" target="_blank" rel="noopener">중동재건 특수 온다…건설사 수혜 기대감</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">2시간 전</span><span>· 이데일리</span>
+<span class="impact positive">호재</span>        </div>
+<div class="why-material">📈 전쟁 이후 재건 수주 기대</div>      </div>
+    </li>
+      </ul>
+    </div>
+    <div class="sector-card positive">
+      <div class="sec-head">
+        <div class="sec-title">
+<span class="sec-emoji">🎰</span>          카지노/레저
+        </div>
+        <span class="macro-mood positive">
+🟢 우호
+        </span>
+      </div>
+<div class="sec-headline">방한객 사상 최대, 카지노 3사 2Q 성수기 기대감</div>
+
+      <ul class="sec-news">
+    <li>
+      <span class="news-dot positive"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/421/0008912507" target="_blank" rel="noopener">방한객 사상 최대에 카지노 3사 &#39;활짝&#39;…2Q 성수기 효과 기대</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">1일 전</span><span>· 뉴스1</span>
+<span class="impact positive">호재</span>        </div>
+<div class="why-material">📈 인바운드 수혜 직접 반영</div>      </div>
+    </li>
+      </ul>
+    </div>
+    <h3 class="sec-bucket-head cold">⚠️ 오늘 어려울 것 같은 섹터 <span class="sec-bucket-count">· 1</span></h3>
+    <div class="sector-card negative">
+      <div class="sec-head">
+        <div class="sec-title">
+<span class="sec-emoji">🎵</span>          엔터
+        </div>
+        <span class="macro-mood negative">
+🔴 부담
+        </span>
+      </div>
+<div class="sec-headline">SPOT -4.28% 약세, K팝 해외 이전 구조 우려 지속</div>
+
+      <ul class="sec-news">
+    <li>
+      <span class="news-dot negative"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/277/0005754936" target="_blank" rel="noopener">K팝, 왜 한국을 떠났나 — 한국 거쳐 세계로? 옛말</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">23시간 전</span><span>· 아시아경제</span>
+<span class="impact negative">악재</span>        </div>
+<div class="why-material">📈 K팝 산업 구조 변화 우려</div>      </div>
+    </li>
+      </ul>
+    </div>
+    <h3 class="sec-bucket-head mixed">😐 그냥 그런 섹터 <span class="sec-bucket-count">· 3</span></h3>
+    <div class="sector-card neutral">
+      <div class="sec-head">
+        <div class="sec-title">
+<span class="sec-emoji">⚡</span>          전력기기
+        </div>
+        <span class="macro-mood neutral">
+🟡 혼조        </span>
+      </div>
+<div class="sec-headline">효성중공업 TP 500만원 등 K변압기 전성시대, 프록시 약세가 부담</div>
+
+      <ul class="sec-news">
+    <li>
+      <span class="news-dot positive"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/005/0001845727" target="_blank" rel="noopener">&#39;K변압기&#39; 전성시대… 효성중공업 목표주가 500만원까지 상향</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">7시간 전</span><span>· 국민일보</span>
+<span class="impact positive">호재</span>        </div>
+<div class="why-material">📈 전력기기 섹터 TP 상향 릴레이</div>      </div>
+    </li>
+    <li>
+      <span class="news-dot positive"></span>
+      <div class="news-body">
+        <div class="news-title">
+            <a href="https://n.news.naver.com/mnews/article/658/0000142222" target="_blank" rel="noopener">HD현대 시총 200조 달성 — AI·조선·전력기기 쌍끌이</a>
+        </div>
+        <div class="news-meta">
+<span class="time-ago">12시간 전</span><span>· 국제신문</span>
+<span class="impact positive">호재</span>        </div>
+<div class="why-material">📈 그룹 밸류에이션 재평가</div>      </div>
     </li>
       </ul>
     </div>
@@ -1918,81 +2008,6 @@
 <span class="time-ago">1시간 전</span><span>· 동행미디어 시대</span>
 <span class="impact neutral">중립</span>        </div>
 <div class="why-material">📈 실적과 전망 괴리 주의</div>      </div>
-    </li>
-      </ul>
-    </div>
-    <div class="sector-card positive">
-      <div class="sec-head">
-        <div class="sec-title">
-<span class="sec-emoji">🏗️</span>          건설/플랜트
-        </div>
-        <span class="macro-mood positive">
-🟢 우호
-        </span>
-      </div>
-<div class="sec-headline">중동재건 특수 기대감, FLR +7.15% 프록시 강세</div>
-
-      <ul class="sec-news">
-    <li>
-      <span class="news-dot positive"></span>
-      <div class="news-body">
-        <div class="news-title">
-            <a href="https://n.news.naver.com/mnews/article/018/0006267888" target="_blank" rel="noopener">중동재건 특수 온다…건설사 수혜 기대감</a>
-        </div>
-        <div class="news-meta">
-<span class="time-ago">2시간 전</span><span>· 이데일리</span>
-<span class="impact positive">호재</span>        </div>
-<div class="why-material">📈 전쟁 이후 재건 수주 기대</div>      </div>
-    </li>
-      </ul>
-    </div>
-    <div class="sector-card positive">
-      <div class="sec-head">
-        <div class="sec-title">
-<span class="sec-emoji">🎰</span>          카지노/레저
-        </div>
-        <span class="macro-mood positive">
-🟢 우호
-        </span>
-      </div>
-<div class="sec-headline">방한객 사상 최대, 카지노 3사 2Q 성수기 기대감</div>
-
-      <ul class="sec-news">
-    <li>
-      <span class="news-dot positive"></span>
-      <div class="news-body">
-        <div class="news-title">
-            <a href="https://n.news.naver.com/mnews/article/421/0008912507" target="_blank" rel="noopener">방한객 사상 최대에 카지노 3사 &#39;활짝&#39;…2Q 성수기 효과 기대</a>
-        </div>
-        <div class="news-meta">
-<span class="time-ago">1일 전</span><span>· 뉴스1</span>
-<span class="impact positive">호재</span>        </div>
-<div class="why-material">📈 인바운드 수혜 직접 반영</div>      </div>
-    </li>
-      </ul>
-    </div>
-    <div class="sector-card negative">
-      <div class="sec-head">
-        <div class="sec-title">
-<span class="sec-emoji">🎵</span>          엔터
-        </div>
-        <span class="macro-mood negative">
-🔴 부담
-        </span>
-      </div>
-<div class="sec-headline">SPOT -4.28% 약세, K팝 해외 이전 구조 우려 지속</div>
-
-      <ul class="sec-news">
-    <li>
-      <span class="news-dot negative"></span>
-      <div class="news-body">
-        <div class="news-title">
-            <a href="https://n.news.naver.com/mnews/article/277/0005754936" target="_blank" rel="noopener">K팝, 왜 한국을 떠났나 — 한국 거쳐 세계로? 옛말</a>
-        </div>
-        <div class="news-meta">
-<span class="time-ago">23시간 전</span><span>· 아시아경제</span>
-<span class="impact negative">악재</span>        </div>
-<div class="why-material">📈 K팝 산업 구조 변화 우려</div>      </div>
     </li>
       </ul>
     </div>
