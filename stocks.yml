@@ -52,7 +52,7 @@ stocks:
     name: "삼성E&A"
     market: KOSPI
     sector: "건설/플랜트"
-    owners: ["장한솔"]
+    owners: ["장한솔", "장윤영"]
     overnight_proxy: ["XLE", "FLR"]
   - code: "310210"
     name: "보로노이"
@@ -77,7 +77,7 @@ stocks:
     name: "앱클론"
     market: KOSDAQ
     sector: "바이오"
-    owners: ["오병호"]
+    owners: ["오병호", "장윤영"]
     overnight_proxy: ["XBI", "IBB"]
   - code: "298380"
     name: "에이비엘바이오"
@@ -127,3 +127,15 @@ stocks:
     sector: "게임"
     owners: ["장윤영"]
     overnight_proxy: ["TTWO", "EA", "^IXIC"]
+  - code: "039490"
+    name: "키움증권"
+    market: KOSPI
+    sector: "증권"
+    owners: ["장윤영"]
+    overnight_proxy: ["IAI", "XLF", "SCHW"]
+  - code: "071050"
+    name: "한국금융지주"
+    market: KOSPI
+    sector: "증권"
+    owners: ["장윤영"]
+    overnight_proxy: ["IAI", "XLF", "SCHW"]
