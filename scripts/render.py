@@ -627,8 +627,20 @@ def _coffee_buyer(stocks: list[dict]) -> dict | None:
 
 def _build_ticker(news: dict) -> list[dict]:
     """Initial (server-rendered) ticker-strip data from the latest news.json
-    scrape. The Worker refreshes these live on the client, but the values
-    need to be populated on first paint.
+    scrape.
+
+    Order — left to right:
+      [KOSPI · KOSDAQ]                — local indices (live polled)
+      [USD/KRW]                       — FX (live polled)
+      [S&P · NASDAQ · DJI · VIX]      — US indices (overnight, static)
+      [KOSPI200]                      — KOSPI200 close (overnight, static)
+      [WTI · 금 · 달러인덱스]          — commodities + dollar (overnight, static)
+      [BTC · ETH]                     — KRW crypto (live polled)
+
+    Live items get refreshed by Worker `/ticker`. Overnight items are
+    'yesterday's close' values that don't move during KRX session, so the
+    Worker just doesn't expose them — JS falls through and the static
+    server-rendered value stays put.
     """
     if not news:
         return []
@@ -636,6 +648,8 @@ def _build_ticker(news: dict) -> list[dict]:
     indices = macro.get("indices") or {}
     fx = macro.get("fx") or []
     crypto = macro.get("crypto_krw") or {}
+    overnight = macro.get("overnight") or []
+    overnight_by_symbol = {(o.get("symbol") or "").lstrip("^"): o for o in overnight}
 
     def entry(key, name, value="", change_abs="", change_pct=None, direction=""):
         return {
@@ -643,9 +657,30 @@ def _build_ticker(news: dict) -> list[dict]:
             "change_abs": change_abs, "change_pct": change_pct, "direction": direction,
         }
 
+    def from_overnight(symbol_no_caret: str, key: str, name: str) -> dict | None:
+        info = overnight_by_symbol.get(symbol_no_caret)
+        if not info or not info.get("value"):
+            return None
+        # fetch_news populates `direction` when available; otherwise derive from
+        # the signed pct so UI gets the right color tint.
+        direction = info.get("direction") or ""
+        if not direction:
+            try:
+                pct = float(info.get("change_pct") or 0)
+                direction = "up" if pct > 0 else ("down" if pct < 0 else "flat")
+            except (TypeError, ValueError):
+                direction = ""
+        return entry(
+            key, name,
+            value=info.get("value", ""),
+            change_abs=info.get("change_abs", ""),
+            change_pct=info.get("change", ""),  # already a "+0.12%" formatted string
+            direction=direction,
+        )
+
     out: list[dict] = []
 
-    # KOSPI / KOSDAQ from structured indices
+    # KOSPI / KOSDAQ — live polled
     for code, label in (("KOSPI", "KOSPI"), ("KOSDAQ", "KOSDAQ")):
         info = indices.get(code) or {}
         if isinstance(info, dict) and info.get("value"):
@@ -655,17 +690,31 @@ def _build_ticker(news: dict) -> list[dict]:
                              change_pct=info.get("change_pct", ""),
                              direction=info.get("direction", "")))
 
-    # USD/KRW from fx list. fetch_fx returns 'name': '미국 USD'.
+    # USD/KRW — live polled (FX)
     usd = next((f for f in fx if "USD" in (f.get("name") or "")), None)
     if usd:
         change = str(usd.get("change", "")).strip()
-        # fx scrape gives absolute change unsigned; no reliable direction from scrape.
-        # Leave direction "" so UI renders neutral. Live poll will supply proper direction.
         out.append(entry("USDKRW", "USD/KRW",
                          value=usd.get("value", ""),
                          change_abs=change, change_pct=None, direction=""))
 
-    # BTC / ETH from Upbit snapshot
+    # US overnight indices + KOSPI200 close + commodities + dollar index — static
+    overnight_entries = [
+        ("GSPC",     "SP500",   "S&P 500"),
+        ("IXIC",     "NASDAQ_O","나스닥"),
+        ("DJI",      "DJI",     "다우존스"),
+        ("VIX",      "VIX",     "VIX"),
+        ("KS200",    "KS200",   "KOSPI200"),
+        ("CL=F",     "WTI",     "WTI"),
+        ("GC=F",     "GOLD",    "금"),
+        ("DX-Y.NYB", "DXY",     "달러인덱스"),
+    ]
+    for sym, key, label in overnight_entries:
+        e = from_overnight(sym, key, label)
+        if e:
+            out.append(e)
+
+    # BTC / ETH — live polled (KRW)
     for key, market, label in (("BTC", "KRW-BTC", "BTC"), ("ETH", "KRW-ETH", "ETH")):
         info = crypto.get(market) or {}
         if info.get("value"):

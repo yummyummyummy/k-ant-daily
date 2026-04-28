@@ -1401,37 +1401,9 @@
   {# 📊 국내 시장 지표 was folded into the top ticker marquee (KOSPI / KOSDAQ / USD/KRW).
      KOSPI200 and JPY·EUR·CNY weren't pulling enough weight to justify a full section. #}
 
-  {% if macro.overnight %}
-  <section>
-    <h2>
-      🌙 간밤 해외 시장
-      {% if macro.overnight_impact %}
-      <span class="macro-mood {{ macro.overnight_impact }}">
-        {% if macro.overnight_impact == 'positive' %}🟢 우호적
-        {% elif macro.overnight_impact == 'negative' %}🔴 부담
-        {% else %}🟡 혼조{% endif %}
-      </span>
-      {% endif %}
-    </h2>
-    <p class="section-sub">미국 증시 전일 종가 및 주요 원자재/환율</p>
-    <div class="indicators">
-      {% for ind in macro.overnight %}
-      <div class="indicator {{ ind.impact or ind.direction or 'neutral' }}">
-        <div class="name">{{ ind.name }}</div>
-        <div class="value">{{ ind.value }}</div>
-        {% if ind.change_abs or ind.change_pct %}
-        <div class="change {{ ind.direction or '' }}">
-          {% if ind.change_abs %}
-          <span class="abs">{% if ind.direction == 'up' %}▲{% elif ind.direction == 'down' %}▼{% endif %} {{ ind.change_abs|replace('+','')|replace('-','') }}</span>
-          {% endif %}
-          {% if ind.change_pct %}<span class="pct">{{ ind.change_pct }}</span>{% endif %}
-        </div>
-        {% endif %}
-      </div>
-      {% endfor %}
-    </div>
-  </section>
-  {% endif %}
+  {# 🌙 간밤 해외 시장 — separate section retired; all overnight indicators
+     (S&P · NASDAQ · DJI · VIX · KOSPI200 · WTI · 금 · 달러인덱스) now live
+     in the top sticky marquee alongside KOSPI / KOSDAQ / FX / crypto. #}
 
   {% macro sector_news_item(n) %}
     <li>
