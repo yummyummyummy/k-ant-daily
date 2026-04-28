@@ -150,7 +150,10 @@ async function fetchFxUsd() {
   const buf = await res.arrayBuffer();
   const html = new TextDecoder("euc-kr").decode(buf);
   // USD is the first li in ul#exchangeList. Capture value + change + rise/fall label.
-  const m = html.match(/미국 USD[\s\S]{0,2000}?<span class="value">([\d,.]+)<\/span>[\s\S]{0,500}?<span class="change">([\d,.]+)<\/span>[\s\S]{0,500}?<span class="blind">(상승|하락|보합)<\/span>/);
+  // Allow whitespace inside the change span — Naver intermittently pads small
+  // numbers ("<span class=\"change\"> 0.80</span>") and a strict [\d,.]+ would
+  // backtrack and grab the next currency's section (JPY) instead.
+  const m = html.match(/미국 USD[\s\S]{0,2000}?<span class="value">\s*([\d,.]+)\s*<\/span>[\s\S]{0,500}?<span class="change">\s*([\d,.]+)\s*<\/span>[\s\S]{0,500}?<span class="blind">(상승|하락|보합)<\/span>/);
   if (!m) return null;
   const [, value, change, rise] = m;
   const direction = rise === "상승" ? "up" : rise === "하락" ? "down" : "flat";
