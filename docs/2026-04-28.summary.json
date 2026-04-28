@@ -1961,7 +1961,9 @@
           "date": "2026.03.24"
         }
       ],
-      "owners": [],
+      "owners": [
+        "한윤근"
+      ],
       "overnight_proxy": [
         "XLE",
         "CL=F",
@@ -2203,7 +2205,8 @@
         }
       ],
       "owners": [
-        "이웅수"
+        "이웅수",
+        "한윤근"
       ],
       "overnight_proxy": [
         "XBI",
@@ -2322,7 +2325,8 @@
         }
       ],
       "owners": [
-        "하우찬"
+        "하우찬",
+        "한윤근"
       ],
       "overnight_proxy": [
         "^IXIC",
