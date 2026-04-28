@@ -342,6 +342,15 @@
      wrapper reconstructs itself as an absolute-positioned popover.
      Reuses the card's background palette for contrast against the banner. */
   .friend-card .owners-wrap { position: relative; }
+  /* Lift the whole card above its neighbors while a popover is open —
+     `.owners-wrap`'s `contain: layout` creates a stacking context so the
+     popover's z-index only beats siblings inside the same wrap. Bumping
+     the friend-card itself ensures the popover floats above the next-row
+     cards in the grid. */
+  .friend-card:has(.owners-wrap.open),
+  .friend-card:has(.owners-wrap:focus-within) {
+    position: relative; z-index: 100;
+  }
   .friend-card .owners-wrap.open .owner-popover,
   .friend-card .owners-wrap:focus-within .owner-popover {
     display: inline-flex; gap: 3px; flex-wrap: wrap;
