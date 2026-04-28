@@ -843,7 +843,12 @@ def _portfolio_snapshot(stocks: list[dict]) -> dict:
     """Aggregate all tracked stocks into the section-top 'friends portfolio'
     snapshot: count by forward-looking direction and breakdown by sector.
     Sectors come from stocks.yml; stocks without a sector field fall into a
-    '기타' bucket."""
+    '기타' bucket.
+
+    Counting uses the same precedence as `_group_stocks_by_recommendation`
+    (`nxt_adjusted_recommendation` ?? `recommendation`) so the snapshot at
+    the top of the page matches the actual card-by-group count below.
+    Otherwise the 08:45 NXT shifts make the two views disagree."""
     from collections import defaultdict
 
     by_direction = {"up_strong": 0, "up": 0, "flat": 0, "down": 0, "down_strong": 0}
@@ -856,7 +861,7 @@ def _portfolio_snapshot(stocks: list[dict]) -> dict:
         "strong_sell": "down_strong",
     }
     for s in stocks:
-        rec = s.get("recommendation") or "hold"
+        rec = s.get("nxt_adjusted_recommendation") or s.get("recommendation") or "hold"
         dkey = dir_key_from_rec.get(rec, "flat")
         by_direction[dkey] += 1
         sector = s.get("sector") or "기타"
