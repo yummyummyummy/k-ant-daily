@@ -925,7 +925,17 @@
       "outlook_line": "1Q 확정실적 공개(반도체 50조+)와 SOX +2.35% 강세로 오늘 추가 상승 여력 존재",
       "news_count": 10,
       "latest_news_at": "2026-04-30T07:28:00+09:00",
-      "latest_news_ago": "20분 전"
+      "latest_news_ago": "20분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.44,
+        "change": 1000,
+        "direction": "up",
+        "captured_at": "2026-04-30T08:45:09.020573+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.44%",
+        "cls": "up"
+      }
     },
     {
       "code": "000660",
@@ -1180,7 +1190,17 @@
       "outlook_line": "간밤 SOX +2.35% 강세이나 20일 +55.8% 극단 과열 구간",
       "news_count": 10,
       "latest_news_at": "2026-04-30T07:02:00+09:00",
-      "latest_news_ago": "46분 전"
+      "latest_news_ago": "46분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.93,
+        "change": 12000,
+        "direction": "up",
+        "captured_at": "2026-04-30T08:45:09.020620+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.93%",
+        "cls": "up"
+      }
     },
     {
       "code": "267260",
@@ -1428,7 +1448,17 @@
       "outlook_line": "간밤 GEV -2.37% 약세와 20일 +42.9% 과열이 겹치며 하락 경계 격상",
       "news_count": 9,
       "latest_news_at": "2026-04-30T06:01:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 1.27,
+        "change": 16000,
+        "direction": "up",
+        "captured_at": "2026-04-30T08:45:09.020636+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.27%",
+        "cls": "up"
+      }
     },
     {
       "code": "196170",
@@ -1656,7 +1686,17 @@
       "outlook_line": "개별 종목 재료 부재, 간밤 XBI -1.72% 바이오 약세 전이 가능",
       "news_count": 10,
       "latest_news_at": "2026-04-30T04:00:00+09:00",
-      "latest_news_ago": "3시간 전"
+      "latest_news_ago": "3시간 전",
+      "nxt_pre_open": {
+        "change_pct": 0.26,
+        "change": 1000,
+        "direction": "up",
+        "captured_at": "2026-04-30T08:45:09.020647+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.26%",
+        "cls": "up"
+      }
     },
     {
       "code": "042700",
@@ -1898,7 +1938,25 @@
       "outlook_line": "어제 -2.59% 조정 시작, 20일 +39.6% 과열 접근 구간",
       "news_count": 10,
       "latest_news_at": "2026-04-30T06:00:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 2.66,
+        "change": 9500,
+        "direction": "up",
+        "captured_at": "2026-04-30T08:45:09.020656+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +2.66%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+2.66%"
+      }
     },
     {
       "code": "096770",
@@ -2157,7 +2215,17 @@
       "outlook_line": "전일 +12.63% 급등 후 되돌림 경계 구간",
       "news_count": 10,
       "latest_news_at": "2026-04-30T06:01:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": -1.4,
+        "change": -2100,
+        "direction": "down",
+        "captured_at": "2026-04-30T08:45:09.020671+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -1.40%",
+        "cls": "down"
+      }
     },
     {
       "code": "299660",
@@ -2632,7 +2700,17 @@
       "outlook_line": "중동재건 기대·FLR +2.43% 강세이나, 20일 +54.7% 극단 과열 + 전일 -3.55% 차익실현…",
       "news_count": 3,
       "latest_news_at": "2026-04-29T17:30:00+09:00",
-      "latest_news_ago": "14시간 전"
+      "latest_news_ago": "14시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.92,
+        "change": -500,
+        "direction": "down",
+        "captured_at": "2026-04-30T08:45:09.020685+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.92%",
+        "cls": "down"
+      }
     },
     {
       "code": "310210",
@@ -2742,7 +2820,17 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "개별 재료 부재, 간밤 XBI -1.72% 약세",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -0.34,
+        "change": -1000,
+        "direction": "down",
+        "captured_at": "2026-04-30T08:45:09.020694+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.34%",
+        "cls": "down"
+      }
     },
     {
       "code": "445680",
@@ -2874,7 +2962,17 @@
       "direction_label": "하락 경계",
       "direction_cls": "down",
       "outlook_line": "전일 +7.98% 급등에 뚜렷한 촉매 부재, 간밤 XBI -1.72% 약세",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -0.89,
+        "change": -900,
+        "direction": "down",
+        "captured_at": "2026-04-30T08:45:09.020702+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.89%",
+        "cls": "down"
+      }
     },
     {
       "code": "009540",
@@ -3134,7 +3232,17 @@
       "outlook_line": "SMR 선박 추진단 구성이라는 새 정책 재료가 긍정적이나, 간밤 XLI -0.61%·DAC -1.09% 약…",
       "news_count": 10,
       "latest_news_at": "2026-04-30T06:01:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.42,
+        "change": -2000,
+        "direction": "down",
+        "captured_at": "2026-04-30T08:45:09.020710+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.42%",
+        "cls": "down"
+      }
     },
     {
       "code": "174900",
@@ -3517,7 +3625,17 @@
       "outlook_line": "공매도 과열종목 지정(4/28)·3단계 가격제한폭 하락 도달 등 부정 신호 다수",
       "news_count": 10,
       "latest_news_at": "2026-04-30T07:01:00+09:00",
-      "latest_news_ago": "47분 전"
+      "latest_news_ago": "47분 전",
+      "nxt_pre_open": {
+        "change_pct": -1.27,
+        "change": -1800,
+        "direction": "down",
+        "captured_at": "2026-04-30T08:45:09.020720+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -1.27%",
+        "cls": "down"
+      }
     },
     {
       "code": "166480",
@@ -3885,7 +4003,17 @@
       "outlook_line": "개별 촉매 부재, 간밤 프록시(META -0.3%, GOOGL +0.2%) 혼조",
       "news_count": 10,
       "latest_news_at": "2026-04-30T07:09:00+09:00",
-      "latest_news_ago": "39분 전"
+      "latest_news_ago": "39분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.41,
+        "change": 200,
+        "direction": "up",
+        "captured_at": "2026-04-30T08:45:09.020730+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.41%",
+        "cls": "up"
+      }
     },
     {
       "code": "005380",
@@ -4132,7 +4260,17 @@
       "outlook_line": "간밤 F -1.5%·GM -2.0%·STLA -2.8% 미 자동차주 동반 약세로 갭다운 가능",
       "news_count": 10,
       "latest_news_at": "2026-04-30T07:06:00+09:00",
-      "latest_news_ago": "42분 전"
+      "latest_news_ago": "42분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.0,
+        "change": 0,
+        "direction": "flat",
+        "captured_at": "2026-04-30T08:45:09.020743+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — 0.00%",
+        "cls": "flat"
+      }
     },
     {
       "code": "034230",
@@ -4266,7 +4404,17 @@
       "outlook_line": "카지노 빅3 1Q 성적표 엇갈림 전망 속 파라다이스는 '고전' 예상 보도",
       "news_count": 1,
       "latest_news_at": "2026-04-29T09:09:00+09:00",
-      "latest_news_ago": "22시간 전"
+      "latest_news_ago": "22시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.19,
+        "change": -30,
+        "direction": "down",
+        "captured_at": "2026-04-30T08:45:09.020752+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.19%",
+        "cls": "down"
+      }
     },
     {
       "code": "352820",
@@ -4536,7 +4684,25 @@
       "outlook_line": "1Q 매출 6,983억 사상최대(BTS 컴백 효과) 확인, 오늘 추가 매수세 유입 가능",
       "news_count": 10,
       "latest_news_at": "2026-04-30T07:23:00+09:00",
-      "latest_news_ago": "25분 전"
+      "latest_news_ago": "25분 전",
+      "nxt_pre_open": {
+        "change_pct": 5.94,
+        "change": 15000,
+        "direction": "up",
+        "captured_at": "2026-04-30T08:45:09.020761+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +5.94%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+5.94%"
+      }
     },
     {
       "code": "036570",
@@ -4790,7 +4956,17 @@
       "outlook_line": "로블록스 PC방 제휴로 플랫폼 확장 모멘텀 확보, 오늘 추가 상승 기대",
       "news_count": 10,
       "latest_news_at": "2026-04-30T06:00:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 1.44,
+        "change": 4000,
+        "direction": "up",
+        "captured_at": "2026-04-30T08:45:09.020775+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.44%",
+        "cls": "up"
+      }
     },
     {
       "code": "039490",
@@ -5039,7 +5215,25 @@
       "outlook_line": "전일 -4.94% 급락 후 금융 섹터 약세 지속 예상",
       "news_count": 10,
       "latest_news_at": "2026-04-30T07:28:00+09:00",
-      "latest_news_ago": "20분 전"
+      "latest_news_ago": "20분 전",
+      "nxt_pre_open": {
+        "change_pct": 2.48,
+        "change": 10500,
+        "direction": "up",
+        "captured_at": "2026-04-30T08:45:09.020783+09:00"
+      },
+      "nxt_adjusted_recommendation": "hold",
+      "nxt_chip": {
+        "text": "NXT ↑ +2.48%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "하락 경계",
+        "adjusted_label": "관망",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+2.48%"
+      }
     },
     {
       "code": "071050",
@@ -5292,7 +5486,18 @@
       "outlook_line": "전일 -3.68% 금융주 동반 약세이나 기업가치 제고 계획(4/29 자율공시)·보험사 인수 검토 등 긍정…",
       "news_count": 10,
       "latest_news_at": "2026-04-30T07:02:00+09:00",
-      "latest_news_ago": "46분 전"
+      "latest_news_ago": "46분 전",
+      "nxt_pre_open": {
+        "change_pct": 1.2,
+        "change": 3000,
+        "direction": "up",
+        "captured_at": "2026-04-30T08:45:09.020798+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.20%",
+        "cls": "up"
+      }
     }
-  ]
+  ],
+  "nxt_snapshot_at": "2026-04-30T08:45:09.020806+09:00"
 }
