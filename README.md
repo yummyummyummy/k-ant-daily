@@ -119,6 +119,27 @@ SK하이닉스 000660  🔥 7   +3.37%   매수   👤 이영준 +3
 
 ---
 
+## 투자 대응 (`action_plan`) — 종목별 차별화
+
+투자의견(`recommendation`)이 정해지면 다음 4축으로 운용 가이드를 종목별로 분기. 같은 의견·같은 신뢰도라도 4축이 다르면 비중·손절·시나리오 모두 다르게 작성됨 (`hold` 16종목이 동일 문자열을 받던 문제 해소).
+
+| 축 | 출처 | 영향 |
+|---|---|---|
+| **`held`** | `stocks.yml` 의 `owners` 비어있지 않음 | hold 종목의 sub-state 분기, position_size 표현 (보유 관리 vs 신규 진입) |
+| **`vol_tier`** | `history.closes_20d` 의 일평균 절대 변동률 (low/mid/high/extreme) | stop_loss·target 폭 가중 (+0.5~+1.5%p) |
+| **`nxt_gap_pct`** | `nxt_pre_open.change_pct` (08:45 capture) | 갭 시나리오 분기점이 0% 가 아닌 NXT 가격 ±0.5% |
+| **`event_window`** | `key_points` 에 실적·공시·FDA·M&A 키워드 | horizon 을 `1-3일 단기` → `1-2주 스윙` 으로 확장 |
+
+**`hold` 4분류** (held=True 인 경우):
+- `hold-accumulate` (positive 약신호) → 비중 유지, 약세 시 분할매수 여지
+- `hold-neutral` (신호 부재) → 비중 유지, scenarios 생략
+- `hold-defensive` (negative 약신호) → 보유분 1/3~1/2 익절 검토
+- `held=False ∧ hold` → action_plan 통째 생략 (모니터 가치도 약함)
+
+자세한 룰북 (Step 0 입력 추출 코드, vol_buffer 표, scenarios 작성 강제 규칙, 자체 검증 체크리스트) 은 [.claude/commands/daily-report.md `action_plan` 섹션](.claude/commands/daily-report.md).
+
+---
+
 ## 뉴스 큐레이션 — "오늘 주가에 영향?"
 
 섹터 뉴스와 종목 뉴스 모두에 적용. Agent가 raw news를 정제해서 material만 선별.

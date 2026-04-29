@@ -238,72 +238,178 @@ description: Generate and publish today's pre-market stock briefing
 
 기관 트레이더 룰북 형식. 종목별 진입/손절/익절/비중을 정량화. **가상 시나리오** 임을 disclaimer 에서 명시.
 
-### 비중 (`position_size`) — confidence × recommendation
+### 절대 원칙 — 템플릿 금지
+
+**같은 문자열을 두 종목에 쓰지 마라.** 두 종목의 `action_plan` 의 어느 필드든 동일한 값이 나오려 하면, 멈추고 아래 4축 (`held`, `volatility_tier`, `nxt_gap_pct`, `event_window`) 중 무엇을 무시했는지 점검하라. 두 종목이 같은 (recommendation, confidence) 라도 보유 여부·변동성·NXT 갭·이벤트가 다르면 `position_size`·`stop_loss`·`scenarios` 모두 달라야 한다.
+
+특히 `"0% — 신규 진입 X"` / `"-3% (보유 시 trailing)"` / `"전일 고가 도달 시 평가"` 같은 옛 템플릿 문자열은 **금지**. hold 라도 종목별로 sub-state 가 다르다 (아래 hold 4분류 참조).
+
+### Step 0 — 입력 사실 추출 (모든 종목, action_plan 작성 전 필수)
+
+각 종목마다 4개 변수를 먼저 계산하라. 이게 곧 action_plan 의 입력이 된다.
+
+```python
+# 1. held — 친구가 보유 중인가?
+held = bool(stock.get("owners"))
+
+# 2. volatility_tier — 20일 일평균 절대 변동률
+closes = stock["history"]["closes_20d"]
+moves = [abs((closes[i]-closes[i-1])/closes[i-1]*100) for i in range(1, len(closes))]
+avg_abs = sum(moves) / len(moves)
+if   avg_abs < 2.0: vol_tier = "low"     # 카카오·하이브 류
+elif avg_abs < 3.0: vol_tier = "mid"     # 삼성전자·키움 류
+elif avg_abs < 4.0: vol_tier = "high"    # SK하이닉스·한미반도체 류
+else:               vol_tier = "extreme" # 셀리드·앱클론·삼성E&A 류
+
+# 3. nxt_gap_pct — NXT 프리오픈 (참값 있으면 우선)
+nxt_gap_pct = stock.get("nxt_pre_open", {}).get("change_pct")  # None 가능
+
+# 4. event_window — 임박 이벤트 키워드 (호가 기간 확장 트리거)
+EVENT_KEYWORDS = ["실적", "공시", "FDA", "임상", "M&A", "합병", "분할", "수주", "배당락"]
+event_window = any(any(kw in (kp.get("point","") + kp.get("detail","")) for kw in EVENT_KEYWORDS)
+                   for kp in stock.get("key_points", []))
+```
+
+이 4개 변수를 `rationale` 에 굳이 쓸 필요는 없으나, action_plan 의 모든 수치는 이걸 통과해야 한다.
+
+### 변동성 보정 (`vol_buffer`) — stop_loss·target 의 폭
+
+| vol_tier | 일평균 변동 | stop_loss 가중 | target 가중 |
+|---|---|---|---|
+| low | <2.0% | 기본 | 기본 |
+| mid | 2.0~3.0% | +0.5%p | +0.5%p |
+| high | 3.0~4.0% | +1.0%p | +1.0%p |
+| extreme | >4.0% | +1.5%p | +1.5%p |
+
+기본값에 가중치 더해서 종목별 stop·target 산출. 예: buy 기본 stop_loss `-2.0%` 인데 vol_tier=high 면 `-3.0%`. 이 가중은 **필수**, 무시 금지.
+
+### 비중 (`position_size`) — held × recommendation 분기
+
+#### 신규 진입 (held=False) — buy 계열만 의미 있음
 
 | recommendation | high | medium | low |
 |---|---|---|---|
-| **strong_buy** | 5% | 3% | skip (`"0%"`) |
-| **buy** | 3% | 2% | skip |
-| **hold** | "0% — 신규 진입 X" | 동일 | 동일 |
-| **sell** | "보유 시 청산 — 신규 진입 X" | 동일 | 동일 |
-| **strong_sell** | "즉시 청산 (보유 시)" | 동일 | 동일 |
+| strong_buy | `"5%"` | `"3%"` | (action_plan 자체 생략) |
+| buy | `"3%"` | `"2%"` | (action_plan 자체 생략) |
+| hold/sell/strong_sell | (action_plan 자체 생략 — 신규 진입할 일 없음) | | |
 
-매수만 가능한 환경 가정 (공매도 제외) — sell/strong_sell 은 진입 가이드가 아닌 **보유 시 행동** 가이드.
+#### 보유 관리 (held=True) — 모든 recommendation 에 대해 보유분 액션
 
-### 진입가 (`entry_zone`) — 전일 종가 ±0.5% 기본
-
-- 평상시: `"<전일종가 - 0.5%> ~ <전일종가 + 0.5%>"` (예: `"224,000 ~ 226,000"`)
-- 강한 호재 + 갭 가능성: `"224,000 ~ 228,000 (갭상승 +1% 이내까지)"`
-- 강한 악재: `"전일 저가 근처 ~ 전일 종가"` (지지선 매수)
-- hold/sell: `"신규 진입 권장 X"` 또는 생략
-
-### 손절 (`stop_loss`) — recommendation 별 기본값
-
-| recommendation | stop_loss |
+| recommendation | position_size 표현 |
 |---|---|
-| strong_buy | `"-2.5%"` (변동성 큰 종목은 -3%) |
-| buy | `"-2.0%"` |
-| hold | `"-3% (보유 시 trailing)"` |
-| sell | `"+2.0% (반등 시 cut)"` |
-| strong_sell | `"+2.5% (반등 시 cut)"` |
+| strong_buy | `"보유분 유지 + 추가 매수 N% 검토"` (N은 high=3, medium=2) |
+| buy | `"보유분 유지, -X% 조정 시 분할매수"` (X는 vol_buffer 반영) |
+| **hold-accumulate** | `"비중 유지, 약세 시 분할매수 여지"` |
+| **hold-neutral** | `"현재 비중 유지 — 별도 액션 없음"` |
+| **hold-defensive** | `"보유분 1/3~1/2 익절 검토"` |
+| sell | `"보유분 절반 청산, 잔여분 trailing"` |
+| strong_sell | `"보유분 즉시 전량 청산"` |
 
-종목 변동성 큰 (전일 변동폭 ±5% 이상 또는 KOSDAQ 소형 바이오) 면 ±0.5%p 추가 여유. rationale 에 사유 명시.
+`hold` 의 4분류는 다음 sub-state 규칙을 따른다.
 
-### 익절 (`target`) — recommendation × 기대 강도
+#### `hold` sub-state 분기 (held 따라)
 
-| recommendation | target |
-|---|---|
-| strong_buy | `"+5~8%"` (직전 저항선 또는 52주 고점) |
-| buy | `"+3~5%"` |
-| hold | 생략 또는 `"전일 고가 도달 시 평가"` |
-| sell | `"-3~5%"` (지지선 도달 시 청산) |
-| strong_sell | `"-5~8%"` |
+```
+held=False                     → action_plan 자체 생략 (필드 전체 제거)
+held=True ∧ news_sent=positive → hold-accumulate
+held=True ∧ news_sent=negative → hold-defensive
+held=True ∧ 그 외              → hold-neutral
+```
+
+이 4분류는 `position_size`·`scenarios` 가 모두 다르다. 같은 hold 라도 카카오(neutral)와 보로노이(neutral, 변동성 4%)는 stop_loss 폭이 달라야 한다.
+
+### 진입가 (`entry_zone`)
+
+- **held=False, buy 계열**: 전일 종가 ±0.5% (vol_tier=high/extreme 면 ±1.0%). NXT 갭 있으면 NXT 시초가 ±0.3% 도 병기. 예: `"443,000 ~ 448,000 (NXT 시초가 시 ±0.3%)"`.
+- **held=True, buy 계열**: `"보유분 평단 무관 — 추가 매수는 -X% 조정 후"` (X는 vol_buffer)
+- **hold/sell/strong_sell**: 필드 통째 생략 (빈 문자열 X)
+
+### 손절 (`stop_loss`) — 변동성 보정 적용
+
+| recommendation | low | mid | high | extreme |
+|---|---|---|---|---|
+| strong_buy | `-2.5%` | `-3.0%` | `-3.5%` | `-4.0%` |
+| buy | `-2.0%` | `-2.5%` | `-3.0%` | `-3.5%` |
+| hold-accumulate | `-2.5% (보유분)` | `-3.0%` | `-3.5%` | `-4.0%` |
+| hold-neutral | (생략 가능) | `-3.0% (절반 익절)` | `-4.0%` | `-5.0%` |
+| hold-defensive | `-2.0% (선제적)` | `-2.5%` | `-3.0%` | `-3.5%` |
+| sell | `+2.0%` | `+2.5%` | `+3.0%` | `+3.5%` |
+| strong_sell | `+2.5%` | `+3.0%` | `+3.5%` | `+4.0%` |
+
+### 익절 (`target`) — 변동성 보정 적용
+
+| recommendation | low | mid | high | extreme |
+|---|---|---|---|---|
+| strong_buy | `+5%` | `+6%` | `+7%` | `+8%` |
+| buy | `+3%` | `+3.5%` | `+4.5%` | `+5.5%` |
+| hold-accumulate | `+2.5%` | `+3.0%` | `+3.5%` | `+4.5%` |
+| hold-neutral | 생략 | 생략 | 생략 | 생략 |
+| hold-defensive | `+1.5% (1/2 익절)` | `+2.0%` | `+2.5%` | `+3.5%` |
+| sell | `-3%` | `-3.5%` | `-4.5%` | `-5.5%` |
+| strong_sell | `-5%` | `-6%` | `-7%` | `-8%` |
 
 ### 시간 (`horizon`)
 
-기본 `"1-3일 단기"` — 그날 신호 기반 단기 트레이딩 전제. 강한 모멘텀 (실적 발표 직후 등) 은 `"1-2주 스윙"`.
+- `event_window=False` → `"1-3일 단기"`
+- `event_window=True` → `"1-2주 스윙 (이벤트: <키워드>)"`. 키워드는 `key_points` 에서 매칭된 단어.
 
-### 시나리오 (`scenarios`) — dict, 모두 선택
+### 시나리오 (`scenarios`) — NXT 갭 기반 정량 분기
 
-`if_gap_up`, `if_gap_down`, `if_target_hit`, `if_stop_hit` 4개 키. 각각 한 줄.
+`if_gap_up` / `if_gap_down` 분기점을 **NXT 갭 ± 0.5%** 로 잡아라. NXT 데이터 없으면 0% 기준.
 
-**예시 (강한 상승 기대):**
+**예: 삼성전자 NXT -2.03%, strong_sell, vol_tier=mid (전일 종가 220,000)**
 ```json
 "scenarios": {
-  "if_gap_up":     "갭상승 +1% 이내 시초가 매수, +2% 이상이면 5분봉 음봉 1개 보고 재진입",
-  "if_gap_down":   "갭다운 -1% 이상 진입 보류, -2% 이상 손절 자동 발동",
-  "if_target_hit": "+3.5% 도달 시 절반 익절, 나머지 trailing stop -1%",
-  "if_stop_hit":   "즉시 청산, 다음 날 재진입 금지"
+  "if_gap_up":     "갭이 NXT(-2.0%)보다 위 (-1.5% 이상) 마감 갭이면 시초가 매도 — NXT 매도세 약화 신호",
+  "if_gap_down":   "NXT 수준(-2~-3%) 갭다운이면 추격 매도 자제, -4% 초과 시 -1차 청산 1/3",
+  "if_target_hit": "-6% 도달 시 보유분 1/2 청산, 잔여분 trailing -1.5%",
+  "if_stop_hit":   "+3% 반등 (stop) 도달 시 즉시 전량 청산, 재진입 금지"
 }
 ```
 
-매트릭스가 `hold` 또는 약한 신호면 시나리오 자체 생략 가능 (필드 완전 제거).
+**예: 카카오 NXT 데이터 없음, hold-neutral, vol_tier=low** → `scenarios` 자체 생략 (의미있는 행동 없음).
+
+**예: 키움증권 NXT +0.5% 가정, buy/medium, vol_tier=mid (전일 종가 445,500)**
+```json
+"scenarios": {
+  "if_gap_up":     "NXT(+0.5%) 부근 갭상승은 시초가 매수, +1.5% 초과 갭은 5분봉 음봉 1개 보고 진입",
+  "if_gap_down":   "갭다운 -1% 이내면 지지선(440,000) 매수, -1.5% 초과면 진입 보류",
+  "if_target_hit": "+4% 도달 시 절반 익절, 나머지 trailing -1.5%",
+  "if_stop_hit":   "-2.5% (vol 보정) 도달 시 즉시 청산, 다음 날 재진입 금지"
+}
+```
+
+### `scenarios` 작성 강제 규칙
+
+1. 4개 키 (`if_gap_up`, `if_gap_down`, `if_target_hit`, `if_stop_hit`) 중 **두 종목이 동일 텍스트** 가 나오면 다시 써라. 가격·종목명·% 수치를 종목별로 박아 넣어라.
+2. `hold-neutral` 은 `scenarios` 통째 생략. 행동이 없는데 시나리오를 적는 건 위선.
+3. NXT 데이터가 있으면 반드시 `if_gap_*` 두 키 중 한 곳에는 NXT 가격 또는 NXT 변동률을 명시 (예: "NXT(-2.03%) 수준 갭다운이면…").
+
+### action_plan 자체 생략 조건
+
+다음 중 하나라도 해당하면 `action_plan` 키 자체를 stock 객체에서 제거 (빈 객체 X, null X):
+
+- `held=False ∧ recommendation ∈ {hold, sell, strong_sell}` — 보유 안 하는데 매도 가이드는 의미 없음
+- `held=False ∧ confidence=low ∧ recommendation ∈ {buy, strong_buy}` — 진입 강도 부족
+- 종목 뉴스·공시 0건 + overnight_signal=neutral + held=False — 모니터 가치도 약함
+
+이 경우 stock 카드는 단순 "관전" 으로 표시되도록 template 가 처리한다.
+
+### 자체 검증 체크리스트 (summary.json 작성 후, render 전)
+
+스스로 답하라:
+
+1. ❓ 두 종목의 `position_size` 가 글자 단위로 같은 게 있나? → 있으면 다시 써라
+2. ❓ 두 종목의 `stop_loss` % 가 같은데 vol_tier 가 다르면? → vol_buffer 무시한 것, 다시 써라
+3. ❓ NXT 데이터가 있는 종목인데 `scenarios` 에 NXT 가 안 나오면? → 다시 써라
+4. ❓ held=True 인데 `position_size` 가 `"0%"` 로 시작하면? → 보유 관리 표현으로 다시 써라
+5. ❓ `hold` 종목 중 `hold-neutral`/`hold-defensive`/`hold-accumulate` 분류가 안 된 게 있나? → 분기 다시 하라
+
+다섯 개 다 통과하면 OK.
 
 ### Disclaimer 강화 필수
 
-action_plan 은 **가상 운용 시나리오 시뮬레이션**. 실제 매매 권유 절대 아님. 페이지 footer disclaimer 에 이 내용 명시 (template 처리됨)..
-
-**기대 효과:** medium 의 정보 가치 회복. 누적 5일 데이터에서 medium 51건 중 절반 정도가 low 로 재분류될 것으로 예상.
+action_plan 은 **가상 운용 시나리오 시뮬레이션**. 실제 매매 권유 절대 아님. 페이지 footer disclaimer 에 이 내용 명시 (template 처리됨).
 
 ## Forward-looking 언어 가이드
 
