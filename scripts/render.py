@@ -188,13 +188,17 @@ def _time_ago(iso_str: str | None, now: datetime) -> str:
 
 
 def _merge_config_from_stocks_yml(summary: dict, yml_path: Path) -> None:
-    """Backfill config-only fields from stocks.yml so the agent doesn't have
-    to copy them every time.
+    """Backfill / overwrite config-only fields from stocks.yml so the agent
+    doesn't have to copy them every time, and so transient corruption in
+    agent output (e.g., 4/29 had 120 U+FFFD chars where Korean syllables
+    got truncated mid-token) doesn't poison the rendered page.
 
-    Agents writing summary.json sometimes drop fields that don't appear in
-    the schema example (owners / overnight_proxy / is_etf). Those are pure
-    configuration, not analysis output — we pull them straight from the
-    source of truth instead of relying on the agent to propagate them."""
+    Two tiers:
+      - **Always overwrite** (pure config — agent shouldn't author):
+        name / market / sector / is_etf / owners / leader / overnight_proxy
+      - **Backfill only** when missing: (none today; everything moved to
+        always-overwrite for corruption resilience)
+    """
     if not yml_path.exists():
         return
     try:
@@ -203,13 +207,30 @@ def _merge_config_from_stocks_yml(summary: dict, yml_path: Path) -> None:
     except Exception:
         return
     by_code = {s.get("code"): s for s in (cfg.get("stocks") or [])}
+    OVERWRITE = ("name", "market", "sector", "is_etf", "owners", "leader", "overnight_proxy")
     for stock in summary.get("stocks") or []:
         src = by_code.get(stock.get("code"))
         if not src:
             continue
-        for key in ("owners", "overnight_proxy", "is_etf", "leader", "sector"):
-            if src.get(key) is not None and not stock.get(key):
+        for key in OVERWRITE:
+            if src.get(key) is not None:
                 stock[key] = src[key]
+
+
+def _check_replacement_chars(summary: dict, summary_path: Path) -> None:
+    """Print a warning if U+FFFD (replacement character) shows up in any
+    string field of summary — signals agent text output corruption (token
+    boundary garbling). Doesn't abort render; just surfaces the issue."""
+    raw = json.dumps(summary, ensure_ascii=False)
+    n = raw.count("�")
+    if n:
+        print(
+            f"[warn] {summary_path.name}: {n} U+FFFD (replacement char) — "
+            "agent text output likely corrupted some Korean chars. "
+            "Re-run /daily-report to repair rationale/news fields. "
+            "Config fields (name/sector/...) are auto-protected from stocks.yml.",
+            file=sys.stderr,
+        )
 
 
 def _merge_quotes_from_news(summary: dict, news_path: Path) -> None:
@@ -1321,6 +1342,7 @@ def main(argv: list[str]) -> int:
 
     # Auto-merge scraped quote data from sibling news.json when available.
     news_path = summary_path.parent / "news.json"
+    _check_replacement_chars(summary, summary_path)
     filename, html = render_report(summary, base_url, news_path=news_path)
     dated = DOCS / filename
     dated.write_text(html, encoding="utf-8")
