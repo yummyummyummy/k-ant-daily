@@ -65,6 +65,23 @@
     border-radius: 6px; padding: 12px 16px; font-size: 15px;
   }
 
+  .sorry-box {
+    background: #1a0000; border: 2px solid var(--neg);
+    border-radius: 10px; padding: 18px 20px; margin-bottom: 20px;
+  }
+  .sorry-box .sorry-title {
+    font-size: 16px; font-weight: 800; color: var(--neg);
+    margin: 0 0 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .sorry-box .sorry-body {
+    font-size: 14px; line-height: 1.7; color: var(--fg);
+    white-space: pre-line;
+  }
+  .sorry-box .sorry-rate {
+    display: inline-block; font-size: 28px; font-weight: 900;
+    color: var(--neg); margin-right: 4px; font-variant-numeric: tabular-nums;
+  }
+
   .two-col {
     display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
   }
@@ -210,6 +227,24 @@
     <time>생성 {{ generated_at_display }} KST</time>
   </header>
 
+  {% if accuracy.hit_rate < 0.5 %}
+  <div class="sorry-box">
+    <div class="sorry-title">
+      <span>⚠️ 반성문</span>
+      <span class="sorry-rate">{{ (accuracy.hit_rate * 100) | round(0) | int }}%</span>
+    </div>
+    <div class="sorry-body">오늘 적중률은 <strong>{{ (accuracy.hit_rate * 100) | round(0) | int }}%</strong>로 기준선(50%)을 하회했습니다.
+
+{{ accuracy.hits }}건 적중 · {{ accuracy.partial }}건 부분 · {{ accuracy.misses }}건 빗나감 (총 {{ accuracy.total }}건).
+방향 정확도 {{ (accuracy.directional_accuracy * 100) | round(0) | int }}%.
+
+주요 실패 원인:
+{% if analysis and analysis.what_missed %}{{ analysis.what_missed.lead }}
+
+핵심 교훈: {{ analysis.what_missed.takeaway }}{% endif %}</div>
+  </div>
+  {% endif %}
+
   <section>
     <div class="hero">
       <div>
@@ -316,7 +351,7 @@
       {% for s in stocks %}
       {% set verdict = (s.result.outcome) or 'n/a' %}
       {% set vlabel = {'hit': '적중', 'partial': '부분', 'miss': '실패', 'n/a': '—'}[verdict] %}
-      {% set actual = s.result.actual_change_pct %}
+      {% set actual = s.result.actual_change_pct | default(none) %}
       {% set adir = 'up' if (actual or 0) > 0 else ('down' if (actual or 0) < 0 else 'flat') %}
       {% set asign = '+' if (actual or 0) > 0 else '' %}
       {% set why = (analysis.stocks[s.code].why) if (analysis and analysis.stocks and s.code in analysis.stocks) else None %}

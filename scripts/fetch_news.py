@@ -249,6 +249,21 @@ def fetch_market_indices() -> dict:
         value = val_el.get_text(" ", strip=True)
         raw_change = chg_el.get_text(" ", strip=True) if chg_el else ""
         parsed = _parse_index_change(raw_change) if raw_change else {"abs": "", "pct": "", "direction": "flat"}
+
+        # CSS class (ndown/nup/nbonum) is the reliable direction indicator.
+        # Naver's <span class="blind"> text is occasionally mis-labeled (e.g.
+        # "상승" on a down day), so override parsed direction when they conflict.
+        if chg_el:
+            icon = chg_el.find("span", class_=lambda c: c in ("ndown", "nup", "nbonum"))
+            if icon:
+                cls = set(icon.get("class", []) if isinstance(icon.get("class"), list) else [icon.get("class", "")])
+                css_dir = "down" if "ndown" in cls else "up" if "nup" in cls else "flat"
+                if css_dir != parsed["direction"]:
+                    sign = "-" if css_dir == "down" else "+" if css_dir == "up" else ""
+                    parsed["direction"] = css_dir
+                    parsed["abs"] = f"{sign}{parsed['abs'].lstrip('+-')}" if sign else parsed["abs"].lstrip("+-")
+                    parsed["pct"] = f"{sign}{parsed['pct'].lstrip('+-')}" if sign else parsed["pct"].lstrip("+-")
+
         result[name] = {
             "value": value,
             "change_abs": parsed["abs"],
