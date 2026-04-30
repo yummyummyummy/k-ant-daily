@@ -925,7 +925,25 @@
       "outlook_line": "역대급 1Q 실적 발표 다음날, SOX +2.26% 강세로 갭업 반등 기대",
       "news_count": 10,
       "latest_news_at": "2026-05-01T07:19:00+09:00",
-      "latest_news_ago": "11분 전"
+      "latest_news_ago": "11분 전",
+      "nxt_pre_open": {
+        "change_pct": -1.55,
+        "change": -3500,
+        "direction": "down",
+        "captured_at": "2026-05-01T08:45:09.783555+09:00"
+      },
+      "nxt_adjusted_recommendation": "hold",
+      "nxt_chip": {
+        "text": "NXT ↓ -1.55%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "관망",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-1.55%"
+      }
     },
     {
       "code": "000660",
@@ -1213,7 +1231,17 @@
       "outlook_line": "HBM 슈퍼사이클 모멘텀 최강, SOX 강세로 오늘 추가 상승 여력 충분",
       "news_count": 10,
       "latest_news_at": "2026-05-01T07:19:00+09:00",
-      "latest_news_ago": "11분 전"
+      "latest_news_ago": "11분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.08,
+        "change": 1000,
+        "direction": "up",
+        "captured_at": "2026-05-01T08:45:09.783610+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.08%",
+        "cls": "up"
+      }
     },
     {
       "code": "267260",
@@ -1413,7 +1441,17 @@
       "outlook_line": "GEV·ETN·XLU 모두 강세로 전력기기 섹터 오늘 갭업 기대",
       "news_count": 4,
       "latest_news_at": "2026-04-30T17:54:00+09:00",
-      "latest_news_ago": "13시간 전"
+      "latest_news_ago": "13시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.48,
+        "change": -6000,
+        "direction": "down",
+        "captured_at": "2026-05-01T08:45:09.783633+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.48%",
+        "cls": "down"
+      }
     },
     {
       "code": "196170",
@@ -1655,7 +1693,25 @@
       "outlook_line": "XBI +1.89%·IBB +2.0% 바이오 지수 강세로 오늘 갭업 반등 가능",
       "news_count": 10,
       "latest_news_at": "2026-04-30T18:01:00+09:00",
-      "latest_news_ago": "13시간 전"
+      "latest_news_ago": "13시간 전",
+      "nxt_pre_open": {
+        "change_pct": -2.24,
+        "change": -8500,
+        "direction": "down",
+        "captured_at": "2026-05-01T08:45:09.783645+09:00"
+      },
+      "nxt_adjusted_recommendation": "hold",
+      "nxt_chip": {
+        "text": "NXT ↓ -2.24%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "관망",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-2.24%"
+      }
     },
     {
       "code": "042700",
@@ -1832,7 +1888,25 @@
       "outlook_line": "SOX +2.26% 배경으로 갭업 기대되나, 어제 +2.94% 이미 상승해 단기 선반영 주의",
       "news_count": 2,
       "latest_news_at": "2026-05-01T00:56:00+09:00",
-      "latest_news_ago": "6시간 전"
+      "latest_news_ago": "6시간 전",
+      "nxt_pre_open": {
+        "change_pct": 3.5,
+        "change": 12500,
+        "direction": "up",
+        "captured_at": "2026-05-01T08:45:09.783658+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +3.50%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+3.50%"
+      }
     },
     {
       "code": "299660",
@@ -2329,7 +2403,25 @@
       "outlook_line": "중동 재건 수혜 구체화 + FLR +3.07% 프록시 강세로 오늘 강한 갭업 기대",
       "news_count": 4,
       "latest_news_at": "2026-04-30T16:11:00+09:00",
-      "latest_news_ago": "15시간 전"
+      "latest_news_ago": "15시간 전",
+      "nxt_pre_open": {
+        "change_pct": -1.84,
+        "change": -1000,
+        "direction": "down",
+        "captured_at": "2026-05-01T08:45:09.783677+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↓ -1.84%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "강한 상승 기대",
+        "adjusted_label": "상승 기대",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-1.84%"
+      }
     },
     {
       "code": "310210",
@@ -2473,7 +2565,25 @@
       "direction_label": "상승 기대",
       "direction_cls": "up",
       "outlook_line": "XBI +1.89% 바이오 강세로 갭업 기대되나, 개별 재료 부재로 섹터 연동 흐름에 의존",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -3.38,
+        "change": -10000,
+        "direction": "down",
+        "captured_at": "2026-05-01T08:45:09.783688+09:00"
+      },
+      "nxt_adjusted_recommendation": "sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -3.38%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-3.38%"
+      }
     },
     {
       "code": "445680",
@@ -2624,7 +2734,17 @@
       "direction_label": "상승 기대",
       "direction_cls": "up",
       "outlook_line": "XBI +1.89%·IBB +2.0% 바이오 지수 강세로 오늘 갭업 기대",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": 0.0,
+        "change": 0,
+        "direction": "flat",
+        "captured_at": "2026-05-01T08:45:09.783701+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — 0.00%",
+        "cls": "flat"
+      }
     },
     {
       "code": "009540",
@@ -2797,7 +2917,17 @@
       "outlook_line": "XLI +2.74% 산업재 강세로 오늘 갭업 기대, AI 인프라 선박 새 내러티브 부각",
       "news_count": 2,
       "latest_news_at": "2026-04-30T12:07:00+09:00",
-      "latest_news_ago": "19시간 전"
+      "latest_news_ago": "19시간 전",
+      "nxt_pre_open": {
+        "change_pct": -1.48,
+        "change": -7000,
+        "direction": "down",
+        "captured_at": "2026-05-01T08:45:09.783712+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -1.48%",
+        "cls": "down"
+      }
     },
     {
       "code": "174900",
@@ -3232,7 +3362,25 @@
       "outlook_line": "간밤 XBI 강세로 단기 반등 가능하나, 공매도 과열 지정·가격제한폭 하락 도달로 구조적 약세 유지 예상",
       "news_count": 10,
       "latest_news_at": "2026-04-30T18:17:00+09:00",
-      "latest_news_ago": "13시간 전"
+      "latest_news_ago": "13시간 전",
+      "nxt_pre_open": {
+        "change_pct": -4.93,
+        "change": -7000,
+        "direction": "down",
+        "captured_at": "2026-05-01T08:45:09.783726+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -4.93%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-4.93%"
+      }
     },
     {
       "code": "166480",
@@ -3646,7 +3794,25 @@
       "outlook_line": "META -8.55% vs GOOGL +9.96% 프록시 극단 혼조, 카카오 국내 플랫폼으로 직접 연관성…",
       "news_count": 10,
       "latest_news_at": "2026-05-01T06:55:00+09:00",
-      "latest_news_ago": "35분 전"
+      "latest_news_ago": "35분 전",
+      "nxt_pre_open": {
+        "change_pct": -2.17,
+        "change": -1050,
+        "direction": "down",
+        "captured_at": "2026-05-01T08:45:09.783737+09:00"
+      },
+      "nxt_adjusted_recommendation": "sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -2.17%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-2.17%"
+      }
     },
     {
       "code": "005380",
@@ -3925,7 +4091,25 @@
       "outlook_line": "파업 이슈 + 글로벌 자동차 섹터 약세로 하락 경계",
       "news_count": 10,
       "latest_news_at": "2026-05-01T07:08:00+09:00",
-      "latest_news_ago": "22분 전"
+      "latest_news_ago": "22분 전",
+      "nxt_pre_open": {
+        "change_pct": -3.78,
+        "change": -21000,
+        "direction": "down",
+        "captured_at": "2026-05-01T08:45:09.783751+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -3.78%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "하락 경계",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-3.78%"
+      }
     },
     {
       "code": "034230",
@@ -4200,7 +4384,17 @@
       "outlook_line": "황금연휴 특수 + LIV 골프 공식 호텔 + LVS·WYNN 강세로 오늘 강한 상승 기대",
       "news_count": 10,
       "latest_news_at": "2026-05-01T05:05:00+09:00",
-      "latest_news_ago": "2시간 전"
+      "latest_news_ago": "2시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.99,
+        "change": -160,
+        "direction": "down",
+        "captured_at": "2026-05-01T08:45:09.783765+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.99%",
+        "cls": "down"
+      }
     },
     {
       "code": "036570",
@@ -4415,7 +4609,25 @@
       "outlook_line": "게임주 프록시 혼조·개별 모멘텀 부재로 박스권 흐름 예상",
       "news_count": 8,
       "latest_news_at": "2026-04-30T16:31:00+09:00",
-      "latest_news_ago": "14시간 전"
+      "latest_news_ago": "14시간 전",
+      "nxt_pre_open": {
+        "change_pct": -1.62,
+        "change": -4500,
+        "direction": "down",
+        "captured_at": "2026-05-01T08:45:09.783775+09:00"
+      },
+      "nxt_adjusted_recommendation": "sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -1.62%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-1.62%"
+      }
     },
     {
       "code": "039490",
@@ -4671,7 +4883,25 @@
       "outlook_line": "1Q 순이익 +102.6% 서프라이즈지만 실적 발표 당일 -6% 차익실현 + 기준금리 인상 우려 중첩",
       "news_count": 10,
       "latest_news_at": "2026-05-01T07:03:00+09:00",
-      "latest_news_ago": "27분 전"
+      "latest_news_ago": "27분 전",
+      "nxt_pre_open": {
+        "change_pct": -4.96,
+        "change": -21000,
+        "direction": "down",
+        "captured_at": "2026-05-01T08:45:09.783788+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -4.96%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-4.96%"
+      }
     },
     {
       "code": "071050",
@@ -4922,7 +5152,26 @@
       "outlook_line": "기업가치 제고 계획 공시·퇴직연금 1위 성과에도 기준금리 인상 우려로 중립",
       "news_count": 10,
       "latest_news_at": "2026-05-01T06:01:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": -3.01,
+        "change": -7500,
+        "direction": "down",
+        "captured_at": "2026-05-01T08:45:09.783798+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -3.01%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-3.01%"
+      }
     }
-  ]
+  ],
+  "nxt_snapshot_at": "2026-05-01T08:45:09.783804+09:00"
 }
