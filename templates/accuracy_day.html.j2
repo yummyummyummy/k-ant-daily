@@ -233,15 +233,9 @@
       <span>⚠️ 반성문</span>
       <span class="sorry-rate">{{ (accuracy.hit_rate * 100) | round(0) | int }}%</span>
     </div>
-    <div class="sorry-body">오늘 적중률은 <strong>{{ (accuracy.hit_rate * 100) | round(0) | int }}%</strong>로 기준선(50%)을 하회했습니다.
+    <div class="sorry-body">{% if analysis and analysis.apology %}{{ analysis.apology }}{% else %}오늘 적중률 <strong>{{ (accuracy.hit_rate * 100) | round(0) | int }}%</strong>로 기준선(50%)을 하회했습니다. {{ accuracy.hits }}건 적중 · {{ accuracy.partial }}건 부분 · {{ accuracy.misses }}건 빗나감.{% if analysis and analysis.what_missed %}
 
-{{ accuracy.hits }}건 적중 · {{ accuracy.partial }}건 부분 · {{ accuracy.misses }}건 빗나감 (총 {{ accuracy.total }}건).
-방향 정확도 {{ (accuracy.directional_accuracy * 100) | round(0) | int }}%.
-
-주요 실패 원인:
-{% if analysis and analysis.what_missed %}{{ analysis.what_missed.lead }}
-
-핵심 교훈: {{ analysis.what_missed.takeaway }}{% endif %}</div>
+{{ analysis.what_missed.lead }}{% endif %}{% endif %}</div>
   </div>
   {% endif %}
 
