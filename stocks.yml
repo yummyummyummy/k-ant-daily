@@ -29,12 +29,6 @@ stocks:
     sector: "반도체"
     owners: ["한윤근", "장한솔"]
     overnight_proxy: ["^SOX", "AMAT", "NVDA"]
-  - code: "096770"
-    name: "SK이노베이션"
-    market: KOSPI
-    sector: "에너지/정유"
-    owners: ["한윤근"]
-    overnight_proxy: ["XLE", "CL=F", "TSLA"]
   - code: "299660"
     name: "셀리드"
     market: KOSDAQ
@@ -109,12 +103,6 @@ stocks:
     sector: "카지노/레저"
     owners: ["장한솔"]
     overnight_proxy: ["LVS", "WYNN", "MGM"]
-  - code: "352820"
-    name: "하이브"
-    market: KOSPI
-    sector: "엔터"
-    owners: ["장한솔"]
-    overnight_proxy: ["SPOT", "WMG"]
   - code: "036570"
     name: "엔씨소프트"
     market: KOSPI
