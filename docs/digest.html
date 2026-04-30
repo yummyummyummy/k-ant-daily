@@ -135,6 +135,51 @@
     color: var(--muted); font-size: 12px; text-align: center; }
   .live-indicator { font-size: 12px; color: var(--muted); margin-left: 8px; }
   .live-indicator.live { color: var(--pos); }
+
+  /* 다음 장 목표 배너 — 장 없는 기간에만 노출 */
+  .resolution-box {
+    margin-top: 20px;
+    background: var(--card); border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 10px; padding: 20px 22px;
+  }
+  .resolution-box .res-header {
+    display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .resolution-box .res-title {
+    font-size: 13px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--accent);
+  }
+  .resolution-box .res-target {
+    font-size: 32px; font-weight: 900; font-variant-numeric: tabular-nums;
+    color: var(--fg); line-height: 1;
+  }
+  .resolution-box .res-target span { font-size: 16px; color: var(--muted); font-weight: 500; }
+  .resolution-box .res-basis {
+    font-size: 13px; color: var(--muted); margin-bottom: 16px; line-height: 1.5;
+  }
+  .resolution-box .res-basis strong { color: var(--fg); }
+  .resolution-box .res-plan {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .resolution-box .res-plan li {
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 10px 12px; font-size: 13px; line-height: 1.5;
+  }
+  .resolution-box .res-plan .num {
+    font-size: 11px; font-weight: 800; color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-radius: 4px; padding: 2px 6px; white-space: nowrap;
+    align-self: start; margin-top: 1px;
+  }
+  .resolution-box .res-plan .rule { font-weight: 700; color: var(--fg); }
+  .resolution-box .res-plan .why { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .resolution-box .res-reopen {
+    margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--muted);
+  }
+  .resolution-box .res-reopen strong { color: var(--fg); }
 </style>
 </head>
 <body data-date="2026-04-29">
@@ -143,7 +188,51 @@
     <nav><a href="archive.html">📋 예측</a> · <a href="accuracy.html">📊 통계</a></nav>
     <h1>🌙 장 마감 후 뉴스</h1>
     <time>2026-04-29 23:00 KST 발행<span class="live-indicator" id="live-indicator"></span></time>
-<div class="next-brief">다음 브리핑 — 2026-04-30 07:30</div>  </header>
+<div class="next-brief">다음 브리핑 — 2026-05-06 07:30</div>  </header>
+
+  <div class="resolution-box">
+    <div class="res-header">
+      <span class="res-title">📋 다음 장 목표</span>
+      <span class="res-target">57<span>%</span></span>
+    </div>
+    <div class="res-basis">
+      최근 5일 평균 <strong>45%</strong> → 목표 <strong>57%</strong>.
+      최근 5일 (48, 48, 42, 50, 35%) 평균 45% 기준, 주요 실패 패턴 5가지를 룰로 고정하면 57% 달성 가능
+    </div>
+    <ul class="res-plan">
+      <li>
+        <span class="num">1</span>
+        <div>
+          <div class="rule">대형주 실적 확정 당일 — 전일 +1% 이상이면 뉴스 긍정이어도 관망 처리</div>
+<div class="why">↳ 4/30 삼성전자: 1Q 실적 긍정 + buy → 실제 -2.43% (소문 사고 뉴스에 팔기)</div>        </div>
+      </li>
+      <li>
+        <span class="num">2</span>
+        <div>
+          <div class="rule">섹터 내 한 종목에 방향성 내면 같은 섹터 다른 종목도 같은 방향 기본값 적용</div>
+<div class="why">↳ 4/30 키움증권 sell 냈는데 한국금융지주는 hold → 한국금융지주 -3.6%</div>        </div>
+      </li>
+      <li>
+        <span class="num">3</span>
+        <div>
+          <div class="rule">뉴스 부정 + 공매도 지정·구조적 약세 신호 겹치면 관망 금지, 하락 경계 이상으로 격상</div>
+<div class="why">↳ 4/30 에이비엘바이오: 공매도 과열 지정 무시하고 관망 → 실제 -5.1%</div>        </div>
+      </li>
+      <li>
+        <span class="num">4</span>
+        <div>
+          <div class="rule">XBI/IBB -1.5% 이상 하락일 때 개별 재료 없는 바이오 종목 자동 하락 경계 격상</div>
+<div class="why">↳ 4/30 알테오젠·코아스템켐온 등 섹터 동조 하락 — XBI 신호 무시한 오판</div>        </div>
+      </li>
+      <li>
+        <span class="num">5</span>
+        <div>
+          <div class="rule">SOX·섹터 지수가 개별 프록시 혼조보다 우선 — 프록시 엇갈리면 섹터 지수 채택</div>
+<div class="why">↳ 4/28-29 반도체주 복수 오판 공통 원인 — 개별 vs SOX 방향 충돌 시 SOX 무시</div>        </div>
+      </li>
+    </ul>
+    <div class="res-reopen">장 재개 <strong>2026-05-06</strong></div>
+  </div>
 
   <section>
     <h2>🇰🇷 한국 장 마감 후</h2>

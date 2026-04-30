@@ -87,6 +87,51 @@
     color: var(--muted); font-size: 12px; text-align: center; }
   .live-indicator { font-size: 12px; color: var(--muted); margin-left: 8px; }
   .live-indicator.live { color: var(--pos); }
+
+  /* 다음 장 목표 배너 — 장 없는 기간에만 노출 */
+  .resolution-box {
+    margin-top: 20px;
+    background: var(--card); border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 10px; padding: 20px 22px;
+  }
+  .resolution-box .res-header {
+    display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .resolution-box .res-title {
+    font-size: 13px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--accent);
+  }
+  .resolution-box .res-target {
+    font-size: 32px; font-weight: 900; font-variant-numeric: tabular-nums;
+    color: var(--fg); line-height: 1;
+  }
+  .resolution-box .res-target span { font-size: 16px; color: var(--muted); font-weight: 500; }
+  .resolution-box .res-basis {
+    font-size: 13px; color: var(--muted); margin-bottom: 16px; line-height: 1.5;
+  }
+  .resolution-box .res-basis strong { color: var(--fg); }
+  .resolution-box .res-plan {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .resolution-box .res-plan li {
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 10px 12px; font-size: 13px; line-height: 1.5;
+  }
+  .resolution-box .res-plan .num {
+    font-size: 11px; font-weight: 800; color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-radius: 4px; padding: 2px 6px; white-space: nowrap;
+    align-self: start; margin-top: 1px;
+  }
+  .resolution-box .res-plan .rule { font-weight: 700; color: var(--fg); }
+  .resolution-box .res-plan .why { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .resolution-box .res-reopen {
+    margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--muted);
+  }
+  .resolution-box .res-reopen strong { color: var(--fg); }
 </style>
 </head>
 <body data-date="{{ date }}">
@@ -97,6 +142,36 @@
     <time>{{ date }} {{ generated_at_display }} 발행<span class="live-indicator" id="live-indicator"></span></time>
     {% if next_briefing %}<div class="next-brief">다음 브리핑 — {{ next_briefing }}</div>{% endif %}
   </header>
+
+  {# 다음 장 목표 — 장 없는 기간(주말·연휴)에만 노출 #}
+  {% if resolution %}
+  <div class="resolution-box">
+    <div class="res-header">
+      <span class="res-title">📋 다음 장 목표</span>
+      <span class="res-target">{{ resolution.target_rate }}<span>%</span></span>
+    </div>
+    <div class="res-basis">
+      최근 5일 평균 <strong>{{ resolution.recent_avg_rate }}%</strong> → 목표 <strong>{{ resolution.target_rate }}%</strong>.
+      {{ resolution.basis }}
+    </div>
+    {% if resolution.plan %}
+    <ul class="res-plan">
+      {% for item in resolution.plan %}
+      <li>
+        <span class="num">{{ loop.index }}</span>
+        <div>
+          <div class="rule">{{ item.rule }}</div>
+          {% if item.why %}<div class="why">↳ {{ item.why }}</div>{% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if resolution.reopen_date %}
+    <div class="res-reopen">장 재개 <strong>{{ resolution.reopen_date }}</strong></div>
+    {% endif %}
+  </div>
+  {% endif %}
 
   {# 🇰🇷 한국 장 마감 후 — 평일에만, 15:30~발행시점 사이 뉴스 #}
   {% if korea_after_close %}

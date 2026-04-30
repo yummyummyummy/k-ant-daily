@@ -74,9 +74,56 @@ description: 23:00 KST post-market news digest — aggregate news that may impac
        {"code": "005930", "name": "삼성전자", "title": "주요사항보고서 — 자기주식 취득 결정",
         "url": "https://dart.fss.or.kr/...", "impact": "positive",
         "published_at": "2026-04-27T17:45:00+09:00"}
-     ]
+     ],
+
+     "resolution": {
+       "reopen_date": "2026-05-06",
+       "target_rate": 55,
+       "recent_avg_rate": 42,
+       "basis": "최근 5일 평균 적중률 42% 기준, 주요 실패 패턴 3가지를 보정하면 달성 가능한 목표",
+       "plan": [
+         {
+           "rule": "실적 확정 공시 당일 대형주는 priced_in=true 기본값",
+           "why": "4/30 삼성전자 1Q 실적 긍정 → buy 냈으나 -2.43% (소문에 사고 뉴스에 팔기 패턴)"
+         },
+         {
+           "rule": "섹터 약세 시 같은 섹터 중립 종목은 hold-defensive 이상으로 격상",
+           "why": "4/30 한국금융지주·알테오젠·보로노이 등 섹터 동조 하락 미반영"
+         }
+       ]
+     }
    }
    ```
+
+   **`resolution` 필드 작성 조건**: `next_briefing` 날짜가 오늘 날짜보다 **2일 이상 차이** 나는 경우에만 작성 (주말, 연휴, 징검다리 휴일 등 장 없는 기간이 이어질 때). 평일 다음날 바로 장이 열리는 경우는 생략.
+
+   **`resolution` 작성 방법**:
+
+   ```python
+   # Step 1: 최근 5영업일 적중률 + lessons 수집
+   import json, glob
+   paths = sorted(glob.glob("docs/2*.summary.json"))[-5:]
+   lessons, rates = [], []
+   for p in paths:
+       d = json.load(open(p))
+       rev = d.get("review", {})
+       rate = (rev.get("accuracy") or {}).get("hit_rate")
+       if rate is not None:
+           rates.append(rate)
+       for les in (rev.get("analysis") or {}).get("lessons") or []:
+           lessons.append(les)
+   recent_avg = round(sum(rates) / len(rates) * 100) if rates else 0
+   # Step 2: target = recent_avg + 10~15%p (현실적 상향, 70% 상한)
+   target = min(70, recent_avg + 12)
+   ```
+
+   - `reopen_date`: 다음 장 재개 날짜 (YYYY-MM-DD)
+   - `target_rate`: 정수 %. 최근 평균 + 10~15%p, 70% 상한.
+   - `recent_avg_rate`: 최근 5일 평균 (정수 %)
+   - `basis`: 목표 설정 근거 한 문장 (수치 포함)
+   - `plan`: lessons 에서 **가장 반복된 실패 패턴** 상위 3~5개. 각각:
+     - `rule`: 다음 주 적용할 구체적 판단 규칙 (조건-행동 형식, 30자 내외)
+     - `why`: 이 규칙이 필요한 이유 — 최근 구체적 오판 사례 (종목명+수치 포함)
 
 5. **렌더.** `.venv/bin/python scripts/render.py .tmp/digest.json --digest`
    - `docs/digest.html` 생성/갱신

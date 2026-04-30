@@ -1239,6 +1239,7 @@ def build_digest(digest: dict, base_url: str) -> str:
         us_market=us if (us.get("indices") or us.get("proxies") or us.get("headlines")) else None,
         macro=digest.get("macro") or [],
         disclosures=digest.get("disclosures") or [],
+        resolution=digest.get("resolution"),
     )
 
 
