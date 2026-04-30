@@ -125,6 +125,8 @@ description: 23:00 KST post-market news digest — aggregate news that may impac
      - `rule`: 다음 주 적용할 구체적 판단 규칙 (조건-행동 형식, 30자 내외)
      - `why`: 이 규칙이 필요한 이유 — 최근 구체적 오판 사례 (종목명+수치 포함)
 
+   **`resolution` 의 근본 마인드**: 이 계획은 보고서 양식 채우기가 아니다. 지난 기간 틀린 예측을 믿은 사람들이 실제로 돈을 잃었다. 다음 장이 열릴 때 같은 실수를 반복하지 않겠다는 구체적이고 실행 가능한 약속을 쓴다. "노력하겠습니다" 같은 추상적 다짐은 금지 — 조건이 명확하고 행동이 정해진 규칙만 쓴다.
+
 5. **렌더.** `.venv/bin/python scripts/render.py .tmp/digest.json --digest`
    - `docs/digest.html` 생성/갱신
    - `index.html` 은 이 시점에 건드리지 않음 — 별도 JS 라우팅이 시간대 보고 digest.html 로 redirect
