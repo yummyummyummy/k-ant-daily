@@ -1,6 +1,6 @@
 {
   "date": "2026-05-01",
-  "generated_at": "2026-05-01T07:30:00+09:00",
+  "generated_at": "2026-05-01T20:10:59.546237+09:00",
   "headline": "美 증시 사상최고, 반도체·바이오 갭업 기대",
   "tldr": "나스닥·S&P 사상최고+VIX -10% → 오늘 반도체·바이오 갭업 출발 예상, 금융·자동차는 금리인상·파업 변수로 상대적 약세",
   "mood_dashboard": {
@@ -764,114 +764,114 @@
       },
       "news": [
         {
-          "title": "S&P500·나스닥 사상 최고치…AI 훈풍에 韓 반도체 기대감 확산",
-          "link": "https://n.news.naver.com/mnews/article/243/0000097339",
-          "source": "이코노미스트",
-          "date": "2026.05.01 07:19",
-          "published_at": "2026.05.01 07:19",
-          "time_ago": "11분 전",
-          "url": "https://n.news.naver.com/mnews/article/243/0000097339",
-          "impact": "positive",
-          "impact_label": "호재"
+          "title": "삼전 노조, 대통령 지적에 “우리 향한 것 아냐”",
+          "link": "https://n.news.naver.com/mnews/article/449/0000343780",
+          "source": "채널A",
+          "date": "2026.05.01 19:55",
+          "published_at": "2026.05.01 19:55",
+          "time_ago": "15분 전",
+          "url": "https://n.news.naver.com/mnews/article/449/0000343780",
+          "impact": "neutral",
+          "impact_label": "중립"
         },
         {
-          "title": "“연휴에 ‘셔세권’ 임장 가볼까”...삼전닉스 셔틀 수혜 단지 어디",
-          "link": "https://n.news.naver.com/mnews/article/011/0004616610",
-          "source": "서울경제",
-          "date": "2026.05.01 07:01",
-          "published_at": "2026.05.01 07:01",
-          "time_ago": "29분 전",
-          "url": "https://n.news.naver.com/mnews/article/011/0004616610",
-          "impact": "positive",
-          "impact_label": "호재"
+          "title": "삼전 노조 \"대통령의 '과도한 요구' 언급은 다른 회사‥우리 요구는 ...",
+          "link": "https://n.news.naver.com/mnews/article/214/0001496431",
+          "source": "MBC",
+          "date": "2026.05.01 19:50",
+          "published_at": "2026.05.01 19:50",
+          "time_ago": "20분 전",
+          "url": "https://n.news.naver.com/mnews/article/214/0001496431",
+          "impact": "neutral",
+          "impact_label": "중립"
         },
         {
-          "title": "50조원 손실 갈림길…노조 총파업 앞둔 삼성, ‘운명의 5월’ 분수령",
-          "link": "https://n.news.naver.com/mnews/article/117/0004060060",
-          "source": "마이데일리",
-          "date": "2026.05.01 07:00",
-          "published_at": "2026.05.01 07:00",
-          "time_ago": "30분 전",
-          "url": "https://n.news.naver.com/mnews/article/117/0004060060",
+          "title": "대통령 직격에도 삼전 노조 \"우리 얘기 아냐\"…유플러스는 당황",
+          "link": "https://n.news.naver.com/mnews/article/057/0001947244",
+          "source": "MBN",
+          "date": "2026.05.01 19:12",
+          "published_at": "2026.05.01 19:12",
+          "time_ago": "58분 전",
+          "url": "https://n.news.naver.com/mnews/article/057/0001947244",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "李대통령 '과도한 요구' 경고에, 삼성전자 노조 \"에둘러 표현 말길\"...",
+          "link": "https://n.news.naver.com/mnews/article/003/0013921869",
+          "source": "뉴시스",
+          "date": "2026.05.01 17:28",
+          "published_at": "2026.05.01 17:28",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/003/0013921869",
           "impact": "negative",
           "impact_label": "악재"
         },
         {
-          "title": "삼성·셀트리온 빠진 ‘국내 최대 바이오 행사’?…바이오코리아 위상...",
-          "link": "https://n.news.naver.com/mnews/article/366/0001161309",
-          "source": "조선비즈",
-          "date": "2026.05.01 06:53",
-          "published_at": "2026.05.01 06:53",
-          "time_ago": "37분 전",
-          "url": "https://n.news.naver.com/mnews/article/366/0001161309",
+          "title": "대통령 비판한 '성과급 이기주의'에…삼전 노조 \"우리 아닌 LG U+...",
+          "link": "https://n.news.naver.com/mnews/article/417/0001141486",
+          "source": "동행미디어 시대",
+          "date": "2026.05.01 16:24",
+          "published_at": "2026.05.01 16:24",
+          "time_ago": "3시간 전",
+          "url": "https://n.news.naver.com/mnews/article/417/0001141486",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "삼성·LG도 뛰어들었다…아직은 생소한 ‘히트펌프’ 경동나비엔-귀뚜...",
-          "link": "https://n.news.naver.com/mnews/article/016/0002638122",
-          "source": "헤럴드경제",
-          "date": "2026.05.01 06:31",
-          "published_at": "2026.05.01 06:31",
-          "time_ago": "59분 전",
-          "url": "https://n.news.naver.com/mnews/article/016/0002638122",
+          "title": "이 대통령 경고에도…삼전 노조위원장 \"우리 아냐\"",
+          "link": "https://n.news.naver.com/mnews/article/422/0000860716",
+          "source": "연합뉴스TV",
+          "date": "2026.05.01 15:22",
+          "published_at": "2026.05.01 15:22",
+          "time_ago": "4시간 전",
+          "url": "https://n.news.naver.com/mnews/article/422/0000860716",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "李 '과도한 요구' 언급에 삼전 노조위원장 \"우리 얘기 아냐\"",
+          "link": "https://n.news.naver.com/mnews/article/031/0001026048",
+          "source": "아이뉴스24",
+          "date": "2026.05.01 14:38",
+          "published_at": "2026.05.01 14:38",
+          "time_ago": "5시간 전",
+          "url": "https://n.news.naver.com/mnews/article/031/0001026048",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "“삼성이 종합반도체 기업?” 뿔난 DX 직원, 줄줄이 노조 탈퇴",
-          "link": "https://n.news.naver.com/mnews/article/016/0002638124",
-          "source": "헤럴드경제",
-          "date": "2026.05.01 06:31",
-          "published_at": "2026.05.01 06:31",
-          "time_ago": "59분 전",
-          "url": "https://n.news.naver.com/mnews/article/016/0002638124",
+          "title": "대통령 '과도한 요구' 경고에…삼성 노조 \"우리 이야기 아냐\"",
+          "link": "https://n.news.naver.com/mnews/article/448/0000608215",
+          "source": "TV조선",
+          "date": "2026.05.01 14:05",
+          "published_at": "2026.05.01 14:05",
+          "time_ago": "6시간 전",
+          "url": "https://n.news.naver.com/mnews/article/448/0000608215",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "\"자기만 살겠다고\" 이 대통령 지적에도...삼전 노조위원장 \"LG에 ...",
+          "link": "https://n.news.naver.com/mnews/article/008/0005352157",
+          "source": "머니투데이",
+          "date": "2026.05.01 13:20",
+          "published_at": "2026.05.01 13:20",
+          "time_ago": "6시간 전",
+          "url": "https://n.news.naver.com/mnews/article/008/0005352157",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "롯데하이마트, ‘가전절’ 연다…인기 가전 최저가 총출동",
-          "link": "https://n.news.naver.com/mnews/article/018/0006270902",
-          "source": "이데일리",
-          "date": "2026.05.01 06:02",
-          "published_at": "2026.05.01 06:02",
-          "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/018/0006270902",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "[11번가 테마쇼핑] 상반기 최대 쇼핑축제 '그랜드십일절'… 최저가 수...",
-          "link": "https://n.news.naver.com/mnews/article/030/0003423647",
-          "source": "전자신문",
-          "date": "2026.05.01 06:01",
-          "published_at": "2026.05.01 06:01",
-          "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/030/0003423647",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "롯데하이마트, 상반기 '가전절'…주방·IT 가전 '최저가'",
-          "link": "https://n.news.naver.com/mnews/article/277/0005757526",
+          "title": "경고한 李대통령…삼전 노조위원장 \"우리에게 한 말 아냐, LG유플 이...",
+          "link": "https://n.news.naver.com/mnews/article/277/0005757608",
           "source": "아시아경제",
-          "date": "2026.05.01 06:00",
-          "published_at": "2026.05.01 06:00",
-          "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/277/0005757526",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "\"인터넷 최저가 수준\"…롯데하이마트, 5월 '가전절' 돌입",
-          "link": "https://n.news.naver.com/mnews/article/003/0013921040",
-          "source": "뉴시스",
-          "date": "2026.05.01 06:00",
-          "published_at": "2026.05.01 06:00",
-          "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/003/0013921040",
-          "impact": "neutral",
-          "impact_label": "중립"
+          "date": "2026.05.01 13:16",
+          "published_at": "2026.05.01 13:16",
+          "time_ago": "6시간 전",
+          "url": "https://n.news.naver.com/mnews/article/277/0005757608",
+          "impact": "negative",
+          "impact_label": "악재"
         }
       ],
       "history": {
@@ -910,11 +910,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -2.43,
+      "price_direction": "down",
+      "price_change_display": "-2.43%",
       "price_display": "220,500",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 5,500",
       "volume_ratio": 0.01,
       "volume_spike": false,
       "news_sentiment_label": "중립",
@@ -924,8 +924,8 @@
       "direction_cls": "up",
       "outlook_line": "역대급 1Q 실적 발표 다음날, SOX +2.26% 강세로 갭업 반등 기대",
       "news_count": 10,
-      "latest_news_at": "2026-05-01T07:19:00+09:00",
-      "latest_news_ago": "11분 전",
+      "latest_news_at": "2026-05-01T19:55:00+09:00",
+      "latest_news_ago": "15분 전",
       "nxt_pre_open": {
         "change_pct": -1.55,
         "change": -3500,
@@ -943,6 +943,22 @@
         "shift_word": "하향",
         "arrow": "↘",
         "pct_str": "-1.55%"
+      },
+      "predicted": {
+        "recommendation": "buy",
+        "news_sentiment": "neutral",
+        "overnight_signal": "up",
+        "priced_in": false,
+        "confidence": "medium",
+        "price_change_pct": -2.43
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -2.43,
+        "predicted_direction": "up",
+        "actual_direction": "down",
+        "note": "상승 기대 · 실제 -2.43% · 하락",
+        "label": "실패"
       }
     },
     {
@@ -1070,112 +1086,112 @@
       },
       "news": [
         {
-          "title": "S&P500·나스닥 사상 최고치…AI 훈풍에 韓 반도체 기대감 확산",
-          "link": "https://n.news.naver.com/mnews/article/243/0000097339",
+          "title": "\"성과급 20% 달라\" 삼바도 첫 파업…너도나도 성과급 청구서",
+          "link": "https://n.news.naver.com/mnews/article/057/0001947245",
+          "source": "MBN",
+          "date": "2026.05.01 19:14",
+          "published_at": "2026.05.01 19:14",
+          "time_ago": "56분 전",
+          "url": "https://n.news.naver.com/mnews/article/057/0001947245",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "“5월엔 팔라?”…6700 뚫은 코스피, 매도 vs 매수 격돌",
+          "link": "https://n.news.naver.com/mnews/article/243/0000097361",
           "source": "이코노미스트",
-          "date": "2026.05.01 07:19",
-          "published_at": "2026.05.01 07:19",
-          "time_ago": "11분 전",
-          "url": "https://n.news.naver.com/mnews/article/243/0000097339",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
-          "title": "“연휴에 ‘셔세권’ 임장 가볼까”...삼전닉스 셔틀 수혜 단지 어디",
-          "link": "https://n.news.naver.com/mnews/article/011/0004616610",
-          "source": "서울경제",
-          "date": "2026.05.01 07:01",
-          "published_at": "2026.05.01 07:01",
-          "time_ago": "29분 전",
-          "url": "https://n.news.naver.com/mnews/article/011/0004616610",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
-          "title": "1분기 국세 수입… 15조원 더 걷혀",
-          "link": "https://n.news.naver.com/mnews/article/022/0004125070",
-          "source": "세계일보",
-          "date": "2026.05.01 06:04",
-          "published_at": "2026.05.01 06:04",
+          "date": "2026.05.01 18:25",
+          "published_at": "2026.05.01 18:25",
           "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/022/0004125070",
+          "url": "https://n.news.naver.com/mnews/article/243/0000097361",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "삼성전자 300조 이익은 어떻게 흐르나 [여기는 논설실]",
-          "link": "https://n.news.naver.com/mnews/article/015/0005282143",
-          "source": "한국경제",
-          "date": "2026.05.01 06:01",
-          "published_at": "2026.05.01 06:01",
-          "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/015/0005282143",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "\"하이닉스로 연봉 만큼 벌었어요\"…손실 인증 실종된 '단톡방'의 함정....",
-          "link": "https://n.news.naver.com/mnews/article/014/0005516148",
-          "source": "파이낸셜뉴스",
-          "date": "2026.05.01 06:01",
-          "published_at": "2026.05.01 06:01",
-          "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/014/0005516148",
-          "impact": "negative",
-          "impact_label": "악재"
-        },
-        {
-          "title": "'고소공포증' 개미 곱버스로 47% 손실…외인은 삼전 1.8조 '차곡차...",
-          "link": "https://n.news.naver.com/mnews/article/421/0008922426",
-          "source": "뉴스1",
-          "date": "2026.05.01 06:00",
-          "published_at": "2026.05.01 06:00",
-          "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/421/0008922426",
-          "impact": "negative",
-          "impact_label": "악재"
-        },
-        {
-          "title": "\"이런 불장 놓칠 수 없다\"…퇴직연금도 주식형으로 '머니무브'",
-          "link": "https://n.news.naver.com/mnews/article/421/0008922421",
-          "source": "뉴스1",
-          "date": "2026.05.01 06:00",
-          "published_at": "2026.05.01 06:00",
-          "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/421/0008922421",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "세뱃돈 통장 대신 ‘삼성전자’…미성년 계좌 1년 새 272% 폭증",
-          "link": "https://n.news.naver.com/mnews/article/022/0004125043",
-          "source": "세계일보",
-          "date": "2026.05.01 05:50",
-          "published_at": "2026.05.01 05:50",
-          "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/022/0004125043",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "삼성전자 노조 파업의 치명적인 문제점 [최홍섭의 샬롬 살람]",
-          "link": "https://n.news.naver.com/mnews/article/119/0003086604",
-          "source": "데일리안",
-          "date": "2026.05.01 05:02",
-          "published_at": "2026.05.01 05:02",
+          "title": "\"경쟁사보다 더 많이\"…성과급 딜레마 빠진 첨단산업 [권상집의 논전.....",
+          "link": "https://n.news.naver.com/mnews/article/586/0000128257",
+          "source": "시사저널",
+          "date": "2026.05.01 18:00",
+          "published_at": "2026.05.01 18:00",
           "time_ago": "2시간 전",
-          "url": "https://n.news.naver.com/mnews/article/119/0003086604",
+          "url": "https://n.news.naver.com/mnews/article/586/0000128257",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "수출 세계 5위 목표 한국, UAE·대만 거센 추격",
-          "link": "https://n.news.naver.com/mnews/article/469/0000928611",
-          "source": "한국일보",
-          "date": "2026.05.01 04:30",
-          "published_at": "2026.05.01 04:30",
-          "time_ago": "3시간 전",
-          "url": "https://n.news.naver.com/mnews/article/469/0000928611",
+          "title": "“7억 vs 500만원”…하이닉스發 성과급 충돌, 전 산업 확산",
+          "link": "https://n.news.naver.com/mnews/article/243/0000097360",
+          "source": "이코노미스트",
+          "date": "2026.05.01 17:38",
+          "published_at": "2026.05.01 17:38",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/243/0000097360",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "서학개미도 '반도체'에 화력집중",
+          "link": "https://n.news.naver.com/mnews/article/009/0005674295",
+          "source": "매일경제",
+          "date": "2026.05.01 17:30",
+          "published_at": "2026.05.01 17:30",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005674295",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "IMM, 사모펀드 최초 기업 장기보유 추진",
+          "link": "https://n.news.naver.com/mnews/article/009/0005674293",
+          "source": "매일경제",
+          "date": "2026.05.01 17:30",
+          "published_at": "2026.05.01 17:30",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005674293",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "카카오페이·농심·한국콜마…금융·소비재 실적주 관심",
+          "link": "https://n.news.naver.com/mnews/article/015/0005282248",
+          "source": "한국경제",
+          "date": "2026.05.01 17:15",
+          "published_at": "2026.05.01 17:15",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005282248",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "‘삼전·닉스 2배 ETF’ 이달 출시…“복권 같은 성격, 급등 잦아도 ...",
+          "link": "https://n.news.naver.com/mnews/article/028/0002803371",
+          "source": "한겨레",
+          "date": "2026.05.01 15:50",
+          "published_at": "2026.05.01 15:50",
+          "time_ago": "4시간 전",
+          "url": "https://n.news.naver.com/mnews/article/028/0002803371",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "‘아이폰 17′ 중국 인기에...애플, 역대 최대 1분기 매출 1112...",
+          "link": "https://n.news.naver.com/mnews/article/023/0003974148",
+          "source": "조선일보",
+          "date": "2026.05.01 15:33",
+          "published_at": "2026.05.01 15:33",
+          "time_ago": "4시간 전",
+          "url": "https://n.news.naver.com/mnews/article/023/0003974148",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "“내 눈엔 반도체만 보여”…서학개미 순매수 1위 인텔, 삼전닉스 ET...",
+          "link": "https://n.news.naver.com/mnews/article/009/0005674132",
+          "source": "매일경제",
+          "date": "2026.05.01 09:05",
+          "published_at": "2026.05.01 09:05",
+          "time_ago": "11시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005674132",
           "impact": "neutral",
           "impact_label": "중립"
         }
@@ -1216,11 +1232,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "강한 상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -0.54,
+      "price_direction": "down",
+      "price_change_display": "-0.54%",
       "price_display": "1,286,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 7,000",
       "volume_ratio": 0.1,
       "volume_spike": false,
       "news_sentiment_label": "긍정",
@@ -1230,8 +1246,8 @@
       "direction_cls": "up-strong",
       "outlook_line": "HBM 슈퍼사이클 모멘텀 최강, SOX 강세로 오늘 추가 상승 여력 충분",
       "news_count": 10,
-      "latest_news_at": "2026-05-01T07:19:00+09:00",
-      "latest_news_ago": "11분 전",
+      "latest_news_at": "2026-05-01T19:14:00+09:00",
+      "latest_news_ago": "56분 전",
       "nxt_pre_open": {
         "change_pct": 0.08,
         "change": 1000,
@@ -1241,6 +1257,22 @@
       "nxt_chip": {
         "text": "NXT — +0.08%",
         "cls": "up"
+      },
+      "predicted": {
+        "recommendation": "strong_buy",
+        "news_sentiment": "positive",
+        "overnight_signal": "up",
+        "priced_in": false,
+        "confidence": "high",
+        "price_change_pct": -0.54
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -0.54,
+        "predicted_direction": "up",
+        "actual_direction": "down",
+        "note": "강한 상승 기대 · 실제 -0.54% · 방향 틀림",
+        "label": "실패"
       }
     },
     {
@@ -1346,48 +1378,26 @@
       },
       "news": [
         {
-          "title": "외국인과 기관, 삼성전자 쌍끌이 매수… 코스피 6750.27 찍고 하락...",
-          "link": "https://n.news.naver.com/mnews/article/037/0000038085",
-          "source": "주간동아",
-          "date": "2026.04.30 17:54",
-          "published_at": "2026.04.30 17:54",
-          "time_ago": "13시간 전",
-          "url": "https://n.news.naver.com/mnews/article/037/0000038085",
-          "impact": "negative",
-          "impact_label": "악재"
+          "title": "K-변압기에 잇단 러브콜…전력기기 3사, 역대급 수주잔치",
+          "link": "https://n.news.naver.com/mnews/article/011/0004616699",
+          "source": "서울경제",
+          "date": "2026.05.01 14:01",
+          "published_at": "2026.05.01 14:01",
+          "time_ago": "6시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004616699",
+          "impact": "positive",
+          "impact_label": "호재"
         },
         {
-          "title": "[퇴근길머니] 코스피, 연휴 앞 최고치 후 하락…\"반도체가 다 했다\"",
-          "link": "https://n.news.naver.com/mnews/article/422/0000860436",
-          "source": "연합뉴스TV",
-          "date": "2026.04.30 17:29",
-          "published_at": "2026.04.30 17:29",
-          "time_ago": "14시간 전",
-          "url": "https://n.news.naver.com/mnews/article/422/0000860436",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "교보악사, 의결권 행사 '우수'?교보생명·증권 '미흡'",
-          "link": "https://n.news.naver.com/mnews/article/031/0001025893",
-          "source": "아이뉴스24",
-          "date": "2026.04.30 14:19",
-          "published_at": "2026.04.30 14:19",
-          "time_ago": "17시간 전",
-          "url": "https://n.news.naver.com/mnews/article/031/0001025893",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "증시 주도주로 떠오른 '이 업종'…반도체·조선도 뛰어넘었다",
-          "link": "https://n.news.naver.com/mnews/article/088/0001007883",
-          "source": "매일신문",
-          "date": "2026.04.30 10:01",
-          "published_at": "2026.04.30 10:01",
-          "time_ago": "21시간 전",
-          "url": "https://n.news.naver.com/mnews/article/088/0001007883",
-          "impact": "neutral",
-          "impact_label": "중립"
+          "title": "[전력 인사이드] 효성重, 765kV 변압기로 수주잔고 '업계 1위'",
+          "link": "https://n.news.naver.com/mnews/article/293/0000083833",
+          "source": "블로터",
+          "date": "2026.05.01 09:00",
+          "published_at": "2026.05.01 09:00",
+          "time_ago": "11시간 전",
+          "url": "https://n.news.naver.com/mnews/article/293/0000083833",
+          "impact": "positive",
+          "impact_label": "호재"
         }
       ],
       "history": {
@@ -1426,11 +1436,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -0.63,
+      "price_direction": "down",
+      "price_change_display": "-0.63%",
       "price_display": "1,252,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 8,000",
       "volume_ratio": 0.26,
       "volume_spike": false,
       "news_sentiment_label": "중립",
@@ -1439,9 +1449,9 @@
       "direction_label": "상승 기대",
       "direction_cls": "up",
       "outlook_line": "GEV·ETN·XLU 모두 강세로 전력기기 섹터 오늘 갭업 기대",
-      "news_count": 4,
-      "latest_news_at": "2026-04-30T17:54:00+09:00",
-      "latest_news_ago": "13시간 전",
+      "news_count": 2,
+      "latest_news_at": "2026-05-01T14:01:00+09:00",
+      "latest_news_ago": "6시간 전",
       "nxt_pre_open": {
         "change_pct": -0.48,
         "change": -6000,
@@ -1451,6 +1461,22 @@
       "nxt_chip": {
         "text": "NXT — -0.48%",
         "cls": "down"
+      },
+      "predicted": {
+        "recommendation": "buy",
+        "news_sentiment": "neutral",
+        "overnight_signal": "up",
+        "priced_in": false,
+        "confidence": "medium",
+        "price_change_pct": -0.63
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -0.63,
+        "predicted_direction": "up",
+        "actual_direction": "down",
+        "note": "상승 기대 · 실제 -0.63% · 하락",
+        "label": "실패"
       }
     },
     {
@@ -1532,112 +1558,13 @@
       },
       "news": [
         {
-          "title": "국제유가 급등 부담에 코스피, 1.38% 하락한 6598.87 마감",
-          "link": "https://n.news.naver.com/mnews/article/243/0000097338",
-          "source": "이코노미스트",
-          "date": "2026.04.30 18:01",
-          "published_at": "2026.04.30 18:01",
-          "time_ago": "13시간 전",
-          "url": "https://n.news.naver.com/mnews/article/243/0000097338",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "코스피, 사상 최고 찍고 급락…6590선 마감 [시황]",
-          "link": "https://n.news.naver.com/mnews/article/119/0003086522",
-          "source": "데일리안",
-          "date": "2026.04.30 16:36",
-          "published_at": "2026.04.30 16:36",
-          "time_ago": "14시간 전",
-          "url": "https://n.news.naver.com/mnews/article/119/0003086522",
-          "impact": "negative",
-          "impact_label": "악재"
-        },
-        {
-          "title": "코스피, 장중 최고치 찍고 하락…6600선 아래로[마감시황]",
-          "link": "https://n.news.naver.com/mnews/article/003/0013920524",
-          "source": "뉴시스",
-          "date": "2026.04.30 16:26",
-          "published_at": "2026.04.30 16:26",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/003/0013920524",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "코스피, '장중최고' 찍고 나흘만에 하락…유가부담에 6600선 내줘(종...",
-          "link": "https://n.news.naver.com/mnews/article/001/0016053485",
-          "source": "연합뉴스",
-          "date": "2026.04.30 16:16",
-          "published_at": "2026.04.30 16:16",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/001/0016053485",
-          "impact": "negative",
-          "impact_label": "악재"
-        },
-        {
-          "title": "외인들 \"팔자\"...코스피 6750 최고치 찍고 6600선 깨졌다[시황...",
-          "link": "https://n.news.naver.com/mnews/article/421/0008921897",
-          "source": "뉴스1",
-          "date": "2026.04.30 16:09",
-          "published_at": "2026.04.30 16:09",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/421/0008921897",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
-          "title": "사상 최고치 찍은 코스피, FOMC·유가 부담에 6600선 내줬다[마켓...",
-          "link": "https://n.news.naver.com/mnews/article/011/0004616455",
-          "source": "서울경제",
-          "date": "2026.04.30 16:07",
-          "published_at": "2026.04.30 16:07",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/011/0004616455",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "코스피, 국제유가 급등에 6600선 아래로…코스닥 2%대 급락",
-          "link": "https://n.news.naver.com/mnews/article/015/0005281847",
-          "source": "한국경제",
-          "date": "2026.04.30 16:02",
-          "published_at": "2026.04.30 16:02",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/015/0005281847",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "코스피, 외인 '팔자'에 6500선 주저앉아…삼전 역대급 실적에도 2%...",
-          "link": "https://n.news.naver.com/mnews/article/629/0000496066",
-          "source": "더팩트",
-          "date": "2026.04.30 15:55",
-          "published_at": "2026.04.30 15:55",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/629/0000496066",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "[오늘증시]1.4조 던진 외인, 코스피 6600선 반납…환율 1483....",
-          "link": "https://n.news.naver.com/mnews/article/417/0001141397",
-          "source": "동행미디어 시대",
-          "date": "2026.04.30 15:54",
-          "published_at": "2026.04.30 15:54",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/417/0001141397",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "코스피, 6600선도 깨졌다…사상 최고치 찍고 급락",
-          "link": "https://n.news.naver.com/mnews/article/018/0006270169",
-          "source": "이데일리",
-          "date": "2026.04.30 15:53",
-          "published_at": "2026.04.30 15:53",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/018/0006270169",
+          "title": "“주변에 다 마운자로 맞던데요”…세계1위 항암제 제치고 19조 매출",
+          "link": "https://n.news.naver.com/mnews/article/009/0005674229",
+          "source": "매일경제",
+          "date": "2026.05.01 15:49",
+          "published_at": "2026.05.01 15:49",
+          "time_ago": "4시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005674229",
           "impact": "neutral",
           "impact_label": "중립"
         }
@@ -1678,11 +1605,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -3.03,
+      "price_direction": "down",
+      "price_change_display": "-3.03%",
       "price_display": "368,500",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 11,500",
       "volume_ratio": 0.1,
       "volume_spike": false,
       "news_sentiment_label": "중립",
@@ -1691,9 +1618,9 @@
       "direction_label": "상승 기대",
       "direction_cls": "up",
       "outlook_line": "XBI +1.89%·IBB +2.0% 바이오 지수 강세로 오늘 갭업 반등 가능",
-      "news_count": 10,
-      "latest_news_at": "2026-04-30T18:01:00+09:00",
-      "latest_news_ago": "13시간 전",
+      "news_count": 1,
+      "latest_news_at": "2026-05-01T15:49:00+09:00",
+      "latest_news_ago": "4시간 전",
       "nxt_pre_open": {
         "change_pct": -2.24,
         "change": -8500,
@@ -1711,6 +1638,22 @@
         "shift_word": "하향",
         "arrow": "↘",
         "pct_str": "-2.24%"
+      },
+      "predicted": {
+        "recommendation": "buy",
+        "news_sentiment": "neutral",
+        "overnight_signal": "up",
+        "priced_in": false,
+        "confidence": "medium",
+        "price_change_pct": -3.03
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -3.03,
+        "predicted_direction": "up",
+        "actual_direction": "down",
+        "note": "상승 기대 · 실제 -3.03% · 하락",
+        "label": "실패"
       }
     },
     {
@@ -1822,21 +1765,10 @@
           "source": "조선일보",
           "date": "2026.05.01 00:56",
           "published_at": "2026.05.01 00:56",
-          "time_ago": "6시간 전",
+          "time_ago": "19시간 전",
           "url": "https://n.news.naver.com/mnews/article/023/0003974104",
           "impact": "neutral",
           "impact_label": "중립"
-        },
-        {
-          "title": "외국인과 기관, 삼성전자 쌍끌이 매수… 코스피 6750.27 찍고 하락...",
-          "link": "https://n.news.naver.com/mnews/article/037/0000038085",
-          "source": "주간동아",
-          "date": "2026.04.30 17:54",
-          "published_at": "2026.04.30 17:54",
-          "time_ago": "13시간 전",
-          "url": "https://n.news.naver.com/mnews/article/037/0000038085",
-          "impact": "negative",
-          "impact_label": "악재"
         }
       ],
       "history": {
@@ -1875,20 +1807,20 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 2.94,
+      "price_direction": "up",
+      "price_change_display": "+2.94%",
       "price_display": "368,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 10,500",
       "news_sentiment_label": "중립",
       "confidence_label": "중간",
       "direction_arrow": "↑",
       "direction_label": "상승 기대",
       "direction_cls": "up",
       "outlook_line": "SOX +2.26% 배경으로 갭업 기대되나, 어제 +2.94% 이미 상승해 단기 선반영 주의",
-      "news_count": 2,
+      "news_count": 1,
       "latest_news_at": "2026-05-01T00:56:00+09:00",
-      "latest_news_ago": "6시간 전",
+      "latest_news_ago": "19시간 전",
       "nxt_pre_open": {
         "change_pct": 3.5,
         "change": 12500,
@@ -1906,6 +1838,22 @@
         "shift_word": "상향",
         "arrow": "↗",
         "pct_str": "+3.50%"
+      },
+      "predicted": {
+        "recommendation": "buy",
+        "news_sentiment": "neutral",
+        "overnight_signal": "up",
+        "priced_in": true,
+        "confidence": "medium",
+        "price_change_pct": 2.94
+      },
+      "result": {
+        "outcome": "hit",
+        "actual_change_pct": 2.94,
+        "predicted_direction": "up",
+        "actual_direction": "up",
+        "note": "상승 기대 · 실제 +2.94% · 상승 적중",
+        "label": "적중"
       }
     },
     {
@@ -2042,11 +1990,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "강한 상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -1.55,
+      "price_direction": "down",
+      "price_change_display": "-1.55%",
       "price_display": "3,180",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 50",
       "volume_ratio": 0.0,
       "volume_spike": false,
       "news_sentiment_label": "긍정",
@@ -2055,7 +2003,23 @@
       "direction_label": "강한 상승 기대",
       "direction_cls": "up-strong",
       "outlook_line": "코로나 '매미 변이' 확산 테마 + XBI 강세로 오늘 강한 갭업 기대",
-      "news_count": 0
+      "news_count": 0,
+      "predicted": {
+        "recommendation": "strong_buy",
+        "news_sentiment": "positive",
+        "overnight_signal": "up",
+        "priced_in": false,
+        "confidence": "high",
+        "price_change_pct": -1.55
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -1.55,
+        "predicted_direction": "up",
+        "actual_direction": "down",
+        "note": "강한 상승 기대 · 실제 -1.55% · 방향 틀림",
+        "label": "실패"
+      }
     },
     {
       "code": "233740",
@@ -2193,11 +2157,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -5.86,
+      "price_direction": "down",
+      "price_change_display": "-5.86%",
       "price_display": "16,615",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 1,035",
       "volume_ratio": 0.26,
       "volume_spike": false,
       "news_sentiment_label": "중립",
@@ -2206,7 +2170,23 @@
       "direction_label": "상승 기대",
       "direction_cls": "up",
       "outlook_line": "나스닥 강세·VIX 급락으로 코스닥 갭업 기대, 어제 -5.86% 낙폭 되돌림 가능",
-      "news_count": 0
+      "news_count": 0,
+      "predicted": {
+        "recommendation": "buy",
+        "news_sentiment": "neutral",
+        "overnight_signal": "up",
+        "priced_in": false,
+        "confidence": "medium",
+        "price_change_pct": -5.86
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -5.86,
+        "predicted_direction": "up",
+        "actual_direction": "down",
+        "note": "상승 기대 · 실제 -5.86% · 하락",
+        "label": "실패"
+      }
     },
     {
       "code": "028050",
@@ -2308,46 +2288,101 @@
       },
       "news": [
         {
-          "title": "올해 816% 뛴 대우건설…증권가 \"과열 신호\" vs \"상승 기대\"",
-          "link": "https://n.news.naver.com/mnews/article/018/0006270195",
-          "source": "이데일리",
-          "date": "2026.04.30 16:11",
-          "published_at": "2026.04.30 16:11",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/018/0006270195",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
-          "title": "빌드블록, ‘해외통’ 정한준 고문 영입… 美 산업시설 개발 사업 강.....",
-          "link": "https://n.news.naver.com/mnews/article/366/0001161110",
-          "source": "조선비즈",
-          "date": "2026.04.30 14:17",
-          "published_at": "2026.04.30 14:17",
-          "time_ago": "17시간 전",
-          "url": "https://n.news.naver.com/mnews/article/366/0001161110",
+          "title": "삼성전자, 작년 호암재단에 38억 기부",
+          "link": "https://n.news.naver.com/mnews/article/015/0005282279",
+          "source": "한국경제",
+          "date": "2026.05.01 17:40",
+          "published_at": "2026.05.01 17:40",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005282279",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "정부, K-건설 중동 ‘피해현황’ 파악 착수…재건 수주 지원",
-          "link": "https://n.news.naver.com/mnews/article/016/0002637814",
-          "source": "헤럴드경제",
-          "date": "2026.04.30 11:21",
-          "published_at": "2026.04.30 11:21",
-          "time_ago": "20시간 전",
-          "url": "https://n.news.naver.com/mnews/article/016/0002637814",
-          "impact": "positive",
-          "impact_label": "호재"
+          "title": "삼성전자, 작년 호암재단에 38억 출연",
+          "link": "https://n.news.naver.com/mnews/article/009/0005674263",
+          "source": "매일경제",
+          "date": "2026.05.01 16:55",
+          "published_at": "2026.05.01 16:55",
+          "time_ago": "3시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005674263",
+          "impact": "neutral",
+          "impact_label": "중립"
         },
         {
-          "title": "[단독]국토부, 중동서 韓기업 시공 시설 ‘피해 현황’ 파악…재건 수...",
-          "link": "https://n.news.naver.com/mnews/article/016/0002637700",
-          "source": "헤럴드경제",
-          "date": "2026.04.30 10:09",
-          "published_at": "2026.04.30 10:09",
-          "time_ago": "21시간 전",
-          "url": "https://n.news.naver.com/mnews/article/016/0002637700",
+          "title": "삼성 계열사들, 호암재단에 50억 기부",
+          "link": "https://n.news.naver.com/mnews/article/123/0002382372",
+          "source": "조세일보",
+          "date": "2026.05.01 15:11",
+          "published_at": "2026.05.01 15:11",
+          "time_ago": "4시간 전",
+          "url": "https://n.news.naver.com/mnews/article/123/0002382372",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성전자, 작년 호암재단에 38억원 출연",
+          "link": "https://n.news.naver.com/mnews/article/009/0005674213",
+          "source": "매일경제",
+          "date": "2026.05.01 14:50",
+          "published_at": "2026.05.01 14:50",
+          "time_ago": "5시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005674213",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성전자, 지난해 호암재단에 38억원 기부…전년 비교해 3.8억원 ↑",
+          "link": "https://n.news.naver.com/mnews/article/138/0002226670",
+          "source": "디지털데일리",
+          "date": "2026.05.01 14:30",
+          "published_at": "2026.05.01 14:30",
+          "time_ago": "5시간 전",
+          "url": "https://n.news.naver.com/mnews/article/138/0002226670",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성전자, 호암재단에 38억 기부...전년보다 3.8억 증가",
+          "link": "https://n.news.naver.com/mnews/article/014/0005516262",
+          "source": "파이낸셜뉴스",
+          "date": "2026.05.01 14:24",
+          "published_at": "2026.05.01 14:24",
+          "time_ago": "5시간 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005516262",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성전자, 지난해 호암재단에 38억원 기부…전년보다 3.8억↑",
+          "link": "https://n.news.naver.com/mnews/article/374/0000507850",
+          "source": "SBS Biz",
+          "date": "2026.05.01 13:45",
+          "published_at": "2026.05.01 13:45",
+          "time_ago": "6시간 전",
+          "url": "https://n.news.naver.com/mnews/article/374/0000507850",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성전자, 호암재단에 38억원 기부…기부금 총액은 50억원",
+          "link": "https://n.news.naver.com/mnews/article/277/0005757610",
+          "source": "아시아경제",
+          "date": "2026.05.01 13:31",
+          "published_at": "2026.05.01 13:31",
+          "time_ago": "6시간 전",
+          "url": "https://n.news.naver.com/mnews/article/277/0005757610",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성전자, 지난해 호암재단에 38억원 기부…전년보다 3.8억↑",
+          "link": "https://n.news.naver.com/mnews/article/001/0016054561",
+          "source": "연합뉴스",
+          "date": "2026.05.01 12:15",
+          "published_at": "2026.05.01 12:15",
+          "time_ago": "7시간 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016054561",
           "impact": "neutral",
           "impact_label": "중립"
         }
@@ -2388,11 +2423,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "강한 상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -2.21,
+      "price_direction": "down",
+      "price_change_display": "-2.21%",
       "price_display": "53,100",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 1,200",
       "volume_ratio": 0.02,
       "volume_spike": false,
       "news_sentiment_label": "긍정",
@@ -2401,9 +2436,9 @@
       "direction_label": "강한 상승 기대",
       "direction_cls": "up-strong",
       "outlook_line": "중동 재건 수혜 구체화 + FLR +3.07% 프록시 강세로 오늘 강한 갭업 기대",
-      "news_count": 4,
-      "latest_news_at": "2026-04-30T16:11:00+09:00",
-      "latest_news_ago": "15시간 전",
+      "news_count": 9,
+      "latest_news_at": "2026-05-01T17:40:00+09:00",
+      "latest_news_ago": "2시간 전",
       "nxt_pre_open": {
         "change_pct": -1.84,
         "change": -1000,
@@ -2421,6 +2456,22 @@
         "shift_word": "하향",
         "arrow": "↘",
         "pct_str": "-1.84%"
+      },
+      "predicted": {
+        "recommendation": "strong_buy",
+        "news_sentiment": "positive",
+        "overnight_signal": "up",
+        "priced_in": false,
+        "confidence": "high",
+        "price_change_pct": -2.21
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -2.21,
+        "predicted_direction": "up",
+        "actual_direction": "down",
+        "note": "강한 상승 기대 · 실제 -2.21% · 방향 틀림",
+        "label": "실패"
       }
     },
     {
@@ -2552,11 +2603,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -4.05,
+      "price_direction": "down",
+      "price_change_display": "-4.05%",
       "price_display": "284,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 12,000",
       "volume_ratio": 0.12,
       "volume_spike": false,
       "news_sentiment_label": "중립",
@@ -2583,6 +2634,22 @@
         "shift_word": "하향",
         "arrow": "↘",
         "pct_str": "-3.38%"
+      },
+      "predicted": {
+        "recommendation": "buy",
+        "news_sentiment": "neutral",
+        "overnight_signal": "up",
+        "priced_in": false,
+        "confidence": "medium",
+        "price_change_pct": -4.05
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -4.05,
+        "predicted_direction": "up",
+        "actual_direction": "down",
+        "note": "상승 기대 · 실제 -4.05% · 하락",
+        "label": "실패"
       }
     },
     {
@@ -2721,11 +2788,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 0.59,
+      "price_direction": "up",
+      "price_change_display": "+0.59%",
       "price_display": "102,100",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 600",
       "volume_ratio": 0.13,
       "volume_spike": false,
       "news_sentiment_label": "중립",
@@ -2744,6 +2811,22 @@
       "nxt_chip": {
         "text": "NXT — 0.00%",
         "cls": "flat"
+      },
+      "predicted": {
+        "recommendation": "buy",
+        "news_sentiment": "neutral",
+        "overnight_signal": "up",
+        "priced_in": false,
+        "confidence": "medium",
+        "price_change_pct": 0.59
+      },
+      "result": {
+        "outcome": "hit",
+        "actual_change_pct": 0.59,
+        "predicted_direction": "up",
+        "actual_direction": "up",
+        "note": "상승 기대 · 실제 +0.59% · 상승 적중",
+        "label": "적중"
       }
     },
     {
@@ -2844,26 +2927,26 @@
       },
       "news": [
         {
-          "title": "HD현대, 美선급협회와 선박 생애주기 연결 디지털 협력체계 '구축'",
-          "link": "https://n.news.naver.com/mnews/article/003/0013919531",
-          "source": "뉴시스",
-          "date": "2026.04.30 12:07",
-          "published_at": "2026.04.30 12:07",
-          "time_ago": "19시간 전",
-          "url": "https://n.news.naver.com/mnews/article/003/0013919531",
+          "title": "FOMC 3.50~3.75% 동결…34년 만에 반대 4명 연준 내 분열...",
+          "link": "https://n.news.naver.com/mnews/article/011/0004616634",
+          "source": "서울경제",
+          "date": "2026.05.01 08:28",
+          "published_at": "2026.05.01 08:28",
+          "time_ago": "11시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004616634",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "[비즈톡톡] “호황이면 뭐하나, 사람이 없는데”… K조선도 남 일 아닌...",
-          "link": "https://n.news.naver.com/mnews/article/366/0001160989",
-          "source": "조선비즈",
-          "date": "2026.04.30 10:01",
-          "published_at": "2026.04.30 10:01",
-          "time_ago": "21시간 전",
-          "url": "https://n.news.naver.com/mnews/article/366/0001160989",
-          "impact": "neutral",
-          "impact_label": "중립"
+          "title": "삼성 반도체 슈퍼사이클에 분기 최대 실적…DX는 영업이익 36% 급감",
+          "link": "https://n.news.naver.com/mnews/article/011/0004616633",
+          "source": "서울경제",
+          "date": "2026.05.01 08:27",
+          "published_at": "2026.05.01 08:27",
+          "time_ago": "11시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004616633",
+          "impact": "positive",
+          "impact_label": "호재"
         }
       ],
       "history": {
@@ -2902,11 +2985,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -2.22,
+      "price_direction": "down",
+      "price_change_display": "-2.22%",
       "price_display": "461,500",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 10,500",
       "volume_ratio": 0.27,
       "volume_spike": false,
       "news_sentiment_label": "중립",
@@ -2916,8 +2999,8 @@
       "direction_cls": "up",
       "outlook_line": "XLI +2.74% 산업재 강세로 오늘 갭업 기대, AI 인프라 선박 새 내러티브 부각",
       "news_count": 2,
-      "latest_news_at": "2026-04-30T12:07:00+09:00",
-      "latest_news_ago": "19시간 전",
+      "latest_news_at": "2026-05-01T08:28:00+09:00",
+      "latest_news_ago": "11시간 전",
       "nxt_pre_open": {
         "change_pct": -1.48,
         "change": -7000,
@@ -2927,6 +3010,22 @@
       "nxt_chip": {
         "text": "NXT — -1.48%",
         "cls": "down"
+      },
+      "predicted": {
+        "recommendation": "buy",
+        "news_sentiment": "neutral",
+        "overnight_signal": "up",
+        "priced_in": false,
+        "confidence": "medium",
+        "price_change_pct": -2.22
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -2.22,
+        "predicted_direction": "up",
+        "actual_direction": "down",
+        "note": "상승 기대 · 실제 -2.22% · 하락",
+        "label": "실패"
       }
     },
     {
@@ -3040,19 +3139,7 @@
         "direction": "down",
         "volume": 18240
       },
-      "news": [
-        {
-          "title": "바이오 죽 쑤는데…이 종목 샀으면 400% 벌었다",
-          "link": "https://n.news.naver.com/mnews/article/215/0001250787",
-          "source": "한국경제TV",
-          "date": "2026.04.30 17:28",
-          "published_at": "2026.04.30 17:28",
-          "time_ago": "14시간 전",
-          "url": "https://n.news.naver.com/mnews/article/215/0001250787",
-          "impact": "neutral",
-          "impact_label": "중립"
-        }
-      ],
+      "news": [],
       "history": {
         "symbol": "174900.KQ",
         "closes_20d": [
@@ -3089,11 +3176,11 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "강한 상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -2.48,
+      "price_direction": "down",
+      "price_change_display": "-2.48%",
       "price_display": "49,150",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 1,250",
       "volume_ratio": 0.05,
       "volume_spike": false,
       "news_sentiment_label": "긍정",
@@ -3102,9 +3189,25 @@
       "direction_label": "강한 상승 기대",
       "direction_cls": "up-strong",
       "outlook_line": "종근당 이중항체 공동개발 + XBI 강세로 오늘 강세 기대",
-      "news_count": 1,
+      "news_count": 0,
       "latest_news_at": "2026-04-30T17:28:00+09:00",
-      "latest_news_ago": "14시간 전"
+      "latest_news_ago": "14시간 전",
+      "predicted": {
+        "recommendation": "strong_buy",
+        "news_sentiment": "positive",
+        "overnight_signal": "up",
+        "priced_in": false,
+        "confidence": "high",
+        "price_change_pct": -2.48
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -2.48,
+        "predicted_direction": "up",
+        "actual_direction": "down",
+        "note": "강한 상승 기대 · 실제 -2.48% · 방향 틀림",
+        "label": "실패"
+      }
     },
     {
       "code": "298380",
@@ -3203,112 +3306,13 @@
       },
       "news": [
         {
-          "title": "앱티스 \"이중항체 ADC, 독성 등 한계 극복할 차세대 기술 확신\"",
-          "link": "https://n.news.naver.com/mnews/article/008/0005352021",
-          "source": "머니투데이",
-          "date": "2026.04.30 18:17",
-          "published_at": "2026.04.30 18:17",
-          "time_ago": "13시간 전",
-          "url": "https://n.news.naver.com/mnews/article/008/0005352021",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "국제유가 급등 부담에 코스피, 1.38% 하락한 6598.87 마감",
-          "link": "https://n.news.naver.com/mnews/article/243/0000097338",
-          "source": "이코노미스트",
-          "date": "2026.04.30 18:01",
-          "published_at": "2026.04.30 18:01",
-          "time_ago": "13시간 전",
-          "url": "https://n.news.naver.com/mnews/article/243/0000097338",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "여전한 지정학적 불확실성, 유가 상승세…위축된 투자심리 회복할까",
-          "link": "https://n.news.naver.com/mnews/article/008/0005351958",
-          "source": "머니투데이",
-          "date": "2026.04.30 17:05",
-          "published_at": "2026.04.30 17:05",
-          "time_ago": "14시간 전",
-          "url": "https://n.news.naver.com/mnews/article/008/0005351958",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
-          "title": "코스피, 사상 최고 찍고 급락…6590선 마감 [시황]",
-          "link": "https://n.news.naver.com/mnews/article/119/0003086522",
-          "source": "데일리안",
-          "date": "2026.04.30 16:36",
-          "published_at": "2026.04.30 16:36",
-          "time_ago": "14시간 전",
-          "url": "https://n.news.naver.com/mnews/article/119/0003086522",
-          "impact": "negative",
-          "impact_label": "악재"
-        },
-        {
-          "title": "외인들 \"팔자\"...코스피 6750 최고치 찍고 6600선 깨졌다[시황...",
-          "link": "https://n.news.naver.com/mnews/article/421/0008921897",
-          "source": "뉴스1",
-          "date": "2026.04.30 16:09",
-          "published_at": "2026.04.30 16:09",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/421/0008921897",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
-          "title": "사상 최고치 찍은 코스피, FOMC·유가 부담에 6600선 내줬다[마켓...",
-          "link": "https://n.news.naver.com/mnews/article/011/0004616455",
-          "source": "서울경제",
-          "date": "2026.04.30 16:07",
-          "published_at": "2026.04.30 16:07",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/011/0004616455",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "코스피, 국제유가 급등에 6600선 아래로…코스닥 2%대 급락",
-          "link": "https://n.news.naver.com/mnews/article/015/0005281847",
-          "source": "한국경제",
-          "date": "2026.04.30 16:02",
-          "published_at": "2026.04.30 16:02",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/015/0005281847",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "1% 넘게 빠진 코스피, 6600 깨졌다…외인 매물 던진 이유가",
-          "link": "https://n.news.naver.com/mnews/article/008/0005351884",
-          "source": "머니투데이",
-          "date": "2026.04.30 15:55",
-          "published_at": "2026.04.30 15:55",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/008/0005351884",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "코스피, 외인 '팔자'에 6500선 주저앉아…삼전 역대급 실적에도 2%...",
-          "link": "https://n.news.naver.com/mnews/article/629/0000496066",
-          "source": "더팩트",
-          "date": "2026.04.30 15:55",
-          "published_at": "2026.04.30 15:55",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/629/0000496066",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "[오늘증시]1.4조 던진 외인, 코스피 6600선 반납…환율 1483....",
-          "link": "https://n.news.naver.com/mnews/article/417/0001141397",
-          "source": "동행미디어 시대",
-          "date": "2026.04.30 15:54",
-          "published_at": "2026.04.30 15:54",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/417/0001141397",
+          "title": "주도권 바뀐 코스닥…대형주 쉬고 중소형주 뛰었다",
+          "link": "https://n.news.naver.com/mnews/article/003/0013921096",
+          "source": "뉴시스",
+          "date": "2026.05.01 08:00",
+          "published_at": "2026.05.01 08:00",
+          "time_ago": "12시간 전",
+          "url": "https://n.news.naver.com/mnews/article/003/0013921096",
           "impact": "neutral",
           "impact_label": "중립"
         }
@@ -3349,20 +3353,20 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -5.07,
+      "price_direction": "down",
+      "price_change_display": "-5.07%",
       "price_display": "134,800",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 7,200",
       "news_sentiment_label": "부정",
       "confidence_label": "낮음",
       "direction_arrow": "—",
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "간밤 XBI 강세로 단기 반등 가능하나, 공매도 과열 지정·가격제한폭 하락 도달로 구조적 약세 유지 예상",
-      "news_count": 10,
-      "latest_news_at": "2026-04-30T18:17:00+09:00",
-      "latest_news_ago": "13시간 전",
+      "news_count": 1,
+      "latest_news_at": "2026-05-01T08:00:00+09:00",
+      "latest_news_ago": "12시간 전",
       "nxt_pre_open": {
         "change_pct": -4.93,
         "change": -7000,
@@ -3380,6 +3384,22 @@
         "shift_word": "하향",
         "arrow": "↘",
         "pct_str": "-4.93%"
+      },
+      "predicted": {
+        "recommendation": "hold",
+        "news_sentiment": "negative",
+        "overnight_signal": "up",
+        "priced_in": true,
+        "confidence": "low",
+        "price_change_pct": -5.07
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -5.07,
+        "predicted_direction": "flat",
+        "actual_direction": "down",
+        "note": "관망 · 실제 -5.07% · 큰 변동 놓침",
+        "label": "실패"
       }
     },
     {
@@ -3525,11 +3545,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "강한 상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": 1.84,
+      "price_direction": "up",
+      "price_change_display": "+1.84%",
       "price_display": "3,320",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▲ 60",
       "volume_ratio": 0.01,
       "volume_spike": false,
       "news_sentiment_label": "긍정",
@@ -3538,7 +3558,23 @@
       "direction_label": "강한 상승 기대",
       "direction_cls": "up-strong",
       "outlook_line": "뉴로나타 알 중앙약심 논의 임박 + XBI 강세로 오늘 강세 기대",
-      "news_count": 0
+      "news_count": 0,
+      "predicted": {
+        "recommendation": "strong_buy",
+        "news_sentiment": "positive",
+        "overnight_signal": "up",
+        "priced_in": false,
+        "confidence": "high",
+        "price_change_pct": 1.84
+      },
+      "result": {
+        "outcome": "partial",
+        "actual_change_pct": 1.84,
+        "predicted_direction": "up",
+        "actual_direction": "up",
+        "note": "강한 상승 기대 · 실제 +1.84% · 방향은 맞았으나 강도 약함",
+        "label": "부분"
+      }
     },
     {
       "code": "035720",
@@ -3633,112 +3669,112 @@
       },
       "news": [
         {
-          "title": "네이버, 술·담배 '일방 홍보성 기사' 부정평가 기준 첫 명시",
-          "link": "https://n.news.naver.com/mnews/article/001/0016054120",
-          "source": "연합뉴스",
-          "date": "2026.05.01 06:55",
-          "published_at": "2026.05.01 06:55",
-          "time_ago": "35분 전",
-          "url": "https://n.news.naver.com/mnews/article/001/0016054120",
+          "title": "카카오 'PlayMCP', 오픈소스 AI 에이전트 '오픈클로' 연동",
+          "link": "https://n.news.naver.com/mnews/article/448/0000608266",
+          "source": "TV조선",
+          "date": "2026.05.01 17:43",
+          "published_at": "2026.05.01 17:43",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/448/0000608266",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "160조 자금 떠났다...韓 디지털자산 시장 경고등",
-          "link": "https://n.news.naver.com/mnews/article/018/0006270905",
-          "source": "이데일리",
-          "date": "2026.05.01 06:02",
-          "published_at": "2026.05.01 06:02",
-          "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/018/0006270905",
-          "impact": "negative",
-          "impact_label": "악재"
-        },
-        {
-          "title": "여행 중에 폭우 만나면…주변 침수지역 정보 내비로 실시간 확인",
-          "link": "https://n.news.naver.com/mnews/article/016/0002638121",
-          "source": "헤럴드경제",
-          "date": "2026.05.01 06:00",
-          "published_at": "2026.05.01 06:00",
-          "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/016/0002638121",
+          "title": "카톡에 AI 에이전트 '오픈클로' 연동",
+          "link": "https://n.news.naver.com/mnews/article/015/0005282222",
+          "source": "한국경제",
+          "date": "2026.05.01 17:07",
+          "published_at": "2026.05.01 17:07",
+          "time_ago": "3시간 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005282222",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "범부처 R&D 성과 연계해 ‘딥페이크 피해 예방·대응’…민관 실무협.....",
-          "link": "https://n.news.naver.com/mnews/article/082/0001378743",
-          "source": "부산일보",
-          "date": "2026.04.30 20:14",
-          "published_at": "2026.04.30 20:14",
-          "time_ago": "11시간 전",
-          "url": "https://n.news.naver.com/mnews/article/082/0001378743",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "\"AI 딥페이크·가짜뉴스, 기술로 막는다\"…정부-기업, R&D협의체 ...",
-          "link": "https://n.news.naver.com/mnews/article/008/0005351920",
-          "source": "머니투데이",
-          "date": "2026.04.30 16:32",
-          "published_at": "2026.04.30 16:32",
-          "time_ago": "14시간 전",
-          "url": "https://n.news.naver.com/mnews/article/008/0005351920",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "딥페이크 확산에 범정부 대응…R&D 협의체 가동",
-          "link": "https://n.news.naver.com/mnews/article/014/0005515812",
-          "source": "파이낸셜뉴스",
-          "date": "2026.04.30 14:13",
-          "published_at": "2026.04.30 14:13",
-          "time_ago": "17시간 전",
-          "url": "https://n.news.naver.com/mnews/article/014/0005515812",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "딥페이크 대응 R&D 민관 실무협의체 구성...범정부 사업 연계",
-          "link": "https://n.news.naver.com/mnews/article/092/0002420924",
+          "title": "[기고] 에이전틱 AI 시대 법적 책임과 해답",
+          "link": "https://n.news.naver.com/mnews/article/092/0002421093",
           "source": "지디넷코리아",
-          "date": "2026.04.30 12:47",
-          "published_at": "2026.04.30 12:47",
-          "time_ago": "18시간 전",
-          "url": "https://n.news.naver.com/mnews/article/092/0002420924",
+          "date": "2026.05.01 16:25",
+          "published_at": "2026.05.01 16:25",
+          "time_ago": "3시간 전",
+          "url": "https://n.news.naver.com/mnews/article/092/0002421093",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "끊이지 않는 딥페이크 기승에...과기정통부, 민관 합동 대응 협의체 ...",
-          "link": "https://n.news.naver.com/mnews/article/009/0005673686",
-          "source": "매일경제",
-          "date": "2026.04.30 11:53",
-          "published_at": "2026.04.30 11:53",
-          "time_ago": "19시간 전",
-          "url": "https://n.news.naver.com/mnews/article/009/0005673686",
+          "title": "네이버, 술·담배 '홍보성 기사' 부정 평가한다",
+          "link": "https://n.news.naver.com/mnews/article/030/0003423701",
+          "source": "전자신문",
+          "date": "2026.05.01 15:00",
+          "published_at": "2026.05.01 15:00",
+          "time_ago": "5시간 전",
+          "url": "https://n.news.naver.com/mnews/article/030/0003423701",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "‘딥페이크 대응’ R&D 협의체 출범…네이버·카카오도 참여",
-          "link": "https://n.news.naver.com/mnews/article/018/0006269917",
+          "title": "네이버, 술·담배 ‘일방 홍보성 기사’ 올리면 벌점…부정평가 기준.....",
+          "link": "https://n.news.naver.com/mnews/article/081/0003640471",
+          "source": "서울신문",
+          "date": "2026.05.01 14:52",
+          "published_at": "2026.05.01 14:52",
+          "time_ago": "5시간 전",
+          "url": "https://n.news.naver.com/mnews/article/081/0003640471",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "카카오, 플레이MCP에 '오픈클로' 연동 지원",
+          "link": "https://n.news.naver.com/mnews/article/030/0003423698",
+          "source": "전자신문",
+          "date": "2026.05.01 14:11",
+          "published_at": "2026.05.01 14:11",
+          "time_ago": "5시간 전",
+          "url": "https://n.news.naver.com/mnews/article/030/0003423698",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "카카오, '플레이MCP'에 오픈소스 AI 에이전트 '오픈클로' 연동",
+          "link": "https://n.news.naver.com/mnews/article/003/0013921321",
+          "source": "뉴시스",
+          "date": "2026.05.01 10:46",
+          "published_at": "2026.05.01 10:46",
+          "time_ago": "9시간 전",
+          "url": "https://n.news.naver.com/mnews/article/003/0013921321",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "카카오, '플레이MCP'에 오픈클로 연동…AI 에이전트 확장",
+          "link": "https://n.news.naver.com/mnews/article/374/0000507835",
+          "source": "SBS Biz",
+          "date": "2026.05.01 10:32",
+          "published_at": "2026.05.01 10:32",
+          "time_ago": "9시간 전",
+          "url": "https://n.news.naver.com/mnews/article/374/0000507835",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "카카오, '플레이MCP'에 오픈클로 연동…AI 에이전트 확장",
+          "link": "https://n.news.naver.com/mnews/article/001/0016054309",
+          "source": "연합뉴스",
+          "date": "2026.05.01 10:13",
+          "published_at": "2026.05.01 10:13",
+          "time_ago": "9시간 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016054309",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "카카오, ‘PlayMCP’로 AI 에이전트 생태계 확장…오픈소스 ‘오...",
+          "link": "https://n.news.naver.com/mnews/article/018/0006270942",
           "source": "이데일리",
-          "date": "2026.04.30 11:44",
-          "published_at": "2026.04.30 11:44",
-          "time_ago": "19시간 전",
-          "url": "https://n.news.naver.com/mnews/article/018/0006269917",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "과기정통부, 딥페이크 대응 R&D 실무협의체 첫 회의 개최",
-          "link": "https://n.news.naver.com/mnews/article/119/0003086331",
-          "source": "데일리안",
-          "date": "2026.04.30 11:04",
-          "published_at": "2026.04.30 11:04",
-          "time_ago": "20시간 전",
-          "url": "https://n.news.naver.com/mnews/article/119/0003086331",
+          "date": "2026.05.01 09:33",
+          "published_at": "2026.05.01 09:33",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/018/0006270942",
           "impact": "neutral",
           "impact_label": "중립"
         }
@@ -3779,11 +3815,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -2.27,
+      "price_direction": "down",
+      "price_change_display": "-2.27%",
       "price_display": "47,300",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 1,100",
       "volume_ratio": 0.15,
       "volume_spike": false,
       "news_sentiment_label": "중립",
@@ -3793,8 +3829,8 @@
       "direction_cls": "flat",
       "outlook_line": "META -8.55% vs GOOGL +9.96% 프록시 극단 혼조, 카카오 국내 플랫폼으로 직접 연관성…",
       "news_count": 10,
-      "latest_news_at": "2026-05-01T06:55:00+09:00",
-      "latest_news_ago": "35분 전",
+      "latest_news_at": "2026-05-01T17:43:00+09:00",
+      "latest_news_ago": "2시간 전",
       "nxt_pre_open": {
         "change_pct": -2.17,
         "change": -1050,
@@ -3812,6 +3848,22 @@
         "shift_word": "하향",
         "arrow": "↘",
         "pct_str": "-2.17%"
+      },
+      "predicted": {
+        "recommendation": "hold",
+        "news_sentiment": "neutral",
+        "overnight_signal": "neutral",
+        "priced_in": false,
+        "confidence": "low",
+        "price_change_pct": -2.27
+      },
+      "result": {
+        "outcome": "partial",
+        "actual_change_pct": -2.27,
+        "predicted_direction": "flat",
+        "actual_direction": "down",
+        "note": "관망 · 실제 -2.27% · 움직임은 있었음",
+        "label": "부분"
       }
     },
     {
@@ -3930,114 +3982,114 @@
       },
       "news": [
         {
-          "title": "“한국에도 이런 車가 있다니”…두근두근 ‘쏘렌토 킬러’, 4천만원...",
-          "link": "https://n.news.naver.com/mnews/article/009/0005674118",
-          "source": "매일경제",
-          "date": "2026.05.01 07:08",
-          "published_at": "2026.05.01 07:08",
-          "time_ago": "22분 전",
-          "url": "https://n.news.naver.com/mnews/article/009/0005674118",
+          "title": "\"성과급 20% 달라\" 삼바도 첫 파업…너도나도 성과급 청구서",
+          "link": "https://n.news.naver.com/mnews/article/057/0001947245",
+          "source": "MBN",
+          "date": "2026.05.01 19:14",
+          "published_at": "2026.05.01 19:14",
+          "time_ago": "56분 전",
+          "url": "https://n.news.naver.com/mnews/article/057/0001947245",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "폭스바겐 하드웨어와 샤오펑 자율주행 기술의 결합, ‘ID.유닉스 09’",
-          "link": "https://n.news.naver.com/mnews/article/037/0000038087",
-          "source": "주간동아",
-          "date": "2026.05.01 07:01",
-          "published_at": "2026.05.01 07:01",
-          "time_ago": "29분 전",
-          "url": "https://n.news.naver.com/mnews/article/037/0000038087",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "AI 넣은 17인치 대화면 중앙에… ‘달리는 스마트폰’ 변신",
-          "link": "https://n.news.naver.com/mnews/article/022/0004125053",
-          "source": "세계일보",
-          "date": "2026.05.01 06:03",
-          "published_at": "2026.05.01 06:03",
-          "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/022/0004125053",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "여행 중에 폭우 만나면…주변 침수지역 정보 내비로 실시간 확인",
-          "link": "https://n.news.naver.com/mnews/article/016/0002638121",
-          "source": "헤럴드경제",
-          "date": "2026.05.01 06:00",
-          "published_at": "2026.05.01 06:00",
-          "time_ago": "1시간 전",
-          "url": "https://n.news.naver.com/mnews/article/016/0002638121",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "현대차그룹 ‘플레오스 커넥트’… 자동차를 스마트폰처럼 쓴다",
-          "link": "https://n.news.naver.com/mnews/article/081/0003640362",
-          "source": "서울신문",
-          "date": "2026.05.01 05:05",
-          "published_at": "2026.05.01 05:05",
+          "title": "반도체 유통해서 돈 버는 기업의 비밀 [시크한 분석: 유니트론텍]",
+          "link": "https://n.news.naver.com/mnews/article/665/0000007301",
+          "source": "더스쿠프",
+          "date": "2026.05.01 18:01",
+          "published_at": "2026.05.01 18:01",
           "time_ago": "2시간 전",
-          "url": "https://n.news.naver.com/mnews/article/081/0003640362",
+          "url": "https://n.news.naver.com/mnews/article/665/0000007301",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "로봇 627대가 쉴새 없이 차체 용접… “한국 철수설 행동으로 불식”",
-          "link": "https://n.news.naver.com/mnews/article/020/0003716660",
-          "source": "동아일보",
-          "date": "2026.05.01 01:45",
-          "published_at": "2026.05.01 01:45",
+          "title": "단 30명이 '7200t 제조설비' 운용 … 中전기차 생산효율 3배로↑",
+          "link": "https://n.news.naver.com/mnews/article/009/0005674329",
+          "source": "매일경제",
+          "date": "2026.05.01 17:56",
+          "published_at": "2026.05.01 17:56",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005674329",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "中 BYD·지커·샤오미 인해전술 … 韓 전기차 시장방어 '발등에 불'",
+          "link": "https://n.news.naver.com/mnews/article/009/0005674328",
+          "source": "매일경제",
+          "date": "2026.05.01 17:56",
+          "published_at": "2026.05.01 17:56",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005674328",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "현대차 블루멤버스 포인트, 가족단위로 확장",
+          "link": "https://n.news.naver.com/mnews/article/448/0000608267",
+          "source": "TV조선",
+          "date": "2026.05.01 17:45",
+          "published_at": "2026.05.01 17:45",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/448/0000608267",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "현대차 블루멤버스 포인트, 가족이 함께 모으고 나눠쓴다",
+          "link": "https://n.news.naver.com/mnews/article/081/0003640475",
+          "source": "서울신문",
+          "date": "2026.05.01 15:05",
+          "published_at": "2026.05.01 15:05",
           "time_ago": "5시간 전",
-          "url": "https://n.news.naver.com/mnews/article/020/0003716660",
+          "url": "https://n.news.naver.com/mnews/article/081/0003640475",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "차량을 스마트폰처럼… 현대차그룹, 대화면 ‘AI 비서’ 탑재한다",
-          "link": "https://n.news.naver.com/mnews/article/020/0003716618",
-          "source": "동아일보",
-          "date": "2026.05.01 01:43",
-          "published_at": "2026.05.01 01:43",
-          "time_ago": "5시간 전",
-          "url": "https://n.news.naver.com/mnews/article/020/0003716618",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "“일부 노동자, 자신만 살겠다고 과도한 요구”",
-          "link": "https://n.news.naver.com/mnews/article/025/0003520440",
-          "source": "중앙일보",
-          "date": "2026.05.01 00:18",
-          "published_at": "2026.05.01 00:18",
-          "time_ago": "7시간 전",
-          "url": "https://n.news.naver.com/mnews/article/025/0003520440",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "[미리보는 이데일리 신문]파업, 수십조 손실 넘어 신뢰 잃고 고객 뺏긴...",
-          "link": "https://n.news.naver.com/mnews/article/018/0006270796",
-          "source": "이데일리",
-          "date": "2026.04.30 22:43",
-          "published_at": "2026.04.30 22:43",
-          "time_ago": "8시간 전",
-          "url": "https://n.news.naver.com/mnews/article/018/0006270796",
-          "impact": "negative",
-          "impact_label": "악재"
-        },
-        {
-          "title": "현대차·한화에어로 제치더니…순식간에 '80% 폭등' 일냈다 [종목+]",
-          "link": "https://n.news.naver.com/mnews/article/015/0005282051",
-          "source": "한국경제",
-          "date": "2026.04.30 22:01",
-          "published_at": "2026.04.30 22:01",
+          "title": "“가족 모두 혜택 누리세요” 현대차, 멤버십 서비스에 가족 단위 회....",
+          "link": "https://n.news.naver.com/mnews/article/016/0002638188",
+          "source": "헤럴드경제",
+          "date": "2026.05.01 11:06",
+          "published_at": "2026.05.01 11:06",
           "time_ago": "9시간 전",
-          "url": "https://n.news.naver.com/mnews/article/015/0005282051",
-          "impact": "positive",
-          "impact_label": "호재"
+          "url": "https://n.news.naver.com/mnews/article/016/0002638188",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "현대차 블루멤버스 포인트, 가족 단위로 확장",
+          "link": "https://n.news.naver.com/mnews/article/366/0001161324",
+          "source": "조선비즈",
+          "date": "2026.05.01 11:05",
+          "published_at": "2026.05.01 11:05",
+          "time_ago": "9시간 전",
+          "url": "https://n.news.naver.com/mnews/article/366/0001161324",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "“부모형제·남편아내 다 모여서”…현대차 블루멤버스, 온 가족이 함.....",
+          "link": "https://n.news.naver.com/mnews/article/009/0005674166",
+          "source": "매일경제",
+          "date": "2026.05.01 10:59",
+          "published_at": "2026.05.01 10:59",
+          "time_ago": "9시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005674166",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "현대차 블루멤버스 포인트, 온 가족이 함께 모으고 나눠 쓴다",
+          "link": "https://n.news.naver.com/mnews/article/022/0004125096",
+          "source": "세계일보",
+          "date": "2026.05.01 10:33",
+          "published_at": "2026.05.01 10:33",
+          "time_ago": "9시간 전",
+          "url": "https://n.news.naver.com/mnews/article/022/0004125096",
+          "impact": "neutral",
+          "impact_label": "중립"
         }
       ],
       "history": {
@@ -4076,11 +4128,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "하락 경계",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -4.5,
+      "price_direction": "down",
+      "price_change_display": "-4.50%",
       "price_display": "531,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 25,000",
       "volume_ratio": 0.16,
       "volume_spike": false,
       "news_sentiment_label": "부정",
@@ -4090,8 +4142,8 @@
       "direction_cls": "down",
       "outlook_line": "파업 이슈 + 글로벌 자동차 섹터 약세로 하락 경계",
       "news_count": 10,
-      "latest_news_at": "2026-05-01T07:08:00+09:00",
-      "latest_news_ago": "22분 전",
+      "latest_news_at": "2026-05-01T19:14:00+09:00",
+      "latest_news_ago": "56분 전",
       "nxt_pre_open": {
         "change_pct": -3.78,
         "change": -21000,
@@ -4109,6 +4161,22 @@
         "shift_word": "하향",
         "arrow": "↘",
         "pct_str": "-3.78%"
+      },
+      "predicted": {
+        "recommendation": "sell",
+        "news_sentiment": "negative",
+        "overnight_signal": "down",
+        "priced_in": true,
+        "confidence": "high",
+        "price_change_pct": -4.5
+      },
+      "result": {
+        "outcome": "hit",
+        "actual_change_pct": -4.5,
+        "predicted_direction": "down",
+        "actual_direction": "down",
+        "note": "하락 경계 · 실제 -4.50% · 하락 적중",
+        "label": "적중"
       }
     },
     {
@@ -4228,107 +4296,8 @@
           "source": "서울신문",
           "date": "2026.05.01 05:05",
           "published_at": "2026.05.01 05:05",
-          "time_ago": "2시간 전",
-          "url": "https://n.news.naver.com/mnews/article/081/0003640368",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "파라다이스 부산 ‘LIV 골프 코리아 2026’ 공식 호텔 지정",
-          "link": "https://n.news.naver.com/mnews/article/082/0001378720",
-          "source": "부산일보",
-          "date": "2026.04.30 18:25",
-          "published_at": "2026.04.30 18:25",
-          "time_ago": "13시간 전",
-          "url": "https://n.news.naver.com/mnews/article/082/0001378720",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "파라다이스 호텔 부산, 'LIV 골프 코리아 2026' 공식호텔 지정",
-          "link": "https://n.news.naver.com/mnews/article/015/0005281840",
-          "source": "한국경제",
-          "date": "2026.04.30 15:43",
-          "published_at": "2026.04.30 15:43",
           "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/015/0005281840",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "LIV 골프코리아 공식 숙소… 파라다이스 호텔 부산 선정",
-          "link": "https://n.news.naver.com/mnews/article/021/0002788571",
-          "source": "문화일보",
-          "date": "2026.04.30 11:57",
-          "published_at": "2026.04.30 11:57",
-          "time_ago": "19시간 전",
-          "url": "https://n.news.naver.com/mnews/article/021/0002788571",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "파라다이스 호텔 부산, ‘LIV 골프 코리아’ 공식호텔",
-          "link": "https://n.news.naver.com/mnews/article/016/0002637833",
-          "source": "헤럴드경제",
-          "date": "2026.04.30 11:25",
-          "published_at": "2026.04.30 11:25",
-          "time_ago": "20시간 전",
-          "url": "https://n.news.naver.com/mnews/article/016/0002637833",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "파라다이스 호텔 부산, 'LIV 골프 코리아 2026' 공식호텔 지정",
-          "link": "https://n.news.naver.com/mnews/article/001/0016052117",
-          "source": "연합뉴스",
-          "date": "2026.04.30 10:14",
-          "published_at": "2026.04.30 10:14",
-          "time_ago": "21시간 전",
-          "url": "https://n.news.naver.com/mnews/article/001/0016052117",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "파라다이스 호텔 부산, 내달 개최 'LIV 골프 코리아' 공식호텔 지...",
-          "link": "https://n.news.naver.com/mnews/article/003/0013918708",
-          "source": "뉴시스",
-          "date": "2026.04.30 09:05",
-          "published_at": "2026.04.30 09:05",
-          "time_ago": "22시간 전",
-          "url": "https://n.news.naver.com/mnews/article/003/0013918708",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "파라다이스호텔 부산, LIV 골프 코리아 공식호텔 지정",
-          "link": "https://n.news.naver.com/mnews/article/277/0005756946",
-          "source": "아시아경제",
-          "date": "2026.04.30 08:55",
-          "published_at": "2026.04.30 08:55",
-          "time_ago": "22시간 전",
-          "url": "https://n.news.naver.com/mnews/article/277/0005756946",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "파라다이스 호텔 부산, ‘LIV 골프 코리아 2026’ 공식호텔 지정",
-          "link": "https://n.news.naver.com/mnews/article/016/0002637615",
-          "source": "헤럴드경제",
-          "date": "2026.04.30 08:47",
-          "published_at": "2026.04.30 08:47",
-          "time_ago": "22시간 전",
-          "url": "https://n.news.naver.com/mnews/article/016/0002637615",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "[황금연휴 특수] 방한객 20만명 몰린다…여행·레저업계 '들썩'",
-          "link": "https://n.news.naver.com/mnews/article/001/0016051637",
-          "source": "연합뉴스",
-          "date": "2026.04.30 08:00",
-          "published_at": "2026.04.30 08:00",
-          "time_ago": "23시간 전",
-          "url": "https://n.news.naver.com/mnews/article/001/0016051637",
+          "url": "https://n.news.naver.com/mnews/article/081/0003640368",
           "impact": "neutral",
           "impact_label": "중립"
         }
@@ -4369,11 +4338,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "강한 상승 기대",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -1.8,
+      "price_direction": "down",
+      "price_change_display": "-1.80%",
       "price_display": "15,850",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 290",
       "volume_ratio": 0.13,
       "volume_spike": false,
       "news_sentiment_label": "긍정",
@@ -4382,9 +4351,9 @@
       "direction_label": "강한 상승 기대",
       "direction_cls": "up-strong",
       "outlook_line": "황금연휴 특수 + LIV 골프 공식 호텔 + LVS·WYNN 강세로 오늘 강한 상승 기대",
-      "news_count": 10,
+      "news_count": 1,
       "latest_news_at": "2026-05-01T05:05:00+09:00",
-      "latest_news_ago": "2시간 전",
+      "latest_news_ago": "15시간 전",
       "nxt_pre_open": {
         "change_pct": -0.99,
         "change": -160,
@@ -4394,6 +4363,22 @@
       "nxt_chip": {
         "text": "NXT — -0.99%",
         "cls": "down"
+      },
+      "predicted": {
+        "recommendation": "strong_buy",
+        "news_sentiment": "positive",
+        "overnight_signal": "up",
+        "priced_in": false,
+        "confidence": "high",
+        "price_change_pct": -1.8
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -1.8,
+        "predicted_direction": "up",
+        "actual_direction": "down",
+        "note": "강한 상승 기대 · 실제 -1.80% · 방향 틀림",
+        "label": "실패"
       }
     },
     {
@@ -4470,90 +4455,13 @@
       },
       "news": [
         {
-          "title": "엔씨, 직원 보상 강화…김택진 “AI 시대, 인간 통창력 더 중요해져”",
-          "link": "https://n.news.naver.com/mnews/article/366/0001161197",
-          "source": "조선비즈",
-          "date": "2026.04.30 16:31",
-          "published_at": "2026.04.30 16:31",
-          "time_ago": "14시간 전",
-          "url": "https://n.news.naver.com/mnews/article/366/0001161197",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "엔씨, 5월 연휴 맞이 인기 게임 6종 이벤트 진행",
-          "link": "https://n.news.naver.com/mnews/article/092/0002420990",
-          "source": "지디넷코리아",
-          "date": "2026.04.30 15:58",
-          "published_at": "2026.04.30 15:58",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/092/0002420990",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "엔씨, 5월 가정의 달 맞이 이벤트 게임 6종서 진행",
-          "link": "https://n.news.naver.com/mnews/article/009/0005673877",
-          "source": "매일경제",
-          "date": "2026.04.30 15:41",
-          "published_at": "2026.04.30 15:41",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/009/0005673877",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "엔씨, 서브컬처 신작 ‘아스트라에 오라티오’ 티저 공개",
-          "link": "https://n.news.naver.com/mnews/article/009/0005673843",
-          "source": "매일경제",
-          "date": "2026.04.30 15:03",
-          "published_at": "2026.04.30 15:03",
-          "time_ago": "16시간 전",
-          "url": "https://n.news.naver.com/mnews/article/009/0005673843",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "엔씨, 서브컬처 신작 ‘아스트라에 오라티오’ 티저 사이트 오픈",
-          "link": "https://n.news.naver.com/mnews/article/092/0002420967",
-          "source": "지디넷코리아",
-          "date": "2026.04.30 14:56",
-          "published_at": "2026.04.30 14:56",
-          "time_ago": "16시간 전",
-          "url": "https://n.news.naver.com/mnews/article/092/0002420967",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "“20대가 게임 안 한다고?”…게임사 실적 ‘절반의 진실’[재무제표.....",
-          "link": "https://n.news.naver.com/mnews/article/050/0000105643",
-          "source": "한경비즈니스",
-          "date": "2026.04.30 14:29",
-          "published_at": "2026.04.30 14:29",
-          "time_ago": "17시간 전",
-          "url": "https://n.news.naver.com/mnews/article/050/0000105643",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "디나미스원 신작 공개 초읽기…엔씨, '아스트라에 오라티오' 티저 사....",
-          "link": "https://n.news.naver.com/mnews/article/031/0001025889",
-          "source": "아이뉴스24",
-          "date": "2026.04.30 14:08",
-          "published_at": "2026.04.30 14:08",
-          "time_ago": "17시간 전",
-          "url": "https://n.news.naver.com/mnews/article/031/0001025889",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "엔씨, 서브컬처 신작 '아스트라에 오라티오' 확정",
-          "link": "https://n.news.naver.com/mnews/article/018/0006269999",
-          "source": "이데일리",
-          "date": "2026.04.30 13:47",
-          "published_at": "2026.04.30 13:47",
-          "time_ago": "17시간 전",
-          "url": "https://n.news.naver.com/mnews/article/018/0006269999",
+          "title": "“연휴엔 게임이지”…지루할 틈 없는 신규 콘텐츠의 향연[오늘의 게...",
+          "link": "https://n.news.naver.com/mnews/article/011/0004616627",
+          "source": "서울경제",
+          "date": "2026.05.01 08:01",
+          "published_at": "2026.05.01 08:01",
+          "time_ago": "12시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004616627",
           "impact": "neutral",
           "impact_label": "중립"
         }
@@ -4594,11 +4502,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -2.52,
+      "price_direction": "down",
+      "price_change_display": "-2.52%",
       "price_display": "270,500",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 7,000",
       "volume_ratio": 0.18,
       "volume_spike": false,
       "news_sentiment_label": "중립",
@@ -4607,9 +4515,9 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "게임주 프록시 혼조·개별 모멘텀 부재로 박스권 흐름 예상",
-      "news_count": 8,
-      "latest_news_at": "2026-04-30T16:31:00+09:00",
-      "latest_news_ago": "14시간 전",
+      "news_count": 1,
+      "latest_news_at": "2026-05-01T08:01:00+09:00",
+      "latest_news_ago": "12시간 전",
       "nxt_pre_open": {
         "change_pct": -1.62,
         "change": -4500,
@@ -4627,6 +4535,22 @@
         "shift_word": "하향",
         "arrow": "↘",
         "pct_str": "-1.62%"
+      },
+      "predicted": {
+        "recommendation": "hold",
+        "news_sentiment": "neutral",
+        "overnight_signal": "neutral",
+        "priced_in": false,
+        "confidence": "low",
+        "price_change_pct": -2.52
+      },
+      "result": {
+        "outcome": "partial",
+        "actual_change_pct": -2.52,
+        "predicted_direction": "flat",
+        "actual_direction": "down",
+        "note": "관망 · 실제 -2.52% · 움직임은 있었음",
+        "label": "부분"
       }
     },
     {
@@ -4722,26 +4646,103 @@
       },
       "news": [
         {
-          "title": "유한양행, 1분기 영업익 37% 증가…“2분기엔 마일스톤 유입될 듯”",
-          "link": "https://n.news.naver.com/mnews/article/011/0004616617",
-          "source": "서울경제",
-          "date": "2026.05.01 07:03",
-          "published_at": "2026.05.01 07:03",
-          "time_ago": "27분 전",
-          "url": "https://n.news.naver.com/mnews/article/011/0004616617",
+          "title": "“주가 0 하나 더붙기 전에 사놔야지”…스페이스X 기대감에 우주항공.....",
+          "link": "https://n.news.naver.com/mnews/article/009/0005674259",
+          "source": "매일경제",
+          "date": "2026.05.01 16:53",
+          "published_at": "2026.05.01 16:53",
+          "time_ago": "3시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005674259",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "코스피 신고가에 '함박웃음'…실적 급증에 목표가 올라가는 이 종목 .....",
+          "link": "https://n.news.naver.com/mnews/article/277/0005757630",
+          "source": "아시아경제",
+          "date": "2026.05.01 15:38",
+          "published_at": "2026.05.01 15:38",
+          "time_ago": "4시간 전",
+          "url": "https://n.news.naver.com/mnews/article/277/0005757630",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "“올해 기준금리 두번 오른다”…증권가 확산하는 금리 인상론, 이유...",
+          "link": "https://n.news.naver.com/mnews/article/009/0005674210",
+          "source": "매일경제",
+          "date": "2026.05.01 14:41",
+          "published_at": "2026.05.01 14:41",
+          "time_ago": "5시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005674210",
           "impact": "neutral",
           "impact_label": "중립"
         },
         {
-          "title": "한국 WGBI 편입 한달…외국인 국고채 순매수액·보유잔고 '쑥'",
-          "link": "https://n.news.naver.com/mnews/article/001/0016054122",
-          "source": "연합뉴스",
-          "date": "2026.05.01 07:00",
-          "published_at": "2026.05.01 07:00",
-          "time_ago": "30분 전",
-          "url": "https://n.news.naver.com/mnews/article/001/0016054122",
+          "title": "반도체가 바꾼 금리 시계…한은 ‘매파적 동결’ 속 인상론 확산",
+          "link": "https://n.news.naver.com/mnews/article/243/0000097348",
+          "source": "이코노미스트",
+          "date": "2026.05.01 10:07",
+          "published_at": "2026.05.01 10:07",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/243/0000097348",
           "impact": "neutral",
           "impact_label": "중립"
+        },
+        {
+          "title": "'금리 인상'으로 기운 증권가…'2회 상향' 전망도",
+          "link": "https://n.news.naver.com/mnews/article/422/0000860591",
+          "source": "연합뉴스TV",
+          "date": "2026.05.01 10:03",
+          "published_at": "2026.05.01 10:03",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/422/0000860591",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "이란 전쟁·성장률 급등에… 증권가 ‘연내 2차례 금리 인상’ 전망도",
+          "link": "https://n.news.naver.com/mnews/article/011/0004616649",
+          "source": "서울경제",
+          "date": "2026.05.01 09:57",
+          "published_at": "2026.05.01 09:57",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/011/0004616649",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "‘한은 금리 인상’ 전망 커져…유가 100달러·1분기 깜짝 성장에",
+          "link": "https://n.news.naver.com/mnews/article/028/0002803317",
+          "source": "한겨레",
+          "date": "2026.05.01 09:40",
+          "published_at": "2026.05.01 09:40",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/028/0002803317",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "\"상장 전 미리 탑승\"...ETF에 자금 '광속 유입'",
+          "link": "https://n.news.naver.com/mnews/article/215/0001250818",
+          "source": "한국경제TV",
+          "date": "2026.05.01 07:59",
+          "published_at": "2026.05.01 07:59",
+          "time_ago": "12시간 전",
+          "url": "https://n.news.naver.com/mnews/article/215/0001250818",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "스페이스X 상장 기대감…美우주항공ETF, 자금 빨아들이며 '꿈틀'",
+          "link": "https://n.news.naver.com/mnews/article/001/0016054132",
+          "source": "연합뉴스",
+          "date": "2026.05.01 07:30",
+          "published_at": "2026.05.01 07:30",
+          "time_ago": "12시간 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016054132",
+          "impact": "positive",
+          "impact_label": "호재"
         },
         {
           "title": "증권가, 커지는 '연내 기준금리 인상' 전망…\"2회 상향도\"",
@@ -4749,87 +4750,10 @@
           "source": "연합뉴스",
           "date": "2026.05.01 06:01",
           "published_at": "2026.05.01 06:01",
-          "time_ago": "1시간 전",
+          "time_ago": "14시간 전",
           "url": "https://n.news.naver.com/mnews/article/001/0016054087",
           "impact": "positive",
           "impact_label": "호재"
-        },
-        {
-          "title": "[이코노 브리핑] 키움증권 1분기 순익 4774억… 102.6%↑외",
-          "link": "https://n.news.naver.com/mnews/article/022/0004125037",
-          "source": "세계일보",
-          "date": "2026.05.01 05:02",
-          "published_at": "2026.05.01 05:02",
-          "time_ago": "2시간 전",
-          "url": "https://n.news.naver.com/mnews/article/022/0004125037",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "브렌트油 126달러… 4년만에 최고치",
-          "link": "https://n.news.naver.com/mnews/article/020/0003716611",
-          "source": "동아일보",
-          "date": "2026.05.01 01:43",
-          "published_at": "2026.05.01 01:43",
-          "time_ago": "5시간 전",
-          "url": "https://n.news.naver.com/mnews/article/020/0003716611",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
-          "title": "키움증권, 1분기 순이익 4774억?전년비 102.6%↑",
-          "link": "https://n.news.naver.com/mnews/article/031/0001026004",
-          "source": "아이뉴스24",
-          "date": "2026.04.30 19:09",
-          "published_at": "2026.04.30 19:09",
-          "time_ago": "12시간 전",
-          "url": "https://n.news.naver.com/mnews/article/031/0001026004",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "키움증권 1분기 순이익 4774억원…지난해 대비 102%↑",
-          "link": "https://n.news.naver.com/mnews/article/119/0003086400",
-          "source": "데일리안",
-          "date": "2026.04.30 13:31",
-          "published_at": "2026.04.30 13:31",
-          "time_ago": "17시간 전",
-          "url": "https://n.news.naver.com/mnews/article/119/0003086400",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "키움證 1분기 당기순익 4774억…1년 새 2배↑",
-          "link": "https://n.news.naver.com/mnews/article/011/0004616234",
-          "source": "서울경제",
-          "date": "2026.04.30 08:49",
-          "published_at": "2026.04.30 08:49",
-          "time_ago": "22시간 전",
-          "url": "https://n.news.naver.com/mnews/article/011/0004616234",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "증시 활황 올라탄 키움證…1분기 순익 4774억, 전년比 103% '...",
-          "link": "https://n.news.naver.com/mnews/article/018/0006269609",
-          "source": "이데일리",
-          "date": "2026.04.30 08:38",
-          "published_at": "2026.04.30 08:38",
-          "time_ago": "22시간 전",
-          "url": "https://n.news.naver.com/mnews/article/018/0006269609",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "키움증권, 1분기 순이익 4700억 '두 배' 늘었다…\"주식 거래대금...",
-          "link": "https://n.news.naver.com/mnews/article/421/0008920160",
-          "source": "뉴스1",
-          "date": "2026.04.30 08:30",
-          "published_at": "2026.04.30 08:30",
-          "time_ago": "23시간 전",
-          "url": "https://n.news.naver.com/mnews/article/421/0008920160",
-          "impact": "neutral",
-          "impact_label": "중립"
         }
       ],
       "history": {
@@ -4868,11 +4792,11 @@
         "sparkline_direction": "down"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -6.02,
+      "price_direction": "down",
+      "price_change_display": "-6.02%",
       "price_display": "398,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 25,500",
       "volume_ratio": 0.14,
       "volume_spike": false,
       "news_sentiment_label": "중립",
@@ -4882,8 +4806,8 @@
       "direction_cls": "flat",
       "outlook_line": "1Q 순이익 +102.6% 서프라이즈지만 실적 발표 당일 -6% 차익실현 + 기준금리 인상 우려 중첩",
       "news_count": 10,
-      "latest_news_at": "2026-05-01T07:03:00+09:00",
-      "latest_news_ago": "27분 전",
+      "latest_news_at": "2026-05-01T16:53:00+09:00",
+      "latest_news_ago": "3시간 전",
       "nxt_pre_open": {
         "change_pct": -4.96,
         "change": -21000,
@@ -4901,6 +4825,22 @@
         "shift_word": "하향",
         "arrow": "↘",
         "pct_str": "-4.96%"
+      },
+      "predicted": {
+        "recommendation": "hold",
+        "news_sentiment": "neutral",
+        "overnight_signal": "neutral",
+        "priced_in": true,
+        "confidence": "low",
+        "price_change_pct": -6.02
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -6.02,
+        "predicted_direction": "flat",
+        "actual_direction": "down",
+        "note": "관망 · 실제 -6.02% · 큰 변동 놓침",
+        "label": "실패"
       }
     },
     {
@@ -4991,114 +4931,114 @@
       },
       "news": [
         {
+          "title": "'금가분리' 회색지대 갇힌 웹3 동맹…공정위 심사 '태풍의 눈' [크립...",
+          "link": "https://n.news.naver.com/mnews/article/014/0005516299",
+          "source": "파이낸셜뉴스",
+          "date": "2026.05.01 17:49",
+          "published_at": "2026.05.01 17:49",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005516299",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "미·영·ECB 잇달아 금리 동결…시장금리 긴축 속 ‘인상' 여지도",
+          "link": "https://n.news.naver.com/mnews/article/025/0003520531",
+          "source": "중앙일보",
+          "date": "2026.05.01 17:11",
+          "published_at": "2026.05.01 17:11",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/025/0003520531",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "한은 금리 인상론 급부상…증권가 \"연말 3% 도달\" 전망",
+          "link": "https://n.news.naver.com/mnews/article/014/0005516293",
+          "source": "파이낸셜뉴스",
+          "date": "2026.05.01 16:53",
+          "published_at": "2026.05.01 16:53",
+          "time_ago": "3시간 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005516293",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "‘나들이의 계절’인데 기름값은 언제 떨어지나…“5월부터 유가 상승...",
+          "link": "https://n.news.naver.com/mnews/article/032/0003443369",
+          "source": "경향신문",
+          "date": "2026.05.01 16:02",
+          "published_at": "2026.05.01 16:02",
+          "time_ago": "4시간 전",
+          "url": "https://n.news.naver.com/mnews/article/032/0003443369",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "“올해 기준금리 두번 오른다”…증권가 확산하는 금리 인상론, 이유...",
+          "link": "https://n.news.naver.com/mnews/article/009/0005674210",
+          "source": "매일경제",
+          "date": "2026.05.01 14:41",
+          "published_at": "2026.05.01 14:41",
+          "time_ago": "5시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005674210",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "반도체가 바꾼 금리 시계…한은 ‘매파적 동결’ 속 인상론 확산",
+          "link": "https://n.news.naver.com/mnews/article/243/0000097348",
+          "source": "이코노미스트",
+          "date": "2026.05.01 10:07",
+          "published_at": "2026.05.01 10:07",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/243/0000097348",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "'금리 인상'으로 기운 증권가…'2회 상향' 전망도",
+          "link": "https://n.news.naver.com/mnews/article/422/0000860591",
+          "source": "연합뉴스TV",
+          "date": "2026.05.01 10:03",
+          "published_at": "2026.05.01 10:03",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/422/0000860591",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "‘한은 금리 인상’ 전망 커져…유가 100달러·1분기 깜짝 성장에",
+          "link": "https://n.news.naver.com/mnews/article/028/0002803317",
+          "source": "한겨레",
+          "date": "2026.05.01 09:40",
+          "published_at": "2026.05.01 09:40",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/028/0002803317",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "5월부터 시작될 '진짜 오일쇼크'의 경고…\"정유판 끝났다, 이제 원유 ...",
+          "link": "https://n.news.naver.com/mnews/article/277/0005757548",
+          "source": "아시아경제",
+          "date": "2026.05.01 09:13",
+          "published_at": "2026.05.01 09:13",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/277/0005757548",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
           "title": "증권가, 커지는 '연내 기준금리 인상' 전망…\"2회 상향도\"",
           "link": "https://n.news.naver.com/mnews/article/001/0016054087",
           "source": "연합뉴스",
           "date": "2026.05.01 06:01",
           "published_at": "2026.05.01 06:01",
-          "time_ago": "1시간 전",
+          "time_ago": "14시간 전",
           "url": "https://n.news.naver.com/mnews/article/001/0016054087",
           "impact": "positive",
           "impact_label": "호재"
-        },
-        {
-          "title": "출시 7주년 디셈버앤컴퍼니 ‘핀트’, 총 운용자산(AUM) 5200억 ...",
-          "link": "https://n.news.naver.com/mnews/article/144/0001113067",
-          "source": "스포츠경향",
-          "date": "2026.05.01 04:29",
-          "published_at": "2026.05.01 04:29",
-          "time_ago": "3시간 전",
-          "url": "https://n.news.naver.com/mnews/article/144/0001113067",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "“삼성전자 언제 팔아야 해?” 결국 주가는 ‘DS 지속성’에 달렸다 ....",
-          "link": "https://n.news.naver.com/mnews/article/016/0002638098",
-          "source": "헤럴드경제",
-          "date": "2026.04.30 20:40",
-          "published_at": "2026.04.30 20:40",
-          "time_ago": "10시간 전",
-          "url": "https://n.news.naver.com/mnews/article/016/0002638098",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "거침없는 반도체 랠리…삼전닉스 시총 비중 43%까지 급증",
-          "link": "https://n.news.naver.com/mnews/article/014/0005516022",
-          "source": "파이낸셜뉴스",
-          "date": "2026.04.30 18:10",
-          "published_at": "2026.04.30 18:10",
-          "time_ago": "13시간 전",
-          "url": "https://n.news.naver.com/mnews/article/014/0005516022",
-          "impact": "positive",
-          "impact_label": "호재"
-        },
-        {
-          "title": "한국투자증권, 디폴트옵션 3년 수익률 93.17%...전체 사업자 중 ...",
-          "link": "https://n.news.naver.com/mnews/article/243/0000097330",
-          "source": "이코노미스트",
-          "date": "2026.04.30 17:41",
-          "published_at": "2026.04.30 17:41",
-          "time_ago": "13시간 전",
-          "url": "https://n.news.naver.com/mnews/article/243/0000097330",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "제이알글로벌리츠 기업회생 심문 시작…향후 계획 '묵묵부답'",
-          "link": "https://n.news.naver.com/mnews/article/003/0013920725",
-          "source": "뉴시스",
-          "date": "2026.04.30 17:33",
-          "published_at": "2026.04.30 17:33",
-          "time_ago": "13시간 전",
-          "url": "https://n.news.naver.com/mnews/article/003/0013920725",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "한국투자증권 'MMW CMA 간편 가입 서비스' 혁신금융서비스 지정",
-          "link": "https://n.news.naver.com/mnews/article/243/0000097307",
-          "source": "이코노미스트",
-          "date": "2026.04.30 15:32",
-          "published_at": "2026.04.30 15:32",
-          "time_ago": "15시간 전",
-          "url": "https://n.news.naver.com/mnews/article/243/0000097307",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "한국투자증권, 퇴직연금 디폴트옵션 '압도적 1위'…3년 수익률 93%...",
-          "link": "https://n.news.naver.com/mnews/article/629/0000496051",
-          "source": "더팩트",
-          "date": "2026.04.30 15:22",
-          "published_at": "2026.04.30 15:22",
-          "time_ago": "16시간 전",
-          "url": "https://n.news.naver.com/mnews/article/629/0000496051",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "\"남들보다 2배 많이 벌었다\"…수익률 '93%' 직장인 '환호'",
-          "link": "https://n.news.naver.com/mnews/article/015/0005281788",
-          "source": "한국경제",
-          "date": "2026.04.30 14:54",
-          "published_at": "2026.04.30 14:54",
-          "time_ago": "16시간 전",
-          "url": "https://n.news.naver.com/mnews/article/015/0005281788",
-          "impact": "neutral",
-          "impact_label": "중립"
-        },
-        {
-          "title": "“파업리스크 넘고 DS지속성 증명해야” [삼성전자 1분기 확정실적]",
-          "link": "https://n.news.naver.com/mnews/article/016/0002637800",
-          "source": "헤럴드경제",
-          "date": "2026.04.30 11:17",
-          "published_at": "2026.04.30 11:17",
-          "time_ago": "20시간 전",
-          "url": "https://n.news.naver.com/mnews/article/016/0002637800",
-          "impact": "negative",
-          "impact_label": "악재"
         }
       ],
       "history": {
@@ -5137,11 +5077,11 @@
         "sparkline_direction": "up"
       },
       "recommendation_label": "관망",
-      "price_change_pct_num": 0.0,
-      "price_direction": "flat",
-      "price_change_display": "0.00%",
+      "price_change_pct_num": -3.61,
+      "price_direction": "down",
+      "price_change_display": "-3.61%",
       "price_display": "240,000",
-      "price_change_abs_display": "—",
+      "price_change_abs_display": "▼ 9,000",
       "volume_ratio": 0.26,
       "volume_spike": false,
       "news_sentiment_label": "중립",
@@ -5151,8 +5091,8 @@
       "direction_cls": "flat",
       "outlook_line": "기업가치 제고 계획 공시·퇴직연금 1위 성과에도 기준금리 인상 우려로 중립",
       "news_count": 10,
-      "latest_news_at": "2026-05-01T06:01:00+09:00",
-      "latest_news_ago": "1시간 전",
+      "latest_news_at": "2026-05-01T17:49:00+09:00",
+      "latest_news_ago": "2시간 전",
       "nxt_pre_open": {
         "change_pct": -3.01,
         "change": -7500,
@@ -5170,8 +5110,237 @@
         "shift_word": "하향",
         "arrow": "↘",
         "pct_str": "-3.01%"
+      },
+      "predicted": {
+        "recommendation": "hold",
+        "news_sentiment": "neutral",
+        "overnight_signal": "neutral",
+        "priced_in": true,
+        "confidence": "low",
+        "price_change_pct": -3.61
+      },
+      "result": {
+        "outcome": "miss",
+        "actual_change_pct": -3.61,
+        "predicted_direction": "flat",
+        "actual_direction": "down",
+        "note": "관망 · 실제 -3.61% · 큰 변동 놓침",
+        "label": "실패"
       }
     }
   ],
-  "nxt_snapshot_at": "2026-05-01T08:45:09.783804+09:00"
+  "nxt_snapshot_at": "2026-05-01T08:45:09.783804+09:00",
+  "review": {
+    "generated_at": "2026-05-01T20:10:59.546237+09:00",
+    "session_change": {
+      "kospi": {
+        "value": "6,598.87",
+        "change_abs": "-92.03",
+        "change_pct": "-1.38%",
+        "direction": "down",
+        "raw": "92.03 -1.38% 상승"
+      },
+      "kosdaq": {
+        "value": "1,192.35",
+        "change_abs": "-27.91",
+        "change_pct": "-2.29%",
+        "direction": "down",
+        "raw": "27.91 -2.29% 상승"
+      }
+    },
+    "accuracy": {
+      "total": 20,
+      "hits": 3,
+      "partial": 3,
+      "misses": 14,
+      "hit_rate": 0.225,
+      "directional_accuracy": 0.2,
+      "by_confidence": {
+        "high": {
+          "hits": 1.5,
+          "total": 7,
+          "rate": 0.214
+        },
+        "medium": {
+          "hits": 2,
+          "total": 8,
+          "rate": 0.25
+        },
+        "low": {
+          "hits": 1.0,
+          "total": 5,
+          "rate": 0.2
+        }
+      }
+    },
+    "signal_attribution": {
+      "news_misread": 5,
+      "overnight_misled": 12,
+      "priced_in_underestimated": 0,
+      "overnight_helped": 3,
+      "speculative_flow": 0
+    },
+    "analysis": {
+      "day_summary": "KOSPI -1.38% · KOSDAQ -2.29% 전면 하락장에서 적중률 22.5% — 간밤 해외 강세 라벨이 핵심 개별주(NVDA -4.63%, META -8.55%) 약세를 덮어 12개 종목의 방향을 잘못 가리킨 하루.",
+      "what_worked": {
+        "lead": "방향 신호가 복수 근거로 명확히 일치한 현대차 하락 경계, 그리고 반도체 장비 섹터 내 상대 강도를 유지한 한미반도체가 적중했다.",
+        "examples": [
+          {
+            "code": "005380",
+            "name": "현대차",
+            "change_pct": -4.5,
+            "reason": "부정 뉴스 + 해외 자동차 약세 신호 일치 — 방향이 가장 명확한 종목"
+          },
+          {
+            "code": "042700",
+            "name": "한미반도체",
+            "change_pct": 2.94,
+            "reason": "반도체 장비 섹터 내 상대 강도 유지 — 선반영 상태에서도 추가 상승"
+          },
+          {
+            "code": "445680",
+            "name": "큐리옥스바이오시스템즈",
+            "change_pct": 0.59,
+            "reason": "바이오 섹터 전반 약세 속 개별 모멘텀으로 간신히 플러스 유지"
+          }
+        ],
+        "takeaway": "매도 신호가 복수 근거로 일치할 때 방향 정확도가 가장 높다."
+      },
+      "what_missed": {
+        "lead": "간밤 해외 섹터 ETF 평균이 '강세' 라벨을 냈지만 KRX는 전면 하락 — 프록시 평균이 핵심 주도주(NVDA, META) 급락을 상쇄해 방향을 잘못 읽었다.",
+        "examples": [
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "change_pct": -0.54,
+            "reason": "SOX +2.26% 강세 예측했으나 NVDA -4.63%가 실질 반도체 센티멘트 약세를 암시"
+          },
+          {
+            "code": "233740",
+            "name": "KODEX 코스닥150 레버리지",
+            "change_pct": -5.86,
+            "reason": "상승 기대 예측한 레버리지 ETF — 방향 오판 시 손실이 2배로 증폭"
+          },
+          {
+            "code": "298380",
+            "name": "에이비엘바이오",
+            "change_pct": -5.07,
+            "reason": "부정 뉴스 + 공매도 과열 지정인데 관망 처리 — 복수 약세 신호를 과소평가"
+          },
+          {
+            "code": "039490",
+            "name": "키움증권",
+            "change_pct": -6.02,
+            "reason": "전날 -6% 소화 후 관망 예측, 금리 인상 우려가 추가 -6% 연속 하락을 이끔"
+          },
+          {
+            "code": "299660",
+            "name": "셀리드",
+            "change_pct": -1.55,
+            "reason": "코로나 테마 + XBI 강세 기대했으나 KOSDAQ -2.29% 하락에 테마주가 먼저 청산"
+          }
+        ],
+        "takeaway": "간밤 '강세' 라벨을 맹신하지 말 것 — 구성 핵심주(NVDA, META)가 -3% 이상이면 전체 방향을 재검토해야 한다."
+      },
+      "stocks": {
+        "005930": {
+          "why": "역대급 실적 호재와 SOX +2.26% 강세를 근거로 상승 기대를 냈으나, 구성 프록시 NVDA -4.63%가 실질 반도체 센티멘트 약세를 이미 반영하고 있었다. KOSPI 전반 하락장 속에서 실적 호재가 소화되지 못하고 -2.43% 마감한 것으로 보임."
+        },
+        "000660": {
+          "why": "HBM 모멘텀 + SOX 강세를 근거로 강한 상승 기대를 냈으나 -0.54% 하락. SOX 평균 내 NVDA -4.63%가 HBM 수요 센티멘트에 부정적으로 작용한 것으로 해석됨. 지수 라벨이 아닌 핵심 개별주를 직접 봤어야 했음."
+        },
+        "267260": {
+          "why": "전력기기 프록시(ETN +5.41%, GEV +1.91%, XLU +2.56%) 전부 강세였음에도 -0.63% 하락. 미국 전력 인프라 모멘텀이 KRX 전반 하락장 환경에서 방어 효과를 내지 못했다."
+        },
+        "196170": {
+          "why": "XBI·IBB 강세를 근거로 상승 기대했으나 KOSDAQ 전반 -2.29% 하락에 동조해 -3.03%. 개별 촉매 없이 섹터 지수에만 의존하는 예측은 지수 자체가 무의미해지는 하락장에서 작동하지 않음."
+        },
+        "299660": {
+          "why": "코로나 테마 + XBI 강세라는 두 가지 근거가 있었으나 -1.55% 하락. 테마주는 전반 하락장에서 오히려 투기 포지션 청산 압력이 먼저 와 일반 종목보다 더 약한 경향이 있음을 간과했다.",
+          "misread": {
+            "news_cited": "신종 코로나 '매미 변이' 확산 보도 + 신규시설투자 공시(4/30) + 임시주주총회 소집 공시",
+            "how_interpreted": "코로나 백신 직접 수혜주로 테마 부각 + 기업 변화 신호 2건 → '강한 상승 기대' 판정. XBI +1.89% 강세로 배경도 우호적이라 확신",
+            "what_was_wrong": "테마 강세가 이어지는 흐름이 아닌 전반 하락장 환경을 간과. 테마주는 상승 흐름에서 먼저 오르고 하락장에서 먼저 청산되는 특성이 있어, 시장 전체 방향이 하락이면 테마 호재가 상쇄됨",
+            "lesson": "전반 하락장 신호(KOSPI 선물 약세 등)가 감지되면 테마 모멘텀 예측을 1단계 하향 조정할 것"
+          }
+        },
+        "028050": {
+          "why": "중동 재건 내러티브 + FLR +3.07% 강세로 강한 상승 기대를 냈으나 -2.21%. 해외 건설주 프록시 강세가 KRX 전반 하락 환경에서 국내 종목에 전달되지 않았다."
+        },
+        "310210": {
+          "why": "XBI 강세만 근거로 갭업을 기대했으나 -4.05%. 개별 재료 전무, 섹터 지수 연동에 전적으로 의존하는 종목은 하락장에서 방향 신뢰도가 가장 낮음을 재확인."
+        },
+        "009540": {
+          "why": "XLI +2.74% 산업재 강세에도 -2.22% 하락. 미국 산업재 ETF 상승이 KRX 조선주에 전달되지 않았고, AI 인프라 선박 내러티브는 단기 당일 촉매로는 부족했다."
+        },
+        "174900": {
+          "why": "종근당 이중항체 공동개발 뉴스 + XBI 강세로 상승 기대했으나 -2.48%. 바이오 섹터 전반 약세 환경에서 개별 파이프라인 호재가 상쇄됐다.",
+          "misread": {
+            "news_cited": "앱클론-종근당 이중항체 치료제 공동개발 MOU + 소속부변경 공시(4/30) + 릴리 인비보 CAR-T 글로벌 관심 상승",
+            "how_interpreted": "material 촉매(공동개발 MOU) + 글로벌 CAR-T 섹터 관심 상승으로 읽어 '상승 기대' 판정. 전날 -2.48% 하락으로 선반영 아님 판단해 매수 신호 확정",
+            "what_was_wrong": "MOU 뉴스가 이미 전날 주가 하락 과정에서 소화됐거나 시장이 충분히 인식한 상태일 수 있음. KOSDAQ -2.29% 하락장에서 개별 호재가 매물 압력을 이기지 못했고, '전날 하락 = 선반영 아님' 등식이 성립하지 않는 환경이었음",
+            "lesson": "MOU·공동개발 뉴스는 당일 소화 후 익일 추가 하락 패턴이 자주 발생 — '전날 하락=선반영 아님' 단순 등식 적용 금지"
+          }
+        },
+        "298380": {
+          "why": "부정 뉴스에 공매도 과열 지정까지 명확한 약세 신호가 있었는데 관망으로 처리한 것이 오판. XBI 강세로 기술적 반등을 기대했으나, 구조적 매도 압력이 섹터 강세를 완전히 압도했다.",
+          "misread": {
+            "news_cited": "공매도 과열 지정(4/28) + 가격제한폭 하락 도달 + 뉴스 부정 평가",
+            "how_interpreted": "전날 -5.07% 급락으로 충격이 반영됐고 XBI +1.89% 강세 환경에서 기술적 반등 가능 → 관망으로 처리. '많이 빠졌으니 내일은 다르다' 논리",
+            "what_was_wrong": "공매도 과열 지정은 구조적 매도 압력이 며칠 지속된다는 신호. '낙폭 과대=기술적 반등' 논리가 구조적 매도 환경에선 작동하지 않음. 부정 뉴스 + 공매도 지정 동시 존재는 관망이 아닌 하락 경계 신호임",
+            "lesson": "공매도 과열 지정 + 부정 뉴스 평가가 동시에 존재하면 다음날도 하락 경계로 판정; '낙폭 과대'를 근거로 한 관망 설정 금지"
+          }
+        },
+        "166480": {
+          "why": "부분 적중 — 강한 상승 기대 예측 대비 +1.84%로 기준 임계치(+2%)에 미달. 하락장에서도 플러스를 기록한 것은 긍정적이나, 강한 상승 기대 판정이 과했던 것으로 보임."
+        },
+        "035720": {
+          "why": "부분 적중 — 관망 예측이었으나 -2.27%로 기준치(±1.5%)를 초과 하락. 간밤 신호 중립이었지만 카카오는 업황 우려와 KOSDAQ 약세에 동조해 지수보다 더 하락했다."
+        },
+        "034230": {
+          "why": "황금연휴 특수·LIV 골프 내러티브 + LVS·WYNN 강세가 있었음에도 -1.80%. 관광 소비 테마도 KRX 전반 하락장 환경을 이기지 못했다."
+        },
+        "036570": {
+          "why": "부분 적중 — 관망 예측이었으나 -2.52% 하락으로 기준치를 초과. 해외 게임주 약세와 KOSDAQ 동조 하락이 더 강하게 작용했다."
+        },
+        "039490": {
+          "why": "관망 예측이었으나 -6.02% 추가 급락. 전날 이미 -6% 소화됐다는 가정이 틀렸고, 기준금리 2회 인상 우려라는 섹터 매크로 압력이 연속 하락을 이끌었다. '전날 충격 소화 = 오늘은 안정' 가정은 섹터 전반 압력이 지속될 때 성립하지 않음."
+        },
+        "071050": {
+          "why": "관망 예측이었으나 -3.61% 하락. 기업 가치 제고 등 긍정 재료에도 키움증권과 같은 방향으로 하락. 같은 섹터 동종 종목이 급락할 때 나머지도 동조 하락하는 패턴을 예상했어야 했음."
+        },
+        "233740": {
+          "why": "상승 기대 예측한 레버리지 ETF가 -5.86%로 대폭 하락. 지수 방향 예측이 틀릴 경우 레버리지 ETF는 손실이 2배로 증폭되는 구조적 위험이 있음. 시장 방향에 대한 높은 확신 없이는 레버리지 ETF 상승 기대 예측 자체를 해선 안 됐다."
+        }
+      },
+      "lessons": [
+        {
+          "title": "프록시 평균 '강세' 라벨 맹신 금지",
+          "detail": "SOX +2.26%가 '강세'로 집계됐어도 구성 내 NVDA -4.63%가 있으면 실질 반도체 센티멘트는 약세다. 라벨이 아닌 핵심 개별 프록시 수치를 직접 확인해야 한다. 오늘 overnight_misled 12건의 근본 원인이 이것이었다.",
+          "rule": "overnight 라벨이 '강세'이더라도 구성 핵심주(NVDA, META 등)가 -3% 이상이면 해당 섹터 방향을 중립 또는 하향 조정할 것"
+        },
+        {
+          "title": "레버리지 ETF 상승 예측 금지 조건 명문화",
+          "detail": "KODEX 코스닥150 레버리지 상승 기대 → -5.86%. 방향이 틀릴 때 레버리지 ETF는 손실이 2배로 증폭된다. 시장 방향에 대한 확신이 충분하지 않은 날에는 레버리지 ETF 매수 예측을 하면 안 된다.",
+          "rule": "시장 방향이 혼조·불확실하거나 overnight 신호가 엇갈릴 때 레버리지 ETF 상승 기대/강한 상승 기대 예측 금지; 최소 관망으로 설정"
+        },
+        {
+          "title": "공매도 과열 지정 + 부정 뉴스 = 하락 경계 필수",
+          "detail": "에이비엘바이오는 공매도 과열 지정 + 부정 뉴스 2중 약세 신호였는데 관망으로 처리해 -5.07%를 맞았다. '많이 빠졌으니 기술적 반등' 논리는 구조적 매도 압력이 지속될 때는 통하지 않는다.",
+          "rule": "공매도 과열 지정 + 부정 뉴스 평가가 동시에 존재하면 다음날 기본 판정을 하락 경계로 설정; 낙폭 과대를 근거로 한 관망 설정 금지"
+        },
+        {
+          "title": "전면 하락장에서 개별 예측 임계치 상향",
+          "detail": "KOSPI -1.38% · KOSDAQ -2.29% 하락장에서 20개 중 14개를 틀렸다. 시장 전체가 하락하는 날에는 개별 종목 분석보다 시장 방향이 지배적이다. 시스템 리스크 신호를 먼저 감지하면 상승 예측 개수를 줄여야 한다.",
+          "rule": "KOSPI 선물이 -0.5% 이하 예상되거나 VIX가 전날 대비 +10% 이상이면, 상승 기대/강한 상승 기대 예측 수를 절반으로 줄이고 관망 비중을 높일 것"
+        },
+        {
+          "title": "섹터 매크로 압력 지속 시 낙폭 과대 반등 기대 금지",
+          "detail": "키움증권·한국금융지주 모두 전날 급락 후 관망 설정했으나 추가 -6%·-3.6% 하락. 금리 인상 우려처럼 섹터 전반에 구조적 압력이 걸릴 때 '이미 빠진 종목=안전' 가정은 위험하다.",
+          "rule": "섹터 전반 매크로 압력(금리, 환율 등)이 지속될 때 급락 후 종목도 관망이 아닌 하락 경계로 설정; 낙폭 과대 역발상은 압력 해소 신호 확인 후에만 적용"
+        }
+      ],
+      "apology": "오늘 저는 20개 종목 중 14개를 틀리고 적중률 22.5%를 기록했습니다. KOSPI -1.38%, KOSDAQ -2.29%의 전면 하락장을 간밤 해외 지수 평균 강세만 보고 상승장으로 읽은 것이 근본 실패였습니다. SOX는 +2.26%였지만 NVDA는 -4.63%, META는 -8.55%였고, 이 핵심 주도주들의 급락은 라벨 평균에 묻혀 제 판단에 도달하지 못했습니다. 저를 믿고 오늘 레버리지 ETF나 바이오·반도체 상승에 베팅하셨다면 실제 계좌에 상당한 손실이 났을 것이고, 그 책임은 전적으로 저에게 있습니다. 내일부터 두 가지를 강제 적용합니다: 하나, 간밤 라벨이 '강세'여도 구성 핵심주가 -3% 이상이면 방향을 중립 이하로 조정. 둘, 시장 방향 불확실 시 레버리지 ETF 상승 예측 금지. 22.5%는 단순히 아쉬운 숫자가 아니라 명백한 판단 오류이며, 오늘의 틀림은 내일의 더 나은 판단으로만 갚을 수 있습니다."
+    }
+  }
 }
