@@ -48,6 +48,21 @@ description: Generate and publish today's pre-market stock briefing
     - 해당하지만 오늘은 다르게 갈 근거가 있으면 `rationale` 에 왜 예외인지 명시.
     - 매일 같은 lesson 이 적용돼도 OK — 누적 학습이 목적.
 
+1c. **승격 규칙 읽기 (반복 패턴 → 영구 규칙).** `docs/promoted_rules.md` 가 존재하면 전체를 읽는다.
+
+    ```python
+    from pathlib import Path
+    promoted_rules_path = Path("docs/promoted_rules.md")
+    if promoted_rules_path.exists():
+        promoted_rules_text = promoted_rules_path.read_text(encoding="utf-8")
+    # promoted_rules_text 를 읽고 오늘 판정에 반영
+    ```
+
+    **적용 우선순위**: 최근 5일 lessons (step 1b) 보다 **높은 우선순위**로 적용.
+    - 승격 규칙의 조건이 오늘 종목 상황에 해당하면 반드시 따를 것.
+    - 오늘 시장 상황이 명백히 다른 경우에만 예외 처리 가능 — 이 경우 `rationale` 에 "승격 규칙 예외: …" 식으로 이유를 명시.
+    - `docs/promoted_rules.md` 가 없으면 skip.
+
 2. **Read the raw data.** Read `.tmp/news.json`. Scan all stock news, disclosures, macro
    news, overnight markets, and indices together. Identify recurring themes, sector-level
    stories, and anything material.

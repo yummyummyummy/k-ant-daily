@@ -236,6 +236,17 @@ d.setdefault("review", {})["analysis"] = {
 p.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
 ```
 
+그 다음 step 4b 로 넘어간다.
+
+4b. **승격 규칙 갱신.** analysis 작성 직후 promote_rules.py 를 실행해 반복 패턴을 `docs/promoted_rules.md` 에 반영한다.
+
+    ```bash
+    .venv/bin/python scripts/promote_rules.py
+    ```
+
+    - 실행 결과 (몇 개 promoted, 어떤 topic) 를 결과 요약에 한 줄 포함.
+    - 실패하거나 아무것도 promote 되지 않아도 무시하고 step 5 로 진행. (없는 날도 정상)
+
 그 다음 step 5 (재렌더) 로 넘어간다.
 
 ## 신호 기여도 판정 기준
