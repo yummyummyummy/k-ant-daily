@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-05-04 리뷰 · k-ant-daily</title>
+<meta name="description" content="KOSPI +5.12% 이례적 급등 속에 적중률 42.5% — 증권·금융 고베타 섹터 폭등과 해외 약세 신호를 뒤집은 국내 매크로 랠리 대응 실패가 지배적 빗나감 패턴">
+<link rel="canonical" href="https://yummyummyummy.github.io/k-ant-daily/accuracy/2026-05-04.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-05-04 리뷰">
+<meta property="og:description" content="KOSPI +5.12% 이례적 급등 속에 적중률 42.5% — 증권·금융 고베타 섹터 폭등과 해외 약세 신호를 뒤집은 국내 매크로 랠리 대응 실패가 지배적 빗나감 패턴">
+<meta property="og:url" content="https://yummyummyummy.github.io/k-ant-daily/accuracy/2026-05-04.html">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="k-ant-daily">
+<meta property="og:image" content="https://yummyummyummy.github.io/k-ant-daily/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="k-ant-daily — 회고 페이지">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="2026-05-04 리뷰">
+<meta name="twitter:description" content="KOSPI +5.12% 이례적 급등 속에 적중률 42.5% — 증권·금융 고베타 섹터 폭등과 해외 약세 신호를 뒤집은 국내 매크로 랠리 대응 실패가 지배적 빗나감 패턴">
+<meta name="twitter:image" content="https://yummyummyummy.github.io/k-ant-daily/og-image.png">
+
+<style>
+:root {
+    --fg: #0f172a;
+    --muted: #64748b;
+    --bg: #ffffff;
+    --accent: #0f766e;
+    --border: #e2e8f0;
+    --card: #f8fafc;
+    /* 한국 주식 관행: 상승=빨강 / 하락=파랑 */
+    --pos: #dc2626;     --pos-bg: rgba(220,38,38,0.08);
+    --neg: #2563eb;     --neg-bg: rgba(37,99,235,0.08);
+    --partial: #d97706; --partial-bg: rgba(245,158,11,0.15);
+    --neu: #6b7280;     --neu-bg: rgba(107,114,128,0.08);
+    --good: #16a34a;    --good-bg: rgba(22,163,74,0.08);
+    --bad:  #b91c1c;    --bad-bg:  rgba(185,28,28,0.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fg: #e2e8f0;
+      --muted: #94a3b8;
+      --bg: #0f172a;
+      --accent: #5eead4;
+      --border: #1e293b;
+      --card: #1e293b;
+      --pos: #f87171;  --pos-bg: rgba(248,113,113,0.12);
+      --neg: #60a5fa;  --neg-bg: rgba(96,165,250,0.12);
+      --neu: #94a3b8;  --neu-bg: rgba(148,163,184,0.12);
+      --good: #4ade80; --good-bg: rgba(74,222,128,0.12);
+      --bad:  #f87171; --bad-bg:  rgba(248,113,113,0.12);
+    }
+  }
+  * { box-sizing: border-box; }
+
+  /* 하이라이터 — macro.summary · rationale 등 agent 가 `**...**` 로 감싼 구절이
+     이 스타일로 렌더된다. 장중 변동성 핵심 변수나 주요 예측 문구를 시각적으로
+     부각하는 용도. 내용은 `highlight` Jinja 필터가 생성. */
+  mark.driver {
+    background: rgba(250, 204, 21, 0.35);
+    color: inherit;
+    font-weight: 700;
+    padding: 1px 4px;
+    border-radius: 3px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  @media (prefers-color-scheme: dark) {
+    mark.driver {
+      background: rgba(250, 204, 21, 0.22);
+      color: var(--fg);
+    }
+  }  body { margin: 0; background: var(--bg); color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+    line-height: 1.6; font-size: 16px; }
+  main { max-width: 780px; margin: 0 auto; padding: 24px 20px 64px; }
+  h1 { font-size: 24px; margin: 0 0 6px; }
+  header nav a { color: var(--accent); text-decoration: none; font-size: 14px; margin-right: 4px; }
+  header time { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; }
+  section { margin-top: 28px; }
+  section h2 { font-size: 16px; margin: 0 0 12px; }
+
+  .hero {
+    display: grid; grid-template-columns: auto 1fr; gap: 20px;
+    align-items: center;
+    background: linear-gradient(135deg, var(--card), transparent);
+    border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+  }
+  .hero .big { font-size: 42px; font-weight: 900; font-variant-numeric: tabular-nums;
+    color: var(--accent); line-height: 1; }
+  .hero .label { font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .hero .meta { font-size: 13px; color: var(--muted); }
+  .hero .meta strong { color: var(--fg); }
+
+  .session-row {
+    display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px;
+    color: var(--muted); margin-top: 8px;
+  }
+  .session-row .idx { display: inline-flex; align-items: baseline; gap: 6px; }
+  .session-row .idx .nm { color: var(--fg); font-weight: 700; font-size: 12px; letter-spacing: 0.02em; }
+  .session-row .idx .val { color: var(--fg); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .session-row .idx .chg { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .session-row .idx.up   .chg { color: var(--pos); }
+  .session-row .idx.down .chg { color: var(--neg); }
+  .session-row .idx.flat .chg { color: var(--muted); }
+
+  .day-summary {
+    background: var(--card); border-left: 3px solid var(--accent);
+    border-radius: 6px; padding: 12px 16px; font-size: 15px;
+  }
+
+  .sorry-box {
+    background: #1a0000; border: 2px solid var(--neg);
+    border-radius: 10px; padding: 18px 20px; margin-bottom: 20px;
+  }
+  .sorry-box .sorry-title {
+    font-size: 16px; font-weight: 800; color: var(--neg);
+    margin: 0 0 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .sorry-box .sorry-body {
+    font-size: 14px; line-height: 1.7; color: var(--fg);
+    white-space: pre-line;
+  }
+  .sorry-box .sorry-rate {
+    display: inline-block; font-size: 28px; font-weight: 900;
+    color: var(--neg); margin-right: 4px; font-variant-numeric: tabular-nums;
+  }
+
+  .two-col {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+  .two-col .block {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+  }
+  .two-col .block.worked { border-left: 3px solid var(--good); }
+  .two-col .block.missed { border-left: 3px solid var(--bad); }
+  .two-col .block h3 { font-size: 13px; margin: 0 0 8px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em; }
+  .two-col .block.worked h3 { color: var(--good); }
+  .two-col .block.missed h3 { color: var(--bad); }
+  .two-col .lead { margin: 0 0 10px; font-size: 14px; color: var(--fg); line-height: 1.5; }
+  .two-col .example-list { list-style: none; padding: 0; margin: 0 0 10px; display: flex; flex-direction: column; gap: 6px; }
+  .two-col .example-list li {
+    font-size: 13px; line-height: 1.45; display: grid;
+    grid-template-columns: auto 1fr; gap: 8px; align-items: baseline;
+  }
+  .two-col .chip {
+    display: inline-flex; align-items: baseline; gap: 4px;
+    padding: 2px 8px; border-radius: 999px;
+    background: var(--neu-bg); font-size: 11px; font-weight: 700;
+    white-space: nowrap;
+  }
+  .two-col .chip .nm { color: var(--fg); }
+  .two-col .chip .pct { font-variant-numeric: tabular-nums; letter-spacing: 0.01em; }
+  .two-col .chip.up   { background: var(--pos-bg); }
+  .two-col .chip.up   .pct { color: var(--pos); }
+  .two-col .chip.down { background: var(--neg-bg); }
+  .two-col .chip.down .pct { color: var(--neg); }
+  .two-col .chip.flat .pct { color: var(--muted); }
+  .two-col .reason { color: var(--muted); font-size: 13px; }
+  .two-col .takeaway {
+    font-size: 12px; color: var(--muted); padding-top: 8px;
+    border-top: 1px dashed var(--border); margin-top: 6px;
+  }
+  .two-col .prose p { margin: 0; font-size: 14px; }
+
+  .attrib-row {
+    display: flex; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--muted);
+    margin-top: 10px;
+  }
+  .attrib-row .chip {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 999px; padding: 3px 10px;
+  }
+  .attrib-row .chip .n { font-weight: 700; color: var(--fg); }
+
+  /* Per-stock list — always open, no details/summary */
+  .stock-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .stock-list .scard {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 16px;
+  }
+  .stock-list .shead {
+    display: grid; grid-template-columns: 1fr auto auto auto; gap: 12px;
+    align-items: center; padding-bottom: 10px; border-bottom: 1px dashed var(--border);
+    margin-bottom: 10px;
+  }
+  .stock-list .sname { font-weight: 700; font-size: 14px; }
+  .stock-list .scode { font-size: 11px; color: var(--muted); font-weight: 400; margin-left: 4px; font-variant-numeric: tabular-nums; }
+  .stock-list .spred { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; }
+  .stock-list .sactual {
+    font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums;
+    min-width: 64px; text-align: right;
+  }
+  .stock-list .sactual.up   { color: var(--pos); }
+  .stock-list .sactual.down { color: var(--neg); }
+  .stock-list .sactual.flat { color: var(--muted); }
+  .stock-list .verdict {
+    font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px;
+    letter-spacing: 0.02em;
+  }
+  .stock-list .verdict.hit     { background: var(--pos-bg);     color: var(--pos); }
+  .stock-list .verdict.partial { background: var(--partial-bg); color: var(--partial); }
+  .stock-list .verdict.miss    { background: var(--neg-bg);     color: var(--neg); }
+  .stock-list .verdict.na      { background: var(--neu-bg);     color: var(--neu); }
+
+  .stock-list .row { display: grid; grid-template-columns: 64px 1fr; gap: 10px; padding: 6px 0; }
+  .stock-list .row + .row { border-top: 1px dashed var(--border); }
+  .stock-list .row .k { color: var(--muted); font-weight: 600; font-size: 12px; padding-top: 1px; }
+  .stock-list .row .v { color: var(--fg); font-size: 13px; line-height: 1.5; }
+  .stock-list .row.why .v { color: var(--fg); }
+  .stock-list .missing-why {
+    color: var(--muted); font-style: italic; font-size: 12px;
+  }
+
+  /* Misread deep-dive block — shown inline when analysis.stocks[].misread exists */
+  .stock-list .misread {
+    margin-top: 10px; padding: 10px 14px;
+    background: var(--bad-bg); border-left: 3px solid var(--bad);
+    border-radius: 6px;
+  }
+  .stock-list .misread .mhead {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    color: var(--bad); text-transform: uppercase; margin-bottom: 6px;
+  }
+  .stock-list .misread .mrow {
+    display: grid; grid-template-columns: 90px 1fr; gap: 8px;
+    padding: 5px 0; border-top: 1px dashed rgba(185,28,28,0.2);
+    font-size: 13px; line-height: 1.5;
+  }
+  .stock-list .misread .mrow:first-of-type { border-top: none; }
+  .stock-list .misread .mk { color: var(--bad); font-weight: 600; font-size: 12px; }
+  .stock-list .misread .mv { color: var(--fg); }
+
+  /* Lessons section */
+  .lessons { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .lessons li.lesson {
+    background: var(--card); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px; padding: 12px 16px;
+  }
+  .lessons .l-title { font-weight: 700; font-size: 14px; margin-bottom: 5px; display: flex; gap: 8px; align-items: baseline; }
+  .lessons .l-title .num {
+    font-size: 11px; font-weight: 700; color: var(--accent);
+    background: var(--bg); padding: 1px 7px; border-radius: 999px;
+    border: 1px solid var(--accent);
+  }
+  .lessons .l-detail { font-size: 13px; color: var(--fg); line-height: 1.55; }
+  .lessons .l-rule {
+    font-size: 12px; color: var(--accent); font-weight: 600;
+    margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border);
+  }
+  .lessons .l-rule::before { content: "📏 "; }
+
+  footer { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 12px; text-align: center; }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <nav>
+      <a href="../2026-05-04.html">← 그날 아침 브리핑</a> ·
+      <a href="../archive.html">📋 예측</a> ·
+      <a href="../accuracy.html">📊 통계</a>
+    </nav>
+    <h1>🔍 2026-05-04 리뷰</h1>
+    <time>생성 2026-05-04 20:14 KST</time>
+  </header>
+
+  <div class="sorry-box">
+    <div class="sorry-title">
+      <span>⚠️ 반성문</span>
+      <span class="sorry-rate">42%</span>
+    </div>
+    <div class="sorry-body">오늘 20개 종목 중 10건을 틀렸습니다. 적중률 42.5%는 동전 던지기 수준에도 미치지 못하는 결과입니다. 특히 제 의견을 보고 키움증권이나 한국금융지주를 관망하셨다면, 각각 +6.16%, +9.17%라는 강세장에서 수익 기회를 완전히 놓치셨을 것이고, 현대차나 HD현대일렉트릭을 하락 경계로 보고 매도하셨다면 실제 상승에 역행하는 손실을 입으셨을 겁니다. KOSPI +5.12%라는 이례적 급등일에 저는 개별 뉴스와 해외 프록시 신호에만 집중한 나머지, &#39;지수 전체가 이 방향으로 움직일 때 베타가 높은 섹터는 어떻게 될 것인가&#39;라는 가장 기본적인 질문을 놓쳤습니다. 내일부터는 지수 기대 방향이 +3% 이상인 날 증권·금융·건설 고베타 종목의 관망 판단을 자동으로 한 단계 상향 검토하고, 해외 프록시 신호가 국내 매크로 이벤트와 충돌할 때는 프록시 가중치를 낮추는 규칙을 강제 적용하겠습니다. 오늘의 빗나감은 규칙의 부재가 아니라 맥락 읽기의 실패였습니다. 그 책임을 온전히 인정하고 내일 판단으로 갚겠습니다.</div>
+  </div>
+
+  <section>
+    <div class="hero">
+      <div>
+        <div class="label">오늘 적중률</div>
+        <div class="big">42%</div>
+      </div>
+      <div class="meta">
+        총 <strong>20</strong>건 ·
+        ✅ <strong>7</strong> ·
+        🟡 <strong>3</strong> ·
+        ❌ <strong>10</strong><br>
+        방향 정확도 <strong>25%</strong>
+        <div class="session-row">
+          <span class="idx up">
+            <span class="nm">KOSPI</span>
+<span class="val">6,936.99</span>            <span class="chg">↑ +5.12% (Δ+338.12)</span>
+          </span>
+          <span class="idx up">
+            <span class="nm">KOSDAQ</span>
+<span class="val">1,213.74</span>            <span class="chg">↑ +1.79% (Δ+21.39)</span>
+          </span>
+        </div>
+        <div class="attrib-row">
+          <span class="chip">
+📰 뉴스 오독
+            <span class="n">4</span>
+          </span>
+          <span class="chip">
+🌙 간밤 오도
+            <span class="n">4</span>
+          </span>
+          <span class="chip">
+🌙 간밤 적중 지원
+            <span class="n">4</span>
+          </span>
+          <span class="chip">
+⚠️ 선반영 과소평가
+            <span class="n">1</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="day-summary">📋 KOSPI +5.12% 이례적 급등 속에 적중률 42.5% — 증권·금융 고베타 섹터 폭등과 해외 약세 신호를 뒤집은 국내 매크로 랠리 대응 실패가 지배적 빗나감 패턴</div>
+  </section>
+
+  <section>
+    <div class="two-col">
+      <div class="block worked">
+        <h3>✅ 잘된 것</h3>
+<p class="lead">반도체·바이오 개별 촉매가 명확했던 종목은 시장 방향과 무관하게 예측이 유효했다</p>          <ul class="example-list">
+            <li>
+              <span class="chip up">
+                <span class="nm">SK하이닉스</span>
+                <span class="pct">+12.52%</span>
+              </span>
+              <span class="reason">반도체 섹터 강세 + MU +4.84% 간밤 신호 일치 — 강한 상승 기대 그대로 적중</span>
+            </li>
+            <li>
+              <span class="chip up">
+                <span class="nm">KODEX 코스닥150 레버리지</span>
+                <span class="pct">+2.83%</span>
+              </span>
+              <span class="reason">나스닥 강세 간밤 신호 정확 반영 — 지수 레버리지 방향 예측 성공</span>
+            </li>
+            <li>
+              <span class="chip down">
+                <span class="nm">에이비엘바이오</span>
+                <span class="pct">-1.71%</span>
+              </span>
+              <span class="reason">뉴스 부정 + 바이오 섹터 약세 신호 일치 — 하락 경계 예측 적중</span>
+            </li>
+            <li>
+              <span class="chip up">
+                <span class="nm">코아스템켐온</span>
+                <span class="pct">+1.51%</span>
+              </span>
+              <span class="reason">뉴스 긍정 촉매 단독 재료 — 섹터 약세 속에서도 개별 상승 유지</span>
+            </li>
+          </ul>
+<div class="takeaway">💡 개별 촉매(실적·임상·지수 프록시)가 뚜렷할수록 시장 변동성 속에서도 예측 신뢰도가 유지된다</div>      </div>
+      <div class="block missed">
+        <h3>❌ 빗나간 것</h3>
+<p class="lead">KOSPI +5.12% 급등일에 고베타 증권/금융주 폭등 패턴을 놓쳤고, 간밤 해외 약세 신호를 과신해 국내 랠리를 역예측했다</p>          <ul class="example-list">
+            <li>
+              <span class="chip up">
+                <span class="nm">한국금융지주</span>
+                <span class="pct">+9.17%</span>
+              </span>
+              <span class="reason">관망 예측 — 시장 지수 5% 급등 시 증권/금융 고베타 폭등 패턴을 개별 분석으로 포착 불가</span>
+            </li>
+            <li>
+              <span class="chip up">
+                <span class="nm">키움증권</span>
+                <span class="pct">+6.16%</span>
+              </span>
+              <span class="reason">선반영으로 관망 예측 — 실적 하락 선반영 판단이 지수 급등 랠리에 압도됨</span>
+            </li>
+            <li>
+              <span class="chip up">
+                <span class="nm">HD현대일렉트릭</span>
+                <span class="pct">+3.75%</span>
+              </span>
+              <span class="reason">GEV -1.89% 간밤 약세로 하락 경계 — 해외 유틸리티 약세가 국내 테마주 랠리를 반영 못함</span>
+            </li>
+            <li>
+              <span class="chip up">
+                <span class="nm">삼성전자</span>
+                <span class="pct">+5.44%</span>
+              </span>
+              <span class="reason">파업 뉴스 부정 + 선반영 판단으로 관망 — 시장 전체 5% 랠리가 개별 부정 재료를 완전 압도</span>
+            </li>
+            <li>
+              <span class="chip up">
+                <span class="nm">현대차</span>
+                <span class="pct">+1.51%</span>
+              </span>
+              <span class="reason">F/GM/STLA 간밤 동반 약세로 하락 경계 — 국내 관세 협상 기대 랠리에 해외 자동차 신호 무력화</span>
+            </li>
+          </ul>
+<div class="takeaway">💡 KOSPI 3% 이상 급등일에는 개별 뉴스·해외 신호 분석보다 시장 베타가 종목 방향을 지배한다</div>      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🎓 오늘의 학습 <span style="font-weight:400;font-size:12px;color:var(--muted);">· 다음 판정 때 참고</span></h2>
+    <ul class="lessons">
+      <li class="lesson">
+        <div class="l-title"><span class="num">1</span><span>지수 급등일 고베타 섹터 우선 조정</span></div>
+        <div class="l-detail">KOSPI 3% 이상 급등이 예상되는 날(전일 미국 지수 2% 이상 급등 등)에는 증권/금융·건설·조선 고베타 섹터 종목을 개별 분석 전에 &#39;방향 편향 +1단계&#39;로 선조정해야 한다. 오늘 키움 +6.16%, 한국금융 +9.17%가 관망 판단 대상이었다는 건 지수 맥락을 누락한 결과다.</div>
+<div class="l-rule">KOSPI 일간 기대 변동이 +3% 이상이면 증권·금융·건설·조선의 관망 판단을 한 단계 상향 검토할 것</div>      </li>
+      <li class="lesson">
+        <div class="l-title"><span class="num">2</span><span>해외 프록시 신호와 국내 디커플링 확인</span></div>
+        <div class="l-detail">현대차(F/GM 약세 → 실제 상승), HD현대일렉트릭(GEV 약세 → 실제 상승)처럼, 국내 매크로 이벤트(관세 협상, 환율 변동)가 있는 날에는 해외 섹터 프록시 신호가 국내 주가 방향과 반대로 작동할 수 있다. 프록시 사용 전 국내 특수 이벤트 여부를 먼저 점검해야 한다.</div>
+<div class="l-rule">관세·환율·금리 국내 이벤트 당일에는 해외 프록시 신호 가중치를 0.5배로 낮추고, 대신 지수 방향 베타를 우선 적용할 것</div>      </li>
+      <li class="lesson">
+        <div class="l-title"><span class="num">3</span><span>나스닥 강세 → 국내 플랫폼/게임 자동 전이 금물</span></div>
+        <div class="l-detail">카카오(-0.42%), 엔씨소프트(-1.11%)가 나스닥 강세에도 하락한 것처럼, 국내 플랫폼/게임주는 글로벌 IT 지수와 당일 상관관계가 낮은 날이 많다. 미국 테크 강세를 근거로 국내 플랫폼/게임 상승을 자동 추론하면 반복적으로 빗나간다.</div>
+<div class="l-rule">나스닥 강세가 국내 플랫폼/게임 매수 근거로 단독 사용될 때, 최대 &#39;관망&#39; 이상을 넘지 않도록 제한할 것</div>      </li>
+      <li class="lesson">
+        <div class="l-title"><span class="num">4</span><span>선반영 판단 + 지수 급등 충돌 시 편향 수정</span></div>
+        <div class="l-detail">삼성전자(선반영+파업 → 관망 → 실제 +5.44%)처럼, 개별 종목이 선반영 상태여도 지수 전체가 5% 급등하면 베타에 의해 강제 상승한다. 선반영 판단은 지수 중립일 기준이며 지수 급등일에는 수정이 필요하다.</div>
+<div class="l-rule">지수 +3% 이상 예상일에는 선반영 판단 기반 관망 종목도 &#39;소폭 상승&#39; 방향 편향을 유지하고 강한 매도는 자제할 것</div>      </li>
+      <li class="lesson">
+        <div class="l-title"><span class="num">5</span><span>소형 바이오 개별 재료 부재 = 중립 아님</span></div>
+        <div class="l-detail">앱클론(-3.87%)처럼 소형 바이오주에서 당일 재료가 없을 때, &#39;재료 없음 = 중립&#39;으로 처리하면 섹터 약세가 중소형주에 더 크게 전이되는 패턴을 놓친다. 바이오 ETF 약세 + 소형주 + 재료 부재 조합은 관망이 아닌 약한 하락 경계로 판단해야 한다.</div>
+<div class="l-rule">바이오 ETF 약세 + 소형 바이오 + 24시간 내 개별 뉴스 없음 조합에서는 하락 경계(sell) 판단을 우선 검토할 것</div>      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>종목별</h2>
+    <ul class="stock-list">
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">삼성전자</span><span class="scode">005930</span>
+          </span>
+          <span class="spred">관망</span>
+          <span class="sactual up">
++5.44%          </span>
+          <span class="verdict miss">실패</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">파업 우려 vs 간밤 SOX 강세 상충, 갭상승 후 노조 이슈로 매도 압력 예상. 노조 파업 시 하루 1조원 손실 외신 보도로 뉴스 톤 부정적. 그러나 어제 -2.43% 낙폭에 상당 부분 선반영됨 + SOX +0.87%·MU +4.84% 간밤 반도체 강세. 두 신호가 상충해 신뢰도 낮음. 보유분 1/3~1/2 익절로 리스크 경감 권고.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+파업 우려라는 뉴스 부정 톤과 선반영 판단이 결합되어 관망으로 처리했으나, KOSPI +5.12%라는 시장 전체 급등이 개별 부정 재료를 완전히 압도한 것으로 보인다. 간밤 SOX +0.87%·MU +4.84% 강세 신호도 있었지만, 노조 리스크 때문에 하향 조정한 것이 과도했던 것으로 해석된다.
+          </div>
+        </div>
+        <div class="misread">
+          <div class="mhead">📖 뉴스 오독 분석</div>
+          <div class="mrow"><div class="mk">본 뉴스</div><div class="mv">삼성전자 노조 파업 시 하루 1조원 손실 외신 보도 + 갭상승 후 노조 이슈 매도 압력 예상</div></div>
+          <div class="mrow"><div class="mk">이렇게 해석</div><div class="mv">뉴스 톤 부정 + 선반영으로 보아 추가 상승 여력 제한 → 간밤 반도체 강세와 상충하는 신호로 처리해 관망 결론</div></div>
+          <div class="mrow"><div class="mk">어긋난 지점</div><div class="mv">파업 뉴스가 시장 전체 랠리(+5.12%) 앞에서 완전히 무력화되는 상황을 가정하지 않았다. 지수 급등일에는 부정 개별 뉴스도 상승 베타에 묻히는 패턴을 이미 알면서도 적용하지 않았다.</div></div>
+          <div class="mrow"><div class="mk">💡 배운 점</div><div class="mv">KOSPI 기대 방향이 +3% 이상일 때(전일 미국 시장 급등 등), 개별 부정 뉴스가 있어도 매도보다는 관망, 관망보다는 소폭 상승 방향으로 편향을 두어야 한다</div></div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">SK하이닉스</span><span class="scode">000660</span>
+          </span>
+          <span class="spred">강한 상승 기대</span>
+          <span class="sactual up">
++12.52%          </span>
+          <span class="verdict hit">적중</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">HBM 수요 모멘텀 + 간밤 SOX·MU 강세로 오늘 갭상승 강세 출발 예상. AI 슈퍼사이클 핵심 수혜주로 연휴 동안 SOX +0.87%, MU +4.84% 강세가 직접 연동. 어제 소폭 -0.54% 하락으로 선반영 없음. 뉴스 긍정 + 간밤 강세 + 선반영 아님 3가지 일치 → 신뢰도 높음. 단, 20일 누적 +46.8% 고점 부담 유의.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+<span class="missing-why">적중 — 별도 분석 생략</span>
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">HD현대일렉트릭</span><span class="scode">267260</span>
+          </span>
+          <span class="spred">하락 경계</span>
+          <span class="sactual up">
++3.75%          </span>
+          <span class="verdict miss">실패</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">20일 +41.8% 과열 + 간밤 GEV -1.89% 약세로 승격 규칙 적용 — 매도 격상. 친환경 차단기 유럽 수출은 중장기 긍정 재료이나, 승격 규칙(20일 수익률 +40% 이상 + 프록시 약세 -1.5% 이상 = 매도)이 오늘 판정을 override. 간밤 전력기기 ETF(ETN -1.72%, GEV -1.89%) 동반 약세로 차익 실현 압력 가시화 예상.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+20일 누적 수익률 +41.8% 과열 + 간밤 전력기기 ETF 약세라는 기계적 승격 규칙이 하락 경계를 산출했다. 그러나 승격 규칙은 평상장 조건에서 유효하며, 지수 5% 급등일에는 테마주 과열 매도 규칙보다 시장 베타가 우선한다는 점을 고려하지 않았다.
+          </div>
+        </div>
+        <div class="misread">
+          <div class="mhead">📖 뉴스 오독 분석</div>
+          <div class="mrow"><div class="mk">본 뉴스</div><div class="mv">간밤 GEV -1.89%, ETN -1.72% — 글로벌 전력기기 ETF 동반 약세</div></div>
+          <div class="mrow"><div class="mk">이렇게 해석</div><div class="mv">글로벌 전력기기 프록시 약세 + 20일 +41.8% 과열 → 승격 규칙 자동 적용으로 하락 경계 격상</div></div>
+          <div class="mrow"><div class="mk">어긋난 지점</div><div class="mv">승격 규칙(20일 수익률 +40% + 프록시 약세 = 매도)은 평상장 전제로 설계됐으나, 지수 급등일에는 고수익 테마주가 추가로 튀어오르는 패턴이 있다. 해외 프록시 약세가 국내 전력기기 테마주와 당일 비동조화된 것도 놓쳤다.</div></div>
+          <div class="mrow"><div class="mk">💡 배운 점</div><div class="mv">전일 KOSPI 기대 방향이 +3% 이상이면 승격 규칙(과열 + 프록시 약세 = 매도) 적용을 유보하거나 한 단계 완화해야 한다</div></div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">알테오젠</span><span class="scode">196170</span>
+          </span>
+          <span class="spred">관망</span>
+          <span class="sactual up">
++1.22%          </span>
+          <span class="verdict hit">적중</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">개별 재료 부재 + 간밤 XBI -0.69% 소폭 약세로 오늘 중립 흐름 예상. 24시간 내 material 뉴스가 없어 섹터 흐름에 무방비. XBI -0.69%는 -1.5% 자동 격상 임계치 미달로 관망 유지. 5일 수익률 +3.1%로 선반영 아님. 신뢰도 낮아 비중 유지만 권고.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+<span class="missing-why">적중 — 별도 분석 생략</span>
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">한미반도체</span><span class="scode">042700</span>
+          </span>
+          <span class="spred">관망</span>
+          <span class="sactual up">
++2.72%          </span>
+          <span class="verdict partial">부분</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">5일 +25.4% 급등으로 선반영 가능성 높아 관망 유지. 반도체 소부장 수혜 뉴스 긍정적이나, 직전 5일 +25.4% 급등(승격 규칙 3 적용 — 1단계 하향)으로 추가 호재가 이미 상당 부분 주가에 반영. 간밤 SOX +0.87% 강세이나 AMAT -1.37%, NVDA -0.56% 혼조로 신호 중립. 신뢰도 낮아 추가 진입 부적합.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+선반영으로 관망 예측했으나 +2.72% 부분 적중. SK하이닉스 급등(+12.52%)에 동반한 반도체 장비 섹터 수혜를 놓친 것으로 보인다. 반도체 섹터 강세일 때 장비주 연동 상승을 한 단계 상향 조정할 필요가 있다.
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">셀리드</span><span class="scode">299660</span>
+          </span>
+          <span class="spred">하락 경계</span>
+          <span class="sactual up">
++0.79%          </span>
+          <span class="verdict miss">실패</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">공매도 과열 종목 연장 + 간밤 XBI·MRNA 약세로 매도 격상. 24시간 내 개별 뉴스 없고 공매도 거래 금지 연장(4/22) 중 — 구조적 약세 압력 신호. 간밤 XBI -0.69%, MRNA -1.24% 약세가 겹쳐 오늘도 하락 압력 우위 예상. 20일 +30.9%로 고점 부담 존재.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+<span class="missing-why">분석 미작성</span>
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">KODEX 코스닥150 레버리지</span><span class="scode">233740</span>
+          </span>
+          <span class="spred">상승 기대</span>
+          <span class="sactual up">
++2.83%          </span>
+          <span class="verdict hit">적중</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">나스닥 +0.89% + 기관/외인 코스닥 상승 베팅으로 기술적 반등 기대. 전일 -5.86% 큰 낙폭으로 선반영 아님. 나스닥 +0.89%는 명확한 상승 신호로 레버리지 ETF 금지 규칙(혼조 시) 미해당. 다우 -0.31%로 혼조 신호가 일부 있어 strong_buy에서 1단계 하향 — 레버리지 특성상 방향 확신이 100%는 아닌 상황.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+<span class="missing-why">적중 — 별도 분석 생략</span>
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">삼성E&amp;A</span><span class="scode">028050</span>
+          </span>
+          <span class="spred">관망</span>
+          <span class="sactual up">
++3.58%          </span>
+          <span class="verdict miss">실패</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">개별 재료 없이 간밤 XLE -1.34% 약세로 오늘 약보합 예상. 정유·에너지 프록시 XLE를 우선 참조(승격 규칙 3)하면 간밤 에너지 섹터 약세가 삼성E&amp;A 수주 방향에도 부담. 개별 IR·잠정실적 이미 반영 상태. 비중 유지 외 별도 액션 없음.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+에너지 ETF 약세 신호를 근거로 약보합을 예측했으나 +3.58% 급등했다. 삼성E&amp;A는 플랜트 수주 테마로 에너지 ETF 방향보다 국내 건설/플랜트 섹터 방향과 동조하는 날이 많은데, 이날 시장 전체 랠리에서 건설주가 동반 상승한 점을 포착하지 못했다.
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">보로노이</span><span class="scode">310210</span>
+          </span>
+          <span class="spred">관망</span>
+          <span class="sactual up">
++2.82%          </span>
+          <span class="verdict partial">부분</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">개별 뉴스·공시 없이 XBI 중립으로 방향성 불명확. 5일 -10.1% 하락 후 기술적 반등 여지는 있으나 뉴스 촉매 없이 신뢰도 낮음. 비중 유지 외 액션 불필요.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+<span class="missing-why">분석 미작성</span>
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">큐리옥스바이오시스템즈</span><span class="scode">445680</span>
+          </span>
+          <span class="spred">관망</span>
+          <span class="sactual down">
+-0.88%          </span>
+          <span class="verdict hit">적중</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">개별 뉴스 없이 간밤 XBI·IBB 소폭 약세로 중립-약세 흐름 예상. 5일 +11.6%로 이미 단기 상승 있어 추가 호재 없이는 관망. 신뢰도 낮아 비중 유지만 권고.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+<span class="missing-why">적중 — 별도 분석 생략</span>
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">HD한국조선해양</span><span class="scode">009540</span>
+          </span>
+          <span class="spred">관망</span>
+          <span class="sactual up">
++1.73%          </span>
+          <span class="verdict partial">부분</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">중동 슈퍼사이클 뉴스 긍정 vs 간밤 산업재 ETF 약세 상충, 오늘 보합권 흐름 예상. 중동전쟁발 선박 발주 급증과 HD현대 순이익 재계 4위 달성이 긍정 재료이나, 간밤 XLI -0.93%·DAC -0.53% 약세가 상방을 제한. 두 신호 상충으로 신뢰도 낮음 — 비중 유지 후 조정 시 분할 매수 기회 모색.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+조선 섹터 개별 재료 없이 관망 예측했으나 +1.73% 부분 적중. 시장 전체 랠리에서 조선주가 동반 소폭 상승한 패턴이다. 부분 적중 범위 내에 있어 큰 오판은 아니나, 시장 급등일 관망 종목도 한 단계 방향 편향이 필요하다는 점을 시사한다.
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">앱클론</span><span class="scode">174900</span>
+          </span>
+          <span class="spred">관망</span>
+          <span class="sactual down">
+-3.87%          </span>
+          <span class="verdict miss">실패</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">개별 재료 부재 + 간밤 XBI·IBB 약세로 오늘 약보합 예상. 24시간 내 material 뉴스 없음. 소속부 변경 공시(4/30)는 주가 방향에 무관. 신뢰도 낮아 비중 유지만 권고.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+개별 재료 부재와 바이오 ETF 약세로 약보합을 예측했으나 -3.87%의 더 큰 하락이 발생했다. 소형 바이오주는 섹터 약세 시 지수 ETF보다 더 큰 하방 압력을 받는 경우가 많은데, 관망으로 처리해 이 하방 리스크를 포착하지 못했다.
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">에이비엘바이오</span><span class="scode">298380</span>
+          </span>
+          <span class="spred">하락 경계</span>
+          <span class="sactual down">
+-1.71%          </span>
+          <span class="verdict hit">적중</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">공매도 과열 지정 + 뉴스 부정으로 승격 규칙 1 적용 — 매도 필수. 4/28 공매도 과열 지정 + 주가 하락폭 3단계 도달 공시. 어제 -5.07% 큰 낙폭으로 상당 부분 선반영됐으나 구조적 매도 압력이 지속되는 한 낙폭 과대 논리로 반등 기대 금지(승격 규칙). 간밤 XBI -0.69%도 약세.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+<span class="missing-why">적중 — 별도 분석 생략</span>
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">코아스템켐온</span><span class="scode">166480</span>
+          </span>
+          <span class="spred">상승 기대</span>
+          <span class="sactual up">
++1.51%          </span>
+          <span class="verdict hit">적중</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">카티라이프 글로벌 진출 촉매 + 간밤 XBI 중립으로 오늘 강세 출발 기대. 국산 세포치료제 카티라이프의 첫 글로벌 진출(4/29) 소식이 72시간 내 material 뉴스. 간밤 바이오 ETF 중립으로 큰 장애물 없음. 20일 +37.5% 상승이 있으나 +40% 임계치 미달로 승격 규칙 미적용. 뉴스 긍정 + 중립 overnight + 선반영 아님 → 상승 기대.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+<span class="missing-why">적중 — 별도 분석 생략</span>
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">카카오</span><span class="scode">035720</span>
+          </span>
+          <span class="spred">상승 기대</span>
+          <span class="sactual down">
+-0.42%          </span>
+          <span class="verdict miss">실패</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">AI 전략 구체화 + 카카오뱅크 성장으로 오늘 반등 기대. 카카오뱅크 AI·글로벌 전략 가입자 3000만 달성과 카톡 기능 개선이 긍정 재료. 어제 -2.27% 하락으로 선반영 아님. 간밤 나스닥 +0.89% 강세가 IT 플랫폼 센티먼트 개선. 뉴스 긍정 + 중립 overnight + 선반영 아님.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+뉴스 긍정 + 나스닥 강세 간밤 신호로 상승 기대를 냈으나 -0.42%로 빗나갔다. 국내 플랫폼주(카카오)는 나스닥 강세가 당일 직접 전이되지 않는 날이 많고, 이날은 시장 전체 급등 속에서도 개별 약세를 보였다는 점에서 나스닥-카카오 상관관계를 과신한 것으로 보인다.
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">현대차</span><span class="scode">005380</span>
+          </span>
+          <span class="spred">하락 경계</span>
+          <span class="sactual up">
++1.51%          </span>
+          <span class="verdict miss">실패</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">노조 갈등 + 중국 전기차 위협 + 간밤 글로벌 자동차주 일제 약세로 하락 경계. 기아 노조 로봇 허가제·현대차 완전 월급제 협상이 제조 비용 리스크 부각. 중국 전기차 강남 진출 가속은 내수 시장 위협. 어제 -4.50% 큰 낙폭으로 일부 선반영됐으나 간밤 F -1.66%·GM -1.46%·STLA -2.06% 동반 약세로 하방 압력 지속. 강한 하락 경계에서 1단계 완화 — 어제 -4.5% 선반영 감안.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+F/GM/STLA 간밤 동반 약세(-1.7% 수준)라는 해외 자동차 신호와 노조/중국 전기차 부정 뉴스를 결합해 하락 경계를 냈다. 그러나 국내 완성차주는 미국 관세 협상 기대 등 국내 특수 요인으로 해외 자동차주와 디커플링되는 날이 반복되어 왔는데 이를 고려하지 않았다.
+          </div>
+        </div>
+        <div class="misread">
+          <div class="mhead">📖 뉴스 오독 분석</div>
+          <div class="mrow"><div class="mk">본 뉴스</div><div class="mv">현대차 노조 로봇 허가제·완전 월급제 협상 리스크 + 중국 전기차 강남 진출 가속 보도</div></div>
+          <div class="mrow"><div class="mk">이렇게 해석</div><div class="mv">뉴스 부정 + 간밤 글로벌 자동차 일제 약세 → 양방향 하락 압력 확인 → 하락 경계 격상</div></div>
+          <div class="mrow"><div class="mk">어긋난 지점</div><div class="mv">국내 완성차주는 미국 관세 협상 기대·원화 강세 등 국내 매크로 변수에 민감하게 반응하는 날이 있어, 해외 자동차 프록시와 당일 디커플링이 발생했다. 부정 뉴스 + 해외 약세 = 국내 하락이라는 등식이 항상 성립하지 않는다.</div></div>
+          <div class="mrow"><div class="mk">💡 배운 점</div><div class="mv">완성차주에서 해외 프록시(F·GM·STLA) 신호를 반영할 때, 국내 관세·환율 이벤트 여부를 먼저 확인하고 디커플링 가능성이 높으면 신호 가중치를 낮춰야 한다</div></div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">파라다이스</span><span class="scode">034230</span>
+          </span>
+          <span class="spred">관망</span>
+          <span class="sactual flat">
+0.00%          </span>
+          <span class="verdict hit">적중</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">LIV 골프 호텔 지정·관광 호조 긍정 vs 간밤 카지노주 일제 약세 상충, 보합 흐름 예상. LIV 골프 코리아 공식 호텔 지정과 부산 외국인 관광 100만 돌파는 실질 매출 기대 재료. 그러나 간밤 LVS -1.50%·WYNN -1.05%·MGM -1.13% 동반 약세로 카지노 섹터 글로벌 센티먼트 부정적. 두 신호 상충으로 신뢰도 낮음.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+<span class="missing-why">적중 — 별도 분석 생략</span>
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">엔씨소프트</span><span class="scode">036570</span>
+          </span>
+          <span class="spred">상승 기대</span>
+          <span class="sactual down">
+-1.11%          </span>
+          <span class="verdict miss">실패</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">아이온2 글로벌 전략 구체화 + 나스닥 강세로 오늘 반등 기대. 북미·일본 지역별 맞춤 전략이 구체화되며 글로벌 성장 모멘텀 가시화(회고 교훈 반영: 게임주 플랫폼 확장은 실질 촉매). 어제 -2.52% 하락으로 선반영 아님. 간밤 TTWO +1.06%·나스닥 +0.89% 긍정.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+나스닥 강세 + 글로벌 게임주 상승으로 상승 기대를 냈으나 -1.11%로 빗나갔다. TTWO +1.06%·나스닥 강세와 달리 국내 게임주는 독립적 수급 흐름을 보이는 경우가 많다. 글로벌 게임 프록시 신호가 국내 게임주 당일 수급을 반영한다는 가정이 이날은 성립하지 않았다.
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">키움증권</span><span class="scode">039490</span>
+          </span>
+          <span class="spred">관망</span>
+          <span class="sactual up">
++6.16%          </span>
+          <span class="verdict miss">실패</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">저평가 분석 긍정이나 잠정실적 이미 -6% 반영, 수수료 경쟁 심화가 상방 제한. &#39;증시 호황에도 저평가&#39; 분석 기사는 중장기 호재이나 4/30 잠정실적 공시 후 어제 -6.02% 급락으로 선반영. 수수료 제로 전쟁 심화는 수익성 압박 요인. 간밤 XLF -0.40% 소폭 약세. 신뢰도 낮음 — 조정 시 분할 매수 기회 모색.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+잠정실적 하락 후 전일 -6.02% 급락으로 선반영 완료로 판단해 관망 예측했으나, 증권주는 KOSPI 방향에 대한 베타가 1.5~2 수준이라 지수 급등 시 개별 악재가 무력화된다는 점을 과소평가한 것으로 보인다. 선반영 판단과 베타 효과를 같이 다루지 않았다.
+          </div>
+        </div>
+      </li>
+      <li class="scard">
+        <div class="shead">
+          <span>
+            <span class="sname">한국금융지주</span><span class="scode">071050</span>
+          </span>
+          <span class="spred">관망</span>
+          <span class="sactual up">
++9.17%          </span>
+          <span class="verdict miss">실패</span>
+        </div>
+        <div class="row">
+          <div class="k">아침 근거</div>
+          <div class="v">기업가치 제고 공시 긍정적이나 고유가 물가 우려와 중립 overnight으로 방향성 불명확. 4/29 기업가치 제고 계획 공시는 긍정 신호이나 이미 발표된 내용. 간밤 IAI·XLF·SCHW 소폭 약세로 금융 섹터 중립. 키움증권과 같은 섹터로 기본 방향 공유하되 개별 뉴스 차이로 hold-neutral 유지. 신뢰도 낮음.</div>
+        </div>
+        <div class="row why">
+          <div class="k">🔍 왜</div>
+          <div class="v">
+기업가치 제고 공시를 이미 반영된 호재로 판단하고 간밤 금융 ETF 소폭 약세로 관망 결론을 냈다. 그러나 증권/금융주는 KOSPI 5% 급등 시 자본이익·거래량 급증 기대로 구조적으로 큰 폭 상승하는 고베타 섹터다. 지수 방향을 사전에 포착하지 못한 점이 근본 원인이다.
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    k-ant-daily · <a href="https://github.com/yummyummyummy/k-ant-daily" target="_blank" rel="noopener">GitHub</a>
+  </footer>
+</main>
+</body>
+</html>
