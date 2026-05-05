@@ -753,7 +753,25 @@
       "outlook_line": "애플 수혜·MU 급등에 반도체 모멘텀 지속, 7000 돌파 시 추가 상승 기대",
       "news_count": 10,
       "latest_news_at": "2026-05-06T07:28:00+09:00",
-      "latest_news_ago": "2분 전"
+      "latest_news_ago": "2분 전",
+      "nxt_pre_open": {
+        "change_pct": 7.53,
+        "change": 17500,
+        "direction": "up",
+        "captured_at": "2026-05-06T08:45:08.292308+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +7.53%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+7.53%"
+      }
     },
     {
       "code": "000660",
@@ -1021,7 +1039,25 @@
       "outlook_line": "MU +11% HBM 슈퍼사이클 재확인, 오늘 추가 상승 모멘텀 유효",
       "news_count": 10,
       "latest_news_at": "2026-05-06T07:28:00+09:00",
-      "latest_news_ago": "2분 전"
+      "latest_news_ago": "2분 전",
+      "nxt_pre_open": {
+        "change_pct": 10.64,
+        "change": 154000,
+        "direction": "up",
+        "captured_at": "2026-05-06T08:45:08.292360+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +10.64%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+10.64%"
+      }
     },
     {
       "code": "267260",
@@ -1286,7 +1322,25 @@
       "outlook_line": "K전력 슈퍼사이클 지속, 어제 지수 대비 덜 올라 오늘 추격 상승 여지",
       "news_count": 10,
       "latest_news_at": "2026-05-06T06:00:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 2.16,
+        "change": 28000,
+        "direction": "up",
+        "captured_at": "2026-05-06T08:45:08.292378+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +2.16%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+2.16%"
+      }
     },
     {
       "code": "196170",
@@ -1470,7 +1524,17 @@
       "outlook_line": "코스피 이전상장 이슈로 수급 불확실, 오늘 중립 흐름 예상",
       "news_count": 4,
       "latest_news_at": "2026-05-06T07:22:00+09:00",
-      "latest_news_ago": "8분 전"
+      "latest_news_ago": "8분 전",
+      "nxt_pre_open": {
+        "change_pct": -0.94,
+        "change": -3500,
+        "direction": "down",
+        "captured_at": "2026-05-06T08:45:08.292391+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.94%",
+        "cls": "down"
+      }
     },
     {
       "code": "042700",
@@ -1629,7 +1693,25 @@
       "outlook_line": "SOX·AMAT 강세 + 공매도 쇼트커버 압력, 오늘 반도체 소부장 상승 편승 예상",
       "news_count": 2,
       "latest_news_at": "2026-05-05T22:41:00+09:00",
-      "latest_news_ago": "8시간 전"
+      "latest_news_ago": "8시간 전",
+      "nxt_pre_open": {
+        "change_pct": 6.35,
+        "change": 24000,
+        "direction": "up",
+        "captured_at": "2026-05-06T08:45:08.292404+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +6.35%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+6.35%"
+      }
     },
     {
       "code": "299660",
@@ -2086,7 +2168,17 @@
       "outlook_line": "중동 플랜트 불확실성 상존, 개별 재료 부재로 시장 흐름에 연동하는 관망 구간",
       "news_count": 3,
       "latest_news_at": "2026-05-06T06:36:00+09:00",
-      "latest_news_ago": "54분 전"
+      "latest_news_ago": "54분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.18,
+        "change": 100,
+        "direction": "up",
+        "captured_at": "2026-05-06T08:45:08.292418+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.18%",
+        "cls": "up"
+      }
     },
     {
       "code": "310210",
@@ -2205,7 +2297,25 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "바이오 섹터 중립 환경, 개별 재료 부재로 오늘 뚜렷한 방향성 부재 예상",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -1.71,
+        "change": -5000,
+        "direction": "down",
+        "captured_at": "2026-05-06T08:45:08.292428+09:00"
+      },
+      "nxt_adjusted_recommendation": "sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -1.71%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-1.71%"
+      }
     },
     {
       "code": "445680",
@@ -2331,7 +2441,25 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "24시간 내 개별 뉴스 없음, XBI 중립으로 오늘 뚜렷한 방향성 없음",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -1.88,
+        "change": -1900,
+        "direction": "down",
+        "captured_at": "2026-05-06T08:45:08.292437+09:00"
+      },
+      "nxt_adjusted_recommendation": "sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -1.88%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-1.88%"
+      }
     },
     {
       "code": "009540",
@@ -2561,7 +2689,17 @@
       "outlook_line": "가스선 수주 공시 + 중동 발주 사이클 재점화, 오늘 상승 여력 가장 높은 종목",
       "news_count": 6,
       "latest_news_at": "2026-05-06T06:59:00+09:00",
-      "latest_news_ago": "31분 전"
+      "latest_news_ago": "31분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.21,
+        "change": 1000,
+        "direction": "up",
+        "captured_at": "2026-05-06T08:45:08.292451+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.21%",
+        "cls": "up"
+      }
     },
     {
       "code": "174900",
@@ -2813,7 +2951,25 @@
       "direction_label": "하락 경계",
       "direction_cls": "down",
       "outlook_line": "ABL001 OS 미달 실망감 지속 + 공매도 과열, 오늘도 추가 하락 압력 예상",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -2.42,
+        "change": -3200,
+        "direction": "down",
+        "captured_at": "2026-05-06T08:45:08.292463+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -2.42%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "하락 경계",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-2.42%"
+      }
     },
     {
       "code": "166480",
@@ -3152,7 +3308,17 @@
       "outlook_line": "개별 재료 없고 나스닥 강세 → 국내 플랫폼 자동 전이 제한, 오늘 관망 구간",
       "news_count": 10,
       "latest_news_at": "2026-05-06T07:02:00+09:00",
-      "latest_news_ago": "28분 전"
+      "latest_news_ago": "28분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.0,
+        "change": 0,
+        "direction": "flat",
+        "captured_at": "2026-05-06T08:45:08.292477+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — 0.00%",
+        "cls": "flat"
+      }
     },
     {
       "code": "005380",
@@ -3426,7 +3592,17 @@
       "outlook_line": "하이브리드 전략 + 미국 자동차주 강세, 오늘 1분기 실적 공시 후 추가 상승 기대",
       "news_count": 10,
       "latest_news_at": "2026-05-06T07:00:00+09:00",
-      "latest_news_ago": "30분 전"
+      "latest_news_ago": "30분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.93,
+        "change": 5000,
+        "direction": "up",
+        "captured_at": "2026-05-06T08:45:08.292487+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.93%",
+        "cls": "up"
+      }
     },
     {
       "code": "034230",
@@ -3592,7 +3768,17 @@
       "direction_label": "상승 기대",
       "direction_cls": "up",
       "outlook_line": "LIV 골프·관광 성수기 기대 + 간밤 카지노주 강세, 어제 0% 부진 후 반등 기대",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": 0.57,
+        "change": 90,
+        "direction": "up",
+        "captured_at": "2026-05-06T08:45:08.292496+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.57%",
+        "cls": "up"
+      }
     },
     {
       "code": "036570",
@@ -3770,7 +3956,17 @@
       "outlook_line": "증권가 목표가 일제히 상향, 오늘 갭업 후 주가 re-rating 기대",
       "news_count": 2,
       "latest_news_at": "2026-05-06T00:20:00+09:00",
-      "latest_news_ago": "7시간 전"
+      "latest_news_ago": "7시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.56,
+        "change": -1500,
+        "direction": "down",
+        "captured_at": "2026-05-06T08:45:08.292505+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.56%",
+        "cls": "down"
+      }
     },
     {
       "code": "039490",
@@ -4007,7 +4203,25 @@
       "outlook_line": "어제 +6.16% 급등 선반영, 오늘 추가 강세보다 숨고르기 흐름 예상",
       "news_count": 10,
       "latest_news_at": "2026-05-06T07:29:00+09:00",
-      "latest_news_ago": "1분 전"
+      "latest_news_ago": "1분 전",
+      "nxt_pre_open": {
+        "change_pct": 8.64,
+        "change": 36500,
+        "direction": "up",
+        "captured_at": "2026-05-06T08:45:08.292514+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +8.64%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+8.64%"
+      }
     },
     {
       "code": "071050",
@@ -4272,7 +4486,26 @@
       "outlook_line": "기업가치 제고 계획 + 시장 강세 지속, 오늘 추가 상승 여력 있으나 선반영 일부 감안",
       "news_count": 10,
       "latest_news_at": "2026-05-06T07:22:00+09:00",
-      "latest_news_ago": "8분 전"
+      "latest_news_ago": "8분 전",
+      "nxt_pre_open": {
+        "change_pct": 5.92,
+        "change": 15500,
+        "direction": "up",
+        "captured_at": "2026-05-06T08:45:08.292523+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +5.92%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+5.92%"
+      }
     }
-  ]
+  ],
+  "nxt_snapshot_at": "2026-05-06T08:45:08.292531+09:00"
 }
