@@ -71,8 +71,14 @@ stocks:
     name: "앱클론"
     market: KOSDAQ
     sector: "바이오"
-    owners: ["오병호", "장윤영"]
+    owners: ["오병호", "장윤영", "주황선"]
     overnight_proxy: ["XBI", "IBB"]
+  - code: "396270"
+    name: "넥스트칩"
+    market: KOSDAQ
+    sector: "반도체"
+    owners: ["주황선"]
+    overnight_proxy: ["^SOX", "MCHP", "ON"]
   - code: "298380"
     name: "에이비엘바이오"
     market: KOSDAQ
