@@ -27,7 +27,7 @@ stocks:
     name: "한미반도체"
     market: KOSPI
     sector: "반도체"
-    owners: ["한윤근", "장한솔"]
+    owners: ["장한솔"]
     overnight_proxy: ["^SOX", "AMAT", "NVDA"]
   - code: "299660"
     name: "셀리드"
@@ -46,7 +46,7 @@ stocks:
     name: "삼성E&A"
     market: KOSPI
     sector: "건설/플랜트"
-    owners: ["장한솔", "장윤영", "한윤근"]
+    owners: ["장한솔", "한윤근"]
     overnight_proxy: ["XLE", "FLR"]
   - code: "310210"
     name: "보로노이"
@@ -71,7 +71,7 @@ stocks:
     name: "앱클론"
     market: KOSDAQ
     sector: "바이오"
-    owners: ["오병호", "장윤영", "주황선"]
+    owners: ["오병호", "이웅수", "주황선"]
     overnight_proxy: ["XBI", "IBB"]
   - code: "396270"
     name: "넥스트칩"
@@ -101,7 +101,7 @@ stocks:
     name: "현대차"
     market: KOSPI
     sector: "자동차"
-    owners: ["장한솔"]
+    owners: ["장한솔", "한윤근"]
     overnight_proxy: ["F", "GM", "STLA"]
   - code: "034230"
     name: "파라다이스"
@@ -127,3 +127,15 @@ stocks:
     sector: "증권"
     owners: ["장윤영"]
     overnight_proxy: ["IAI", "XLF", "SCHW"]
+  - code: "010120"
+    name: "LS일렉트릭"
+    market: KOSPI
+    sector: "전력기기"
+    owners: ["장윤영"]
+    overnight_proxy: ["GEV", "ETN", "XLU"]
+  - code: "278470"
+    name: "에이피알"
+    market: KOSPI
+    sector: "뷰티/화장품"
+    owners: ["장윤영"]
+    overnight_proxy: ["ELF", "ULTA", "^IXIC"]
