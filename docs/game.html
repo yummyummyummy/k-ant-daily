@@ -319,48 +319,10 @@ async function screenJoinOrPlay() {
     root.innerHTML = `<div class="card"><h2>방을 찾을 수 없음</h2><div class="hint">${e.message}</div></div>`;
     return;
   }
-
-  if (!state.me) {
-    return renderClaim(state);
-  }
+  // Always render the full dashboard. When `me` is null we render in
+  // spectator mode — counts/odds/leaderboard visible, vote buttons disabled,
+  // members section gates entry by name claim.
   return renderPlay(state);
-}
-
-function renderClaim(state) {
-  const { room, members } = state;
-  root.innerHTML = `
-    <div class="card">
-      <h2>${escapeHtml(room.name)} <span class="status-pill">방 입장</span></h2>
-      <div class="hint">본인 이름을 클릭하세요. 클릭하면 본인용 토큰이 생성되고 URL이 본인 전용 링크로 바뀝니다. 그 URL을 북마크하세요.</div>
-      <div class="members-grid" style="margin-top:12px;" id="members-grid">
-        ${members.map((m) => `
-          <div class="member-chip ${m.claimed ? "claimed" : ""}" data-name="${escapeAttr(m.name)}">
-            ${escapeHtml(m.name)}
-            ${m.claimed ? '<div style="font-size:11px;margin-top:2px;">✓ 가입됨</div>' : ''}
-          </div>
-        `).join("")}
-      </div>
-      <hr>
-      <div class="field">
-        <label>명단에 빠진 사람 추가</label>
-        <div style="display:flex;gap:8px;">
-          <input id="new-member" placeholder="이름" style="flex:1;">
-          <button class="secondary" id="add-btn">추가</button>
-        </div>
-      </div>
-    </div>
-  `;
-  document.getElementById("members-grid").querySelectorAll(".member-chip:not(.claimed)").forEach((el) => {
-    el.onclick = () => claimMember(state.room.id, el.dataset.name);
-  });
-  document.getElementById("add-btn").onclick = async () => {
-    const n = document.getElementById("new-member").value.trim();
-    if (!n) return;
-    try {
-      await api("POST", `/game/rooms/${state.room.id}/members`, { name: n });
-      screenJoinOrPlay();
-    } catch (e) { toast(e.message, "error"); }
-  };
 }
 
 async function claimMember(roomId, name) {
@@ -403,12 +365,17 @@ function renderPlay(state) {
   // Today stocks
   const stocksHtml = today.stocks.map((s) => renderStockRow(s, today, today.votes_by_member, me)).join("");
 
+  // Header line — different copy for spectator (no token) vs player (token).
+  const headerHint = me
+    ? `나: <strong>${escapeHtml(me)}</strong> · 라운드 ${today.date}${
+        today.voting_open ? " · ⏳ 당일 09:00 마감 (자유롭게 변경 가능)" : ""
+      }`
+    : `<strong>관전 모드</strong> · 라운드 ${today.date} · 투표하려면 아래 멤버 영역에서 본인 이름을 클릭하세요`;
+
   root.innerHTML = `
     <div class="card">
       <h2>${escapeHtml(room.name)} <span class="status-pill ${status}">${statusLabel}</span></h2>
-      <div class="hint">나: <strong>${escapeHtml(me)}</strong> · 라운드 ${today.date}${
-        today.voting_open ? " · ⏳ 당일 09:00 마감 (자유롭게 변경 가능)" : ""
-      }</div>
+      <div class="hint">${headerHint}</div>
     </div>
 
     <div class="card">
@@ -418,6 +385,9 @@ function renderPlay(state) {
         : ""}
       ${status === "void"
         ? '<div class="hint">휴장일 — 결과 무효. 점수 변동 없음.</div>'
+        : ""}
+      ${!me && today.voting_open
+        ? '<div class="hint">관전 모드 — 베팅하려면 멤버 영역에서 본인 이름 클릭 후 가입.</div>'
         : ""}
       <div id="stocks">${stocksHtml}</div>
     </div>
@@ -431,11 +401,12 @@ function renderPlay(state) {
 
     <div class="card">
       <h2>👥 멤버</h2>
-      <div class="members-grid">
+      ${!me ? '<div class="hint" style="margin-bottom:8px;">미가입 이름 클릭 시 본인 토큰이 생성되며 그 후엔 그 URL이 본인 전용 링크가 됩니다. 북마크 필수.</div>' : ""}
+      <div class="members-grid" id="members-grid">
         ${members.map((m) => `
-          <div class="member-chip ${m.claimed ? "claimed" : ""} ${m.name === me ? "me" : ""}">
+          <div class="member-chip ${m.claimed ? "claimed" : ""} ${m.name === me ? "me" : ""}" data-name="${escapeAttr(m.name)}">
             ${escapeHtml(m.name)}
-            <div style="font-size:11px;margin-top:2px;">${m.claimed ? '✓ 가입' : '미가입'}</div>
+            <div style="font-size:11px;margin-top:2px;">${m.claimed ? '✓ 가입' : (me ? '미가입' : '👉 클릭해 가입')}</div>
           </div>
         `).join("")}
       </div>
@@ -457,10 +428,27 @@ function renderPlay(state) {
     </div>
   `;
 
-  // Wire up vote buttons
+  // Vote buttons — only wire when user has a token. Without one the buttons
+  // render disabled (renderStockRow already adds the disabled attribute when
+  // voting_open is false; we additionally short-circuit the click here).
   document.querySelectorAll(".vote-btn[data-code]").forEach((btn) => {
-    btn.onclick = () => vote(state, btn.dataset.code, btn.dataset.pick);
+    btn.onclick = () => {
+      if (!me) {
+        toast("먼저 멤버 영역에서 본인 이름을 클릭해 가입하세요", "error");
+        return;
+      }
+      vote(state, btn.dataset.code, btn.dataset.pick);
+    };
   });
+
+  // Members grid — when no token, unclaimed names are clickable to claim.
+  if (!me) {
+    document.getElementById("members-grid").querySelectorAll(".member-chip:not(.claimed)").forEach((el) => {
+      el.style.cursor = "pointer";
+      el.onclick = () => claimMember(state.room.id, el.dataset.name);
+    });
+  }
+
   document.getElementById("add-btn-2").onclick = async () => {
     const n = document.getElementById("new-member-2").value.trim();
     if (!n) return;
@@ -528,7 +516,8 @@ function renderStockRow(s, today, votesByMember, me) {
   const status = today.status;
   const c = s.counts;
   const total = c.up + c.down;
-  const isVotingOpen = today.voting_open && status === "open";
+  // Spectators (no token) see the same dashboard but cannot vote.
+  const isVotingOpen = today.voting_open && status === "open" && !!me;
   const myPick = s.my_pick;
 
   const oddsUp = s.odds?.up ? `<span class="odds">${s.odds.up.toFixed(2)}x</span>` : "";
