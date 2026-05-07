@@ -95,12 +95,12 @@ function newToken() {
 async function ensureRoundExists(env, date) {
   // Idempotent: open today's round if not already there. Skip weekends.
   if (isWeekend(date)) return null;
-  const existing = await env.DB.prepare("SELECT * FROM rounds WHERE date = ?")
+  const existing = await env.k_ant_game.prepare("SELECT * FROM rounds WHERE date = ?")
     .bind(date)
     .first();
   if (existing) return existing;
   const stocksJson = JSON.stringify(GAME_STOCKS);
-  await env.DB.prepare(
+  await env.k_ant_game.prepare(
     "INSERT INTO rounds (date, stocks_json, status) VALUES (?, ?, 'open')"
   )
     .bind(date, stocksJson)
@@ -114,7 +114,7 @@ async function lockRound(env, date) {
   // judging direction at 20:10 (since direction = today_close > prev_close).
   // For the very first day the round runs, this is fine — the judging
   // baseline is whatever the price was at 09:00 KST.
-  const round = await env.DB.prepare("SELECT * FROM rounds WHERE date = ?")
+  const round = await env.k_ant_game.prepare("SELECT * FROM rounds WHERE date = ?")
     .bind(date)
     .first();
   if (!round || round.status !== "open") return;
@@ -123,7 +123,7 @@ async function lockRound(env, date) {
   const codes = stocks.map((s) => s.code);
   const prevCloses = await fetchNaverPrices(codes);
 
-  await env.DB.prepare(
+  await env.k_ant_game.prepare(
     "UPDATE rounds SET status='closed', prev_closes_json=?, locked_at=? WHERE date=?"
   )
     .bind(JSON.stringify(prevCloses), Date.now(), date)
@@ -132,7 +132,7 @@ async function lockRound(env, date) {
 
 async function resolveRound(env, date, fetchClosesFn) {
   // Compute directions, write results, compute scores.
-  const round = await env.DB.prepare("SELECT * FROM rounds WHERE date = ?")
+  const round = await env.k_ant_game.prepare("SELECT * FROM rounds WHERE date = ?")
     .bind(date)
     .first();
   if (!round || round.status !== "closed") return;
@@ -147,7 +147,7 @@ async function resolveRound(env, date, fetchClosesFn) {
     (c) => todayCloses[c] != null && prevCloses[c] != null
   );
   if (validCodes.length === 0) {
-    await env.DB.prepare(
+    await env.k_ant_game.prepare(
       "UPDATE rounds SET status='void', resolved_at=? WHERE date=?"
     )
       .bind(Date.now(), date)
@@ -172,7 +172,7 @@ async function resolveRound(env, date, fetchClosesFn) {
 
   // Score every (room, member) for this date.
   // Step 1: pull all votes for this date.
-  const voteRows = await env.DB.prepare(
+  const voteRows = await env.k_ant_game.prepare(
     "SELECT room_id, member_name, stock_code, pick FROM votes WHERE date = ?"
   )
     .bind(date)
@@ -215,14 +215,14 @@ async function resolveRound(env, date, fetchClosesFn) {
 
   // Step 4: write scores + round results in a transaction-like batch.
   const stmts = [
-    env.DB.prepare(
+    env.k_ant_game.prepare(
       "UPDATE rounds SET status='resolved', results_json=?, resolved_at=? WHERE date=?"
     ).bind(JSON.stringify(results), Date.now(), date),
   ];
   for (const [key, s] of scoreMap.entries()) {
     const [room, member] = key.split("|");
     stmts.push(
-      env.DB.prepare(
+      env.k_ant_game.prepare(
         `INSERT INTO scores (room_id, member_name, date, hits, total, points)
          VALUES (?, ?, ?, ?, ?, ?)
          ON CONFLICT(room_id, member_name, date) DO UPDATE
@@ -230,7 +230,7 @@ async function resolveRound(env, date, fetchClosesFn) {
       ).bind(room, member, date, s.hits, s.total, s.points)
     );
   }
-  await env.DB.batch(stmts);
+  await env.k_ant_game.batch(stmts);
 }
 
 // ─── Naver price fetchers ─────────────────────────────────────────────
@@ -319,14 +319,14 @@ async function createRoom(env, body) {
   if (members.length > 20) return json({ error: "too many members (max 20)" }, 400);
 
   const roomId = newId("R", 8);
-  await env.DB.prepare("INSERT INTO rooms (id, name, created_at) VALUES (?, ?, ?)")
+  await env.k_ant_game.prepare("INSERT INTO rooms (id, name, created_at) VALUES (?, ?, ?)")
     .bind(roomId, name, Date.now())
     .run();
 
   const stmts = members.map((m) =>
-    env.DB.prepare("INSERT INTO members (room_id, name) VALUES (?, ?)").bind(roomId, m)
+    env.k_ant_game.prepare("INSERT INTO members (room_id, name) VALUES (?, ?)").bind(roomId, m)
   );
-  await env.DB.batch(stmts);
+  await env.k_ant_game.batch(stmts);
 
   return json({ room_id: roomId, name, members });
 }
@@ -334,7 +334,7 @@ async function createRoom(env, body) {
 async function claimMember(env, roomId, body) {
   const name = (body.name || "").trim();
   if (!name) return json({ error: "name required" }, 400);
-  const member = await env.DB.prepare(
+  const member = await env.k_ant_game.prepare(
     "SELECT name, token FROM members WHERE room_id = ? AND name = ?"
   )
     .bind(roomId, name)
@@ -343,7 +343,7 @@ async function claimMember(env, roomId, body) {
   if (member.token) return json({ error: "name already claimed" }, 409);
 
   const token = newToken();
-  await env.DB.prepare(
+  await env.k_ant_game.prepare(
     "UPDATE members SET token=?, joined_at=? WHERE room_id=? AND name=?"
   )
     .bind(token, Date.now(), roomId, name)
@@ -355,10 +355,10 @@ async function addMember(env, roomId, body) {
   // Anyone can add a missing roster name (friend group, low trust ceremony).
   const name = (body.name || "").trim();
   if (!name) return json({ error: "name required" }, 400);
-  const room = await env.DB.prepare("SELECT id FROM rooms WHERE id=?").bind(roomId).first();
+  const room = await env.k_ant_game.prepare("SELECT id FROM rooms WHERE id=?").bind(roomId).first();
   if (!room) return json({ error: "room not found" }, 404);
   try {
-    await env.DB.prepare("INSERT INTO members (room_id, name) VALUES (?, ?)")
+    await env.k_ant_game.prepare("INSERT INTO members (room_id, name) VALUES (?, ?)")
       .bind(roomId, name)
       .run();
   } catch (e) {
@@ -369,7 +369,7 @@ async function addMember(env, roomId, body) {
 
 async function whoAmI(env, roomId, token) {
   if (!token) return null;
-  const member = await env.DB.prepare(
+  const member = await env.k_ant_game.prepare(
     "SELECT name FROM members WHERE room_id=? AND token=?"
   )
     .bind(roomId, token)
@@ -378,12 +378,12 @@ async function whoAmI(env, roomId, token) {
 }
 
 async function getRoomState(env, roomId, token) {
-  const room = await env.DB.prepare("SELECT id, name, created_at FROM rooms WHERE id=?")
+  const room = await env.k_ant_game.prepare("SELECT id, name, created_at FROM rooms WHERE id=?")
     .bind(roomId)
     .first();
   if (!room) return json({ error: "room not found" }, 404);
 
-  const memberRows = await env.DB.prepare(
+  const memberRows = await env.k_ant_game.prepare(
     "SELECT name, token IS NOT NULL AS claimed FROM members WHERE room_id=? ORDER BY name"
   )
     .bind(roomId)
@@ -398,14 +398,14 @@ async function getRoomState(env, roomId, token) {
   // Today's round.
   const date = nowKstDate();
   await ensureRoundExists(env, date);
-  const round = await env.DB.prepare(
+  const round = await env.k_ant_game.prepare(
     "SELECT date, stocks_json, status, prev_closes_json, results_json FROM rounds WHERE date=?"
   )
     .bind(date)
     .first();
 
   // Today's votes for this room.
-  const voteRows = await env.DB.prepare(
+  const voteRows = await env.k_ant_game.prepare(
     "SELECT member_name, stock_code, pick FROM votes WHERE room_id=? AND date=?"
   )
     .bind(roomId, date)
@@ -466,7 +466,7 @@ async function getRoomState(env, roomId, token) {
   }
 
   // Leaderboard — cumulative.
-  const lbRows = await env.DB.prepare(
+  const lbRows = await env.k_ant_game.prepare(
     `SELECT member_name,
             SUM(hits) AS hits,
             SUM(total) AS total,
@@ -511,7 +511,7 @@ async function submitVotes(env, roomId, token, body) {
 
   const date = nowKstDate();
   await ensureRoundExists(env, date);
-  const round = await env.DB.prepare("SELECT status, stocks_json FROM rounds WHERE date=?")
+  const round = await env.k_ant_game.prepare("SELECT status, stocks_json FROM rounds WHERE date=?")
     .bind(date)
     .first();
   if (!round || round.status !== "open") {
@@ -527,7 +527,7 @@ async function submitVotes(env, roomId, token, body) {
     if (!validCodes.has(code)) continue;
     if (pick !== "up" && pick !== "down") continue;
     stmts.push(
-      env.DB.prepare(
+      env.k_ant_game.prepare(
         `INSERT INTO votes (room_id, date, member_name, stock_code, pick, voted_at)
          VALUES (?, ?, ?, ?, ?, ?)
          ON CONFLICT(room_id, date, member_name, stock_code) DO UPDATE
@@ -536,7 +536,7 @@ async function submitVotes(env, roomId, token, body) {
     );
   }
   if (stmts.length === 0) return json({ error: "no valid picks" }, 400);
-  await env.DB.batch(stmts);
+  await env.k_ant_game.batch(stmts);
   return json({ ok: true, count: stmts.length });
 }
 
@@ -546,8 +546,8 @@ export async function handleGameRequest(request, env, ctx) {
   if (request.method === "OPTIONS") {
     return new Response(null, { status: 204, headers: CORS });
   }
-  if (!env.DB) {
-    return json({ error: "D1 binding 'DB' not configured. Run wrangler d1 create k-ant-game and bind." }, 500);
+  if (!env.k_ant_game) {
+    return json({ error: "D1 binding 'k_ant_game' not configured. Run wrangler d1 create k-ant-game and bind." }, 500);
   }
 
   const url = new URL(request.url);
@@ -595,7 +595,7 @@ export async function handleGameRequest(request, env, ctx) {
 //   20:10 KST (11:10 UTC) → resolveRound (fetch NXT, compute scores)
 
 export async function handleGameCron(event, env, ctx) {
-  if (!env.DB) return;
+  if (!env.k_ant_game) return;
   const date = nowKstDate();
   if (isWeekend(date)) return;
 
