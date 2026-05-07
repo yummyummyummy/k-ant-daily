@@ -1523,6 +1523,7 @@
     </div>
   {% endmacro %}
 
+  {% if false %}{# HIDDEN: 섹터 흐름 + 종목별 예측 — 요청 시 복원 #}
   {% if sectors %}
   {# 3 buckets — positive / negative / neutral. Empty buckets auto-hide. #}
   {% set hot   = sectors | selectattr('impact', 'equalto', 'positive') | list %}
@@ -1890,6 +1891,7 @@
     </div>
     {% endfor %}
   </section>
+  {% endif %}{# /HIDDEN #}
 
   <footer>
     <div class="disclaimer">
