@@ -219,7 +219,7 @@
   <nav><a href="archive.html">📋 예측</a> · <a href="index.html">← 오늘자</a></nav>
   <header>
     <h1>🎲 맞춰봐</h1>
-    <div class="sub">매일 10종목 ↑↓ 베팅 · 소수가 맞추면 더 큰 배당. 매일 07:30~09:00 KST 투표.</div>
+    <div class="sub">매일 10종목 ↑↓ 베팅 · 소수가 맞추면 더 큰 배당. 전날 20:00 ~ 당일 09:00 KST 투표 (그 사이엔 자유롭게 변경).</div>
   </header>
 
   <div id="root"></div>
@@ -375,7 +375,7 @@ async function claimMember(roomId, name) {
 }
 
 function renderPlay(state) {
-  const { room, me, members, today, leaderboard } = state;
+  const { room, me, members, today, leaderboard, recent_resolved } = state;
   const status = today.status;
   const statusLabel = {
     open: "투표 중",
@@ -406,21 +406,23 @@ function renderPlay(state) {
   root.innerHTML = `
     <div class="card">
       <h2>${escapeHtml(room.name)} <span class="status-pill ${status}">${statusLabel}</span></h2>
-      <div class="hint">나: <strong>${escapeHtml(me)}</strong> · ${today.date}${
-        today.voting_open ? " · ⏳ 09:00 마감" : ""
+      <div class="hint">나: <strong>${escapeHtml(me)}</strong> · 라운드 ${today.date}${
+        today.voting_open ? " · ⏳ 당일 09:00 마감 (자유롭게 변경 가능)" : ""
       }</div>
     </div>
 
     <div class="card">
       <h2>오늘의 10종목</h2>
       ${status === "open" && !today.voting_open
-        ? '<div class="hint">투표 시간(평일 07:30~09:00 KST)이 아닙니다. 다음 라운드를 기다려주세요.</div>'
+        ? '<div class="hint">투표 시간이 아닙니다. 다음 라운드는 오늘 20:00 KST 부터 가능합니다.</div>'
         : ""}
       ${status === "void"
         ? '<div class="hint">휴장일 — 결과 무효. 점수 변동 없음.</div>'
         : ""}
       <div id="stocks">${stocksHtml}</div>
     </div>
+
+    ${renderRecentResolved(recent_resolved, me)}
 
     <div class="card">
       <h2>🏆 누적 리더보드</h2>
@@ -473,6 +475,53 @@ function renderPlay(state) {
     document.execCommand("copy");
     toast("복사됨");
   };
+}
+
+function renderRecentResolved(recent, me) {
+  if (!recent) return "";
+  const stocksHtml = recent.stocks.map((s) => {
+    const r = s.result;
+    const dir = r?.direction;
+    const pct = r?.change_pct?.toFixed(2);
+    const dirLabel = dir === "up" ? `↑ +${pct}%`
+                   : dir === "down" ? `↓ ${pct}%`
+                   : dir === "flat" ? "보합"
+                   : "무효";
+    const dirColor = dir === "up" ? "var(--pos)" : dir === "down" ? "var(--neg)" : "var(--muted)";
+    const picksStr = Object.entries(recent.votes_by_member).map(([m, picks]) => {
+      const p = picks[s.code];
+      if (!p) return "";
+      const win = p === dir;
+      const odds = p === "up" ? s.odds?.up : s.odds?.down;
+      const pts = win && odds ? `<span class="pts">+${odds.toFixed(2)}</span>` : "";
+      const symbol = p === "up" ? "↑" : "↓";
+      const winClass = (dir === "flat" || dir === "void") ? "" : (win ? "hit" : "miss");
+      return `<span class="pick ${winClass}">${escapeHtml(m)} ${symbol}${pts}</span>`;
+    }).filter(Boolean).join("");
+    return `
+      <div class="stock-row">
+        <div class="stock-name">
+          ${escapeHtml(s.name)}<span class="code">${s.code}</span>
+          <div class="meta" style="color:${dirColor};font-weight:700;">실제 ${dirLabel}</div>
+        </div>
+      </div>
+      ${picksStr ? `<div class="result-strip">${picksStr}</div>` : ""}
+    `;
+  }).join("");
+
+  // Per-member daily summary
+  const summary = Object.entries(recent.scores_by_member)
+    .sort((a, b) => b[1].points - a[1].points)
+    .map(([m, s]) => `<span class="pick ${m === me ? "hit" : ""}">${escapeHtml(m)} ${s.hits}/${s.total} <span class="pts">+${s.points.toFixed(2)}</span></span>`)
+    .join("");
+
+  return `
+    <div class="card">
+      <h2>📅 어제 결과 <span class="status-pill resolved">${recent.date}</span></h2>
+      ${summary ? `<div class="result-strip" style="margin-bottom:12px;">${summary}</div>` : ""}
+      ${stocksHtml}
+    </div>
+  `;
 }
 
 function renderStockRow(s, today, votesByMember, me) {

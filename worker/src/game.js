@@ -57,15 +57,52 @@ function isWeekend(dateStr) {
   return dow === 0 || dow === 6;
 }
 
-function isVotingOpen() {
-  // 07:30 ~ 09:00 KST on a weekday.
-  const date = nowKstDate();
-  if (isWeekend(date)) return false;
+function nextTradingDay(dateStr) {
+  let d = new Date(dateStr + "T00:00:00Z");
+  for (let i = 0; i < 7; i++) {
+    d = new Date(d.getTime() + 24 * 3600 * 1000);
+    const dow = d.getUTCDay();
+    if (dow !== 0 && dow !== 6) return d.toISOString().slice(0, 10);
+  }
+  return dateStr;
+}
+
+function previousTradingDay(dateStr) {
+  let d = new Date(dateStr + "T00:00:00Z");
+  for (let i = 0; i < 7; i++) {
+    d = new Date(d.getTime() - 24 * 3600 * 1000);
+    const dow = d.getUTCDay();
+    if (dow !== 0 && dow !== 6) return d.toISOString().slice(0, 10);
+  }
+  return dateStr;
+}
+
+// The currently "focus" round date — what the UI shows as today's voting/result.
+//   - Before 20:00 KST on a trading day  → today's round (votable until 09:00, then locked)
+//   - After 20:00 KST on a trading day   → next trading day's round (voting just opened)
+//   - On weekends                        → next trading day's round
+function activeRoundDate() {
   const d = new Date(Date.now() + 9 * 3600 * 1000);
-  const h = d.getUTCHours();
-  const m = d.getUTCMinutes();
-  const minutes = h * 60 + m;
-  return minutes >= 7 * 60 + 30 && minutes < 9 * 60;
+  const today = d.toISOString().slice(0, 10);
+  const hour = d.getUTCHours();
+  if (isWeekend(today)) return nextTradingDay(today);
+  if (hour < 20) return today;
+  return nextTradingDay(today);
+}
+
+// Voting is open from (previousTradingDay(roundDate) 20:00 KST) → (roundDate 09:00 KST).
+// Includes the entire weekend if previous trading day is Friday.
+function isVotingOpenFor(roundDate) {
+  const now = new Date(Date.now() + 9 * 3600 * 1000);
+  const todayKst = now.toISOString().slice(0, 10);
+  const hour = now.getUTCHours();
+  const prevTrading = previousTradingDay(roundDate);
+
+  if (todayKst === roundDate) return hour < 9;
+  if (todayKst === prevTrading) return hour >= 20;
+  // Strictly between previous trading day and round date → weekend window
+  if (todayKst > prevTrading && todayKst < roundDate) return true;
+  return false;
 }
 
 // ─── Token helpers ─────────────────────────────────────────────────────
@@ -93,49 +130,36 @@ function newToken() {
 // ─── Round lifecycle ───────────────────────────────────────────────────
 
 async function ensureRoundExists(env, date) {
-  // Idempotent: open today's round if not already there. Skip weekends.
+  // Idempotent: open the round for `date` if not already there. Skip weekends.
+  // Captures prev_close at creation time (= the most recent available price,
+  // typically the previous trading day's close since voting opens at 20:00
+  // after market close).
   if (isWeekend(date)) return null;
   const existing = await env.DB.prepare("SELECT * FROM rounds WHERE date = ?")
     .bind(date)
     .first();
   if (existing) return existing;
   const stocksJson = JSON.stringify(GAME_STOCKS);
-  await env.DB.prepare(
-    "INSERT INTO rounds (date, stocks_json, status) VALUES (?, ?, 'open')"
-  )
-    .bind(date, stocksJson)
-    .run();
-  return { date, stocks_json: stocksJson, status: "open" };
-}
-
-async function lockRound(env, date) {
-  // Snapshot prev closes (= today's open price reference) and switch to closed.
-  // We use Naver realtime quote at the moment of lock as the "prev close" for
-  // judging direction at 20:10 (since direction = today_close > prev_close).
-  // For the very first day the round runs, this is fine — the judging
-  // baseline is whatever the price was at 09:00 KST.
-  const round = await env.DB.prepare("SELECT * FROM rounds WHERE date = ?")
-    .bind(date)
-    .first();
-  if (!round || round.status !== "open") return;
-
-  const stocks = JSON.parse(round.stocks_json);
-  const codes = stocks.map((s) => s.code);
+  const codes = GAME_STOCKS.map((s) => s.code);
   const prevCloses = await fetchNaverPrices(codes);
-
   await env.DB.prepare(
-    "UPDATE rounds SET status='closed', prev_closes_json=?, locked_at=? WHERE date=?"
+    `INSERT INTO rounds (date, stocks_json, status, prev_closes_json, locked_at)
+     VALUES (?, ?, 'open', ?, ?)`
   )
-    .bind(JSON.stringify(prevCloses), Date.now(), date)
+    .bind(date, stocksJson, JSON.stringify(prevCloses), Date.now())
     .run();
+  return { date, stocks_json: stocksJson, status: "open", prev_closes_json: JSON.stringify(prevCloses) };
 }
 
 async function resolveRound(env, date, fetchClosesFn) {
   // Compute directions, write results, compute scores.
+  // Accept 'open' status too — with the new voting window (yesterday 20:00 ~
+  // today 09:00) we no longer have a separate 'closed' transition; voting
+  // eligibility is enforced by time. So a round may go open → resolved.
   const round = await env.DB.prepare("SELECT * FROM rounds WHERE date = ?")
     .bind(date)
     .first();
-  if (!round || round.status !== "closed") return;
+  if (!round || (round.status !== "open" && round.status !== "closed")) return;
 
   const stocks = JSON.parse(round.stocks_json);
   const codes = stocks.map((s) => s.code);
@@ -377,6 +401,72 @@ async function whoAmI(env, roomId, token) {
   return member ? member.name : null;
 }
 
+// Most recent resolved round before `excludeDate`, with per-stock results
+// and reveal of every member's pick + each member's points for that day.
+async function getRecentResolved(env, roomId, excludeDate) {
+  const round = await env.DB.prepare(
+    `SELECT date, stocks_json, results_json FROM rounds
+     WHERE status='resolved' AND date < ?
+     ORDER BY date DESC LIMIT 1`
+  )
+    .bind(excludeDate)
+    .first();
+  if (!round) return null;
+
+  const stocks = JSON.parse(round.stocks_json);
+  const results = JSON.parse(round.results_json || "{}");
+
+  const voteRows = await env.DB.prepare(
+    "SELECT member_name, stock_code, pick FROM votes WHERE room_id=? AND date=?"
+  )
+    .bind(roomId, round.date)
+    .all();
+  const votesByMember = {};
+  const counts = {};
+  for (const v of voteRows.results || []) {
+    const m = votesByMember[v.member_name] || (votesByMember[v.member_name] = {});
+    m[v.stock_code] = v.pick;
+    const c = counts[v.stock_code] || (counts[v.stock_code] = { up: 0, down: 0 });
+    c[v.pick] += 1;
+  }
+
+  const stockState = stocks.map((s) => {
+    const c = counts[s.code] || { up: 0, down: 0 };
+    const total = c.up + c.down;
+    return {
+      code: s.code,
+      name: s.name,
+      counts: c,
+      odds: {
+        up: c.up > 0 ? Math.round((total / c.up) * 100) / 100 : null,
+        down: c.down > 0 ? Math.round((total / c.down) * 100) / 100 : null,
+      },
+      result: results[s.code] || null,
+    };
+  });
+
+  // Per-member points for this round only.
+  const scoreRows = await env.DB.prepare(
+    "SELECT member_name, hits, total, points FROM scores WHERE room_id=? AND date=?"
+  )
+    .bind(roomId, round.date)
+    .all();
+  const scoresByMember = {};
+  for (const r of scoreRows.results || []) {
+    scoresByMember[r.member_name] = {
+      hits: r.hits, total: r.total,
+      points: Math.round((r.points || 0) * 100) / 100,
+    };
+  }
+
+  return {
+    date: round.date,
+    stocks: stockState,
+    votes_by_member: votesByMember,
+    scores_by_member: scoresByMember,
+  };
+}
+
 async function getRoomState(env, roomId, token) {
   const room = await env.DB.prepare("SELECT id, name, created_at FROM rooms WHERE id=?")
     .bind(roomId)
@@ -395,8 +485,8 @@ async function getRoomState(env, roomId, token) {
 
   const me = await whoAmI(env, roomId, token);
 
-  // Today's round.
-  const date = nowKstDate();
+  // Active round = focus of UI (votable today, or next trading day if past 20:00).
+  const date = activeRoundDate();
   await ensureRoundExists(env, date);
   const round = await env.DB.prepare(
     "SELECT date, stocks_json, status, prev_closes_json, results_json FROM rounds WHERE date=?"
@@ -404,7 +494,7 @@ async function getRoomState(env, roomId, token) {
     .bind(date)
     .first();
 
-  // Today's votes for this room.
+  // Votes for the active round in this room.
   const voteRows = await env.DB.prepare(
     "SELECT member_name, stock_code, pick FROM votes WHERE room_id=? AND date=?"
   )
@@ -489,6 +579,10 @@ async function getRoomState(env, roomId, token) {
     best_day: Math.round((r.best_day || 0) * 100) / 100,
   }));
 
+  // Most recent resolved round in this room — show yesterday's result alongside
+  // active round so users can see how their previous picks did.
+  const recentResolved = await getRecentResolved(env, roomId, date);
+
   return json({
     room: { id: room.id, name: room.name },
     me,
@@ -496,10 +590,11 @@ async function getRoomState(env, roomId, token) {
     today: {
       date,
       status: round?.status || "open",
-      voting_open: round?.status === "open" && isVotingOpen(),
+      voting_open: round?.status === "open" && isVotingOpenFor(date),
       stocks: stockState,
       votes_by_member: votesByMember,
     },
+    recent_resolved: recentResolved,
     leaderboard,
   });
 }
@@ -507,9 +602,11 @@ async function getRoomState(env, roomId, token) {
 async function submitVotes(env, roomId, token, body) {
   const me = await whoAmI(env, roomId, token);
   if (!me) return json({ error: "invalid token" }, 401);
-  if (!isVotingOpen()) return json({ error: "voting closed (07:30~09:00 KST 평일만)" }, 403);
 
-  const date = nowKstDate();
+  const date = activeRoundDate();
+  if (!isVotingOpenFor(date)) {
+    return json({ error: "투표 시간이 아닙니다 (전날 20:00 ~ 당일 09:00 KST)" }, 403);
+  }
   await ensureRoundExists(env, date);
   const round = await env.DB.prepare("SELECT status, stocks_json FROM rounds WHERE date=?")
     .bind(date)
@@ -588,24 +685,20 @@ export async function handleGameRequest(request, env, ctx) {
 
 // ─── Cron entry ────────────────────────────────────────────────────────
 //
-// Triggered by wrangler.toml [triggers] crons.
-// We dispatch by KST hour:
-//   07:30 KST (22:30 UTC) → openRound (no-op if exists)
-//   09:00 KST (00:00 UTC) → lockRound (snapshot prev close)
-//   20:10 KST (11:10 UTC) → resolveRound (fetch NXT, compute scores)
+// Single daily cron at 20:10 KST (11:10 UTC). On a trading day:
+//   1. Resolve today's round (fetch NXT closes, compute odds payouts, write scores)
+//   2. Open next trading day's round (voting opens immediately at this point —
+//      lazy creation in getRoomState/submitVotes also handles this if cron skipped)
+//
+// Voting eligibility is time-based (isVotingOpenFor) rather than status-based,
+// so no separate 'lock' cron is needed at 09:00.
 
 export async function handleGameCron(event, env, ctx) {
   if (!env.DB) return;
-  const date = nowKstDate();
-  if (isWeekend(date)) return;
-
-  const h = nowKstHour();
-  if (h === 7 || h === 8) {
-    await ensureRoundExists(env, date);
-  } else if (h === 9) {
-    await ensureRoundExists(env, date);
-    await lockRound(env, date);
-  } else if (h === 20) {
-    await resolveRound(env, date, fetchNxtCloses);
+  const todayKst = nowKstDate();
+  if (!isWeekend(todayKst)) {
+    await resolveRound(env, todayKst, fetchNxtCloses);
   }
+  const next = nextTradingDay(todayKst);
+  await ensureRoundExists(env, next);
 }
