@@ -304,7 +304,7 @@ async function createRoom() {
   try {
     const r = await api("POST", "/game/rooms", { name, members });
     setQS({ room: r.room_id, me: null });
-    location.reload();
+    screenJoinOrPlay();
   } catch (e) {
     toast(e.message, "error");
   }
@@ -358,7 +358,7 @@ function renderClaim(state) {
     if (!n) return;
     try {
       await api("POST", `/game/rooms/${state.room.id}/members`, { name: n });
-      location.reload();
+      screenJoinOrPlay();
     } catch (e) { toast(e.message, "error"); }
   };
 }
@@ -368,7 +368,7 @@ async function claimMember(roomId, name) {
     const r = await api("POST", `/game/rooms/${roomId}/claim`, { name });
     setQS({ me: r.token });
     toast(`${name} 으로 가입됐습니다. 이 URL을 북마크하세요.`);
-    setTimeout(() => location.reload(), 800);
+    setTimeout(() => screenJoinOrPlay(), 600);
   } catch (e) {
     toast(e.message, "error");
   }
@@ -466,7 +466,7 @@ function renderPlay(state) {
     if (!n) return;
     try {
       await api("POST", `/game/rooms/${room.id}/members`, { name: n });
-      location.reload();
+      screenJoinOrPlay();
     } catch (e) { toast(e.message, "error"); }
   };
   document.getElementById("copy-btn").onclick = () => {
@@ -590,13 +590,25 @@ function renderStockRow(s, today, votesByMember, me) {
 }
 
 async function vote(state, code, pick) {
-  const { room, me } = state;
+  const { room } = state;
+
+  // Optimistic UI: toggle the clicked button immediately so there's no
+  // perceived lag while the API call runs. State refresh below reconciles
+  // with server truth (counts/odds).
+  document.querySelectorAll(`.vote-btn[data-code="${code}"]`).forEach((b) => {
+    b.classList.remove("active", "up", "down");
+  });
+  const btn = document.querySelector(`.vote-btn[data-code="${code}"][data-pick="${pick}"]`);
+  if (btn) btn.classList.add("active", pick);
+
   try {
     await api("POST", `/game/rooms/${room.id}/vote`, { picks: { [code]: pick } }, { token: getQS().me });
-    toast(`${code} ${pick === "up" ? "↑" : "↓"} 저장됨`);
-    location.reload();
+    // Refresh data without a full page reload — avoids the white flash.
+    screenJoinOrPlay();
   } catch (e) {
     toast(e.message, "error");
+    // Re-render to revert optimistic update on error.
+    screenJoinOrPlay();
   }
 }
 
