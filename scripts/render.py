@@ -1381,8 +1381,8 @@ def main(argv: list[str]) -> int:
         archive_html = build_archive_index(base_url)
         (DOCS / "archive.html").write_text(archive_html, encoding="utf-8")
 
-        accuracy_html = build_accuracy(base_url)
-        (DOCS / "accuracy.html").write_text(accuracy_html, encoding="utf-8")
+        # accuracy_html = build_accuracy(base_url)  # HIDDEN
+        # (DOCS / "accuracy.html").write_text(accuracy_html, encoding="utf-8")
 
     # .nojekyll for GitHub Pages (skip Jekyll processing)
     (DOCS / ".nojekyll").touch()
@@ -1391,7 +1391,7 @@ def main(argv: list[str]) -> int:
     print(f"✓ Wrote {artifact.relative_to(ROOT)}")
     print(f"✓ Updated {index.relative_to(ROOT)}")
     if not intraday:
-        print(f"✓ Updated archive.html + accuracy.html")
+        print(f"✓ Updated archive.html")
     else:
         print(f"  (intraday mode — skipping archive/accuracy regeneration)")
     return 0
