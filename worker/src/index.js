@@ -412,17 +412,17 @@ async function fetchAllNxtQuotes(codes) {
 
 export default {
   async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    // Game routes need their own CORS (POST + Content-Type), so handle them
+    // *before* the global OPTIONS short-circuit.
+    if (url.pathname.startsWith("/game/")) {
+      return handleGameRequest(request, env, ctx);
+    }
     if (request.method === "OPTIONS") {
       return new Response(null, { status: 204, headers: CORS_HEADERS });
     }
-
-    const url = new URL(request.url);
     if (url.pathname === "/" || url.pathname === "/health") {
       return json({ ok: true, service: "k-ant-daily-quotes" });
-    }
-    // Game routes — friend betting game (/game/*)
-    if (url.pathname.startsWith("/game/")) {
-      return handleGameRequest(request, env, ctx);
     }
     // Ticker strip — indices, FX, crypto.
     if (url.pathname === "/ticker") {
