@@ -516,8 +516,10 @@ function renderStockRow(s, today, votesByMember, me) {
   const status = today.status;
   const c = s.counts;
   const total = c.up + c.down;
-  // Spectators (no token) see the same dashboard but cannot vote.
-  const isVotingOpen = today.voting_open && status === "open" && !!me;
+  // Voting window is server-driven (time-based). Spectators see the same
+  // counts/odds during the window but the buttons are disabled.
+  const inVotingWindow = today.voting_open && status === "open";
+  const canVote = inVotingWindow && !!me;
   const myPick = s.my_pick;
 
   const oddsUp = s.odds?.up ? `<span class="odds">${s.odds.up.toFixed(2)}x</span>` : "";
@@ -525,7 +527,7 @@ function renderStockRow(s, today, votesByMember, me) {
 
   const upActive = myPick === "up" ? "active up" : "";
   const downActive = myPick === "down" ? "active down" : "";
-  const dis = isVotingOpen ? "" : "disabled";
+  const dis = canVote ? "" : "disabled";
 
   let resultStrip = "";
   if (status === "resolved" && s.result && votesByMember) {
@@ -564,11 +566,11 @@ function renderStockRow(s, today, votesByMember, me) {
       <div style="display:flex;flex-direction:column;gap:4px;">
         <div class="vote-buttons">
           <button class="vote-btn up ${upActive} ${winUp}" data-code="${s.code}" data-pick="up" ${dis}>
-            ↑ <span class="count">${status === "open" && isVotingOpen ? c.up : ""}</span>
+            ↑ <span class="count">${inVotingWindow ? c.up : ""}</span>
             ${oddsUp}
           </button>
           <button class="vote-btn down ${downActive} ${winDown}" data-code="${s.code}" data-pick="down" ${dis}>
-            ↓ <span class="count">${status === "open" && isVotingOpen ? c.down : ""}</span>
+            ↓ <span class="count">${inVotingWindow ? c.down : ""}</span>
             ${oddsDown}
           </button>
         </div>
