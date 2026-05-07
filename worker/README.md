@@ -60,13 +60,46 @@ const QUOTE_API = "https://k-ant-daily-quotes.<your-subdomain>.workers.dev/quote
 
 헬스체크. `{"ok": true, "service": "k-ant-daily-quotes"}`.
 
+### `/game/*` — 친구 베팅 게임 ("맞춰봐")
+
+10종목 ↑↓ 베팅 게임. **D1 + cron 트리거 필요.** 프론트는 [docs/game.html](../docs/game.html), 백엔드 로직은 [src/game.js](src/game.js).
+
+#### 최초 1회 셋업
+
+```bash
+cd worker
+wrangler d1 create k-ant-game        # 출력에서 database_id 복사
+# wrangler.toml 의 REPLACE_WITH_DATABASE_ID 를 위 id 로 교체
+wrangler d1 execute k-ant-game --file=migrations/0001_game_init.sql --remote
+wrangler deploy
+```
+
+배포 후 cron 자동 실행:
+- 07:30 KST — 오늘 라운드 open
+- 09:00 KST — 투표 락 + 직전가 스냅샷 (Naver 실시간)
+- 20:10 KST — NXT 종가 fetch → 결과 산출 + 점수 누적
+
+#### 엔드포인트
+
+| 메서드 | 경로 | 용도 |
+|---|---|---|
+| POST | `/game/rooms` | `{name, members[]}` → 방 생성, room_id 반환 |
+| GET  | `/game/rooms/:id?token=...` | 방 상태 (오늘 종목·내 픽·리더보드). token 없으면 가입 안내만 |
+| POST | `/game/rooms/:id/claim` | `{name}` → 본인 토큰 발급 (선착순) |
+| POST | `/game/rooms/:id/members` | `{name}` → 명단에 친구 추가 |
+| POST | `/game/rooms/:id/vote?token=...` | `{picks: {code: "up"\|"down"}}` → 투표 (07:30~09:00 KST 만 가능) |
+
+#### 점수 체계
+
+[`src/game.js` `resolveRound`](src/game.js) 참조. 한 줄: **odds = 그 종목 전체 베팅 인원 / 같은 방향 베팅 인원. 적중 시 +odds 점, 빗나감 0점, 감점 없음.**
+
 ## 비용
 
 Cloudflare Workers 무료 플랜: 100k 요청/일. 예상 트래픽:
 - 친구 1명 기준 장 시간(6시간) × 60초 폴링 = 360 요청/일 (배치 요청 가정)
 - 여러 사용자도 edge cache 덕분에 upstream은 분당 2회 수준
 
-걱정 수준 아님.
+걱정 수준 아님. D1 도 무료 플랜 5GB · 25M reads/day · 5M writes/day 이라 친구 게임엔 절대 못 씀.
 
 ## 로컬 개발
 

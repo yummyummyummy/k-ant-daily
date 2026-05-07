@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>🎲 맞춰봐 — k-ant-daily</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg: #0d1117;
+    --fg: #e6edf3;
+    --muted: #8b949e;
+    --border: #30363d;
+    --card: #161b22;
+    --accent: #58a6ff;
+    --pos: #3fb950;
+    --neg: #f85149;
+    --neutral: #d29922;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Pretendard", "Apple SD Gothic Neo", sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  header { margin-bottom: 24px; }
+  header h1 { font-size: 28px; margin: 0 0 4px; }
+  header .sub { color: var(--muted); font-size: 13px; }
+  nav { font-size: 13px; margin-bottom: 8px; }
+  nav a { color: var(--accent); text-decoration: none; margin-right: 8px; }
+  nav a:hover { text-decoration: underline; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .card h2 { margin: 0 0 12px; font-size: 18px; }
+  .card h3 { margin: 16px 0 8px; font-size: 15px; color: var(--muted); }
+
+  button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  button.secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--border);
+  }
+  button:disabled {
+    background: var(--border);
+    color: var(--muted);
+    cursor: not-allowed;
+  }
+  input, textarea {
+    background: var(--bg);
+    color: var(--fg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    width: 100%;
+    font-family: inherit;
+  }
+  textarea { min-height: 80px; resize: vertical; }
+  .field { margin-bottom: 12px; }
+  .field label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+
+  .stock-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+  }
+  .stock-row:last-child { border-bottom: none; }
+  .stock-name {
+    flex: 1;
+    min-width: 0;
+    font-weight: 600;
+  }
+  .stock-name .code { color: var(--muted); font-size: 12px; font-weight: 400; margin-left: 6px; }
+  .stock-name .meta { color: var(--muted); font-size: 12px; font-weight: 400; margin-top: 2px; }
+  .vote-buttons { display: flex; gap: 8px; }
+  .vote-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--fg);
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    min-width: 64px;
+  }
+  .vote-btn.active.up { background: var(--pos); border-color: var(--pos); color: white; }
+  .vote-btn.active.down { background: var(--neg); border-color: var(--neg); color: white; }
+  .vote-btn:hover:not(:disabled):not(.active) { border-color: var(--accent); }
+  .vote-btn .count { color: var(--muted); font-size: 12px; margin-left: 4px; font-weight: 400; }
+  .vote-btn .odds { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; font-weight: 400; }
+  .vote-btn.win { box-shadow: 0 0 0 2px var(--pos); }
+
+  .members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+  }
+  .member-chip {
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    text-align: center;
+    background: var(--bg);
+    cursor: pointer;
+  }
+  .member-chip.claimed {
+    color: var(--muted);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  .member-chip.me {
+    border-color: var(--accent);
+    background: rgba(88,166,255,0.1);
+  }
+  .member-chip:hover:not(.claimed) { border-color: var(--accent); }
+
+  .leaderboard {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .leaderboard li {
+    display: flex;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 8px;
+  }
+  .leaderboard li:last-child { border-bottom: none; }
+  .lb-rank { font-weight: 700; min-width: 32px; }
+  .lb-name { flex: 1; min-width: 0; font-weight: 600; }
+  .lb-name.is-me { color: var(--accent); }
+  .lb-points { font-weight: 700; font-size: 18px; min-width: 64px; text-align: right; }
+  .lb-meta { color: var(--muted); font-size: 12px; min-width: 0; text-align: right; }
+
+  .status-pill {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: var(--border);
+    color: var(--muted);
+    margin-left: 8px;
+  }
+  .status-pill.open { background: var(--pos); color: white; }
+  .status-pill.closed { background: var(--neutral); color: white; }
+  .status-pill.resolved { background: var(--accent); color: white; }
+  .status-pill.void { background: var(--neg); color: white; }
+
+  .result-strip {
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    background: var(--bg);
+    font-size: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+  .result-strip .pick {
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: var(--border);
+  }
+  .result-strip .pick.hit { background: rgba(63,185,80,0.2); border: 1px solid var(--pos); }
+  .result-strip .pick.miss { background: rgba(248,81,73,0.2); border: 1px solid var(--neg); }
+  .result-strip .pick .pts { color: var(--pos); margin-left: 4px; font-weight: 700; }
+
+  .toast {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 100;
+  }
+  .toast.error { border-color: var(--neg); }
+
+  .hint { color: var(--muted); font-size: 13px; }
+  .copy-row { display: flex; gap: 8px; }
+  .copy-row input { font-family: monospace; font-size: 12px; }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+</style>
+</head>
+<body>
+
+<main>
+  <nav><a href="archive.html">📋 예측</a> · <a href="index.html">← 오늘자</a></nav>
+  <header>
+    <h1>🎲 맞춰봐</h1>
+    <div class="sub">매일 10종목 ↑↓ 베팅 · 소수가 맞추면 더 큰 배당. 매일 07:30~09:00 KST 투표.</div>
+  </header>
+
+  <div id="root"></div>
+</main>
+
+<script>
+const API_BASE = "https://k-ant-daily-quotes.yummyummyummy.workers.dev";
+const root = document.getElementById("root");
+
+function toast(msg, kind) {
+  const el = document.createElement("div");
+  el.className = "toast" + (kind === "error" ? " error" : "");
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+async function api(method, path, body, params) {
+  const url = new URL(API_BASE + path);
+  if (params) for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
+  const opts = {
+    method,
+    headers: body ? { "Content-Type": "application/json" } : {},
+  };
+  if (body) opts.body = JSON.stringify(body);
+  const res = await fetch(url, opts);
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+  return data;
+}
+
+function getQS() {
+  const u = new URL(location.href);
+  return {
+    room: u.searchParams.get("room"),
+    me: u.searchParams.get("me"),
+  };
+}
+
+function setQS(params) {
+  const u = new URL(location.href);
+  for (const [k, v] of Object.entries(params)) {
+    if (v == null) u.searchParams.delete(k);
+    else u.searchParams.set(k, v);
+  }
+  history.replaceState(null, "", u.toString());
+}
+
+// ─── Screens ──────────────────────────────────────────────────────────
+
+function screenLanding() {
+  root.innerHTML = `
+    <div class="card">
+      <h2>새 방 만들기</h2>
+      <div class="field">
+        <label>방 이름</label>
+        <input id="room-name" placeholder="예: 한반앤트" autocomplete="off">
+      </div>
+      <div class="field">
+        <label>참가자 이름 (한 줄에 한 명, 또는 쉼표로 구분)</label>
+        <textarea id="room-members" placeholder="장윤영&#10;한윤근&#10;장한솔&#10;오병호"></textarea>
+      </div>
+      <button id="create-btn">방 만들기</button>
+    </div>
+    <div class="card">
+      <h2>방에 참여하기</h2>
+      <div class="hint">방장이 보내준 링크를 열어주세요. (예: <code>?room=...</code>)</div>
+    </div>
+  `;
+  document.getElementById("create-btn").onclick = createRoom;
+}
+
+async function createRoom() {
+  const name = document.getElementById("room-name").value.trim();
+  const raw = document.getElementById("room-members").value;
+  const members = raw
+    .split(/[\n,]+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  if (!name) return toast("방 이름을 적어주세요", "error");
+  if (members.length === 0) return toast("참가자를 한 명 이상 적어주세요", "error");
+  try {
+    const r = await api("POST", "/game/rooms", { name, members });
+    setQS({ room: r.room_id, me: null });
+    location.reload();
+  } catch (e) {
+    toast(e.message, "error");
+  }
+}
+
+async function screenJoinOrPlay() {
+  const { room, me } = getQS();
+  let state;
+  try {
+    state = await api("GET", `/game/rooms/${room}`, null, me ? { token: me } : null);
+  } catch (e) {
+    root.innerHTML = `<div class="card"><h2>방을 찾을 수 없음</h2><div class="hint">${e.message}</div></div>`;
+    return;
+  }
+
+  if (!state.me) {
+    return renderClaim(state);
+  }
+  return renderPlay(state);
+}
+
+function renderClaim(state) {
+  const { room, members } = state;
+  root.innerHTML = `
+    <div class="card">
+      <h2>${escapeHtml(room.name)} <span class="status-pill">방 입장</span></h2>
+      <div class="hint">본인 이름을 클릭하세요. 클릭하면 본인용 토큰이 생성되고 URL이 본인 전용 링크로 바뀝니다. 그 URL을 북마크하세요.</div>
+      <div class="members-grid" style="margin-top:12px;" id="members-grid">
+        ${members.map((m) => `
+          <div class="member-chip ${m.claimed ? "claimed" : ""}" data-name="${escapeAttr(m.name)}">
+            ${escapeHtml(m.name)}
+            ${m.claimed ? '<div style="font-size:11px;margin-top:2px;">✓ 가입됨</div>' : ''}
+          </div>
+        `).join("")}
+      </div>
+      <hr>
+      <div class="field">
+        <label>명단에 빠진 사람 추가</label>
+        <div style="display:flex;gap:8px;">
+          <input id="new-member" placeholder="이름" style="flex:1;">
+          <button class="secondary" id="add-btn">추가</button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById("members-grid").querySelectorAll(".member-chip:not(.claimed)").forEach((el) => {
+    el.onclick = () => claimMember(state.room.id, el.dataset.name);
+  });
+  document.getElementById("add-btn").onclick = async () => {
+    const n = document.getElementById("new-member").value.trim();
+    if (!n) return;
+    try {
+      await api("POST", `/game/rooms/${state.room.id}/members`, { name: n });
+      location.reload();
+    } catch (e) { toast(e.message, "error"); }
+  };
+}
+
+async function claimMember(roomId, name) {
+  try {
+    const r = await api("POST", `/game/rooms/${roomId}/claim`, { name });
+    setQS({ me: r.token });
+    toast(`${name} 으로 가입됐습니다. 이 URL을 북마크하세요.`);
+    setTimeout(() => location.reload(), 800);
+  } catch (e) {
+    toast(e.message, "error");
+  }
+}
+
+function renderPlay(state) {
+  const { room, me, members, today, leaderboard } = state;
+  const status = today.status;
+  const statusLabel = {
+    open: "투표 중",
+    closed: "장중 (투표 마감)",
+    resolved: "결과 공개",
+    void: "휴장 (무효)",
+  }[status] || status;
+
+  // Leaderboard
+  const lbHtml = leaderboard.length === 0
+    ? '<div class="hint">아직 데이터 없음 — 첫 라운드 결과부터 누적됩니다.</div>'
+    : `<ul class="leaderboard">${leaderboard.map((p, i) => {
+        const medal = ["🥇", "🥈", "🥉"][i] || `${i + 1}`;
+        const rate = p.total > 0 ? Math.round((p.hits / p.total) * 100) : 0;
+        return `
+          <li>
+            <div class="lb-rank">${medal}</div>
+            <div class="lb-name ${p.member_name === me ? 'is-me' : ''}">${escapeHtml(p.member_name)}</div>
+            <div class="lb-meta">${p.hits}/${p.total} (${rate}%) · 최고 +${p.best_day.toFixed(2)}</div>
+            <div class="lb-points">${p.points.toFixed(2)}</div>
+          </li>
+        `;
+      }).join("")}</ul>`;
+
+  // Today stocks
+  const stocksHtml = today.stocks.map((s) => renderStockRow(s, today, today.votes_by_member, me)).join("");
+
+  root.innerHTML = `
+    <div class="card">
+      <h2>${escapeHtml(room.name)} <span class="status-pill ${status}">${statusLabel}</span></h2>
+      <div class="hint">나: <strong>${escapeHtml(me)}</strong> · ${today.date}${
+        today.voting_open ? " · ⏳ 09:00 마감" : ""
+      }</div>
+    </div>
+
+    <div class="card">
+      <h2>오늘의 10종목</h2>
+      ${status === "open" && !today.voting_open
+        ? '<div class="hint">투표 시간(평일 07:30~09:00 KST)이 아닙니다. 다음 라운드를 기다려주세요.</div>'
+        : ""}
+      ${status === "void"
+        ? '<div class="hint">휴장일 — 결과 무효. 점수 변동 없음.</div>'
+        : ""}
+      <div id="stocks">${stocksHtml}</div>
+    </div>
+
+    <div class="card">
+      <h2>🏆 누적 리더보드</h2>
+      ${lbHtml}
+    </div>
+
+    <div class="card">
+      <h2>👥 멤버</h2>
+      <div class="members-grid">
+        ${members.map((m) => `
+          <div class="member-chip ${m.claimed ? "claimed" : ""} ${m.name === me ? "me" : ""}">
+            ${escapeHtml(m.name)}
+            <div style="font-size:11px;margin-top:2px;">${m.claimed ? '✓ 가입' : '미가입'}</div>
+          </div>
+        `).join("")}
+      </div>
+      <hr>
+      <div class="field">
+        <label>친구 추가 (방에 빠진 사람)</label>
+        <div style="display:flex;gap:8px;">
+          <input id="new-member-2" placeholder="이름" style="flex:1;">
+          <button class="secondary" id="add-btn-2">추가</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>방 공유 링크</label>
+        <div class="copy-row">
+          <input id="share-url" readonly value="${escapeAttr(`${location.origin}${location.pathname}?room=${room.id}`)}">
+          <button class="secondary" id="copy-btn">복사</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Wire up vote buttons
+  document.querySelectorAll(".vote-btn[data-code]").forEach((btn) => {
+    btn.onclick = () => vote(state, btn.dataset.code, btn.dataset.pick);
+  });
+  document.getElementById("add-btn-2").onclick = async () => {
+    const n = document.getElementById("new-member-2").value.trim();
+    if (!n) return;
+    try {
+      await api("POST", `/game/rooms/${room.id}/members`, { name: n });
+      location.reload();
+    } catch (e) { toast(e.message, "error"); }
+  };
+  document.getElementById("copy-btn").onclick = () => {
+    const inp = document.getElementById("share-url");
+    inp.select();
+    document.execCommand("copy");
+    toast("복사됨");
+  };
+}
+
+function renderStockRow(s, today, votesByMember, me) {
+  const status = today.status;
+  const c = s.counts;
+  const total = c.up + c.down;
+  const isVotingOpen = today.voting_open && status === "open";
+  const myPick = s.my_pick;
+
+  const oddsUp = s.odds?.up ? `<span class="odds">${s.odds.up.toFixed(2)}x</span>` : "";
+  const oddsDown = s.odds?.down ? `<span class="odds">${s.odds.down.toFixed(2)}x</span>` : "";
+
+  const upActive = myPick === "up" ? "active up" : "";
+  const downActive = myPick === "down" ? "active down" : "";
+  const dis = isVotingOpen ? "" : "disabled";
+
+  let resultStrip = "";
+  if (status === "resolved" && s.result && votesByMember) {
+    const dir = s.result.direction;
+    const pct = s.result.change_pct?.toFixed(2);
+    const dirLabel = dir === "up" ? `↑ +${pct}%` : dir === "down" ? `↓ ${pct}%` : dir === "flat" ? "보합" : "무효";
+    const dirColor = dir === "up" ? "var(--pos)" : dir === "down" ? "var(--neg)" : "var(--muted)";
+    const picksStr = Object.entries(votesByMember).map(([m, picks]) => {
+      const p = picks[s.code];
+      if (!p) return "";
+      const win = p === dir;
+      const odds = p === "up" ? s.odds?.up : s.odds?.down;
+      const pts = win && odds ? `<span class="pts">+${odds.toFixed(2)}</span>` : "";
+      const symbol = p === "up" ? "↑" : "↓";
+      return `<span class="pick ${win ? "hit" : (dir === "flat" || dir === "void" ? "" : "miss")}">${escapeHtml(m)} ${symbol}${pts}</span>`;
+    }).filter(Boolean).join("");
+    resultStrip = `
+      <div class="result-strip">
+        <div style="width:100%;color:${dirColor};font-weight:700;">실제 ${dirLabel}</div>
+        ${picksStr}
+      </div>
+    `;
+  }
+
+  // Win highlight on buttons
+  let winUp = "", winDown = "";
+  if (status === "resolved" && s.result?.direction === "up") winUp = "win";
+  if (status === "resolved" && s.result?.direction === "down") winDown = "win";
+
+  return `
+    <div class="stock-row">
+      <div class="stock-name">
+        ${escapeHtml(s.name)}<span class="code">${s.code}</span>
+        ${total > 0 && status !== "open" ? `<div class="meta">${total}명 베팅 · ${c.up}↑ / ${c.down}↓</div>` : ""}
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <div class="vote-buttons">
+          <button class="vote-btn up ${upActive} ${winUp}" data-code="${s.code}" data-pick="up" ${dis}>
+            ↑ <span class="count">${status === "open" && isVotingOpen ? c.up : ""}</span>
+            ${oddsUp}
+          </button>
+          <button class="vote-btn down ${downActive} ${winDown}" data-code="${s.code}" data-pick="down" ${dis}>
+            ↓ <span class="count">${status === "open" && isVotingOpen ? c.down : ""}</span>
+            ${oddsDown}
+          </button>
+        </div>
+      </div>
+    </div>
+    ${resultStrip}
+  `;
+}
+
+async function vote(state, code, pick) {
+  const { room, me } = state;
+  try {
+    await api("POST", `/game/rooms/${room.id}/vote`, { picks: { [code]: pick } }, { token: getQS().me });
+    toast(`${code} ${pick === "up" ? "↑" : "↓"} 저장됨`);
+    location.reload();
+  } catch (e) {
+    toast(e.message, "error");
+  }
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[c]));
+}
+function escapeAttr(s) { return escapeHtml(s); }
+
+// ─── Boot ─────────────────────────────────────────────────────────────
+
+const qs = getQS();
+if (qs.room) screenJoinOrPlay();
+else screenLanding();
+</script>
+
+</body>
+</html>

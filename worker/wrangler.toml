@@ -11,3 +11,27 @@ compatibility_date = "2024-10-01"
 
 [observability]
 enabled = true
+
+# ─── Game (맞춰봐) — D1 + cron triggers ──────────────────────────────────
+# First-time setup:
+#   wrangler d1 create k-ant-game        # → copy the database_id below
+#   # then in this file, replace REPLACE_WITH_DATABASE_ID with the printed id
+#   wrangler d1 execute k-ant-game --file=migrations/0001_game_init.sql --remote
+#   wrangler deploy
+#
+# After that the cron triggers fire automatically:
+#   22:30 UTC = 07:30 KST → open today's round
+#   00:00 UTC = 09:00 KST → lock + snapshot prev closes
+#   11:10 UTC = 20:10 KST → resolve + score (fetches NXT 종가)
+
+[[d1_databases]]
+binding       = "DB"
+database_name = "k-ant-game"
+database_id   = "REPLACE_WITH_DATABASE_ID"
+
+[triggers]
+crons = [
+  "30 22 * * *",   # 07:30 KST — open round
+  "0 0 * * *",     # 09:00 KST — lock round, snapshot prev close
+  "10 11 * * *",   # 20:10 KST — resolve round + compute scores
+]

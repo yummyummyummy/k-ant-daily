@@ -1,3 +1,5 @@
+import { handleGameRequest, handleGameCron } from "./game.js";
+
 // k-ant-daily quote proxy — Cloudflare Worker
 //
 // Proxies Naver Finance's realtime polling + news endpoints and adds CORS
@@ -418,6 +420,10 @@ export default {
     if (url.pathname === "/" || url.pathname === "/health") {
       return json({ ok: true, service: "k-ant-daily-quotes" });
     }
+    // Game routes — friend betting game (/game/*)
+    if (url.pathname.startsWith("/game/")) {
+      return handleGameRequest(request, env, ctx);
+    }
     // Ticker strip — indices, FX, crypto.
     if (url.pathname === "/ticker") {
       const raw = url.searchParams.get("items") || "";
@@ -606,5 +612,10 @@ export default {
     });
     ctx.waitUntil(cache.put(cacheKey, response.clone()));
     return response;
+  },
+
+  // Cron triggers — game lifecycle (open / lock / resolve).
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(handleGameCron(event, env, ctx));
   },
 };
