@@ -12,7 +12,7 @@ compatibility_date = "2024-10-01"
 [observability]
 enabled = true
 
-# ─── Game (맞춰봐) — D1 + cron triggers ──────────────────────────────────
+# ─── Game (국장 예측) — D1 + cron triggers ──────────────────────────────────
 # First-time setup:
 #   wrangler d1 create k-ant-game        # → copy the database_id below
 #   # then in this file, replace REPLACE_WITH_DATABASE_ID with the printed id

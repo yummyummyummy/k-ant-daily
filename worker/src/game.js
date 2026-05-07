@@ -1,4 +1,4 @@
-// Game routes — "맞춰봐" friend betting game.
+// Game routes — "국장 예측" friend betting game.
 //
 // 10 fixed stocks, daily ↑/↓ votes, parimutuel odds payout.
 // State machine: open (07:30~09:00 KST) → closed (09:00~20:10) → resolved (20:10+)

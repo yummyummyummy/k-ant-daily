@@ -60,7 +60,7 @@ const QUOTE_API = "https://k-ant-daily-quotes.<your-subdomain>.workers.dev/quote
 
 헬스체크. `{"ok": true, "service": "k-ant-daily-quotes"}`.
 
-### `/game/*` — 친구 베팅 게임 ("맞춰봐")
+### `/game/*` — 친구 베팅 게임 ("국장 예측")
 
 10종목 ↑↓ 베팅 게임. **D1 + cron 트리거 필요.** 프론트는 [docs/game.html](../docs/game.html), 백엔드 로직은 [src/game.js](src/game.js).
 

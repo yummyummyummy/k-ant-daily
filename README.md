@@ -96,18 +96,18 @@ SK하이닉스 000660  🔥 7   +3.37%   매수   👤 이영준 +3
 - 신뢰도 버킷별 정확도 (high / medium / low)
 - 신호 기여도 (overnight_helped, news_misread, overnight_misled, priced_in_underestimated)
 
-### 🎲 맞춰봐 — 친구 베팅 게임 (별도 페이지 [`game.html`](docs/game.html))
+### 🎲 국장 예측 — 친구 베팅 게임 (별도 페이지 [`game.html`](docs/game.html))
 
-10종목 ↑↓ 베팅 게임. 매일 07:30~09:00 KST 투표, 20:00 NXT 종가로 판정.
+10종목 ↑↓ 베팅 게임. 전날 20:00 ~ 당일 09:00 KST 투표 (자유롭게 변경 가능), 20:00 NXT 종가로 판정.
 
 **점수 = parimutuel odds**: `odds = 그 종목 전체 베팅 인원 / 같은 방향 인원`. 적중 +odds 점, 빗나감 0점, 감점 없음. 4명 중 혼자 반대편 가서 맞추면 +5점, 다 같이 갔는데 맞추면 +1.25점.
 
 **방 모델**: 누구나 방 생성, 멤버 명단 등록. 친구는 공유 링크로 들어와 자기 이름 클릭 → 본인용 토큰 발급 → URL 북마크. 토큰 = 신원.
 
-**라이프사이클** (Cloudflare Worker cron):
-- 07:30 KST — 라운드 open
-- 09:00 KST — 락 + 직전가 스냅샷
-- 20:10 KST — NXT 종가 fetch → 결과 + 점수 누적 + 개별 픽 공개
+**라이프사이클** (Cloudflare Worker · 단일 cron 20:10 KST):
+- 전날 20:00 ~ 당일 09:00 KST — 투표 가능 (시간 기반 체크, 윈도우 내 변경 자유)
+- 09:00 KST — 투표 마감 (시간 기반)
+- 20:10 KST — 오늘 라운드 resolve (NXT 종가 fetch → odds 적용 점수 누적 + 개별 픽 공개) + 다음 트레이딩 데이 라운드 open + prev_close 스냅샷
 
 10종목: 삼성전자 · SK하이닉스 · 한미반도체 · 현대차 · 셀리드 · 보로노이 · 큐리옥스바이오시스템즈 · 코아스템켐온 · 앱클론 · 에이비엘바이오. 변경하려면 [worker/src/game.js](worker/src/game.js) 의 `GAME_STOCKS` 배열 수정.
 
@@ -238,7 +238,7 @@ k-ant-daily/
 │   ├── accuracy.html                   # 📊 통계 — 누적 지표
 │   ├── accuracy/YYYY-MM-DD.html        # 일별 회고 (예측 ↔ 결과 서술 분석)
 │   ├── digest.html                     # 🌙 장 마감 후 뉴스 다이제스트 (23:00 KST 발행)
-│   ├── game.html                       # 🎲 맞춰봐 — 친구 베팅 게임 (Worker /game/* 백엔드)
+│   ├── game.html                       # 🎲 국장 예측 — 친구 베팅 게임 (Worker /game/* 백엔드)
 │   ├── promoted_rules.md               # 3일+ 반복 패턴 → 영구 규칙 (promote_rules.py 자동 생성)
 │   ├── index.html                      # JS-router (시간대 보고 digest vs 최신 브리핑 분기)
 │   └── archive.html                    # 📋 예측 — 날짜별 브리핑 리스트 (각 행에 🔍 회고 링크)
@@ -321,7 +321,7 @@ wrangler deploy        # 최초 1회 wrangler login 필요
 - `GET /ticker?items=KOSPI,KOSDAQ,USDKRW,BTC,ETH` — 지표·FX·암호화폐 통합
 - `GET /stock-news?codes=...` — 종목별 뉴스 (EUC-KR 디코드, 5분 edge 캐시)
 - `GET /nxt-quotes?codes=...` — NXT 대체거래 등락률 (2분 edge 캐시)
-- `/game/*` — 친구 베팅 게임 ("맞춰봐"). D1 + cron. 셋업: [worker/README.md](worker/README.md#game)
+- `/game/*` — 친구 베팅 게임 ("국장 예측"). D1 + cron. 셋업: [worker/README.md](worker/README.md#game)
 
 ### NXT 2차 예측 (08:45 freeze)
 

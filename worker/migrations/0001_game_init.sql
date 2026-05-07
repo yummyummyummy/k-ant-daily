@@ -1,4 +1,4 @@
--- Game schema — friend betting game ("맞춰봐")
+-- Game schema — friend betting game ("국장 예측")
 --
 -- Run once after `wrangler d1 create k-ant-game`:
 --   wrangler d1 execute k-ant-game --file=migrations/0001_game_init.sql
