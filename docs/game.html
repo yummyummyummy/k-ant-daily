@@ -96,6 +96,28 @@
   }
   .stock-name .code { color: var(--muted); font-size: 12px; font-weight: 400; margin-left: 6px; }
   .stock-name .meta { color: var(--muted); font-size: 12px; font-weight: 400; margin-top: 2px; }
+  /* Horizontal vote distribution bar — slim, green=up, red=down. Empty when no votes. */
+  .vote-bar {
+    display: flex;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  .vote-bar > div { transition: flex 0.2s ease; min-width: 0; }
+  .vote-bar-up    { background: var(--pos); }
+  .vote-bar-down  { background: var(--neg); }
+  /* After resolution, dim the losing side. */
+  .vote-bar-up.dim    { background: rgba(63,185,80,0.25); }
+  .vote-bar-down.dim  { background: rgba(248,81,73,0.25); }
+  .vote-bar-counts {
+    font-size: 11px; color: var(--muted); margin-top: 4px;
+    display: flex; justify-content: space-between;
+    font-variant-numeric: tabular-nums;
+  }
+  .vote-bar-counts .up { color: var(--pos); }
+  .vote-bar-counts .down { color: var(--neg); }
   .vote-buttons { display: flex; gap: 8px; }
   .vote-btn {
     background: transparent;
@@ -557,11 +579,26 @@ function renderStockRow(s, today, votesByMember, me) {
   if (status === "resolved" && s.result?.direction === "up") winUp = "win";
   if (status === "resolved" && s.result?.direction === "down") winDown = "win";
 
+  // Distribution bar — visible during voting window or after votes accumulate.
+  // After resolution, dim the losing side so the winning slice pops.
+  const winSide = status === "resolved" ? s.result?.direction : null;
+  const upDim = winSide === "down" ? "dim" : "";
+  const downDim = winSide === "up" ? "dim" : "";
+  const showBar = total > 0 || inVotingWindow;
+  const barHtml = !showBar ? "" : `
+    <div class="vote-bar" title="${c.up}↑ / ${c.down}↓">
+      ${total > 0
+        ? `<div class="vote-bar-up ${upDim}" style="flex:${c.up};"></div><div class="vote-bar-down ${downDim}" style="flex:${c.down};"></div>`
+        : ""}
+    </div>
+    ${total > 0 ? `<div class="vote-bar-counts"><span class="up">${c.up}↑</span><span class="down">${c.down}↓</span></div>` : ""}
+  `;
+
   return `
     <div class="stock-row">
       <div class="stock-name">
         ${escapeHtml(s.name)}<span class="code">${s.code}</span>
-        ${total > 0 && status !== "open" ? `<div class="meta">${total}명 베팅 · ${c.up}↑ / ${c.down}↓</div>` : ""}
+        ${barHtml}
       </div>
       <div style="display:flex;flex-direction:column;gap:4px;">
         <div class="vote-buttons">
