@@ -151,20 +151,35 @@ async function ensureRoundExists(env, date) {
   return { date, stocks_json: stocksJson, status: "open", prev_closes_json: JSON.stringify(prevCloses) };
 }
 
-async function resolveRound(env, date, fetchClosesFn) {
+async function resolveRound(env, date, fetchClosesFn, { force = false } = {}) {
   // Compute directions, write results, compute scores.
-  // Accept 'open' status too — with the new voting window (yesterday 20:00 ~
-  // today 09:00) we no longer have a separate 'closed' transition; voting
-  // eligibility is enforced by time. So a round may go open → resolved.
+  // Accept 'open'/'closed'/'void' here. With the new time-based voting window
+  // we no longer have a separate 'closed' lock cron, so a round goes
+  // open → resolved directly. `force=true` also accepts 'resolved' for
+  // re-resolution (e.g. fixing missing NXT data).
   const round = await env.DB.prepare("SELECT * FROM rounds WHERE date = ?")
     .bind(date)
     .first();
-  if (!round || (round.status !== "open" && round.status !== "closed")) return;
+  if (!round) return;
+  const allowed = force ? ["open", "closed", "resolved", "void"] : ["open", "closed"];
+  if (!allowed.includes(round.status)) return;
 
   const stocks = JSON.parse(round.stocks_json);
   const codes = stocks.map((s) => s.code);
   const prevCloses = JSON.parse(round.prev_closes_json || "{}");
   const todayCloses = await fetchClosesFn(codes);
+
+  // KRX fallback — NXT covers ~644 stocks but small-cap KOSDAQ (e.g. 셀리드,
+  // 앱클론, 코아스템켐온) often miss. Re-fetch any nulls from Naver realtime
+  // (= KRX 15:30 close once the market is closed). Friday-evening / weekend /
+  // holiday queries also return the most recent KRX close.
+  const missing = codes.filter((c) => todayCloses[c] == null);
+  if (missing.length > 0) {
+    const fallback = await fetchNaverPrices(missing);
+    for (const c of missing) {
+      if (fallback[c] != null) todayCloses[c] = fallback[c];
+    }
+  }
 
   // No closes = holiday. Mark void.
   const validCodes = codes.filter(
@@ -657,6 +672,22 @@ export async function handleGameRequest(request, env, ctx) {
   }
 
   // Routes
+  // Admin: re-resolve a specific round (uses NXT + KRX fallback).
+  // No auth — confirm token in body protects against accidental hits.
+  if (path === "/game/admin/resolve" && method === "POST") {
+    if (body.confirm !== "resolve") {
+      return json({ error: "missing confirm: 'resolve'" }, 400);
+    }
+    const date = body.date;
+    if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      return json({ error: "invalid date" }, 400);
+    }
+    await resolveRound(env, date, fetchNxtCloses, { force: true });
+    const round = await env.DB.prepare(
+      "SELECT date, status, results_json FROM rounds WHERE date = ?"
+    ).bind(date).first();
+    return json({ ok: true, round });
+  }
   if (path === "/game/rooms" && method === "POST") {
     return createRoom(env, body);
   }
