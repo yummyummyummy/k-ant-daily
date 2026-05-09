@@ -83,19 +83,68 @@
 
   .stock-row {
     display: flex;
-    align-items: center;
-    padding: 12px 0;
+    flex-direction: column;
+    padding: 14px 0;
     border-bottom: 1px solid var(--border);
-    gap: 12px;
+    gap: 8px;
   }
   .stock-row:last-child { border-bottom: none; }
-  .stock-name {
-    flex: 1;
-    min-width: 0;
-    font-weight: 600;
+  .stock-head {
+    display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
   }
+  .stock-name { font-weight: 600; }
   .stock-name .code { color: var(--muted); font-size: 12px; font-weight: 400; margin-left: 6px; }
-  .stock-name .meta { color: var(--muted); font-size: 12px; font-weight: 400; margin-top: 2px; }
+  .stock-meta-right { margin-left: auto; font-size: 12px; color: var(--muted); }
+
+  /* ─── Instagram-style voting tiles ───────────────────────────────── */
+  .ig-tiles {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+    height: 56px;
+  }
+  .ig-tile {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--fg);
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 0 10px;
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .ig-tile:hover:not(:disabled) { border-color: var(--accent); }
+  .ig-tile:disabled { cursor: not-allowed; opacity: 0.6; }
+  .ig-tile .ig-arrow { font-size: 22px; }
+  .ig-tile.up   .ig-arrow { color: var(--pos); }
+  .ig-tile.down .ig-arrow { color: var(--neg); }
+  .ig-tile .ig-label { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+  /* Post-vote / locked / resolved — solid colored fill, sized by ratio */
+  .ig-tile.revealed {
+    border-style: solid;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    transition: flex 0.3s ease;
+  }
+  .ig-tile.revealed.up   { background: rgba(63,185,80,0.18); border-color: var(--pos); }
+  .ig-tile.revealed.down { background: rgba(248,81,73,0.18); border-color: var(--neg); }
+  .ig-tile.revealed.dim  { opacity: 0.45; }
+  .ig-tile.revealed.mine { box-shadow: inset 0 0 0 2px var(--accent); }
+  .ig-tile .ig-pct  { font-size: 18px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .ig-tile .ig-meta { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .ig-tile.revealed.up   .ig-pct  { color: var(--pos); }
+  .ig-tile.revealed.down .ig-pct  { color: var(--neg); }
+  .ig-tile .ig-check {
+    position: absolute; top: 6px; right: 8px;
+    font-size: 14px; color: var(--accent); font-weight: 800;
+  }
   /* Horizontal vote distribution bar — slim, green=up, red=down. Empty when no votes. */
   .vote-bar {
     display: flex;
@@ -384,8 +433,11 @@ function renderPlay(state) {
         `;
       }).join("")}</ul>`;
 
-  // Today stocks
-  const stocksHtml = today.stocks.map((s) => renderStockRow(s, today, today.votes_by_member, me)).join("");
+  // Today stocks — only render the voting section for token holders.
+  // Spectators see leaderboard + recent results + member roster only.
+  const stocksHtml = me
+    ? today.stocks.map((s) => renderStockRow(s, today, today.votes_by_member, me)).join("")
+    : "";
 
   // Header line — different copy for spectator (no token) vs player (token).
   const headerHint = me
@@ -394,12 +446,7 @@ function renderPlay(state) {
       }`
     : `<strong>관전 모드</strong> · 라운드 ${today.date} · 투표하려면 아래 멤버 영역에서 본인 이름을 클릭하세요`;
 
-  root.innerHTML = `
-    <div class="card">
-      <h2>${escapeHtml(room.name)} <span class="status-pill ${status}">${statusLabel}</span></h2>
-      <div class="hint">${headerHint}</div>
-    </div>
-
+  const todayCard = me ? `
     <div class="card">
       <h2>오늘의 10종목</h2>
       ${status === "open" && !today.voting_open
@@ -408,11 +455,17 @@ function renderPlay(state) {
       ${status === "void"
         ? '<div class="hint">휴장일 — 결과 무효. 점수 변동 없음.</div>'
         : ""}
-      ${!me && today.voting_open
-        ? '<div class="hint">관전 모드 — 베팅하려면 멤버 영역에서 본인 이름 클릭 후 가입.</div>'
-        : ""}
       <div id="stocks">${stocksHtml}</div>
     </div>
+  ` : "";
+
+  root.innerHTML = `
+    <div class="card">
+      <h2>${escapeHtml(room.name)} <span class="status-pill ${status}">${statusLabel}</span></h2>
+      <div class="hint">${headerHint}</div>
+    </div>
+
+    ${todayCard}
 
     ${renderRecentResolved(recent_resolved, me)}
 
@@ -453,7 +506,7 @@ function renderPlay(state) {
   // Vote buttons — only wire when user has a token. Without one the buttons
   // render disabled (renderStockRow already adds the disabled attribute when
   // voting_open is false; we additionally short-circuit the click here).
-  document.querySelectorAll(".vote-btn[data-code]").forEach((btn) => {
+  document.querySelectorAll(".ig-tile[data-code]").forEach((btn) => {
     btn.onclick = () => {
       if (!me) {
         toast("먼저 멤버 영역에서 본인 이름을 클릭해 가입하세요", "error");
@@ -538,96 +591,110 @@ function renderStockRow(s, today, votesByMember, me) {
   const status = today.status;
   const c = s.counts;
   const total = c.up + c.down;
-  // Voting window is server-driven (time-based). Spectators see the same
-  // counts/odds during the window but the buttons are disabled.
   const inVotingWindow = today.voting_open && status === "open";
   const canVote = inVotingWindow && !!me;
   const myPick = s.my_pick;
 
-  const oddsUp = s.odds?.up ? `<span class="odds">${s.odds.up.toFixed(2)}x</span>` : "";
-  const oddsDown = s.odds?.down ? `<span class="odds">${s.odds.down.toFixed(2)}x</span>` : "";
+  // Instagram pattern: hide counts/odds until the user has voted (or voting
+  // window has closed — at that point everyone sees results regardless).
+  const revealed = !!myPick || !inVotingWindow;
 
-  const upActive = myPick === "up" ? "active up" : "";
-  const downActive = myPick === "down" ? "active down" : "";
-  const dis = canVote ? "" : "disabled";
+  const winSide = status === "resolved" ? s.result?.direction : null;
 
-  let resultStrip = "";
-  if (status === "resolved" && s.result && votesByMember) {
+  // Right-side meta — show the winning result label once resolved.
+  let metaRight = "";
+  if (status === "resolved" && s.result) {
     const dir = s.result.direction;
     const pct = s.result.change_pct?.toFixed(2);
-    const dirLabel = dir === "up" ? `↑ +${pct}%` : dir === "down" ? `↓ ${pct}%` : dir === "flat" ? "보합" : "무효";
-    const dirColor = dir === "up" ? "var(--pos)" : dir === "down" ? "var(--neg)" : "var(--muted)";
-    const picksStr = Object.entries(votesByMember).map(([m, picks]) => {
-      const p = picks[s.code];
-      if (!p) return "";
-      const win = p === dir;
-      const odds = p === "up" ? s.odds?.up : s.odds?.down;
-      const pts = win && odds ? `<span class="pts">+${odds.toFixed(2)}</span>` : "";
-      const symbol = p === "up" ? "↑" : "↓";
-      return `<span class="pick ${win ? "hit" : (dir === "flat" || dir === "void" ? "" : "miss")}">${escapeHtml(m)} ${symbol}${pts}</span>`;
-    }).filter(Boolean).join("");
-    resultStrip = `
-      <div class="result-strip">
-        <div style="width:100%;color:${dirColor};font-weight:700;">실제 ${dirLabel}</div>
-        ${picksStr}
-      </div>
-    `;
+    const dirLabel = dir === "up"   ? `실제 ↑ +${pct}%`
+                   : dir === "down" ? `실제 ↓ ${pct}%`
+                   : dir === "flat" ? "보합"
+                   : "무효";
+    const myWin = myPick && myPick === dir;
+    const myOdds = myPick === "up" ? s.odds?.up : s.odds?.down;
+    const myPts = myWin && myOdds ? `· +${myOdds.toFixed(2)}점` : "";
+    const color = dir === "up" ? "var(--pos)" : dir === "down" ? "var(--neg)" : "var(--muted)";
+    metaRight = `<span class="stock-meta-right" style="color:${color};font-weight:700;">${dirLabel}${myPts}</span>`;
+  } else if (!inVotingWindow && total > 0) {
+    metaRight = `<span class="stock-meta-right">${total}명 베팅</span>`;
   }
 
-  // Win highlight on buttons
-  let winUp = "", winDown = "";
-  if (status === "resolved" && s.result?.direction === "up") winUp = "win";
-  if (status === "resolved" && s.result?.direction === "down") winDown = "win";
+  // Tile content depends on revealed state.
+  const tileContent = (side) => {
+    const cnt = side === "up" ? c.up : c.down;
+    const odds = side === "up" ? s.odds?.up : s.odds?.down;
+    const arrow = side === "up" ? "↑" : "↓";
+    if (!revealed) {
+      return `
+        <span class="ig-arrow">${arrow}</span>
+        <span class="ig-label">${side === "up" ? "상승 베팅" : "하락 베팅"}</span>
+      `;
+    }
+    const pct = total > 0 ? Math.round((cnt / total) * 100) : 0;
+    return `
+      <span class="ig-pct">${arrow} ${pct}%</span>
+      <span class="ig-meta">${cnt}명${odds ? ` · ${odds.toFixed(2)}x` : ""}</span>
+      ${myPick === side ? '<span class="ig-check">✓</span>' : ""}
+    `;
+  };
 
-  // Distribution bar — visible during voting window or after votes accumulate.
-  // After resolution, dim the losing side so the winning slice pops.
-  const winSide = status === "resolved" ? s.result?.direction : null;
-  const upDim = winSide === "down" ? "dim" : "";
-  const downDim = winSide === "up" ? "dim" : "";
-  const showBar = total > 0 || inVotingWindow;
-  const barHtml = !showBar ? "" : `
-    <div class="vote-bar" title="${c.up}↑ / ${c.down}↓">
-      ${total > 0
-        ? `<div class="vote-bar-up ${upDim}" style="flex:${c.up};"></div><div class="vote-bar-down ${downDim}" style="flex:${c.down};"></div>`
-        : ""}
-    </div>
-    ${total > 0 ? `<div class="vote-bar-counts"><span class="up">${c.up}↑</span><span class="down">${c.down}↓</span></div>` : ""}
-  `;
+  const upClasses = ["ig-tile", "up"];
+  const downClasses = ["ig-tile", "down"];
+  if (revealed) {
+    upClasses.push("revealed");
+    downClasses.push("revealed");
+    if (myPick === "up") upClasses.push("mine");
+    if (myPick === "down") downClasses.push("mine");
+    if (winSide === "down") upClasses.push("dim");
+    if (winSide === "up") downClasses.push("dim");
+  }
+  const dis = canVote ? "" : "disabled";
+
+  // Flex sizing: pre-vote = equal (1:1). Post-vote = ratio if total>0,
+  // else 1:1 (e.g., I'm the first voter and just clicked → counts {1, 0}
+  // becomes 100% on my side which is correct).
+  const flexUp   = revealed && total > 0 ? c.up   : 1;
+  const flexDown = revealed && total > 0 ? c.down : 1;
+  // min-flex so a 0-count side stays visible (e.g. 5↑/0↓ keeps a thin ↓ tile).
+  const fUp   = Math.max(flexUp,   revealed ? 0.15 : 1);
+  const fDown = Math.max(flexDown, revealed ? 0.15 : 1);
 
   return `
     <div class="stock-row">
-      <div class="stock-name">
-        ${escapeHtml(s.name)}<span class="code">${s.code}</span>
-        ${barHtml}
+      <div class="stock-head">
+        <span class="stock-name">${escapeHtml(s.name)}<span class="code">${s.code}</span></span>
+        ${metaRight}
       </div>
-      <div style="display:flex;flex-direction:column;gap:4px;">
-        <div class="vote-buttons">
-          <button class="vote-btn up ${upActive} ${winUp}" data-code="${s.code}" data-pick="up" ${dis}>
-            ↑ <span class="count">${inVotingWindow ? c.up : ""}</span>
-            ${oddsUp}
-          </button>
-          <button class="vote-btn down ${downActive} ${winDown}" data-code="${s.code}" data-pick="down" ${dis}>
-            ↓ <span class="count">${inVotingWindow ? c.down : ""}</span>
-            ${oddsDown}
-          </button>
-        </div>
+      <div class="ig-tiles">
+        <button class="${upClasses.join(" ")}" data-code="${s.code}" data-pick="up" style="flex:${fUp};" ${dis}>
+          ${tileContent("up")}
+        </button>
+        <button class="${downClasses.join(" ")}" data-code="${s.code}" data-pick="down" style="flex:${fDown};" ${dis}>
+          ${tileContent("down")}
+        </button>
       </div>
+      ${status === "resolved" && votesByMember ? renderResolvedPicksStrip(s, votesByMember) : ""}
     </div>
-    ${resultStrip}
   `;
+}
+
+function renderResolvedPicksStrip(s, votesByMember) {
+  const dir = s.result?.direction;
+  const picks = Object.entries(votesByMember).map(([m, p]) => {
+    const pick = p[s.code];
+    if (!pick) return "";
+    const win = pick === dir;
+    const odds = pick === "up" ? s.odds?.up : s.odds?.down;
+    const pts = win && odds ? `<span class="pts">+${odds.toFixed(2)}</span>` : "";
+    const symbol = pick === "up" ? "↑" : "↓";
+    const cls = (dir === "flat" || dir === "void") ? "" : (win ? "hit" : "miss");
+    return `<span class="pick ${cls}">${escapeHtml(m)} ${symbol}${pts}</span>`;
+  }).filter(Boolean).join("");
+  return picks ? `<div class="result-strip">${picks}</div>` : "";
 }
 
 async function vote(state, code, pick) {
   const { room } = state;
-
-  // Optimistic UI: toggle the clicked button immediately so there's no
-  // perceived lag while the API call runs. State refresh below reconciles
-  // with server truth (counts/odds).
-  document.querySelectorAll(`.vote-btn[data-code="${code}"]`).forEach((b) => {
-    b.classList.remove("active", "up", "down");
-  });
-  const btn = document.querySelector(`.vote-btn[data-code="${code}"][data-pick="${pick}"]`);
-  if (btn) btn.classList.add("active", pick);
 
   try {
     await api("POST", `/game/rooms/${room.id}/vote`, { picks: { [code]: pick } }, { token: getQS().me });
