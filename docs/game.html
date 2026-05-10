@@ -121,10 +121,12 @@
   .ig-tile:hover:not(:disabled) { border-color: var(--accent); }
   .ig-tile:disabled { cursor: not-allowed; opacity: 0.6; }
   .ig-tile .ig-arrow { font-size: 22px; }
-  .ig-tile.up   .ig-arrow { color: var(--pos); }
-  .ig-tile.down .ig-arrow { color: var(--neg); }
+  .ig-tile.up   .ig-arrow { color: #e6edf3; }
+  .ig-tile.down .ig-arrow { color: #b1bac4; }
   .ig-tile .ig-label { font-size: 13px; color: var(--muted); font-weight: 500; }
 
+  /* Vote tone — monochrome (Up=bright / Down=dark grey) */
+  /* 보색 충돌 줄이고 dark mode 와 일관된 톤 유지. */
   /* Post-vote / locked / resolved — slim bar + text labels below */
   .ig-bar {
     display: flex;
@@ -136,10 +138,8 @@
     margin-top: 4px;
   }
   .ig-bar > div { transition: flex 0.3s ease; min-width: 0; }
-  .ig-bar-up   { background: var(--pos); }
-  .ig-bar-down { background: var(--neg); }
-  .ig-bar-up.dim   { background: rgba(63,185,80,0.3); }
-  .ig-bar-down.dim { background: rgba(248,81,73,0.3); }
+  .ig-bar-up   { background: #e6edf3; }   /* bright */
+  .ig-bar-down { background: #6e7681; }   /* mid grey */
 
   .ig-labels {
     display: flex;
@@ -150,21 +150,29 @@
     line-height: 1.3;
   }
   .ig-label-btn {
-    background: none; border: none; color: var(--fg); padding: 2px 0;
+    background: none; border: 1px solid transparent; color: var(--fg);
+    padding: 3px 8px; border-radius: 6px;
     cursor: pointer; font-family: inherit; font-size: inherit;
     display: inline-flex; align-items: baseline; gap: 6px;
     font-variant-numeric: tabular-nums;
+    transition: opacity 0.2s, background 0.2s, border-color 0.2s;
   }
   .ig-label-btn:disabled { cursor: default; }
-  .ig-label-btn.up.right   { margin-left: auto; }
   .ig-label-btn.down       { margin-left: auto; }
   .ig-label-btn .ig-pct  { font-weight: 800; }
-  .ig-label-btn.up   .ig-pct { color: var(--pos); }
-  .ig-label-btn.down .ig-pct { color: var(--neg); }
+  .ig-label-btn.up   .ig-pct { color: #e6edf3; }
+  .ig-label-btn.down .ig-pct { color: #b1bac4; }   /* slightly bumped from #6e7681 for legibility on dark bg */
   .ig-label-btn .ig-meta { color: var(--muted); font-size: 12px; }
-  .ig-label-btn.dim  { opacity: 0.45; }
   .ig-label-btn.mine .ig-check { color: var(--accent); font-weight: 700; }
   .ig-label-btn:hover:not(:disabled) { text-decoration: underline; }
+
+  /* Resolved highlights: emphasize winner, dim loser. */
+  .ig-label-btn.winner {
+    background: rgba(88,166,255,0.12);
+    border-color: rgba(88,166,255,0.4);
+  }
+  .ig-label-btn.loser  { opacity: 0.45; }
+  .ig-label-btn .ig-result { color: var(--accent); font-weight: 800; margin-left: 2px; }
   /* Horizontal vote distribution bar — slim, green=up, red=down. Empty when no votes. */
   .vote-bar {
     display: flex;
@@ -277,9 +285,9 @@
     border-radius: 3px;
     background: var(--border);
   }
-  .result-strip .pick.hit { background: rgba(63,185,80,0.2); border: 1px solid var(--pos); }
-  .result-strip .pick.miss { background: rgba(248,81,73,0.2); border: 1px solid var(--neg); }
-  .result-strip .pick .pts { color: var(--pos); margin-left: 4px; font-weight: 700; }
+  .result-strip .pick.hit { background: rgba(88,166,255,0.12); border: 1px solid rgba(88,166,255,0.4); }
+  .result-strip .pick.miss { opacity: 0.45; }
+  .result-strip .pick .pts { color: var(--accent); margin-left: 4px; font-weight: 700; }
 
   .toast {
     position: fixed;
@@ -657,13 +665,15 @@ function renderStockRow(s, today, votesByMember, me) {
   } else {
     const fUp   = total > 0 ? c.up   : 1;
     const fDown = total > 0 ? c.down : 1;
-    const upDim   = winSide === "down" ? "dim" : "";
-    const downDim = winSide === "up"   ? "dim" : "";
-    const labelUp = c.up > 0 ? renderLabelBtn("up", c.up, total, s.odds?.up, myPick === "up", upDim, canVote, s.code) : "";
-    const labelDown = c.down > 0 ? renderLabelBtn("down", c.down, total, s.odds?.down, myPick === "down", downDim, canVote, s.code) : "";
+    // Resolved: emphasize the winning label, fade the loser. Bar distribution
+    // stays as-is so users still see how everyone voted.
+    const upState   = winSide === "up"   ? "winner" : (winSide === "down" ? "loser" : "");
+    const downState = winSide === "down" ? "winner" : (winSide === "up"   ? "loser" : "");
+    const labelUp   = c.up > 0   ? renderLabelBtn("up",   c.up,   total, s.odds?.up,   myPick === "up",   upState,   canVote, s.code) : "";
+    const labelDown = c.down > 0 ? renderLabelBtn("down", c.down, total, s.odds?.down, myPick === "down", downState, canVote, s.code) : "";
     voteBlock = `
       <div class="ig-bar">
-        ${total > 0 ? `<div class="ig-bar-up ${upDim}" style="flex:${fUp};"></div><div class="ig-bar-down ${downDim}" style="flex:${fDown};"></div>` : ""}
+        ${total > 0 ? `<div class="ig-bar-up" style="flex:${fUp};"></div><div class="ig-bar-down" style="flex:${fDown};"></div>` : ""}
       </div>
       <div class="ig-labels">
         ${labelUp}
@@ -684,20 +694,19 @@ function renderStockRow(s, today, votesByMember, me) {
   `;
 }
 
-function renderLabelBtn(side, cnt, total, odds, isMine, dim, canVote, code) {
+function renderLabelBtn(side, cnt, total, odds, isMine, state, canVote, code) {
   const arrow = side === "up" ? "↑" : "↓";
   const pct = total > 0 ? Math.round((cnt / total) * 100) : 0;
   const oddsStr = odds ? ` · ${odds.toFixed(2)}x` : "";
   const check = isMine ? '<span class="ig-check">✓</span>' : "";
-  const cls = `ig-label-btn ${side} ${isMine ? "mine" : ""} ${dim}`;
-  // Right alignment for the down label so it hugs the right edge.
-  const rightCls = side === "down" ? "right" : "";
+  const winMark = state === "winner" ? '<span class="ig-result">✅</span>' : "";
+  const cls = `ig-label-btn ${side} ${isMine ? "mine" : ""} ${state}`;
   const dis = canVote ? "" : "disabled";
   return `
-    <button class="${cls} ${rightCls}" data-code="${code}" data-pick="${side}" ${dis}>
+    <button class="${cls}" data-code="${code}" data-pick="${side}" ${dis}>
       <span class="ig-pct">${arrow} ${pct}%</span>
       <span class="ig-meta">${cnt}명${oddsStr}</span>
-      ${check}
+      ${check}${winMark}
     </button>
   `;
 }
