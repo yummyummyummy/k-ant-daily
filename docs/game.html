@@ -125,30 +125,46 @@
   .ig-tile.down .ig-arrow { color: var(--neg); }
   .ig-tile .ig-label { font-size: 13px; color: var(--muted); font-weight: 500; }
 
-  /* Post-vote / locked / resolved — solid colored fill, sized by ratio */
-  .ig-tile.revealed {
-    border-style: solid;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2px;
-    transition: flex 0.3s ease;
-    /* Floor for the smaller side so 100/0 (만장일치) cases don't squeeze
-       the 0% tile into illegible vertical text. */
-    min-width: 88px;
-    padding: 6px 8px;
+  /* Post-vote / locked / resolved — slim bar + text labels below */
+  .ig-bar {
+    display: flex;
+    height: 8px;
+    width: 100%;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 4px;
   }
-  .ig-tile.revealed.up   { background: rgba(63,185,80,0.18); border-color: var(--pos); }
-  .ig-tile.revealed.down { background: rgba(248,81,73,0.18); border-color: var(--neg); }
-  .ig-tile.revealed.dim  { opacity: 0.45; }
-  .ig-tile.revealed.mine { box-shadow: inset 0 0 0 2px var(--accent); }
-  .ig-tile .ig-pct  { font-size: 18px; font-weight: 800; font-variant-numeric: tabular-nums; }
-  .ig-tile .ig-meta { font-size: 11px; color: var(--muted); font-weight: 500; }
-  .ig-tile.revealed.up   .ig-pct  { color: var(--pos); }
-  .ig-tile.revealed.down .ig-pct  { color: var(--neg); }
-  .ig-tile .ig-check {
-    position: absolute; top: 6px; right: 8px;
-    font-size: 14px; color: var(--accent); font-weight: 800;
+  .ig-bar > div { transition: flex 0.3s ease; min-width: 0; }
+  .ig-bar-up   { background: var(--pos); }
+  .ig-bar-down { background: var(--neg); }
+  .ig-bar-up.dim   { background: rgba(63,185,80,0.3); }
+  .ig-bar-down.dim { background: rgba(248,81,73,0.3); }
+
+  .ig-labels {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.3;
   }
+  .ig-label-btn {
+    background: none; border: none; color: var(--fg); padding: 2px 0;
+    cursor: pointer; font-family: inherit; font-size: inherit;
+    display: inline-flex; align-items: baseline; gap: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .ig-label-btn:disabled { cursor: default; }
+  .ig-label-btn.up.right   { margin-left: auto; }
+  .ig-label-btn.down       { margin-left: auto; }
+  .ig-label-btn .ig-pct  { font-weight: 800; }
+  .ig-label-btn.up   .ig-pct { color: var(--pos); }
+  .ig-label-btn.down .ig-pct { color: var(--neg); }
+  .ig-label-btn .ig-meta { color: var(--muted); font-size: 12px; }
+  .ig-label-btn.dim  { opacity: 0.45; }
+  .ig-label-btn.mine .ig-check { color: var(--accent); font-weight: 700; }
+  .ig-label-btn:hover:not(:disabled) { text-decoration: underline; }
   /* Horizontal vote distribution bar — slim, green=up, red=down. Empty when no votes. */
   .vote-bar {
     display: flex;
@@ -510,7 +526,7 @@ function renderPlay(state) {
   // Vote buttons — only wire when user has a token. Without one the buttons
   // render disabled (renderStockRow already adds the disabled attribute when
   // voting_open is false; we additionally short-circuit the click here).
-  document.querySelectorAll(".ig-tile[data-code]").forEach((btn) => {
+  document.querySelectorAll(".ig-tile[data-code], .ig-label-btn[data-code]").forEach((btn) => {
     btn.onclick = () => {
       if (!me) {
         toast("먼저 멤버 영역에서 본인 이름을 클릭해 가입하세요", "error");
@@ -623,47 +639,38 @@ function renderStockRow(s, today, votesByMember, me) {
     metaRight = `<span class="stock-meta-right">${total}명 베팅</span>`;
   }
 
-  // Tile content depends on revealed state.
-  const tileContent = (side) => {
-    const cnt = side === "up" ? c.up : c.down;
-    const odds = side === "up" ? s.odds?.up : s.odds?.down;
-    const arrow = side === "up" ? "↑" : "↓";
-    if (!revealed) {
-      return `
-        <span class="ig-arrow">${arrow}</span>
-        <span class="ig-label">${side === "up" ? "상승 베팅" : "하락 베팅"}</span>
-      `;
-    }
-    const pct = total > 0 ? Math.round((cnt / total) * 100) : 0;
-    // Empty side (0 votes): minimal label only — count + odds line would
-    // wrap awkwardly in the narrow tile. Keep the % big and skip the meta.
-    if (cnt === 0) {
-      return `<span class="ig-pct">${arrow} ${pct}%</span>`;
-    }
-    return `
-      <span class="ig-pct">${arrow} ${pct}%</span>
-      <span class="ig-meta">${cnt}명${odds ? ` · ${odds.toFixed(2)}x` : ""}</span>
-      ${myPick === side ? '<span class="ig-check">✓</span>' : ""}
+  // Pre-vote: keep the big pair of tiles (no bar). Post-vote: thin bar + text
+  // labels below, sides with 0 count are hidden entirely.
+  let voteBlock;
+  if (!revealed) {
+    const dis = canVote ? "" : "disabled";
+    voteBlock = `
+      <div class="ig-tiles">
+        <button class="ig-tile up" data-code="${s.code}" data-pick="up" ${dis}>
+          <span class="ig-arrow">↑</span><span class="ig-label">상승 베팅</span>
+        </button>
+        <button class="ig-tile down" data-code="${s.code}" data-pick="down" ${dis}>
+          <span class="ig-arrow">↓</span><span class="ig-label">하락 베팅</span>
+        </button>
+      </div>
     `;
-  };
-
-  const upClasses = ["ig-tile", "up"];
-  const downClasses = ["ig-tile", "down"];
-  if (revealed) {
-    upClasses.push("revealed");
-    downClasses.push("revealed");
-    if (myPick === "up") upClasses.push("mine");
-    if (myPick === "down") downClasses.push("mine");
-    if (winSide === "down") upClasses.push("dim");
-    if (winSide === "up") downClasses.push("dim");
+  } else {
+    const fUp   = total > 0 ? c.up   : 1;
+    const fDown = total > 0 ? c.down : 1;
+    const upDim   = winSide === "down" ? "dim" : "";
+    const downDim = winSide === "up"   ? "dim" : "";
+    const labelUp = c.up > 0 ? renderLabelBtn("up", c.up, total, s.odds?.up, myPick === "up", upDim, canVote, s.code) : "";
+    const labelDown = c.down > 0 ? renderLabelBtn("down", c.down, total, s.odds?.down, myPick === "down", downDim, canVote, s.code) : "";
+    voteBlock = `
+      <div class="ig-bar">
+        ${total > 0 ? `<div class="ig-bar-up ${upDim}" style="flex:${fUp};"></div><div class="ig-bar-down ${downDim}" style="flex:${fDown};"></div>` : ""}
+      </div>
+      <div class="ig-labels">
+        ${labelUp}
+        ${labelDown}
+      </div>
+    `;
   }
-  const dis = canVote ? "" : "disabled";
-
-  // Flex sizing: pre-vote = equal (1:1). Post-vote = ratio if total>0,
-  // else 1:1. CSS min-width on .ig-tile.revealed (88px) keeps the 0% side
-  // visible without needing a JS floor.
-  const fUp   = revealed && total > 0 ? c.up   : 1;
-  const fDown = revealed && total > 0 ? c.down : 1;
 
   return `
     <div class="stock-row">
@@ -671,16 +678,27 @@ function renderStockRow(s, today, votesByMember, me) {
         <span class="stock-name">${escapeHtml(s.name)}<span class="code">${s.code}</span></span>
         ${metaRight}
       </div>
-      <div class="ig-tiles">
-        <button class="${upClasses.join(" ")}" data-code="${s.code}" data-pick="up" style="flex:${fUp};" ${dis}>
-          ${tileContent("up")}
-        </button>
-        <button class="${downClasses.join(" ")}" data-code="${s.code}" data-pick="down" style="flex:${fDown};" ${dis}>
-          ${tileContent("down")}
-        </button>
-      </div>
+      ${voteBlock}
       ${status === "resolved" && votesByMember ? renderResolvedPicksStrip(s, votesByMember) : ""}
     </div>
+  `;
+}
+
+function renderLabelBtn(side, cnt, total, odds, isMine, dim, canVote, code) {
+  const arrow = side === "up" ? "↑" : "↓";
+  const pct = total > 0 ? Math.round((cnt / total) * 100) : 0;
+  const oddsStr = odds ? ` · ${odds.toFixed(2)}x` : "";
+  const check = isMine ? '<span class="ig-check">✓</span>' : "";
+  const cls = `ig-label-btn ${side} ${isMine ? "mine" : ""} ${dim}`;
+  // Right alignment for the down label so it hugs the right edge.
+  const rightCls = side === "down" ? "right" : "";
+  const dis = canVote ? "" : "disabled";
+  return `
+    <button class="${cls} ${rightCls}" data-code="${code}" data-pick="${side}" ${dis}>
+      <span class="ig-pct">${arrow} ${pct}%</span>
+      <span class="ig-meta">${cnt}명${oddsStr}</span>
+      ${check}
+    </button>
   `;
 }
 
