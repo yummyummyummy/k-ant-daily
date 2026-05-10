@@ -132,6 +132,10 @@
     justify-content: center;
     gap: 2px;
     transition: flex 0.3s ease;
+    /* Floor for the smaller side so 100/0 (만장일치) cases don't squeeze
+       the 0% tile into illegible vertical text. */
+    min-width: 88px;
+    padding: 6px 8px;
   }
   .ig-tile.revealed.up   { background: rgba(63,185,80,0.18); border-color: var(--pos); }
   .ig-tile.revealed.down { background: rgba(248,81,73,0.18); border-color: var(--neg); }
@@ -631,6 +635,11 @@ function renderStockRow(s, today, votesByMember, me) {
       `;
     }
     const pct = total > 0 ? Math.round((cnt / total) * 100) : 0;
+    // Empty side (0 votes): minimal label only — count + odds line would
+    // wrap awkwardly in the narrow tile. Keep the % big and skip the meta.
+    if (cnt === 0) {
+      return `<span class="ig-pct">${arrow} ${pct}%</span>`;
+    }
     return `
       <span class="ig-pct">${arrow} ${pct}%</span>
       <span class="ig-meta">${cnt}명${odds ? ` · ${odds.toFixed(2)}x` : ""}</span>
@@ -651,13 +660,10 @@ function renderStockRow(s, today, votesByMember, me) {
   const dis = canVote ? "" : "disabled";
 
   // Flex sizing: pre-vote = equal (1:1). Post-vote = ratio if total>0,
-  // else 1:1 (e.g., I'm the first voter and just clicked → counts {1, 0}
-  // becomes 100% on my side which is correct).
-  const flexUp   = revealed && total > 0 ? c.up   : 1;
-  const flexDown = revealed && total > 0 ? c.down : 1;
-  // min-flex so a 0-count side stays visible (e.g. 5↑/0↓ keeps a thin ↓ tile).
-  const fUp   = Math.max(flexUp,   revealed ? 0.15 : 1);
-  const fDown = Math.max(flexDown, revealed ? 0.15 : 1);
+  // else 1:1. CSS min-width on .ig-tile.revealed (88px) keeps the 0% side
+  // visible without needing a JS floor.
+  const fUp   = revealed && total > 0 ? c.up   : 1;
+  const fDown = revealed && total > 0 ? c.down : 1;
 
   return `
     <div class="stock-row">
