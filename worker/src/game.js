@@ -652,6 +652,99 @@ async function submitVotes(env, roomId, token, body) {
   return json({ ok: true, count: stmts.length });
 }
 
+// ─── OG meta page (server-rendered, redirects to SPA) ──────────────────
+
+const SPA_BASE = "https://yummyummyummy.github.io/k-ant-daily/game.html";
+const OG_IMAGE = "https://yummyummyummy.github.io/k-ant-daily/og-image.png";
+
+function escHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
+  );
+}
+
+async function renderOgPage(env, roomId) {
+  const room = await env.DB.prepare("SELECT id, name FROM rooms WHERE id = ?")
+    .bind(roomId).first();
+  if (!room) {
+    return new Response("room not found", { status: 404, headers: { "Content-Type": "text/plain" } });
+  }
+  const lbRows = await env.DB.prepare(
+    `SELECT member_name,
+            SUM(points) AS points,
+            SUM(hits) AS hits,
+            SUM(total) AS total
+     FROM scores WHERE room_id=?
+     GROUP BY member_name
+     ORDER BY points DESC, hits DESC
+     LIMIT 5`
+  ).bind(roomId).all();
+  const lb = lbRows.results || [];
+
+  const medals = ["🥇", "🥈", "🥉", "4️⃣", "5️⃣"];
+  let desc;
+  if (lb.length === 0) {
+    desc = "아직 점수 데이터 없음 — 첫 라운드 결과부터 누적됩니다";
+  } else {
+    desc = lb.map((r, i) => {
+      const pts = (r.points || 0).toFixed(2);
+      return `${medals[i]} ${r.member_name} ${pts}점`;
+    }).join(" · ");
+  }
+
+  const title = `🎲 ${room.name} 리더보드 · 국장 예측`;
+  const targetUrl = `${SPA_BASE}?room=${encodeURIComponent(roomId)}`;
+  const escTitle = escHtml(title);
+  const escDesc = escHtml(desc);
+  const escTarget = escHtml(targetUrl);
+  const escRoomName = escHtml(room.name);
+
+  const html = `<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>${escTitle}</title>
+<meta name="description" content="${escDesc}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="${escTitle}">
+<meta property="og:description" content="${escDesc}">
+<meta property="og:url" content="${escTarget}">
+<meta property="og:image" content="${OG_IMAGE}">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="국장 예측">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${escTitle}">
+<meta name="twitter:description" content="${escDesc}">
+<meta name="twitter:image" content="${OG_IMAGE}">
+<meta http-equiv="refresh" content="0; url=${escTarget}">
+<link rel="canonical" href="${escTarget}">
+<style>
+  body { background: #0d1117; color: #e6edf3; font-family: -apple-system, sans-serif;
+         display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+  .box { text-align: center; }
+  a { color: #58a6ff; }
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>🎲 ${escRoomName} 리더보드</h1>
+  <p>${escDesc}</p>
+  <p><a href="${escTarget}">방으로 바로 가기 →</a></p>
+</div>
+<script>location.replace(${JSON.stringify(targetUrl)});</script>
+</body>
+</html>`;
+
+  return new Response(html, {
+    status: 200,
+    headers: {
+      "Content-Type": "text/html; charset=utf-8",
+      "Cache-Control": "public, max-age=60",
+      ...CORS,
+    },
+  });
+}
+
 // ─── Public router entry ───────────────────────────────────────────────
 
 export async function handleGameRequest(request, env, ctx) {
@@ -687,6 +780,13 @@ export async function handleGameRequest(request, env, ctx) {
       "SELECT date, status, results_json FROM rounds WHERE date = ?"
     ).bind(date).first();
     return json({ ok: true, round });
+  }
+  // OG meta page — for social link previews. Returns HTML with OG tags
+  // populated from current leaderboard + JS redirect to the actual app.
+  // Used as the canonical share URL since GitHub Pages can't render dynamic OG.
+  const ogMatch = path.match(/^\/game\/og\/([A-Z0-9]+)$/);
+  if (ogMatch && method === "GET") {
+    return renderOgPage(env, ogMatch[1]);
   }
   if (path === "/game/rooms" && method === "POST") {
     return createRoom(env, body);

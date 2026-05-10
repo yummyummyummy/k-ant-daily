@@ -496,7 +496,7 @@ function renderPlay(state) {
       <div class="field">
         <label>방 공유 링크</label>
         <div class="copy-row">
-          <input id="share-url" readonly value="${escapeAttr(`${location.origin}${location.pathname}?room=${room.id}`)}">
+          <input id="share-url" readonly value="${escapeAttr(`${API_BASE}/game/og/${room.id}`)}">
           <button class="secondary" id="copy-btn">복사</button>
         </div>
       </div>
