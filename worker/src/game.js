@@ -155,6 +155,26 @@ function newToken() {
     .replace(/=+$/, "");
 }
 
+// PIN hashing — SHA-256 with per-member salt. Friend-game crypto, not banking.
+async function hashPin(pin, roomId, name) {
+  const enc = new TextEncoder();
+  const data = enc.encode(`${pin}|${roomId}|${name}`);
+  const buf = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(buf))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+async function verifyPin(pin, roomId, name, hash) {
+  if (!pin || !hash) return false;
+  const computed = await hashPin(pin, roomId, name);
+  return computed === hash;
+}
+
+function isValidPin(pin) {
+  return typeof pin === "string" && /^\d{4}$/.test(pin);
+}
+
 // ─── Round lifecycle ───────────────────────────────────────────────────
 
 async function ensureRoundExists(env, date) {
@@ -400,22 +420,64 @@ async function createRoom(env, body) {
 
 async function claimMember(env, roomId, body) {
   const name = (body.name || "").trim();
+  const pin = String(body.pin || "");
   if (!name) return json({ error: "name required" }, 400);
+  if (!isValidPin(pin)) return json({ error: "PIN은 4자리 숫자여야 합니다" }, 400);
   const member = await env.DB.prepare(
     "SELECT name, token FROM members WHERE room_id = ? AND name = ?"
   )
     .bind(roomId, name)
     .first();
   if (!member) return json({ error: "name not in room roster" }, 404);
-  if (member.token) return json({ error: "name already claimed" }, 409);
+  if (member.token) return json({ error: "이미 가입된 이름입니다. PIN으로 로그인하세요." }, 409);
 
   const token = newToken();
+  const pinHash = await hashPin(pin, roomId, name);
   await env.DB.prepare(
-    "UPDATE members SET token=?, joined_at=? WHERE room_id=? AND name=?"
+    "UPDATE members SET token=?, joined_at=?, pin_hash=?, pin_set_at=? WHERE room_id=? AND name=?"
   )
-    .bind(token, Date.now(), roomId, name)
+    .bind(token, Date.now(), pinHash, Date.now(), roomId, name)
     .run();
   return json({ name, token });
+}
+
+// Login with PIN — returns the existing token for this member.
+async function loginMember(env, roomId, body) {
+  const name = (body.name || "").trim();
+  const pin = String(body.pin || "");
+  if (!name) return json({ error: "name required" }, 400);
+  if (!isValidPin(pin)) return json({ error: "PIN은 4자리 숫자여야 합니다" }, 400);
+  const member = await env.DB.prepare(
+    "SELECT name, token, pin_hash FROM members WHERE room_id = ? AND name = ?"
+  )
+    .bind(roomId, name)
+    .first();
+  if (!member) return json({ error: "name not found" }, 404);
+  if (!member.token) {
+    return json({ error: "아직 가입되지 않은 이름입니다. '가입하기'로 진행하세요." }, 400);
+  }
+  if (!member.pin_hash) {
+    return json({ error: "PIN 미설정 — URL 북마크로 들어와서 PIN 설정 후 다시 로그인하세요." }, 400);
+  }
+  const ok = await verifyPin(pin, roomId, name, member.pin_hash);
+  if (!ok) return json({ error: "PIN이 일치하지 않습니다" }, 401);
+  return json({ name, token: member.token });
+}
+
+// Set/replace PIN for the authenticated member — used by legacy users (token
+// only, no PIN yet) to upgrade their account.
+async function setPin(env, roomId, token, body) {
+  const me = await whoAmI(env, roomId, token);
+  if (!me) return json({ error: "invalid token" }, 401);
+  const pin = String(body.pin || "");
+  if (!isValidPin(pin)) return json({ error: "PIN은 4자리 숫자여야 합니다" }, 400);
+  const pinHash = await hashPin(pin, roomId, me);
+  await env.DB.prepare(
+    "UPDATE members SET pin_hash=?, pin_set_at=? WHERE room_id=? AND name=?"
+  )
+    .bind(pinHash, Date.now(), roomId, me)
+    .run();
+  return json({ ok: true });
 }
 
 async function addMember(env, roomId, body) {
@@ -517,16 +579,23 @@ async function getRoomState(env, roomId, token) {
   if (!room) return json({ error: "room not found" }, 404);
 
   const memberRows = await env.DB.prepare(
-    "SELECT name, token IS NOT NULL AS claimed FROM members WHERE room_id=? ORDER BY name"
+    `SELECT name,
+            token    IS NOT NULL AS claimed,
+            pin_hash IS NOT NULL AS has_pin
+     FROM members WHERE room_id=? ORDER BY name`
   )
     .bind(roomId)
     .all();
   const members = (memberRows.results || []).map((r) => ({
     name: r.name,
     claimed: !!r.claimed,
+    has_pin: !!r.has_pin,
   }));
 
   const me = await whoAmI(env, roomId, token);
+  // Flag legacy users (claimed but no PIN) so frontend can nudge PIN setup.
+  const myMember = me ? members.find((m) => m.name === me) : null;
+  const needsPinSetup = !!(me && myMember && !myMember.has_pin);
 
   // Active round = focus of UI (votable today, or next trading day if past 20:00).
   const date = activeRoundDate();
@@ -659,6 +728,7 @@ async function getRoomState(env, roomId, token) {
   return json({
     room: { id: room.id, name: room.name },
     me,
+    needs_pin_setup: needsPinSetup,
     members,
     today: {
       date,
@@ -844,6 +914,15 @@ export async function handleGameRequest(request, env, ctx) {
     ).bind(date).first();
     return json({ ok: true, round });
   }
+  // Admin: reset PIN for a member (when they forget). Token unchanged.
+  if (path === "/game/admin/reset-pin" && method === "POST") {
+    if (body.confirm !== "reset") return json({ error: "missing confirm: 'reset'" }, 400);
+    if (!body.room_id || !body.name) return json({ error: "room_id and name required" }, 400);
+    await env.DB.prepare(
+      "UPDATE members SET pin_hash=NULL, pin_set_at=NULL WHERE room_id=? AND name=?"
+    ).bind(body.room_id, body.name).run();
+    return json({ ok: true });
+  }
   // OG meta page — for social link previews. Returns HTML with OG tags
   // populated from current leaderboard + JS redirect to the actual app.
   // Used as the canonical share URL since GitHub Pages can't render dynamic OG.
@@ -865,6 +944,12 @@ export async function handleGameRequest(request, env, ctx) {
     }
     if (rest === "/claim" && method === "POST") {
       return claimMember(env, roomId, body);
+    }
+    if (rest === "/login" && method === "POST") {
+      return loginMember(env, roomId, body);
+    }
+    if (rest === "/set-pin" && method === "POST") {
+      return setPin(env, roomId, token, body);
     }
     if (rest === "/members" && method === "POST") {
       return addMember(env, roomId, body);

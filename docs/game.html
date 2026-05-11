@@ -306,6 +306,25 @@
   .result-strip .pick.miss { opacity: 0.45; }
   .result-strip .pick .pts { color: var(--accent); margin-left: 4px; font-weight: 700; }
 
+  /* PIN modal */
+  .modal-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 200; padding: 16px;
+  }
+  .modal {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px; max-width: 320px; width: 100%;
+  }
+  .modal h3 { margin: 0 0 6px; font-size: 17px; }
+  .modal .modal-hint { color: var(--muted); font-size: 13px; margin-bottom: 14px; line-height: 1.5; }
+  .modal input.pin {
+    font-size: 22px; text-align: center; letter-spacing: 8px;
+    padding: 10px; font-family: monospace;
+  }
+  .modal .actions { display: flex; gap: 8px; margin-top: 14px; justify-content: flex-end; }
+  .modal .err { color: var(--neg); font-size: 12px; margin-top: 8px; min-height: 14px; }
+
   .toast {
     position: fixed;
     bottom: 16px;
@@ -384,6 +403,71 @@ function setQS(params) {
   history.replaceState(null, "", u.toString());
 }
 
+// ─── Token storage (localStorage per room) ────────────────────────────
+function tokenKey(roomId) { return `kant-game-${roomId}-token`; }
+function storedToken(roomId) {
+  try { return localStorage.getItem(tokenKey(roomId)); } catch { return null; }
+}
+function saveToken(roomId, token) {
+  try { localStorage.setItem(tokenKey(roomId), token); } catch {}
+}
+function clearStoredToken(roomId) {
+  try { localStorage.removeItem(tokenKey(roomId)); } catch {}
+}
+
+// ─── PIN modal ────────────────────────────────────────────────────────
+// mode = 'claim' (set PIN on first claim) | 'login' (verify existing PIN) | 'set' (legacy upgrade)
+function pinModal({ mode, name, onConfirm, onCancel, dismissable = true }) {
+  const titles = {
+    claim: `${name} — 새 PIN 설정`,
+    login: `${name} — PIN 입력`,
+    set:   "PIN 설정 (분실 대비)",
+  };
+  const hints = {
+    claim: "4자리 숫자. 다음에 다른 디바이스에서 들어올 때 본인 확인용. 잊지 마세요.",
+    login: "가입할 때 설정한 4자리 PIN.",
+    set:   "URL 분실 시 PIN으로 다시 들어올 수 있습니다. 4자리 숫자.",
+  };
+  const html = `
+    <div class="modal-backdrop" id="pin-backdrop">
+      <div class="modal">
+        <h3>${titles[mode]}</h3>
+        <div class="modal-hint">${hints[mode]}</div>
+        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="4"
+               class="pin" id="pin-input" placeholder="••••" autocomplete="off">
+        <div class="err" id="pin-err"></div>
+        <div class="actions">
+          ${dismissable ? '<button class="secondary" id="pin-cancel">취소</button>' : ""}
+          <button id="pin-confirm">확인</button>
+        </div>
+      </div>
+    </div>
+  `;
+  const wrap = document.createElement("div");
+  wrap.innerHTML = html;
+  document.body.appendChild(wrap.firstElementChild);
+
+  const input = document.getElementById("pin-input");
+  const err   = document.getElementById("pin-err");
+  const close = () => document.getElementById("pin-backdrop")?.remove();
+  setTimeout(() => input.focus(), 50);
+
+  // Only digits, max 4
+  input.oninput = () => { input.value = input.value.replace(/\D/g, "").slice(0, 4); };
+  const submit = async () => {
+    const pin = input.value;
+    if (!/^\d{4}$/.test(pin)) { err.textContent = "4자리 숫자를 입력하세요"; return; }
+    err.textContent = "";
+    try { await onConfirm(pin); close(); }
+    catch (e) { err.textContent = e.message || "오류"; }
+  };
+  document.getElementById("pin-confirm").onclick = submit;
+  input.onkeydown = (e) => { if (e.key === "Enter") submit(); };
+  if (dismissable) {
+    document.getElementById("pin-cancel").onclick = () => { close(); onCancel?.(); };
+  }
+}
+
 // ─── Screens ──────────────────────────────────────────────────────────
 
 function screenLanding() {
@@ -427,29 +511,71 @@ async function createRoom() {
 }
 
 async function screenJoinOrPlay() {
-  const { room, me } = getQS();
+  const { room, me: urlMe } = getQS();
+  // Token priority: URL > localStorage. If URL token present, also persist it.
+  const token = urlMe || storedToken(room);
+  if (urlMe) saveToken(room, urlMe);
   let state;
   try {
-    state = await api("GET", `/game/rooms/${room}`, null, me ? { token: me } : null);
+    state = await api("GET", `/game/rooms/${room}`, null, token ? { token } : null);
   } catch (e) {
     root.innerHTML = `<div class="card"><h2>방을 찾을 수 없음</h2><div class="hint">${e.message}</div></div>`;
     return;
   }
+  // If we tried a token but server says we're not logged in → token invalid,
+  // clear it so the user sees the roster + can re-login with PIN.
+  if (token && !state.me) {
+    clearStoredToken(room);
+    if (urlMe) setQS({ me: null });
+  }
   // Always render the full dashboard. When `me` is null we render in
   // spectator mode — counts/odds/leaderboard visible, vote buttons disabled,
   // members section gates entry by name claim.
-  return renderPlay(state);
+  renderPlay(state);
+
+  // Legacy account (claimed but no PIN) — soft-prompt PIN setup, dismissable.
+  if (state.me && state.needs_pin_setup) {
+    pinModal({
+      mode: "set",
+      name: state.me,
+      onConfirm: async (pin) => {
+        await api("POST", `/game/rooms/${room}/set-pin`, { pin }, { token });
+        toast("PIN 설정 완료 — 다른 디바이스에서도 PIN으로 들어올 수 있습니다.");
+        screenJoinOrPlay();
+      },
+      dismissable: true,
+    });
+  }
 }
 
+// Claim flow — set PIN at the same time.
 async function claimMember(roomId, name) {
-  try {
-    const r = await api("POST", `/game/rooms/${roomId}/claim`, { name });
-    setQS({ me: r.token });
-    toast(`${name} 으로 가입됐습니다. 이 URL을 북마크하세요.`);
-    setTimeout(() => screenJoinOrPlay(), 600);
-  } catch (e) {
-    toast(e.message, "error");
-  }
+  pinModal({
+    mode: "claim",
+    name,
+    onConfirm: async (pin) => {
+      const r = await api("POST", `/game/rooms/${roomId}/claim`, { name, pin });
+      saveToken(roomId, r.token);
+      setQS({ me: r.token });
+      toast(`${name} 으로 가입됐습니다. URL 북마크 + PIN 둘 다 기억해두세요.`);
+      setTimeout(() => screenJoinOrPlay(), 400);
+    },
+  });
+}
+
+// Login flow — verify PIN, retrieve existing token.
+async function loginMember(roomId, name) {
+  pinModal({
+    mode: "login",
+    name,
+    onConfirm: async (pin) => {
+      const r = await api("POST", `/game/rooms/${roomId}/login`, { name, pin });
+      saveToken(roomId, r.token);
+      setQS({ me: r.token });
+      toast(`${name} 으로 로그인됨.`);
+      setTimeout(() => screenJoinOrPlay(), 400);
+    },
+  });
 }
 
 function renderPlay(state) {
@@ -554,14 +680,24 @@ function renderPlay(state) {
 
     <div class="card">
       <h2>👥 멤버</h2>
-      ${!me ? '<div class="hint" style="margin-bottom:8px;">미가입 이름 클릭 시 본인 토큰이 생성되며 그 후엔 그 URL이 본인 전용 링크가 됩니다. 북마크 필수.</div>' : ""}
+      ${!me ? '<div class="hint" style="margin-bottom:8px;">본인 이름 클릭해 PIN 으로 로그인/가입. PIN 은 분실 시 admin 문의.</div>' : ""}
       <div class="members-grid" id="members-grid">
-        ${members.map((m) => `
-          <div class="member-chip ${m.claimed ? "claimed" : ""} ${m.name === me ? "me" : ""}" data-name="${escapeAttr(m.name)}">
+        ${members.map((m) => {
+          const mineNow = m.name === me;
+          let sub;
+          if (mineNow) sub = "✓ 본인";
+          else if (!m.claimed) sub = me ? "미가입" : "👉 클릭해 가입";
+          else if (m.has_pin)  sub = me ? "✓ 가입" : "🔑 PIN으로 로그인";
+          else                  sub = me ? "✓ 가입 (PIN 미설정)" : "URL 북마크만";
+          return `
+          <div class="member-chip ${m.claimed ? "claimed" : ""} ${mineNow ? "me" : ""}"
+               data-name="${escapeAttr(m.name)}"
+               data-claimed="${m.claimed ? "1" : ""}"
+               data-haspin="${m.has_pin ? "1" : ""}">
             ${escapeHtml(m.name)}
-            <div style="font-size:11px;margin-top:2px;">${m.claimed ? '✓ 가입' : (me ? '미가입' : '👉 클릭해 가입')}</div>
-          </div>
-        `).join("")}
+            <div style="font-size:11px;margin-top:2px;">${sub}</div>
+          </div>`;
+        }).join("")}
       </div>
       <hr>
       <div class="field">
@@ -594,11 +730,22 @@ function renderPlay(state) {
     };
   });
 
-  // Members grid — when no token, unclaimed names are clickable to claim.
+  // Members grid — when no token, names route to claim (new) or login (PIN).
   if (!me) {
-    document.getElementById("members-grid").querySelectorAll(".member-chip:not(.claimed)").forEach((el) => {
-      el.style.cursor = "pointer";
-      el.onclick = () => claimMember(state.room.id, el.dataset.name);
+    document.getElementById("members-grid").querySelectorAll(".member-chip").forEach((el) => {
+      const name = el.dataset.name;
+      const claimed = !!el.dataset.claimed;
+      const hasPin  = !!el.dataset.haspin;
+      if (!claimed) {
+        el.style.cursor = "pointer";
+        el.onclick = () => claimMember(state.room.id, name);
+      } else if (hasPin) {
+        el.style.cursor = "pointer";
+        el.onclick = () => loginMember(state.room.id, name);
+      } else {
+        // Legacy claimed-but-no-PIN — can't login from here without URL token.
+        el.onclick = () => toast("이 이름은 URL 북마크로만 들어옵니다. 본인 URL 으로 들어와서 PIN 설정 권장.", "error");
+      }
     });
   }
 
