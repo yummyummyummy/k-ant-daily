@@ -96,83 +96,88 @@
   .stock-name .code { color: var(--muted); font-size: 12px; font-weight: 400; margin-left: 6px; }
   .stock-meta-right { margin-left: auto; font-size: 12px; color: var(--muted); }
 
-  /* ─── Instagram-style voting tiles ───────────────────────────────── */
-  .ig-tiles {
+  /* ─── Bar with end-cap vote buttons ──────────────────────────────── */
+  /* Layout: [↑ button]  ──── distribution bar ────  [↓ button] */
+  /* Labels (count/odds) sit below, only shown after vote/lock/resolve.    */
+
+  .bar-row {
     display: flex;
-    gap: 6px;
+    align-items: center;
+    gap: 10px;
     width: 100%;
-    height: 56px;
   }
-  .ig-tile {
-    flex: 1;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    border: 1px dashed var(--border);
+  .bar-btn {
+    flex: 0 0 44px;
+    height: 44px;
     border-radius: 8px;
+    border: 1px solid var(--border);
     background: var(--bg);
     color: var(--fg);
+    font-size: 20px;
     font-weight: 700;
-    font-size: 15px;
     cursor: pointer;
-    padding: 0 10px;
-    transition: border-color 0.15s, background 0.15s;
+    display: flex; align-items: center; justify-content: center;
     position: relative;
-    overflow: hidden;
+    transition: border-color 0.15s, background 0.15s;
   }
-  .ig-tile:hover:not(:disabled) { border-color: var(--accent); }
-  .ig-tile:disabled { cursor: not-allowed; opacity: 0.6; }
-  .ig-tile .ig-arrow { font-size: 22px; }
-  .ig-tile.up   .ig-arrow { color: #e6edf3; }
-  .ig-tile.down .ig-arrow { color: #b1bac4; }
-  .ig-tile .ig-label { font-size: 13px; color: var(--muted); font-weight: 500; }
+  .bar-btn.up   { color: #e6edf3; }
+  .bar-btn.down { color: #b1bac4; }
+  .bar-btn:hover:not(:disabled) { border-color: var(--accent); }
+  .bar-btn:disabled { cursor: default; opacity: 0.55; }
+  .bar-btn.mine {
+    background: rgba(88,166,255,0.18);
+    border-color: var(--accent);
+  }
+  .bar-btn.winner {
+    border-color: var(--accent);
+    background: rgba(88,166,255,0.12);
+  }
+  .bar-btn .check {
+    position: absolute; bottom: -4px; right: -4px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    font-size: 11px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1;
+  }
+  .bar-btn .result-mark {
+    position: absolute; top: -8px; right: -8px;
+    font-size: 14px;
+  }
 
-  /* Vote tone — monochrome (Up=bright / Down=dark grey) */
-  /* 보색 충돌 줄이고 dark mode 와 일관된 톤 유지. */
-  /* Post-vote / locked / resolved — slim bar + text labels below */
+  /* Distribution bar */
   .ig-bar {
+    flex: 1;
     display: flex;
     height: 8px;
-    width: 100%;
     background: var(--border);
     border-radius: 4px;
     overflow: hidden;
-    margin-top: 4px;
   }
   .ig-bar > div { transition: flex 0.3s ease; min-width: 0; }
-  .ig-bar-up   { background: #e6edf3; }   /* bright */
-  .ig-bar-down { background: #6e7681; }   /* mid grey */
+  .ig-bar-up   { background: #e6edf3; }
+  .ig-bar-down { background: #6e7681; }
 
-  .ig-labels {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-top: 6px;
-    font-size: 13px;
-    line-height: 1.3;
-  }
-  .ig-label-btn {
-    background: none; border: 1px solid transparent; color: var(--fg);
-    padding: 3px 8px; border-radius: 6px;
-    cursor: pointer; font-family: inherit; font-size: inherit;
-    display: inline-flex; align-items: baseline; gap: 6px;
+  /* Count / odds labels below the bar row */
+  .bar-labels {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 8px;
+    /* Align labels with the bar (skip past the buttons + their gaps) */
+    padding: 0 calc(44px + 10px);
+    font-size: 12px;
     font-variant-numeric: tabular-nums;
-    transition: opacity 0.2s, background 0.2s, border-color 0.2s;
+    gap: 12px;
   }
-  .ig-label-btn:disabled { cursor: default; }
-  .ig-label-btn.down       { margin-left: auto; }
-  .ig-label-btn .ig-pct  { font-weight: 800; }
-  .ig-label-btn.up   .ig-pct { color: #e6edf3; }
-  .ig-label-btn.down .ig-pct { color: #b1bac4; }   /* slightly bumped from #6e7681 for legibility on dark bg */
-  .ig-label-btn .ig-meta { color: var(--muted); font-size: 12px; }
-  .ig-label-btn.mine .ig-check { color: var(--accent); font-weight: 700; }
-  .ig-label-btn:hover:not(:disabled) { text-decoration: underline; }
-
-  /* Resolved highlights: emphasize winner, dim loser. */
-  .ig-label-btn.winner {
+  .bar-label.up   { color: #e6edf3; }
+  .bar-label.down { color: #b1bac4; margin-left: auto; text-align: right; }
+  .bar-label .meta { color: var(--muted); margin-left: 4px; font-size: 11px; }
+  .bar-label.loser  { opacity: 0.45; }
+  .bar-label.winner {
     background: rgba(88,166,255,0.12);
-    border-color: rgba(88,166,255,0.4);
+    border: 1px solid rgba(88,166,255,0.4);
+    border-radius: 6px;
+    padding: 2px 8px;
   }
-  .ig-label-btn.loser  { opacity: 0.45; }
-  .ig-label-btn .ig-result { color: var(--accent); font-weight: 800; margin-left: 2px; }
   /* Horizontal vote distribution bar — slim, green=up, red=down. Empty when no votes. */
   .vote-bar {
     display: flex;
@@ -534,7 +539,7 @@ function renderPlay(state) {
   // Vote buttons — only wire when user has a token. Without one the buttons
   // render disabled (renderStockRow already adds the disabled attribute when
   // voting_open is false; we additionally short-circuit the click here).
-  document.querySelectorAll(".ig-tile[data-code], .ig-label-btn[data-code]").forEach((btn) => {
+  document.querySelectorAll(".bar-btn[data-code]").forEach((btn) => {
     btn.onclick = () => {
       if (!me) {
         toast("먼저 멤버 영역에서 본인 이름을 클릭해 가입하세요", "error");
@@ -623,10 +628,9 @@ function renderStockRow(s, today, votesByMember, me) {
   const canVote = inVotingWindow && !!me;
   const myPick = s.my_pick;
 
-  // Instagram pattern: hide counts/odds until the user has voted (or voting
-  // window has closed — at that point everyone sees results regardless).
+  // Instagram pattern: hide distribution + counts until the user has voted
+  // (or voting window has closed — at that point everyone sees regardless).
   const revealed = !!myPick || !inVotingWindow;
-
   const winSide = status === "resolved" ? s.result?.direction : null;
 
   // Right-side meta — show the winning result label once resolved.
@@ -643,46 +647,53 @@ function renderStockRow(s, today, votesByMember, me) {
     const myPts = myWin && myOdds ? `· +${myOdds.toFixed(2)}점` : "";
     const color = dir === "up" ? "var(--pos)" : dir === "down" ? "var(--neg)" : "var(--muted)";
     metaRight = `<span class="stock-meta-right" style="color:${color};font-weight:700;">${dirLabel}${myPts}</span>`;
-  } else if (!inVotingWindow && total > 0) {
-    metaRight = `<span class="stock-meta-right">${total}명 베팅</span>`;
   }
 
-  // Pre-vote: keep the big pair of tiles (no bar). Post-vote: thin bar + text
-  // labels below, sides with 0 count are hidden entirely.
-  let voteBlock;
-  if (!revealed) {
-    const dis = canVote ? "" : "disabled";
-    voteBlock = `
-      <div class="ig-tiles">
-        <button class="ig-tile up" data-code="${s.code}" data-pick="up" ${dis}>
-          <span class="ig-arrow">↑</span><span class="ig-label">상승 베팅</span>
-        </button>
-        <button class="ig-tile down" data-code="${s.code}" data-pick="down" ${dis}>
-          <span class="ig-arrow">↓</span><span class="ig-label">하락 베팅</span>
-        </button>
-      </div>
-    `;
-  } else {
-    const fUp   = total > 0 ? c.up   : 1;
-    const fDown = total > 0 ? c.down : 1;
-    // Resolved: emphasize the winning label, fade the loser. Bar distribution
-    // stays as-is so users still see how everyone voted.
-    const upState   = winSide === "up"   ? "winner" : (winSide === "down" ? "loser" : "");
-    const downState = winSide === "down" ? "winner" : (winSide === "up"   ? "loser" : "");
-    // While voting is open, show BOTH labels even if one side has 0 votes
-    // — so the user can flip their pick. After voting closes, hide 0-count
-    // sides for a cleaner readout.
-    const labelUp   = (c.up   > 0 || canVote) ? renderLabelBtn("up",   c.up,   total, s.odds?.up,   myPick === "up",   upState,   canVote, s.code) : "";
-    const labelDown = (c.down > 0 || canVote) ? renderLabelBtn("down", c.down, total, s.odds?.down, myPick === "down", downState, canVote, s.code) : "";
-    voteBlock = `
-      <div class="ig-bar">
-        ${total > 0 ? `<div class="ig-bar-up" style="flex:${fUp};"></div><div class="ig-bar-down" style="flex:${fDown};"></div>` : ""}
-      </div>
-      <div class="ig-labels">
-        ${labelUp}
-        ${labelDown}
-      </div>
-    `;
+  // ─── Vote buttons (end-caps) ────────────────────────────────────────
+  const upBtnCls   = ["bar-btn", "up"];
+  const downBtnCls = ["bar-btn", "down"];
+  if (myPick === "up")   upBtnCls.push("mine");
+  if (myPick === "down") downBtnCls.push("mine");
+  if (winSide === "up")   upBtnCls.push("winner");
+  if (winSide === "down") downBtnCls.push("winner");
+  const dis = canVote ? "" : "disabled";
+  const upCheck   = myPick === "up"   ? '<span class="check">✓</span>' : "";
+  const downCheck = myPick === "down" ? '<span class="check">✓</span>' : "";
+  const upResult   = winSide === "up"   ? '<span class="result-mark">✅</span>' : "";
+  const downResult = winSide === "down" ? '<span class="result-mark">✅</span>' : "";
+
+  // ─── Distribution bar ───────────────────────────────────────────────
+  let barInner = "";
+  if (revealed && total > 0) {
+    const fUp   = c.up;
+    const fDown = c.down;
+    barInner = `<div class="ig-bar-up" style="flex:${fUp};"></div><div class="ig-bar-down" style="flex:${fDown};"></div>`;
+  }
+
+  // ─── Count / odds labels (only when revealed) ───────────────────────
+  let labelsHtml = "";
+  if (revealed) {
+    const upPct   = total > 0 ? Math.round((c.up   / total) * 100) : 0;
+    const downPct = total > 0 ? Math.round((c.down / total) * 100) : 0;
+    const oddsUpStr   = s.odds?.up   ? ` · ${s.odds.up.toFixed(2)}x`   : "";
+    const oddsDownStr = s.odds?.down ? ` · ${s.odds.down.toFixed(2)}x` : "";
+
+    const upLabelCls   = ["bar-label", "up"];
+    const downLabelCls = ["bar-label", "down"];
+    if (winSide === "up")   { upLabelCls.push("winner");   downLabelCls.push("loser"); }
+    if (winSide === "down") { downLabelCls.push("winner"); upLabelCls.push("loser"); }
+
+    // During voting window, show both labels (even if 0) so user sees
+    // what they're switching toward. After lock, hide 0-count sides.
+    const showUp   = c.up   > 0 || canVote;
+    const showDown = c.down > 0 || canVote;
+    const upLabel   = showUp
+      ? `<span class="${upLabelCls.join(" ")}">${c.up}명 (${upPct}%)<span class="meta">${oddsUpStr}</span></span>`
+      : '<span></span>';
+    const downLabel = showDown
+      ? `<span class="${downLabelCls.join(" ")}">${c.down}명 (${downPct}%)<span class="meta">${oddsDownStr}</span></span>`
+      : "";
+    labelsHtml = `<div class="bar-labels">${upLabel}${downLabel}</div>`;
   }
 
   return `
@@ -691,26 +702,18 @@ function renderStockRow(s, today, votesByMember, me) {
         <span class="stock-name">${escapeHtml(s.name)}<span class="code">${s.code}</span></span>
         ${metaRight}
       </div>
-      ${voteBlock}
+      <div class="bar-row">
+        <button class="${upBtnCls.join(" ")}" data-code="${s.code}" data-pick="up" ${dis}>
+          ↑${upCheck}${upResult}
+        </button>
+        <div class="ig-bar">${barInner}</div>
+        <button class="${downBtnCls.join(" ")}" data-code="${s.code}" data-pick="down" ${dis}>
+          ↓${downCheck}${downResult}
+        </button>
+      </div>
+      ${labelsHtml}
       ${status === "resolved" && votesByMember ? renderResolvedPicksStrip(s, votesByMember) : ""}
     </div>
-  `;
-}
-
-function renderLabelBtn(side, cnt, total, odds, isMine, state, canVote, code) {
-  const arrow = side === "up" ? "↑" : "↓";
-  const pct = total > 0 ? Math.round((cnt / total) * 100) : 0;
-  const oddsStr = odds ? ` · ${odds.toFixed(2)}x` : "";
-  const check = isMine ? '<span class="ig-check">✓</span>' : "";
-  const winMark = state === "winner" ? '<span class="ig-result">✅</span>' : "";
-  const cls = `ig-label-btn ${side} ${isMine ? "mine" : ""} ${state}`;
-  const dis = canVote ? "" : "disabled";
-  return `
-    <button class="${cls}" data-code="${code}" data-pick="${side}" ${dis}>
-      <span class="ig-pct">${arrow} ${pct}%</span>
-      <span class="ig-meta">${cnt}명${oddsStr}</span>
-      ${check}${winMark}
-    </button>
   `;
 }
 
