@@ -90,6 +90,34 @@ function activeRoundDate() {
   return nextTradingDay(today);
 }
 
+// ISO 8601 week key — e.g. "2026-W20". Date string in "YYYY-MM-DD" (KST).
+function weekKey(dateStr) {
+  const d = new Date(dateStr + "T00:00:00Z");
+  const day = d.getUTCDay() || 7;        // Sun=0 → 7
+  d.setUTCDate(d.getUTCDate() + 4 - day);  // shift to Thursday of the same ISO week
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  const weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+  return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, "0")}`;
+}
+
+// Returns { start, end } as YYYY-MM-DD for Monday and Friday of given week key.
+function weekBounds(week) {
+  const m = week.match(/^(\d{4})-W(\d{2})$/);
+  if (!m) return null;
+  const year = parseInt(m[1], 10);
+  const w = parseInt(m[2], 10);
+  // Jan 4 is always in ISO week 1. Compute Monday of W1, then offset.
+  const jan4 = new Date(Date.UTC(year, 0, 4));
+  const dayOfJan4 = jan4.getUTCDay() || 7;
+  const w1Mon = new Date(jan4.getTime() - (dayOfJan4 - 1) * 86400000);
+  const monday = new Date(w1Mon.getTime() + (w - 1) * 7 * 86400000);
+  const friday = new Date(monday.getTime() + 4 * 86400000);
+  return {
+    start: monday.toISOString().slice(0, 10),
+    end: friday.toISOString().slice(0, 10),
+  };
+}
+
 // Voting is open from (previousTradingDay(roundDate) 20:00 KST) → (roundDate 09:00 KST).
 // Includes the entire weekend if previous trading day is Friday.
 function isVotingOpenFor(roundDate) {
@@ -570,29 +598,59 @@ async function getRoomState(env, roomId, token) {
     }
   }
 
-  // Leaderboard — cumulative.
-  const lbRows = await env.DB.prepare(
-    `SELECT member_name,
-            SUM(hits) AS hits,
-            SUM(total) AS total,
-            SUM(points) AS points,
-            COUNT(*) AS days,
-            MAX(points) AS best_day
-     FROM scores
-     WHERE room_id=?
-     GROUP BY member_name
-     ORDER BY points DESC, hits DESC`
-  )
-    .bind(roomId)
-    .all();
-  const leaderboard = (lbRows.results || []).map((r) => ({
-    member_name: r.member_name,
-    hits: r.hits || 0,
-    total: r.total || 0,
-    points: Math.round((r.points || 0) * 100) / 100,
-    days: r.days || 0,
-    best_day: Math.round((r.best_day || 0) * 100) / 100,
-  }));
+  // Weekly leaderboard + hall of fame.
+  // Single query over all scores for this room, then group in JS by ISO week.
+  const allScores = await env.DB.prepare(
+    `SELECT member_name, date, hits, total, points
+     FROM scores WHERE room_id=?`
+  ).bind(roomId).all();
+  const todayKst = nowKstDate();
+  const thisWeek = weekKey(todayKst);
+  const byWeek = new Map();
+  for (const r of allScores.results || []) {
+    const wk = weekKey(r.date);
+    if (!byWeek.has(wk)) byWeek.set(wk, []);
+    byWeek.get(wk).push(r);
+  }
+  function aggregate(rows, withBest) {
+    const m = new Map();
+    for (const r of rows) {
+      let s = m.get(r.member_name);
+      if (!s) {
+        s = { hits: 0, total: 0, points: 0, days: 0, best_day: 0 };
+        m.set(r.member_name, s);
+      }
+      s.hits += r.hits || 0;
+      s.total += r.total || 0;
+      s.points += r.points || 0;
+      s.days += 1;
+      if (withBest && r.points > s.best_day) s.best_day = r.points;
+    }
+    return [...m.entries()]
+      .map(([name, s]) => ({
+        member_name: name,
+        hits: s.hits,
+        total: s.total,
+        points: Math.round(s.points * 100) / 100,
+        days: s.days,
+        best_day: Math.round(s.best_day * 100) / 100,
+      }))
+      .sort((a, b) => b.points - a.points || b.hits - a.hits);
+  }
+  const leaderboardWeek = aggregate(byWeek.get(thisWeek) || [], true);
+  const thisWeekBounds = weekBounds(thisWeek);
+
+  // Past weeks (top 3 each) — hall of fame, most recent 12 weeks.
+  const pastWeeks = [...byWeek.keys()]
+    .filter((w) => w !== thisWeek)
+    .sort()
+    .reverse()
+    .slice(0, 12);
+  const weeklyChampions = pastWeeks.map((wk) => {
+    const top3 = aggregate(byWeek.get(wk) || [], false).slice(0, 3);
+    const bounds = weekBounds(wk);
+    return { week: wk, start: bounds.start, end: bounds.end, top3 };
+  });
 
   // Most recent resolved round in this room — show yesterday's result alongside
   // active round so users can see how their previous picks did.
@@ -610,7 +668,9 @@ async function getRoomState(env, roomId, token) {
       votes_by_member: votesByMember,
     },
     recent_resolved: recentResolved,
-    leaderboard,
+    this_week: { key: thisWeek, start: thisWeekBounds.start, end: thisWeekBounds.end },
+    leaderboard_week: leaderboardWeek,
+    weekly_champions: weeklyChampions,
   });
 }
 
@@ -669,22 +729,25 @@ async function renderOgPage(env, roomId) {
   if (!room) {
     return new Response("room not found", { status: 404, headers: { "Content-Type": "text/plain" } });
   }
+  // Current ISO week's leaderboard (resets weekly).
+  const thisWeek = weekKey(nowKstDate());
+  const wb = weekBounds(thisWeek);
   const lbRows = await env.DB.prepare(
     `SELECT member_name,
             SUM(points) AS points,
             SUM(hits) AS hits,
             SUM(total) AS total
-     FROM scores WHERE room_id=?
+     FROM scores WHERE room_id=? AND date >= ? AND date <= ?
      GROUP BY member_name
      ORDER BY points DESC, hits DESC
      LIMIT 5`
-  ).bind(roomId).all();
+  ).bind(roomId, wb.start, wb.end).all();
   const lb = lbRows.results || [];
 
   const medals = ["🥇", "🥈", "🥉", "4️⃣", "5️⃣"];
   let desc;
   if (lb.length === 0) {
-    desc = "아직 점수 데이터 없음 — 첫 라운드 결과부터 누적됩니다";
+    desc = `${thisWeek} 이번주 — 아직 점수 없음 (월~금 데일리 결과로 누적)`;
   } else {
     desc = lb.map((r, i) => {
       const pts = (r.points || 0).toFixed(2);
@@ -692,7 +755,7 @@ async function renderOgPage(env, roomId) {
     }).join(" · ");
   }
 
-  const title = `🎲 ${room.name} 리더보드 · 국장 예측`;
+  const title = `🎲 ${room.name} ${thisWeek} 리더보드 · 국장 예측`;
   const targetUrl = `${SPA_BASE}?room=${encodeURIComponent(roomId)}`;
   const escTitle = escHtml(title);
   const escDesc = escHtml(desc);

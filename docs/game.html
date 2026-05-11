@@ -261,6 +261,18 @@
   .lb-points { font-weight: 700; font-size: 18px; min-width: 64px; text-align: right; }
   .lb-meta { color: var(--muted); font-size: 12px; min-width: 0; text-align: right; }
 
+  /* Hall of fame — past weeks' top 3 */
+  .champions-list { list-style: none; padding: 0; margin: 0; }
+  .champ-week { padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .champ-week:last-child { border-bottom: none; }
+  .champ-week-head { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+  .champ-top3 { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+  .champ-top3 li { display: flex; align-items: baseline; gap: 8px; font-size: 13px; }
+  .champ-rank { min-width: 24px; }
+  .champ-name { flex: 1; min-width: 0; font-weight: 600; }
+  .champ-name.is-me { color: var(--accent); }
+  .champ-pts { color: var(--muted); font-variant-numeric: tabular-nums; }
+
   .status-pill {
     display: inline-block;
     font-size: 11px;
@@ -441,7 +453,10 @@ async function claimMember(roomId, name) {
 }
 
 function renderPlay(state) {
-  const { room, me, members, today, leaderboard, recent_resolved } = state;
+  const { room, me, members, today, recent_resolved } = state;
+  const leaderboardWeek = state.leaderboard_week || [];
+  const thisWeek = state.this_week || {};
+  const weeklyChampions = state.weekly_champions || [];
   const status = today.status;
   const statusLabel = {
     open: "투표 중",
@@ -450,21 +465,49 @@ function renderPlay(state) {
     void: "휴장 (무효)",
   }[status] || status;
 
-  // Leaderboard
-  const lbHtml = leaderboard.length === 0
-    ? '<div class="hint">아직 데이터 없음 — 첫 라운드 결과부터 누적됩니다.</div>'
-    : `<ul class="leaderboard">${leaderboard.map((p, i) => {
+  // This-week leaderboard (resets weekly)
+  const weekLabel = thisWeek.key
+    ? `${thisWeek.key} (${shortDate(thisWeek.start)} ~ ${shortDate(thisWeek.end)})`
+    : "";
+  const lbHtml = leaderboardWeek.length === 0
+    ? '<div class="hint">이번주 점수 없음 — 월~금 라운드 결과로 누적됩니다.</div>'
+    : `<ul class="leaderboard">${leaderboardWeek.map((p, i) => {
         const medal = ["🥇", "🥈", "🥉"][i] || `${i + 1}`;
         const rate = p.total > 0 ? Math.round((p.hits / p.total) * 100) : 0;
         return `
           <li>
             <div class="lb-rank">${medal}</div>
             <div class="lb-name ${p.member_name === me ? 'is-me' : ''}">${escapeHtml(p.member_name)}</div>
-            <div class="lb-meta">${p.hits}/${p.total} (${rate}%) · 최고 +${p.best_day.toFixed(2)}</div>
+            <div class="lb-meta">${p.hits}/${p.total} (${rate}%) · ${p.days}일치</div>
             <div class="lb-points">${p.points.toFixed(2)}</div>
           </li>
         `;
       }).join("")}</ul>`;
+
+  // Hall of fame — past weeks' top 3
+  const champsHtml = weeklyChampions.length === 0
+    ? ""
+    : `
+      <div class="card">
+        <h2>📆 역대 챔피언</h2>
+        <ul class="champions-list">
+          ${weeklyChampions.map((w) => `
+            <li class="champ-week">
+              <div class="champ-week-head">${w.week} <span class="hint" style="font-size:12px;font-weight:400;">(${shortDate(w.start)}~${shortDate(w.end)})</span></div>
+              <ol class="champ-top3">
+                ${w.top3.map((p, i) => `
+                  <li>
+                    <span class="champ-rank">${["🥇","🥈","🥉"][i]}</span>
+                    <span class="champ-name ${p.member_name === me ? 'is-me' : ''}">${escapeHtml(p.member_name)}</span>
+                    <span class="champ-pts">${p.points.toFixed(2)}점</span>
+                  </li>
+                `).join("")}
+              </ol>
+            </li>
+          `).join("")}
+        </ul>
+      </div>
+    `;
 
   // Today stocks — only render the voting section for token holders.
   // Spectators see leaderboard + recent results + member roster only.
@@ -499,13 +542,15 @@ function renderPlay(state) {
     </div>
 
     <div class="card">
-      <h2>🏆 누적 리더보드</h2>
+      <h2>🏆 이번주 리더보드 <span class="hint" style="font-size:12px;font-weight:400;">${weekLabel}</span></h2>
       ${lbHtml}
     </div>
 
     ${todayCard}
 
     ${renderRecentResolved(recent_resolved, me)}
+
+    ${champsHtml}
 
     <div class="card">
       <h2>👥 멤버</h2>
@@ -744,6 +789,14 @@ async function vote(state, code, pick) {
     // Re-render to revert optimistic update on error.
     screenJoinOrPlay();
   }
+}
+
+function shortDate(d) {
+  // "2026-05-11" → "5/11"
+  if (!d) return "";
+  const m = d.match(/^\d{4}-(\d{2})-(\d{2})$/);
+  if (!m) return d;
+  return `${parseInt(m[1],10)}/${parseInt(m[2],10)}`;
 }
 
 function escapeHtml(s) {
