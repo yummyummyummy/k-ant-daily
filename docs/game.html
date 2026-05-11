@@ -669,8 +669,11 @@ function renderStockRow(s, today, votesByMember, me) {
     // stays as-is so users still see how everyone voted.
     const upState   = winSide === "up"   ? "winner" : (winSide === "down" ? "loser" : "");
     const downState = winSide === "down" ? "winner" : (winSide === "up"   ? "loser" : "");
-    const labelUp   = c.up > 0   ? renderLabelBtn("up",   c.up,   total, s.odds?.up,   myPick === "up",   upState,   canVote, s.code) : "";
-    const labelDown = c.down > 0 ? renderLabelBtn("down", c.down, total, s.odds?.down, myPick === "down", downState, canVote, s.code) : "";
+    // While voting is open, show BOTH labels even if one side has 0 votes
+    // — so the user can flip their pick. After voting closes, hide 0-count
+    // sides for a cleaner readout.
+    const labelUp   = (c.up   > 0 || canVote) ? renderLabelBtn("up",   c.up,   total, s.odds?.up,   myPick === "up",   upState,   canVote, s.code) : "";
+    const labelDown = (c.down > 0 || canVote) ? renderLabelBtn("down", c.down, total, s.odds?.down, myPick === "down", downState, canVote, s.code) : "";
     voteBlock = `
       <div class="ig-bar">
         ${total > 0 ? `<div class="ig-bar-up" style="flex:${fUp};"></div><div class="ig-bar-down" style="flex:${fDown};"></div>` : ""}
