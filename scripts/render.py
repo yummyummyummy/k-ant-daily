@@ -799,7 +799,20 @@ def render_report(summary: dict, base_url: str, news_path: Path | None = None) -
         except Exception:
             news_data = {}
     summary = _normalize(summary)
-    date = summary.get("date") or datetime.now(KST).strftime("%Y-%m-%d")
+    today_kst = datetime.now(KST).strftime("%Y-%m-%d")
+    summary_date = summary.get("date")
+    if summary_date and summary_date != today_kst:
+        # Agent occasionally writes a wrong date (off-by-one drift). Warn loudly
+        # so launchd logs surface it. Production wrappers should rerun if this
+        # diverges from system date.
+        print(
+            f"⚠ summary.date={summary_date} differs from system KST date={today_kst}. "
+            f"Using system date.",
+            file=sys.stderr,
+        )
+        date = today_kst
+    else:
+        date = summary_date or today_kst
     filename = f"{date}.html"
     canonical = f"{base_url.rstrip('/')}/{filename}"
 

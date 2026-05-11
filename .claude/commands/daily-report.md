@@ -21,6 +21,16 @@ description: Generate and publish today's pre-market stock briefing
 
 ## Steps
 
+0. **오늘 KST 날짜 확정.** 본인이 기억하는 날짜를 쓰지 말고 **반드시 시스템에서 확인**.
+
+   ```bash
+   TZ=Asia/Seoul date +%Y-%m-%d
+   ```
+
+   이 값을 `summary.json` 의 `date` 필드에 그대로 박는다. **render.py 는 system date 와
+   다르면 경고 후 system date 로 덮어쓴다** — 그래도 agent 가 처음부터 맞게 쓰는 게 옳음.
+   과거 발생 사례: 2026-05-11 아침에 agent 가 `date: "2026-05-12"` 박아 하루치 보고서가 +1 일로 어긋남.
+
 1. **Fetch raw news.** Run `.venv/bin/python scripts/fetch_news.py`. Writes `.tmp/news.json`
    with: `macro.news`, `macro.indices`, `macro.fx`, `macro.overnight` (간밤 해외시장),
    per-stock `news[]` + `disclosures[]` + `quote` (어제 종가) + `overnight_signal`
