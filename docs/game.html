@@ -928,13 +928,20 @@ function renderResolvedPicksStrip(s, votesByMember) {
 async function vote(state, code, pick) {
   const { room } = state;
 
+  // Optimistic UI — toggle .mine class on the clicked side immediately so
+  // the user gets sub-50ms feedback. Server reconciliation (counts/odds)
+  // happens via screenJoinOrPlay() below.
+  document.querySelectorAll(`.bar-btn[data-code="${code}"]`).forEach((b) => {
+    if (b.dataset.pick === pick) b.classList.add("mine");
+    else                          b.classList.remove("mine");
+  });
+
   try {
     await api("POST", `/game/rooms/${room.id}/vote`, { picks: { [code]: pick } }, { token: getQS().me });
-    // Refresh data without a full page reload — avoids the white flash.
     screenJoinOrPlay();
   } catch (e) {
     toast(e.message, "error");
-    // Re-render to revert optimistic update on error.
+    // Revert optimistic update on error via full refetch.
     screenJoinOrPlay();
   }
 }
