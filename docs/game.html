@@ -925,25 +925,66 @@ function renderResolvedPicksStrip(s, votesByMember) {
   return picks ? `<div class="result-strip">${picks}</div>` : "";
 }
 
+let _voteSyncTimer = null;
+
 async function vote(state, code, pick) {
   const { room } = state;
 
-  // Optimistic UI — toggle .mine class on the clicked side immediately so
-  // the user gets sub-50ms feedback. Server reconciliation (counts/odds)
-  // happens via screenJoinOrPlay() below.
-  document.querySelectorAll(`.bar-btn[data-code="${code}"]`).forEach((b) => {
-    if (b.dataset.pick === pick) b.classList.add("mine");
-    else                          b.classList.remove("mine");
-  });
+  // 1. Optimistically update local state (counts + odds + my_pick).
+  applyVoteToState(state, code, pick);
 
+  // 2. Re-render only the affected stock row — bar, labels, buttons all
+  //    refresh in ~0ms with no network wait.
+  reRenderStockRow(state, code);
+
+  // 3. POST in background. Schedule a delayed full refetch so others' votes
+  //    eventually sync without making each click feel slow.
   try {
     await api("POST", `/game/rooms/${room.id}/vote`, { picks: { [code]: pick } }, { token: getQS().me });
-    screenJoinOrPlay();
+    clearTimeout(_voteSyncTimer);
+    _voteSyncTimer = setTimeout(() => screenJoinOrPlay(), 1500);
   } catch (e) {
     toast(e.message, "error");
-    // Revert optimistic update on error via full refetch.
-    screenJoinOrPlay();
+    screenJoinOrPlay();  // revert via full refetch on error
   }
+}
+
+function applyVoteToState(state, code, pick) {
+  const stock = state.today.stocks.find((s) => s.code === code);
+  if (!stock) return;
+  const prev = stock.my_pick;
+  if (prev === pick) return;
+  if (prev === "up")   stock.counts.up   = Math.max(0, stock.counts.up - 1);
+  if (prev === "down") stock.counts.down = Math.max(0, stock.counts.down - 1);
+  stock.counts[pick] += 1;
+  stock.my_pick = pick;
+  const total = stock.counts.up + stock.counts.down;
+  stock.odds = {
+    up:   stock.counts.up   > 0 ? Math.round((total / stock.counts.up)   * 100) / 100 : null,
+    down: stock.counts.down > 0 ? Math.round((total / stock.counts.down) * 100) / 100 : null,
+  };
+}
+
+function reRenderStockRow(state, code) {
+  const oldBtn = document.querySelector(`.bar-btn[data-code="${code}"]`);
+  const oldRow = oldBtn?.closest(".stock-row");
+  if (!oldRow) return;
+  const stock = state.today.stocks.find((s) => s.code === code);
+  if (!stock) return;
+  const tmp = document.createElement("div");
+  tmp.innerHTML = renderStockRow(stock, state.today, state.today.votes_by_member, state.me);
+  const newRow = tmp.firstElementChild;
+  oldRow.replaceWith(newRow);
+  // Re-bind click handlers for the new buttons.
+  newRow.querySelectorAll(".bar-btn[data-code]").forEach((btn) => {
+    btn.onclick = () => {
+      if (!state.me) {
+        toast("먼저 멤버 영역에서 본인 이름을 클릭해 가입하세요", "error");
+        return;
+      }
+      vote(state, btn.dataset.code, btn.dataset.pick);
+    };
+  });
 }
 
 function shortDate(d) {
