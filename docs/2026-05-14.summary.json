@@ -898,7 +898,17 @@
       "outlook_line": "파업 리스크와 반도체 모멘텀 상충, 오늘 방향 불확실",
       "news_count": 10,
       "latest_news_at": "2026-05-14T07:00:00+09:00",
-      "latest_news_ago": "35분 전"
+      "latest_news_ago": "35분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.53,
+        "change": 1500,
+        "direction": "up",
+        "captured_at": "2026-05-14T08:45:08.647506+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.53%",
+        "cls": "up"
+      }
     },
     {
       "code": "000660",
@@ -1162,7 +1172,17 @@
       "outlook_line": "200만원 돌파 임박이나 20일 +79% 극단적 과열, 관성 상승 여력 시험 구간",
       "news_count": 10,
       "latest_news_at": "2026-05-14T07:02:00+09:00",
-      "latest_news_ago": "33분 전"
+      "latest_news_ago": "33분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.71,
+        "change": 14000,
+        "direction": "up",
+        "captured_at": "2026-05-14T08:45:08.647555+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.71%",
+        "cls": "up"
+      }
     },
     {
       "code": "267260",
@@ -1445,7 +1465,25 @@
       "outlook_line": "HD현대 1Q 깜짝 실적 D+1, 실적 반영 매수세 유입 예상",
       "news_count": 10,
       "latest_news_at": "2026-05-14T05:02:00+09:00",
-      "latest_news_ago": "2시간 전"
+      "latest_news_ago": "2시간 전",
+      "nxt_pre_open": {
+        "change_pct": 3.83,
+        "change": 49000,
+        "direction": "up",
+        "captured_at": "2026-05-14T08:45:08.647573+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +3.83%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+3.83%"
+      }
     },
     {
       "code": "196170",
@@ -1703,7 +1741,25 @@
       "outlook_line": "할로자임 특허 무효화로 경쟁 구도 유리하게 변화, 개장 전 호재 반영 기대",
       "news_count": 10,
       "latest_news_at": "2026-05-14T07:06:00+09:00",
-      "latest_news_ago": "29분 전"
+      "latest_news_ago": "29분 전",
+      "nxt_pre_open": {
+        "change_pct": 2.97,
+        "change": 10500,
+        "direction": "up",
+        "captured_at": "2026-05-14T08:45:08.647592+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +2.97%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+2.97%"
+      }
     },
     {
       "code": "042700",
@@ -1962,7 +2018,17 @@
       "outlook_line": "개별 촉매 부재 속 섹터 모멘텀 의존, 과열 구간 관망 적절",
       "news_count": 10,
       "latest_news_at": "2026-05-14T07:02:00+09:00",
-      "latest_news_ago": "33분 전"
+      "latest_news_ago": "33분 전",
+      "nxt_pre_open": {
+        "change_pct": -0.75,
+        "change": -3000,
+        "direction": "down",
+        "captured_at": "2026-05-14T08:45:08.647607+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.75%",
+        "cls": "down"
+      }
     },
     {
       "code": "299660",
@@ -2481,7 +2547,25 @@
       "outlook_line": "MSCI 편출 우려와 하락 추세 지속, 방어적 대응 필요",
       "news_count": 2,
       "latest_news_at": "2026-05-14T06:00:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 3.02,
+        "change": 1600,
+        "direction": "up",
+        "captured_at": "2026-05-14T08:45:08.647623+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +3.02%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "하락 경계",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+3.02%"
+      }
     },
     {
       "code": "310210",
@@ -2598,7 +2682,17 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "개별 촉매 부재, 코스닥 바이오 소외 속 횡보 예상",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -0.94,
+        "change": -2500,
+        "direction": "down",
+        "captured_at": "2026-05-14T08:45:08.647634+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.94%",
+        "cls": "down"
+      }
     },
     {
       "code": "445680",
@@ -2726,7 +2820,17 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "개별 뉴스 부재, 코스닥 바이오 소외 속 보합 예상",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -0.32,
+        "change": -300,
+        "direction": "down",
+        "captured_at": "2026-05-14T08:45:08.647643+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.32%",
+        "cls": "down"
+      }
     },
     {
       "code": "009540",
@@ -2998,7 +3102,17 @@
       "outlook_line": "K조선 1Q 이익 급증 D+1, 실적 재평가 매수세 유입 기대",
       "news_count": 10,
       "latest_news_at": "2026-05-14T04:45:00+09:00",
-      "latest_news_ago": "2시간 전"
+      "latest_news_ago": "2시간 전",
+      "nxt_pre_open": {
+        "change_pct": 0.43,
+        "change": 2000,
+        "direction": "up",
+        "captured_at": "2026-05-14T08:45:08.647652+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.43%",
+        "cls": "up"
+      }
     },
     {
       "code": "174900",
@@ -3476,7 +3590,17 @@
       "outlook_line": "20일 -21% 급락 추세, 개별 촉매 부재로 바닥 탐색 지속",
       "news_count": 9,
       "latest_news_at": "2026-05-13T16:08:00+09:00",
-      "latest_news_ago": "15시간 전"
+      "latest_news_ago": "15시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.89,
+        "change": -1100,
+        "direction": "down",
+        "captured_at": "2026-05-14T08:45:08.647666+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.89%",
+        "cls": "down"
+      }
     },
     {
       "code": "166480",
@@ -3885,7 +4009,17 @@
       "outlook_line": "성과급 갈등 부담 vs 간밤 빅테크 강세 상충, 하방 압력 우세",
       "news_count": 9,
       "latest_news_at": "2026-05-14T05:01:00+09:00",
-      "latest_news_ago": "2시간 전"
+      "latest_news_ago": "2시간 전",
+      "nxt_pre_open": {
+        "change_pct": 0.35,
+        "change": 150,
+        "direction": "up",
+        "captured_at": "2026-05-14T08:45:08.647681+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.35%",
+        "cls": "up"
+      }
     },
     {
       "code": "005380",
@@ -4156,7 +4290,25 @@
       "outlook_line": "자율주행 국책 사업·관세 완화 기대 긍정이나 전일 +9.9% 급등 과열 경계",
       "news_count": 10,
       "latest_news_at": "2026-05-14T07:10:00+09:00",
-      "latest_news_ago": "25분 전"
+      "latest_news_ago": "25분 전",
+      "nxt_pre_open": {
+        "change_pct": 4.08,
+        "change": 29000,
+        "direction": "up",
+        "captured_at": "2026-05-14T08:45:08.647691+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +4.08%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+4.08%"
+      }
     },
     {
       "code": "034230",
@@ -4301,7 +4453,17 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "1Q 어닝 쇼크 소화 중, 4월 카지노 반등 확인이나 단기 촉매 약함",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": 0.13,
+        "change": 20,
+        "direction": "up",
+        "captured_at": "2026-05-14T08:45:08.647700+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.13%",
+        "cls": "up"
+      }
     },
     {
       "code": "071050",
@@ -4552,7 +4714,25 @@
       "outlook_line": "증권사 분기 순익 1조 시대 진입, 고점 대비 -16% 조정 후 재평가 여지",
       "news_count": 9,
       "latest_news_at": "2026-05-14T07:10:00+09:00",
-      "latest_news_ago": "25분 전"
+      "latest_news_ago": "25분 전",
+      "nxt_pre_open": {
+        "change_pct": 1.99,
+        "change": 5000,
+        "direction": "up",
+        "captured_at": "2026-05-14T08:45:08.647708+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +1.99%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+1.99%"
+      }
     },
     {
       "code": "010120",
@@ -4739,7 +4919,26 @@
       "outlook_line": "전력기기 슈퍼사이클 모멘텀 유효하나 20일 +54% 극단 과열, 관성 둔화 구간",
       "news_count": 2,
       "latest_news_at": "2026-05-13T19:00:00+09:00",
-      "latest_news_ago": "12시간 전"
+      "latest_news_ago": "12시간 전",
+      "nxt_pre_open": {
+        "change_pct": 4.74,
+        "change": 13500,
+        "direction": "up",
+        "captured_at": "2026-05-14T08:45:08.647717+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +4.74%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+4.74%"
+      }
     }
-  ]
+  ],
+  "nxt_snapshot_at": "2026-05-14T08:45:08.647725+09:00"
 }
