@@ -866,7 +866,17 @@
       "outlook_line": "파업 불확실성과 목표가 상향이 상충, 방향 잡기 어려운 구간",
       "news_count": 10,
       "latest_news_at": "2026-05-15T07:30:00+09:00",
-      "latest_news_ago": "1분 전"
+      "latest_news_ago": "1분 전",
+      "nxt_pre_open": {
+        "change_pct": -1.01,
+        "change": -3000,
+        "direction": "down",
+        "captured_at": "2026-05-15T08:45:08.704165+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -1.01%",
+        "cls": "down"
+      }
     },
     {
       "code": "000660",
@@ -1122,7 +1132,17 @@
       "outlook_line": "AI 모멘텀은 건재하나, 20일 +73% 극단 과열이 부담",
       "news_count": 10,
       "latest_news_at": "2026-05-15T07:30:00+09:00",
-      "latest_news_ago": "1분 전"
+      "latest_news_ago": "1분 전",
+      "nxt_pre_open": {
+        "change_pct": -0.05,
+        "change": -1000,
+        "direction": "down",
+        "captured_at": "2026-05-15T08:45:08.704215+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.05%",
+        "cls": "down"
+      }
     },
     {
       "code": "267260",
@@ -1383,7 +1403,17 @@
       "outlook_line": "간밤 전력기기 프록시 강세로 기술적 반등 여지",
       "news_count": 10,
       "latest_news_at": "2026-05-15T06:25:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 0.87,
+        "change": 11000,
+        "direction": "up",
+        "captured_at": "2026-05-15T08:45:08.704231+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.87%",
+        "cls": "up"
+      }
     },
     {
       "code": "196170",
@@ -1620,7 +1650,25 @@
       "outlook_line": "코스피 이전 추진 기대감으로 전일 +8.76% 급등, 간밤 바이오 프록시 약세로 갭다운 리스크",
       "news_count": 9,
       "latest_news_at": "2026-05-15T07:28:00+09:00",
-      "latest_news_ago": "3분 전"
+      "latest_news_ago": "3분 전",
+      "nxt_pre_open": {
+        "change_pct": 2.99,
+        "change": 11500,
+        "direction": "up",
+        "captured_at": "2026-05-15T08:45:08.704243+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +2.99%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+2.99%"
+      }
     },
     {
       "code": "042700",
@@ -1813,7 +1861,17 @@
       "outlook_line": "NVDA +4.39% 간밤 강세이나, 20일 +39% 과열 부담이 상방 제한",
       "news_count": 4,
       "latest_news_at": "2026-05-15T06:55:00+09:00",
-      "latest_news_ago": "36분 전"
+      "latest_news_ago": "36분 전",
+      "nxt_pre_open": {
+        "change_pct": -0.37,
+        "change": -1500,
+        "direction": "down",
+        "captured_at": "2026-05-15T08:45:08.704258+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.37%",
+        "cls": "down"
+      }
     },
     {
       "code": "299660",
@@ -2414,7 +2472,25 @@
       "outlook_line": "노사 임금합의 + 대법 기술보호 판결로 리스크 해소, 간밤 에너지 프록시도 강세",
       "news_count": 7,
       "latest_news_at": "2026-05-14T16:15:00+09:00",
-      "latest_news_ago": "15시간 전"
+      "latest_news_ago": "15시간 전",
+      "nxt_pre_open": {
+        "change_pct": 2.19,
+        "change": 1200,
+        "direction": "up",
+        "captured_at": "2026-05-15T08:45:08.704270+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +2.19%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+2.19%"
+      }
     },
     {
       "code": "310210",
@@ -2550,7 +2626,17 @@
       "outlook_line": "24시간 내 개별 촉매 부재, 간밤 XBI -0.74% 약세",
       "news_count": 1,
       "latest_news_at": "2026-05-14T13:13:00+09:00",
-      "latest_news_ago": "18시간 전"
+      "latest_news_ago": "18시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.75,
+        "change": -2000,
+        "direction": "down",
+        "captured_at": "2026-05-15T08:45:08.704282+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.75%",
+        "cls": "down"
+      }
     },
     {
       "code": "445680",
@@ -2678,7 +2764,25 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "24시간 내 개별 재료 없이 바이오 프록시 약세에 노출",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": 1.69,
+        "change": 1600,
+        "direction": "up",
+        "captured_at": "2026-05-15T08:45:08.704292+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +1.69%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+1.69%"
+      }
     },
     {
       "code": "009540",
@@ -2948,7 +3052,17 @@
       "outlook_line": "전일 -4.99% 급락 후 기술적 반등 기대",
       "news_count": 10,
       "latest_news_at": "2026-05-15T06:30:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 1.14,
+        "change": 5000,
+        "direction": "up",
+        "captured_at": "2026-05-15T08:45:08.704303+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.14%",
+        "cls": "up"
+      }
     },
     {
       "code": "174900",
@@ -3439,7 +3553,17 @@
       "outlook_line": "20일 -23% 급락 속 개별 촉매 부재, 간밤 바이오 프록시 약세",
       "news_count": 8,
       "latest_news_at": "2026-05-14T17:14:00+09:00",
-      "latest_news_ago": "14시간 전"
+      "latest_news_ago": "14시간 전",
+      "nxt_pre_open": {
+        "change_pct": 0.0,
+        "change": 0,
+        "direction": "flat",
+        "captured_at": "2026-05-15T08:45:08.704317+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — 0.00%",
+        "cls": "flat"
+      }
     },
     {
       "code": "166480",
@@ -3844,7 +3968,17 @@
       "outlook_line": "전일 +6.98% 급반등 후 방향 잡기 어려운 구간",
       "news_count": 10,
       "latest_news_at": "2026-05-15T07:00:00+09:00",
-      "latest_news_ago": "31분 전"
+      "latest_news_ago": "31분 전",
+      "nxt_pre_open": {
+        "change_pct": 1.09,
+        "change": 500,
+        "direction": "up",
+        "captured_at": "2026-05-15T08:45:08.704331+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.09%",
+        "cls": "up"
+      }
     },
     {
       "code": "005380",
@@ -4125,7 +4259,25 @@
       "outlook_line": "로봇·휴머노이드 기대감과 간밤 F +6.71% 강세가 긍정적이나, 20일 +40% 극심한 과열이 상방 제한",
       "news_count": 10,
       "latest_news_at": "2026-05-15T07:30:00+09:00",
-      "latest_news_ago": "1분 전"
+      "latest_news_ago": "1분 전",
+      "nxt_pre_open": {
+        "change_pct": 1.97,
+        "change": 14000,
+        "direction": "up",
+        "captured_at": "2026-05-15T08:45:08.704338+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +1.97%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+1.97%"
+      }
     },
     {
       "code": "034230",
@@ -4272,7 +4424,17 @@
       "outlook_line": "4월 카지노 반등·2Q 정상화 기대는 긍정적이나, 간밤 카지노 프록시 전면 약세(LVS -1.31%, WY…",
       "news_count": 1,
       "latest_news_at": "2026-05-14T16:36:00+09:00",
-      "latest_news_ago": "14시간 전"
+      "latest_news_ago": "14시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.25,
+        "change": -40,
+        "direction": "down",
+        "captured_at": "2026-05-15T08:45:08.704347+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.25%",
+        "cls": "down"
+      }
     },
     {
       "code": "071050",
@@ -4533,7 +4695,25 @@
       "outlook_line": "1Q 영업익 9,599억(+85%) 실적 잭팟, 아직 완전 반영 전",
       "news_count": 10,
       "latest_news_at": "2026-05-15T04:18:00+09:00",
-      "latest_news_ago": "3시간 전"
+      "latest_news_ago": "3시간 전",
+      "nxt_pre_open": {
+        "change_pct": 5.43,
+        "change": 14000,
+        "direction": "up",
+        "captured_at": "2026-05-15T08:45:08.704357+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +5.43%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+5.43%"
+      }
     },
     {
       "code": "010120",
@@ -4786,7 +4966,18 @@
       "outlook_line": "간밤 전력기기 프록시 강세(GEV +2.63%)와 베트남 데이터센터 수주 뉴스가 긍정적이나, 20일 +50…",
       "news_count": 10,
       "latest_news_at": "2026-05-15T06:55:00+09:00",
-      "latest_news_ago": "36분 전"
+      "latest_news_ago": "36분 전",
+      "nxt_pre_open": {
+        "change_pct": -0.18,
+        "change": -500,
+        "direction": "down",
+        "captured_at": "2026-05-15T08:45:08.704368+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.18%",
+        "cls": "down"
+      }
     }
-  ]
+  ],
+  "nxt_snapshot_at": "2026-05-15T08:45:08.704375+09:00"
 }
