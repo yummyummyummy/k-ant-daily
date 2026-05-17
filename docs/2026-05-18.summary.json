@@ -843,7 +843,17 @@
       "outlook_line": "파업 D-3 불확실성 속 추가 하락 리스크 잔존, 단기 방어 관점 일부 청산 필요",
       "news_count": 10,
       "latest_news_at": "2026-05-18T07:21:00+09:00",
-      "latest_news_ago": "9분 전"
+      "latest_news_ago": "9분 전",
+      "nxt_pre_open": {
+        "change_pct": -0.92,
+        "change": -2500,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559587+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.92%",
+        "cls": "down"
+      }
     },
     {
       "code": "000660",
@@ -1115,7 +1125,25 @@
       "outlook_line": "20일 +57% 극심한 과열 구간에서 간밤 SOX -4% 약세, 추가 차익실현 불가피",
       "news_count": 10,
       "latest_news_at": "2026-05-18T07:10:00+09:00",
-      "latest_news_ago": "20분 전"
+      "latest_news_ago": "20분 전",
+      "nxt_pre_open": {
+        "change_pct": -2.03,
+        "change": -37000,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559623+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -2.03%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "하락 경계",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-2.03%"
+      }
     },
     {
       "code": "267260",
@@ -1377,7 +1405,25 @@
       "outlook_line": "파업 전이 리스크와 간밤 GEV -3.8% 약세로 갭다운 예상되나, 20일 +8.7%로 과열 아님",
       "news_count": 10,
       "latest_news_at": "2026-05-18T07:00:00+09:00",
-      "latest_news_ago": "30분 전"
+      "latest_news_ago": "30분 전",
+      "nxt_pre_open": {
+        "change_pct": -4.33,
+        "change": -51000,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559642+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -4.33%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-4.33%"
+      }
     },
     {
       "code": "196170",
@@ -1598,7 +1644,25 @@
       "outlook_line": "미국 PTAB 특허 방어 성공이라는 강력한 개별 호재로 갭다운 방어 기대",
       "news_count": 6,
       "latest_news_at": "2026-05-17T17:46:00+09:00",
-      "latest_news_ago": "13시간 전"
+      "latest_news_ago": "13시간 전",
+      "nxt_pre_open": {
+        "change_pct": 1.76,
+        "change": 6500,
+        "direction": "up",
+        "captured_at": "2026-05-18T08:45:09.559656+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +1.76%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+1.76%"
+      }
     },
     {
       "code": "042700",
@@ -1769,7 +1833,25 @@
       "outlook_line": "전일 -9.89% 급락으로 단기 과매도 구간, 기술적 반등 여지 vs 간밤 SOX -4% 추가 압력 상충",
       "news_count": 3,
       "latest_news_at": "2026-05-17T18:41:00+09:00",
-      "latest_news_ago": "12시간 전"
+      "latest_news_ago": "12시간 전",
+      "nxt_pre_open": {
+        "change_pct": -9.89,
+        "change": -36500,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559666+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -9.89%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-9.89%"
+      }
     },
     {
       "code": "299660",
@@ -2235,7 +2317,25 @@
       "outlook_line": "실적·수주·리레이팅 3박자 호재 + 노사 합의 완료로 섹터 내 안정성 확보",
       "news_count": 2,
       "latest_news_at": "2026-05-17T18:45:00+09:00",
-      "latest_news_ago": "12시간 전"
+      "latest_news_ago": "12시간 전",
+      "nxt_pre_open": {
+        "change_pct": -4.35,
+        "change": -2200,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559677+09:00"
+      },
+      "nxt_adjusted_recommendation": "sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -4.35%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-4.35%"
+      }
     },
     {
       "code": "310210",
@@ -2356,7 +2456,17 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "20일 -11.6% 연속 하락 중이나 간밤 XBI -3.1%로 반등 계기 부재",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -0.38,
+        "change": -1000,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559686+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.38%",
+        "cls": "down"
+      }
     },
     {
       "code": "445680",
@@ -2494,7 +2604,17 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "개별 촉매 부재, 간밤 바이오 프록시 약세",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -1.08,
+        "change": -1000,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559694+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -1.08%",
+        "cls": "down"
+      }
     },
     {
       "code": "009540",
@@ -2748,7 +2868,25 @@
       "outlook_line": "K-조선 수주 28조 잭팟 호재 있으나 이미 주가에 상당 부분 반영(20일 +2% 횡보)",
       "news_count": 9,
       "latest_news_at": "2026-05-18T06:13:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": -1.92,
+        "change": -8000,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559701+09:00"
+      },
+      "nxt_adjusted_recommendation": "sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -1.92%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-1.92%"
+      }
     },
     {
       "code": "174900",
@@ -3165,7 +3303,25 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "20일 -27% 급락세이나 개별 악재 없이 시장 수급 요인",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -3.86,
+        "change": -4600,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559711+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -3.86%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-3.86%"
+      }
     },
     {
       "code": "166480",
@@ -3579,7 +3735,17 @@
       "outlook_line": "노사 갈등 격화(지노위 조정) + 모빌리티 사모펀드 매각설로 부정 뉴스 연속",
       "news_count": 10,
       "latest_news_at": "2026-05-18T07:01:00+09:00",
-      "latest_news_ago": "29분 전"
+      "latest_news_ago": "29분 전",
+      "nxt_pre_open": {
+        "change_pct": -1.36,
+        "change": -600,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559720+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -1.36%",
+        "cls": "down"
+      }
     },
     {
       "code": "005380",
@@ -3844,7 +4010,17 @@
       "outlook_line": "간밤 프록시 -5.2%(Ford -7.5%) 극단적 약세 + 국내 파업 전이 리스크 + 20일 +31% 과열",
       "news_count": 10,
       "latest_news_at": "2026-05-18T07:00:00+09:00",
-      "latest_news_ago": "30분 전"
+      "latest_news_ago": "30분 전",
+      "nxt_pre_open": {
+        "change_pct": -3.0,
+        "change": -21000,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559728+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT ↓ -3.00%",
+        "cls": "down"
+      }
     },
     {
       "code": "034230",
@@ -3979,7 +4155,17 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "간밤 카지노 프록시 중립(LVS +1%, WYNN flat), 개별 촉매 부재",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -1.37,
+        "change": -210,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559737+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -1.37%",
+        "cls": "down"
+      }
     },
     {
       "code": "071050",
@@ -4217,7 +4403,25 @@
       "outlook_line": "1분기 역대급 실적 확인(순익 1조 시대)이나 주가는 금요일 보합으로 이미 반영",
       "news_count": 8,
       "latest_news_at": "2026-05-18T06:50:00+09:00",
-      "latest_news_ago": "40분 전"
+      "latest_news_ago": "40분 전",
+      "nxt_pre_open": {
+        "change_pct": -2.71,
+        "change": -7000,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559745+09:00"
+      },
+      "nxt_adjusted_recommendation": "sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -2.71%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-2.71%"
+      }
     },
     {
       "code": "010120",
@@ -4382,7 +4586,26 @@
       "outlook_line": "20일 +37% 극심한 과열 + 간밤 GEV -3.8% 약세로 조정 지속 예상",
       "news_count": 1,
       "latest_news_at": "2026-05-17T13:30:00+09:00",
-      "latest_news_ago": "18시간 전"
+      "latest_news_ago": "18시간 전",
+      "nxt_pre_open": {
+        "change_pct": -5.21,
+        "change": -13500,
+        "direction": "down",
+        "captured_at": "2026-05-18T08:45:09.559753+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -5.21%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "하락 경계",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-5.21%"
+      }
     }
-  ]
+  ],
+  "nxt_snapshot_at": "2026-05-18T08:45:09.559759+09:00"
 }
