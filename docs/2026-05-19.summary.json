@@ -808,7 +808,17 @@
       "outlook_line": "간밤 MU -6%·SOX -2.5% 급락에 총파업 D-2 겹쳐 갭다운 압력 강함",
       "news_count": 10,
       "latest_news_at": "2026-05-19T07:30:00+09:00",
-      "latest_news_ago": "방금 전"
+      "latest_news_ago": "방금 전",
+      "nxt_pre_open": {
+        "change_pct": -1.25,
+        "change": -3500,
+        "direction": "down",
+        "captured_at": "2026-05-19T08:45:06.584157+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -1.25%",
+        "cls": "down"
+      }
     },
     {
       "code": "000660",
@@ -1080,7 +1090,25 @@
       "outlook_line": "간밤 SOX·MU 급락에도 과열(20일 +63%) 구간 차익실현 압력 가중 예상",
       "news_count": 10,
       "latest_news_at": "2026-05-19T07:17:00+09:00",
-      "latest_news_ago": "13분 전"
+      "latest_news_ago": "13분 전",
+      "nxt_pre_open": {
+        "change_pct": -1.85,
+        "change": -34000,
+        "direction": "down",
+        "captured_at": "2026-05-19T08:45:06.584204+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -1.85%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "하락 경계",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-1.85%"
+      }
     },
     {
       "code": "267260",
@@ -1332,7 +1360,25 @@
       "outlook_line": "7거래일 연속 하락(-19.8% from 고점)에 파업 전이 우려 겹쳐 추가 하락 압력",
       "news_count": 8,
       "latest_news_at": "2026-05-18T19:51:00+09:00",
-      "latest_news_ago": "11시간 전"
+      "latest_news_ago": "11시간 전",
+      "nxt_pre_open": {
+        "change_pct": 2.18,
+        "change": 25000,
+        "direction": "up",
+        "captured_at": "2026-05-19T08:45:06.584228+09:00"
+      },
+      "nxt_adjusted_recommendation": "hold",
+      "nxt_chip": {
+        "text": "NXT ↑ +2.18%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "하락 경계",
+        "adjusted_label": "관망",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+2.18%"
+      }
     },
     {
       "code": "196170",
@@ -1582,7 +1628,17 @@
       "outlook_line": "미국 특허청 할로자임 완승으로 SC 제형 독점권 확보한 개별 호재 뚜렷",
       "news_count": 10,
       "latest_news_at": "2026-05-19T07:02:00+09:00",
-      "latest_news_ago": "28분 전"
+      "latest_news_ago": "28분 전",
+      "nxt_pre_open": {
+        "change_pct": -0.84,
+        "change": -3000,
+        "direction": "down",
+        "captured_at": "2026-05-19T08:45:06.584242+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.84%",
+        "cls": "down"
+      }
     },
     {
       "code": "042700",
@@ -1842,7 +1898,25 @@
       "outlook_line": "1Q 어닝 쇼크(영업익 -87.9% YoY) 충격이 이틀간 -30% 폭락으로 상당 부분 선반영",
       "news_count": 10,
       "latest_news_at": "2026-05-19T06:31:00+09:00",
-      "latest_news_ago": "59분 전"
+      "latest_news_ago": "59분 전",
+      "nxt_pre_open": {
+        "change_pct": -4.1,
+        "change": -13000,
+        "direction": "down",
+        "captured_at": "2026-05-19T08:45:06.584253+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -4.10%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-4.10%"
+      }
     },
     {
       "code": "299660",
@@ -2255,7 +2329,17 @@
       "direction_label": "강한 상승 기대",
       "direction_cls": "up-strong",
       "outlook_line": "뉴에너지 글로벌 수주 1조 시대 진입 + 실적·수주·기대감 3박자 리레이팅 본격화",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": 1.01,
+        "change": 500,
+        "direction": "up",
+        "captured_at": "2026-05-19T08:45:06.584268+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.01%",
+        "cls": "up"
+      }
     },
     {
       "code": "310210",
@@ -2399,7 +2483,25 @@
       "outlook_line": "20일 -18.7% 뚜렷한 하락 추세, 개별 반등 촉매 부재",
       "news_count": 2,
       "latest_news_at": "2026-05-18T13:16:00+09:00",
-      "latest_news_ago": "18시간 전"
+      "latest_news_ago": "18시간 전",
+      "nxt_pre_open": {
+        "change_pct": -2.0,
+        "change": -5000,
+        "direction": "down",
+        "captured_at": "2026-05-19T08:45:06.584279+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -2.00%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "하락 경계",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-2.00%"
+      }
     },
     {
       "code": "445680",
@@ -2536,7 +2638,17 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "20일 -0.7% 보합 구간",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -0.44,
+        "change": -400,
+        "direction": "down",
+        "captured_at": "2026-05-19T08:45:06.584289+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.44%",
+        "cls": "down"
+      }
     },
     {
       "code": "009540",
@@ -2769,7 +2881,25 @@
       "outlook_line": "수주잔고 견조(5/13~14 공급계약 연달아 공시)하나 단기 모멘텀 부재",
       "news_count": 10,
       "latest_news_at": "2026-05-19T06:35:00+09:00",
-      "latest_news_ago": "55분 전"
+      "latest_news_ago": "55분 전",
+      "nxt_pre_open": {
+        "change_pct": 1.59,
+        "change": 6500,
+        "direction": "up",
+        "captured_at": "2026-05-19T08:45:06.584298+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +1.59%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+1.59%"
+      }
     },
     {
       "code": "174900",
@@ -3274,7 +3404,17 @@
       "outlook_line": "20일 -30.5% 급락, 고점 대비 -56.4%",
       "news_count": 10,
       "latest_news_at": "2026-05-19T05:57:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.98,
+        "change": -1100,
+        "direction": "down",
+        "captured_at": "2026-05-19T08:45:06.584310+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.98%",
+        "cls": "down"
+      }
     },
     {
       "code": "166480",
@@ -3700,7 +3840,17 @@
       "outlook_line": "20일 -15.1% 하락 추세 지속",
       "news_count": 10,
       "latest_news_at": "2026-05-19T07:06:00+09:00",
-      "latest_news_ago": "24분 전"
+      "latest_news_ago": "24분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.12,
+        "change": 50,
+        "direction": "up",
+        "captured_at": "2026-05-19T08:45:06.584320+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.12%",
+        "cls": "up"
+      }
     },
     {
       "code": "005380",
@@ -3934,7 +4084,17 @@
       "outlook_line": "어제 -5.29% 급락이 시장 약세를 상당 부분 선반영",
       "news_count": 10,
       "latest_news_at": "2026-05-19T07:19:00+09:00",
-      "latest_news_ago": "11분 전"
+      "latest_news_ago": "11분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.6,
+        "change": 4000,
+        "direction": "up",
+        "captured_at": "2026-05-19T08:45:06.584328+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.60%",
+        "cls": "up"
+      }
     },
     {
       "code": "034230",
@@ -4140,7 +4300,17 @@
       "outlook_line": "20일 -8.2%, 고점 대비 -39.9% 하락 추세 지속",
       "news_count": 6,
       "latest_news_at": "2026-05-18T16:51:00+09:00",
-      "latest_news_ago": "14시간 전"
+      "latest_news_ago": "14시간 전",
+      "nxt_pre_open": {
+        "change_pct": 0.49,
+        "change": 70,
+        "direction": "up",
+        "captured_at": "2026-05-19T08:45:06.584336+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.49%",
+        "cls": "up"
+      }
     },
     {
       "code": "071050",
@@ -4401,7 +4571,17 @@
       "outlook_line": "어제 -6.78% 급락 후 기술적 반등 가능성",
       "news_count": 10,
       "latest_news_at": "2026-05-19T06:01:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.42,
+        "change": -1000,
+        "direction": "down",
+        "captured_at": "2026-05-19T08:45:06.584350+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.42%",
+        "cls": "down"
+      }
     },
     {
       "code": "010120",
@@ -4657,7 +4837,26 @@
       "outlook_line": "가온전선(LS그룹) 메타 AI데이터센터 4조원 수주라는 초대형 호재 발생",
       "news_count": 10,
       "latest_news_at": "2026-05-19T05:43:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 6.11,
+        "change": 15500,
+        "direction": "up",
+        "captured_at": "2026-05-19T08:45:06.584362+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +6.11%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+6.11%"
+      }
     }
-  ]
+  ],
+  "nxt_snapshot_at": "2026-05-19T08:45:06.584372+09:00"
 }
