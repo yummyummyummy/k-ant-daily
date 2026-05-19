@@ -741,7 +741,25 @@
       "outlook_line": "엔비디아 실적 대기로 방향성 불투명, 오늘은 관망이 최선",
       "news_count": 10,
       "latest_news_at": "2026-05-20T07:30:00+09:00",
-      "latest_news_ago": "방금 전"
+      "latest_news_ago": "방금 전",
+      "nxt_pre_open": {
+        "change_pct": 1.63,
+        "change": 4500,
+        "direction": "up",
+        "captured_at": "2026-05-20T08:45:06.656640+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +1.63%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+1.63%"
+      }
     },
     {
       "code": "000660",
@@ -1007,7 +1025,17 @@
       "outlook_line": "전일 -5.16% 급락 선반영 + 엔비디아 실적 대기로 관망 최선",
       "news_count": 10,
       "latest_news_at": "2026-05-20T07:28:00+09:00",
-      "latest_news_ago": "2분 전"
+      "latest_news_ago": "2분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.97,
+        "change": 17000,
+        "direction": "up",
+        "captured_at": "2026-05-20T08:45:06.656694+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.97%",
+        "cls": "up"
+      }
     },
     {
       "code": "267260",
@@ -1262,7 +1290,17 @@
       "outlook_line": "변압기 수출 호조와 목표가 논의가 긍정이나, 시장 급락 여파가 우선",
       "news_count": 10,
       "latest_news_at": "2026-05-20T04:01:00+09:00",
-      "latest_news_ago": "3시간 전"
+      "latest_news_ago": "3시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.82,
+        "change": -9000,
+        "direction": "down",
+        "captured_at": "2026-05-20T08:45:06.656712+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.82%",
+        "cls": "down"
+      }
     },
     {
       "code": "196170",
@@ -1503,7 +1541,17 @@
       "outlook_line": "시장 폭락 속 +2.52% 역행 강세로 방어력 확인, 추가 방향 모호",
       "news_count": 10,
       "latest_news_at": "2026-05-20T07:19:00+09:00",
-      "latest_news_ago": "11분 전"
+      "latest_news_ago": "11분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.95,
+        "change": 3500,
+        "direction": "up",
+        "captured_at": "2026-05-20T08:45:06.656723+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.95%",
+        "cls": "up"
+      }
     },
     {
       "code": "042700",
@@ -1772,7 +1820,25 @@
       "outlook_line": "어닝쇼크 후폭풍 지속, 3일 -30% 급락세 추가 하방 경계 필요",
       "news_count": 10,
       "latest_news_at": "2026-05-20T06:01:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 3.82,
+        "change": 11000,
+        "direction": "up",
+        "captured_at": "2026-05-20T08:45:06.656733+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +3.82%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "하락 경계",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+3.82%"
+      }
     },
     {
       "code": "299660",
@@ -2344,7 +2410,25 @@
       "outlook_line": "수주 호조와 목표가 상향이 뚜렷하나, 프록시 FLR -4.10% 역풍이 상쇄",
       "news_count": 10,
       "latest_news_at": "2026-05-20T06:31:00+09:00",
-      "latest_news_ago": "59분 전"
+      "latest_news_ago": "59분 전",
+      "nxt_pre_open": {
+        "change_pct": -2.03,
+        "change": -1000,
+        "direction": "down",
+        "captured_at": "2026-05-20T08:45:06.656749+09:00"
+      },
+      "nxt_adjusted_recommendation": "sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -2.03%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-2.03%"
+      }
     },
     {
       "code": "310210",
@@ -2491,7 +2575,25 @@
       "outlook_line": "극단 하락 종목의 폭락장 선방 패턴 확인, 매도 에너지 소진 가능",
       "news_count": 3,
       "latest_news_at": "2026-05-19T16:11:00+09:00",
-      "latest_news_ago": "15시간 전"
+      "latest_news_ago": "15시간 전",
+      "nxt_pre_open": {
+        "change_pct": -2.37,
+        "change": -6000,
+        "direction": "down",
+        "captured_at": "2026-05-20T08:45:06.656760+09:00"
+      },
+      "nxt_adjusted_recommendation": "sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -2.37%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-2.37%"
+      }
     },
     {
       "code": "445680",
@@ -2626,7 +2728,17 @@
       "direction_label": "하락 경계",
       "direction_cls": "down",
       "outlook_line": "개별 촉매 완전 부재 + 소형 바이오 약세 구간",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": -1.47,
+        "change": -1300,
+        "direction": "down",
+        "captured_at": "2026-05-20T08:45:06.656769+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -1.47%",
+        "cls": "down"
+      }
     },
     {
       "code": "009540",
@@ -2856,7 +2968,17 @@
       "outlook_line": "간밤 XLI -1.18%, DAC -1.72% 약세로 조선 프록시 부정적",
       "news_count": 9,
       "latest_news_at": "2026-05-20T07:20:00+09:00",
-      "latest_news_ago": "10분 전"
+      "latest_news_ago": "10분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.38,
+        "change": 1500,
+        "direction": "up",
+        "captured_at": "2026-05-20T08:45:06.656778+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.38%",
+        "cls": "up"
+      }
     },
     {
       "code": "174900",
@@ -3411,7 +3533,25 @@
       "outlook_line": "하락 추세 지속 + 개별 반등 촉매 부재로 하락 경계",
       "news_count": 10,
       "latest_news_at": "2026-05-20T07:30:00+09:00",
-      "latest_news_ago": "방금 전"
+      "latest_news_ago": "방금 전",
+      "nxt_pre_open": {
+        "change_pct": -2.32,
+        "change": -2600,
+        "direction": "down",
+        "captured_at": "2026-05-20T08:45:06.656789+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -2.32%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "하락 경계",
+        "adjusted_label": "강한 하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-2.32%"
+      }
     },
     {
       "code": "166480",
@@ -3814,7 +3954,17 @@
       "outlook_line": "간밤 META -1.41%, GOOGL -2.34% 약세에 프록시 역풍이나, 어제 -2.00% 선반영",
       "news_count": 10,
       "latest_news_at": "2026-05-20T07:20:00+09:00",
-      "latest_news_ago": "10분 전"
+      "latest_news_ago": "10분 전",
+      "nxt_pre_open": {
+        "change_pct": 1.32,
+        "change": 550,
+        "direction": "up",
+        "captured_at": "2026-05-20T08:45:06.656798+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.32%",
+        "cls": "up"
+      }
     },
     {
       "code": "005380",
@@ -4082,7 +4232,17 @@
       "outlook_line": "미국 관세 25% + 1Q 영업익 -30.8% 구조적 악재 지속, 어제 -8.90% 폭락",
       "news_count": 10,
       "latest_news_at": "2026-05-20T07:28:00+09:00",
-      "latest_news_ago": "2분 전"
+      "latest_news_ago": "2분 전",
+      "nxt_pre_open": {
+        "change_pct": -0.66,
+        "change": -4000,
+        "direction": "down",
+        "captured_at": "2026-05-20T08:45:06.656806+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.66%",
+        "cls": "down"
+      }
     },
     {
       "code": "034230",
@@ -4235,7 +4395,17 @@
       "outlook_line": "간밤 카지노 프록시(MGM -2.88%, WYNN -0.76%) 약세 + 개별 촉매 부재",
       "news_count": 2,
       "latest_news_at": "2026-05-20T02:53:00+09:00",
-      "latest_news_ago": "4시간 전"
+      "latest_news_ago": "4시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.35,
+        "change": -50,
+        "direction": "down",
+        "captured_at": "2026-05-20T08:45:06.656815+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.35%",
+        "cls": "down"
+      }
     },
     {
       "code": "071050",
@@ -4494,7 +4664,17 @@
       "outlook_line": "금융 프록시(IAI -1.59%, XLF -1.24%) 약세 + 채권 금리 급등 환경",
       "news_count": 10,
       "latest_news_at": "2026-05-19T17:53:00+09:00",
-      "latest_news_ago": "13시간 전"
+      "latest_news_ago": "13시간 전",
+      "nxt_pre_open": {
+        "change_pct": -0.43,
+        "change": -1000,
+        "direction": "down",
+        "captured_at": "2026-05-20T08:45:06.656824+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.43%",
+        "cls": "down"
+      }
     },
     {
       "code": "010120",
@@ -4733,7 +4913,26 @@
       "outlook_line": "프록시 혼조(GEV 보합, ETN -2.62%, XLU +0.91%) + 개별 뉴스 부재로 관망",
       "news_count": 10,
       "latest_news_at": "2026-05-20T07:20:00+09:00",
-      "latest_news_ago": "10분 전"
+      "latest_news_ago": "10분 전",
+      "nxt_pre_open": {
+        "change_pct": -1.85,
+        "change": -4500,
+        "direction": "down",
+        "captured_at": "2026-05-20T08:45:06.656832+09:00"
+      },
+      "nxt_adjusted_recommendation": "sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -1.85%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-1.85%"
+      }
     }
-  ]
+  ],
+  "nxt_snapshot_at": "2026-05-20T08:45:06.656839+09:00"
 }
