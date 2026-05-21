@@ -838,7 +838,17 @@
       "outlook_line": "파업 리스크 해소 후 추가 상승 여력 있으나 차익실현 경계",
       "news_count": 10,
       "latest_news_at": "2026-05-22T07:29:00+09:00",
-      "latest_news_ago": "10분 전"
+      "latest_news_ago": "10분 전",
+      "nxt_pre_open": {
+        "change_pct": -0.17,
+        "change": -500,
+        "direction": "down",
+        "captured_at": "2026-05-22T08:45:07.733418+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.17%",
+        "cls": "down"
+      }
     },
     {
       "code": "000660",
@@ -1102,7 +1112,17 @@
       "outlook_line": "HBM 슈퍼사이클 모멘텀에 추가 상승 가능하나 단기 과열 경계",
       "news_count": 10,
       "latest_news_at": "2026-05-22T07:29:00+09:00",
-      "latest_news_ago": "10분 전"
+      "latest_news_ago": "10분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.57,
+        "change": 11000,
+        "direction": "up",
+        "captured_at": "2026-05-22T08:45:07.733466+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.57%",
+        "cls": "up"
+      }
     },
     {
       "code": "267260",
@@ -1372,7 +1392,25 @@
       "outlook_line": "전력기기 수주 모멘텀 유효하나 N% 성과급 논란 리스크 병존",
       "news_count": 9,
       "latest_news_at": "2026-05-22T07:02:00+09:00",
-      "latest_news_ago": "37분 전"
+      "latest_news_ago": "37분 전",
+      "nxt_pre_open": {
+        "change_pct": 4.49,
+        "change": 51000,
+        "direction": "up",
+        "captured_at": "2026-05-22T08:45:07.733483+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +4.49%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+4.49%"
+      }
     },
     {
       "code": "196170",
@@ -1648,7 +1686,17 @@
       "outlook_line": "ASCO 학회 시즌 접근에 따른 바이오 섹터 기대감 수혜 가능",
       "news_count": 10,
       "latest_news_at": "2026-05-22T06:01:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 1.28,
+        "change": 4500,
+        "direction": "up",
+        "captured_at": "2026-05-22T08:45:07.733500+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.28%",
+        "cls": "up"
+      }
     },
     {
       "code": "042700",
@@ -1892,7 +1940,25 @@
       "outlook_line": "어제 +15.65% 폭등으로 반도체 소부장 랠리 선반영 완료",
       "news_count": 10,
       "latest_news_at": "2026-05-22T04:32:00+09:00",
-      "latest_news_ago": "3시간 전"
+      "latest_news_ago": "3시간 전",
+      "nxt_pre_open": {
+        "change_pct": -1.8,
+        "change": -6000,
+        "direction": "down",
+        "captured_at": "2026-05-22T08:45:07.733510+09:00"
+      },
+      "nxt_adjusted_recommendation": "sell",
+      "nxt_chip": {
+        "text": "NXT ↓ -1.80%",
+        "cls": "down"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "하락 경계",
+        "shift_word": "하향",
+        "arrow": "↘",
+        "pct_str": "-1.80%"
+      }
     },
     {
       "code": "299660",
@@ -2417,7 +2483,25 @@
       "outlook_line": "삼성그룹 시총 급증과 안전경영 강화 행보가 우호적",
       "news_count": 10,
       "latest_news_at": "2026-05-22T04:35:00+09:00",
-      "latest_news_ago": "3시간 전"
+      "latest_news_ago": "3시간 전",
+      "nxt_pre_open": {
+        "change_pct": 5.85,
+        "change": 3000,
+        "direction": "up",
+        "captured_at": "2026-05-22T08:45:07.733527+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +5.85%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+5.85%"
+      }
     },
     {
       "code": "310210",
@@ -2553,7 +2637,25 @@
       "outlook_line": "20일 -14.4% 하락 추세 지속, XBI +0.81%는 약한 신호로 추세 전환 근거 부족",
       "news_count": 1,
       "latest_news_at": "2026-05-21T13:59:00+09:00",
-      "latest_news_ago": "17시간 전"
+      "latest_news_ago": "17시간 전",
+      "nxt_pre_open": {
+        "change_pct": 1.96,
+        "change": 5000,
+        "direction": "up",
+        "captured_at": "2026-05-22T08:45:07.733537+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +1.96%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+1.96%"
+      }
     },
     {
       "code": "445680",
@@ -2688,7 +2790,25 @@
       "direction_label": "상승 기대",
       "direction_cls": "up",
       "outlook_line": "XBI +0.81% 소폭 강세이나 개별 촉매 부재",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": 1.7,
+        "change": 1400,
+        "direction": "up",
+        "captured_at": "2026-05-22T08:45:07.733547+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +1.70%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+1.70%"
+      }
     },
     {
       "code": "009540",
@@ -2958,7 +3078,25 @@
       "outlook_line": "테라파워 SMR 공급 + 암모니아 운반선 수주 등 다변화 재료 풍부",
       "news_count": 10,
       "latest_news_at": "2026-05-22T00:02:00+09:00",
-      "latest_news_ago": "7시간 전"
+      "latest_news_ago": "7시간 전",
+      "nxt_pre_open": {
+        "change_pct": 2.53,
+        "change": 10500,
+        "direction": "up",
+        "captured_at": "2026-05-22T08:45:07.733556+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +2.53%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+2.53%"
+      }
     },
     {
       "code": "174900",
@@ -3501,7 +3639,25 @@
       "outlook_line": "20일 -27% 급락 추세로 매도 관성 강력",
       "news_count": 8,
       "latest_news_at": "2026-05-22T06:01:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 3.0,
+        "change": 3300,
+        "direction": "up",
+        "captured_at": "2026-05-22T08:45:07.733569+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +3.00%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+3.00%"
+      }
     },
     {
       "code": "166480",
@@ -3986,7 +4142,17 @@
       "outlook_line": "파업 임박 리스크가 핵심 악재, 카톡 먹통 재현 우려",
       "news_count": 10,
       "latest_news_at": "2026-05-22T06:34:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 0.84,
+        "change": 350,
+        "direction": "up",
+        "captured_at": "2026-05-22T08:45:07.733581+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.84%",
+        "cls": "up"
+      }
     },
     {
       "code": "005380",
@@ -4248,7 +4414,17 @@
       "outlook_line": "로봇·보스턴다이나믹스 밸류체인 확장이 새 모멘텀",
       "news_count": 10,
       "latest_news_at": "2026-05-22T07:17:00+09:00",
-      "latest_news_ago": "22분 전"
+      "latest_news_ago": "22분 전",
+      "nxt_pre_open": {
+        "change_pct": -0.15,
+        "change": -1000,
+        "direction": "down",
+        "captured_at": "2026-05-22T08:45:07.733590+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — -0.15%",
+        "cls": "down"
+      }
     },
     {
       "code": "034230",
@@ -4452,7 +4628,17 @@
       "outlook_line": "간밤 MGM +3.15% 강세이나 LVS -0.34%로 프록시 혼재",
       "news_count": 3,
       "latest_news_at": "2026-05-22T05:06:00+09:00",
-      "latest_news_ago": "2시간 전"
+      "latest_news_ago": "2시간 전",
+      "nxt_pre_open": {
+        "change_pct": 0.63,
+        "change": 90,
+        "direction": "up",
+        "captured_at": "2026-05-22T08:45:07.733599+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.63%",
+        "cls": "up"
+      }
     },
     {
       "code": "071050",
@@ -4711,7 +4897,17 @@
       "outlook_line": "두 방향 신호 모두 중립, 어제 +7.31%는 시장 베타 랠리",
       "news_count": 10,
       "latest_news_at": "2026-05-22T06:00:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 1.2,
+        "change": 3000,
+        "direction": "up",
+        "captured_at": "2026-05-22T08:45:07.733607+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.20%",
+        "cls": "up"
+      }
     },
     {
       "code": "010120",
@@ -4972,7 +5168,26 @@
       "outlook_line": "수주잔고 20조 돌파, AI DC 전력기기 수요 구조적 성장",
       "news_count": 10,
       "latest_news_at": "2026-05-22T07:02:00+09:00",
-      "latest_news_ago": "37분 전"
+      "latest_news_ago": "37분 전",
+      "nxt_pre_open": {
+        "change_pct": 4.05,
+        "change": 11000,
+        "direction": "up",
+        "captured_at": "2026-05-22T08:45:07.733616+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +4.05%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+4.05%"
+      }
     }
-  ]
+  ],
+  "nxt_snapshot_at": "2026-05-22T08:45:07.733623+09:00"
 }
