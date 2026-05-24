@@ -1,0 +1,4392 @@
+{
+  "date": "2026-05-25",
+  "generated_at": "2026-05-25T07:30:00+09:00",
+  "headline": "코스닥 급등 후 숨 고르기, 금통위·레버리지 주간",
+  "tldr": "코스닥 이틀 연속 5% 급등 후 차익실현 압력, 이번주 금통위(5/28)·단일종목 레버리지 ETF 출시 주시",
+  "mood_dashboard": {
+    "policy": {
+      "impact": "positive",
+      "note": "국민성장펀드 완판, 상법 개정·PBR 1배법 기대",
+      "impact_label": "우호"
+    },
+    "geopolitics": {
+      "impact": "neutral",
+      "note": "미·이란 종전 협상 진행 중, 호르무즈 상황 관망",
+      "impact_label": "혼조"
+    },
+    "overnight": {
+      "impact": "neutral",
+      "note": "S&P +0.37%, 나스닥 +0.19% 소폭 강세",
+      "impact_label": "혼조"
+    },
+    "fx_macro": {
+      "impact": "negative",
+      "note": "원/달러 1,515원, 금리인상 관측 부담",
+      "impact_label": "부담"
+    }
+  },
+  "top_stories": [
+    {
+      "category": "policy",
+      "headline": "국민성장펀드 완판 효과로 코스닥 이틀 연속 5% 급등",
+      "why_it_matters": "코스닥 소형주 수급 개선, 바이오·IT 소재 중심 자금 유입 기대 지속",
+      "impact": "positive",
+      "sources": [
+        {
+          "title": "매일경제",
+          "url": "https://n.news.naver.com/mnews/article/009/0005684050"
+        }
+      ],
+      "impact_label": "호재",
+      "category_label": "🏛️ 정책"
+    },
+    {
+      "category": "market",
+      "headline": "삼성전자·SK하이닉스 단일종목 레버리지 ETF 이번주 출시",
+      "why_it_matters": "개인 투자자 포모(FOMO) 수요 집중 예상, 반도체주 단기 변동성 확대 불가피",
+      "impact": "neutral",
+      "sources": [
+        {
+          "title": "뉴스1",
+          "url": "https://n.news.naver.com/mnews/article/421/0008964062"
+        }
+      ],
+      "impact_label": "중립",
+      "category_label": "📊 시장"
+    },
+    {
+      "category": "macro",
+      "headline": "한은 금통위 5/28 예정, 하반기 금리인상 무게",
+      "why_it_matters": "반도체 호황으로 GDP 2.5~2.6% 상향, 물가 부담에 긴축 시계 빨라질 가능성",
+      "impact": "negative",
+      "sources": [
+        {
+          "title": "비즈워치",
+          "url": "https://n.news.naver.com/mnews/article/648/0000047409"
+        }
+      ],
+      "impact_label": "악재",
+      "category_label": "💱 거시"
+    },
+    {
+      "category": "geopolitics",
+      "headline": "미·이란 종전 협상 극적 타결 가능성 주시",
+      "why_it_matters": "종전 시 유가 하락·호르무즈 리스크 해소, 결렬 시 원유 급등·수출주 타격",
+      "impact": "neutral",
+      "sources": [
+        {
+          "title": "이데일리",
+          "url": "https://n.news.naver.com/mnews/article/018/0006289977"
+        }
+      ],
+      "impact_label": "중립",
+      "category_label": "🌏 국제"
+    },
+    {
+      "category": "market",
+      "headline": "외국인 지난주 삼전닉스 10조 순매도, 로봇·ESS는 순매수",
+      "why_it_matters": "반도체 대형주 수급 부담 지속, 테마 순환 가속화 시사",
+      "impact": "negative",
+      "sources": [
+        {
+          "title": "연합뉴스",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097071"
+        }
+      ],
+      "impact_label": "악재",
+      "category_label": "📊 시장"
+    },
+    {
+      "category": "policy",
+      "headline": "상법 개정·PBR 1배법 기대로 지주사 재평가 본격화",
+      "why_it_matters": "밸류업 정책 수혜주 확대, 자사주 소각 의무화 기대감",
+      "impact": "positive",
+      "sources": [
+        {
+          "title": "파이낸셜뉴스",
+          "url": "https://n.news.naver.com/mnews/article/014/0005525822"
+        }
+      ],
+      "impact_label": "호재",
+      "category_label": "🏛️ 정책"
+    },
+    {
+      "category": "sector",
+      "headline": "K-전력기기 빅3, 올해 영업익 3조원 노린다",
+      "why_it_matters": "AI 데이터센터 전력 수요 급증으로 수주 모멘텀 지속, 글로벌 빅테크 수주 확대",
+      "impact": "positive",
+      "sources": [
+        {
+          "title": "서울경제",
+          "url": "https://n.news.naver.com/mnews/article/011/0004623904"
+        }
+      ],
+      "impact_label": "호재",
+      "category_label": "🏭 섹터"
+    },
+    {
+      "category": "sector",
+      "headline": "조선 빅3, 올해 수주 30조 돌파… 고부가 선박 비중 확대",
+      "why_it_matters": "K-방산 미국 시장 진출 가속, 함정·자주포 등 방산 수주 기대",
+      "impact": "positive",
+      "sources": [
+        {
+          "title": "뉴시스",
+          "url": "https://n.news.naver.com/mnews/article/003/0013964740"
+        }
+      ],
+      "impact_label": "호재",
+      "category_label": "🏭 섹터"
+    }
+  ],
+  "focus": {
+    "title": "미·이란 종전 협상과 호르무즈 해협",
+    "impact": "neutral",
+    "status": {
+      "level": "restricted",
+      "label": "협상 진행 중",
+      "detail": "종전 협상 극적 타결 가능성 제기. 결과에 따라 유가·해운·에너지 섹터 변동성 확대 예상."
+    },
+    "summary": "미·이란 종전 협상이 이번주 중 극적 타결 가능성이 거론되고 있으며, 서울 외환시장은 금통위와 함께 핵심 변수로 주시 중. 종전 시 유가 하락 및 해운 리스크 해소가 기대되나, 결렬 시 유가 급등과 수출주 타격 우려.",
+    "news_items": [
+      {
+        "title": "종전협상 극적 타결 보나…금통위·외국인 수급 여부도 주시",
+        "summary": "다음주 서울 외환시장은 금통위와 미·이란 종전 협상을 주시하며 1500원선 중심 등락 예상",
+        "source": "이데일리",
+        "url": "https://n.news.naver.com/mnews/article/018/0006289977",
+        "published_at": "2026-05-25T07:01:09+09:00",
+        "impact": "neutral",
+        "impact_label": "중립",
+        "time_ago": "28분 전"
+      },
+      {
+        "title": "HMM 위너호, 호르무즈 탈출은 했지만…K-해운 '안심은 금물'",
+        "summary": "호르무즈 해협 통행 위험은 여전, K-해운 불확실성 지속",
+        "source": "디지털데일리",
+        "url": "https://n.news.naver.com/mnews/article/138/0002228810",
+        "published_at": "2026-05-24T07:01:00+09:00",
+        "impact": "negative",
+        "impact_label": "악재",
+        "time_ago": "1일 전"
+      }
+    ],
+    "impact_label": "중립"
+  },
+  "macro": {
+    "overall_impact": "neutral",
+    "indicators_impact": "positive",
+    "overnight_impact": "neutral",
+    "summary": "코스닥 이틀 연속 5% 급등(국민성장펀드 효과) 후 **차익실현 압력과 금통위(5/28) 금리인상 관측**이 맞물려 변동성 구간 진입 예상. 간밤 미 3대 지수 소폭 강세로 갭다운 부담은 제한적.",
+    "indicators": [
+      {
+        "name": "KOSPI",
+        "value": "7,847.71",
+        "change_abs": "+32.12",
+        "change_pct": "+0.41%",
+        "impact": "positive",
+        "direction": "up",
+        "impact_label": "호재"
+      },
+      {
+        "name": "KOSDAQ",
+        "value": "1,161.13",
+        "change_abs": "+55.16",
+        "change_pct": "+4.99%",
+        "impact": "positive",
+        "direction": "up",
+        "impact_label": "호재"
+      },
+      {
+        "name": "USD/KRW",
+        "value": "1,515.00",
+        "change_abs": "+9.50",
+        "change_pct": "+0.63%",
+        "impact": "negative",
+        "direction": "up",
+        "impact_label": "악재"
+      },
+      {
+        "name": "BTC(KRW)",
+        "value": "115,145,000",
+        "change_abs": "+276,000",
+        "change_pct": "+0.24%",
+        "impact": "neutral",
+        "direction": "up",
+        "impact_label": "중립"
+      }
+    ],
+    "overnight": [
+      {
+        "name": "S&P 500",
+        "value": "7,473.47",
+        "change_abs": "+27.75",
+        "change_pct": "+0.37%",
+        "impact": "positive",
+        "direction": "up",
+        "impact_label": "호재"
+      },
+      {
+        "name": "다우존스",
+        "value": "50,579.70",
+        "change_abs": "+294.04",
+        "change_pct": "+0.58%",
+        "impact": "positive",
+        "direction": "up",
+        "impact_label": "호재"
+      },
+      {
+        "name": "나스닥",
+        "value": "26,343.97",
+        "change_abs": "+50.87",
+        "change_pct": "+0.19%",
+        "impact": "neutral",
+        "direction": "up",
+        "impact_label": "중립"
+      },
+      {
+        "name": "VIX",
+        "value": "16.70",
+        "change_abs": "-0.06",
+        "change_pct": "-0.36%",
+        "impact": "positive",
+        "direction": "down",
+        "impact_label": "호재"
+      },
+      {
+        "name": "SOX",
+        "value": "-",
+        "change_abs": "-",
+        "change_pct": "+1.99%",
+        "impact": "positive",
+        "direction": "up",
+        "impact_label": "호재"
+      },
+      {
+        "name": "WTI 원유",
+        "value": "96.60",
+        "change_abs": "+0.00",
+        "change_pct": "+0.00%",
+        "impact": "neutral",
+        "direction": "up",
+        "impact_label": "중립"
+      },
+      {
+        "name": "금",
+        "value": "4,523.20",
+        "change_abs": "+2.20",
+        "change_pct": "+0.05%",
+        "impact": "neutral",
+        "direction": "up",
+        "impact_label": "중립"
+      },
+      {
+        "name": "달러인덱스",
+        "value": "99.06",
+        "change_abs": "-0.26",
+        "change_pct": "-0.26%",
+        "impact": "positive",
+        "direction": "down",
+        "impact_label": "호재"
+      }
+    ],
+    "indicators_impact_label": "호재",
+    "overnight_impact_label": "중립"
+  },
+  "sectors": [
+    {
+      "name": "반도체",
+      "emoji": "🔧",
+      "impact": "neutral",
+      "headline": "SOX +1.99% 강세에도 NVDA -1.9%, 레버리지 ETF 출시 앞두고 혼조",
+      "news": [
+        {
+          "title": "외인, 지난주 삼전닉스 10조 순매도… 로봇·ESS는 순매수",
+          "impact": "negative",
+          "published_at": "2026-05-25T07:25:00+09:00",
+          "source": {
+            "title": "연합뉴스",
+            "url": "https://n.news.naver.com/mnews/article/001/0016097071"
+          },
+          "note": "외국인 수급 부담 지속",
+          "impact_label": "악재",
+          "time_ago": "5분 전"
+        },
+        {
+          "title": "삼성전자·SK하이닉스 단일종목 레버리지·곱버스 ETF 이번주 출시",
+          "impact": "neutral",
+          "published_at": "2026-05-25T06:00:00+09:00",
+          "source": {
+            "title": "뉴스1",
+            "url": "https://n.news.naver.com/mnews/article/421/0008964062"
+          },
+          "note": "개인 투자자 포모 수요 vs 당국 경고",
+          "impact_label": "중립",
+          "time_ago": "1시간 전"
+        },
+        {
+          "title": "한미반도체, 강한 이익 성장 전망… 목표가 상향 릴레이",
+          "impact": "positive",
+          "published_at": "2026-05-22T15:22:00+09:00",
+          "source": {
+            "title": "아시아경제",
+            "url": "https://n.news.naver.com/mnews/article/277/0005766869"
+          },
+          "note": "TC본더 매출 반등 기대",
+          "impact_label": "호재",
+          "time_ago": "2일 전"
+        }
+      ],
+      "impact_label": "중립"
+    },
+    {
+      "name": "전력기기",
+      "emoji": "⚡",
+      "impact": "positive",
+      "headline": "ETN +2.58% 강세, K-전력기기 빅3 영업익 3조 기대",
+      "news": [
+        {
+          "title": "AI 특수 올라탄 K-전력기기… 빅3 올해 영업익 3조원 노린다",
+          "impact": "positive",
+          "published_at": "2026-05-23T13:01:00+09:00",
+          "source": {
+            "title": "서울경제",
+            "url": "https://n.news.naver.com/mnews/article/011/0004623904"
+          },
+          "note": "AI 데이터센터 전력 수요 수주 호조",
+          "impact_label": "호재",
+          "time_ago": "1일 전"
+        },
+        {
+          "title": "구자균 LS일렉 회장 '압도적 품질로 전력시장 주도' 특명",
+          "impact": "positive",
+          "published_at": "2026-05-23T06:02:00+09:00",
+          "source": {
+            "title": "매일경제",
+            "url": "https://n.news.naver.com/mnews/article/009/0005684052"
+          },
+          "impact_label": "호재",
+          "time_ago": "2일 전"
+        }
+      ],
+      "impact_label": "호재"
+    },
+    {
+      "name": "바이오",
+      "emoji": "🧬",
+      "impact": "neutral",
+      "headline": "XBI -0.84% 약세에도 국민성장펀드 수급 기대 상충",
+      "news": [
+        {
+          "title": "'손잡자' 러브콜 받는 K-바이오… 밑바탕은 신뢰",
+          "impact": "positive",
+          "published_at": "2026-05-24T06:01:00+09:00",
+          "source": {
+            "title": "뉴시스",
+            "url": "https://n.news.naver.com/mnews/article/003/0013964343"
+          },
+          "impact_label": "호재",
+          "time_ago": "1일 전"
+        },
+        {
+          "title": "국민성장펀드 '오픈런'에 바이오주 폭풍매수… 성장주 수혜 기대",
+          "impact": "positive",
+          "published_at": "2026-05-22T17:04:00+09:00",
+          "source": {
+            "title": "뉴스1",
+            "url": "https://n.news.naver.com/mnews/article/421/0008961852"
+          },
+          "note": "코스닥 바이오 시가총액 상위주 자금 유입",
+          "impact_label": "호재",
+          "time_ago": "2일 전"
+        },
+        {
+          "title": "앱클론 파트너사 헨리우스, 위암 1차치료제 무진행생존 최소 39개월",
+          "impact": "positive",
+          "published_at": "2026-05-21T10:38:00+09:00",
+          "source": {
+            "title": "서울경제",
+            "url": "https://n.news.naver.com/mnews/article/011/0004623167"
+          },
+          "note": "글로벌 임상 데이터 긍정적",
+          "impact_label": "호재",
+          "time_ago": "3일 전"
+        }
+      ],
+      "impact_label": "중립"
+    },
+    {
+      "name": "건설/플랜트",
+      "emoji": "🏗️",
+      "impact": "negative",
+      "headline": "중동發 수주절벽 현실화, 해외건설 72% 급감",
+      "news": [
+        {
+          "title": "중동發 수주절벽 현실화… 해외건설 72% 급감",
+          "impact": "negative",
+          "published_at": "2026-05-22T13:38:00+09:00",
+          "source": {
+            "title": "뉴스1",
+            "url": "https://n.news.naver.com/mnews/article/421/0008961217"
+          },
+          "note": "중동 플랜트 신규 수주 급감",
+          "impact_label": "악재",
+          "time_ago": "2일 전"
+        }
+      ],
+      "impact_label": "악재"
+    },
+    {
+      "name": "조선",
+      "emoji": "🚢",
+      "impact": "positive",
+      "headline": "조선 빅3 수주 30조 돌파, K-방산 미국 시장 진출 가속",
+      "news": [
+        {
+          "title": "조선 빅3, 올해 수주 30조 돌파… 고부가 선박 수주 효과",
+          "impact": "positive",
+          "published_at": "2026-05-24T13:00:00+09:00",
+          "source": {
+            "title": "뉴시스",
+            "url": "https://n.news.naver.com/mnews/article/003/0013964740"
+          },
+          "impact_label": "호재",
+          "time_ago": "18시간 전"
+        },
+        {
+          "title": "K-방산 미국 시장 뚫나… 함정·자주포·유도무기 진출 박차",
+          "impact": "positive",
+          "published_at": "2026-05-24T07:15:00+09:00",
+          "source": {
+            "title": "뉴스1",
+            "url": "https://n.news.naver.com/mnews/article/421/0008963079"
+          },
+          "impact_label": "호재",
+          "time_ago": "1일 전"
+        }
+      ],
+      "impact_label": "호재"
+    },
+    {
+      "name": "자동차",
+      "emoji": "🚗",
+      "impact": "positive",
+      "headline": "Ford +9.22% 급등, 현대차 로봇 사업 조직 신설",
+      "news": [
+        {
+          "title": "현대차그룹, 아틀라스 도입하며 공장 자동화·로봇부품 조직 신설",
+          "impact": "positive",
+          "published_at": "2026-05-25T06:17:00+09:00",
+          "source": {
+            "title": "연합뉴스",
+            "url": "https://n.news.naver.com/mnews/article/001/0016097037"
+          },
+          "note": "로봇 사업 본격 확장",
+          "impact_label": "호재",
+          "time_ago": "1시간 전"
+        },
+        {
+          "title": "현대차 로봇훈련 구조, 중국 업체들 단기 복제 못해",
+          "impact": "positive",
+          "published_at": "2026-05-25T05:59:00+09:00",
+          "source": {
+            "title": "파이낸셜뉴스",
+            "url": "https://n.news.naver.com/mnews/article/014/0005525820"
+          },
+          "impact_label": "호재",
+          "time_ago": "1시간 전"
+        }
+      ],
+      "impact_label": "호재"
+    },
+    {
+      "name": "플랫폼/IT",
+      "emoji": "💻",
+      "impact": "neutral",
+      "headline": "카카오 노사 이번주 최대 고비, AI 투자 확대 기대와 상충",
+      "news": [
+        {
+          "title": "카카오 노사 이번주 최대 고비… IT 업계 촉각",
+          "impact": "negative",
+          "published_at": "2026-05-25T05:45:00+09:00",
+          "source": {
+            "title": "연합뉴스",
+            "url": "https://n.news.naver.com/mnews/article/001/0016097006"
+          },
+          "note": "노사 갈등 장기화 시 경영 리스크",
+          "impact_label": "악재",
+          "time_ago": "1시간 전"
+        },
+        {
+          "title": "AI 돈 쏟는 네이버… 카톡 올인하는 카카오",
+          "impact": "neutral",
+          "published_at": "2026-05-24T17:38:00+09:00",
+          "source": {
+            "title": "한국경제",
+            "url": "https://n.news.naver.com/mnews/article/015/0005290583"
+          },
+          "impact_label": "중립",
+          "time_ago": "13시간 전"
+        }
+      ],
+      "impact_label": "중립"
+    },
+    {
+      "name": "증권",
+      "emoji": "🏦",
+      "impact": "neutral",
+      "headline": "증권업계 IMA·모험자본 경쟁 가열, 금통위 금리 방향 주시",
+      "news": [
+        {
+          "title": "'한국판 골드만삭스' 노리는 증권업계, 모험자본 투자 경쟁",
+          "impact": "positive",
+          "published_at": "2026-05-25T07:02:01+09:00",
+          "source": {
+            "title": "연합뉴스",
+            "url": "https://n.news.naver.com/mnews/article/001/0016097059"
+          },
+          "impact_label": "호재",
+          "time_ago": "27분 전"
+        }
+      ],
+      "impact_label": "중립"
+    }
+  ],
+  "stocks": [
+    {
+      "code": "005930",
+      "name": "삼성전자",
+      "market": "KOSPI",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.46,
+        "proxies": [
+          {
+            "symbol": "^SOX",
+            "change_pct": 1.99
+          },
+          {
+            "symbol": "NVDA",
+            "change_pct": -1.9
+          },
+          {
+            "symbol": "MU",
+            "change_pct": -1.46
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "외국인 10조 순매도 부담 속 레버리지 ETF 출시 양면성으로 방향 불확실. 간밤 SOX +1.99%이나 NVDA -1.9%·MU -1.46%로 반도체 프록시 혼조(평균 -0.46%). 20일 +30.29% 급등 구간에서 숨 고르기 흐름 예상.",
+      "summary": "외국인 매도 vs 레버리지 ETF 수급 유입 상충, 단기 횡보 예상. 금통위(5/28) 결과까지 관망이 합리적.",
+      "key_points": [
+        {
+          "point": "외국인 지난주 삼전닉스 10조 순매도",
+          "detail": "반도체 대형주 수급 부담 지속, 테마 순환 가속화",
+          "impact": "negative",
+          "published_at": "2026-05-25T07:25:00+09:00",
+          "sources": [
+            {
+              "title": "연합뉴스",
+              "url": "https://n.news.naver.com/mnews/article/001/0016097071"
+            }
+          ],
+          "impact_label": "악재",
+          "time_ago": "5분 전"
+        },
+        {
+          "point": "메타 스마트글라스 한국 상륙, 구글·삼성 경쟁 참전",
+          "detail": "XR 기기 시장 확대로 반도체 수요 장기 긍정적",
+          "impact": "positive",
+          "published_at": "2026-05-25T07:01:00+09:00",
+          "sources": [
+            {
+              "title": "뉴스1",
+              "url": "https://n.news.naver.com/mnews/article/421/0008964116"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "29분 전"
+        },
+        {
+          "point": "단일종목 레버리지·곱버스 ETF 이번주 출시",
+          "detail": "개인 투자자 포모 수요 집중 예상되나 당국 경고로 이벤트 마케팅 자제",
+          "impact": "neutral",
+          "published_at": "2026-05-25T06:00:00+09:00",
+          "sources": [
+            {
+              "title": "뉴스1",
+              "url": "https://n.news.naver.com/mnews/article/421/0008964062"
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "1시간 전"
+        }
+      ],
+      "action_plan": {
+        "position_size": "현재 비중 유지 — 별도 액션 없음",
+        "stop_loss": "-3.5% (보유분 방어선, vol_tier=high 반영)",
+        "horizon": "1-3일 단기"
+      },
+      "sector": "반도체",
+      "owners": [
+        "이웅수",
+        "장윤영",
+        "장한솔"
+      ],
+      "overnight_proxy": [
+        "^SOX",
+        "NVDA",
+        "MU"
+      ],
+      "quote": {
+        "price": "292,500",
+        "change": "7,000",
+        "change_pct": "-2.34",
+        "change_pct_num": -2.34,
+        "direction": "down",
+        "volume": 2939504
+      },
+      "news": [
+        {
+          "title": "외인, 지난주 '삼전닉스' 10조 순매도…로봇·ESS는 샀다",
+          "link": "https://n.news.naver.com/mnews/article/001/0016097071",
+          "source": "연합뉴스",
+          "date": "2026.05.25 07:25",
+          "published_at": "2026.05.25 07:25",
+          "time_ago": "5분 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097071",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "이번엔 'K-ETF' 열풍?…하반기 홍콩·美 시장서 ETF 추가 상장",
+          "link": "https://n.news.naver.com/mnews/article/001/0016097069",
+          "source": "연합뉴스",
+          "date": "2026.05.25 07:20",
+          "published_at": "2026.05.25 07:20",
+          "time_ago": "10분 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097069",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "코스피 일평균 거래대금 첫 40조 돌파…'손바뀜'은 줄어",
+          "link": "https://n.news.naver.com/mnews/article/001/0016097067",
+          "source": "연합뉴스",
+          "date": "2026.05.25 07:15",
+          "published_at": "2026.05.25 07:15",
+          "time_ago": "15분 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097067",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "“일할 맛 나겠다” 삼성전자, 대기업 평균 연봉 7배",
+          "link": "https://n.news.naver.com/mnews/article/021/0002793288",
+          "source": "문화일보",
+          "date": "2026.05.25 07:14",
+          "published_at": "2026.05.25 07:14",
+          "time_ago": "16분 전",
+          "url": "https://n.news.naver.com/mnews/article/021/0002793288",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"삼전닉스 레버리지 이벤트 안돼\" 당국 경고에 운용사들 계획 철회",
+          "link": "https://n.news.naver.com/mnews/article/001/0016097063",
+          "source": "연합뉴스",
+          "date": "2026.05.25 07:10",
+          "published_at": "2026.05.25 07:10",
+          "time_ago": "20분 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097063",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "“증시만 호황인 건 비정상, 실물경제도 같이 살아야 선진국형”",
+          "link": "https://n.news.naver.com/mnews/article/262/0000019395",
+          "source": "신동아",
+          "date": "2026.05.25 07:01",
+          "published_at": "2026.05.25 07:01",
+          "time_ago": "29분 전",
+          "url": "https://n.news.naver.com/mnews/article/262/0000019395",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "“3년이면 20억 모으니까”...‘삼전닉스’ 부부, 청약시장 큰손 되겠...",
+          "link": "https://n.news.naver.com/mnews/article/016/0002647641",
+          "source": "헤럴드경제",
+          "date": "2026.05.25 07:01",
+          "published_at": "2026.05.25 07:01",
+          "time_ago": "29분 전",
+          "url": "https://n.news.naver.com/mnews/article/016/0002647641",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "메타 스마트글라스, 오늘 韓 상륙…구글·삼성에 애플도 참전",
+          "link": "https://n.news.naver.com/mnews/article/421/0008964116",
+          "source": "뉴스1",
+          "date": "2026.05.25 07:01",
+          "published_at": "2026.05.25 07:01",
+          "time_ago": "29분 전",
+          "url": "https://n.news.naver.com/mnews/article/421/0008964116",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼전 특별성과급 더하니 연봉 7억… 일반 근로자 14배",
+          "link": "https://n.news.naver.com/mnews/article/005/0001850854",
+          "source": "국민일보",
+          "date": "2026.05.25 06:23",
+          "published_at": "2026.05.25 06:23",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/005/0001850854",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성전자 연봉, 보통 회사원 14배?…'K자 양극화' 더 커진다",
+          "link": "https://n.news.naver.com/mnews/article/001/0016097004",
+          "source": "연합뉴스",
+          "date": "2026.05.25 05:31",
+          "published_at": "2026.05.25 05:31",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097004",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(하락)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641816&code=005930&page_notice=",
+          "date": "2026.05.15"
+        },
+        {
+          "title": "삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1637870&code=005930&page_notice=",
+          "date": "2026.05.06"
+        },
+        {
+          "title": "삼성전자(주) 현금ㆍ현물 배당 결정",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1636233&code=005930&page_notice=",
+          "date": "2026.04.30"
+        },
+        {
+          "title": "삼성전자(주) (정정)연결재무제표기준영업(잠정)실적(공정공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1636226&code=005930&page_notice=",
+          "date": "2026.04.30"
+        },
+        {
+          "title": "삼성전자(주) 연결재무제표기준영업(잠정)실적(공정공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1636214&code=005930&page_notice=",
+          "date": "2026.04.30"
+        }
+      ],
+      "history": {
+        "symbol": "005930.KS",
+        "closes_20d": [
+          224500.0,
+          219500.0,
+          224500.0,
+          222000.0,
+          226000.0,
+          220500.0,
+          232500.0,
+          266000.0,
+          271500.0,
+          268500.0,
+          285500.0,
+          279000.0,
+          284000.0,
+          296000.0,
+          270500.0,
+          281000.0,
+          275500.0,
+          276000.0,
+          299500.0,
+          292500.0
+        ],
+        "fifty_two_week_high": 300500.0,
+        "fifty_two_week_low": 53700.0,
+        "last_close": 292500.0,
+        "change_20d_pct": 30.29,
+        "pos_52w_pct": 96.8,
+        "from_high_pct": -2.66,
+        "volume_20d_avg": 31800678,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,22.5 L4.2,24.0 L8.4,22.5 L12.6,23.2 L16.8,22.1 L21.1,23.7 L25.3,20.1 L29.5,10.0 L33.7,8.4 L37.9,9.3 L42.1,4.2 L46.3,6.1 L50.5,4.6 L54.7,1.0 L58.9,8.7 L63.2,5.5 L67.4,7.2 L71.6,7.0 L75.8,0.0 L80.0,2.1",
+        "sparkline_direction": "up"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "292,500",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.09,
+      "volume_spike": false,
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음",
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "외국인 10조 순매도 부담 속 레버리지 ETF 출시 양면성으로 방향 불확실",
+      "news_count": 10,
+      "latest_news_at": "2026-05-25T07:25:00+09:00",
+      "latest_news_ago": "5분 전"
+    },
+    {
+      "code": "000660",
+      "name": "SK하이닉스",
+      "market": "KOSPI",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.46,
+        "proxies": [
+          {
+            "symbol": "^SOX",
+            "change_pct": 1.99
+          },
+          {
+            "symbol": "NVDA",
+            "change_pct": -1.9
+          },
+          {
+            "symbol": "MU",
+            "change_pct": -1.46
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "52주 신고가 근접(97%)에서 외국인 대규모 매도 지속, 방향 모호. 간밤 SOX +1.99% 반도체 지수 강세이나 NVDA·MU 개별 약세로 프록시 혼조. 레버리지 ETF 출시에 따른 단기 수급 변동성 확대 예상.",
+      "summary": "고점 근접 + 외국인 매도 vs 레버리지 ETF 수급 기대, 단기 방향 미정. 20일 +58.45% 급등 후 숨 고르기 가능.",
+      "key_points": [
+        {
+          "point": "자기주식 처분 결정 (5/13)",
+          "detail": "자사주 매도 물량 수급 부담 요인",
+          "impact": "negative",
+          "published_at": "2026-05-13T00:00:00+09:00",
+          "sources": [
+            {
+              "title": "SK하이닉스 공시",
+              "url": "https://finance.naver.com/item/news_notice_read.naver?no=1640749&code=000660&page_notice="
+            }
+          ],
+          "impact_label": "악재",
+          "time_ago": "05/13"
+        },
+        {
+          "point": "52주 신고가 대비 -2.71%, 20일 +58.45% 급등",
+          "detail": "단기 과열 구간, 차익실현 물량 출회 가능성",
+          "impact": "negative",
+          "sources": [],
+          "impact_label": "악재",
+          "time_ago": ""
+        }
+      ],
+      "action_plan": {
+        "position_size": "현재 비중 유지 — 별도 액션 없음",
+        "stop_loss": "-4.0% (보유분, vol_tier=extreme 반영)",
+        "horizon": "1-3일 단기"
+      },
+      "sector": "반도체",
+      "owners": [
+        "이영준",
+        "장윤영",
+        "장한솔",
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "^SOX",
+        "NVDA",
+        "MU"
+      ],
+      "quote": {
+        "price": "1,941,000",
+        "change": "1,000",
+        "change_pct": "+0.05",
+        "change_pct_num": 0.05,
+        "direction": "up",
+        "volume": 762684
+      },
+      "news": [
+        {
+          "title": "외인, 지난주 '삼전닉스' 10조 순매도…로봇·ESS는 샀다",
+          "link": "https://n.news.naver.com/mnews/article/001/0016097071",
+          "source": "연합뉴스",
+          "date": "2026.05.25 07:25",
+          "published_at": "2026.05.25 07:25",
+          "time_ago": "5분 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097071",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "이번엔 'K-ETF' 열풍?…하반기 홍콩·美 시장서 ETF 추가 상장",
+          "link": "https://n.news.naver.com/mnews/article/001/0016097069",
+          "source": "연합뉴스",
+          "date": "2026.05.25 07:20",
+          "published_at": "2026.05.25 07:20",
+          "time_ago": "10분 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097069",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "코스피 일평균 거래대금 첫 40조 돌파…'손바뀜'은 줄어",
+          "link": "https://n.news.naver.com/mnews/article/001/0016097067",
+          "source": "연합뉴스",
+          "date": "2026.05.25 07:15",
+          "published_at": "2026.05.25 07:15",
+          "time_ago": "15분 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097067",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "“일할 맛 나겠다” 삼성전자, 대기업 평균 연봉 7배",
+          "link": "https://n.news.naver.com/mnews/article/021/0002793288",
+          "source": "문화일보",
+          "date": "2026.05.25 07:14",
+          "published_at": "2026.05.25 07:14",
+          "time_ago": "16분 전",
+          "url": "https://n.news.naver.com/mnews/article/021/0002793288",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"삼전닉스 레버리지 이벤트 안돼\" 당국 경고에 운용사들 계획 철회",
+          "link": "https://n.news.naver.com/mnews/article/001/0016097063",
+          "source": "연합뉴스",
+          "date": "2026.05.25 07:10",
+          "published_at": "2026.05.25 07:10",
+          "time_ago": "20분 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097063",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "반도체 쏠림이 심하다고?… ‘삼전·SK하닉’ 확실한 스타 덕분에 코.....",
+          "link": "https://n.news.naver.com/mnews/article/037/0000038220",
+          "source": "주간동아",
+          "date": "2026.05.25 07:01",
+          "published_at": "2026.05.25 07:01",
+          "time_ago": "29분 전",
+          "url": "https://n.news.naver.com/mnews/article/037/0000038220",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "“2배로 벌려다 다 잃을 수도”…‘삼전닉스 2배’ ETF 주의할 점은?...",
+          "link": "https://n.news.naver.com/mnews/article/056/0012187266",
+          "source": "KBS",
+          "date": "2026.05.25 07:01",
+          "published_at": "2026.05.25 07:01",
+          "time_ago": "29분 전",
+          "url": "https://n.news.naver.com/mnews/article/056/0012187266",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "“증시만 호황인 건 비정상, 실물경제도 같이 살아야 선진국형”",
+          "link": "https://n.news.naver.com/mnews/article/262/0000019395",
+          "source": "신동아",
+          "date": "2026.05.25 07:01",
+          "published_at": "2026.05.25 07:01",
+          "time_ago": "29분 전",
+          "url": "https://n.news.naver.com/mnews/article/262/0000019395",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼전 특별성과급 더하니 연봉 7억… 일반 근로자 14배",
+          "link": "https://n.news.naver.com/mnews/article/005/0001850854",
+          "source": "국민일보",
+          "date": "2026.05.25 06:23",
+          "published_at": "2026.05.25 06:23",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/005/0001850854",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼성전자 연봉, 보통 회사원 14배?…'K자 양극화' 더 커진다",
+          "link": "https://n.news.naver.com/mnews/article/001/0016097004",
+          "source": "연합뉴스",
+          "date": "2026.05.25 05:31",
+          "published_at": "2026.05.25 05:31",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097004",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "에스케이하이닉스(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=4400137&code=000660&page_notice=",
+          "date": "2026.05.21"
+        },
+        {
+          "title": "에스케이하이닉스(주) 자기주식 처분 결정",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1640749&code=000660&page_notice=",
+          "date": "2026.05.13"
+        },
+        {
+          "title": "에스케이하이닉스(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1639606&code=000660&page_notice=",
+          "date": "2026.05.11"
+        },
+        {
+          "title": "에스케이하이닉스(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1637858&code=000660&page_notice=",
+          "date": "2026.05.06"
+        },
+        {
+          "title": "에스케이하이닉스(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1637532&code=000660&page_notice=",
+          "date": "2026.05.04"
+        }
+      ],
+      "history": {
+        "symbol": "000660.KS",
+        "closes_20d": [
+          1225000.0,
+          1222000.0,
+          1292000.0,
+          1300000.0,
+          1293000.0,
+          1286000.0,
+          1447000.0,
+          1601000.0,
+          1654000.0,
+          1686000.0,
+          1880000.0,
+          1835000.0,
+          1976000.0,
+          1970000.0,
+          1819000.0,
+          1840000.0,
+          1745000.0,
+          1745000.0,
+          1940000.0,
+          1941000.0
+        ],
+        "fifty_two_week_high": 1995000.0,
+        "fifty_two_week_low": 196500.0,
+        "last_close": 1941000.0,
+        "change_20d_pct": 58.45,
+        "pos_52w_pct": 97.0,
+        "from_high_pct": -2.71,
+        "volume_20d_avg": 5349933,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,23.9 L4.2,24.0 L8.4,21.8 L12.6,21.5 L16.8,21.7 L21.1,22.0 L25.3,16.8 L29.5,11.9 L33.7,10.2 L37.9,9.2 L42.1,3.1 L46.3,4.5 L50.5,0.0 L54.7,0.2 L58.9,5.0 L63.2,4.3 L67.4,7.4 L71.6,7.4 L75.8,1.1 L80.0,1.1",
+        "sparkline_direction": "up"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "1,941,000",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.14,
+      "volume_spike": false,
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음",
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "52주 신고가 근접(97%)에서 외국인 대규모 매도 지속, 방향 모호",
+      "news_count": 10,
+      "latest_news_at": "2026-05-25T07:25:00+09:00",
+      "latest_news_ago": "5분 전"
+    },
+    {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "up",
+        "avg_pct": 0.96,
+        "proxies": [
+          {
+            "symbol": "GEV",
+            "change_pct": -0.49
+          },
+          {
+            "symbol": "ETN",
+            "change_pct": 2.58
+          },
+          {
+            "symbol": "XLU",
+            "change_pct": 0.78
+          }
+        ],
+        "label": "강세"
+      },
+      "recommendation": "strong_buy",
+      "confidence": "high",
+      "rationale": "전력기기 수주 모멘텀과 간밤 프록시 강세가 동행, 반등 여력 충분. 간밤 ETN +2.58% 강세, K-전력기기 빅3 영업익 3조 기대 기사 긍정적. 고점 대비 -17.97% 조정 구간에서 아직 선반영 아님. 미·중 갈등으로 중국 전력기기 견제 속 반사 수혜 기대.",
+      "summary": "ETN +2.58% 프록시 강세 + 빅3 영업익 3조 기대로 조정 구간 탈출 시도 예상. 고점 대비 -18% 조정 후 반등 모멘텀.",
+      "key_points": [
+        {
+          "point": "K-전력기기 빅3, 올해 영업익 3조원 전망",
+          "detail": "AI 데이터센터 전력 수요 급증으로 수주 호조 지속",
+          "impact": "positive",
+          "published_at": "2026-05-23T13:01:00+09:00",
+          "sources": [
+            {
+              "title": "서울경제",
+              "url": "https://n.news.naver.com/mnews/article/011/0004623904"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1일 전"
+        },
+        {
+          "point": "미·중 갈등 속 한국 전력기기 반사 수혜",
+          "detail": "중국 전력기기 경쟁사 견제로 HD현대일렉트릭·LS일렉트릭 수주 확대",
+          "impact": "positive",
+          "published_at": "2026-05-22T07:02:00+09:00",
+          "sources": [
+            {
+              "title": "주간동아",
+              "url": "https://n.news.naver.com/mnews/article/037/0000038206"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "3일 전"
+        },
+        {
+          "point": "10거래일 조정 후 반등 시도",
+          "detail": "고점 1,430,000원 대비 -17.97% 하락, 전일 +3.26% 반등",
+          "impact": "positive",
+          "sources": [
+            {
+              "title": "서울경제",
+              "url": "https://n.news.naver.com/mnews/article/011/0004623481"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": ""
+        }
+      ],
+      "action_plan": {
+        "position_size": "보유분 유지 + 추가 매수 3% 검토",
+        "entry_zone": "보유분 평단 무관 — 추가 매수는 -3.5% 조정 후 (1,132,000원 부근)",
+        "stop_loss": "-3.5% (vol_tier=high 반영)",
+        "target": "+7%",
+        "horizon": "1-3일 단기",
+        "scenarios": {
+          "if_gap_up": "갭상승 +1.5% 이내(1,191,000원 부근) 시초가 매수, +2.5% 이상(1,202,000원 초과)이면 5분봉 음봉 1개 보고 재진입",
+          "if_gap_down": "갭다운 -1% 이내(1,161,000원 부근) 지지선 매수, -2% 이상(1,150,000원 이하)이면 진입 보류",
+          "if_target_hit": "+7%(1,255,000원) 도달 시 추가 매수분 절반 익절, 나머지 trailing -2%",
+          "if_stop_hit": "-3.5%(1,132,000원) 도달 시 추가분 즉시 청산, 기존 보유분은 유지"
+        }
+      },
+      "sector": "전력기기",
+      "owners": [
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "GEV",
+        "ETN",
+        "XLU"
+      ],
+      "quote": {
+        "price": "1,173,000",
+        "change": "37,000",
+        "change_pct": "+3.26",
+        "change_pct_num": 3.26,
+        "direction": "up",
+        "volume": 19304
+      },
+      "news": [
+        {
+          "title": "[자막뉴스] 반도체에서 시작된 '성과급' 파장...재계 긴장",
+          "link": "https://n.news.naver.com/mnews/article/052/0002357233",
+          "source": "YTN",
+          "date": "2026.05.24 10:07",
+          "published_at": "2026.05.24 10:07",
+          "time_ago": "21시간 전",
+          "url": "https://n.news.naver.com/mnews/article/052/0002357233",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "삼전 주식 액면분할 없었다면 1500만 원 ‘황제’ [비즈앤피플]",
+          "link": "https://n.news.naver.com/mnews/article/082/0001382112",
+          "source": "부산일보",
+          "date": "2026.05.24 08:00",
+          "published_at": "2026.05.24 08:00",
+          "time_ago": "23시간 전",
+          "url": "https://n.news.naver.com/mnews/article/082/0001382112",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "에이치디현대일렉트릭(주) 중간(분기)배당락 기준가격 안내",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1639733&code=267260&page_notice=",
+          "date": "2026.05.11"
+        },
+        {
+          "title": "에이치디현대일렉트릭(주) 단일판매ㆍ공급계약체결",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1638589&code=267260&page_notice=",
+          "date": "2026.05.07"
+        },
+        {
+          "title": "에이치디현대일렉트릭(주) 현금ㆍ현물배당을 위한 주주명부폐쇄(기준일) 결...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1634600&code=267260&page_notice=",
+          "date": "2026.04.28"
+        },
+        {
+          "title": "에이치디현대일렉트릭(주) 현금ㆍ현물 배당 결정",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1634599&code=267260&page_notice=",
+          "date": "2026.04.28"
+        },
+        {
+          "title": "에이치디현대일렉트릭(주) 연결재무제표기준영업(잠정)실적(공정공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1634598&code=267260&page_notice=",
+          "date": "2026.04.28"
+        }
+      ],
+      "history": {
+        "symbol": "267260.KS",
+        "closes_20d": [
+          1129000.0,
+          1248000.0,
+          1306000.0,
+          1238000.0,
+          1260000.0,
+          1252000.0,
+          1299000.0,
+          1389000.0,
+          1420000.0,
+          1403000.0,
+          1362000.0,
+          1309000.0,
+          1280000.0,
+          1267000.0,
+          1179000.0,
+          1147000.0,
+          1095000.0,
+          1066000.0,
+          1136000.0,
+          1173000.0
+        ],
+        "fifty_two_week_high": 1430000.0,
+        "fifty_two_week_low": 366500.0,
+        "last_close": 1173000.0,
+        "change_20d_pct": 3.9,
+        "pos_52w_pct": 75.8,
+        "from_high_pct": -17.97,
+        "volume_20d_avg": 198446,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,19.7 L4.2,11.7 L8.4,7.7 L12.6,12.3 L16.8,10.8 L21.1,11.4 L25.3,8.2 L29.5,2.1 L33.7,0.0 L37.9,1.2 L42.1,3.9 L46.3,7.5 L50.5,9.5 L54.7,10.4 L58.9,16.3 L63.2,18.5 L67.4,22.0 L71.6,24.0 L75.8,19.3 L80.0,16.7",
+        "sparkline_direction": "up"
+      },
+      "recommendation_label": "강한 상승 기대",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "1,173,000",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.1,
+      "volume_spike": false,
+      "news_sentiment_label": "긍정",
+      "confidence_label": "높음",
+      "direction_arrow": "↑↑",
+      "direction_label": "강한 상승 기대",
+      "direction_cls": "up-strong",
+      "outlook_line": "전력기기 수주 모멘텀과 간밤 프록시 강세가 동행, 반등 여력 충분",
+      "news_count": 2,
+      "latest_news_at": "2026-05-24T10:07:00+09:00",
+      "latest_news_ago": "21시간 전"
+    },
+    {
+      "code": "196170",
+      "name": "알테오젠",
+      "market": "KOSDAQ",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.5,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.84
+          },
+          {
+            "symbol": "IBB",
+            "change_pct": -0.16
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "개별 촉매 부재 속 코스닥 급등 편승 흐름, 자체 방향성 약함. 간밤 XBI -0.84%로 바이오 프록시 소폭 약세. 전일 +3.70% 상승은 코스닥 전체 +4.99% 랠리에 편승한 것으로 개별 동력 미확인. 52주 고점 대비 -35.94% 하락 구간에서 횡보.",
+      "summary": "코스닥 급등 편승 상승, 개별 촉매 부재로 추가 상승 모멘텀 약함. 프록시 약세(XBI -0.84%)도 부담.",
+      "key_points": [
+        {
+          "point": "코스닥 국민성장펀드 효과로 시가총액 상위주 수혜",
+          "detail": "코스닥150 편입 종목으로 펀드 자금 유입 기대",
+          "impact": "positive",
+          "published_at": "2026-05-23T07:32:00+09:00",
+          "sources": [
+            {
+              "title": "이데일리",
+              "url": "https://n.news.naver.com/mnews/article/018/0006288786"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1일 전"
+        }
+      ],
+      "action_plan": {
+        "position_size": "현재 비중 유지 — 별도 액션 없음",
+        "stop_loss": "-3.0% (보유분, vol_tier=mid 반영)",
+        "horizon": "1-3일 단기"
+      },
+      "sector": "바이오",
+      "owners": [
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "XBI",
+        "IBB"
+      ],
+      "quote": {
+        "price": "364,500",
+        "change": "13,000",
+        "change_pct": "+3.70",
+        "change_pct_num": 3.7,
+        "direction": "up",
+        "volume": 0
+      },
+      "news": [
+        {
+          "title": "1500원대 환율 속 물가·금리 3高…외국인 매수 유입 코스닥은 ‘활짝...",
+          "link": "https://n.news.naver.com/mnews/article/022/0004130469",
+          "source": "세계일보",
+          "date": "2026.05.25 07:02",
+          "published_at": "2026.05.25 07:02",
+          "time_ago": "28분 전",
+          "url": "https://n.news.naver.com/mnews/article/022/0004130469",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "(주)알테오젠 투자판단 관련 주요경영사항(아이젠피주(ALT-L9, 아일...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641590&code=196170&page_notice=",
+          "date": "2026.05.15"
+        },
+        {
+          "title": "(주)알테오젠 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641198&code=196170&page_notice=",
+          "date": "2026.05.14"
+        },
+        {
+          "title": "(주)알테오젠 추가상장(주식매수선택권행사)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1640824&code=196170&page_notice=",
+          "date": "2026.05.13"
+        },
+        {
+          "title": "(주)알테오젠 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1640632&code=196170&page_notice=",
+          "date": "2026.05.13"
+        },
+        {
+          "title": "(주)알테오젠 연결재무제표 기준 영업(잠정)실적(공정공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1639115&code=196170&page_notice=",
+          "date": "2026.05.08"
+        }
+      ],
+      "history": {
+        "symbol": "196170.KQ",
+        "closes_20d": [
+          357500.0,
+          369000.0,
+          379000.0,
+          376500.0,
+          380000.0,
+          368500.0,
+          373000.0,
+          363500.0,
+          356500.0,
+          340500.0,
+          325000.0,
+          342000.0,
+          354000.0,
+          385000.0,
+          369000.0,
+          357500.0,
+          366500.0,
+          359500.0,
+          351500.0,
+          364500.0
+        ],
+        "fifty_two_week_high": 569000.0,
+        "fifty_two_week_low": 318500.0,
+        "last_close": 364500.0,
+        "change_20d_pct": 1.96,
+        "pos_52w_pct": 18.4,
+        "from_high_pct": -35.94,
+        "volume_20d_avg": 520726,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,11.0 L4.2,6.4 L8.4,2.4 L12.6,3.4 L16.8,2.0 L21.1,6.6 L25.3,4.8 L29.5,8.6 L33.7,11.4 L37.9,17.8 L42.1,24.0 L46.3,17.2 L50.5,12.4 L54.7,0.0 L58.9,6.4 L63.2,11.0 L67.4,7.4 L71.6,10.2 L75.8,13.4 L80.0,8.2",
+        "sparkline_direction": "up"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "364,500",
+      "price_change_abs_display": "—",
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음",
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "개별 촉매 부재 속 코스닥 급등 편승 흐름, 자체 방향성 약함",
+      "news_count": 1,
+      "latest_news_at": "2026-05-25T07:02:00+09:00",
+      "latest_news_ago": "28분 전"
+    },
+    {
+      "code": "042700",
+      "name": "한미반도체",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": 0.4,
+        "proxies": [
+          {
+            "symbol": "^SOX",
+            "change_pct": 1.99
+          },
+          {
+            "symbol": "AMAT",
+            "change_pct": 1.12
+          },
+          {
+            "symbol": "NVDA",
+            "change_pct": -1.9
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "목표가 상향 릴레이(상상인·NH 등)로 뉴스 톤 긍정적, 아직 주가에 미반영. 간밤 SOX +1.99%이나 개별 프록시는 혼조(AMAT +1.12%, NVDA -1.9%)로 중립. 전일 -3.61% 하락은 시장 조정이지 목표가 상향과 반대 방향이므로 선반영 아님. 고점 대비 -24.8% 조정 구간에서 실적 모멘텀 회복 기대.",
+      "summary": "TC본더 매출 반등 + 목표가 상향 릴레이로 조정 구간 매수 기회. 프록시 혼조로 갭 방향 불확실.",
+      "key_points": [
+        {
+          "point": "상상인證·NH 등 목표가 상향 릴레이",
+          "detail": "올해 사상 최대 실적 예상, TC본더 매출 2분기 본격 반등",
+          "impact": "positive",
+          "published_at": "2026-05-22T09:51:00+09:00",
+          "sources": [
+            {
+              "title": "뉴시스",
+              "url": "https://n.news.naver.com/mnews/article/003/0013961827"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "2일 전"
+        },
+        {
+          "point": "고점 대비 -24.8% 조정 후 반등 모색",
+          "detail": "409,500원 → 320,500원, 급등-급락 사이클 후 실적 기반 재평가 구간",
+          "impact": "neutral",
+          "sources": [],
+          "impact_label": "중립",
+          "time_ago": ""
+        }
+      ],
+      "action_plan": {
+        "position_size": "보유분 유지, -3.5% 조정 시 분할매수 (vol_tier=extreme 반영)",
+        "entry_zone": "보유분 평단 무관 — 추가 매수는 -3.5% 조정 후 (309,300원 부근)",
+        "stop_loss": "-3.5% (vol_tier=extreme 반영)",
+        "target": "+5.5%",
+        "horizon": "1-3일 단기",
+        "scenarios": {
+          "if_gap_up": "갭상승 +1% 이내(323,700원) 보유 유지, +2% 이상(326,900원 초과)이면 추가 매수 보류",
+          "if_gap_down": "갭다운 -2% 이내(314,100원) 분할매수 시작, -4% 이상(307,700원 이하)이면 추가 진입 보류",
+          "if_target_hit": "+5.5%(338,100원) 도달 시 추가분 절반 익절, 나머지 trailing -2%",
+          "if_stop_hit": "-3.5%(309,300원) 도달 시 추가분 즉시 청산, 기존 보유분은 손절 라인 -5% 설정"
+        }
+      },
+      "sector": "반도체",
+      "owners": [
+        "장한솔"
+      ],
+      "overnight_proxy": [
+        "^SOX",
+        "AMAT",
+        "NVDA"
+      ],
+      "quote": {
+        "price": "320,500",
+        "change": "12,000",
+        "change_pct": "-3.61",
+        "change_pct_num": -3.61,
+        "direction": "down",
+        "volume": 144248
+      },
+      "news": [
+        {
+          "title": "주가 폭락해도 '휴지조각' 안된다…RSU 늘리는 기업들",
+          "link": "https://n.news.naver.com/mnews/article/215/0001253199",
+          "source": "한국경제TV",
+          "date": "2026.05.24 20:50",
+          "published_at": "2026.05.24 20:50",
+          "time_ago": "10시간 전",
+          "url": "https://n.news.naver.com/mnews/article/215/0001253199",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"이젠 RSU로 성과급\"…빅테크식 보상 확산",
+          "link": "https://n.news.naver.com/mnews/article/015/0005290592",
+          "source": "한국경제",
+          "date": "2026.05.24 17:41",
+          "published_at": "2026.05.24 17:41",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005290592",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "한미반도체(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=4528068&code=042700&page_notice=",
+          "date": "2026.05.21"
+        },
+        {
+          "title": "한미반도체(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(하락...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1642879&code=042700&page_notice=",
+          "date": "2026.05.19"
+        },
+        {
+          "title": "한미반도체(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(하락...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1642328&code=042700&page_notice=",
+          "date": "2026.05.18"
+        },
+        {
+          "title": "한미반도체(주) 기업설명회(IR) 개최(안내공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641897&code=042700&page_notice=",
+          "date": "2026.05.15"
+        },
+        {
+          "title": "한미반도체(주) 연결재무제표기준영업(잠정)실적(공정공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641887&code=042700&page_notice=",
+          "date": "2026.05.15"
+        }
+      ],
+      "history": {
+        "symbol": "042700.KS",
+        "closes_20d": [
+          293500.0,
+          295500.0,
+          373500.0,
+          367000.0,
+          357500.0,
+          368000.0,
+          378000.0,
+          394500.0,
+          393000.0,
+          390000.0,
+          400000.0,
+          377500.0,
+          400500.0,
+          409500.0,
+          369000.0,
+          317000.0,
+          288000.0,
+          287500.0,
+          332500.0,
+          320500.0
+        ],
+        "fifty_two_week_high": 426000.0,
+        "fifty_two_week_low": 78200.0,
+        "last_close": 320500.0,
+        "change_20d_pct": 9.2,
+        "pos_52w_pct": 69.7,
+        "from_high_pct": -24.77,
+        "volume_20d_avg": 1505334,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,22.8 L4.2,22.4 L8.4,7.1 L12.6,8.4 L16.8,10.2 L21.1,8.2 L25.3,6.2 L29.5,3.0 L33.7,3.2 L37.9,3.8 L42.1,1.9 L46.3,6.3 L50.5,1.8 L54.7,0.0 L58.9,8.0 L63.2,18.2 L67.4,23.9 L71.6,24.0 L75.8,15.1 L80.0,17.5",
+        "sparkline_direction": "up"
+      },
+      "recommendation_label": "상승 기대",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "320,500",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.1,
+      "volume_spike": false,
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간",
+      "direction_arrow": "↑",
+      "direction_label": "상승 기대",
+      "direction_cls": "up",
+      "outlook_line": "목표가 상향 릴레이(상상인·NH 등)로 뉴스 톤 긍정적, 아직 주가에 미반영",
+      "news_count": 2,
+      "latest_news_at": "2026-05-24T20:50:00+09:00",
+      "latest_news_ago": "10시간 전"
+    },
+    {
+      "code": "299660",
+      "name": "셀리드",
+      "market": "KOSDAQ",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "down",
+        "avg_pct": -0.82,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.84
+          },
+          {
+            "symbol": "MRNA",
+            "change_pct": -0.8
+          }
+        ],
+        "label": "약세"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "개별 촉매 없이 코스닥 급등에 편승한 +7.05% 상승, 간밤 XBI·MRNA 약세로 하방 압력. 최근 material 뉴스 부재(코로나 테마는 4월 이전). 소형 바이오 특성상 변동성 극심하나, 전일 코스닥 +4.99% 급등 효과로 하락 경계 대신 관망 유지(5/22 교훈: 전일 코스닥 +3% 이상 → 소형주 관망 한 단계 상향 반영).",
+      "summary": "개별 촉매 없는 코스닥 편승 상승, XBI 약세와 맞물려 차익실현 가능성. 방향 판단 어려움.",
+      "key_points": [
+        {
+          "point": "임시주주총회 결과 (5/22)",
+          "detail": "주주총회 완료, 구체적 결정 내용 확인 필요",
+          "impact": "neutral",
+          "published_at": "2026-05-22T00:00:00+09:00",
+          "sources": [
+            {
+              "title": "셀리드 공시",
+              "url": "https://finance.naver.com/item/news_notice_read.naver?no=7000457&code=299660&page_notice="
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "3일 전"
+        }
+      ],
+      "action_plan": {
+        "position_size": "현재 비중 유지 — 별도 액션 없음",
+        "stop_loss": "-4.0% (보유분, vol_tier=extreme 반영)",
+        "horizon": "1-3일 단기"
+      },
+      "sector": "바이오",
+      "owners": [
+        "이웅수",
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "XBI",
+        "MRNA"
+      ],
+      "quote": {
+        "price": "3,265",
+        "change": "215",
+        "change_pct": "+7.05",
+        "change_pct_num": 7.05,
+        "direction": "up",
+        "volume": 101330
+      },
+      "news": [],
+      "disclosures": [
+        {
+          "title": "(주)셀리드 임시주주총회결과",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=7000457&code=299660&page_notice=",
+          "date": "2026.05.22"
+        },
+        {
+          "title": "(주)셀리드 투자판단 관련 주요경영사항(COVID-19 예방 백신 Ad...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1639362&code=299660&page_notice=",
+          "date": "2026.05.08"
+        },
+        {
+          "title": "(주)셀리드 (정정)신규시설투자등",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1636545&code=299660&page_notice=",
+          "date": "2026.04.30"
+        },
+        {
+          "title": "(주)셀리드 (정정)주주총회소집결의(임시주주총회)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1636401&code=299660&page_notice=",
+          "date": "2026.04.30"
+        },
+        {
+          "title": "(주)셀리드 공매도 과열종목 연장(공매도 거래 금지 연장)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1632926&code=299660&page_notice=",
+          "date": "2026.04.22"
+        }
+      ],
+      "history": {
+        "symbol": "299660.KQ",
+        "closes_20d": [
+          3310.0,
+          3270.0,
+          3135.0,
+          3090.0,
+          3230.0,
+          3180.0,
+          3205.0,
+          3115.0,
+          3110.0,
+          3450.0,
+          3255.0,
+          3360.0,
+          3345.0,
+          3225.0,
+          3030.0,
+          3020.0,
+          2910.0,
+          3130.0,
+          3050.0,
+          3265.0
+        ],
+        "fifty_two_week_high": 9910.0,
+        "fifty_two_week_low": 2275.0,
+        "last_close": 3265.0,
+        "change_20d_pct": -1.36,
+        "pos_52w_pct": 13.0,
+        "from_high_pct": -67.05,
+        "volume_20d_avg": 1712973,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,6.2 L4.2,8.0 L8.4,14.0 L12.6,16.0 L16.8,9.8 L21.1,12.0 L25.3,10.9 L29.5,14.9 L33.7,15.1 L37.9,0.0 L42.1,8.7 L46.3,4.0 L50.5,4.7 L54.7,10.0 L58.9,18.7 L63.2,19.1 L67.4,24.0 L71.6,14.2 L75.8,17.8 L80.0,8.2",
+        "sparkline_direction": "down"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "3,265",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.06,
+      "volume_spike": false,
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음",
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "개별 촉매 없이 코스닥 급등에 편승한 +7.05% 상승, 간밤 XBI·MRNA 약세로 하방 압력",
+      "news_count": 0
+    },
+    {
+      "code": "233740",
+      "name": "KODEX 코스닥150 레버리지",
+      "market": "KOSPI",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": 0.31,
+        "proxies": [
+          {
+            "symbol": "^IXIC",
+            "change_pct": 0.19
+          },
+          {
+            "symbol": "QQQ",
+            "change_pct": 0.42
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "전일 +12.99% 대폭등(코스닥 +4.99%의 2배 추종) 후 차익실현 압력 예상. 간밤 나스닥 +0.19%, QQQ +0.42%로 프록시 소폭 강세이나 레버리지 기준(+1.5%) 미달. 5/22 교훈(전일 +8% 이상 급등 → 차익실현 경계) 적용. 이틀 연속 대폭등 후 숨 고르기 가능성 높음.",
+      "summary": "코스닥 이틀 연속 5% 급등의 레버리지 효과로 +13% 급등, 차익실현 압력 불가피. (5/22 교훈: 전일 +8% 이상 급등 후 차익실현 경계)",
+      "key_points": [
+        {
+          "point": "코스닥150 이틀 연속 급등 (+4.73% → +4.99%)",
+          "detail": "레버리지 ETF 특성상 이틀간 약 +26% 수익. 차익실현 물량 출회 예상",
+          "impact": "negative",
+          "sources": [],
+          "impact_label": "악재",
+          "time_ago": ""
+        },
+        {
+          "point": "나스닥 프록시 +0.31%로 레버리지 매수 기준(+1.5%) 미달",
+          "detail": "간밤 해외 프록시가 추가 상승을 지지하기엔 약함",
+          "impact": "neutral",
+          "sources": [],
+          "impact_label": "중립",
+          "time_ago": ""
+        }
+      ],
+      "action_plan": {
+        "position_size": "보유분 1/3~1/2 익절 검토",
+        "stop_loss": "-5.0% (보유분, vol_tier=extreme, 선제적 방어)",
+        "target": "+3.5% (절반 익절 목표)",
+        "horizon": "1-3일 단기",
+        "scenarios": {
+          "if_gap_up": "갭상승 +2% 이상(16,460원 초과) 시 보유분 1/3 즉시 익절, 코스닥 장중 모멘텀 확인 후 잔여분 판단",
+          "if_gap_down": "갭다운 -3% 이내(15,650원 부근) 보유 유지 관망, -5% 이상(15,330원 이하)이면 1/2 선제 익절",
+          "if_target_hit": "+3.5%(16,700원) 도달 시 보유분 절반 익절, 나머지 trailing -3%",
+          "if_stop_hit": "-5%(15,330원) 도달 시 보유분 절반 청산, 잔여분 코스닥 추이 관망"
+        }
+      },
+      "sector": "ETF",
+      "is_etf": true,
+      "owners": [
+        "하우찬",
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "^IXIC",
+        "QQQ"
+      ],
+      "quote": {
+        "price": "16,135",
+        "change": "1,855",
+        "change_pct": "+12.99",
+        "change_pct_num": 12.99,
+        "direction": "up",
+        "volume": 19900190
+      },
+      "news": [],
+      "disclosures": [
+        {
+          "title": "삼성 KODEX 코스닥150 레버리지증권상장지수투자신탁(주식-파생형) ...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1607932&code=233740&page_notice=",
+          "date": "2026.03.06"
+        },
+        {
+          "title": "삼성 KODEX 코스닥150 레버리지증권상장지수투자신탁(주식-파생형) ...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1607251&code=233740&page_notice=",
+          "date": "2026.03.05"
+        },
+        {
+          "title": "삼성 KODEX 코스닥150 레버리지증권상장지수투자신탁(주식-파생형) ...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1607023&code=233740&page_notice=",
+          "date": "2026.03.05"
+        },
+        {
+          "title": "삼성 KODEX 코스닥150 레버리지증권상장지수투자신탁(주식-파생형) ...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1586328&code=233740&page_notice=",
+          "date": "2026.01.13"
+        },
+        {
+          "title": "삼성 KODEX 코스닥150 레버리지증권상장지수투자신탁(주식-파생형) ...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1585201&code=233740&page_notice=",
+          "date": "2026.01.07"
+        }
+      ],
+      "history": {
+        "symbol": "233740.KS",
+        "closes_20d": [
+          16360.0,
+          17320.0,
+          17975.0,
+          17505.0,
+          17650.0,
+          16615.0,
+          17085.0,
+          17195.0,
+          16885.0,
+          17005.0,
+          16910.0,
+          15980.0,
+          16010.0,
+          16560.0,
+          14995.0,
+          14275.0,
+          13720.0,
+          12895.0,
+          14280.0,
+          16135.0
+        ],
+        "fifty_two_week_high": 21750.0,
+        "fifty_two_week_low": 6565.0,
+        "last_close": 16135.0,
+        "change_20d_pct": -1.38,
+        "pos_52w_pct": 63.0,
+        "from_high_pct": -25.82,
+        "volume_20d_avg": 42863856,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,7.6 L4.2,3.1 L8.4,0.0 L12.6,2.2 L16.8,1.5 L21.1,6.4 L25.3,4.2 L29.5,3.7 L33.7,5.1 L37.9,4.6 L42.1,5.0 L46.3,9.4 L50.5,9.3 L54.7,6.7 L58.9,14.1 L63.2,17.5 L67.4,20.1 L71.6,24.0 L75.8,17.5 L80.0,8.7",
+        "sparkline_direction": "down"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "16,135",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.46,
+      "volume_spike": false,
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음",
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "전일 +12.99% 대폭등(코스닥 +4.99%의 2배 추종) 후 차익실현 압력 예상",
+      "news_count": 0
+    },
+    {
+      "code": "028050",
+      "name": "삼성E&A",
+      "market": "KOSPI",
+      "news_sentiment": "negative",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": 0.62,
+        "proxies": [
+          {
+            "symbol": "XLE",
+            "change_pct": 0.61
+          },
+          {
+            "symbol": "FLR",
+            "change_pct": 0.63
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "sell",
+      "confidence": "medium",
+      "rationale": "중동 수주절벽 현실화(해외건설 72% 급감)가 핵심 부정 재료, 아직 주가 미반영. 전일 +4.09% 상승은 시장 전체 강세에 편승한 것으로 수주 위축 반영 안 됨. 간밤 XLE +0.61%, FLR +0.63%으로 프록시 중립.",
+      "summary": "중동 수주절벽 72% 급감이 핵심 리스크, 전일 상승은 시장 편승. 수주 파이프라인 위축 우려 반영 예상.",
+      "key_points": [
+        {
+          "point": "중동發 수주절벽 현실화, 해외건설 72% 급감",
+          "detail": "삼성E&A 주력인 중동 플랜트 신규 수주 급감, 매출 파이프라인 위축 우려",
+          "impact": "negative",
+          "published_at": "2026-05-22T13:38:00+09:00",
+          "sources": [
+            {
+              "title": "뉴스1",
+              "url": "https://n.news.naver.com/mnews/article/421/0008961217"
+            }
+          ],
+          "impact_label": "악재",
+          "time_ago": "2일 전"
+        },
+        {
+          "point": "단일판매·공급계약 정정 공시 (5/22)",
+          "detail": "기존 수주 계약 정정, 신규가 아닌 기존 건 조정",
+          "impact": "neutral",
+          "published_at": "2026-05-22T00:00:00+09:00",
+          "sources": [
+            {
+              "title": "삼성E&A 공시",
+              "url": "https://finance.naver.com/item/news_notice_read.naver?no=7199700&code=028050&page_notice="
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "3일 전"
+        }
+      ],
+      "action_plan": {
+        "position_size": "보유분 절반 청산, 잔여분 trailing",
+        "stop_loss": "+2.5% (역방향, vol_tier=high 반영)",
+        "target": "-4.5%",
+        "horizon": "1-3일 단기",
+        "scenarios": {
+          "if_gap_up": "갭상승 +1.5% 이상(54,200원 초과) 시 시초가에 보유분 1/2 매도, 수주 부정 뉴스 미반영 판단",
+          "if_gap_down": "갭다운 -2% 이내(52,330원 부근) 추격 매도 자제, -3% 이상(51,800원 이하)이면 1차 청산 1/3",
+          "if_target_hit": "-4.5%(51,000원) 도달 시 잔여분 전량 청산",
+          "if_stop_hit": "+2.5%(54,740원) 반등 도달 시 즉시 보유분 절반 청산, 재진입 금지"
+        }
+      },
+      "sector": "건설/플랜트",
+      "owners": [
+        "장한솔",
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "XLE",
+        "FLR"
+      ],
+      "quote": {
+        "price": "53,400",
+        "change": "2,100",
+        "change_pct": "+4.09",
+        "change_pct_num": 4.09,
+        "direction": "up",
+        "volume": 153927
+      },
+      "news": [],
+      "disclosures": [
+        {
+          "title": "삼성이앤에이(주) (정정)단일판매ㆍ공급계약체결",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=7199700&code=028050&page_notice=",
+          "date": "2026.05.22"
+        },
+        {
+          "title": "삼성이앤에이(주) 기업설명회(IR) 개최(안내공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641968&code=028050&page_notice=",
+          "date": "2026.05.15"
+        },
+        {
+          "title": "삼성이앤에이(주) 기업설명회(IR) 개최(안내공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1640323&code=028050&page_notice=",
+          "date": "2026.05.12"
+        },
+        {
+          "title": "삼성이앤에이(주) 주식선물 3단계 가격제한폭 확대요건 도달(상승)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1638539&code=028050&page_notice=",
+          "date": "2026.05.07"
+        },
+        {
+          "title": "삼성이앤에이(주) 주식선물 2단계 가격제한폭 확대요건 도달(상승)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1638534&code=028050&page_notice=",
+          "date": "2026.05.07"
+        }
+      ],
+      "history": {
+        "symbol": "028050.KS",
+        "closes_20d": [
+          50300.0,
+          52500.0,
+          54300.0,
+          56300.0,
+          54300.0,
+          53100.0,
+          55000.0,
+          53000.0,
+          64400.0,
+          62400.0,
+          58600.0,
+          54900.0,
+          53000.0,
+          54700.0,
+          50600.0,
+          49500.0,
+          49250.0,
+          47400.0,
+          51300.0,
+          53400.0
+        ],
+        "fifty_two_week_high": 67300.0,
+        "fifty_two_week_low": 20400.0,
+        "last_close": 53400.0,
+        "change_20d_pct": 6.16,
+        "pos_52w_pct": 70.4,
+        "from_high_pct": -20.65,
+        "volume_20d_avg": 3523543,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,19.9 L4.2,16.8 L8.4,14.3 L12.6,11.4 L16.8,14.3 L21.1,16.0 L25.3,13.3 L29.5,16.1 L33.7,0.0 L37.9,2.8 L42.1,8.2 L46.3,13.4 L50.5,16.1 L54.7,13.7 L58.9,19.5 L63.2,21.0 L67.4,21.4 L71.6,24.0 L75.8,18.5 L80.0,15.5",
+        "sparkline_direction": "up"
+      },
+      "recommendation_label": "하락 경계",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "53,400",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.04,
+      "volume_spike": false,
+      "news_sentiment_label": "부정",
+      "confidence_label": "중간",
+      "direction_arrow": "↓",
+      "direction_label": "하락 경계",
+      "direction_cls": "down",
+      "outlook_line": "중동 수주절벽 현실화(해외건설 72% 급감)가 핵심 부정 재료, 아직 주가 미반영",
+      "news_count": 0
+    },
+    {
+      "code": "310210",
+      "name": "보로노이",
+      "market": "KOSDAQ",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "down",
+        "avg_pct": -0.84,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.84
+          }
+        ],
+        "label": "약세"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "전일 +10.2% 대폭등은 코스닥 급등 편승, 개별 촉매 부재 → 차익실현 우려. 5/22 교훈(전일 +8% 이상 급등 후 차익실현 경계) 적용. 간밤 XBI -0.84% 약세 추가 부담. 20일 -11.08% 하락 추세에서 기술적 반등 1일만으로 추세 전환 판단 불가(5/20 교훈: 역행 반등 후 2일 연속 양봉 확인 전까지 하락 추세 지속 가정). 주말 경과로 차익실현 압력 일부 희석 가능.",
+      "summary": "코스닥 급등 편승 +10.2% 대폭등 후 차익실현 구간 진입. 개별 촉매 부재 + XBI 약세로 추가 상승 동력 약함.",
+      "key_points": [
+        {
+          "point": "IR 개최 (5/13) 후 추가 후속 뉴스 없음",
+          "detail": "기업설명회 후 개별 촉매 부재 지속",
+          "impact": "neutral",
+          "published_at": "2026-05-13T00:00:00+09:00",
+          "sources": [
+            {
+              "title": "보로노이 공시",
+              "url": "https://finance.naver.com/item/news_notice_read.naver?no=1640775&code=310210&page_notice="
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "05/13"
+        },
+        {
+          "point": "20일 -11.08% 하락 추세에서 기술적 반등",
+          "detail": "코스닥 전체 급등에 편승한 반등, 개별 임상·파이프라인 촉매 부재",
+          "impact": "neutral",
+          "sources": [],
+          "impact_label": "중립",
+          "time_ago": ""
+        }
+      ],
+      "action_plan": {
+        "position_size": "보유분 1/3~1/2 익절 검토",
+        "stop_loss": "-4.0% (보유분, vol_tier=extreme 반영)",
+        "target": "+4.5% (1/2 익절 목표)",
+        "horizon": "1-3일 단기",
+        "scenarios": {
+          "if_gap_up": "갭상승 +2% 이상(286,600원 초과) 시 보유분 1/3 익절, 코스닥 모멘텀 확인 후 잔여분 판단",
+          "if_gap_down": "갭다운 -3% 이내(272,600원 부근) 보유 유지, -5% 이상(267,000원 이하)이면 1/2 선제 익절",
+          "if_target_hit": "+4.5%(293,600원) 도달 시 보유분 절반 익절, 나머지 trailing -3%",
+          "if_stop_hit": "-4%(269,800원) 도달 시 보유분 1/2 청산, 잔여분 -6% 2차 손절선"
+        }
+      },
+      "sector": "바이오",
+      "owners": [
+        "이웅수",
+        "하우찬"
+      ],
+      "overnight_proxy": [
+        "XBI"
+      ],
+      "quote": {
+        "price": "281,000",
+        "change": "26,000",
+        "change_pct": "+10.20",
+        "change_pct_num": 10.2,
+        "direction": "up",
+        "volume": 16946
+      },
+      "news": [],
+      "disclosures": [
+        {
+          "title": "보로노이(주) 주식선물 2단계 가격제한폭 확대요건 도달(상승)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=6579099&code=310210&page_notice=",
+          "date": "2026.05.22"
+        },
+        {
+          "title": "보로노이(주) 기업설명회(IR) 개최",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1640775&code=310210&page_notice=",
+          "date": "2026.05.13"
+        },
+        {
+          "title": "보로노이(주) 추가상장(주식매수선택권행사)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1625577&code=310210&page_notice=",
+          "date": "2026.04.01"
+        },
+        {
+          "title": "보로노이(주) 정기주주총회결과",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1623559&code=310210&page_notice=",
+          "date": "2026.03.30"
+        },
+        {
+          "title": "보로노이(주) (정정)투자판단 관련 주요경영사항(임상시험 계획 승인 등...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1622644&code=310210&page_notice=",
+          "date": "2026.03.27"
+        }
+      ],
+      "history": {
+        "symbol": "310210.KQ",
+        "closes_20d": [
+          316000.0,
+          306500.0,
+          306000.0,
+          299500.0,
+          296000.0,
+          284000.0,
+          292000.0,
+          283000.0,
+          295000.0,
+          284500.0,
+          273500.0,
+          274000.0,
+          266000.0,
+          267000.0,
+          266000.0,
+          249500.0,
+          253500.0,
+          242000.0,
+          255000.0,
+          281000.0
+        ],
+        "fifty_two_week_high": 375500.0,
+        "fifty_two_week_low": 91000.0,
+        "last_close": 281000.0,
+        "change_20d_pct": -11.08,
+        "pos_52w_pct": 66.8,
+        "from_high_pct": -25.17,
+        "volume_20d_avg": 107206,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,0.0 L4.2,3.1 L8.4,3.2 L12.6,5.4 L16.8,6.5 L21.1,10.4 L25.3,7.8 L29.5,10.7 L33.7,6.8 L37.9,10.2 L42.1,13.8 L46.3,13.6 L50.5,16.2 L54.7,15.9 L58.9,16.2 L63.2,21.6 L67.4,20.3 L71.6,24.0 L75.8,19.8 L80.0,11.4",
+        "sparkline_direction": "down"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "281,000",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.16,
+      "volume_spike": false,
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음",
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "전일 +10.2% 대폭등은 코스닥 급등 편승, 개별 촉매 부재 → 차익실현 우려",
+      "news_count": 0
+    },
+    {
+      "code": "445680",
+      "name": "큐리옥스바이오시스템즈",
+      "market": "KOSDAQ",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.5,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.84
+          },
+          {
+            "symbol": "IBB",
+            "change_pct": -0.16
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "개별 촉매 부재, 바이오 프록시(XBI -0.84%, IBB -0.16%) 소폭 약세. 20일 -5.79% 약세 구간에서 전일 +4.48% 반등은 코스닥 급등 편승. 뚜렷한 방향성 신호 없음.",
+      "summary": "개별 촉매 없이 코스닥 급등 편승, XBI 약세로 방향 불확실. 리밸런싱 편입 여부 확인 필요.",
+      "key_points": [
+        {
+          "point": "코스피200 리밸런싱 시즌 (OCI·DB하이텍 편입 등)",
+          "detail": "큐리옥스 직접 관련은 아니나 코스닥150 리밸런싱도 동시 진행",
+          "impact": "neutral",
+          "published_at": "2026-05-22T18:37:00+09:00",
+          "sources": [
+            {
+              "title": "조세일보",
+              "url": "https://n.news.naver.com/mnews/article/123/0002383549"
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "2일 전"
+        }
+      ],
+      "action_plan": {
+        "position_size": "현재 비중 유지 — 별도 액션 없음",
+        "stop_loss": "-3.0% (보유분, vol_tier=mid 반영)",
+        "horizon": "1-3일 단기"
+      },
+      "sector": "바이오",
+      "owners": [
+        "이웅수",
+        "주황선"
+      ],
+      "leader": "이웅수",
+      "overnight_proxy": [
+        "XBI",
+        "IBB"
+      ],
+      "quote": {
+        "price": "86,200",
+        "change": "3,700",
+        "change_pct": "+4.48",
+        "change_pct_num": 4.48,
+        "direction": "up",
+        "volume": 9931
+      },
+      "news": [],
+      "disclosures": [
+        {
+          "title": "큐리옥스바이오시스템즈(주) 추가상장(주식매수선택권행사)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1631513&code=445680&page_notice=",
+          "date": "2026.04.17"
+        },
+        {
+          "title": "큐리옥스바이오시스템즈(주) 정기주주총회결과",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1624921&code=445680&page_notice=",
+          "date": "2026.03.31"
+        },
+        {
+          "title": "큐리옥스바이오시스템즈(주) [투자주의]소수계좌 거래집중 종목",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1619737&code=445680&page_notice=",
+          "date": "2026.03.24"
+        },
+        {
+          "title": "큐리옥스바이오시스템즈(주) 감사보고서 제출",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1616765&code=445680&page_notice=",
+          "date": "2026.03.19"
+        },
+        {
+          "title": "큐리옥스바이오시스템즈(주) [투자주의]투자경고종목 지정예고",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1616172&code=445680&page_notice=",
+          "date": "2026.03.18"
+        }
+      ],
+      "history": {
+        "symbol": "445680.KQ",
+        "closes_20d": [
+          91500.0,
+          90600.0,
+          90700.0,
+          94000.0,
+          101500.0,
+          102100.0,
+          101200.0,
+          93600.0,
+          90900.0,
+          90600.0,
+          92500.0,
+          92900.0,
+          92500.0,
+          94800.0,
+          92300.0,
+          90200.0,
+          88200.0,
+          82500.0,
+          82500.0,
+          86200.0
+        ],
+        "fifty_two_week_high": 149200.0,
+        "fifty_two_week_low": 28150.0,
+        "last_close": 86200.0,
+        "change_20d_pct": -5.79,
+        "pos_52w_pct": 48.0,
+        "from_high_pct": -42.23,
+        "volume_20d_avg": 93247,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,13.0 L4.2,14.1 L8.4,14.0 L12.6,9.9 L16.8,0.7 L21.1,0.0 L25.3,1.1 L29.5,10.4 L33.7,13.7 L37.9,14.1 L42.1,11.8 L46.3,11.3 L50.5,11.8 L54.7,8.9 L58.9,12.0 L63.2,14.6 L67.4,17.0 L71.6,24.0 L75.8,24.0 L80.0,19.5",
+        "sparkline_direction": "down"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "86,200",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.11,
+      "volume_spike": false,
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음",
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "개별 촉매 부재, 바이오 프록시(XBI -0.84%, IBB -0.16%) 소폭 약세",
+      "news_count": 0
+    },
+    {
+      "code": "009540",
+      "name": "HD한국조선해양",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.33,
+        "proxies": [
+          {
+            "symbol": "XLI",
+            "change_pct": 0.73
+          },
+          {
+            "symbol": "DAC",
+            "change_pct": -1.38
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "조선 빅3 수주 30조 돌파 + K-방산 미국 시장 진출 가속으로 뉴스 톤 긍정. 간밤 XLI +0.73%이나 DAC -1.38%로 프록시 혼조(평균 -0.33%). 20일 -8.68% 조정 구간에서 수주 모멘텀 재부각 기대. 잠정실적 공시(5/20) 완료 상태.",
+      "summary": "수주 30조 돌파 + 방산 수출 기대로 조정 구간 매수 기회. 프록시 혼조로 갭 방향은 불확실.",
+      "key_points": [
+        {
+          "point": "조선 빅3, 올해 수주 30조 돌파",
+          "detail": "고부가 선박(LNG·암모니아 운반선) 수주 비중 확대",
+          "impact": "positive",
+          "published_at": "2026-05-24T13:00:00+09:00",
+          "sources": [
+            {
+              "title": "뉴시스",
+              "url": "https://n.news.naver.com/mnews/article/003/0013964740"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "18시간 전"
+        },
+        {
+          "point": "K-방산 미국 함정·자주포 진출 가속",
+          "detail": "미국 방산 시장 진출로 중장기 성장 동력 확보",
+          "impact": "positive",
+          "published_at": "2026-05-24T07:15:00+09:00",
+          "sources": [
+            {
+              "title": "뉴스1",
+              "url": "https://n.news.naver.com/mnews/article/421/0008963079"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1일 전"
+        },
+        {
+          "point": "잠정실적 공시 완료 (5/20)",
+          "detail": "실적 확인 후 추가 상승 모멘텀 여부 관건",
+          "impact": "neutral",
+          "published_at": "2026-05-20T00:00:00+09:00",
+          "sources": [
+            {
+              "title": "HD한국조선해양 공시",
+              "url": "https://finance.naver.com/item/news_notice_read.naver?no=2873483&code=009540&page_notice="
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "5일 전"
+        }
+      ],
+      "action_plan": {
+        "position_size": "보유분 유지, -2.5% 조정 시 분할매수 (vol_tier=mid 반영)",
+        "entry_zone": "보유분 평단 무관 — 추가 매수는 -2.5% 조정 후 (410,500원 부근)",
+        "stop_loss": "-2.5% (vol_tier=mid 반영)",
+        "target": "+3.5%",
+        "horizon": "1-2주 스윙 (이벤트: 수주)",
+        "scenarios": {
+          "if_gap_up": "갭상승 +1% 이내(425,200원) 보유 유지, +2% 이상(429,400원 초과)이면 추가 매수 보류",
+          "if_gap_down": "갭다운 -1.5% 이내(414,700원) 분할매수, -2.5% 이상(410,500원 이하)이면 진입 보류",
+          "if_target_hit": "+3.5%(435,700원) 도달 시 추가분 절반 익절, 나머지 trailing -1.5%",
+          "if_stop_hit": "-2.5%(410,500원) 도달 시 추가분 즉시 청산, 기존 보유분 유지"
+        }
+      },
+      "sector": "조선",
+      "owners": [
+        "오병호"
+      ],
+      "overnight_proxy": [
+        "XLI",
+        "DAC"
+      ],
+      "quote": {
+        "price": "421,000",
+        "change": "6,000",
+        "change_pct": "+1.45",
+        "change_pct_num": 1.45,
+        "direction": "up",
+        "volume": 36561
+      },
+      "news": [
+        {
+          "title": "K방산, 美 함정·자주포 공략 속도",
+          "link": "https://n.news.naver.com/mnews/article/014/0005525742",
+          "source": "파이낸셜뉴스",
+          "date": "2026.05.24 18:13",
+          "published_at": "2026.05.24 18:13",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005525742",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "조선 빅3, 올해 수주 30조 돌파…\"고부가 선박 수주 효과\"[K조선 ...",
+          "link": "https://n.news.naver.com/mnews/article/003/0013964740",
+          "source": "뉴시스",
+          "date": "2026.05.24 13:00",
+          "published_at": "2026.05.24 13:00",
+          "time_ago": "18시간 전",
+          "url": "https://n.news.naver.com/mnews/article/003/0013964740",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "K-방산 '美 진출' 가시권… 함정·자주포 등 공략 가속도",
+          "link": "https://n.news.naver.com/mnews/article/014/0005525594",
+          "source": "파이낸셜뉴스",
+          "date": "2026.05.24 10:07",
+          "published_at": "2026.05.24 10:07",
+          "time_ago": "21시간 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005525594",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "에이치디한국조선해양(주) 단일판매ㆍ공급계약체결(자회사의 주요경영사항)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=4751183&code=009540&page_notice=",
+          "date": "2026.05.21"
+        },
+        {
+          "title": "에이치디한국조선해양(주) 영업(잠정)실적(공정공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=2873483&code=009540&page_notice=",
+          "date": "2026.05.20"
+        },
+        {
+          "title": "에이치디한국조선해양(주) 영업(잠정)실적(공정공시)(자회사의 주요경영사...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=2870032&code=009540&page_notice=",
+          "date": "2026.05.20"
+        },
+        {
+          "title": "에이치디한국조선해양(주) 단일판매ㆍ공급계약체결(자회사의 주요경영사항)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641204&code=009540&page_notice=",
+          "date": "2026.05.14"
+        },
+        {
+          "title": "에이치디한국조선해양(주) 단일판매ㆍ공급계약체결(자회사의 주요경영사항)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1640626&code=009540&page_notice=",
+          "date": "2026.05.13"
+        }
+      ],
+      "history": {
+        "symbol": "009540.KS",
+        "closes_20d": [
+          461000.0,
+          476000.0,
+          479000.0,
+          468500.0,
+          472000.0,
+          461500.0,
+          469500.0,
+          452500.0,
+          467500.0,
+          452000.0,
+          474000.0,
+          464500.0,
+          460500.0,
+          437500.0,
+          416000.0,
+          410000.0,
+          400000.0,
+          399000.0,
+          415000.0,
+          421000.0
+        ],
+        "fifty_two_week_high": 494500.0,
+        "fifty_two_week_low": 282500.0,
+        "last_close": 421000.0,
+        "change_20d_pct": -8.68,
+        "pos_52w_pct": 65.3,
+        "from_high_pct": -14.86,
+        "volume_20d_avg": 250776,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,5.4 L4.2,0.9 L8.4,0.0 L12.6,3.1 L16.8,2.1 L21.1,5.2 L25.3,2.9 L29.5,8.0 L33.7,3.5 L37.9,8.1 L42.1,1.5 L46.3,4.4 L50.5,5.5 L54.7,12.4 L58.9,18.9 L63.2,20.7 L67.4,23.7 L71.6,24.0 L75.8,19.2 L80.0,17.4",
+        "sparkline_direction": "down"
+      },
+      "recommendation_label": "상승 기대",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "421,000",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.15,
+      "volume_spike": false,
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간",
+      "direction_arrow": "↑",
+      "direction_label": "상승 기대",
+      "direction_cls": "up",
+      "outlook_line": "조선 빅3 수주 30조 돌파 + K-방산 미국 시장 진출 가속으로 뉴스 톤 긍정",
+      "news_count": 3,
+      "latest_news_at": "2026-05-24T18:13:00+09:00",
+      "latest_news_ago": "13시간 전"
+    },
+    {
+      "code": "174900",
+      "name": "앱클론",
+      "market": "KOSDAQ",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.5,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.84
+          },
+          {
+            "symbol": "IBB",
+            "change_pct": -0.16
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "파트너사 헨리우스 위암 1차치료제 임상 데이터 긍정적 + 미국 특허 등록 완료로 뉴스 톤 긍정. 간밤 XBI -0.84%로 프록시 중립~약세이나 개별 촉매가 강함. 20일 -18.66% 하락 구간에서 바닥 탈출 시도. 전일 코스닥 +4.99% 급등 효과로 소형주 상향 규칙(5/22 교훈) 적용.",
+      "summary": "헨리우스 임상 데이터 + 미국 특허 등록이 개별 촉매, 하락 추세 반전 시도 중. 국민성장펀드 수급도 우호적.",
+      "key_points": [
+        {
+          "point": "식약처 시약·기자재 공급 계약 4억원 (5/21)",
+          "detail": "소규모이나 안정적 매출 기반 확보",
+          "impact": "neutral",
+          "published_at": "2026-05-21T13:41:00+09:00",
+          "sources": [
+            {
+              "title": "블로터",
+              "url": "https://n.news.naver.com/mnews/article/293/0000085074"
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "3일 전"
+        },
+        {
+          "point": "파트너사 헨리우스, 위암 1차치료제 무진행생존 최소 39개월",
+          "detail": "글로벌 임상 데이터 긍정적, 마일스톤 수령 기대",
+          "impact": "positive",
+          "published_at": "2026-05-21T10:38:00+09:00",
+          "sources": [
+            {
+              "title": "서울경제",
+              "url": "https://n.news.naver.com/mnews/article/011/0004623167"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "3일 전"
+        },
+        {
+          "point": "이중항체 신약 AM201 미국 특허 등록 완료",
+          "detail": "핵심 기술 지적재산권 확보, 기술수출 협상력 강화",
+          "impact": "positive",
+          "published_at": "2026-05-19T13:29:00+09:00",
+          "sources": [
+            {
+              "title": "이데일리",
+              "url": "https://n.news.naver.com/mnews/article/018/0006285117"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "5일 전"
+        }
+      ],
+      "action_plan": {
+        "position_size": "보유분 유지, -3.5% 조정 시 분할매수 (vol_tier=high 반영)",
+        "entry_zone": "보유분 평단 무관 — 추가 매수는 -3.5% 조정 후 (39,130원 부근)",
+        "stop_loss": "-3.0% (vol_tier=high 반영)",
+        "target": "+4.5%",
+        "horizon": "1-2주 스윙 (이벤트: 임상)",
+        "scenarios": {
+          "if_gap_up": "갭상승 +2% 이내(41,360원) 보유 유지, +3% 이상(41,770원 초과)이면 추가 매수 보류",
+          "if_gap_down": "갭다운 -2% 이내(39,740원) 분할매수, -3.5% 이상(39,130원 이하)이면 진입 보류",
+          "if_target_hit": "+4.5%(42,380원) 도달 시 추가분 절반 익절, 나머지 trailing -2%",
+          "if_stop_hit": "-3%(39,340원) 도달 시 추가분 즉시 청산, 기존 보유분 유지"
+        }
+      },
+      "sector": "바이오",
+      "owners": [
+        "이웅수",
+        "오병호",
+        "주황선"
+      ],
+      "leader": "이웅수",
+      "overnight_proxy": [
+        "XBI",
+        "IBB"
+      ],
+      "quote": {
+        "price": "40,550",
+        "change": "850",
+        "change_pct": "+2.14",
+        "change_pct_num": 2.14,
+        "direction": "up",
+        "volume": 52827
+      },
+      "news": [],
+      "disclosures": [
+        {
+          "title": "앱클론(주) 단일판매ㆍ공급계약체결(자율공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=4674756&code=174900&page_notice=",
+          "date": "2026.05.21"
+        },
+        {
+          "title": "앱클론(주) 추가상장(주식매수선택권행사)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1640324&code=174900&page_notice=",
+          "date": "2026.05.12"
+        },
+        {
+          "title": "앱클론(주) 소속부변경",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1637106&code=174900&page_notice=",
+          "date": "2026.04.30"
+        },
+        {
+          "title": "앱클론(주) (정정)단일판매ㆍ공급계약체결(자율공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1631030&code=174900&page_notice=",
+          "date": "2026.04.16"
+        },
+        {
+          "title": "앱클론(주) 단일판매ㆍ공급계약체결(자율공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1627701&code=174900&page_notice=",
+          "date": "2026.04.07"
+        }
+      ],
+      "history": {
+        "symbol": "174900.KQ",
+        "closes_20d": [
+          49850.0,
+          51700.0,
+          55400.0,
+          52000.0,
+          50400.0,
+          49150.0,
+          47250.0,
+          46050.0,
+          44650.0,
+          44700.0,
+          43950.0,
+          43200.0,
+          41100.0,
+          40950.0,
+          39250.0,
+          36200.0,
+          36550.0,
+          35900.0,
+          39700.0,
+          40550.0
+        ],
+        "fifty_two_week_high": 95800.0,
+        "fifty_two_week_low": 9770.0,
+        "last_close": 40550.0,
+        "change_20d_pct": -18.66,
+        "pos_52w_pct": 35.8,
+        "from_high_pct": -57.67,
+        "volume_20d_avg": 362174,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,6.8 L4.2,4.6 L8.4,0.0 L12.6,4.2 L16.8,6.2 L21.1,7.7 L25.3,10.0 L29.5,11.5 L33.7,13.2 L37.9,13.2 L42.1,14.1 L46.3,15.0 L50.5,17.6 L54.7,17.8 L58.9,19.9 L63.2,23.6 L67.4,23.2 L71.6,24.0 L75.8,19.3 L80.0,18.3",
+        "sparkline_direction": "down"
+      },
+      "recommendation_label": "상승 기대",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "40,550",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.15,
+      "volume_spike": false,
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간",
+      "direction_arrow": "↑",
+      "direction_label": "상승 기대",
+      "direction_cls": "up",
+      "outlook_line": "파트너사 헨리우스 위암 1차치료제 임상 데이터 긍정적 + 미국 특허 등록 완료로 뉴스 톤 긍정",
+      "news_count": 0
+    },
+    {
+      "code": "396270",
+      "name": "넥스트칩",
+      "market": "KOSDAQ",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "up",
+        "avg_pct": 3.52,
+        "proxies": [
+          {
+            "symbol": "^SOX",
+            "change_pct": 1.99
+          },
+          {
+            "symbol": "MCHP",
+            "change_pct": 2.55
+          },
+          {
+            "symbol": "ON",
+            "change_pct": 6.01
+          }
+        ],
+        "label": "강세"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "간밤 프록시 강세(ON +6.01%, MCHP +2.55%, SOX +1.99%)가 강력한 상승 신호. 최근 material 뉴스는 부재하나 자율주행·휴머노이드 로봇 확산 구조적 수혜주. 전일 +5.47% 상승은 프록시 방향과 일치하나 ±5% 기준이므로 선반영 미달.",
+      "summary": "ON +6.01%·MCHP +2.55% 프록시 강세로 갭상승 기대. 자율주행·로봇 반도체 구조적 수혜 지속.",
+      "key_points": [
+        {
+          "point": "피지컬 AI 로봇 확장 (APACHE6)",
+          "detail": "자동차 넘어 로봇으로 비전 반도체 적용 영역 확대",
+          "impact": "positive",
+          "published_at": "2026-04-08T14:36:00+09:00",
+          "sources": [
+            {
+              "title": "파이낸셜뉴스",
+              "url": "https://n.news.naver.com/mnews/article/014/0005504495"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "04/08"
+        },
+        {
+          "point": "간밤 ON Semiconductor +6.01% 급등",
+          "detail": "자동차 반도체 직접 프록시 강세, 넥스트칩 비전 반도체 수혜 기대",
+          "impact": "positive",
+          "sources": [],
+          "impact_label": "호재",
+          "time_ago": ""
+        }
+      ],
+      "action_plan": {
+        "position_size": "보유분 유지, -4% 조정 시 분할매수 (vol_tier=extreme 반영)",
+        "entry_zone": "보유분 평단 무관 — 추가 매수는 -4% 조정 후 (5,370원 부근)",
+        "stop_loss": "-3.5% (vol_tier=extreme 반영)",
+        "target": "+5.5%",
+        "horizon": "1-3일 단기",
+        "scenarios": {
+          "if_gap_up": "갭상승 +2% 이내(5,700원) 보유 유지, +4% 이상(5,810원 초과)이면 추가 매수 보류하고 5분봉 확인",
+          "if_gap_down": "프록시(ON +6.01%) 강세 대비 갭다운 시 괴리 원인 파악, -2% 이내(5,480원)면 분할매수",
+          "if_target_hit": "+5.5%(5,900원) 도달 시 추가분 절반 익절, 나머지 trailing -2.5%",
+          "if_stop_hit": "-3.5%(5,390원) 도달 시 추가분 즉시 청산, 기존 보유분 유지"
+        }
+      },
+      "sector": "반도체",
+      "owners": [
+        "주황선"
+      ],
+      "overnight_proxy": [
+        "^SOX",
+        "MCHP",
+        "ON"
+      ],
+      "quote": {
+        "price": "5,590",
+        "change": "290",
+        "change_pct": "+5.47",
+        "change_pct_num": 5.47,
+        "direction": "up",
+        "volume": 40056
+      },
+      "news": [],
+      "disclosures": [
+        {
+          "title": "(주)넥스트칩 정기주주총회결과",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1620557&code=396270&page_notice=",
+          "date": "2026.03.26"
+        },
+        {
+          "title": "(주)넥스트칩 소속부변경",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1615099&code=396270&page_notice=",
+          "date": "2026.03.17"
+        },
+        {
+          "title": "(주)넥스트칩 투자주의환기종목해제(반기 자본잠식률 50% 이상 사유 해...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1615098&code=396270&page_notice=",
+          "date": "2026.03.17"
+        },
+        {
+          "title": "(주)넥스트칩 감사보고서 제출",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1614818&code=396270&page_notice=",
+          "date": "2026.03.17"
+        },
+        {
+          "title": "(주)넥스트칩 단기차입금증가결정",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1613871&code=396270&page_notice=",
+          "date": "2026.03.16"
+        }
+      ],
+      "history": {
+        "symbol": "396270.KQ",
+        "closes_20d": [
+          5170.0,
+          5530.0,
+          5720.0,
+          5420.0,
+          5290.0,
+          5160.0,
+          5080.0,
+          5090.0,
+          5110.0,
+          5950.0,
+          6900.0,
+          6690.0,
+          6760.0,
+          7160.0,
+          6270.0,
+          5780.0,
+          5380.0,
+          5080.0,
+          5300.0,
+          5590.0
+        ],
+        "fifty_two_week_high": 7730.0,
+        "fifty_two_week_low": 1836.0,
+        "last_close": 5590.0,
+        "change_20d_pct": 8.12,
+        "pos_52w_pct": 63.7,
+        "from_high_pct": -27.68,
+        "volume_20d_avg": 1054820,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,23.0 L4.2,18.8 L8.4,16.6 L12.6,20.1 L16.8,21.6 L21.1,23.1 L25.3,24.0 L29.5,23.9 L33.7,23.7 L37.9,14.0 L42.1,3.0 L46.3,5.4 L50.5,4.6 L54.7,0.0 L58.9,10.3 L63.2,15.9 L67.4,20.5 L71.6,24.0 L75.8,21.5 L80.0,18.1",
+        "sparkline_direction": "up"
+      },
+      "recommendation_label": "상승 기대",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "5,590",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.04,
+      "volume_spike": false,
+      "news_sentiment_label": "중립",
+      "confidence_label": "중간",
+      "direction_arrow": "↑",
+      "direction_label": "상승 기대",
+      "direction_cls": "up",
+      "outlook_line": "간밤 프록시 강세(ON +6.01%, MCHP +2.55%, SOX +1.99%)가 강력한 상승 신호",
+      "news_count": 0
+    },
+    {
+      "code": "298380",
+      "name": "에이비엘바이오",
+      "market": "KOSDAQ",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.5,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.84
+          },
+          {
+            "symbol": "IBB",
+            "change_pct": -0.16
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "전일 +9.37% 대폭등(코스닥 급등 편승)에 대한 차익실현 우려 높음. 5/22 교훈(전일 +8% 이상 급등 후 차익실현 경계) 적용. 간밤 XBI -0.84% 약세 추가 부담. 20일 -21.69% 하락 추세에서 1일 반등만으로 추세 전환 판단 불가(5/20 교훈: 2일 연속 양봉 확인 전까지 하락 추세 지속 가정).",
+      "summary": "코스닥 급등 편승 +9.37% 후 차익실현 구간. 개별 촉매 부재 + XBI 약세로 추가 상승 동력 부족.",
+      "key_points": [
+        {
+          "point": "국민성장펀드 수혜 기대",
+          "detail": "코스닥 시가총액 상위 바이오로 펀드 자금 유입 가능성",
+          "impact": "positive",
+          "published_at": "2026-05-22T17:04:00+09:00",
+          "sources": [
+            {
+              "title": "뉴스1",
+              "url": "https://n.news.naver.com/mnews/article/421/0008961852"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "2일 전"
+        },
+        {
+          "point": "20일 -21.69% 하락 추세에서 기술적 반등 1일",
+          "detail": "코스닥 급등 편승, 개별 임상·파이프라인 촉매 부재",
+          "impact": "neutral",
+          "sources": [],
+          "impact_label": "중립",
+          "time_ago": ""
+        }
+      ],
+      "action_plan": {
+        "position_size": "보유분 1/3~1/2 익절 검토",
+        "stop_loss": "-4.0% (보유분, vol_tier=extreme, 선제적)",
+        "target": "+3.5% (1/2 익절 목표)",
+        "horizon": "1-3일 단기",
+        "scenarios": {
+          "if_gap_up": "갭상승 +2% 이상(122,600원 초과) 시 보유분 1/3 익절, +4% 이상이면 1/2 익절",
+          "if_gap_down": "갭다운 -3% 이내(116,600원 부근) 보유 유지, -5% 이상(114,200원 이하)이면 1/2 선제 청산",
+          "if_target_hit": "+3.5%(124,400원) 도달 시 보유분 절반 익절, 나머지 trailing -3%",
+          "if_stop_hit": "-4%(115,400원) 도달 시 보유분 1/2 청산, 잔여분 -7% 2차 손절선"
+        }
+      },
+      "sector": "바이오",
+      "owners": [
+        "우동희"
+      ],
+      "overnight_proxy": [
+        "XBI",
+        "IBB"
+      ],
+      "quote": {
+        "price": "120,200",
+        "change": "10,300",
+        "change_pct": "+9.37",
+        "change_pct_num": 9.37,
+        "direction": "up",
+        "volume": 51188
+      },
+      "news": [],
+      "disclosures": [
+        {
+          "title": "에이비엘바이오(주) 주식선물 2단계 가격제한폭 확대요건 도달(상승)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=6577675&code=298380&page_notice=",
+          "date": "2026.05.22"
+        },
+        {
+          "title": "에이비엘바이오(주) 공매도 과열종목 지정(공매도 거래 금지 적용)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1635149&code=298380&page_notice=",
+          "date": "2026.04.28"
+        },
+        {
+          "title": "에이비엘바이오(주) 주식선물 3단계 가격제한폭 확대요건 도달(하락)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1634536&code=298380&page_notice=",
+          "date": "2026.04.28"
+        },
+        {
+          "title": "에이비엘바이오(주) 주식선물 2단계 가격제한폭 확대요건 도달(하락)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1634534&code=298380&page_notice=",
+          "date": "2026.04.28"
+        },
+        {
+          "title": "에이비엘바이오(주) 주식선물 2단계 가격제한폭 확대요건 도달(상승)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1634015&code=298380&page_notice=",
+          "date": "2026.04.27"
+        }
+      ],
+      "history": {
+        "symbol": "298380.KQ",
+        "closes_20d": [
+          153500.0,
+          157200.0,
+          172700.0,
+          139400.0,
+          142000.0,
+          134800.0,
+          132500.0,
+          127600.0,
+          126400.0,
+          130100.0,
+          127700.0,
+          130000.0,
+          123900.0,
+          125600.0,
+          119300.0,
+          112200.0,
+          112000.0,
+          106300.0,
+          109900.0,
+          120200.0
+        ],
+        "fifty_two_week_high": 257500.0,
+        "fifty_two_week_low": 60700.0,
+        "last_close": 120200.0,
+        "change_20d_pct": -21.69,
+        "pos_52w_pct": 30.2,
+        "from_high_pct": -53.32,
+        "volume_20d_avg": 687541,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,6.9 L4.2,5.6 L8.4,0.0 L12.6,12.0 L16.8,11.1 L21.1,13.7 L25.3,14.5 L29.5,16.3 L33.7,16.7 L37.9,15.4 L42.1,16.3 L46.3,15.4 L50.5,17.6 L54.7,17.0 L58.9,19.3 L63.2,21.9 L67.4,21.9 L71.6,24.0 L75.8,22.7 L80.0,19.0",
+        "sparkline_direction": "down"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "120,200",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.07,
+      "volume_spike": false,
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음",
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "전일 +9.37% 대폭등(코스닥 급등 편승)에 대한 차익실현 우려 높음",
+      "news_count": 0
+    },
+    {
+      "code": "166480",
+      "name": "코아스템켐온",
+      "market": "KOSDAQ",
+      "news_sentiment": "positive",
+      "priced_in": true,
+      "overnight_signal": {
+        "direction": "down",
+        "avg_pct": -0.84,
+        "proxies": [
+          {
+            "symbol": "XBI",
+            "change_pct": -0.84
+          }
+        ],
+        "label": "약세"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "뉴로나타 알 허가 기대감은 긍정적이나 이미 4,800원까지 급등 후 하락(선반영). 간밤 XBI -0.84% 약세로 바이오 하방 압력. 승격 규칙 6(실적·허가 호재 + 선반영 → 보수적 전환) 적용. 뉴스 톤 긍정 vs 간밤 약세 상충으로 방향 불확실.",
+      "summary": "뉴로나타 알 허가 기대감은 4,800원 고점에서 이미 선반영, 현재 조정 중. XBI 약세 부담. (승격 규칙 6: 허가 호재 + 선반영 → 보수적 전환 적용)",
+      "key_points": [
+        {
+          "point": "뉴로나타 알 허가 가시화 — 중앙약심서 논의 진행",
+          "detail": "임상 3상 결과 극복 여부 관건, FDA도 오가노-트윈 기술 주목",
+          "impact": "positive",
+          "published_at": "2026-05-18T08:22:00+09:00",
+          "sources": [
+            {
+              "title": "이데일리",
+              "url": "https://n.news.naver.com/mnews/article/018/0006284011"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "6일 전"
+        },
+        {
+          "point": "충북 오송 세포처리시설 허가 획득 (5/12)",
+          "detail": "임상 확장 및 상업 생산 기반 확보",
+          "impact": "positive",
+          "published_at": "2026-05-12T14:12:00+09:00",
+          "sources": [
+            {
+              "title": "이데일리",
+              "url": "https://n.news.naver.com/mnews/article/018/0006279148"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "05/12"
+        }
+      ],
+      "action_plan": {
+        "position_size": "현재 비중 유지 — 별도 액션 없음",
+        "stop_loss": "-4.0% (보유분, vol_tier=extreme 반영)",
+        "horizon": "1-2주 스윙 (이벤트: 허가)"
+      },
+      "sector": "바이오",
+      "owners": [
+        "이정수"
+      ],
+      "overnight_proxy": [
+        "XBI"
+      ],
+      "quote": {
+        "price": "3,745",
+        "change": "220",
+        "change_pct": "+6.24",
+        "change_pct_num": 6.24,
+        "direction": "up",
+        "volume": 0
+      },
+      "news": [],
+      "disclosures": [
+        {
+          "title": "코아스템켐온 주식회사 정기주주총회결과",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1621869&code=166480&page_notice=",
+          "date": "2026.03.27"
+        },
+        {
+          "title": "코아스템켐온 주식회사 감사보고서 제출",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1616723&code=166480&page_notice=",
+          "date": "2026.03.19"
+        },
+        {
+          "title": "코아스템켐온 주식회사 주주총회 집중일 개최 사유 신고",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1606405&code=166480&page_notice=",
+          "date": "2026.03.04"
+        },
+        {
+          "title": "코아스템켐온 주식회사 주주총회소집결의",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1601093&code=166480&page_notice=",
+          "date": "2026.02.23"
+        },
+        {
+          "title": "코아스템켐온 주식회사 [투자주의]투자경고종목 지정해제 및 재지정 예고",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1598802&code=166480&page_notice=",
+          "date": "2026.02.12"
+        }
+      ],
+      "history": {
+        "symbol": "166480.KQ",
+        "closes_20d": [
+          3250.0,
+          3200.0,
+          3195.0,
+          3265.0,
+          3260.0,
+          3320.0,
+          3370.0,
+          3380.0,
+          3705.0,
+          4480.0,
+          4800.0,
+          4445.0,
+          4190.0,
+          3745.0,
+          3500.0,
+          3700.0,
+          3740.0,
+          3665.0,
+          3525.0,
+          3745.0
+        ],
+        "fifty_two_week_high": 5090.0,
+        "fifty_two_week_low": 1014.0,
+        "last_close": 3745.0,
+        "change_20d_pct": 15.23,
+        "pos_52w_pct": 67.0,
+        "from_high_pct": -26.42,
+        "volume_20d_avg": 893713,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,23.2 L4.2,23.9 L8.4,24.0 L12.6,23.0 L16.8,23.0 L21.1,22.1 L25.3,21.4 L29.5,21.2 L33.7,16.4 L37.9,4.8 L42.1,0.0 L46.3,5.3 L50.5,9.1 L54.7,15.8 L58.9,19.4 L63.2,16.4 L67.4,15.9 L71.6,17.0 L75.8,19.1 L80.0,15.8",
+        "sparkline_direction": "up"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "3,745",
+      "price_change_abs_display": "—",
+      "news_sentiment_label": "긍정",
+      "confidence_label": "낮음",
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "뉴로나타 알 허가 기대감은 긍정적이나 이미 4,800원까지 급등 후 하락(선반영)",
+      "news_count": 0
+    },
+    {
+      "code": "035720",
+      "name": "카카오",
+      "market": "KOSPI",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": -0.18,
+        "proxies": [
+          {
+            "symbol": "META",
+            "change_pct": 0.47
+          },
+          {
+            "symbol": "GOOGL",
+            "change_pct": -1.21
+          },
+          {
+            "symbol": "^IXIC",
+            "change_pct": 0.19
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "노사 갈등 이번주 최대 고비로 불확실성 상존, 방향 판단 어려움. 간밤 META +0.47%, GOOGL -1.21%로 프록시 혼조. 20일 -13.53% 뚜렷한 하락 추세(교훈: -10% 이하 + 반등 촉매 없으면 하락 경계)이나, 1Q 호실적 + AI 투자 기대가 완전 촉매 부재는 아니므로 관망 유지. 노사 결과에 따라 방향성 결정.",
+      "summary": "노사 갈등 고비 + 20일 -13.53% 하락 추세 속 방향 미정. 1Q 호실적에도 불구 노사 리스크가 발목.",
+      "key_points": [
+        {
+          "point": "카카오 노사 이번주 최대 고비",
+          "detail": "노사 갈등 장기화 시 경영·주가 리스크 확대",
+          "impact": "negative",
+          "published_at": "2026-05-25T05:45:00+09:00",
+          "sources": [
+            {
+              "title": "연합뉴스",
+              "url": "https://n.news.naver.com/mnews/article/001/0016097006"
+            }
+          ],
+          "impact_label": "악재",
+          "time_ago": "1시간 전"
+        },
+        {
+          "point": "1분기 호실적, 네이버와 광고 사업 확대 경쟁",
+          "detail": "카톡 중심 수익 다변화 시도",
+          "impact": "positive",
+          "published_at": "2026-05-24T17:04:00+09:00",
+          "sources": [
+            {
+              "title": "매일경제",
+              "url": "https://n.news.naver.com/mnews/article/009/0005684326"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "14시간 전"
+        }
+      ],
+      "action_plan": {
+        "position_size": "현재 비중 유지 — 별도 액션 없음",
+        "stop_loss": "-2.5% (보유분, vol_tier=mid, 절반 익절 검토선)",
+        "horizon": "1-3일 단기"
+      },
+      "sector": "플랫폼/IT",
+      "owners": [
+        "장한솔"
+      ],
+      "overnight_proxy": [
+        "META",
+        "GOOGL",
+        "^IXIC"
+      ],
+      "quote": {
+        "price": "41,850",
+        "change": "50",
+        "change_pct": "+0.12",
+        "change_pct_num": 0.12,
+        "direction": "up",
+        "volume": 281832
+      },
+      "news": [
+        {
+          "title": "설립 2달만에 30년 벤처도 러브콜…'오마카세식 AX 교육' 뭐길래",
+          "link": "https://n.news.naver.com/mnews/article/008/0005362249",
+          "source": "머니투데이",
+          "date": "2026.05.25 06:00",
+          "published_at": "2026.05.25 06:00",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/008/0005362249",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "카카오 노사 이번주 최대 고비…IT 업계 촉각",
+          "link": "https://n.news.naver.com/mnews/article/001/0016097006",
+          "source": "연합뉴스",
+          "date": "2026.05.25 05:45",
+          "published_at": "2026.05.25 05:45",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097006",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "“스타벅스 선불금 돌려달라” 커지는 논란…정용진 회장 직접 사과 ...",
+          "link": "https://n.news.naver.com/mnews/article/081/0003646440",
+          "source": "서울신문",
+          "date": "2026.05.24 18:43",
+          "published_at": "2026.05.24 18:43",
+          "time_ago": "12시간 전",
+          "url": "https://n.news.naver.com/mnews/article/081/0003646440",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "Lee's call to shut down far-right onlin...",
+          "link": "https://n.news.naver.com/mnews/article/640/0000088894",
+          "source": "코리아중앙데일리",
+          "date": "2026.05.24 18:05",
+          "published_at": "2026.05.24 18:05",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/640/0000088894",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "AI 돈 쏟는 네이버…카톡 올인하는 카카오",
+          "link": "https://n.news.naver.com/mnews/article/015/0005290583",
+          "source": "한국경제",
+          "date": "2026.05.24 17:38",
+          "published_at": "2026.05.24 17:38",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005290583",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "1분기 호실적 네카오, 광고 사업 확 키운다",
+          "link": "https://n.news.naver.com/mnews/article/009/0005684326",
+          "source": "매일경제",
+          "date": "2026.05.24 17:04",
+          "published_at": "2026.05.24 17:04",
+          "time_ago": "14시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005684326",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "스타벅스 상품권, 카카오톡 선물하기 1위 내줬다",
+          "link": "https://n.news.naver.com/mnews/article/448/0000614071",
+          "source": "TV조선",
+          "date": "2026.05.24 15:50",
+          "published_at": "2026.05.24 15:50",
+          "time_ago": "15시간 전",
+          "url": "https://n.news.naver.com/mnews/article/448/0000614071",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"스벅은 취향 안 타\"…카톡선물 7년 연속 1위, 올해도 지킬까",
+          "link": "https://n.news.naver.com/mnews/article/015/0005290532",
+          "source": "한국경제",
+          "date": "2026.05.24 13:19",
+          "published_at": "2026.05.24 13:19",
+          "time_ago": "18시간 전",
+          "url": "https://n.news.naver.com/mnews/article/015/0005290532",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "'이미 온' 자율주행 시대...韓 모빌리티 B-학점",
+          "link": "https://n.news.naver.com/mnews/article/092/0002423998",
+          "source": "지디넷코리아",
+          "date": "2026.05.24 09:33",
+          "published_at": "2026.05.24 09:33",
+          "time_ago": "21시간 전",
+          "url": "https://n.news.naver.com/mnews/article/092/0002423998",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"이번엔 진짜 다르다\"…AI 판도 뒤집히는데 네카오 믿어볼까[주末머니....",
+          "link": "https://n.news.naver.com/mnews/article/277/0005767122",
+          "source": "아시아경제",
+          "date": "2026.05.24 08:49",
+          "published_at": "2026.05.24 08:49",
+          "time_ago": "22시간 전",
+          "url": "https://n.news.naver.com/mnews/article/277/0005767122",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "(주)카카오 타법인 주식 및 출자증권 처분결정(종속회사의 주요경영사항)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641595&code=035720&page_notice=",
+          "date": "2026.05.15"
+        },
+        {
+          "title": "(주)카카오 변경상장(감자(주식소각))",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641376&code=035720&page_notice=",
+          "date": "2026.05.14"
+        },
+        {
+          "title": "(주)카카오 기업설명회(IR) 개최(안내공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1638592&code=035720&page_notice=",
+          "date": "2026.05.07"
+        },
+        {
+          "title": "(주)카카오 영업(잠정)실적(공정공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1638435&code=035720&page_notice=",
+          "date": "2026.05.07"
+        },
+        {
+          "title": "(주)카카오 연결재무제표기준영업(잠정)실적(공정공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1638434&code=035720&page_notice=",
+          "date": "2026.05.07"
+        }
+      ],
+      "history": {
+        "symbol": "035720.KS",
+        "closes_20d": [
+          48400.0,
+          48050.0,
+          48450.0,
+          48850.0,
+          48400.0,
+          47300.0,
+          47100.0,
+          46300.0,
+          45250.0,
+          46000.0,
+          44700.0,
+          43550.0,
+          42950.0,
+          45950.0,
+          44000.0,
+          42450.0,
+          41600.0,
+          40150.0,
+          41800.0,
+          41850.0
+        ],
+        "fifty_two_week_high": 71600.0,
+        "fifty_two_week_low": 36950.0,
+        "last_close": 41850.0,
+        "change_20d_pct": -13.53,
+        "pos_52w_pct": 14.1,
+        "from_high_pct": -41.55,
+        "volume_20d_avg": 2050542,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,1.2 L4.2,2.2 L8.4,1.1 L12.6,0.0 L16.8,1.2 L21.1,4.3 L25.3,4.8 L29.5,7.0 L33.7,9.9 L37.9,7.9 L42.1,11.4 L46.3,14.6 L50.5,16.3 L54.7,8.0 L58.9,13.4 L63.2,17.7 L67.4,20.0 L71.6,24.0 L75.8,19.4 L80.0,19.3",
+        "sparkline_direction": "down"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "41,850",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.14,
+      "volume_spike": false,
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음",
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "노사 갈등 이번주 최대 고비로 불확실성 상존, 방향 판단 어려움",
+      "news_count": 10,
+      "latest_news_at": "2026-05-25T06:00:00+09:00",
+      "latest_news_ago": "1시간 전"
+    },
+    {
+      "code": "005380",
+      "name": "현대차",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "up",
+        "avg_pct": 3.98,
+        "proxies": [
+          {
+            "symbol": "F",
+            "change_pct": 9.22
+          },
+          {
+            "symbol": "GM",
+            "change_pct": 2.05
+          },
+          {
+            "symbol": "STLA",
+            "change_pct": 0.66
+          }
+        ],
+        "label": "강세"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "로봇 사업 조직 신설·아틀라스 도입 등 긍정적 뉴스 + 간밤 Ford +9.22% 급등 프록시 강세. 다만 승격 규칙 7(한미 관세·무역 이슈 시 한국 수출주와 미국 프록시 역방향 가능) 반영하여 강한 상승 기대에서 한 단계 하향. Ford 급등 원인이 미국 내수 요인일 경우 현대차 수혜로 직결되지 않을 수 있음. (승격 규칙 7 예외: Ford +9.22%가 관세 관련이 아닌 개별 실적 요인일 가능성도 있어 완전 역방향 적용 대신 신뢰도 조정으로 반영)",
+      "summary": "Ford +9.22% 급등 + 로봇 사업 확장 호재로 갭상승 예상, 단 프록시 역방향 가능성 유의.",
+      "key_points": [
+        {
+          "point": "현대차그룹, 아틀라스 도입 + 로봇부품 조직 신설",
+          "detail": "공장 자동화·로봇 사업 본격 확장, 중장기 성장 동력",
+          "impact": "positive",
+          "published_at": "2026-05-25T06:17:00+09:00",
+          "sources": [
+            {
+              "title": "연합뉴스",
+              "url": "https://n.news.naver.com/mnews/article/001/0016097037"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1시간 전"
+        },
+        {
+          "point": "NH투자증권 '현대차 로봇훈련 구조 중국 복제 어렵다' 리포트",
+          "detail": "로봇 사업 기술적 해자 확인",
+          "impact": "positive",
+          "published_at": "2026-05-25T05:59:00+09:00",
+          "sources": [
+            {
+              "title": "파이낸셜뉴스",
+              "url": "https://n.news.naver.com/mnews/article/014/0005525820"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1시간 전"
+        },
+        {
+          "point": "간밤 Ford +9.22% 급등",
+          "detail": "미국 자동차 프록시 초강세, 다만 한미 무역 이슈 시 역방향 가능성 존재(승격 규칙 7)",
+          "impact": "positive",
+          "sources": [],
+          "impact_label": "호재",
+          "time_ago": ""
+        }
+      ],
+      "action_plan": {
+        "position_size": "보유분 유지, -3% 조정 시 분할매수 (vol_tier=high 반영)",
+        "entry_zone": "보유분 평단 무관 — 추가 매수는 -3% 조정 후 (635,400원 부근)",
+        "stop_loss": "-3.0% (vol_tier=high 반영)",
+        "target": "+4.5%",
+        "horizon": "1-3일 단기",
+        "scenarios": {
+          "if_gap_up": "갭상승 +2% 이내(668,100원) 보유 유지, +3% 이상(674,600원 초과)이면 추가 매수 보류 — Ford 급등 프리미엄 소화 확인",
+          "if_gap_down": "Ford +9.22% 대비 갭다운 시 프록시 역방향(승격 규칙 7) 신호 → -1.5% 이내(645,200원) 관망, -2.5% 이상이면 진입 보류",
+          "if_target_hit": "+4.5%(684,500원) 도달 시 추가분 절반 익절, 나머지 trailing -2%",
+          "if_stop_hit": "-3%(635,400원) 도달 시 추가분 즉시 청산, 기존 보유분 유지"
+        }
+      },
+      "sector": "자동차",
+      "owners": [
+        "장한솔",
+        "한윤근"
+      ],
+      "overnight_proxy": [
+        "F",
+        "GM",
+        "STLA"
+      ],
+      "quote": {
+        "price": "655,000",
+        "change": "11,000",
+        "change_pct": "-1.65",
+        "change_pct_num": -1.65,
+        "direction": "down",
+        "volume": 96457
+      },
+      "news": [
+        {
+          "title": "외인, 지난주 '삼전닉스' 10조 순매도…로봇·ESS는 샀다",
+          "link": "https://n.news.naver.com/mnews/article/001/0016097071",
+          "source": "연합뉴스",
+          "date": "2026.05.25 07:25",
+          "published_at": "2026.05.25 07:25",
+          "time_ago": "5분 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097071",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"세계 웨어러블 로봇 시장 2030년 9.5조원 규모 전망\"",
+          "link": "https://n.news.naver.com/mnews/article/031/0001030717",
+          "source": "아이뉴스24",
+          "date": "2026.05.25 06:57",
+          "published_at": "2026.05.25 06:57",
+          "time_ago": "33분 전",
+          "url": "https://n.news.naver.com/mnews/article/031/0001030717",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "갈길 먼 중소기업 해외진출…대기업 플랫폼을 디딤돌로 [CEO 110인 ...",
+          "link": "https://n.news.naver.com/mnews/article/243/0000098202",
+          "source": "이코노미스트",
+          "date": "2026.05.25 06:30",
+          "published_at": "2026.05.25 06:30",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/243/0000098202",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "'아틀라스 도입' 현대차그룹, 공장 자동화·로봇부품 조직 신설",
+          "link": "https://n.news.naver.com/mnews/article/001/0016097037",
+          "source": "연합뉴스",
+          "date": "2026.05.25 06:17",
+          "published_at": "2026.05.25 06:17",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/001/0016097037",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "“일본이 이렇게 고전할 줄은”…변화무쌍 車 시장, 중국·한국만 달...",
+          "link": "https://n.news.naver.com/mnews/article/009/0005684440",
+          "source": "매일경제",
+          "date": "2026.05.25 06:08",
+          "published_at": "2026.05.25 06:08",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/009/0005684440",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "고유가에… 친환경 전환 주도하는 하이브리드차",
+          "link": "https://n.news.naver.com/mnews/article/022/0004130445",
+          "source": "세계일보",
+          "date": "2026.05.25 06:02",
+          "published_at": "2026.05.25 06:02",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/022/0004130445",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "용산 원효로 일대 재개발 속도… 국제업무지구 배후에 2000가구 들어선...",
+          "link": "https://n.news.naver.com/mnews/article/366/0001166876",
+          "source": "조선비즈",
+          "date": "2026.05.25 06:02",
+          "published_at": "2026.05.25 06:02",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/366/0001166876",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "\"현대차 로봇훈련 구조, 中업체들 단기간 복제 못해\" [NH투자證]",
+          "link": "https://n.news.naver.com/mnews/article/014/0005525820",
+          "source": "파이낸셜뉴스",
+          "date": "2026.05.25 05:59",
+          "published_at": "2026.05.25 05:59",
+          "time_ago": "1시간 전",
+          "url": "https://n.news.naver.com/mnews/article/014/0005525820",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "[경제 단신] 롯데, 남이섬서 ‘핫식스 글로우’ 체험행사 외",
+          "link": "https://n.news.naver.com/mnews/article/022/0004130431",
+          "source": "세계일보",
+          "date": "2026.05.25 05:02",
+          "published_at": "2026.05.25 05:02",
+          "time_ago": "2시간 전",
+          "url": "https://n.news.naver.com/mnews/article/022/0004130431",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "현대차 올드카 ‘스텔라’… 칸 초청 ‘호프’서 맹활약",
+          "link": "https://n.news.naver.com/mnews/article/020/0003721985",
+          "source": "동아일보",
+          "date": "2026.05.25 01:45",
+          "published_at": "2026.05.25 01:45",
+          "time_ago": "5시간 전",
+          "url": "https://n.news.naver.com/mnews/article/020/0003721985",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "현대자동차(주) (정정)타법인주식및출자증권취득결정(자율공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=4935270&code=005380&page_notice=",
+          "date": "2026.05.21"
+        },
+        {
+          "title": "현대자동차(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=4674757&code=005380&page_notice=",
+          "date": "2026.05.21"
+        },
+        {
+          "title": "현대자동차(주) 기업설명회(IR) 개최(안내공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=2886272&code=005380&page_notice=",
+          "date": "2026.05.20"
+        },
+        {
+          "title": "현대자동차(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(하락...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1642883&code=005380&page_notice=",
+          "date": "2026.05.19"
+        },
+        {
+          "title": "현대자동차(주) 기업설명회(IR) 개최(안내공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1642541&code=005380&page_notice=",
+          "date": "2026.05.18"
+        }
+      ],
+      "history": {
+        "symbol": "005380.KS",
+        "closes_20d": [
+          532000.0,
+          513000.0,
+          524000.0,
+          555000.0,
+          556000.0,
+          531000.0,
+          539000.0,
+          550000.0,
+          572000.0,
+          613000.0,
+          646000.0,
+          646000.0,
+          710000.0,
+          712000.0,
+          700000.0,
+          663000.0,
+          604000.0,
+          592000.0,
+          666000.0,
+          655000.0
+        ],
+        "fifty_two_week_high": 774500.0,
+        "fifty_two_week_low": 179300.0,
+        "last_close": 655000.0,
+        "change_20d_pct": 23.12,
+        "pos_52w_pct": 79.9,
+        "from_high_pct": -15.43,
+        "volume_20d_avg": 2279752,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,21.7 L4.2,24.0 L8.4,22.7 L12.6,18.9 L16.8,18.8 L21.1,21.8 L25.3,20.9 L29.5,19.5 L33.7,16.9 L37.9,11.9 L42.1,8.0 L46.3,8.0 L50.5,0.2 L54.7,0.0 L58.9,1.4 L63.2,5.9 L67.4,13.0 L71.6,14.5 L75.8,5.5 L80.0,6.9",
+        "sparkline_direction": "up"
+      },
+      "recommendation_label": "상승 기대",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "655,000",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.04,
+      "volume_spike": false,
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간",
+      "direction_arrow": "↑",
+      "direction_label": "상승 기대",
+      "direction_cls": "up",
+      "outlook_line": "로봇 사업 조직 신설·아틀라스 도입 등 긍정적 뉴스 + 간밤 Ford +9.22% 급등 프록시 강세",
+      "news_count": 10,
+      "latest_news_at": "2026-05-25T07:25:00+09:00",
+      "latest_news_ago": "5분 전"
+    },
+    {
+      "code": "034230",
+      "name": "파라다이스",
+      "market": "KOSDAQ",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": 0.2,
+        "proxies": [
+          {
+            "symbol": "LVS",
+            "change_pct": -0.04
+          },
+          {
+            "symbol": "WYNN",
+            "change_pct": -1.32
+          },
+          {
+            "symbol": "MGM",
+            "change_pct": 1.96
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "개별 촉매 부재, BTS IP 호텔·관광 기사는 주가 직접 영향 제한적. 간밤 카지노 프록시 혼조(LVS -0.04%, WYNN -1.32%, MGM +1.96%). 20일 -3.86% 소폭 약세, 뚜렷한 방향성 신호 없음.",
+      "summary": "개별 촉매 부재 + 프록시 혼조로 단기 방향 불투명. 관광·카지노 구조적 수혜 기대는 중장기 테마.",
+      "key_points": [
+        {
+          "point": "외국인 몰려왔는데 카지노 주가 부진",
+          "detail": "방한 관광객 증가에도 카지노 업종 실적 연동은 제한적",
+          "impact": "negative",
+          "published_at": "2026-05-20T18:02:00+09:00",
+          "sources": [
+            {
+              "title": "매일경제",
+              "url": "https://n.news.naver.com/mnews/article/009/0005682931"
+            }
+          ],
+          "impact_label": "악재",
+          "time_ago": "4일 전"
+        },
+        {
+          "point": "파라다이스 부산, BTS IP 공식 호텔 지정",
+          "detail": "BTS 관광객 유치 기대, 단기 실적 영향은 제한적",
+          "impact": "neutral",
+          "published_at": "2026-05-18T13:59:00+09:00",
+          "sources": [
+            {
+              "title": "머니투데이",
+              "url": "https://n.news.naver.com/mnews/article/008/0005359280"
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "6일 전"
+        }
+      ],
+      "action_plan": {
+        "position_size": "현재 비중 유지 — 별도 액션 없음",
+        "stop_loss": "-2.5% (보유분, vol_tier=mid 반영)",
+        "horizon": "1-3일 단기"
+      },
+      "sector": "카지노/레저",
+      "owners": [
+        "장한솔"
+      ],
+      "overnight_proxy": [
+        "LVS",
+        "WYNN",
+        "MGM"
+      ],
+      "quote": {
+        "price": "14,700",
+        "change": "450",
+        "change_pct": "+3.16",
+        "change_pct_num": 3.16,
+        "direction": "up",
+        "volume": 62974
+      },
+      "news": [],
+      "disclosures": [
+        {
+          "title": "(주)파라다이스 기업설명회(IR) 개최(안내공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641150&code=034230&page_notice=",
+          "date": "2026.05.14"
+        },
+        {
+          "title": "(주)파라다이스 연결재무제표기준영업(잠정)실적(공정공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1638201&code=034230&page_notice=",
+          "date": "2026.05.06"
+        },
+        {
+          "title": "(주)파라다이스 연결재무제표기준영업(잠정)실적(공정공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1638144&code=034230&page_notice=",
+          "date": "2026.05.06"
+        },
+        {
+          "title": "(주)파라다이스 기업설명회(IR) 개최(안내공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1630148&code=034230&page_notice=",
+          "date": "2026.04.14"
+        },
+        {
+          "title": "(주)파라다이스 연결재무제표기준영업(잠정)실적(공정공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1626040&code=034230&page_notice=",
+          "date": "2026.04.02"
+        }
+      ],
+      "history": {
+        "symbol": "034230.KS",
+        "closes_20d": [
+          15290.0,
+          15860.0,
+          16080.0,
+          16090.0,
+          16140.0,
+          15850.0,
+          15850.0,
+          15420.0,
+          16000.0,
+          15810.0,
+          15240.0,
+          14810.0,
+          14990.0,
+          15980.0,
+          15310.0,
+          14430.0,
+          14450.0,
+          14160.0,
+          14250.0,
+          14700.0
+        ],
+        "fifty_two_week_high": 24000.0,
+        "fifty_two_week_low": 12410.0,
+        "last_close": 14700.0,
+        "change_20d_pct": -3.86,
+        "pos_52w_pct": 19.8,
+        "from_high_pct": -38.75,
+        "volume_20d_avg": 697142,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,10.3 L4.2,3.4 L8.4,0.7 L12.6,0.6 L16.8,0.0 L21.1,3.5 L25.3,3.5 L29.5,8.7 L33.7,1.7 L37.9,4.0 L42.1,10.9 L46.3,16.1 L50.5,13.9 L54.7,1.9 L58.9,10.1 L63.2,20.7 L67.4,20.5 L71.6,24.0 L75.8,22.9 L80.0,17.5",
+        "sparkline_direction": "down"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "14,700",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.09,
+      "volume_spike": false,
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음",
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "개별 촉매 부재, BTS IP 호텔·관광 기사는 주가 직접 영향 제한적",
+      "news_count": 0
+    },
+    {
+      "code": "071050",
+      "name": "한국금융지주",
+      "market": "KOSPI",
+      "news_sentiment": "neutral",
+      "priced_in": false,
+      "overnight_signal": {
+        "direction": "neutral",
+        "avg_pct": 0.07,
+        "proxies": [
+          {
+            "symbol": "IAI",
+            "change_pct": 0.09
+          },
+          {
+            "symbol": "XLF",
+            "change_pct": 0.41
+          },
+          {
+            "symbol": "SCHW",
+            "change_pct": -0.29
+          }
+        ],
+        "label": "중립"
+      },
+      "recommendation": "hold",
+      "confidence": "low",
+      "rationale": "금통위(5/28) 금리인상 관측이 증권주에 양면적 영향, 방향 불확실. 간밤 XLF +0.41%, SCHW -0.29%로 금융 프록시 혼조. 증권업계 모험자본 경쟁 가열은 구조적 긍정이나 단기 촉매 미흡.",
+      "summary": "금통위(5/28) 금리 방향이 핵심 변수. 금리인상 시 채권 손실 vs 경기 호조 수혜, 결과 전까지 관망.",
+      "key_points": [
+        {
+          "point": "증권업계 모험자본 투자 경쟁 — IMA·발행어음 자금 활용",
+          "detail": "한국판 골드만삭스 전략, 비은행 사업 성과가 승부처",
+          "impact": "positive",
+          "published_at": "2026-05-25T07:02:01+09:00",
+          "sources": [
+            {
+              "title": "연합뉴스",
+              "url": "https://n.news.naver.com/mnews/article/001/0016097059"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "27분 전"
+        },
+        {
+          "point": "한은 금통위 5/28 — 금리인상 시계 빨라짐",
+          "detail": "반도체 호황으로 GDP 상향, 물가 부담에 긴축 전환 가능성",
+          "impact": "neutral",
+          "published_at": "2026-05-24T14:00:00+09:00",
+          "sources": [
+            {
+              "title": "비즈워치",
+              "url": "https://n.news.naver.com/mnews/article/648/0000047409"
+            }
+          ],
+          "impact_label": "중립",
+          "time_ago": "17시간 전"
+        }
+      ],
+      "action_plan": {
+        "position_size": "현재 비중 유지 — 별도 액션 없음",
+        "stop_loss": "-3.0% (보유분, vol_tier=high 반영)",
+        "horizon": "1-2주 스윙 (이벤트: 금통위)"
+      },
+      "sector": "증권",
+      "owners": [
+        "장윤영"
+      ],
+      "overnight_proxy": [
+        "IAI",
+        "XLF",
+        "SCHW"
+      ],
+      "quote": {
+        "price": "254,500",
+        "change": "5,000",
+        "change_pct": "+2.00",
+        "change_pct_num": 2.0,
+        "direction": "up",
+        "volume": 12890
+      },
+      "news": [
+        {
+          "title": "상반기 '소외' 은행주, 하반기엔 달라질까?…\"비은행 성과가 승부처\"....",
+          "link": "https://n.news.naver.com/mnews/article/123/0002383585",
+          "source": "조세일보",
+          "date": "2026.05.25 07:04",
+          "published_at": "2026.05.25 07:04",
+          "time_ago": "26분 전",
+          "url": "https://n.news.naver.com/mnews/article/123/0002383585",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "1500원대 환율 속 물가·금리 3高…외국인 매수 유입 코스닥은 ‘활짝...",
+          "link": "https://n.news.naver.com/mnews/article/022/0004130469",
+          "source": "세계일보",
+          "date": "2026.05.25 07:02",
+          "published_at": "2026.05.25 07:02",
+          "time_ago": "28분 전",
+          "url": "https://n.news.naver.com/mnews/article/022/0004130469",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "스타벅스, 역사적 문해력, 소셜 리스크",
+          "link": "https://n.news.naver.com/mnews/article/028/0002806508",
+          "source": "한겨레",
+          "date": "2026.05.24 18:10",
+          "published_at": "2026.05.24 18:10",
+          "time_ago": "13시간 전",
+          "url": "https://n.news.naver.com/mnews/article/028/0002806508",
+          "impact": "negative",
+          "impact_label": "악재"
+        },
+        {
+          "title": "한은 5월 금통위 '한 박자 쉬고'…하반기 금리인상 무게",
+          "link": "https://n.news.naver.com/mnews/article/648/0000047409",
+          "source": "비즈워치",
+          "date": "2026.05.24 14:00",
+          "published_at": "2026.05.24 14:00",
+          "time_ago": "17시간 전",
+          "url": "https://n.news.naver.com/mnews/article/648/0000047409",
+          "impact": "neutral",
+          "impact_label": "중립"
+        },
+        {
+          "title": "한국 GDP 성장률 전망치 2%→ 2.5~2.6% 상향 관측…\"반도체 ...",
+          "link": "https://n.news.naver.com/mnews/article/138/0002228822",
+          "source": "디지털데일리",
+          "date": "2026.05.24 12:18",
+          "published_at": "2026.05.24 12:18",
+          "time_ago": "19시간 전",
+          "url": "https://n.news.naver.com/mnews/article/138/0002228822",
+          "impact": "positive",
+          "impact_label": "호재"
+        },
+        {
+          "title": "'긴축 시대' 오나…한은 금리인상 시계 빨라진다[인플레 공포②]",
+          "link": "https://n.news.naver.com/mnews/article/003/0013964375",
+          "source": "뉴시스",
+          "date": "2026.05.24 08:00",
+          "published_at": "2026.05.24 08:00",
+          "time_ago": "23시간 전",
+          "url": "https://n.news.naver.com/mnews/article/003/0013964375",
+          "impact": "neutral",
+          "impact_label": "중립"
+        }
+      ],
+      "disclosures": [
+        {
+          "title": "한국투자금융지주(주) (정정)타법인주식및출자증권취득결정(자회사의 주요경...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=2906443&code=071050&page_notice=",
+          "date": "2026.05.20"
+        },
+        {
+          "title": "한국투자금융지주(주) 기업설명회(IR) 개최(안내공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1642551&code=071050&page_notice=",
+          "date": "2026.05.18"
+        },
+        {
+          "title": "한국투자금융지주(주) 주식선물 2단계 가격제한폭 확대요건 도달(하락)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1642390&code=071050&page_notice=",
+          "date": "2026.05.18"
+        },
+        {
+          "title": "한국투자금융지주(주) 기업설명회(IR) 개최(안내공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641401&code=071050&page_notice=",
+          "date": "2026.05.14"
+        },
+        {
+          "title": "한국투자금융지주(주) 연결재무제표기준영업(잠정)실적(공정공시)(자회사의...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641334&code=071050&page_notice=",
+          "date": "2026.05.14"
+        }
+      ],
+      "history": {
+        "symbol": "071050.KS",
+        "closes_20d": [
+          259000.0,
+          259000.0,
+          260500.0,
+          258500.0,
+          249000.0,
+          240000.0,
+          262000.0,
+          291500.0,
+          276000.0,
+          268500.0,
+          266000.0,
+          249500.0,
+          251500.0,
+          258000.0,
+          258000.0,
+          240500.0,
+          234000.0,
+          232500.0,
+          249500.0,
+          254500.0
+        ],
+        "fifty_two_week_high": 300500.0,
+        "fifty_two_week_low": 95800.0,
+        "last_close": 254500.0,
+        "change_20d_pct": -1.74,
+        "pos_52w_pct": 77.5,
+        "from_high_pct": -15.31,
+        "volume_20d_avg": 344155,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,13.2 L4.2,13.2 L8.4,12.6 L12.6,13.4 L16.8,17.3 L21.1,20.9 L25.3,12.0 L29.5,0.0 L33.7,6.3 L37.9,9.4 L42.1,10.4 L46.3,17.1 L50.5,16.3 L54.7,13.6 L58.9,13.6 L63.2,20.7 L67.4,23.4 L71.6,24.0 L75.8,17.1 L80.0,15.1",
+        "sparkline_direction": "down"
+      },
+      "recommendation_label": "관망",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "254,500",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.04,
+      "volume_spike": false,
+      "news_sentiment_label": "중립",
+      "confidence_label": "낮음",
+      "direction_arrow": "—",
+      "direction_label": "관망",
+      "direction_cls": "flat",
+      "outlook_line": "금통위(5/28) 금리인상 관측이 증권주에 양면적 영향, 방향 불확실",
+      "news_count": 6,
+      "latest_news_at": "2026-05-25T07:04:00+09:00",
+      "latest_news_ago": "26분 전"
+    },
+    {
+      "code": "010120",
+      "name": "LS일렉트릭",
+      "market": "KOSPI",
+      "news_sentiment": "positive",
+      "priced_in": true,
+      "overnight_signal": {
+        "direction": "up",
+        "avg_pct": 0.96,
+        "proxies": [
+          {
+            "symbol": "GEV",
+            "change_pct": -0.49
+          },
+          {
+            "symbol": "ETN",
+            "change_pct": 2.58
+          },
+          {
+            "symbol": "XLU",
+            "change_pct": 0.78
+          }
+        ],
+        "label": "강세"
+      },
+      "recommendation": "buy",
+      "confidence": "medium",
+      "rationale": "전력기기 수주 호조 + 간밤 ETN +2.58% 강세 동행, 추가 상승 여력 존재. 다만 20일 +29.49% 급등 구간으로 상당 부분 선반영 판단. 5/22 교훈(선반영 시 상승 기대 이상 금지) 적용하여 강한 상승 기대에서 한 단계 하향. 구자균 회장 품질 특명으로 경영진 의지 확인.",
+      "summary": "ETN +2.58% 프록시 강세 + K-전력기기 영업익 3조 기대로 우호적이나, 20일 +29.49% 급등 구간에서 선반영 부담. (5/22 교훈: 선반영 시 관망 기본, 프록시 강세 + 뉴스 동행으로 상승 기대 유지)",
+      "key_points": [
+        {
+          "point": "K-전력기기 빅3 영업익 3조 기대",
+          "detail": "AI 데이터센터 전력 수요 급증 수혜, 글로벌 빅테크 수주 확대",
+          "impact": "positive",
+          "published_at": "2026-05-23T13:01:00+09:00",
+          "sources": [
+            {
+              "title": "서울경제",
+              "url": "https://n.news.naver.com/mnews/article/011/0004623904"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "1일 전"
+        },
+        {
+          "point": "구자균 회장 '압도적 품질로 전력시장 주도' 특명",
+          "detail": "글로벌 빅테크 기준 품질 확보 강조, 시장 신뢰도 제고",
+          "impact": "positive",
+          "published_at": "2026-05-22T17:54:00+09:00",
+          "sources": [
+            {
+              "title": "아이뉴스24",
+              "url": "https://n.news.naver.com/mnews/article/031/0001030598"
+            }
+          ],
+          "impact_label": "호재",
+          "time_ago": "2일 전"
+        }
+      ],
+      "action_plan": {
+        "position_size": "보유분 유지, -3% 조정 시 분할매수 (vol_tier=high 반영)",
+        "entry_zone": "보유분 평단 무관 — 추가 매수는 -3% 조정 후 (272,600원 부근)",
+        "stop_loss": "-3.0% (vol_tier=high 반영)",
+        "target": "+4.5%",
+        "horizon": "1-3일 단기",
+        "scenarios": {
+          "if_gap_up": "갭상승 +1.5% 이내(285,200원) 보유 유지, +2.5% 이상(288,000원 초과)이면 20일 +29% 급등 선반영 감안 추가 매수 자제",
+          "if_gap_down": "갭다운 -1.5% 이내(276,800원) 분할매수, -3% 이상(272,600원 이하)이면 진입 보류",
+          "if_target_hit": "+4.5%(293,600원) 도달 시 추가분 절반 익절, 나머지 trailing -2%",
+          "if_stop_hit": "-3%(272,600원) 도달 시 추가분 즉시 청산, 기존 보유분 유지"
+        }
+      },
+      "sector": "전력기기",
+      "owners": [
+        "장윤영"
+      ],
+      "overnight_proxy": [
+        "GEV",
+        "ETN",
+        "XLU"
+      ],
+      "quote": {
+        "price": "281,000",
+        "change": "9,500",
+        "change_pct": "+3.50",
+        "change_pct_num": 3.5,
+        "direction": "up",
+        "volume": 189522
+      },
+      "news": [],
+      "disclosures": [
+        {
+          "title": "엘에스일렉트릭 주식회사 지속가능경영보고서 등 관련사항(자율공시)",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=7025874&code=010120&page_notice=",
+          "date": "2026.05.22"
+        },
+        {
+          "title": "엘에스일렉트릭 주식회사 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=4385045&code=010120&page_notice=",
+          "date": "2026.05.21"
+        },
+        {
+          "title": "엘에스일렉트릭 주식회사 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도...",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1642371&code=010120&page_notice=",
+          "date": "2026.05.18"
+        },
+        {
+          "title": "엘에스일렉트릭 주식회사 단기차입금증가결정",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641446&code=010120&page_notice=",
+          "date": "2026.05.14"
+        },
+        {
+          "title": "엘에스일렉트릭 주식회사 (정정)단일판매ㆍ공급계약체결",
+          "link": "https://finance.naver.com/item/news_notice_read.naver?no=1641185&code=010120&page_notice=",
+          "date": "2026.05.14"
+        }
+      ],
+      "history": {
+        "symbol": "010120.KS",
+        "closes_20d": [
+          217000.0,
+          226500.0,
+          255500.0,
+          261500.0,
+          273000.0,
+          278000.0,
+          294000.0,
+          315500.0,
+          318500.0,
+          313000.0,
+          304000.0,
+          289000.0,
+          285000.0,
+          280000.0,
+          259000.0,
+          253500.0,
+          243500.0,
+          238500.0,
+          271500.0,
+          281000.0
+        ],
+        "fifty_two_week_high": 335000.0,
+        "fifty_two_week_low": 47900.0,
+        "last_close": 281000.0,
+        "change_20d_pct": 29.49,
+        "pos_52w_pct": 81.2,
+        "from_high_pct": -16.12,
+        "volume_20d_avg": 1634764,
+        "as_of": "2026-05-22",
+        "sparkline_path": "M0.0,24.0 L4.2,21.8 L8.4,14.9 L12.6,13.5 L16.8,10.8 L21.1,9.6 L25.3,5.8 L29.5,0.7 L33.7,0.0 L37.9,1.3 L42.1,3.4 L46.3,7.0 L50.5,7.9 L54.7,9.1 L58.9,14.1 L63.2,15.4 L67.4,17.7 L71.6,18.9 L75.8,11.1 L80.0,8.9",
+        "sparkline_direction": "up"
+      },
+      "recommendation_label": "상승 기대",
+      "price_change_pct_num": 0.0,
+      "price_direction": "flat",
+      "price_change_display": "0.00%",
+      "price_display": "281,000",
+      "price_change_abs_display": "—",
+      "volume_ratio": 0.12,
+      "volume_spike": false,
+      "news_sentiment_label": "긍정",
+      "confidence_label": "중간",
+      "direction_arrow": "↑",
+      "direction_label": "상승 기대",
+      "direction_cls": "up",
+      "outlook_line": "전력기기 수주 호조 + 간밤 ETN +2.58% 강세 동행, 추가 상승 여력 존재",
+      "news_count": 0
+    }
+  ]
+}
