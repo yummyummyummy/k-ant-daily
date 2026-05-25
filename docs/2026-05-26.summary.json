@@ -772,7 +772,25 @@
       "outlook_line": "외국인 12일 연속 매도 속 수급 부담 지속, 보합권 횡보 예상",
       "news_count": 10,
       "latest_news_at": "2026-05-26T07:30:00+09:00",
-      "latest_news_ago": "방금 전"
+      "latest_news_ago": "방금 전",
+      "nxt_pre_open": {
+        "change_pct": 1.88,
+        "change": 5500,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182672+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +1.88%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+1.88%"
+      }
     },
     {
       "code": "000660",
@@ -1048,7 +1066,25 @@
       "outlook_line": "HBM 모멘텀 지속되나 단기 선반영 부담 우세, 보합권 예상",
       "news_count": 10,
       "latest_news_at": "2026-05-26T07:30:00+09:00",
-      "latest_news_ago": "방금 전"
+      "latest_news_ago": "방금 전",
+      "nxt_pre_open": {
+        "change_pct": 2.99,
+        "change": 58000,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182722+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +2.99%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+2.99%"
+      }
     },
     {
       "code": "267260",
@@ -1255,7 +1291,17 @@
       "outlook_line": "AI 전력기기 수요 부각 속 추가 상승 여력 충분",
       "news_count": 2,
       "latest_news_at": "2026-05-26T04:31:00+09:00",
-      "latest_news_ago": "2시간 전"
+      "latest_news_ago": "2시간 전",
+      "nxt_pre_open": {
+        "change_pct": 1.45,
+        "change": 17000,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182740+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.45%",
+        "cls": "up"
+      }
     },
     {
       "code": "196170",
@@ -1474,7 +1520,25 @@
       "outlook_line": "K-바이오 기술수출 잭팟 기대로 하반기 모멘텀 유효, 소폭 상승 예상",
       "news_count": 5,
       "latest_news_at": "2026-05-25T20:04:00+09:00",
-      "latest_news_ago": "11시간 전"
+      "latest_news_ago": "11시간 전",
+      "nxt_pre_open": {
+        "change_pct": 3.02,
+        "change": 11000,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182754+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +3.02%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+3.02%"
+      }
     },
     {
       "code": "042700",
@@ -1634,7 +1698,25 @@
       "outlook_line": "고점 대비 -25% 급락 후 변동성 극심, 방향성 불투명",
       "news_count": 1,
       "latest_news_at": "2026-05-25T10:01:00+09:00",
-      "latest_news_ago": "21시간 전"
+      "latest_news_ago": "21시간 전",
+      "nxt_pre_open": {
+        "change_pct": 1.87,
+        "change": 6000,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182766+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +1.87%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+1.87%"
+      }
     },
     {
       "code": "299660",
@@ -2109,7 +2191,25 @@
       "outlook_line": "중동 수주절벽 현실화에 유가 급락까지 이중 악재, 하락 경계",
       "news_count": 1,
       "latest_news_at": "2026-05-25T09:45:00+09:00",
-      "latest_news_ago": "21시간 전"
+      "latest_news_ago": "21시간 전",
+      "nxt_pre_open": {
+        "change_pct": 4.49,
+        "change": 2400,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182780+09:00"
+      },
+      "nxt_adjusted_recommendation": "buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +4.49%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "하락 경계",
+        "adjusted_label": "상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+4.49%"
+      }
     },
     {
       "code": "310210",
@@ -2238,7 +2338,17 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "전일 +10.2% 폭등 후 차익실현 리스크, 쉬어가는 흐름 예상",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": 1.25,
+        "change": 3500,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182790+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.25%",
+        "cls": "up"
+      }
     },
     {
       "code": "445680",
@@ -2373,7 +2483,25 @@
       "direction_label": "상승 기대",
       "direction_cls": "up",
       "outlook_line": "코스닥 모멘텀 속 소형 바이오 수급 수혜 기대",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": 3.48,
+        "change": 3000,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182799+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +3.48%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+3.48%"
+      }
     },
     {
       "code": "009540",
@@ -2608,7 +2736,17 @@
       "outlook_line": "30조 수주 돌파 + KDDX 재입찰로 모멘텀 회복 기대",
       "news_count": 5,
       "latest_news_at": "2026-05-26T07:07:00+09:00",
-      "latest_news_ago": "23분 전"
+      "latest_news_ago": "23분 전",
+      "nxt_pre_open": {
+        "change_pct": 0.59,
+        "change": 2500,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182808+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.59%",
+        "cls": "up"
+      }
     },
     {
       "code": "174900",
@@ -3147,7 +3285,25 @@
       "outlook_line": "전일 +9.37% 폭등 후 차익실현 리스크 우세",
       "news_count": 4,
       "latest_news_at": "2026-05-25T18:01:00+09:00",
-      "latest_news_ago": "13시간 전"
+      "latest_news_ago": "13시간 전",
+      "nxt_pre_open": {
+        "change_pct": 4.24,
+        "change": 5100,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182819+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +4.24%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "관망",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+4.24%"
+      }
     },
     {
       "code": "166480",
@@ -3568,7 +3724,17 @@
       "outlook_line": "파업 리스크 현실화 + 연중 최저가 경신으로 추가 하락 경계",
       "news_count": 10,
       "latest_news_at": "2026-05-26T06:30:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 0.36,
+        "change": 150,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182832+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +0.36%",
+        "cls": "up"
+      }
     },
     {
       "code": "005380",
@@ -3850,7 +4016,25 @@
       "outlook_line": "포티투닷 NVIDIA 인재 영입 + 로봇 모멘텀으로 소폭 상승 기대",
       "news_count": 10,
       "latest_news_at": "2026-05-26T07:10:00+09:00",
-      "latest_news_ago": "20분 전"
+      "latest_news_ago": "20분 전",
+      "nxt_pre_open": {
+        "change_pct": 2.9,
+        "change": 19000,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182843+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +2.90%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+2.90%"
+      }
     },
     {
       "code": "034230",
@@ -3981,7 +4165,17 @@
       "direction_label": "관망",
       "direction_cls": "flat",
       "outlook_line": "개별 촉매 부재, 시장 방향에 따른 보합 예상",
-      "news_count": 0
+      "news_count": 0,
+      "nxt_pre_open": {
+        "change_pct": 1.22,
+        "change": 180,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182872+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.22%",
+        "cls": "up"
+      }
     },
     {
       "code": "071050",
@@ -4262,7 +4456,25 @@
       "outlook_line": "금가분리 완화 정책 수혜 + 실적 모멘텀으로 반등 기대",
       "news_count": 10,
       "latest_news_at": "2026-05-26T06:30:00+09:00",
-      "latest_news_ago": "1시간 전"
+      "latest_news_ago": "1시간 전",
+      "nxt_pre_open": {
+        "change_pct": 2.16,
+        "change": 5500,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182881+09:00"
+      },
+      "nxt_adjusted_recommendation": "strong_buy",
+      "nxt_chip": {
+        "text": "NXT ↑ +2.16%",
+        "cls": "up"
+      },
+      "nxt_adjustment": {
+        "baseline_label": "상승 기대",
+        "adjusted_label": "강한 상승 기대",
+        "shift_word": "상향",
+        "arrow": "↗",
+        "pct_str": "+2.16%"
+      }
     },
     {
       "code": "010120",
@@ -4466,7 +4678,18 @@
       "outlook_line": "전력기기 섹터 모멘텀 + 프록시 강세로 추가 상승 기대",
       "news_count": 3,
       "latest_news_at": "2026-05-26T04:31:00+09:00",
-      "latest_news_ago": "2시간 전"
+      "latest_news_ago": "2시간 전",
+      "nxt_pre_open": {
+        "change_pct": 1.42,
+        "change": 4000,
+        "direction": "up",
+        "captured_at": "2026-05-26T08:45:06.182891+09:00"
+      },
+      "nxt_chip": {
+        "text": "NXT — +1.42%",
+        "cls": "up"
+      }
     }
-  ]
+  ],
+  "nxt_snapshot_at": "2026-05-26T08:45:06.182897+09:00"
 }
