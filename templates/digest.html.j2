@@ -3,386 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ date }} 장 마감 후 뉴스 · k-ant-daily</title>
-<meta name="description" content="{{ tldr or '한국 장 마감 후부터 다음 브리핑 전까지의 시장 영향 뉴스 다이제스트' }}">
-<link rel="canonical" href="{{ base_url }}/digest.html">
-
-<meta property="og:type" content="article">
-<meta property="og:title" content="{{ date }} 장 마감 후 뉴스">
-<meta property="og:description" content="{{ tldr or '한국 장 마감 후부터 다음 브리핑 전까지의 시장 영향 뉴스 다이제스트' }}">
-<meta property="og:url" content="{{ base_url }}/digest.html">
-<meta property="og:locale" content="ko_KR">
-<meta property="og:site_name" content="k-ant-daily">
-<meta property="og:image" content="{{ base_url }}/og-image.png">
-
+<title>{{ digest.date }} 포스트마켓 다이제스트 · k-ant-daily</title>
+<meta name="robots" content="noindex">
 <style>
-{% include '_theme.css.j2' %}
-  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-      "Pretendard", "Noto Sans KR", sans-serif;
-    line-height: 1.6; font-size: 16px;
-    -webkit-text-size-adjust: 100%;
-  }
-  main { max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; }
-
-  header h1 { font-size: 24px; margin: 0 0 6px; }
-  header time { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; }
-  header nav { margin-top: 4px; }
-  header nav a { color: var(--accent); text-decoration: none; font-size: 14px; }
-  header .next-brief { color: var(--muted); font-size: 12px; margin-top: 6px; }
-
-  section { margin-top: 28px; }
-  section h2 {
-    font-size: 16px; margin: 0 0 12px;
-    border-left: 3px solid var(--accent); padding-left: 8px;
-  }
-
-  /* Generic news list — used by 한국 마감 후 / 매크로 / 미국 시초 헤드라인 / 공시 */
-  .news-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
-  .news-list li {
-    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-    padding: 10px 14px; display: flex; gap: 10px; align-items: flex-start;
-  }
-  .news-list .dot {
-    flex: 0 0 6px; width: 6px; height: 6px; border-radius: 50%;
-    margin-top: 8px; background: var(--neu);
-  }
-  .news-list .dot.positive { background: var(--pos); }
-  .news-list .dot.negative { background: var(--neg); }
-  .news-list .body { flex: 1; min-width: 0; }
-  .news-list .headline { font-size: 14px; line-height: 1.4; color: var(--fg); }
-  .news-list .headline a { color: var(--fg); text-decoration: none; }
-  .news-list .headline a:hover { color: var(--accent); }
-  .news-list .summary { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
-  .news-list .meta { font-size: 11px; color: var(--muted); margin-top: 4px; display: flex; gap: 8px; }
-  .news-list .meta .time-ago { color: var(--accent); font-weight: 600; }
-  .news-list .impact-chip {
-    font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px;
-    background: var(--neu-bg); color: var(--neu); white-space: nowrap;
-  }
-  .news-list .impact-chip.positive { background: var(--pos-bg); color: var(--pos); }
-  .news-list .impact-chip.negative { background: var(--neg-bg); color: var(--neg); }
-
-  /* 미국 시초 — 인덱스 + 프록시 종목 그리드 */
-  .us-tape { display: flex; flex-direction: column; gap: 10px; }
-  .us-tape .row {
-    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-    padding: 10px 14px;
-  }
-  .us-tape .row-title { font-size: 11px; color: var(--muted); font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
-  .us-tape .items { display: flex; flex-wrap: wrap; gap: 14px; font-variant-numeric: tabular-nums; }
-  .us-tape .item { font-size: 13px; }
-  .us-tape .item .name { color: var(--muted); margin-right: 4px; font-weight: 600; }
-  .us-tape .item .value { color: var(--fg); font-weight: 700; }
-  .us-tape .item .pct.up   { color: var(--pos); margin-left: 4px; }
-  .us-tape .item .pct.down { color: var(--neg); margin-left: 4px; }
-  .us-tape .item .pct.flat { color: var(--muted); margin-left: 4px; }
-
-  .empty-state { color: var(--muted); font-size: 13px; padding: 12px; text-align: center;
-    background: var(--card); border: 1px dashed var(--border); border-radius: 8px; }
-
-  footer { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--border);
-    color: var(--muted); font-size: 12px; text-align: center; }
-  .live-indicator { font-size: 12px; color: var(--muted); margin-left: 8px; }
-  .live-indicator.live { color: var(--pos); }
-
-  /* 다음 장 목표 배너 — 장 없는 기간에만 노출 */
-  .resolution-box {
-    margin-top: 20px;
-    background: var(--card); border: 1px solid var(--border);
-    border-top: 3px solid var(--accent);
-    border-radius: 10px; padding: 20px 22px;
-  }
-  .resolution-box .res-header {
-    display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap;
-  }
-  .resolution-box .res-title {
-    font-size: 13px; font-weight: 800; text-transform: uppercase;
-    letter-spacing: 0.06em; color: var(--accent);
-  }
-  .resolution-box .res-target {
-    font-size: 32px; font-weight: 900; font-variant-numeric: tabular-nums;
-    color: var(--fg); line-height: 1;
-  }
-  .resolution-box .res-target span { font-size: 16px; color: var(--muted); font-weight: 500; }
-  .resolution-box .res-basis {
-    font-size: 13px; color: var(--muted); margin-bottom: 16px; line-height: 1.5;
-  }
-  .resolution-box .res-basis strong { color: var(--fg); }
-  .resolution-box .res-plan {
-    list-style: none; padding: 0; margin: 0;
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .resolution-box .res-plan li {
-    display: grid; grid-template-columns: auto 1fr;
-    gap: 10px 12px; font-size: 13px; line-height: 1.5;
-  }
-  .resolution-box .res-plan .num {
-    font-size: 11px; font-weight: 800; color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 12%, transparent);
-    border-radius: 4px; padding: 2px 6px; white-space: nowrap;
-    align-self: start; margin-top: 1px;
-  }
-  .resolution-box .res-plan .rule { font-weight: 700; color: var(--fg); }
-  .resolution-box .res-plan .why { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .resolution-box .res-reopen {
-    margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border);
-    font-size: 12px; color: var(--muted);
-  }
-  .resolution-box .res-reopen strong { color: var(--fg); }
+  {% include '_theme.css.j2' %}
+  body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+    background: var(--bg); color: var(--fg); margin: 0; line-height: 1.6; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 20px 16px 80px; }
+  header.top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+  header.top h1 { font-size: 20px; margin: 0; }
+  header.top .meta { font-size: 12px; color: var(--muted); }
+  header.top a.calendar-link { margin-left: auto; font-size: 13px; color: var(--accent); text-decoration: none; }
+  h2 { font-size: 16px; margin: 24px 0 10px; }
+  .section { background: var(--card); border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; }
+  .section h3 { margin: 0 0 8px; font-size: 14px; color: var(--accent); }
+  .section ul { margin: 0; padding-left: 18px; }
+  .section li { margin: 4px 0; font-size: 14px; }
+  .highlights { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+  .hl { border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; background: var(--bg); }
+  .hl .kind { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .hl .title { font-weight: 600; font-size: 13px; margin: 4px 0 2px; }
+  .hl .detail { font-size: 12px; color: var(--muted); }
+  .hl a { color: var(--accent); font-size: 11px; text-decoration: none; }
+  .upcoming ul { list-style: none; padding: 0; margin: 0; }
+  .upcoming li { display: flex; gap: 12px; padding: 4px 0; border-bottom: 1px dashed var(--border); font-size: 13px; }
+  .upcoming li:last-child { border-bottom: none; }
+  .upcoming .when { color: var(--muted); flex: 0 0 90px; font-feature-settings: "tnum"; }
+  footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: 11px; }
 </style>
 </head>
-<body data-date="{{ date }}">
-<main>
-  <header>
-    <nav><a href="archive.html">📋 예측</a> · <a href="game.html?room=RT3NTBNDM">🎲 국장 예측</a></nav>
-    <h1>🌙 장 마감 후 뉴스</h1>
-    <time>{{ date }} {{ generated_at_display }} 발행<span class="live-indicator" id="live-indicator"></span></time>
-    {% if next_briefing %}<div class="next-brief">다음 브리핑 — {{ next_briefing }}</div>{% endif %}
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>포스트마켓 다이제스트</h1>
+    <span class="meta">{{ digest.date }} · {{ digest.generated_label }}</span>
+    <a class="calendar-link" href="calendar.html">캘린더 보기 →</a>
   </header>
 
-  {# 다음 장 목표 — 장 없는 기간(주말·연휴)에만 노출 #}
-  {% if resolution %}
-  <div class="resolution-box">
-    <div class="res-header">
-      <span class="res-title">📋 다음 장 목표</span>
-      <span class="res-target">{{ resolution.target_rate }}<span>%</span></span>
-    </div>
-    <div class="res-basis">
-      최근 5일 평균 <strong>{{ resolution.recent_avg_rate }}%</strong> → 목표 <strong>{{ resolution.target_rate }}%</strong>.
-      {{ resolution.basis }}
-    </div>
-    {% if resolution.plan %}
-    <ul class="res-plan">
-      {% for item in resolution.plan %}
-      <li>
-        <span class="num">{{ loop.index }}</span>
-        <div>
-          <div class="rule">{{ item.rule }}</div>
-          {% if item.why %}<div class="why">↳ {{ item.why }}</div>{% endif %}
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-    {% if resolution.reopen_date %}
-    <div class="res-reopen">장 재개 <strong>{{ resolution.reopen_date }}</strong></div>
-    {% endif %}
+  {%- if digest.tldr %}
+  <div class="section">
+    <h3>한 줄 요약</h3>
+    <p style="margin:0; font-size:14px;">{{ digest.tldr }}</p>
   </div>
-  {% endif %}
+  {%- endif %}
 
-  {# 🇰🇷 한국 장 마감 후 — 평일에만, 15:30~발행시점 사이 뉴스 #}
-  {% if korea_after_close %}
-  <section>
-    <h2>🇰🇷 한국 장 마감 후</h2>
-    <ul class="news-list">
-      {% for n in korea_after_close %}
-      <li>
-        <span class="dot {{ n.impact or 'neutral' }}"></span>
-        <div class="body">
-          <div class="headline">
-            {% if n.url %}<a href="{{ n.url }}" target="_blank" rel="noopener">{{ n.headline }}</a>
-            {% else %}{{ n.headline }}{% endif %}
-          </div>
-          {% if n.summary %}<div class="summary">{{ n.summary }}</div>{% endif %}
-          <div class="meta">
-            {% if n.impact_label %}<span class="impact-chip {{ n.impact }}">{{ n.impact_label }}</span>{% endif %}
-            {% if n.source %}<span>{{ n.source }}</span>{% endif %}
-            {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
-          </div>
-        </div>
-      </li>
-      {% endfor %}
+  {%- for sec in digest.sections %}
+  <div class="section">
+    <h3>{{ sec.heading }}</h3>
+    {%- if sec.bullets %}
+    <ul>
+      {%- for b in sec.bullets %}<li>{{ b }}</li>{%- endfor %}
     </ul>
-  </section>
-  {% endif %}
+    {%- endif %}
+    {%- if sec.body %}
+    <div style="font-size:14px; white-space:pre-wrap;">{{ sec.body }}</div>
+    {%- endif %}
+  </div>
+  {%- endfor %}
 
-  {# 🇺🇸 미국 장 시초 — 발행 시점은 23:00, 미장 30분 진행됨 #}
-  {% if us_market and (us_market.indices or us_market.proxies or us_market.headlines) %}
-  <section>
-    <h2>🇺🇸 미국 장 (시초)</h2>
-    <div class="us-tape">
-      {% if us_market.indices %}
-      <div class="row">
-        <div class="row-title">주요 지수</div>
-        <div class="items">
-          {% for idx in us_market.indices %}
-          <span class="item">
-            <span class="name">{{ idx.name }}</span>
-            <span class="value">{{ idx.value }}</span>
-            <span class="pct {{ idx.direction or 'flat' }}">{{ idx.change_pct }}</span>
-          </span>
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %}
-      {% if us_market.proxies %}
-      <div class="row">
-        <div class="row-title">간밤 프록시 종목</div>
-        <div class="items">
-          {% for p in us_market.proxies %}
-          <span class="item">
-            <span class="name">{{ p.symbol }}</span>
-            <span class="value">{{ p.value }}</span>
-            <span class="pct {{ p.direction or 'flat' }}">{{ p.change_pct }}</span>
-          </span>
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %}
+  {%- if digest.highlights %}
+  <h2>주요 헤드라인</h2>
+  <div class="highlights">
+    {%- for h in digest.highlights %}
+    <div class="hl">
+      {%- if h.kind %}<div class="kind">{{ h.kind }}</div>{%- endif %}
+      <div class="title">{{ h.title }}</div>
+      {%- if h.detail %}<div class="detail">{{ h.detail }}</div>{%- endif %}
+      {%- if h.url %}<a href="{{ h.url }}" target="_blank" rel="noopener">원문 →</a>{%- endif %}
     </div>
-    {% if us_market.headlines %}
-    <ul class="news-list" style="margin-top:10px">
-      {% for n in us_market.headlines %}
-      <li>
-        <span class="dot {{ n.impact or 'neutral' }}"></span>
-        <div class="body">
-          <div class="headline">
-            {% if n.url %}<a href="{{ n.url }}" target="_blank" rel="noopener">{{ n.headline }}</a>
-            {% else %}{{ n.headline }}{% endif %}
-          </div>
-          {% if n.summary %}<div class="summary">{{ n.summary }}</div>{% endif %}
-          <div class="meta">
-            {% if n.impact_label %}<span class="impact-chip {{ n.impact }}">{{ n.impact_label }}</span>{% endif %}
-            {% if n.source %}<span>{{ n.source }}</span>{% endif %}
-          </div>
-        </div>
-      </li>
-      {% endfor %}
+    {%- endfor %}
+  </div>
+  {%- endif %}
+
+  {%- if digest.upcoming %}
+  <h2>내일 / 이번 주 주목</h2>
+  <div class="section upcoming">
+    <ul>
+      {%- for u in digest.upcoming %}
+      <li><span class="when">{{ u.date }}</span><span>{{ u.title }}{% if u.category %} <small style="color:var(--muted)">({{ u.category }})</small>{% endif %}</span></li>
+      {%- endfor %}
     </ul>
-    {% endif %}
-  </section>
-  {% endif %}
+  </div>
+  {%- endif %}
 
-  {# 🌏 글로벌 매크로 #}
-  {% if macro %}
-  <section>
-    <h2>🌏 글로벌 매크로</h2>
-    <ul class="news-list">
-      {% for n in macro %}
-      <li>
-        <span class="dot {{ n.impact or 'neutral' }}"></span>
-        <div class="body">
-          <div class="headline">
-            {% if n.url %}<a href="{{ n.url }}" target="_blank" rel="noopener">{{ n.headline }}</a>
-            {% else %}{{ n.headline }}{% endif %}
-          </div>
-          {% if n.summary %}<div class="summary">{{ n.summary }}</div>{% endif %}
-          <div class="meta">
-            {% if n.impact_label %}<span class="impact-chip {{ n.impact }}">{{ n.impact_label }}</span>{% endif %}
-            {% if n.source %}<span>{{ n.source }}</span>{% endif %}
-            {% if n.time_ago %}<span class="time-ago">{{ n.time_ago }}</span>{% endif %}
-          </div>
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
-  </section>
-  {% endif %}
-
-  {# 💼 포트폴리오 시간외 공시 — 평일에만, 한국 종목 공시 #}
-  {% if disclosures %}
-  <section>
-    <h2>💼 포트폴리오 시간외 공시</h2>
-    <ul class="news-list">
-      {% for d in disclosures %}
-      <li>
-        <span class="dot {{ d.impact or 'neutral' }}"></span>
-        <div class="body">
-          <div class="headline">
-            <strong>{{ d.name }}</strong> —
-            {% if d.url %}<a href="{{ d.url }}" target="_blank" rel="noopener">{{ d.title }}</a>
-            {% else %}{{ d.title }}{% endif %}
-          </div>
-          <div class="meta">
-            {% if d.impact_label %}<span class="impact-chip {{ d.impact }}">{{ d.impact_label }}</span>{% endif %}
-            {% if d.time_ago %}<span class="time-ago">{{ d.time_ago }}</span>{% endif %}
-          </div>
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
-  </section>
-  {% endif %}
-
-  {# 모든 섹션이 비었을 때만 빈 상태 안내 #}
-  {% if not korea_after_close and not us_market and not macro and not disclosures %}
-  <section>
-    <div class="empty-state">아직 수집된 시장 영향 뉴스가 없습니다. 23:00 자동 발행 후 이 페이지가 채워집니다.</div>
-  </section>
-  {% endif %}
-
-  <footer>k-ant-daily · <a href="https://github.com/yummyummyummy/keyword-stock-daily" target="_blank" rel="noopener">GitHub</a></footer>
-</main>
-
-<script>
-  /* US ticker live polling — page is meant to be left open between 23:00
-     KST and the next briefing, so refresh indices + proxy prices every 60s
-     using the existing Worker /ticker endpoint. */
-  const TICKER_API = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/ticker";
-  const POLL_MS = 60_000;
-
-  function kstNow() {
-    const utc = Date.now() + new Date().getTimezoneOffset() * 60_000;
-    return new Date(utc + 9 * 60 * 60_000);
-  }
-  function setIndicator(state, text) {
-    const el = document.getElementById("live-indicator");
-    if (!el) return;
-    el.classList.remove("live");
-    if (state === "live") el.classList.add("live");
-    el.textContent = text;
-  }
-  function fmtKstTime(d) {
-    return ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
-  }
-
-  // Map index/proxy DOM by .name → element so we can update value+pct in place.
-  function indexUsTape() {
-    const out = {};
-    document.querySelectorAll(".us-tape .item").forEach((el) => {
-      const name = el.querySelector(".name")?.textContent.trim();
-      if (name) out[name] = el;
-    });
-    return out;
-  }
-
-  async function refreshUsTape() {
-    if (!TICKER_API) return;
-    const map = indexUsTape();
-    const symbols = Object.keys(map);
-    if (!symbols.length) return;
-    try {
-      const url = TICKER_API + "?items=" + encodeURIComponent(symbols.join(","));
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) return;
-      const data = await res.json();
-      let applied = 0;
-      Object.entries(data).forEach(([name, q]) => {
-        const el = map[name];
-        if (!el || !q) return;
-        const valEl = el.querySelector(".value");
-        const pctEl = el.querySelector(".pct");
-        if (valEl && q.value) valEl.textContent = q.value;
-        if (pctEl) {
-          pctEl.classList.remove("up", "down", "flat");
-          pctEl.classList.add(q.direction || "flat");
-          if (q.change_pct) pctEl.textContent = q.change_pct;
-        }
-        applied += 1;
-      });
-      if (applied > 0) setIndicator("live", "🟢 Live · " + fmtKstTime(kstNow()));
-    } catch {
-      /* silent */
-    }
-  }
-
-  if (TICKER_API) {
-    refreshUsTape();
-    setInterval(refreshUsTape, POLL_MS);
-  }
-</script>
+  <footer>
+    {{ digest.generated_label }} · <a href="calendar.html" style="color:var(--muted)">캘린더</a>
+  </footer>
+</div>
 </body>
 </html>

@@ -4,30 +4,6 @@ compatibility_date = "2024-10-01"
 
 # Free plan — no custom domain needed. After `wrangler deploy` you'll get
 # a URL like https://k-ant-daily-quotes.<your-subdomain>.workers.dev
-#
-# To change the subdomain (optional):
-#   wrangler whoami       # shows your account id
-#   Cloudflare dashboard → Workers & Pages → Settings → Subdomain
 
 [observability]
 enabled = true
-
-# ─── Game (국장 예측) — D1 + cron triggers ──────────────────────────────────
-# First-time setup:
-#   wrangler d1 create k-ant-game        # → copy the database_id below
-#   # then in this file, replace REPLACE_WITH_DATABASE_ID with the printed id
-#   wrangler d1 execute k-ant-game --file=migrations/0001_game_init.sql --remote
-#   wrangler deploy
-#
-# Voting window: 전날 20:00 ~ 당일 09:00 KST (시간 기반 체크).
-# Single cron at 20:10 KST resolves today + opens next trading day.
-
-[[d1_databases]]
-binding       = "DB"
-database_name = "k-ant-game"
-database_id   = "165810cd-ea5e-45df-a8ba-e53f7f0f74a4"
-
-[triggers]
-crons = [
-  "10 11 * * *",   # 20:10 KST — resolve today + open next trading day
-]

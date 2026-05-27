@@ -1,0 +1,364 @@
+# events.yml — 수동 큐레이션 캘린더 이벤트
+#
+# 자동 수집 이벤트 (ClinicalTrials.gov primary completion, DART 공시 등)
+# 는 .tmp/events_*.json 으로 떨어지고 scripts/build_calendar.py 가 이 파일과 머지함.
+# 여기에는 사람이 확인한 / 외부 API 로 못 잡는 이벤트만.
+#
+# Schema (필드)
+#   date          (필수) YYYY-MM-DD. 다일 이벤트는 date_range 사용
+#   date_range    [시작, 끝]  (date 와 둘 중 하나)
+#   category      필수. macro | conference | holiday | earnings | ir | clinical | other
+#   title         필수. 짧고 직관적인 제목
+#   description   선택. 1~2줄 factual 부연
+#   impact        선택. "보는 법" — 결과에 따른 시장/보유종목 영향 시나리오
+#   related_codes 선택. 관련 보유종목 KRX 코드 배열
+#   tags          선택. 검색/필터용
+#   source        선택. 원문 링크
+#   importance    선택 1~3. 3=헤더에 강조
+
+events:
+
+  # ─── KRX 휴장일 2026 ─────────────────────────────────────────────
+  # 출처: calendarlabs.com/krx-market-holidays-2026
+  - date: "2026-08-17"
+    category: "holiday"
+    title: "광복절 대체휴장 (월)"
+    description: "8/15 광복절이 토요일이라 8/17(월) 대체휴장. 토일월 3일 연휴."
+    impact: |
+      📊 보는 법
+      • 3일 휴장 동안 미국 시장이 크게 움직이면 화요일 (8/18) 한국 개장에 갭으로 반영
+      • 특히 미국 메가캡 (NVDA·AAPL 등) · 반도체 지수 (^SOX) 흐름이 한국 반도체에 직격
+      • 휴장 중 글로벌 매크로 이벤트 (CPI·FOMC 의사록 등) 발표되면 변동성 더 커짐
+
+      📁 우리 보유에
+      • SK하이닉스/삼성전자/한미반도체 — 미국 SOX 흐름이 화요일 시초 결정
+      • 바이오 7종 — XBI/IBB 흐름이 갭 방향 영향
+    source: "https://www.calendarlabs.com/krx-market-holidays-2026/"
+    importance: 2
+
+  - date: "2026-09-24"
+    category: "holiday"
+    title: "추석 휴장 (목)"
+    description: "추석 본일. 9/24~9/27 4일 연휴 (목·금·토·일). 9/28(월) 개장."
+    impact: |
+      📊 보는 법
+      • 4일 연휴 — 1년 중 가장 긴 휴장. 글로벌 변동 누적이 갭에 반영
+      • 9월말 = Fed 9/15-16 결정 직후 + 미 분기말 리밸런싱 시기 → 변동성 클 가능성
+      • 9/28(월) 한국 개장 = 갭으로 일주일치 미국 흐름 반영
+
+      📁 우리 보유에
+      • 모든 종목 영향. 연휴 전 포지션 관리 (현금화/유지) 고민 필요한 시점
+      • 바이오 — 추석 직전 ESMO (10/23~) 임박, abstract 공개 시작 시기와 겹침
+    source: "https://www.calendarlabs.com/krx-market-holidays-2026/"
+    importance: 3
+
+  - date: "2026-09-25"
+    category: "holiday"
+    title: "추석 연휴 휴장 (금)"
+    description: "추석 연휴 두 번째 날. 9/28(월) 개장."
+    impact: |
+      위 9/24 항목 참조 — 동일 연휴 구간.
+    source: "https://www.calendarlabs.com/krx-market-holidays-2026/"
+    importance: 2
+
+  - date: "2026-10-05"
+    category: "holiday"
+    title: "개천절 대체휴장 (월)"
+    description: "개천절(10/3 토) 대체휴장. 토일월 3일 연휴."
+    impact: |
+      📊 보는 법
+      • 3일 연휴. 미국 시장 변동 → 화요일 갭 반영
+      • 10/9 한글날 또 휴장 → 10월 첫째~둘째 주는 거래일 부족, 변동성 빈도↑
+    source: "https://www.calendarlabs.com/krx-market-holidays-2026/"
+    importance: 2
+
+  - date: "2026-10-09"
+    category: "holiday"
+    title: "한글날 휴장 (금)"
+    description: "10/9~10/11 3일 연휴 (금·토·일). 10/12(월) 개장."
+    impact: |
+      📊 보는 법
+      • 미 9월 CPI (보통 10월 둘째 주 발표) 와 겹칠 가능성 — 발표 결과를 12일 갭으로 반영
+      • ESMO (10/23~) 직전 시기 — 종양학 abstract 공개 흐름과 맞물림
+
+      📁 우리 보유에
+      • 바이오 (특히 종양학 4종: 알테오젠·에이비엘바이오·앱클론·보로노이) ESMO 모멘텀 시작
+    source: "https://www.calendarlabs.com/krx-market-holidays-2026/"
+    importance: 2
+
+  - date: "2026-12-25"
+    category: "holiday"
+    title: "크리스마스 휴장 (금)"
+    description: "12/25~12/27 3일 연휴. 12/28(월) 개장."
+    impact: |
+      📊 보는 법
+      • 미국도 12/25 휴장. 글로벌 거래량 자체가 적은 시기 (산타 랠리 vs 차익 실현)
+      • 12/8-9 FOMC (점도표) 직후 + 연말 윈도우 드레싱 시기
+
+      📁 우리 보유에
+      • 연말까지 약 1주 — 시장 전체 분위기가 종목별 fundamentals 보다 우선 작용
+    source: "https://www.calendarlabs.com/krx-market-holidays-2026/"
+    importance: 2
+
+  # ─── FOMC 정례회의 2026 ──────────────────────────────────────────
+  # 둘째 날 14:00 ET 성명 발표 + Powell 기자회견.
+  # 3/6/9/12월은 경제전망(SEP) + 점도표 동반.
+  - date_range: ["2026-06-16", "2026-06-17"]
+    category: "macro"
+    title: "FOMC 정례회의 (성명·점도표)"
+    description: "둘째 날 14:00 ET (한국 18일 03:00) 성명 발표 + Powell 기자회견 14:30 ET. 6월은 경제전망 (SEP) + 점도표 (Dot Plot) 동반."
+    impact: |
+      🎯 핵심 결정
+      • 기준금리 (Fed Funds Rate) 결정 + 향후 정책 시그널
+      • SEP/점도표: 위원 19명의 향후 금리 전망 분포 → 연내 추가 인하 횟수 시그널
+
+      📊 보는 법
+      🦅 매파적 (점도표↑, 인하 지연 시사)
+        → 미 장기금리↑, 달러 강세
+        → 위험자산 하락. 특히 성장주/바이오 (할인율↑ → 미래현금흐름 가치↓)
+        → 한국 증시: KOSDAQ 약세, KOSPI 대형주 (수출주) 환차익 일부 상쇄
+
+      🕊️ 비둘기적 (점도표↓, 인하 가속 시사)
+        → 위험자산 랠리, 코스닥/바이오 강세
+        → 환율 하락 → 수출주 (반도체) 환차손 일부
+
+      📁 우리 보유에
+      • 알테오젠/보로노이/에이비엘바이오 등 코스닥 바이오 → 금리 민감도 최고
+      • SK하이닉스/한미반도체 → 달러 강세 시 환차익 (+), 글로벌 IT 수요 위축 우려 (-)
+      • 한국금융지주 → 미국 금리 인하 사이클 진입 시 한국 채권 평가차익
+      • 현대차 → 달러 강세 = 수출 마진↑ 호재
+    source: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    importance: 3
+
+  - date_range: ["2026-07-28", "2026-07-29"]
+    category: "macro"
+    title: "FOMC 정례회의 (성명)"
+    description: "성명 발표 + Powell 기자회견. 7월은 경제전망/점도표 없음 (1월·4월·7월·10월은 일반 회의)."
+    impact: |
+      🎯 핵심
+      • 점도표 없는 일반 회의 → 시장 영향도 6/12월보다는 작음
+      • 그러나 6월 점도표 이후 첫 회의 → 정책 방향 재확인 기능
+
+      📊 보는 법
+      • 메시지가 6월 점도표보다 매파/비둘기 → 시장이 점도표를 즉각 재평가
+      • 메시지가 점도표와 일치 → 시장 무반응 (가격에 반영 완료)
+
+      📁 우리 보유에 (FOMC 일반 회의 시)
+      • 통상 6/12월 회의보다 변동성 작음 — 다만 인플레/고용 지표 누적이 매파 강화 명분 되면 큰 변동 가능
+    source: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    importance: 2
+
+  - date_range: ["2026-09-15", "2026-09-16"]
+    category: "macro"
+    title: "FOMC 정례회의 (성명·점도표)"
+    description: "9월은 경제전망(SEP) + 점도표 동반. 4분기 정책 방향 시그널."
+    impact: |
+      🎯 핵심
+      • 9월 점도표 = 연내 (4분기) 추가 인하 여부 확정 시점
+      • 보통 9월 회의가 한 해 가장 큰 시장 변동성 만듦
+
+      📊 보는 법 (6월 FOMC 항목과 동일 매트릭스)
+      🦅 매파적 → 위험자산 하락, 코스닥 바이오 약세
+      🕊️ 비둘기적 → 위험자산 랠리, 코스닥/바이오 강세
+
+      ⏰ 시기적 특이사항
+      • 한국 추석 연휴 (9/24-25) 직전 회의 — 9/17(목) 한국 시초가 갭으로 반영, 추석 휴장 들어가기 전 변동성 큼
+      • 미국 3분기 실적 시즌 초입과 겹침
+    source: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    importance: 3
+
+  - date_range: ["2026-10-27", "2026-10-28"]
+    category: "macro"
+    title: "FOMC 정례회의 (성명)"
+    description: "10월은 일반 회의 (점도표 없음). 11월 미 중간선거 직전 — 정치적 중립 발언 톤 가능성."
+    impact: |
+      🎯 핵심
+      • 점도표 없는 일반 회의
+      • 미 중간선거 (11/3) 직전 — Fed 의장 정치 발언 최소화하는 경향
+      • 9월 점도표 이후 첫 회의 → 인플레/고용 데이터 재평가
+
+      📊 보는 법
+      • 무난한 톤 → 시장 무반응 가능 (선거 전 관망 분위기)
+      • 인플레 재가속 등 변수 등장 시 매파 톤 → 위험자산 하락
+
+      📁 우리 보유에
+      • 일반 회의 + 선거 직전 → 변동성 평소보다 작을 가능성
+    source: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    importance: 2
+
+  - date_range: ["2026-12-08", "2026-12-09"]
+    category: "macro"
+    title: "FOMC 정례회의 (성명·점도표)"
+    description: "12월은 경제전망(SEP) + 점도표 동반. 한 해 마지막 회의 + 2027년 정책 가이드라인 시그널."
+    impact: |
+      🎯 핵심
+      • 한 해 마지막 회의 — 차년도 (2027년) 정책 경로 첫 시그널
+      • 점도표가 다음 해 시장 컨센서스 형성 출발점
+
+      📊 보는 법
+      • 12월 회의는 연말 portfolio 리밸런싱 + 차년도 전망과 맞물려 변동 큼
+      • 특히 점도표가 시장 컨센서스와 크게 다르면 즉각 큰 변동 (수일~수주 지속)
+
+      📁 우리 보유에
+      • 12월 = 한 해 마무리 + 양도소득세 시즌 (대주주 매도 압력) — 매크로보다 수급 영향 클 수도
+      • 다만 점도표 충격 시는 매크로 우선
+    source: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    importance: 3
+
+  # ─── 한국은행 금융통화위원회 2026 ──────────────────────────────
+  - date: "2026-07-16"
+    category: "macro"
+    title: "한은 금통위 (통화정책방향 결정)"
+    description: "기준금리 결정 회의. 10:00 KST 결정문 발표 + 11:20 이창용 총재 기자회견."
+    impact: |
+      🎯 핵심 결정
+      • 한국 기준금리 결정. 현 운영방향(2026): 추가 인하 여부·시기를 물가·성장·금융안정 종합 검토
+
+      📊 보는 법
+      🔵 동결 (현 컨센서스 시) → 원화 약세 압력 유지 (한미 금리차), 채권시장 무반응
+      🟢 인하 → 원화 약세 가속, KOSPI 부동산·건설·은행 차별화
+        - 대출 수요↑ 기대 → 건설/플랜트 호재
+        - NIM 압박 → 은행 약세
+        - 환율↑ → 수출주 (반도체·자동차) 환차익
+      🔴 인상 (가능성 낮음) → 원화 강세, 부동산·내수주 압박
+
+      📁 우리 보유에
+      • 한국금융지주 (증권) — 거래대금 환경 + 채권 평가손익
+      • 삼성E&A (건설/플랜트) — 금리 인하 시 수주 환경 우호
+      • 현대차 / SK하이닉스 / 한미반도체 — 환율 방향이 직접 영향
+      • 코스닥 바이오 7종 — 한국 금리보다 미국 금리 (FOMC) 가 우선 작용
+    source: "https://www.bok.or.kr/portal/singl/crncyPolicyDrcMtg/listYear.do?mtgSe=A&menuNo=200755"
+    importance: 3
+
+  # ─── 미국 경제지표 ────────────────────────────────────────────
+  - date: "2026-06-10"
+    category: "macro"
+    title: "미 5월 CPI 발표"
+    description: "8:30 AM ET (한국 21:30) 발표. Fed 금리 결정의 핵심 인풋 — FOMC 일주일 전 발표라 6/16-17 회의에 직접 영향."
+    impact: |
+      🎯 핵심
+      • Headline CPI + Core CPI (식료품·에너지 제외) 둘 다 봄. 시장이 더 보는 건 Core
+      • 6/16-17 FOMC 직전 발표 → FOMC 결과를 사실상 좌우
+
+      📊 보는 법
+      🔥 Hot (컨센서스 상회)
+        → 미 장기금리↑, 달러 강세
+        → Fed 인하 기대 후퇴 → 위험자산 하락
+        → 한국 증시 6/11(목) 시초 갭하락, 특히 코스닥/바이오 큰 폭 하락
+
+      ❄️ Cool (컨센서스 부합/하회)
+        → 인하 기대 강화 → 위험자산 랠리
+        → 한국 증시 6/11 갭상승, 코스닥/바이오 강세
+
+      📁 우리 보유에
+      • CPI 다음 거래일 (6/11 목) 한국 증시는 미국 반응을 추종
+      • Hot CPI 후 코스닥 성장주 (바이오 7종) 하락 폭이 가장 큼
+      • 반도체 (수출주) 는 달러 영향으로 일부 상쇄
+    source: "https://www.bls.gov/schedule/news_release/cpi.htm"
+    importance: 3
+
+  # ─── 바이오 학회 2026 ────────────────────────────────────────
+  # 보유 바이오: 알테오젠(196170), 에이비엘바이오(298380), 앱클론(174900),
+  # 보로노이(310210), 큐리옥스(445680), 코아스템켐온(166480), 셀리드(299660)
+
+  - date_range: ["2026-05-29", "2026-06-02"]
+    category: "conference"
+    title: "ASCO 2026 (미국임상종양학회 연례총회)"
+    description: "Chicago, McCormick Place. 35,000명+ 참가. 종양학 임상 데이터 readout 최대 무대."
+    related_codes: ["196170", "298380", "174900", "310210"]
+    impact: |
+      🎯 핵심
+      • 세계 최대 종양학 학회 — 임상 데이터 발표가 집중되는 무대
+      • 학회 1~2주 전부터 abstract 공개 → 회사 발표 확정되면 사전 기대감으로 상승
+      • Late-Breaking Abstract (LBA) 가 가장 임팩트 큼
+
+      📊 보는 법 (보유 종목이 abstract 채택된 경우)
+      ✅ Positive 데이터
+        → 종목 +20~50% 가능 (특히 phase 3 / LBA)
+        → 신약 사용성 확장 / 차기 라이선스 딜 기대감
+
+      ❌ Negative 데이터
+        → 종목 -30~50% 가능
+        → 임상 중단 시 phase 가치 통째 소실 가능
+
+      📁 우리 보유에 (IR 확인 필요)
+      • 알테오젠 (196170) — ALT-B4 (Merck 라이선스) 관련 발표 여부
+      • 에이비엘바이오 (298380) — Grabody-B 플랫폼 데이터
+      • 앱클론 (174900) — AT101 CAR-T 임상 결과
+      • 보로노이 (310210) — VRN-01 표적치료제 데이터
+
+      ⚠️ 회사가 abstract 채택 안 됐어도 동종업계 데이터 흐름이 sector sentiment 좌우
+    source: "https://www.asco.org/annual-meeting/dates-know"
+    importance: 3
+
+  - date_range: ["2026-06-11", "2026-06-14"]
+    category: "conference"
+    title: "EHA 2026 (유럽혈액학회 연례총회)"
+    description: "Stockholm, Stockholmsmässan. 백혈병·림프종·다발성골수종 임상 데이터 집중 발표."
+    related_codes: ["174900", "166480"]
+    impact: |
+      🎯 핵심
+      • 유럽 최대 혈액학 학회 — ASH (12월) 와 함께 혈액학 분야 빅 이벤트
+      • CAR-T / 항체 / 이중특이항체 분야 가장 활발
+
+      📊 보는 법
+      • ASCO 와 동일 메커니즘 — abstract 채택 → 사전 상승 → 데이터 품질이 결과 좌우
+      • 6/10 CPI + 6/16-17 FOMC 사이 끼어있어 매크로 노이즈와 겹침
+
+      📁 우리 보유에 (IR 확인 필요)
+      • 앱클론 (174900) — CD19 CAR-T (AT101) — 백혈병 적응증
+      • 코아스템켐온 (166480) — NurOwn 등 줄기세포 치료제 — 일부 혈액질환 적응증
+
+      ⚠️ 보유 종목 발표 없으면 sector sentiment 영향 미미
+    source: "https://ehaweb.org/connect-network/eha2026-congress"
+    importance: 2
+
+  - date_range: ["2026-10-23", "2026-10-27"]
+    category: "conference"
+    title: "ESMO 2026 (유럽종양학회 연례총회)"
+    description: "Madrid, IFEMA. 종양학 빅 데이터 readout 주요 무대 (ASCO 와 양대 행사)."
+    related_codes: ["196170", "298380", "174900", "310210"]
+    impact: |
+      🎯 핵심
+      • ASCO (5월) 와 함께 글로벌 종양학 양대 학회
+      • 보통 ASCO 에 못 낸 데이터 / 추가 후속 분석이 ESMO 에 발표됨
+      • Late-Breaking Abstract (LBA) 가 시장 영향 최대
+
+      📊 보는 법 (ASCO 와 동일)
+      ✅ Positive → +20~50%, 라이선스 딜 / 추가 임상 확장 기대
+      ❌ Negative → -30~50%, 임상 중단 리스크
+
+      📁 우리 보유에 (IR 확인 필요)
+      • 알테오젠 (196170) — ASCO 후속 데이터 가능성
+      • 에이비엘바이오 (298380) — Grabody / 이중특이항체 데이터
+      • 앱클론 (174900) — 종양 적응증
+      • 보로노이 (310210) — 표적치료제 confirmation 데이터
+
+      ⏰ 시기적
+      • 10/27-28 FOMC + 11/3 미 중간선거와 겹쳐 매크로 노이즈 큼
+    source: "https://www.esmo.org/meeting-calendar/esmo-congress-2026"
+    importance: 3
+
+  - date_range: ["2026-12-12", "2026-12-15"]
+    category: "conference"
+    title: "ASH 2026 (미국혈액학회 연례총회)"
+    description: "New Orleans. 제68회 정기총회. 혈액학 분야 글로벌 최대 행사. EHA 와 양대 행사."
+    related_codes: ["174900", "166480"]
+    impact: |
+      🎯 핵심
+      • 글로벌 최대 혈액학 학회 — CAR-T / 항체 / 이중특이항체 데이터 집중 발표
+      • 보통 한 해 가장 큰 혈액학 임상 readout 무대
+
+      📊 보는 법
+      • EHA (6월) 와 동일 메커니즘
+      • Late-Breaking Abstract (LBA) 가 핵심
+      • 회사가 oral presentation 받으면 poster 보다 임팩트 큼
+
+      📁 우리 보유에 (IR 확인 필요)
+      • 앱클론 (174900) — CD19 CAR-T (AT101) 후속 데이터
+      • 코아스템켐온 (166480) — 줄기세포 치료제 일부 적응증
+
+      ⏰ 시기적
+      • 12/8-9 FOMC (점도표) 직후 + 12/25 휴장 직전 — 연말 portfolio 정리 분위기와 겹침
+    source: "https://www.hematology.org/meetings/annual-meeting"
+    importance: 3

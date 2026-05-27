@@ -1,5 +1,3 @@
-import { handleGameRequest, handleGameCron } from "./game.js";
-
 // k-ant-daily quote proxy — Cloudflare Worker
 //
 // Proxies Naver Finance's realtime polling + news endpoints and adds CORS
@@ -413,11 +411,6 @@ async function fetchAllNxtQuotes(codes) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    // Game routes need their own CORS (POST + Content-Type), so handle them
-    // *before* the global OPTIONS short-circuit.
-    if (url.pathname.startsWith("/game/")) {
-      return handleGameRequest(request, env, ctx);
-    }
     if (request.method === "OPTIONS") {
       return new Response(null, { status: 204, headers: CORS_HEADERS });
     }
@@ -612,10 +605,5 @@ export default {
     });
     ctx.waitUntil(cache.put(cacheKey, response.clone()));
     return response;
-  },
-
-  // Cron triggers — game lifecycle (open / lock / resolve).
-  async scheduled(event, env, ctx) {
-    ctx.waitUntil(handleGameCron(event, env, ctx));
   },
 };

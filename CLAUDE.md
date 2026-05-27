@@ -1,7 +1,11 @@
 # CLAUDE.md — k-ant-daily
 
-Automated daily KRX (Korea Exchange) briefing system for a friend group's stock portfolio.
-Static site on GitHub Pages + Claude Code CLI agent + Cloudflare Worker for live quotes.
+친구 그룹의 한국 주식 포트폴리오 기반 **월간 이벤트 캘린더 + 일일 보유종목 트래커**.
+GitHub Pages 정적 사이트 + Claude Code CLI 에이전트 + Cloudflare Worker (시세 프록시).
+
+## 컨셉
+
+매일 아침 캘린더와 보유종목 시세를 갱신해 publish. **예측·베팅·매매 의견 없음** — 사실/일정 기반 트래킹만.
 
 ## Behavioral Guidelines
 
@@ -28,8 +32,6 @@ Before implementing:
 - No error handling for impossible scenarios.
 - If you write 200 lines and it could be 50, rewrite it.
 
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
-
 ### 3. Surgical Changes
 
 **Touch only what you must. Clean up only your own mess.**
@@ -38,34 +40,21 @@ When editing existing code:
 - Don't "improve" adjacent code, comments, or formatting.
 - Don't refactor things that aren't broken.
 - Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it — don't delete it.
 
 When your changes create orphans:
 - Remove imports/variables/functions that YOUR changes made unused.
 - Don't remove pre-existing dead code unless asked.
 
-The test: every changed line should trace directly to the user's request.
-
 ### 4. Goal-Driven Execution
 
 **Define success criteria. Loop until verified.**
-
-Transform tasks into verifiable goals:
-- "Add validation" → "Write tests for invalid inputs, then make them pass"
-- "Fix the bug" → "Write a test that reproduces it, then make it pass"
-- "Refactor X" → "Ensure tests pass before and after"
 
 For multi-step tasks, state a brief plan:
 
 ```
 1. [Step] → verify: [check]
 2. [Step] → verify: [check]
-3. [Step] → verify: [check]
 ```
-
-Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
-
-**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
 
 ---
 
@@ -73,131 +62,117 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 | Time (KST) | Job | Skill / Script | Output |
 |---|---|---|---|
-| 07:30 | Pre-market briefing | `/daily-report` | `docs/YYYY-MM-DD.html` + `.summary.json` |
-| 08:45 | NXT snapshot | `snapshot_nxt.py` | NXT pre-open data baked into summary.json |
-| 20:10 | Post-session review | `/daily-review` | Review overlay on same HTML |
-| 23:00 | Post-market digest | `/post-market-digest` | `docs/digest.html` |
+| 평일 07:30 | 캘린더 + 보유종목 갱신 | `/daily-report` | `docs/calendar.html`, `docs/events.json` |
+| 매일 23:00 | 포스트마켓 다이제스트 | `/post-market-digest` | `docs/digest.html` |
 
 ## Tech Stack
 
-- **Python 3.11+** — data collection & rendering (`requests`, `beautifulsoup4`, `yfinance`, `Jinja2`, `PyYAML`)
+- **Python 3.11+** — `requests`, `beautifulsoup4`, `PyYAML`, `Jinja2`
 - **Jinja2 templates** — `templates/*.html.j2` → `docs/*.html`
-- **Cloudflare Worker** — `worker/src/index.js`, live quote CORS proxy (Naver/Upbit)
-- **GitHub Pages** — static deploy from `docs/` folder
-- **macOS launchd** — `scripts/launchd/` scheduler (Mac mini 24/7)
-- **Claude Code CLI** — `claude --dangerously-skip-permissions --print "/daily-report"` non-interactive execution
+- **Cloudflare Worker** — `worker/src/index.js`, 시세 CORS 프록시 (Naver/Upbit)
+- **GitHub Pages** — static deploy from `docs/`
+- **macOS launchd** — `scripts/launchd/`
+- **Claude Code CLI** — `claude --dangerously-skip-permissions --print "/daily-report"` non-interactive 실행
 
 ## Directory Structure
 
 ```
-stocks.yml                     # Stock master — code, name, owners, leader, overnight_proxy, deep_dive
+stocks.yml                     # 종목 — code, name, owners, leader, overnight_proxy
+                               # 옵션: clinical_sponsor (CT.gov 검색), dart_corp_code (DART)
+events.yml                     # 수동 큐레이션 이벤트 (학회/거시/IR/휴장)
 scripts/
-  fetch_news.py                # Naver/yfinance/Upbit → .tmp/news.json
-  render.py                    # summary.json → HTML + docs/YYYY-MM-DD.summary.json persistent artifact
-  compute_review.py            # Prediction vs actual close → .tmp/summary.json with review block
-  promote_rules.py             # Cluster repeated lessons → docs/promoted_rules.md promotion
-  snapshot_nxt.py              # 08:45 NXT pre-open snapshot → baked into summary.json
-  labels.py                    # Shared label maps (recommendation, impact, outcome, etc.)
-  launchd/                     # macOS schedule: plists + wrapper shells + install.sh
+  fetch_news.py                # Naver/Upbit → .tmp/news.json (시세/뉴스/공시)
+  fetch_clinical_trials.py     # ClinicalTrials.gov v2 → .tmp/events_clinical.json
+  fetch_dart.py                # DART OpenAPI → .tmp/events_dart.json (DART_API_KEY)
+  build_calendar.py            # events.yml + .tmp/events_*.json → docs/events.json
+  render.py                    # → docs/calendar.html + docs/index.html (또는 --digest)
+  launchd/                     # macOS schedule + wrapper shells
 templates/
-  report.html.j2               # Daily briefing (main UI)
-  digest.html.j2               # Post-market digest
-  accuracy_day.html.j2         # Per-day review detail
-  accuracy.html.j2             # Cumulative stats
-  archive.html.j2              # Archive listing
-  _theme.css.j2                # Shared CSS
+  calendar.html.j2             # 메인 — 월간 캘린더 + 보유종목 패널
+  digest.html.j2               # 포스트마켓 다이제스트
+  _theme.css.j2                # 공통 색상/리셋
 worker/
-  src/index.js                 # Cloudflare Worker (GET /quote, /ticker, /stock-news, /nxt-quotes)
+  src/index.js                 # /quote · /ticker · /stock-news · /nxt-quotes
 .claude/commands/
-  daily-report.md              # Morning briefing skill (schema, curation rules, decision matrix)
-  daily-review.md              # Evening review skill
-  post-market-digest.md        # 23:00 digest skill
-docs/                          # GitHub Pages (git-tracked output)
-  YYYY-MM-DD.html              # Daily report
-  YYYY-MM-DD.summary.json      # Persistent prediction artifact (read by review)
-  accuracy/YYYY-MM-DD.html     # Per-day review page
-  digest.html                  # Post-market digest
-  index.html                   # JS router (time-of-day routing)
-  archive.html                 # Archive listing
-  promoted_rules.md            # Auto-promoted rules
-.tmp/                          # Runtime scratch (gitignored)
-  news.json                    # fetch_news.py output
-  summary.json                 # Agent-written → render input
+  daily-report.md              # 아침 갱신 스킬 (이벤트 큐레이션 규칙)
+  post-market-digest.md        # 23:00 다이제스트 스킬
+docs/                          # GitHub Pages (git-tracked)
+  calendar.html                # 메인
+  digest.html                  # 포스트마켓
+  events.json                  # 캘린더 데이터 (client-side fetch)
+  index.html                   # JS 라우터 (시간대 기반)
+.tmp/                          # 런타임 scratch (gitignored)
 ```
 
-## Core Data Flow
+## Data Flow
 
+**아침 (07:30):**
 ```
-fetch_news.py → .tmp/news.json
-                    ↓
-        Claude agent analysis & judgment
-                    ↓
-            .tmp/summary.json
-                    ↓
-render.py → docs/YYYY-MM-DD.html + docs/YYYY-MM-DD.summary.json
+fetch_news.py               → .tmp/news.json
+fetch_clinical_trials.py    → .tmp/events_clinical.json
+fetch_dart.py               → .tmp/events_dart.json
+        ↓
+events.yml (agent 가 큐레이션 갱신)
+        ↓
+build_calendar.py           → docs/events.json
+        ↓
+render.py                   → docs/calendar.html + docs/index.html
 ```
 
-Evening review:
+**저녁 (23:00):**
 ```
-docs/YYYY-MM-DD.summary.json (morning prediction)
-  + .tmp/news.json (evening close prices)
-      ↓
-  compute_review.py → .tmp/summary.json (review block merged)
-      ↓
-  Agent writes retrospective analysis
-      ↓
-  render.py → HTML overlay + accuracy pages
+fetch_news.py            → .tmp/news.json (23:00 재실행)
+        ↓
+agent → .tmp/digest.json (sections + highlights + upcoming)
+        ↓
+render.py --digest       → docs/digest.html
 ```
 
 ## Development Rules
 
 ### stocks.yml Management
-- If `owners` becomes empty, delete the entry immediately — never leave `owners: []`
-- `leader` is optional. When set, shown as the representative in the coffee banner (crown icon)
-- `overnight_proxy` is an array of overseas proxy tickers per sector (yfinance symbols)
+- `owners` 가 비면 entry 즉시 삭제 — 절대 `owners: []` 두지 말 것
+- `leader` 옵션. 지정 시 UI 대표자 (👑)
+- `clinical_sponsor` 추가하면 ClinicalTrials.gov 자동 수집 활성화
+- `dart_corp_code` 추가하면 DART 공시 자동 수집 활성화 (`DART_API_KEY` env 필요)
+
+### events.yml Management
+- 확정된 일자만 추가. 추측 금지
+- "예상" 인 경우 description 에 명시 + tags 에 `estimated`
+- 거시 일정은 출처 URL (`source`) 필수
+- 결과 시나리오 / 보유종목 영향은 `impact` 필드에 작성
 
 ### When Changing Code
-- **Keep README.md in sync** — update README.md in the same commit as any code/schema/UI/skill change
-- `labels.py` holds shared label maps used by render.py and compute_review.py — manage label additions/changes here
-- `render.py` flags: `--digest` for digest mode, `--intraday` to skip archive/accuracy regeneration
+- **Keep README.md in sync** — README.md 를 코드/스키마/UI/스킬 변경과 같은 commit 에 업데이트
+- `render.py` 플래그: `--digest` for digest mode
+- **🚨 작업 후 반드시 commit + push** — launchd briefing/digest wrapper 가 매 실행마다 `git reset --hard origin/main` 으로 작업 트리를 원격에 강제 동기화함. commit 안 한 변경은 다음 wake-up 에 모두 날아감
 
 ### Commit Message Convention
-- `report: YYYY-MM-DD briefing` — morning briefing
-- `nxt-snapshot: YYYY-MM-DD HH:MM NXT 반영` — NXT snapshot
-- `review: YYYY-MM-DD post-session review` — evening review
-- `digest: YYYY-MM-DD post-market` — post-market digest
-- General changes: `feat:` / `fix:` / `chore:` / `refactor:`
+- `report: YYYY-MM-DD calendar 갱신` — 아침 갱신
+- `digest: YYYY-MM-DD post-market` — 포스트마켓 다이제스트
+- 일반 변경: `feat:` / `fix:` / `chore:` / `refactor:`
 
 ### Prose Language Rules (Korean UI text)
-In user-facing text fields (`rationale`, `summary`, `why_material`, `day_summary`, etc.):
-- No raw JSON field names or English schema identifiers — use natural Korean
-- `priced_in=True` → "선반영", `overnight_signal=up` → "간밤 강세"
-- `buy/sell/hold` → "상승 기대/하락 경계/관망"
+사용자 대면 텍스트 (events.yml 의 title/description/impact, digest sections 등):
+- 영어 schema 키 / 약어 노출 금지 — 자연스러운 한국어
+- "예측", "강력 매수" 같은 directional language 금지
+- 사실 동사만 ("발표됐다", "공시됐다")
 
 ## Local Development
 
 ```bash
-# Setup
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
-# Fetch news
-python scripts/fetch_news.py           # → .tmp/news.json
+python scripts/fetch_news.py
+python scripts/fetch_clinical_trials.py
+DART_API_KEY=xxx python scripts/fetch_dart.py    # 옵션
 
-# Manual render (when summary.json is ready)
-python scripts/render.py .tmp/summary.json
+python scripts/build_calendar.py
+python scripts/render.py            # → docs/calendar.html + docs/index.html
+python scripts/render.py --digest   # → docs/digest.html (.tmp/digest.json 필요)
 
-# Review calculation
-python scripts/compute_review.py [YYYY-MM-DD]
-
-# Promote rules
-python scripts/promote_rules.py [--dry-run]
-
-# NXT snapshot
-python scripts/snapshot_nxt.py [YYYY-MM-DD]
-
-# Worker deploy
 cd worker && wrangler deploy
 ```
 
@@ -206,25 +181,29 @@ cd worker && wrangler deploy
 Install launchd agents: `./scripts/launchd/install.sh` (one-time).
 Logs: `~/Library/Logs/k-ant-daily/`.
 
-Four LaunchAgents:
-- `briefing` (07:30 weekdays) — `run-briefing.sh` → `claude /daily-report`
-- `nxt-snapshot` (08:45 weekdays) — `run-nxt-snapshot.sh` → `snapshot_nxt.py` + `render.py --intraday`
-- `review` (20:10 weekdays) — `run-review.sh` → `claude /daily-review`
-- `digest` (23:00 daily) — `run-digest.sh` → `claude /post-market-digest`
+두 LaunchAgents:
+- `briefing` (07:30 평일) — `run-briefing.sh` → `claude /daily-report`
+- `digest` (23:00 매일) — `run-digest.sh` → `claude /post-market-digest`
 
-Wrapper safety: exits with code 2 if working tree is dirty; runs `git reset --hard origin/main` before execution.
+Wrapper safety: `git reset --hard origin/main` before execution. **Push 안 된 로컬 변경 보호 안 됨.**
 
 ## Worker Endpoints
 
 `k-ant-daily-quotes.yummyummyummy.workers.dev`:
-- `GET /quote?codes=...` — stock quotes (30s edge cache)
-- `GET /ticker?items=KOSPI,KOSDAQ,USDKRW,BTC,ETH` — unified indicators
-- `GET /stock-news?codes=...` — stock news (5min edge cache)
-- `GET /nxt-quotes?codes=...` — NXT change rates (2min edge cache)
+- `GET /quote?codes=...` — 종목 시세 (30s edge 캐시)
+- `GET /ticker?items=KOSPI,KOSDAQ,USDKRW,BTC,ETH` — 지표/FX/암호화폐
+- `GET /stock-news?codes=...` — 종목별 뉴스 (5분 edge 캐시)
+- `GET /nxt-quotes?codes=...` — NXT 대체거래 등락률 (2분 edge 캐시)
 
 ## Important Notes
 
-- HTML/JSON in `docs/` is generated by render.py — do not edit manually (overwritten on next render)
-- `.tmp/` is gitignored runtime scratch — persistent data lives in `docs/*.summary.json`
-- Real names of friends are exposed in public HTML — switch to private repo if sensitive
-- Not investment advice — LLM-based short-term directional heuristic
+- `docs/calendar.html` · `docs/events.json` · `docs/digest.html` 은 render 가 자동 생성 — 수동 편집 금지
+- `.tmp/` 는 gitignore — 영구 데이터 없음
+- 친구 실명이 공개 HTML 에 노출됨. 민감하면 private repo
+- 투자 권유 아님 — 일정 트래킹 도구
+
+## Legacy (보존만)
+
+이전 예측 컨셉의 산출물은 git history 와 `docs/` 에 남아있음:
+- `docs/YYYY-MM-DD.html` / `.summary.json`, `docs/accuracy/`, `docs/promoted_rules.md`, `docs/archive.html`, `docs/accuracy.html`
+- 새 컨셉에서 생성 안 함. 시간 지나면 분리 archive 로 옮길 예정

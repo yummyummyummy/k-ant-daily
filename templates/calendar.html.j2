@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>k-ant-daily — 친구들 보유종목 캘린더</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<style>
+  {% include '_theme.css.j2' %}
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+    background: var(--bg); color: var(--fg);
+    margin: 0; line-height: 1.55;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 20px 16px 80px; }
+
+  header.top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px;
+    margin-bottom: 8px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  header.top h1 { font-size: 20px; margin: 0; font-weight: 700; }
+  header.top .meta { font-size: 12px; color: var(--muted); }
+
+  h2 { font-size: 16px; margin: 28px 0 12px; font-weight: 600; }
+
+  /* ─── Holdings tracker ─────────────────────────────────────── */
+  .holdings { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px; }
+  .stock {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .stock-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .stock-name { font-weight: 600; font-size: 14px; }
+  .stock-code { color: var(--muted); font-size: 11px; font-feature-settings: "tnum"; }
+  .stock-price { display: flex; align-items: baseline; gap: 6px; margin-top: 4px;
+    font-feature-settings: "tnum"; }
+  .stock-price .now { font-size: 18px; font-weight: 700; }
+  .stock-price .chg { font-size: 13px; font-weight: 600; }
+  .pos { color: var(--pos); }
+  .neg { color: var(--neg); }
+  .neu { color: var(--neu); }
+  .stock-owners { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .owner-chip {
+    display: inline-block; padding: 2px 8px; border-radius: 999px;
+    background: var(--bg); border: 1px solid var(--border);
+    font-size: 11px; color: var(--muted);
+  }
+  .stock-news { margin-top: 8px; font-size: 12px; color: var(--muted); }
+  .stock-news a { color: inherit; text-decoration: none; }
+  .stock-news a:hover { text-decoration: underline; }
+
+  /* ─── Macro ribbon ─────────────────────────────────────────── */
+  .macro { display: flex; flex-wrap: wrap; gap: 14px; margin: 10px 0 20px;
+    padding: 10px 12px; background: var(--card); border-radius: 6px;
+    font-size: 12px; font-feature-settings: "tnum"; }
+  .macro span b { font-weight: 600; }
+
+  /* ─── Today's events hero ──────────────────────────────────── */
+  .today-section { display: none; margin: 6px 0 24px; }
+  .today-section.has-events { display: block; }
+  .today-section .head {
+    display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px;
+  }
+  .today-section .head h2 {
+    margin: 0; font-size: 16px; font-weight: 700; color: var(--accent);
+  }
+  .today-section .head .count {
+    font-size: 11px; color: var(--muted); font-feature-settings: "tnum";
+  }
+  .today-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+  .today-card {
+    background: var(--card); border-radius: 8px; padding: 12px 14px;
+    border-left: 4px solid var(--accent); cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  .today-card:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .today-card .cat-tag {
+    display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 999px;
+    margin-bottom: 6px; font-weight: 600;
+  }
+  .today-card .title { font-weight: 600; font-size: 14px; margin: 2px 0 6px; line-height: 1.4; }
+  .today-card .preview {
+    font-size: 12px; color: var(--muted); line-height: 1.55;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  /* per-category border accent */
+  .today-card.cat-macro      { border-left-color: #6366f1; }
+  .today-card.cat-conference { border-left-color: #a855f7; }
+  .today-card.cat-clinical   { border-left-color: #10b981; }
+  .today-card.cat-earnings   { border-left-color: #f59e0b; }
+  .today-card.cat-ir         { border-left-color: #14b8a6; }
+  .today-card.cat-disclosure { border-left-color: #6b7280; }
+  .today-card.cat-holiday    { border-left-color: #facc15; }
+  .today-card.cat-other      { border-left-color: #94a3b8; }
+
+  /* ─── Calendar ─────────────────────────────────────────────── */
+  .cal-nav { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .cal-nav button {
+    background: var(--card); border: 1px solid var(--border); color: var(--fg);
+    padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;
+  }
+  .cal-nav button:hover { background: var(--bg); }
+  .cal-nav .month-label { font-size: 16px; font-weight: 600; }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .filters button {
+    background: transparent; border: 1px solid var(--border); color: var(--muted);
+    padding: 3px 10px; border-radius: 999px; cursor: pointer; font-size: 11px;
+  }
+  .filters button.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+  .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border); border-radius: 6px;
+    overflow: hidden; }
+  .grid .dow { background: var(--card); padding: 6px 8px; font-size: 11px;
+    color: var(--muted); text-align: center; font-weight: 500; }
+  .grid .dow.sat { color: var(--neg); }
+  .grid .dow.sun { color: var(--pos); }
+  .grid .cell {
+    background: var(--bg); min-height: 96px; padding: 4px 6px;
+    display: flex; flex-direction: column; gap: 2px;
+    cursor: default;
+  }
+  .grid .cell.dim { background: var(--card); color: var(--muted); }
+  .grid .cell.today { box-shadow: inset 0 0 0 2px var(--accent); }
+  .grid .cell .day-num { font-size: 11px; font-weight: 600; color: var(--muted);
+    font-feature-settings: "tnum"; }
+  .grid .cell.today .day-num { color: var(--accent); }
+  .grid .cell .ev {
+    font-size: 10.5px; line-height: 1.3; padding: 2px 4px; border-radius: 3px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    cursor: pointer;
+  }
+  .ev.cat-macro      { background: rgba(99,102,241,0.18); color: #4338ca; }
+  .ev.cat-conference { background: rgba(168,85,247,0.18); color: #6b21a8; }
+  .ev.cat-clinical   { background: rgba(16,185,129,0.18); color: #047857; }
+  .ev.cat-earnings   { background: rgba(245,158,11,0.18); color: #92400e; }
+  .ev.cat-ir         { background: rgba(20,184,166,0.18); color: #0f766e; }
+  .ev.cat-disclosure { background: rgba(107,114,128,0.15); color: #374151; }
+  .ev.cat-holiday    { background: rgba(250,204,21,0.20); color: #854d0e; }
+  .ev.cat-other      { background: rgba(148,163,184,0.18); color: #334155; }
+  @media (prefers-color-scheme: dark) {
+    .ev.cat-macro      { color: #c7d2fe; }
+    .ev.cat-conference { color: #e9d5ff; }
+    .ev.cat-clinical   { color: #6ee7b7; }
+    .ev.cat-earnings   { color: #fde68a; }
+    .ev.cat-ir         { color: #99f6e4; }
+    .ev.cat-disclosure { color: #cbd5e1; }
+    .ev.cat-holiday    { color: #fef08a; }
+    .ev.cat-other      { color: #cbd5e1; }
+  }
+
+  /* ─── Event detail side panel ──────────────────────────────── */
+  .detail {
+    position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 100%);
+    background: var(--bg); border-left: 1px solid var(--border);
+    padding: 20px 18px; overflow-y: auto; transform: translateX(100%);
+    transition: transform 0.18s ease; z-index: 10; box-shadow: -8px 0 24px rgba(0,0,0,0.06);
+  }
+  .detail.open { transform: translateX(0); }
+  .detail h3 { margin: 0 0 6px; font-size: 16px; }
+  .detail .date { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+  .detail .desc { font-size: 13px; margin: 8px 0 12px; white-space: pre-wrap; }
+  .detail .impact {
+    margin: 14px 0; padding: 12px 14px;
+    background: var(--card); border-left: 3px solid var(--accent);
+    border-radius: 4px; font-size: 12.5px; line-height: 1.65;
+    white-space: pre-wrap;
+  }
+  .detail .impact-head {
+    font-size: 11px; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;
+  }
+  .detail .tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0; }
+  .detail .tag { font-size: 10px; padding: 2px 6px; border-radius: 999px;
+    background: var(--card); color: var(--muted); }
+  .detail .close { position: absolute; top: 14px; right: 16px;
+    background: transparent; border: none; color: var(--muted); font-size: 18px; cursor: pointer; }
+  .detail a { color: var(--accent); }
+
+  /* ─── Upcoming list (mobile-friendly summary) ──────────────── */
+  .upcoming { background: var(--card); border-radius: 8px; padding: 12px 14px;
+    margin-top: 14px; }
+  .upcoming h3 { font-size: 13px; margin: 0 0 8px; color: var(--muted); font-weight: 600; }
+  .upcoming ul { list-style: none; margin: 0; padding: 0; }
+  .upcoming li { display: flex; gap: 10px; padding: 4px 0; font-size: 12.5px;
+    border-bottom: 1px dashed var(--border); }
+  .upcoming li:last-child { border-bottom: none; }
+  .upcoming li .when { color: var(--muted); font-feature-settings: "tnum";
+    flex: 0 0 90px; }
+  .upcoming li .what { flex: 1; }
+
+  footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: 11px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>k-ant-daily</h1>
+    <span class="meta">{{ summary.today }} · {{ summary.generated_label }}</span>
+  </header>
+
+  {%- if summary.macro_line %}
+  <div class="macro">
+    {%- for chunk in summary.macro_line %}
+    <span><b>{{ chunk.label }}</b> {{ chunk.value }}{% if chunk.chg %} <span class="{{ chunk.cls }}">{{ chunk.chg }}</span>{% endif %}</span>
+    {%- endfor %}
+  </div>
+  {%- endif %}
+
+  <section class="today-section" id="today-section">
+    <div class="head">
+      <h2>⭐ 오늘 이벤트</h2>
+      <span class="count" id="today-count"></span>
+    </div>
+    <div class="today-cards" id="today-cards"></div>
+  </section>
+
+  <h2>오늘 보유종목 ({{ stocks|length }}개)</h2>
+  <div class="holdings">
+    {%- for s in stocks %}
+    <div class="stock">
+      <div class="stock-head">
+        <span class="stock-name">{{ s.name }}</span>
+        <span class="stock-code">{{ s.code }} · {{ s.market }}</span>
+      </div>
+      {%- if s.quote.price %}
+      <div class="stock-price">
+        <span class="now">{{ s.quote.price }}</span>
+        {%- if s.quote.change_pct %}
+        <span class="chg {{ s.quote.cls }}">{{ s.quote.change_pct }}</span>
+        {%- endif %}
+      </div>
+      {%- endif %}
+      {%- if s.owners %}
+      <div class="stock-owners">
+        {%- for o in s.owners %}<span class="owner-chip">{{ o }}</span>{%- endfor %}
+      </div>
+      {%- endif %}
+      {%- if s.lead_news %}
+      <div class="stock-news">
+        <a href="{{ s.lead_news.url }}" target="_blank" rel="noopener">{{ s.lead_news.title }}</a>
+      </div>
+      {%- endif %}
+    </div>
+    {%- endfor %}
+  </div>
+
+  <h2>월간 이벤트 캘린더</h2>
+
+  <div class="filters" id="cat-filters">
+    <button data-cat="all" class="active">전체</button>
+    <button data-cat="clinical">바이오 임상</button>
+    <button data-cat="conference">학회</button>
+    <button data-cat="macro">거시</button>
+    <button data-cat="earnings">실적</button>
+    <button data-cat="ir">IR/주총</button>
+    <button data-cat="disclosure">공시</button>
+    <button data-cat="holiday">휴장</button>
+  </div>
+
+  <div class="cal-nav">
+    <button id="prev-month">‹ 이전</button>
+    <span class="month-label" id="month-label">—</span>
+    <button id="next-month">다음 ›</button>
+    <button id="today-btn" style="margin-left:auto">오늘</button>
+  </div>
+
+  <div class="grid" id="grid">
+    <div class="dow sun">일</div><div class="dow">월</div><div class="dow">화</div>
+    <div class="dow">수</div><div class="dow">목</div><div class="dow">금</div>
+    <div class="dow sat">토</div>
+    <!-- cells filled by JS -->
+  </div>
+
+  <div class="upcoming" id="upcoming">
+    <h3>다가오는 이벤트 (7일)</h3>
+    <ul id="upcoming-list"><li><span class="what">로딩 중…</span></li></ul>
+  </div>
+
+  <aside class="detail" id="detail">
+    <button class="close" id="detail-close" aria-label="닫기">×</button>
+    <h3 id="detail-title">—</h3>
+    <div class="date" id="detail-date"></div>
+    <div class="desc" id="detail-desc"></div>
+    <div class="impact" id="detail-impact" style="display:none">
+      <div class="impact-head">💡 시장 영향 · 보는 법</div>
+      <div id="detail-impact-body"></div>
+    </div>
+    <div class="tags" id="detail-tags"></div>
+    <a id="detail-source" target="_blank" rel="noopener" style="display:none">원문 →</a>
+  </aside>
+
+  <footer>
+    {{ summary.generated_label }} · GitHub Pages · 친구들 보유종목 트래커
+  </footer>
+</div>
+
+<script>
+const EVENTS_URL = "events.json";
+const TODAY_ISO = {{ summary.today_iso|tojson }};
+const CATEGORY_LABEL = {
+  macro: "거시", conference: "학회", clinical: "바이오 임상",
+  earnings: "실적", ir: "IR/주총", disclosure: "공시",
+  holiday: "휴장", other: "기타",
+};
+
+let allEvents = [];
+let activeCat = "all";
+const today = new Date(TODAY_ISO + "T00:00:00+09:00");
+let cursor = new Date(today.getFullYear(), today.getMonth(), 1);
+
+function fmtDate(d) {
+  const y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,"0"), dd = String(d.getDate()).padStart(2,"0");
+  return `${y}-${m}-${dd}`;
+}
+
+async function loadEvents() {
+  try {
+    const r = await fetch(EVENTS_URL, { cache: "no-cache" });
+    const body = await r.json();
+    allEvents = body.events || [];
+  } catch (e) {
+    allEvents = [];
+  }
+  renderToday();
+  render();
+  renderUpcoming();
+}
+
+function renderToday() {
+  const section = document.getElementById("today-section");
+  const wrap = document.getElementById("today-cards");
+  const todays = allEvents.filter(e => e.date === TODAY_ISO);
+  wrap.innerHTML = "";
+  if (!todays.length) {
+    section.classList.remove("has-events");
+    return;
+  }
+  section.classList.add("has-events");
+  document.getElementById("today-count").textContent = `${todays.length}건`;
+  // Higher importance first
+  todays.sort((a, b) => (b.importance || 2) - (a.importance || 2));
+  for (const e of todays) {
+    const card = document.createElement("div");
+    card.className = "today-card cat-" + e.category;
+    card.addEventListener("click", () => openDetail(e));
+    const tag = document.createElement("span");
+    tag.className = "cat-tag ev cat-" + e.category;
+    tag.textContent = CATEGORY_LABEL[e.category] || e.category;
+    card.appendChild(tag);
+    const title = document.createElement("div");
+    title.className = "title";
+    title.textContent = e.title;
+    card.appendChild(title);
+    const preview = document.createElement("div");
+    preview.className = "preview";
+    preview.textContent = e.description || (e.impact ? e.impact.split("\n").find(l => l.trim()) : "");
+    card.appendChild(preview);
+    wrap.appendChild(card);
+  }
+}
+
+function visibleEvents() {
+  if (activeCat === "all") return allEvents;
+  return allEvents.filter(e => e.category === activeCat);
+}
+
+function render() {
+  const y = cursor.getFullYear(), m = cursor.getMonth();
+  document.getElementById("month-label").textContent = `${y}년 ${m+1}월`;
+
+  const first = new Date(y, m, 1);
+  const startWeekday = first.getDay();      // 0 = Sun
+  const daysInMonth = new Date(y, m+1, 0).getDate();
+  const daysInPrev = new Date(y, m, 0).getDate();
+
+  // Total cells: pad to multiple of 7, at least 6 weeks
+  const cells = [];
+  // Leading days from prev month
+  for (let i = startWeekday - 1; i >= 0; i--) {
+    const day = daysInPrev - i;
+    const d = new Date(y, m-1, day);
+    cells.push({ d, dim: true });
+  }
+  for (let day = 1; day <= daysInMonth; day++) {
+    cells.push({ d: new Date(y, m, day), dim: false });
+  }
+  while (cells.length % 7 !== 0 || cells.length < 42) {
+    const last = cells[cells.length - 1].d;
+    const next = new Date(last.getFullYear(), last.getMonth(), last.getDate() + 1);
+    cells.push({ d: next, dim: true });
+    if (cells.length >= 42) break;
+  }
+
+  const events = visibleEvents();
+  const byDate = {};
+  for (const e of events) {
+    (byDate[e.date] ||= []).push(e);
+  }
+
+  const grid = document.getElementById("grid");
+  // Remove old cells (keep first 7 dow headers)
+  while (grid.children.length > 7) grid.removeChild(grid.lastChild);
+
+  const todayKey = fmtDate(today);
+  for (const c of cells) {
+    const cell = document.createElement("div");
+    cell.className = "cell" + (c.dim ? " dim" : "") + (fmtDate(c.d) === todayKey ? " today" : "");
+    const num = document.createElement("div");
+    num.className = "day-num";
+    num.textContent = c.d.getDate();
+    cell.appendChild(num);
+
+    const dayEvents = byDate[fmtDate(c.d)] || [];
+    for (const e of dayEvents.slice(0, 4)) {
+      const ev = document.createElement("div");
+      ev.className = "ev cat-" + e.category;
+      ev.textContent = e.title;
+      ev.title = e.title;
+      ev.addEventListener("click", () => openDetail(e));
+      cell.appendChild(ev);
+    }
+    if (dayEvents.length > 4) {
+      const more = document.createElement("div");
+      more.className = "ev cat-other";
+      more.textContent = `+${dayEvents.length - 4}`;
+      more.addEventListener("click", () => openDetail(dayEvents[0]));
+      cell.appendChild(more);
+    }
+    grid.appendChild(cell);
+  }
+}
+
+function renderUpcoming() {
+  const list = document.getElementById("upcoming-list");
+  const horizon = new Date(today.getTime() + 7 * 86400000);
+  const items = allEvents
+    .filter(e => e.date >= fmtDate(today) && e.date <= fmtDate(horizon))
+    .sort((a,b) => a.date.localeCompare(b.date));
+  list.innerHTML = "";
+  if (!items.length) {
+    list.innerHTML = '<li><span class="what">7일 내 예정 이벤트 없음</span></li>';
+    return;
+  }
+  for (const e of items) {
+    const li = document.createElement("li");
+    li.innerHTML = `<span class="when">${e.date}</span><span class="what"></span>`;
+    const w = li.querySelector(".what");
+    const tag = document.createElement("span");
+    tag.className = "ev cat-" + e.category;
+    tag.style.cssText = "display:inline-block; margin-right:6px; padding:1px 6px; font-size:10px;";
+    tag.textContent = CATEGORY_LABEL[e.category] || e.category;
+    w.appendChild(tag);
+    w.appendChild(document.createTextNode(e.title));
+    w.style.cursor = "pointer";
+    w.addEventListener("click", () => openDetail(e));
+    list.appendChild(li);
+  }
+}
+
+function openDetail(e) {
+  document.getElementById("detail-title").textContent = e.title;
+  document.getElementById("detail-date").textContent =
+    `${e.date} · ${CATEGORY_LABEL[e.category] || e.category}`;
+  document.getElementById("detail-desc").textContent = e.description || "(설명 없음)";
+  const impactWrap = document.getElementById("detail-impact");
+  if (e.impact) {
+    document.getElementById("detail-impact-body").textContent = e.impact;
+    impactWrap.style.display = "block";
+  } else {
+    impactWrap.style.display = "none";
+  }
+  const tagsEl = document.getElementById("detail-tags");
+  tagsEl.innerHTML = "";
+  for (const t of (e.tags || [])) {
+    const span = document.createElement("span");
+    span.className = "tag";
+    span.textContent = t;
+    tagsEl.appendChild(span);
+  }
+  const src = document.getElementById("detail-source");
+  if (e.source) { src.href = e.source; src.style.display = "inline"; }
+  else { src.style.display = "none"; }
+  document.getElementById("detail").classList.add("open");
+}
+
+document.getElementById("detail-close").addEventListener("click",
+  () => document.getElementById("detail").classList.remove("open"));
+document.getElementById("prev-month").addEventListener("click", () => {
+  cursor = new Date(cursor.getFullYear(), cursor.getMonth() - 1, 1);
+  render();
+});
+document.getElementById("next-month").addEventListener("click", () => {
+  cursor = new Date(cursor.getFullYear(), cursor.getMonth() + 1, 1);
+  render();
+});
+document.getElementById("today-btn").addEventListener("click", () => {
+  cursor = new Date(today.getFullYear(), today.getMonth(), 1);
+  render();
+});
+for (const btn of document.querySelectorAll("#cat-filters button")) {
+  btn.addEventListener("click", () => {
+    for (const b of document.querySelectorAll("#cat-filters button")) b.classList.remove("active");
+    btn.classList.add("active");
+    activeCat = btn.dataset.cat;
+    render();
+  });
+}
+
+loadEvents();
+</script>
+</body>
+</html>
