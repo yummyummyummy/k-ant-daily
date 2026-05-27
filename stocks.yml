@@ -106,7 +106,7 @@ stocks:
     overnight_proxy: ["F", "GM", "STLA"]
   - code: "034230"
     name: "파라다이스"
-    market: KOSDAQ
+    market: KOSPI
     sector: "카지노/레저"
     owners: ["장한솔"]
     overnight_proxy: ["LVS", "WYNN", "MGM"]
