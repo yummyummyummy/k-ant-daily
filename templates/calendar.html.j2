@@ -48,6 +48,40 @@
   .stock-news { margin-top: 8px; font-size: 12px; color: var(--muted); }
   .stock-news a { color: inherit; text-decoration: none; }
   .stock-news a:hover { text-decoration: underline; }
+  .stock-dates {
+    margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border);
+  }
+  .stock-dates .label {
+    font-size: 10px; color: var(--muted); font-weight: 600;
+    margin-bottom: 4px; letter-spacing: 0.02em;
+  }
+  .stock-dates ul { list-style: none; margin: 0; padding: 0; }
+  .stock-dates li {
+    display: flex; gap: 8px; align-items: center;
+    padding: 3px 0; font-size: 11.5px; cursor: pointer; line-height: 1.4;
+  }
+  .stock-dates li:hover .ev-title { color: var(--accent); }
+  .stock-dates .when {
+    color: var(--muted); flex: 0 0 38px; font-feature-settings: "tnum";
+    font-weight: 600;
+  }
+  .stock-dates .cat-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    flex: 0 0 6px; display: inline-block;
+  }
+  .stock-dates .ev-title {
+    flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .stock-dates .when.today { color: var(--pos); }
+  /* Reuse category colors for dots */
+  .cat-dot-macro      { background: #6366f1; }
+  .cat-dot-conference { background: #a855f7; }
+  .cat-dot-clinical   { background: #10b981; }
+  .cat-dot-earnings   { background: #f59e0b; }
+  .cat-dot-ir         { background: #14b8a6; }
+  .cat-dot-disclosure { background: #6b7280; }
+  .cat-dot-holiday    { background: #facc15; }
+  .cat-dot-other      { background: #94a3b8; }
 
   /* ─── Macro ribbon ─────────────────────────────────────────── */
   .macro { display: flex; flex-wrap: wrap; gap: 14px; margin: 10px 0 20px;
@@ -221,7 +255,7 @@
   <h2>오늘 보유종목 ({{ stocks|length }}개)</h2>
   <div class="holdings">
     {%- for s in stocks %}
-    <div class="stock">
+    <div class="stock" data-code="{{ s.code }}">
       <div class="stock-head">
         <span class="stock-name">{{ s.name }}</span>
         <span class="stock-code">{{ s.code }} · {{ s.market }}</span>
@@ -244,6 +278,7 @@
         <a href="{{ s.lead_news.url }}" target="_blank" rel="noopener">{{ s.lead_news.title }}</a>
       </div>
       {%- endif %}
+      <div class="stock-dates" data-code="{{ s.code }}"></div>
     </div>
     {%- endfor %}
   </div>
@@ -326,8 +361,76 @@ async function loadEvents() {
     allEvents = [];
   }
   renderToday();
+  renderHoldingDates();
   render();
   renderUpcoming();
+}
+
+function shortDate(iso) {
+  // 2026-06-02 → 6/2
+  const parts = iso.split("-");
+  return `${parseInt(parts[1])}/${parseInt(parts[2])}`;
+}
+
+// Per-holding "다가오는 일정" — events with related_codes containing this stock,
+// plus universal macro/holiday events. Top 3 by date asc.
+function renderHoldingDates() {
+  const placeholders = document.querySelectorAll(".stock-dates");
+  placeholders.forEach(ph => {
+    const code = ph.dataset.code;
+    const relevant = allEvents
+      .filter(e => e.date >= TODAY_ISO)
+      .filter(e => {
+        // Specific: event lists this stock
+        if (e.related_codes && e.related_codes.length > 0) {
+          return e.related_codes.includes(code);
+        }
+        // Universal: macro / holiday apply to all stocks
+        return e.category === "macro" || e.category === "holiday";
+      })
+      .sort((a, b) => a.date.localeCompare(b.date));
+
+    // De-dupe by title (date_range expands to per-day entries — collapse same title to first occurrence)
+    const seen = new Set();
+    const deduped = [];
+    for (const e of relevant) {
+      if (seen.has(e.title)) continue;
+      seen.add(e.title);
+      deduped.push(e);
+      if (deduped.length >= 3) break;
+    }
+
+    ph.innerHTML = "";
+    if (!deduped.length) { ph.style.display = "none"; return; }
+
+    const label = document.createElement("div");
+    label.className = "label";
+    label.textContent = "📅 다가오는 일정";
+    ph.appendChild(label);
+
+    const ul = document.createElement("ul");
+    for (const e of deduped) {
+      const li = document.createElement("li");
+      li.addEventListener("click", () => openDetail(e));
+
+      const when = document.createElement("span");
+      when.className = "when" + (e.date === TODAY_ISO ? " today" : "");
+      when.textContent = e.date === TODAY_ISO ? "오늘" : shortDate(e.date);
+
+      const dot = document.createElement("span");
+      dot.className = "cat-dot cat-dot-" + e.category;
+
+      const title = document.createElement("span");
+      title.className = "ev-title";
+      title.textContent = e.title;
+
+      li.appendChild(when);
+      li.appendChild(dot);
+      li.appendChild(title);
+      ul.appendChild(li);
+    }
+    ph.appendChild(ul);
+  });
 }
 
 function renderToday() {

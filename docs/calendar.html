@@ -96,6 +96,40 @@
   .stock-news { margin-top: 8px; font-size: 12px; color: var(--muted); }
   .stock-news a { color: inherit; text-decoration: none; }
   .stock-news a:hover { text-decoration: underline; }
+  .stock-dates {
+    margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border);
+  }
+  .stock-dates .label {
+    font-size: 10px; color: var(--muted); font-weight: 600;
+    margin-bottom: 4px; letter-spacing: 0.02em;
+  }
+  .stock-dates ul { list-style: none; margin: 0; padding: 0; }
+  .stock-dates li {
+    display: flex; gap: 8px; align-items: center;
+    padding: 3px 0; font-size: 11.5px; cursor: pointer; line-height: 1.4;
+  }
+  .stock-dates li:hover .ev-title { color: var(--accent); }
+  .stock-dates .when {
+    color: var(--muted); flex: 0 0 38px; font-feature-settings: "tnum";
+    font-weight: 600;
+  }
+  .stock-dates .cat-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    flex: 0 0 6px; display: inline-block;
+  }
+  .stock-dates .ev-title {
+    flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .stock-dates .when.today { color: var(--pos); }
+  /* Reuse category colors for dots */
+  .cat-dot-macro      { background: #6366f1; }
+  .cat-dot-conference { background: #a855f7; }
+  .cat-dot-clinical   { background: #10b981; }
+  .cat-dot-earnings   { background: #f59e0b; }
+  .cat-dot-ir         { background: #14b8a6; }
+  .cat-dot-disclosure { background: #6b7280; }
+  .cat-dot-holiday    { background: #facc15; }
+  .cat-dot-other      { background: #94a3b8; }
 
   /* ─── Macro ribbon ─────────────────────────────────────────── */
   .macro { display: flex; flex-wrap: wrap; gap: 14px; margin: 10px 0 20px;
@@ -247,7 +281,7 @@
 
   <header class="top">
     <h1>k-ant-daily</h1>
-    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 04:08 KST 생성</span>
+    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 04:10 KST 생성</span>
   </header>  <div class="macro">    <span><b>FX</b> </span>    <span><b>FX</b> </span>    <span><b>BTC</b>  <span class="neg">-1.45%</span></span>    <span><b>ETH</b>  <span class="neg">-0.68%</span></span>  </div>
   <section class="today-section" id="today-section">
     <div class="head">
@@ -258,151 +292,172 @@
   </section>
 
   <h2>오늘 보유종목 (21개)</h2>
-  <div class="holdings">    <div class="stock">
+  <div class="holdings">    <div class="stock" data-code="166480">
       <div class="stock-head">
         <span class="stock-name">코아스템켐온</span>
         <span class="stock-code">166480 · KOSDAQ</span>
       </div>      <div class="stock-price">
         <span class="now">4,775</span>        <span class="chg pos">+29.93</span>      </div>      <div class="stock-owners"><span class="owner-chip">이정수</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">[마감시황] 코스닥 3.36% 급락 마감…개인 6413억원 순매수에도 ...</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="166480"></div>
+    </div>    <div class="stock" data-code="396270">
       <div class="stock-head">
         <span class="stock-name">넥스트칩</span>
         <span class="stock-code">396270 · KOSDAQ</span>
       </div>      <div class="stock-price">
         <span class="now">4,620</span>        <span class="chg neg">-10.98</span>      </div>      <div class="stock-owners"><span class="owner-chip">주황선</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">"반도체 가격상승 계속될 것"…팹리스 업종 주가도 뜨겁다 [반도체 슈....</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="396270"></div>
+    </div>    <div class="stock" data-code="000660">
       <div class="stock-head">
         <span class="stock-name">SK하이닉스</span>
         <span class="stock-code">000660 · KOSPI</span>
       </div>      <div class="stock-price">
         <span class="now">2,243,000</span>        <span class="chg pos">+9.31</span>      </div>      <div class="stock-owners"><span class="owner-chip">한윤근</span><span class="owner-chip">장한솔</span><span class="owner-chip">장윤영</span><span class="owner-chip">이영준</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">삼전·닉스 2배 ETF 상장에 코스피도 '날개'...8,228 최고치</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="000660"></div>
+    </div>    <div class="stock" data-code="010120">
       <div class="stock-head">
         <span class="stock-name">LS일렉트릭</span>
         <span class="stock-code">010120 · KOSPI</span>
       </div>      <div class="stock-price">
         <span class="now">261,500</span>        <span class="chg neg">-8.25</span>      </div>      <div class="stock-owners"><span class="owner-chip">장윤영</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">반도체만 달린다…코스피 최고치에도 종목 10개 중 9개는 하락</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="010120"></div>
+    </div>    <div class="stock" data-code="028050">
       <div class="stock-head">
         <span class="stock-name">삼성E&A</span>
         <span class="stock-code">028050 · KOSPI</span>
       </div>      <div class="stock-price">
         <span class="now">51,300</span>        <span class="chg neg">-6.04</span>      </div>      <div class="stock-owners"><span class="owner-chip">장한솔</span><span class="owner-chip">한윤근</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">반도체만 달린다…코스피 최고치에도 종목 10개 중 9개는 하락</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="028050"></div>
+    </div>    <div class="stock" data-code="196170">
       <div class="stock-head">
         <span class="stock-name">알테오젠</span>
         <span class="stock-code">196170 · KOSDAQ</span>
       </div>      <div class="stock-price">
         <span class="now">386,500</span>        <span class="chg pos">+5.75</span>      </div>      <div class="stock-owners"><span class="owner-chip">한윤근</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">코스피 또 최고치 찍자…‘상위 1%’ 초고수들은 ‘이곳’에 투자, ‘....</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="196170"></div>
+    </div>    <div class="stock" data-code="233740">
       <div class="stock-head">
         <span class="stock-name">KODEX 코스닥150 레버리지</span>
         <span class="stock-code">233740 · KOSPI</span>
       </div>      <div class="stock-price">
         <span class="now">15,660</span>        <span class="chg neg">-5.06</span>      </div>      <div class="stock-owners"><span class="owner-chip">하우찬</span><span class="owner-chip">한윤근</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">‘팔천피' 여정 속 외면받은 '지수 레버리지 ETF'…삼전·닉스 ETF...</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="233740"></div>
+    </div>    <div class="stock" data-code="267260">
       <div class="stock-head">
         <span class="stock-name">HD현대일렉트릭</span>
         <span class="stock-code">267260 · KOSPI</span>
       </div>      <div class="stock-price">
         <span class="now">1,094,000</span>        <span class="chg neg">-4.70</span>      </div>      <div class="stock-owners"><span class="owner-chip">한윤근</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">반도체만 달린다…코스피 최고치에도 종목 10개 중 9개는 하락</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="267260"></div>
+    </div>    <div class="stock" data-code="310210">
       <div class="stock-head">
         <span class="stock-name">보로노이</span>
         <span class="stock-code">310210 · KOSDAQ</span>
       </div>      <div class="stock-price">
         <span class="now">282,000</span>        <span class="chg pos">+3.30</span>      </div>      <div class="stock-owners"><span class="owner-chip">하우찬</span><span class="owner-chip">이웅수</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">코스피 사상 첫 8200대 마감…'30만전자'·220만닉스'</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="310210"></div>
+    </div>    <div class="stock" data-code="071050">
       <div class="stock-head">
         <span class="stock-name">한국금융지주</span>
         <span class="stock-code">071050 · KOSPI</span>
       </div>      <div class="stock-price">
         <span class="now">244,500</span>        <span class="chg neg">-3.17</span>      </div>      <div class="stock-owners"><span class="owner-chip">장윤영</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">삼전닉스 레버리지, 하루새 10조 '뭉칫돈'…반도체 독주에 양극화 심....</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="071050"></div>
+    </div>    <div class="stock" data-code="042700">
       <div class="stock-head">
         <span class="stock-name">한미반도체</span>
         <span class="stock-code">042700 · KOSPI</span>
       </div>      <div class="stock-price">
         <span class="now">319,000</span>        <span class="chg neg">-3.04</span>      </div>      <div class="stock-owners"><span class="owner-chip">장한솔</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">삼전닉스 2배 ETF는 광풍 … 반도체 소부장·전력株는 찬바람</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="042700"></div>
+    </div>    <div class="stock" data-code="005930">
       <div class="stock-head">
         <span class="stock-name">삼성전자</span>
         <span class="stock-code">005930 · KOSPI</span>
       </div>      <div class="stock-price">
         <span class="now">307,000</span>        <span class="chg pos">+2.68</span>      </div>      <div class="stock-owners"><span class="owner-chip">장윤영</span><span class="owner-chip">장한솔</span><span class="owner-chip">이웅수</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">성과급 100배 격차 현실로...삼성전자 '격동의 시간'</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="005930"></div>
+    </div>    <div class="stock" data-code="035720">
       <div class="stock-head">
         <span class="stock-name">카카오</span>
         <span class="stock-code">035720 · KOSPI</span>
       </div>      <div class="stock-price">
         <span class="now">40,500</span>        <span class="chg neg">-2.29</span>      </div>      <div class="stock-owners"><span class="owner-chip">장한솔</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">‘카톡 개편 주도’ 홍민택 CPO, 카카오 떠난다</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="035720"></div>
+    </div>    <div class="stock" data-code="034230">
       <div class="stock-head">
         <span class="stock-name">파라다이스</span>
         <span class="stock-code">034230 · KOSDAQ</span>
       </div>      <div class="stock-price">
         <span class="now">14,050</span>        <span class="chg neg">-2.23</span>      </div>      <div class="stock-owners"><span class="owner-chip">장한솔</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">'비수기 121% 성장' 드림타워, 업황 부진 속 홀로 웃은 이유</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="034230"></div>
+    </div>    <div class="stock" data-code="299660">
       <div class="stock-head">
         <span class="stock-name">셀리드</span>
         <span class="stock-code">299660 · KOSDAQ</span>
       </div>      <div class="stock-price">
         <span class="now">3,280</span>        <span class="chg neg">-2.09</span>      </div>      <div class="stock-owners"><span class="owner-chip">이웅수</span><span class="owner-chip">한윤근</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">[이 시각 시황] '보스턴다이나믹스' 미국 상장 이르면 다음달 결정</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="299660"></div>
+    </div>    <div class="stock" data-code="445680">
       <div class="stock-head">
         <span class="stock-name">큐리옥스바이오시스템즈</span>
         <span class="stock-code">445680 · KOSDAQ</span>
       </div>      <div class="stock-price">
         <span class="now">89,400</span>        <span class="chg neg">-2.08</span>      </div>      <div class="stock-owners"><span class="owner-chip">이웅수</span><span class="owner-chip">주황선</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">대표지수 리밸런싱…코스피200 OCI·DB하이텍 편입, 코스닥 '로봇주...</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="445680"></div>
+    </div>    <div class="stock" data-code="005380">
       <div class="stock-head">
         <span class="stock-name">현대차</span>
         <span class="stock-code">005380 · KOSPI</span>
       </div>      <div class="stock-price">
         <span class="now">681,000</span>        <span class="chg neg">-1.16</span>      </div>      <div class="stock-owners"><span class="owner-chip">장한솔</span><span class="owner-chip">한윤근</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">코스피 또 최고치 찍자…‘상위 1%’ 초고수들은 ‘이곳’에 투자, ‘....</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="005380"></div>
+    </div>    <div class="stock" data-code="009540">
       <div class="stock-head">
         <span class="stock-name">HD한국조선해양</span>
         <span class="stock-code">009540 · KOSPI</span>
       </div>      <div class="stock-price">
         <span class="now">440,500</span>        <span class="chg neg">-1.01</span>      </div>      <div class="stock-owners"><span class="owner-chip">오병호</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">HD현대重, 스웨덴과 쇄빙전용선 사업 본격화</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="009540"></div>
+    </div>    <div class="stock" data-code="298380">
       <div class="stock-head">
         <span class="stock-name">에이비엘바이오</span>
         <span class="stock-code">298380 · KOSDAQ</span>
       </div>      <div class="stock-price">
         <span class="now">118,500</span>        <span class="chg pos">+0.85</span>      </div>      <div class="stock-owners"><span class="owner-chip">우동희</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">코스피 8400대 안착할까…코스닥선 바이오주 강세</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="298380"></div>
+    </div>    <div class="stock" data-code="174900">
       <div class="stock-head">
         <span class="stock-name">앱클론</span>
         <span class="stock-code">174900 · KOSDAQ</span>
       </div>      <div class="stock-price">
         <span class="now">42,400</span>        <span class="chg pos">+0.59</span>      </div>      <div class="stock-owners"><span class="owner-chip">오병호</span><span class="owner-chip">이웅수</span><span class="owner-chip">주황선</span>      </div>      <div class="stock-news">
         <a href="" target="_blank" rel="noopener">코스피 200, GS건설·세방전지 OUT, HD건설기계·달바글로벌 IN</a>
-      </div>    </div>    <div class="stock">
+      </div>      <div class="stock-dates" data-code="174900"></div>
+    </div>    <div class="stock" data-code="347850">
       <div class="stock-head">
         <span class="stock-name">디앤디파마텍</span>
         <span class="stock-code">347850 · KOSDAQ</span>
-      </div>      <div class="stock-owners"><span class="owner-chip">오병호</span>      </div>    </div>  </div>
+      </div>      <div class="stock-owners"><span class="owner-chip">오병호</span>      </div>      <div class="stock-dates" data-code="347850"></div>
+    </div>  </div>
 
   <h2>월간 이벤트 캘린더</h2>
 
@@ -450,7 +505,7 @@
   </aside>
 
   <footer>
-    2026-05-28 04:08 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
+    2026-05-28 04:10 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
   </footer>
 </div>
 
@@ -482,8 +537,76 @@ async function loadEvents() {
     allEvents = [];
   }
   renderToday();
+  renderHoldingDates();
   render();
   renderUpcoming();
+}
+
+function shortDate(iso) {
+  // 2026-06-02 → 6/2
+  const parts = iso.split("-");
+  return `${parseInt(parts[1])}/${parseInt(parts[2])}`;
+}
+
+// Per-holding "다가오는 일정" — events with related_codes containing this stock,
+// plus universal macro/holiday events. Top 3 by date asc.
+function renderHoldingDates() {
+  const placeholders = document.querySelectorAll(".stock-dates");
+  placeholders.forEach(ph => {
+    const code = ph.dataset.code;
+    const relevant = allEvents
+      .filter(e => e.date >= TODAY_ISO)
+      .filter(e => {
+        // Specific: event lists this stock
+        if (e.related_codes && e.related_codes.length > 0) {
+          return e.related_codes.includes(code);
+        }
+        // Universal: macro / holiday apply to all stocks
+        return e.category === "macro" || e.category === "holiday";
+      })
+      .sort((a, b) => a.date.localeCompare(b.date));
+
+    // De-dupe by title (date_range expands to per-day entries — collapse same title to first occurrence)
+    const seen = new Set();
+    const deduped = [];
+    for (const e of relevant) {
+      if (seen.has(e.title)) continue;
+      seen.add(e.title);
+      deduped.push(e);
+      if (deduped.length >= 3) break;
+    }
+
+    ph.innerHTML = "";
+    if (!deduped.length) { ph.style.display = "none"; return; }
+
+    const label = document.createElement("div");
+    label.className = "label";
+    label.textContent = "📅 다가오는 일정";
+    ph.appendChild(label);
+
+    const ul = document.createElement("ul");
+    for (const e of deduped) {
+      const li = document.createElement("li");
+      li.addEventListener("click", () => openDetail(e));
+
+      const when = document.createElement("span");
+      when.className = "when" + (e.date === TODAY_ISO ? " today" : "");
+      when.textContent = e.date === TODAY_ISO ? "오늘" : shortDate(e.date);
+
+      const dot = document.createElement("span");
+      dot.className = "cat-dot cat-dot-" + e.category;
+
+      const title = document.createElement("span");
+      title.className = "ev-title";
+      title.textContent = e.title;
+
+      li.appendChild(when);
+      li.appendChild(dot);
+      li.appendChild(title);
+      ul.appendChild(li);
+    }
+    ph.appendChild(ul);
+  });
 }
 
 function renderToday() {
