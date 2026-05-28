@@ -62,7 +62,7 @@ def _normalize(event: dict) -> dict | None:
     cat = event.get("category", "other")
     if cat not in VALID_CATEGORIES:
         cat = "other"
-    return {
+    out = {
         "date": event["date"],
         "category": cat,
         "title": event["title"],
@@ -74,6 +74,13 @@ def _normalize(event: dict) -> dict | None:
         "importance": int(event.get("importance", 2)),
         **({"_range": event["_range"]} if "_range" in event else {}),
     }
+    # Optional: result-tracking fields. `time` (HH:MM KST) marks when an
+    # outcome becomes known; `result` is filled by the agent after the event.
+    if event.get("time"):
+        out["time"] = event["time"]
+    if event.get("result"):
+        out["result"] = event["result"]
+    return out
 
 
 def _dedupe(events: list[dict]) -> list[dict]:
@@ -92,6 +99,10 @@ def _dedupe(events: list[dict]) -> list[dict]:
                 existing["description"] = e["description"]
             if e.get("impact") and not existing.get("impact"):
                 existing["impact"] = e["impact"]
+            if e.get("time") and not existing.get("time"):
+                existing["time"] = e["time"]
+            if e.get("result") and not existing.get("result"):
+                existing["result"] = e["result"]
         else:
             seen[key] = e
     return list(seen.values())

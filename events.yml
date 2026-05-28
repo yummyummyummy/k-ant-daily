@@ -15,6 +15,11 @@
 #   tags          선택. 검색/필터용
 #   source        선택. 원문 링크
 #   importance    선택 1~3. 3=헤더에 강조
+#   time          선택. "HH:MM" (KST) — 결과/발표가 나오는 시각. 지나면 UI가 "결과 집계 중" 표시
+#   result        선택. 이벤트 종료 후 agent 가 채움:
+#                   outcome: positive | negative | neutral | asexpected
+#                   summary: "실제로 어떻게 나왔는지 1~2줄 (사실 + 시장 반응)"
+#                   filled_at: "YYYY-MM-DD"
 
 events:
 
@@ -209,6 +214,7 @@ events:
   - date: "2026-07-16"
     category: "macro"
     title: "한은 금통위 (통화정책방향 결정)"
+    time: "10:00"
     description: "기준금리 결정 회의. 10:00 KST 결정문 발표 + 11:20 이창용 총재 기자회견."
     impact: |
       🎯 핵심 결정
@@ -234,6 +240,7 @@ events:
   - date: "2026-05-28"
     category: "macro"
     title: "한은 금통위 (통화정책방향 결정)"
+    time: "10:00"
     description: "기준금리 결정 회의. 10:00 KST 결정문 발표 + 총재 기자회견."
     impact: |
       🎯 핵심 결정
@@ -278,6 +285,7 @@ events:
   - date: "2026-06-10"
     category: "macro"
     title: "미 5월 CPI 발표"
+    time: "21:30"
     description: "8:30 AM ET (한국 21:30) 발표. Fed 금리 결정의 핵심 인풋 — FOMC 일주일 전 발표라 6/16-17 회의에 직접 영향."
     impact: |
       🎯 핵심

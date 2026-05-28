@@ -141,6 +141,8 @@ render.py --digest       → docs/digest.html
 - "예상" 인 경우 description 에 명시 + tags 에 `estimated`
 - 거시 일정은 출처 URL (`source`) 필수
 - 결과 시나리오 / 보유종목 영향은 `impact` 필드에 작성
+- 발표/결과성 이벤트는 `time` (HH:MM KST) 추가 → 시간 지나면 UI 가 "결과 집계 중" 표시
+- 지난 이벤트는 daily-report/digest 실행 시 `result` (outcome/summary/filled_at) 채움 — 실제 결과 + 시장 반응
 
 ### When Changing Code
 - **Keep README.md in sync** — README.md 를 코드/스키마/UI/스킬 변경과 같은 commit 에 업데이트

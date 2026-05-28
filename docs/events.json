@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-28T07:33:25.703340+09:00",
+  "generated_at": "2026-05-28T13:36:04.509438+09:00",
   "events": [
     {
       "date": "2026-05-28",
@@ -10,7 +10,8 @@
       "related_codes": [],
       "tags": [],
       "source": "https://www.bok.or.kr/portal/singl/crncyPolicyDrcMtg/listYear.do?mtgSe=A&menuNo=200755",
-      "importance": 3
+      "importance": 3,
+      "time": "10:00"
     },
     {
       "date": "2026-05-29",
@@ -200,7 +201,8 @@
       "related_codes": [],
       "tags": [],
       "source": "https://www.bls.gov/schedule/news_release/cpi.htm",
-      "importance": 3
+      "importance": 3,
+      "time": "21:30"
     },
     {
       "date": "2026-06-11",
@@ -313,7 +315,8 @@
       "related_codes": [],
       "tags": [],
       "source": "https://www.bok.or.kr/portal/singl/crncyPolicyDrcMtg/listYear.do?mtgSe=A&menuNo=200755",
-      "importance": 3
+      "importance": 3,
+      "time": "10:00"
     },
     {
       "date": "2026-07-28",

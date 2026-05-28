@@ -29,6 +29,23 @@ description: Refresh the monthly events calendar and holdings tracker
 
 각각 실패해도 다음 단계는 진행. 실패한 source 는 빈 결과로 처리됨.
 
+### 1.5. 지난 이벤트 결과 채우기 (`result` 필드)
+
+`events.yml` 에서 **이미 지난** 이벤트 (date+time 이 현재보다 과거) 중 `result` 가 비어있는 것을 찾아 실제 결과를 조사해 채운다.
+
+- 대상: FOMC, CPI, 고용보고서, 한은 금통위, 실적, 학회 readout 등 "발표/결과" 성격 이벤트
+- WebSearch/WebFetch 로 실제 결과 + 시장 반응 확인
+- schema:
+  ```yaml
+  result:
+    outcome: positive | negative | neutral | asexpected   # 시장 관점
+    summary: "기준금리 2.25%로 동결. 원화 강보합. 코스닥 +0.4%."  # 사실 + 시장 반응 1~2줄
+    filled_at: "2026-05-28"
+  ```
+- `outcome` 기준: 위험자산에 우호적이었으면 positive, 부담이었으면 negative, 무반응 neutral, 컨센서스 부합 asexpected
+- 추측 금지 — 확인된 사실만. 아직 결과를 못 찾으면 비워두고 다음 실행에서 재시도
+- 휴장일 등 "결과" 가 의미없는 이벤트는 건드리지 말 것
+
 ### 2. 이벤트 큐레이션 (`events.yml` 갱신)
 
 `events.yml` 은 사람이 검증한 일정만 들어가는 신뢰 source. 다음을 검토하고 필요하면 추가:

@@ -77,6 +77,16 @@ python3 -m venv .venv 2>/dev/null || true
 - 시점 명시 ("23:10 한경", "21:45 로이터")
 - 짧고 명확 (1~2줄)
 
+### 4.5. 지난 이벤트 결과 채우기 (`events.yml` 의 `result`)
+오늘 발표된 이벤트 (FOMC, CPI, 고용보고서, 한은 금통위, 실적 등) 가 `events.yml` 에 있고 `result` 가 비어있으면, 실제 결과 + 시장 반응을 조사해 채운다.
+```yaml
+result:
+  outcome: positive | negative | neutral | asexpected
+  summary: "사실 + 시장 반응 1~2줄"
+  filled_at: "YYYY-MM-DD"
+```
+채운 뒤 `build_calendar.py` + `render.py` (캘린더 모드) 도 재실행해서 docs/events.json 갱신. 추측 금지 — 확인된 사실만.
+
 ### 5. Highlights (3~6개)
 오늘~내일 영향이 가장 큰 항목을 별도로 뽑아냄. 보유 종목 관련 공시 우선.
 

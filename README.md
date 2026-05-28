@@ -168,6 +168,7 @@ events:
   - date: "2026-06-04"                  # 또는 date_range: ["2026-06-04", "2026-06-08"]
     category: "conference"              # macro|conference|holiday|earnings|ir|clinical|disclosure|other
     title: "ASCO 2026 Annual Meeting"
+    time: "21:30"                       # 선택 — 결과 발표 시각 (KST). 지나면 UI가 결과 추적
     description: "factual 한 줄"
     impact: |
       🎯 핵심: ...
@@ -177,7 +178,13 @@ events:
     tags: ["bio", "oncology"]
     source: "https://asco.org/..."
     importance: 3                       # 1~3 (기본 2)
+    result:                             # 선택 — 이벤트 종료 후 agent 가 채움
+      outcome: positive                 # positive|negative|neutral|asexpected
+      summary: "실제 결과 + 시장 반응 1~2줄"
+      filled_at: "2026-06-04"
 ```
+
+**결과 자동 추적**: `time` (또는 다일 이벤트의 마지막 날) 이 지나면 캘린더가 해당 이벤트에 "⏳ 결과 집계 중" 을 표시하고, 다음 `/daily-report` (07:30) 또는 `/post-market-digest` (23:00) 실행 때 agent 가 실제 결과를 조사해 `result` 를 채운다. 채워지면 "✅ 결과" 블록으로 전환 (outcome 에 따라 색상).
 
 ---
 

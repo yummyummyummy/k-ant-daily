@@ -363,6 +363,28 @@
     font-size: 10px; font-weight: 700; color: var(--accent);
     text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;
   }
+  /* 결과 블록 (발표 종료 후) */
+  .result-box {
+    margin: 8px 0; padding: 10px 12px; border-radius: 6px;
+    font-size: 12.5px; line-height: 1.6;
+    background: rgba(22,163,74,0.10); border-left: 3px solid var(--good);
+  }
+  .result-box.neg { background: rgba(185,28,28,0.10); border-left-color: var(--bad); }
+  .result-box.neu { background: var(--card); border-left-color: var(--muted); }
+  .result-box .result-head {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.04em; margin-bottom: 4px; color: var(--good);
+  }
+  .result-box.neg .result-head { color: var(--bad); }
+  .result-box.neu .result-head { color: var(--muted); }
+  .result-pending {
+    margin: 8px 0; padding: 8px 12px; border-radius: 6px;
+    font-size: 12px; color: var(--muted);
+    background: var(--card); border-left: 3px dashed var(--partial);
+  }
+  /* 캘린더 칩 결과 마커 */
+  .ev .res-mark { font-size: 9px; margin-right: 2px; }
+
   .week-detail .ev-block .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
   .week-detail .ev-block .tag {
     font-size: 10px; padding: 2px 6px; border-radius: 999px;
@@ -464,7 +486,7 @@
 
   <header class="top">
     <h1>k-ant-daily</h1>
-    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 11:18 KST 생성</span>
+    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 13:36 KST 생성</span>
   </header>  <div class="coffee">
     <span class="icon">☕</span>
     <div class="line">
@@ -704,6 +726,7 @@
       <button class="back" id="event-back" style="display:none">← 날짜로 돌아가기</button>
       <h3 id="detail-title">—</h3>
       <div class="date" id="detail-date"></div>
+      <div id="detail-result"></div>
       <div class="desc" id="detail-desc"></div>
       <div class="impact" id="detail-impact" style="display:none">
         <div class="impact-head">💡 시장 영향 · 보는 법</div>
@@ -715,7 +738,7 @@
   </aside>
 
   <footer>
-    2026-05-28 11:18 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
+    2026-05-28 13:36 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
   </footer>
 </div>
 
@@ -749,6 +772,41 @@ function startOfWeek(d) {
 function fmtDate(d) {
   const y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,"0"), dd = String(d.getDate()).padStart(2,"0");
   return `${y}-${m}-${dd}`;
+}
+
+// 결과가 알려지는 시각 — 다일 이벤트는 마지막 날, time 없으면 그날 23:59 KST.
+function resolveMoment(e) {
+  const endDate = (e._range && e._range[1]) ? e._range[1] : e.date;
+  const time = e.time || "23:59";
+  return new Date(`${endDate}T${time}:00+09:00`);
+}
+function isPassed(e) { return resolveMoment(e) < new Date(); }
+function chipMarker(e) {
+  if (e.result && e.result.summary) return "✓ ";
+  if (isPassed(e)) return "⏳ ";
+  return "";
+}
+
+const OUTCOME_CLS = { positive: "", negative: "neg", neutral: "neu", asexpected: "neu" };
+const OUTCOME_LABEL = {
+  positive: "✅ 결과 (호재)", negative: "🔻 결과 (악재)",
+  neutral: "➖ 결과 (중립)", asexpected: "✅ 결과 (예상 부합)",
+};
+
+// 결과 블록 HTML — result 있으면 결과, 지났는데 없으면 '집계 중', 아직이면 빈 문자열.
+function resultHTML(e) {
+  if (e.result && e.result.summary) {
+    const cls = OUTCOME_CLS[e.result.outcome] ?? "neu";
+    const label = OUTCOME_LABEL[e.result.outcome] || "✅ 결과";
+    return `<div class="result-box ${cls}"><div class="result-head">${label}</div>${escapeHtml(e.result.summary)}</div>`;
+  }
+  if (isPassed(e)) {
+    return `<div class="result-pending">⏳ 발표 시간 경과 — 결과 집계 중 (다음 갱신 때 반영)</div>`;
+  }
+  return "";
+}
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 }
 
 async function loadEvents() {
@@ -938,7 +996,7 @@ function renderMonth() {
     for (const e of dayEvents.slice(0, 4)) {
       const evEl = document.createElement("div");
       evEl.className = "ev cat-" + e.category;
-      evEl.textContent = e.title;
+      evEl.textContent = chipMarker(e) + e.title;
       evEl.title = e.title;
       evEl.addEventListener("click", (clickEv) => {
         clickEv.stopPropagation();
@@ -1002,7 +1060,7 @@ function renderWeek() {
     for (const e of dayEvents) {
       const evEl = document.createElement("div");
       evEl.className = "ev cat-" + e.category;
-      evEl.textContent = e.title;
+      evEl.textContent = chipMarker(e) + e.title;
       evEl.title = e.title;
       // Click anywhere on chip = select that date and show details below.
       // (We intentionally don't open the side panel in week mode — details are inline.)
@@ -1060,6 +1118,13 @@ function renderWeekDetail() {
     top.appendChild(tag);
     top.appendChild(title2);
     block.appendChild(top);
+
+    const resHtml = resultHTML(e);
+    if (resHtml) {
+      const resWrap = document.createElement("div");
+      resWrap.innerHTML = resHtml;
+      block.appendChild(resWrap.firstChild);
+    }
 
     if (e.description) {
       const desc = document.createElement("div");
@@ -1165,7 +1230,8 @@ function openDetail(e, fromDay = false) {
 
   document.getElementById("detail-title").textContent = e.title;
   document.getElementById("detail-date").textContent =
-    `${e.date} · ${CATEGORY_LABEL[e.category] || e.category}`;
+    `${e.date}${e.time ? " " + e.time : ""} · ${CATEGORY_LABEL[e.category] || e.category}`;
+  document.getElementById("detail-result").innerHTML = resultHTML(e);
   document.getElementById("detail-desc").textContent = e.description || "(설명 없음)";
   const impactWrap = document.getElementById("detail-impact");
   if (e.impact) {
