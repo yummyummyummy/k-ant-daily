@@ -349,6 +349,20 @@
   .react-chip.neu { color: var(--neu); }
   /* 캘린더 칩 결과 마커 */
   .ev .res-mark { font-size: 9px; margin-right: 2px; }
+  /* 종목 특정 이벤트 — 종목명 강조, 이벤트 제목은 보조 */
+  .ev .ev-stock { font-weight: 800; }
+  .ev .ev-name  { font-weight: 400; opacity: 0.78; }
+
+  /* 상세 패널 관련 종목 행 */
+  .related-stocks { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; margin: 6px 0; }
+  .related-stocks .rs-label { font-size: 11px; color: var(--muted); font-weight: 600; }
+  .related-stocks .rs-chip {
+    font-size: 11.5px; font-weight: 700; padding: 2px 9px; border-radius: 999px;
+    background: var(--accent); color: #fff;
+  }
+  @media (prefers-color-scheme: dark) {
+    .related-stocks .rs-chip { color: #04211d; }
+  }
 
   .week-detail .ev-block .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
   .week-detail .ev-block .tag {
@@ -571,6 +585,7 @@
       <button class="back" id="event-back" style="display:none">← 날짜로 돌아가기</button>
       <h3 id="detail-title">—</h3>
       <div class="date" id="detail-date"></div>
+      <div id="detail-related"></div>
       <div id="detail-result"></div>
       <div class="desc" id="detail-desc"></div>
       <div class="impact" id="detail-impact" style="display:none">
@@ -590,6 +605,7 @@
 <script>
 const EVENTS_URL = "events.json";
 const TODAY_ISO = {{ summary.today_iso|tojson }};
+const STOCK_NAMES = {{ stock_names|tojson }};
 const WORKER_BASE = "https://k-ant-daily-quotes.yummyummyummy.workers.dev";
 const TICKER_POLL_MS = 60000;   // 60s — KRX indices + FX + crypto (24/7 OK)
 const QUOTE_POLL_MS  = 60000;   // 60s — holdings (Worker edge-caches 30s)
@@ -634,6 +650,37 @@ function chipMarker(e) {
   if (e.result && e.result.summary) return "✓ ";
   if (isPassed(e)) return "⏳ ";
   return "";
+}
+
+// 종목 특정 이벤트의 종목 라벨. 1개면 종목명, 여러개면 "OOO 외 N".
+function stockNames(e) {
+  if (!e.related_codes || !e.related_codes.length) return [];
+  return e.related_codes.map(c => STOCK_NAMES[c] || c).filter(Boolean);
+}
+function stockTag(e) {
+  const names = stockNames(e);
+  if (!names.length) return "";
+  return names.length === 1 ? names[0] : `${names[0]} 외 ${names.length - 1}`;
+}
+
+// 캘린더 칩 내용 — 종목 특정이면 종목명 굵게 앞에, 이벤트 제목은 보조.
+function fillChip(evEl, e) {
+  evEl.textContent = "";
+  const marker = chipMarker(e);
+  if (marker) evEl.appendChild(document.createTextNode(marker));
+  const tag = stockTag(e);
+  if (tag) {
+    const st = document.createElement("span");
+    st.className = "ev-stock";
+    st.textContent = tag;
+    evEl.appendChild(st);
+    evEl.appendChild(document.createTextNode(" · "));
+  }
+  const nm = document.createElement("span");
+  nm.className = "ev-name";
+  nm.textContent = e.title;
+  evEl.appendChild(nm);
+  evEl.title = (tag ? tag + " · " : "") + e.title;
 }
 
 const OUTCOME_CLS = { positive: "", negative: "neg", neutral: "neu", asexpected: "neu" };
@@ -687,6 +734,25 @@ function marketReactionHTML(e) {
 // 결과 + 시장반응 합본 — 상세 패널에서 함께 노출.
 function outcomeHTML(e) {
   return resultHTML(e) + marketReactionHTML(e);
+}
+
+// "🏷 관련 종목" 행 — related_codes 있는 이벤트에만. 없으면 null.
+function relatedStocksEl(e) {
+  const names = stockNames(e);
+  if (!names.length) return null;
+  const wrap = document.createElement("div");
+  wrap.className = "related-stocks";
+  const label = document.createElement("span");
+  label.className = "rs-label";
+  label.textContent = "🏷 관련 종목";
+  wrap.appendChild(label);
+  for (const n of names) {
+    const chip = document.createElement("span");
+    chip.className = "rs-chip";
+    chip.textContent = n;
+    wrap.appendChild(chip);
+  }
+  return wrap;
 }
 function escapeHtml(s) {
   return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -879,8 +945,7 @@ function renderMonth() {
     for (const e of dayEvents.slice(0, 4)) {
       const evEl = document.createElement("div");
       evEl.className = "ev cat-" + e.category;
-      evEl.textContent = chipMarker(e) + e.title;
-      evEl.title = e.title;
+      fillChip(evEl, e);
       evEl.addEventListener("click", (clickEv) => {
         clickEv.stopPropagation();
         openDetail(e);
@@ -943,8 +1008,7 @@ function renderWeek() {
     for (const e of dayEvents) {
       const evEl = document.createElement("div");
       evEl.className = "ev cat-" + e.category;
-      evEl.textContent = chipMarker(e) + e.title;
-      evEl.title = e.title;
+      fillChip(evEl, e);
       // Click anywhere on chip = select that date and show details below.
       // (We intentionally don't open the side panel in week mode — details are inline.)
       cell.appendChild(evEl);
@@ -1001,6 +1065,9 @@ function renderWeekDetail() {
     top.appendChild(tag);
     top.appendChild(title2);
     block.appendChild(top);
+
+    const relEl = relatedStocksEl(e);
+    if (relEl) block.appendChild(relEl);
 
     const resHtml = outcomeHTML(e);
     if (resHtml) {
@@ -1116,6 +1183,10 @@ function openDetail(e, fromDay = false) {
     `${e.date}${e.time ? " " + e.time : ""} · ${CATEGORY_LABEL[e.category] || e.category}`;
   currentDetailEvent = e;
   currentDetailFromDay = fromDay;
+  const relHolder = document.getElementById("detail-related");
+  relHolder.innerHTML = "";
+  const relEl = relatedStocksEl(e);
+  if (relEl) relHolder.appendChild(relEl);
   document.getElementById("detail-result").innerHTML = outcomeHTML(e);
   document.getElementById("detail-desc").textContent = e.description || "(설명 없음)";
   const impactWrap = document.getElementById("detail-impact");

@@ -233,9 +233,11 @@ def render_calendar() -> None:
         "top_gainer": top_gainer,
     }
 
+    stock_names = {h["code"]: h["name"] for h in holdings}
+
     env = _env()
     template = env.get_template("calendar.html.j2")
-    html = template.render(summary=summary, stocks=holdings)
+    html = template.render(summary=summary, stocks=holdings, stock_names=stock_names)
 
     out = DOCS / "calendar.html"
     out.write_text(html, encoding="utf-8")
