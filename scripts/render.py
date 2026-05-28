@@ -75,6 +75,41 @@ def _build_holding(stock_cfg: dict, news_entry: dict | None) -> dict:
     return out
 
 
+def _compute_top_gainer(holdings: list[dict]) -> dict | None:
+    """Pick the stock with the highest positive change_pct today and the
+    friend who 'buys coffee' for it. Returns None if nothing has positive moves."""
+    best = None
+    best_pct = 0.0
+    for h in holdings:
+        q = h.get("quote") or {}
+        chg = q.get("change_pct", "")
+        if not chg:
+            continue
+        try:
+            pct = float(str(chg).replace("%", "").replace("+", ""))
+        except (ValueError, AttributeError):
+            continue
+        if pct > best_pct:
+            best_pct = pct
+            best = h
+    if not best:
+        return None
+    owners = best.get("owners") or []
+    if not owners:
+        return None
+    leader = best.get("leader")
+    primary = leader if leader and leader in owners else sorted(owners)[0]
+    extra = len(owners) - 1
+    return {
+        "stock": best["name"],
+        "code": best["code"],
+        "change_pct": best["quote"].get("change_pct", ""),
+        "primary": primary,
+        "extra": extra,
+        "is_leader": bool(leader and leader == primary),
+    }
+
+
 def _build_macro_line(macro: dict) -> list[dict]:
     chunks: list[dict] = []
     indices = macro.get("indices") or {}
@@ -180,16 +215,11 @@ def render_calendar() -> None:
         _build_holding(s, news_by_code.get(s["code"]))
         for s in stocks_cfg.get("stocks", [])
     ]
-    # Sort by absolute change desc (most-moving first). No-quote stocks drop to end.
-    def _sort_key(h: dict) -> tuple[int, float]:
-        q = h.get("quote") or {}
-        chg = q.get("change_pct", "")
-        try:
-            n = abs(float(str(chg).replace("%", "").replace("+", "")))
-            return (0, -n)
-        except (ValueError, AttributeError):
-            return (1, 0.0)
-    holdings.sort(key=_sort_key)
+    # Top-gainer computed BEFORE sort (so it doesn't depend on display order).
+    top_gainer = _compute_top_gainer(holdings)
+
+    # Sort alphabetically by name (a-z then ㄱ-ㅎ, Python default Unicode order).
+    holdings.sort(key=lambda h: h["name"])
 
     macro_line = _build_macro_line(news.get("macro") or {})
 
@@ -200,6 +230,7 @@ def render_calendar() -> None:
         "today_iso": today_iso,
         "generated_label": now.strftime("%Y-%m-%d %H:%M KST 생성"),
         "macro_line": macro_line,
+        "top_gainer": top_gainer,
     }
 
     env = _env()
