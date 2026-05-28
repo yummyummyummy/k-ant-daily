@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-28T23:04:39.689988+09:00",
+  "generated_at": "2026-05-28T23:46:10.616390+09:00",
   "events": [
     {
       "date": "2026-05-28",
@@ -225,6 +225,18 @@
       }
     },
     {
+      "date": "2026-07-14",
+      "category": "macro",
+      "title": "미 6월 CPI 발표",
+      "description": "8:30 ET (한국 21:30). 7/28-29 FOMC 직전 인플레 확인.",
+      "impact": "📁 보유 영향\n• 코스닥 바이오 금리 민감도 최고 — Hot이면 하락 폭 최대, 반도체는 달러로 일부 상쇄\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bls.gov/schedule/news_release/cpi.htm",
+      "importance": 3,
+      "time": "21:30"
+    },
+    {
       "date": "2026-07-16",
       "category": "macro",
       "title": "한은 금통위 (통화정책방향 결정)",
@@ -277,6 +289,18 @@
       "tags": [],
       "source": "https://www.bea.gov/news/schedule",
       "importance": 2,
+      "time": "21:30"
+    },
+    {
+      "date": "2026-08-12",
+      "category": "macro",
+      "title": "미 7월 CPI 발표",
+      "description": "8:30 ET (한국 21:30).",
+      "impact": "📁 보유 영향\n• 코스닥 바이오 금리 민감 — 인하 기대 좌우\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bls.gov/schedule/news_release/cpi.htm",
+      "importance": 3,
       "time": "21:30"
     },
     {
@@ -389,6 +413,18 @@
       "tags": [],
       "source": "",
       "importance": 2
+    },
+    {
+      "date": "2026-09-11",
+      "category": "macro",
+      "title": "미 8월 CPI 발표",
+      "description": "8:30 ET (한국 21:30). 9/15-16 FOMC 직전.",
+      "impact": "📁 보유 영향\n• 코스닥 바이오 금리 민감 — 9월 FOMC 점도표 방향 좌우\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bls.gov/schedule/news_release/cpi.htm",
+      "importance": 3,
+      "time": "21:30"
     },
     {
       "date": "2026-09-14",
@@ -532,6 +568,18 @@
       "importance": 2
     },
     {
+      "date": "2026-10-14",
+      "category": "macro",
+      "title": "미 9월 CPI 발표",
+      "description": "8:30 ET (한국 21:30).",
+      "impact": "📁 보유 영향\n• 코스닥 바이오 금리 민감 — 인하 경로 재확인\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bls.gov/schedule/news_release/cpi.htm",
+      "importance": 3,
+      "time": "21:30"
+    },
+    {
       "date": "2026-10-19",
       "category": "conference",
       "title": "World Vaccine Congress Europe 2026",
@@ -649,6 +697,18 @@
       }
     },
     {
+      "date": "2026-11-10",
+      "category": "macro",
+      "title": "미 10월 CPI 발표",
+      "description": "8:30 ET (한국 21:30).",
+      "impact": "📁 보유 영향\n• 코스닥 바이오 금리 민감 — 연말 정책 경로 인풋\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bls.gov/schedule/news_release/cpi.htm",
+      "importance": 3,
+      "time": "21:30"
+    },
+    {
       "date": "2026-11-26",
       "category": "macro",
       "title": "한은 금통위 (통화정책방향 결정)",
@@ -674,6 +734,18 @@
         "2026-12-08",
         "2026-12-09"
       ]
+    },
+    {
+      "date": "2026-12-10",
+      "category": "macro",
+      "title": "미 11월 CPI 발표",
+      "description": "8:30 ET (한국 21:30). 12/8-9 FOMC 직후.",
+      "impact": "📁 보유 영향\n• 코스닥 바이오 금리 민감 — 차년도 정책 시그널과 맞물림\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bls.gov/schedule/news_release/cpi.htm",
+      "importance": 3,
+      "time": "21:30"
     },
     {
       "date": "2026-12-10",

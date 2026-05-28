@@ -221,6 +221,73 @@ events:
     source: "https://www.bls.gov/schedule/news_release/cpi.htm"
     importance: 3
 
+  # ─── 미 CPI 2026 하반기 (확정일, BLS 스케줄) ─────────────────────
+  - date: "2026-07-14"
+    category: "macro"
+    title: "미 6월 CPI 발표"
+    time: "21:30"
+    description: "8:30 ET (한국 21:30). 7/28-29 FOMC 직전 인플레 확인."
+    impact: |
+      📁 보유 영향
+      • 코스닥 바이오 금리 민감도 최고 — Hot이면 하락 폭 최대, 반도체는 달러로 일부 상쇄
+    source: "https://www.bls.gov/schedule/news_release/cpi.htm"
+    importance: 3
+
+  - date: "2026-08-12"
+    category: "macro"
+    title: "미 7월 CPI 발표"
+    time: "21:30"
+    description: "8:30 ET (한국 21:30)."
+    impact: |
+      📁 보유 영향
+      • 코스닥 바이오 금리 민감 — 인하 기대 좌우
+    source: "https://www.bls.gov/schedule/news_release/cpi.htm"
+    importance: 3
+
+  - date: "2026-09-11"
+    category: "macro"
+    title: "미 8월 CPI 발표"
+    time: "21:30"
+    description: "8:30 ET (한국 21:30). 9/15-16 FOMC 직전."
+    impact: |
+      📁 보유 영향
+      • 코스닥 바이오 금리 민감 — 9월 FOMC 점도표 방향 좌우
+    source: "https://www.bls.gov/schedule/news_release/cpi.htm"
+    importance: 3
+
+  - date: "2026-10-14"
+    category: "macro"
+    title: "미 9월 CPI 발표"
+    time: "21:30"
+    description: "8:30 ET (한국 21:30)."
+    impact: |
+      📁 보유 영향
+      • 코스닥 바이오 금리 민감 — 인하 경로 재확인
+    source: "https://www.bls.gov/schedule/news_release/cpi.htm"
+    importance: 3
+
+  - date: "2026-11-10"
+    category: "macro"
+    title: "미 10월 CPI 발표"
+    time: "21:30"
+    description: "8:30 ET (한국 21:30)."
+    impact: |
+      📁 보유 영향
+      • 코스닥 바이오 금리 민감 — 연말 정책 경로 인풋
+    source: "https://www.bls.gov/schedule/news_release/cpi.htm"
+    importance: 3
+
+  - date: "2026-12-10"
+    category: "macro"
+    title: "미 11월 CPI 발표"
+    time: "21:30"
+    description: "8:30 ET (한국 21:30). 12/8-9 FOMC 직후."
+    impact: |
+      📁 보유 영향
+      • 코스닥 바이오 금리 민감 — 차년도 정책 시그널과 맞물림
+    source: "https://www.bls.gov/schedule/news_release/cpi.htm"
+    importance: 3
+
   # ─── 한은 금통위 (통화정책방향 결정, 확정일) ─────────────────────
   - date: "2026-08-27"
     category: "macro"
