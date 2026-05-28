@@ -382,6 +382,19 @@
     font-size: 12px; color: var(--muted);
     background: var(--card); border-left: 3px dashed var(--partial);
   }
+  .market-react {
+    margin: 8px 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+  }
+  .market-react .react-label {
+    font-size: 10.5px; color: var(--muted); font-weight: 600; width: 100%;
+  }
+  .react-chip {
+    font-size: 11.5px; font-weight: 700; padding: 2px 9px; border-radius: 999px;
+    background: var(--card); font-feature-settings: "tnum";
+  }
+  .react-chip.pos { color: var(--pos); }
+  .react-chip.neg { color: var(--neg); }
+  .react-chip.neu { color: var(--neu); }
   /* 캘린더 칩 결과 마커 */
   .ev .res-mark { font-size: 9px; margin-right: 2px; }
 
@@ -486,7 +499,7 @@
 
   <header class="top">
     <h1>k-ant-daily</h1>
-    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 13:36 KST 생성</span>
+    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 14:42 KST 생성</span>
   </header>  <div class="coffee">
     <span class="icon">☕</span>
     <div class="line">
@@ -738,7 +751,7 @@
   </aside>
 
   <footer>
-    2026-05-28 13:36 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
+    2026-05-28 14:42 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
   </footer>
 </div>
 
@@ -759,6 +772,10 @@ let allEvents = [];
 let activeCat = "all";
 let selectedDate = TODAY_ISO;  // default-select today so week-detail shows on load
 let view = "week";             // "month" | "week" — week is default
+let liveQuotes = {};           // code -> { change_pct:number, direction }  (from /quote poll)
+let liveIndices = {};          // "KOSPI"/"KOSDAQ" -> { change_pct:string, direction }  (from /ticker)
+let currentDetailEvent = null; // event shown in side panel (for live refresh)
+let currentDetailFromDay = false;
 const today = new Date(TODAY_ISO + "T00:00:00+09:00");
 let cursor = new Date(today.getFullYear(), today.getMonth(), 1);  // month cursor
 let weekCursor = startOfWeek(today);  // sunday of the visible week
@@ -804,6 +821,40 @@ function resultHTML(e) {
     return `<div class="result-pending">⏳ 발표 시간 경과 — 결과 집계 중 (다음 갱신 때 반영)</div>`;
   }
   return "";
+}
+
+function nameForCode(code) {
+  const card = document.querySelector(`.stock[data-code="${code}"]`);
+  return card ? (card.querySelector(".stock-name")?.textContent || code) : code;
+}
+
+// 시장 반응 (자동) — 이벤트 시간 경과 시 관련 종목/지수의 당일 등락률을 즉시 표시.
+// 이미 폴링 중인 liveQuotes/liveIndices 에서 읽음. LLM 불필요.
+function marketReactionHTML(e) {
+  if (!isPassed(e) || e.category === "holiday") return "";
+  const items = [];
+  if (e.related_codes && e.related_codes.length) {
+    for (const code of e.related_codes) {
+      const q = liveQuotes[code];
+      if (q && q.change_pct != null) {
+        items.push({ label: nameForCode(code), pct: signedPct(q.change_pct), dir: q.direction });
+      }
+    }
+  } else {
+    for (const idx of ["KOSPI", "KOSDAQ"]) {
+      const q = liveIndices[idx];
+      if (q && q.change_pct) items.push({ label: idx, pct: q.change_pct, dir: q.direction });
+    }
+  }
+  if (!items.length) return "";
+  const chips = items.map(it =>
+    `<span class="react-chip ${dirCls(it.dir)}">${escapeHtml(it.label)} ${escapeHtml(it.pct)}</span>`).join("");
+  return `<div class="market-react"><span class="react-label">📈 시장 반응 (당일 등락 · 자동)</span>${chips}</div>`;
+}
+
+// 결과 + 시장반응 합본 — 상세 패널에서 함께 노출.
+function outcomeHTML(e) {
+  return resultHTML(e) + marketReactionHTML(e);
 }
 function escapeHtml(s) {
   return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -1119,11 +1170,11 @@ function renderWeekDetail() {
     top.appendChild(title2);
     block.appendChild(top);
 
-    const resHtml = resultHTML(e);
+    const resHtml = outcomeHTML(e);
     if (resHtml) {
       const resWrap = document.createElement("div");
       resWrap.innerHTML = resHtml;
-      block.appendChild(resWrap.firstChild);
+      while (resWrap.firstChild) block.appendChild(resWrap.firstChild);
     }
 
     if (e.description) {
@@ -1231,7 +1282,9 @@ function openDetail(e, fromDay = false) {
   document.getElementById("detail-title").textContent = e.title;
   document.getElementById("detail-date").textContent =
     `${e.date}${e.time ? " " + e.time : ""} · ${CATEGORY_LABEL[e.category] || e.category}`;
-  document.getElementById("detail-result").innerHTML = resultHTML(e);
+  currentDetailEvent = e;
+  currentDetailFromDay = fromDay;
+  document.getElementById("detail-result").innerHTML = outcomeHTML(e);
   document.getElementById("detail-desc").textContent = e.description || "(설명 없음)";
   const impactWrap = document.getElementById("detail-impact");
   if (e.impact) {
@@ -1370,7 +1423,11 @@ async function pollTicker() {
           chgEl.className = "chg " + dirCls(info.direction);
         }
       }
+      if (key === "KOSPI" || key === "KOSDAQ") {
+        liveIndices[key] = { change_pct: info.change_pct, direction: info.direction };
+      }
     }
+    refreshOpenDetails();
     const stamp = document.getElementById("ticker-stamp");
     if (stamp) {
       const now = new Date();
@@ -1400,11 +1457,23 @@ async function pollQuotes() {
         chgEl.textContent = signedPct(q.change_pct);
         chgEl.className = "chg " + dirCls(q.direction);
       }
+      liveQuotes[code] = { change_pct: q.change_pct, direction: q.direction };
       // Track for coffee banner refresh
       order.push({ card, pct: q.change_pct, direction: q.direction });
     }
     updateCoffeeBanner(order);
+    refreshOpenDetails();
   } catch (e) { /* silent */ }
+}
+
+// 폴링으로 시세가 갱신되면 열려있는 상세(주간 디테일 / 사이드 패널)의 시장반응을 다시 그림.
+function refreshOpenDetails() {
+  if (view === "week" && selectedDate) renderWeekDetail();
+  const panel = document.getElementById("detail");
+  if (currentDetailEvent && panel.classList.contains("open")
+      && document.getElementById("event-view").style.display !== "none") {
+    document.getElementById("detail-result").innerHTML = outcomeHTML(currentDetailEvent);
+  }
 }
 
 // Recompute "오늘 커피" winner from live quotes — same logic as render.py.

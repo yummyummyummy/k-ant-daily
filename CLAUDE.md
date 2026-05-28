@@ -64,6 +64,9 @@ For multi-step tasks, state a brief plan:
 |---|---|---|---|
 | 평일 07:30 | 캘린더 + 보유종목 갱신 | `/daily-report` | `docs/calendar.html`, `docs/events.json` |
 | 매일 23:00 | 포스트마켓 다이제스트 | `/post-market-digest` | `docs/digest.html` |
+| 30분 주기 | 이벤트 결과 반영 (cheap-gated) | `/check-results` | `events.yml` result 갱신 |
+
+결과 추적은 2단계: (A) 클라이언트가 이벤트 시간 경과 시 관련 종목/지수 당일 등락률을 "📈 시장 반응 (자동)" 으로 즉시 표시 (LLM 불필요), (B) `/check-results` 가 30분 주기로 방금 끝난 이벤트의 질적 결과(`result`)를 채움. `pending_results.py` 게이트로 결과 대기 이벤트 없으면 no-op.
 
 ## Tech Stack
 
@@ -86,6 +89,7 @@ scripts/
   fetch_dart.py                # DART OpenAPI → .tmp/events_dart.json (DART_API_KEY)
   build_calendar.py            # events.yml + .tmp/events_*.json → docs/events.json
   render.py                    # → docs/calendar.html + docs/index.html (또는 --digest)
+  pending_results.py           # 결과 대기 이벤트 개수 (check-results launchd gate)
   launchd/                     # macOS schedule + wrapper shells
 templates/
   calendar.html.j2             # 메인 — 월간 캘린더 + 보유종목 패널
@@ -96,6 +100,7 @@ worker/
 .claude/commands/
   daily-report.md              # 아침 갱신 스킬 (이벤트 큐레이션 규칙)
   post-market-digest.md        # 23:00 다이제스트 스킬
+  check-results.md             # 인트라데이 이벤트 결과 채우기 스킬
 docs/                          # GitHub Pages (git-tracked)
   calendar.html                # 메인
   digest.html                  # 포스트마켓
@@ -183,11 +188,12 @@ cd worker && wrangler deploy
 Install launchd agents: `./scripts/launchd/install.sh` (one-time).
 Logs: `~/Library/Logs/k-ant-daily/`.
 
-두 LaunchAgents:
+세 LaunchAgents:
 - `briefing` (07:30 평일) — `run-briefing.sh` → `claude /daily-report`
 - `digest` (23:00 매일) — `run-digest.sh` → `claude /post-market-digest`
+- `check-results` (30분 주기) — `run-check-results.sh` → `claude /check-results` (cheap-gated)
 
-Wrapper safety: `git reset --hard origin/main` before execution. **Push 안 된 로컬 변경 보호 안 됨.**
+Wrapper safety: briefing/digest 는 `git reset --hard origin/main` before execution (**push 안 된 로컬 변경 보호 안 됨**). check-results 는 dirty 트리면 reset 안 하고 skip.
 
 ## Worker Endpoints
 

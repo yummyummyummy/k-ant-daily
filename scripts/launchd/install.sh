@@ -1,7 +1,8 @@
 #!/bin/bash
-# Install the two LaunchAgents:
-#   - briefing   07:30 weekdays  (morning calendar refresh + holdings tracking)
-#   - digest     23:00 daily     (post-market news digest)
+# Install the LaunchAgents:
+#   - briefing       07:30 weekdays  (morning calendar refresh + holdings tracking)
+#   - digest         23:00 daily     (post-market news digest)
+#   - check-results  every 30 min    (fills event results promptly; cheap-gated)
 set -e
 
 SRC="$(cd "$(dirname "$0")" && pwd)"
@@ -22,7 +23,7 @@ for legacy in com.yummyummyummy.k-ant-daily.refresh \
     fi
 done
 
-for name in com.yummyummyummy.k-ant-daily.briefing com.yummyummyummy.k-ant-daily.digest; do
+for name in com.yummyummyummy.k-ant-daily.briefing com.yummyummyummy.k-ant-daily.digest com.yummyummyummy.k-ant-daily.check-results; do
     plist="$DST/$name.plist"
     cp -f "$SRC/$name.plist" "$plist"
     launchctl unload "$plist" 2>/dev/null || true
@@ -36,5 +37,5 @@ launchctl list | grep k-ant-daily || true
 echo ""
 echo "Logs: $LOGS"
 echo ""
-echo "To disable later:  launchctl unload -w $DST/com.yummyummyummy.k-ant-daily.{briefing,digest}.plist"
-echo "To test manually:  $SRC/run-briefing.sh   (or run-digest.sh)"
+echo "To disable later:  launchctl unload -w $DST/com.yummyummyummy.k-ant-daily.{briefing,digest,check-results}.plist"
+echo "To test manually:  $SRC/run-briefing.sh   (or run-digest.sh / run-check-results.sh)"

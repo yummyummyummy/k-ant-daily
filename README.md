@@ -80,6 +80,7 @@ k-ant-daily/
 │   ├── fetch_dart.py                   # DART OpenAPI → .tmp/events_dart.json
 │   ├── build_calendar.py               # 머지 → docs/events.json
 │   ├── render.py                       # → docs/calendar.html + index.html (또는 --digest)
+│   ├── pending_results.py              # 결과 대기 이벤트 개수 (check-results gate)
 │   └── launchd/                        # macOS 로컬 스케줄
 ├── templates/
 │   ├── calendar.html.j2                # 메인 — 캘린더 + 보유종목 패널
@@ -90,7 +91,8 @@ k-ant-daily/
 │   └── wrangler.toml
 ├── .claude/commands/
 │   ├── daily-report.md                 # 아침 갱신 스킬
-│   └── post-market-digest.md           # 23:00 다이제스트 스킬
+│   ├── post-market-digest.md           # 23:00 다이제스트 스킬
+│   └── check-results.md                # 인트라데이 이벤트 결과 채우기 스킬
 ├── docs/                               # GitHub Pages
 │   ├── calendar.html                   # 메인
 │   ├── digest.html                     # 포스트마켓
@@ -109,6 +111,13 @@ k-ant-daily/
 |---|---|---|---|
 | 평일 07:30 | 캘린더 + 보유종목 갱신 | `/daily-report` | `docs/calendar.html` + `docs/events.json` |
 | 매일 23:00 | 포스트마켓 다이제스트 | `/post-market-digest` | `docs/digest.html` |
+| 30분 주기 | 이벤트 결과 반영 (cheap-gated) | `/check-results` | `events.yml` `result` 갱신 |
+
+### 이벤트 결과 실시간 추적 (하이브리드)
+
+발표성 이벤트 (FOMC·CPI·고용·금통위·학회 등) 가 끝나면 결과를 두 갈래로 반영:
+- **A. 시장 반응 (즉시·무료)**: 클라이언트가 이벤트 `time` 경과 즉시 관련 종목/지수의 당일 등락률을 "📈 시장 반응 (자동)" 으로 표시. 이미 폴링 중인 시세 데이터 사용, LLM 불필요
+- **B. 질적 결과 (~30분)**: `/check-results` 가 30분 주기로 방금 끝난 이벤트의 실제 결과(금리 동결/인하, 수치 beat/miss 등)를 WebSearch 로 조사해 `result` 채움. `pending_results.py` 가 게이트 — 결과 대기 이벤트 없으면 Claude 안 부름 (사용량 0)
 
 `/daily-report` 의 내부 흐름:
 1. `fetch_news.py` + `fetch_clinical_trials.py` + `fetch_dart.py` 병렬 실행
@@ -129,9 +138,10 @@ k-ant-daily/
 ./scripts/launchd/install.sh   # 최초 1회
 ```
 
-두 LaunchAgent:
-- `com.yummyummyummy.k-ant-daily.briefing` — 평일 **07:30 KST**
-- `com.yummyummyummy.k-ant-daily.digest`   — 매일 **23:00 KST**
+세 LaunchAgent:
+- `com.yummyummyummy.k-ant-daily.briefing`      — 평일 **07:30 KST**
+- `com.yummyummyummy.k-ant-daily.digest`        — 매일 **23:00 KST**
+- `com.yummyummyummy.k-ant-daily.check-results` — **30분 주기** (이벤트 결과 반영, cheap-gated)
 
 Wrapper 가 `git reset --hard origin/main` 으로 동기화 후 `claude --dangerously-skip-permissions --print "/daily-report"` (또는 digest) 실행.
 
