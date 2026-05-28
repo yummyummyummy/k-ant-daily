@@ -427,7 +427,40 @@ events:
     source: "https://investor.nvidia.com/"
     importance: 3
 
+  # ─── 한국 거시 (월간, 규칙적) ──────────────────────────────────
+  - date: "2026-06-01"
+    category: "macro"
+    title: "한국 5월 수출입동향"
+    description: "산업통상자원부 매월 1일 발표. 반도체·자동차·조선 업종별 수출 증감이 관련주 심리에 영향."
+    impact: |
+      📁 보유 영향
+      • 반도체(삼성전자·SK하이닉스) 수출액 — 메모리 업황 체크. 조선(HD한국조선해양) 수주 반영. 자동차(현대차) 수출 대수.
+    source: "https://www.motie.go.kr/"
+    importance: 1
+
+  - date: "2026-06-03"
+    category: "macro"
+    title: "한국 5월 소비자물가(CPI) 발표"
+    time: "08:00"
+    description: "통계청 08:00 발표. 물가 추세가 한은 금리 경로 — 6/16 FOMC, 7/16 금통위 인풋."
+    impact: |
+      📁 보유 영향
+      • 한국금융지주(금리 경로)·현대차·반도체(원화 환율). 코스닥 바이오는 미 CPI 우선
+    source: "https://mods.go.kr/menu.es?mid=b70203020000"
+    importance: 2
+
   # ─── 보유 종목 월간 지표 (forward, 발표일 규칙적) ─────────────────
+  - date: "2026-06-01"
+    category: "earnings"
+    title: "현대차 5월 판매실적"
+    search_term: "판매실적"
+    description: "매월 1일경 발표 — 국내/미국/유럽/신흥국 판매대수. 월간 펀더멘털 체크포인트."
+    related_codes: ["005380"]
+    per_stock:
+      "005380": "미국·유럽 판매 추세 + 친환경차(HEV/EV) 비중 — 분기 실적 선행 지표"
+    source: "https://www.hyundai.com/worldwide/ko/company/ir"
+    importance: 2
+
   - date: "2026-07-01"
     category: "earnings"
     title: "현대차 6월 판매실적"
