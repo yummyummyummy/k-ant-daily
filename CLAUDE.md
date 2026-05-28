@@ -145,9 +145,10 @@ render.py --digest       → docs/digest.html
 - 확정된 일자만 추가. 추측 금지
 - "예상" 인 경우 description 에 명시 + tags 에 `estimated`
 - 거시 일정은 출처 URL (`source`) 필수
-- 결과 시나리오 / 보유종목 영향은 `impact` 필드에 작성
+- **캘린더는 (종목×이벤트) 단위 표시.** 종목 특정 이벤트는 `per_stock` {code: 주목포인트} 작성 — 종목별로 구체적·상이하게. generic 시나리오 금지
+- 시장 전체 이벤트(FOMC/CPI/휴장)만 `impact` 에 "📁 보유 영향" 한 단락 (간결하게)
 - 발표/결과성 이벤트는 `time` (HH:MM KST) 추가 → 시간 지나면 UI 가 "결과 집계 중" 표시
-- 지난 이벤트는 daily-report/digest 실행 시 `result` (outcome/summary/filled_at) 채움 — 실제 결과 + 시장 반응
+- 지난 이벤트는 daily-report/digest/check-results 실행 시 `result` (outcome/summary/filled_at) 채움
 
 ### When Changing Code
 - **Keep README.md in sync** — README.md 를 코드/스키마/UI/스킬 변경과 같은 commit 에 업데이트

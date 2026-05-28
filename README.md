@@ -179,12 +179,14 @@ events:
     category: "conference"              # macro|conference|holiday|earnings|ir|clinical|disclosure|other
     title: "ASCO 2026 Annual Meeting"
     time: "21:30"                       # 선택 — 결과 발표 시각 (KST). 지나면 UI가 결과 추적
-    description: "factual 한 줄"
-    impact: |
-      🎯 핵심: ...
-      📊 보는 법: 시나리오별 시장 반응
-      📁 우리 보유에: 종목별 영향
-    related_codes: ["196170"]
+    description: "이 이벤트가 뭔지 factual 한 줄"
+    related_codes: ["196170", "298380"]
+    per_stock:                          # 종목 특정 이벤트의 종목별 주목 포인트
+      "196170": "이 종목에서 봐야 할 핵심 — 무엇을, 왜"
+      "298380": "..."
+    impact: |                           # 시장 전체 이벤트(FOMC/CPI 등)에만. 📁 보유 영향 한 단락
+      📁 보유 영향
+      • 어떤 보유 종목이 왜 민감한지
     tags: ["bio", "oncology"]
     source: "https://asco.org/..."
     importance: 3                       # 1~3 (기본 2)
@@ -193,6 +195,8 @@ events:
       summary: "실제 결과 + 시장 반응 1~2줄"
       filled_at: "2026-06-04"
 ```
+
+**캘린더는 (종목 × 이벤트) 단위로 표시** — `related_codes` 가 여러 개면 종목 수만큼 칩이 분리되고, 각 칩이 그 종목의 `per_stock` 주목 포인트를 보여줌. 시장 전체 이벤트(FOMC/CPI/휴장)는 1개 칩 + `impact` 의 보유 영향.
 
 **결과 자동 추적**: `time` (또는 다일 이벤트의 마지막 날) 이 지나면 캘린더가 해당 이벤트에 "⏳ 결과 집계 중" 을 표시하고, 다음 `/daily-report` (07:30) 또는 `/post-market-digest` (23:00) 실행 때 agent 가 실제 결과를 조사해 `result` 를 채운다. 채워지면 "✅ 결과" 블록으로 전환 (outcome 에 따라 색상).
 

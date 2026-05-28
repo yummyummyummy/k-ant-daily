@@ -80,6 +80,9 @@ def _normalize(event: dict) -> dict | None:
         out["time"] = event["time"]
     if event.get("result"):
         out["result"] = event["result"]
+    # Optional: per-stock watch points. {code: "이 종목에서 봐야 할 핵심"}
+    if event.get("per_stock"):
+        out["per_stock"] = {str(k): v for k, v in event["per_stock"].items()}
     return out
 
 
@@ -103,6 +106,8 @@ def _dedupe(events: list[dict]) -> list[dict]:
                 existing["time"] = e["time"]
             if e.get("result") and not existing.get("result"):
                 existing["result"] = e["result"]
+            if e.get("per_stock"):
+                existing.setdefault("per_stock", {}).update(e["per_stock"])
         else:
             seen[key] = e
     return list(seen.values())

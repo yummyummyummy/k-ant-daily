@@ -76,27 +76,32 @@ WebFetch 또는 WebSearch 로 확정 일자 확인 후 추가. 추측 금지.
 
 #### 추가 시 schema
 ```yaml
-- date: "2026-06-04"
-  category: "conference"  # macro|conference|holiday|earnings|ir|clinical|disclosure|other
+- date: "2026-06-04"        # 다일은 date_range: ["2026-06-04", "2026-06-08"]
+  category: "conference"     # macro|conference|holiday|earnings|ir|clinical|disclosure|other
   title: "ASCO 2026 Annual Meeting"
-  description: "factual 한 줄"
-  impact: |
-    🎯 핵심: ...
-    📊 보는 법: 시나리오별 시장 반응
-    📁 우리 보유에: 종목별 영향
-  related_codes: ["196170"]
-  tags: ["bio", "oncology", "estimated"]
+  description: "이 이벤트가 뭔지 factual 한 줄"
+  related_codes: ["196170", "298380"]
+  per_stock:                 # 종목 특정 이벤트의 핵심 — 캘린더가 종목별로 쪼개 보여줌
+    "196170": "이 종목에서 봐야 할 핵심 — 무엇을, 왜 (구체적으로)"
+    "298380": "..."
+  tags: ["bio", "oncology"]
   source: "https://asco.org/..."
   importance: 3   # 1~3
 ```
 
-여러 날 행사는 `date_range: ["2026-06-04", "2026-06-08"]` 사용.
+**캘린더는 (종목 × 이벤트) 단위로 표시**된다 — `related_codes` 가 여러 개면 종목 수만큼 칩이 분리되고, 각 칩은 그 종목의 `per_stock` 주목 포인트를 보여줌.
+
+**per_stock 작성 규칙** (가장 중요):
+- 종목 특정 이벤트 (학회·임상·실적·공시 등 related_codes 있는 것) 는 **반드시 `per_stock` 작성**
+- 각 종목별로 **구체적이고 서로 다르게** — "이 종목은 이 이벤트에서 무엇을 봐야 하는가". 회사의 실제 파이프라인/제품과 연결
+- 확실하지 않은 세부(정확한 임상명·phase)는 단정하지 말고 "발표 여부", "관련 데이터 주목" 식으로 hedge
+- generic 한 매파/비둘기 시나리오 나열 금지 — 그건 의미 없음. 종목별 관전 포인트가 핵심
+
+**시장 전체 이벤트** (FOMC·CPI·휴장 등 related_codes 없음) 는 `impact` 에 **"📁 보유 영향" 한 단락**만 간결하게 (어떤 보유 종목이 왜 민감한지). 장황한 시나리오 금지.
 
 **원칙**:
-- 확정되지 않은 일자는 추가 금지
-- 중복 (같은 date + title) 금지
+- 확정되지 않은 일자는 추가 금지 / 중복 (같은 date + title) 금지
 - 거시 일정은 반드시 출처 URL 첨부
-- `impact` 필드는 시나리오 + 보유종목 영향을 비전문가도 이해할 수 있게 작성
 
 ### 3. 캘린더 빌드
 ```bash

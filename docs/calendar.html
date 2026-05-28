@@ -351,6 +351,7 @@
     font-size: 10px; padding: 2px 8px; border-radius: 999px; font-weight: 600;
   }
   .week-detail .ev-block .title { font-weight: 700; font-size: 15px; }
+  .week-detail .ev-block .ev-block-stock { font-weight: 800; color: var(--accent); }
   .week-detail .ev-block .desc {
     font-size: 13px; color: var(--fg); margin: 6px 0 10px;
   }
@@ -513,7 +514,7 @@
 
   <header class="top">
     <h1>k-ant-daily</h1>
-    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 16:01 KST 생성</span>
+    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 17:38 KST 생성</span>
   </header>  <div class="coffee">
     <span class="icon">☕</span>
     <div class="line">
@@ -766,7 +767,7 @@
   </aside>
 
   <footer>
-    2026-05-28 16:01 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
+    2026-05-28 17:38 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
   </footer>
 </div>
 
@@ -790,7 +791,7 @@ let selectedDate = TODAY_ISO;  // default-select today so week-detail shows on l
 let view = "week";             // "month" | "week" — week is default
 let liveQuotes = {};           // code -> { change_pct:number, direction }  (from /quote poll)
 let liveIndices = {};          // "KOSPI"/"KOSDAQ" -> { change_pct:string, direction }  (from /ticker)
-let currentDetailEvent = null; // event shown in side panel (for live refresh)
+let currentDetailItem = null;  // {e, code} shown in side panel (for live refresh)
 let currentDetailFromDay = false;
 const today = new Date(TODAY_ISO + "T00:00:00+09:00");
 let cursor = new Date(today.getFullYear(), today.getMonth(), 1);  // month cursor
@@ -820,25 +821,39 @@ function chipMarker(e) {
   return "";
 }
 
-// 종목 특정 이벤트의 종목 라벨. 1개면 종목명, 여러개면 "OOO 외 N".
-function stockNames(e) {
-  if (!e.related_codes || !e.related_codes.length) return [];
-  return e.related_codes.map(c => STOCK_NAMES[c] || c).filter(Boolean);
+// 캘린더 아이템 = (이벤트 × 종목). related_codes 있으면 종목당 1개로 펼침,
+// 없으면(시장 전체) code=null 1개. → "종목 - 이벤트" 단위로 보여주기 위함.
+function expandToItems(events) {
+  const items = [];
+  for (const e of events) {
+    const codes = e.related_codes || [];
+    if (codes.length) {
+      for (const code of codes) items.push({ e, code });
+    } else {
+      items.push({ e, code: null });
+    }
+  }
+  return items;
 }
-function stockTag(e) {
-  return stockNames(e).join("·");
+function itemStockName(item) {
+  return item.code ? (STOCK_NAMES[item.code] || item.code) : null;
+}
+function itemWatch(item) {
+  if (item.code && item.e.per_stock) return item.e.per_stock[item.code] || "";
+  return "";
 }
 
-// 캘린더 칩 내용 — 종목 특정이면 종목명 굵게 앞에, 이벤트 제목은 보조.
-function fillChip(evEl, e) {
+// 캘린더 칩 — 종목 특정이면 종목명 굵게 앞에 "종목 · 이벤트", 시장 전체면 이벤트명만.
+function fillChip(evEl, item) {
+  const e = item.e;
   evEl.textContent = "";
   const marker = chipMarker(e);
   if (marker) evEl.appendChild(document.createTextNode(marker));
-  const tag = stockTag(e);
-  if (tag) {
+  const stock = itemStockName(item);
+  if (stock) {
     const st = document.createElement("span");
     st.className = "ev-stock";
-    st.textContent = tag;
+    st.textContent = stock;
     evEl.appendChild(st);
     evEl.appendChild(document.createTextNode(" · "));
   }
@@ -846,7 +861,7 @@ function fillChip(evEl, e) {
   nm.className = "ev-name";
   nm.textContent = e.title;
   evEl.appendChild(nm);
-  evEl.title = (tag ? tag + " · " : "") + e.title;
+  evEl.title = (stock ? stock + " · " : "") + e.title;
 }
 
 const OUTCOME_CLS = { positive: "", negative: "neg", neutral: "neu", asexpected: "neu" };
@@ -869,55 +884,63 @@ function resultHTML(e) {
 }
 
 function nameForCode(code) {
-  const card = document.querySelector(`.stock[data-code="${code}"]`);
-  return card ? (card.querySelector(".stock-name")?.textContent || code) : code;
+  return STOCK_NAMES[code] || code;
 }
 
-// 시장 반응 (자동) — 이벤트 시간 경과 시 관련 종목/지수의 당일 등락률을 즉시 표시.
-// 이미 폴링 중인 liveQuotes/liveIndices 에서 읽음. LLM 불필요.
-function marketReactionHTML(e) {
+// 시장 반응 (자동) — 이벤트 시간 경과 시 종목/지수 당일 등락률 즉시 표시.
+// item.code 있으면 그 종목만, 없으면 KOSPI/KOSDAQ. 이미 폴링 중인 시세 사용.
+function marketReactionHTML(item) {
+  const e = item.e;
   if (!isPassed(e) || e.category === "holiday") return "";
-  const items = [];
-  if (e.related_codes && e.related_codes.length) {
-    for (const code of e.related_codes) {
-      const q = liveQuotes[code];
-      if (q && q.change_pct != null) {
-        items.push({ label: nameForCode(code), pct: signedPct(q.change_pct), dir: q.direction });
-      }
-    }
+  const reacts = [];
+  if (item.code) {
+    const q = liveQuotes[item.code];
+    if (q && q.change_pct != null) reacts.push({ label: nameForCode(item.code), pct: signedPct(q.change_pct), dir: q.direction });
   } else {
     for (const idx of ["KOSPI", "KOSDAQ"]) {
       const q = liveIndices[idx];
-      if (q && q.change_pct) items.push({ label: idx, pct: q.change_pct, dir: q.direction });
+      if (q && q.change_pct) reacts.push({ label: idx, pct: q.change_pct, dir: q.direction });
     }
   }
-  if (!items.length) return "";
-  const chips = items.map(it =>
+  if (!reacts.length) return "";
+  const chips = reacts.map(it =>
     `<span class="react-chip ${dirCls(it.dir)}">${escapeHtml(it.label)} ${escapeHtml(it.pct)}</span>`).join("");
   return `<div class="market-react"><span class="react-label">📈 시장 반응 (당일 등락 · 자동)</span>${chips}</div>`;
 }
 
-// 결과 + 시장반응 합본 — 상세 패널에서 함께 노출.
-function outcomeHTML(e) {
-  return resultHTML(e) + marketReactionHTML(e);
+// 결과 + 시장반응 합본.
+function outcomeHTML(item) {
+  return resultHTML(item.e) + marketReactionHTML(item);
 }
 
-// "🏷 관련 종목" 행 — related_codes 있는 이벤트에만. 없으면 null.
-function relatedStocksEl(e) {
-  const names = stockNames(e);
-  if (!names.length) return null;
+// 종목 이벤트는 "👀 주목 포인트", 시장 전체는 "📁 보유 영향"(impact). 없으면 "".
+function detailBodyHTML(item) {
+  const e = item.e;
+  if (item.code) {
+    const wp = itemWatch(item);
+    if (!wp) return "";
+    return `<div class="impact"><div class="impact-head">👀 ${escapeHtml(itemStockName(item))} 주목 포인트</div>${escapeHtml(wp)}</div>`;
+  }
+  if (e.impact) {
+    return `<div class="impact" style="white-space:pre-wrap">${escapeHtml(e.impact)}</div>`;
+  }
+  return "";
+}
+
+// "🏷 종목" 행 — stock item 이면 그 종목 칩 1개.
+function relatedStocksEl(item) {
+  const name = itemStockName(item);
+  if (!name) return null;
   const wrap = document.createElement("div");
   wrap.className = "related-stocks";
   const label = document.createElement("span");
   label.className = "rs-label";
-  label.textContent = "🏷 관련 종목";
+  label.textContent = "🏷 종목";
   wrap.appendChild(label);
-  for (const n of names) {
-    const chip = document.createElement("span");
-    chip.className = "rs-chip";
-    chip.textContent = n;
-    wrap.appendChild(chip);
-  }
+  const chip = document.createElement("span");
+  chip.className = "rs-chip";
+  chip.textContent = name;
+  wrap.appendChild(chip);
   return wrap;
 }
 function escapeHtml(s) {
@@ -983,7 +1006,8 @@ function renderHoldingDates() {
     const ul = document.createElement("ul");
     for (const e of deduped) {
       const li = document.createElement("li");
-      li.addEventListener("click", () => openDetail(e));
+      const itemCode = (e.related_codes && e.related_codes.includes(code)) ? code : null;
+      li.addEventListener("click", () => openDetail({ e, code: itemCode }));
 
       const when = document.createElement("span");
       when.className = "when" + (e.date === TODAY_ISO ? " today" : "");
@@ -1008,7 +1032,10 @@ function renderHoldingDates() {
 function renderToday() {
   const section = document.getElementById("today-section");
   const wrap = document.getElementById("today-cards");
-  const todays = allEvents.filter(e => e.date === TODAY_ISO);
+  const todays = expandToItems(
+    allEvents.filter(e => e.date === TODAY_ISO)
+      .sort((a, b) => (b.importance || 2) - (a.importance || 2))
+  );
   wrap.innerHTML = "";
   if (!todays.length) {
     section.classList.remove("has-events");
@@ -1016,23 +1043,23 @@ function renderToday() {
   }
   section.classList.add("has-events");
   document.getElementById("today-count").textContent = `${todays.length}건`;
-  // Higher importance first
-  todays.sort((a, b) => (b.importance || 2) - (a.importance || 2));
-  for (const e of todays) {
+  for (const item of todays) {
+    const e = item.e;
     const card = document.createElement("div");
     card.className = "today-card cat-" + e.category;
-    card.addEventListener("click", () => openDetail(e));
+    card.addEventListener("click", () => openDetail(item));
     const tag = document.createElement("span");
     tag.className = "cat-tag ev cat-" + e.category;
     tag.textContent = CATEGORY_LABEL[e.category] || e.category;
     card.appendChild(tag);
     const title = document.createElement("div");
     title.className = "title";
-    title.textContent = e.title;
+    const stock = itemStockName(item);
+    title.textContent = stock ? `${stock} — ${e.title}` : e.title;
     card.appendChild(title);
     const preview = document.createElement("div");
     preview.className = "preview";
-    preview.textContent = e.description || (e.impact ? e.impact.split("\n").find(l => l.trim()) : "");
+    preview.textContent = itemWatch(item) || e.description || "";
     card.appendChild(preview);
     wrap.appendChild(card);
   }
@@ -1107,24 +1134,24 @@ function renderMonth() {
     num.textContent = c.d.getDate();
     cell.appendChild(num);
 
-    const dayEvents = byDate[dateKey] || [];
-    for (const e of dayEvents.slice(0, 4)) {
+    const dayItems = expandToItems(byDate[dateKey] || []);
+    for (const item of dayItems.slice(0, 4)) {
       const evEl = document.createElement("div");
-      evEl.className = "ev cat-" + e.category;
-      fillChip(evEl, e);
+      evEl.className = "ev cat-" + item.e.category;
+      fillChip(evEl, item);
       evEl.addEventListener("click", (clickEv) => {
         clickEv.stopPropagation();
-        openDetail(e);
+        openDetail(item);
       });
       cell.appendChild(evEl);
     }
-    if (dayEvents.length > 4) {
+    if (dayItems.length > 4) {
       const more = document.createElement("div");
       more.className = "ev cat-other";
-      more.textContent = `+${dayEvents.length - 4}`;
+      more.textContent = `+${dayItems.length - 4}`;
       more.addEventListener("click", (clickEv) => {
         clickEv.stopPropagation();
-        openDetail(dayEvents[0]);
+        openDetail(dayItems[0]);
       });
       cell.appendChild(more);
     }
@@ -1170,11 +1197,11 @@ function renderWeek() {
     num.textContent = d.getDate();
     cell.appendChild(num);
 
-    const dayEvents = byDate[dateKey] || [];
-    for (const e of dayEvents) {
+    const dayItems = expandToItems(byDate[dateKey] || []);
+    for (const item of dayItems) {
       const evEl = document.createElement("div");
-      evEl.className = "ev cat-" + e.category;
-      fillChip(evEl, e);
+      evEl.className = "ev cat-" + item.e.category;
+      fillChip(evEl, item);
       // Click anywhere on chip = select that date and show details below.
       // (We intentionally don't open the side panel in week mode — details are inline.)
       cell.appendChild(evEl);
@@ -1201,9 +1228,10 @@ function renderWeekDetail() {
   title.textContent = `${parseInt(parts[1])}월 ${parseInt(parts[2])}일 (${dow})`
     + (selectedDate === TODAY_ISO ? " · 오늘" : "");
 
-  const items = allEvents
+  const dayEvents = allEvents
     .filter(e => e.date === selectedDate)
     .sort((a, b) => (b.importance || 2) - (a.importance || 2));
+  const items = expandToItems(dayEvents);
 
   count.textContent = items.length ? `${items.length}건` : "";
   body.innerHTML = "";
@@ -1216,30 +1244,45 @@ function renderWeekDetail() {
     return;
   }
 
-  for (const e of items) {
+  for (const item of items) {
+    const e = item.e;
     const block = document.createElement("div");
     block.className = "ev-block cat-" + e.category;
 
+    // 헤더: [종목명 — ] 이벤트 제목.  종목 특정이면 종목명을 굵게 앞에.
     const top = document.createElement("div");
     top.className = "top";
     const tag = document.createElement("span");
     tag.className = "cat-tag ev cat-" + e.category;
     tag.textContent = CATEGORY_LABEL[e.category] || e.category;
-    const title2 = document.createElement("span");
-    title2.className = "title";
-    title2.textContent = e.title;
     top.appendChild(tag);
-    top.appendChild(title2);
+    const stock = itemStockName(item);
+    if (stock) {
+      const stEl = document.createElement("span");
+      stEl.className = "title";
+      stEl.innerHTML = `<span class="ev-block-stock">${escapeHtml(stock)}</span> <span style="opacity:.6">— ${escapeHtml(e.title)}</span>`;
+      top.appendChild(stEl);
+    } else {
+      const title2 = document.createElement("span");
+      title2.className = "title";
+      title2.textContent = e.title;
+      top.appendChild(title2);
+    }
     block.appendChild(top);
 
-    const relEl = relatedStocksEl(e);
-    if (relEl) block.appendChild(relEl);
-
-    const resHtml = outcomeHTML(e);
+    const resHtml = outcomeHTML(item);
     if (resHtml) {
       const resWrap = document.createElement("div");
       resWrap.innerHTML = resHtml;
       while (resWrap.firstChild) block.appendChild(resWrap.firstChild);
+    }
+
+    // 👀 종목 주목 포인트 (종목 이벤트) / 📁 보유 영향 (시장 전체)
+    const bodyHtml = detailBodyHTML(item);
+    if (bodyHtml) {
+      const bw = document.createElement("div");
+      bw.innerHTML = bodyHtml;
+      while (bw.firstChild) block.appendChild(bw.firstChild);
     }
 
     if (e.description) {
@@ -1247,31 +1290,6 @@ function renderWeekDetail() {
       desc.className = "desc";
       desc.textContent = e.description;
       block.appendChild(desc);
-    }
-
-    if (e.impact) {
-      const impact = document.createElement("div");
-      impact.className = "impact-card";
-      const head = document.createElement("div");
-      head.className = "impact-head";
-      head.textContent = "💡 시장 영향 · 보는 법";
-      const body2 = document.createElement("div");
-      body2.textContent = e.impact;
-      impact.appendChild(head);
-      impact.appendChild(body2);
-      block.appendChild(impact);
-    }
-
-    if (e.tags && e.tags.length) {
-      const tagsWrap = document.createElement("div");
-      tagsWrap.className = "tags";
-      for (const t of e.tags) {
-        const ts = document.createElement("span");
-        ts.className = "tag";
-        ts.textContent = t;
-        tagsWrap.appendChild(ts);
-      }
-      block.appendChild(tagsWrap);
     }
 
     if (e.source) {
@@ -1302,9 +1320,10 @@ function openDayDetail(dateISO) {
 
   const wrap = document.getElementById("day-events");
   wrap.innerHTML = "";
-  const items = allEvents
+  const dayEvents = allEvents
     .filter(e => e.date === dateISO)
     .sort((a, b) => (b.importance || 2) - (a.importance || 2));
+  const items = expandToItems(dayEvents);
 
   if (!items.length) {
     const empty = document.createElement("div");
@@ -1312,10 +1331,11 @@ function openDayDetail(dateISO) {
     empty.textContent = "이 날은 등록된 이벤트가 없습니다.";
     wrap.appendChild(empty);
   } else {
-    for (const e of items) {
+    for (const item of items) {
+      const e = item.e;
       const card = document.createElement("div");
       card.className = "ev-card cat-" + e.category;
-      card.addEventListener("click", () => openDetail(e, true));
+      card.addEventListener("click", () => openDetail(item, true));
 
       const tag = document.createElement("span");
       tag.className = "cat-tag ev cat-" + e.category;
@@ -1324,44 +1344,61 @@ function openDayDetail(dateISO) {
 
       const title = document.createElement("div");
       title.className = "title";
-      title.textContent = e.title;
+      const stock = itemStockName(item);
+      title.textContent = stock ? `${stock} — ${e.title}` : e.title;
       card.appendChild(title);
 
-      if (e.description) {
-        const preview = document.createElement("div");
-        preview.className = "preview";
-        preview.textContent = e.description;
-        card.appendChild(preview);
-      }
+      const preview = document.createElement("div");
+      preview.className = "preview";
+      preview.textContent = itemWatch(item) || e.description || "";
+      if (preview.textContent) card.appendChild(preview);
       wrap.appendChild(card);
     }
   }
   panel.classList.add("open");
 }
 
-function openDetail(e, fromDay = false) {
+function openDetail(item, fromDay = false) {
+  const e = item.e;
   document.getElementById("day-view").style.display = "none";
   document.getElementById("event-view").style.display = "block";
   document.getElementById("event-back").style.display = fromDay ? "block" : "none";
 
-  document.getElementById("detail-title").textContent = e.title;
+  const stock = itemStockName(item);
+  document.getElementById("detail-title").textContent = stock ? `${stock} — ${e.title}` : e.title;
   document.getElementById("detail-date").textContent =
     `${e.date}${e.time ? " " + e.time : ""} · ${CATEGORY_LABEL[e.category] || e.category}`;
-  currentDetailEvent = e;
+  currentDetailItem = item;
   currentDetailFromDay = fromDay;
+
   const relHolder = document.getElementById("detail-related");
   relHolder.innerHTML = "";
-  const relEl = relatedStocksEl(e);
+  const relEl = relatedStocksEl(item);
   if (relEl) relHolder.appendChild(relEl);
-  document.getElementById("detail-result").innerHTML = outcomeHTML(e);
-  document.getElementById("detail-desc").textContent = e.description || "(설명 없음)";
+
+  document.getElementById("detail-result").innerHTML = outcomeHTML(item);
+
+  // 👀 종목 주목 포인트 (종목 이벤트) / 📁 보유 영향 (시장 전체)
   const impactWrap = document.getElementById("detail-impact");
-  if (e.impact) {
-    document.getElementById("detail-impact-body").textContent = e.impact;
+  const headEl = impactWrap.querySelector(".impact-head");
+  const bodyEl = document.getElementById("detail-impact-body");
+  if (item.code) {
+    const wp = itemWatch(item);
+    if (wp) {
+      headEl.textContent = `👀 ${stock} 주목 포인트`;
+      bodyEl.textContent = wp;
+      impactWrap.style.display = "block";
+    } else { impactWrap.style.display = "none"; }
+  } else if (e.impact) {
+    headEl.textContent = "📁 보유 영향";
+    bodyEl.textContent = e.impact;
     impactWrap.style.display = "block";
   } else {
     impactWrap.style.display = "none";
   }
+
+  document.getElementById("detail-desc").textContent = e.description || "";
+
   const tagsEl = document.getElementById("detail-tags");
   tagsEl.innerHTML = "";
   for (const t of (e.tags || [])) {
@@ -1539,9 +1576,9 @@ async function pollQuotes() {
 function refreshOpenDetails() {
   if (view === "week" && selectedDate) renderWeekDetail();
   const panel = document.getElementById("detail");
-  if (currentDetailEvent && panel.classList.contains("open")
+  if (currentDetailItem && panel.classList.contains("open")
       && document.getElementById("event-view").style.display !== "none") {
-    document.getElementById("detail-result").innerHTML = outcomeHTML(currentDetailEvent);
+    document.getElementById("detail-result").innerHTML = outcomeHTML(currentDetailItem);
   }
 }
 
