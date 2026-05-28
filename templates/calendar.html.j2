@@ -164,9 +164,10 @@
   }
   .filters button.active { background: var(--accent); color: white; border-color: var(--accent); }
 
-  .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px;
+  .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px;
     background: var(--border); border: 1px solid var(--border); border-radius: 6px;
     overflow: hidden; }
+  .grid > * { min-width: 0; }
   .grid .dow { background: var(--card); padding: 6px 8px; font-size: 11px;
     color: var(--muted); text-align: center; font-weight: 500; }
   .grid .dow.sat { color: var(--neg); }
@@ -232,6 +233,40 @@
     font-size: 11px; font-weight: 700; color: var(--accent);
     text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;
   }
+  .detail .back {
+    background: transparent; border: none; color: var(--accent);
+    font-size: 12px; font-weight: 600; cursor: pointer;
+    padding: 0 0 8px; margin: 0; display: block;
+  }
+  .detail .back:hover { text-decoration: underline; }
+  .day-events { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+  .day-events .empty {
+    text-align: center; color: var(--muted); font-size: 13px;
+    padding: 30px 10px; background: var(--card); border-radius: 6px;
+  }
+  .day-events .ev-card {
+    padding: 10px 12px; border-radius: 6px;
+    background: var(--card); border-left: 4px solid var(--accent);
+    cursor: pointer; transition: transform 0.1s ease;
+  }
+  .day-events .ev-card:hover { transform: translateX(3px); }
+  .day-events .ev-card .cat-tag {
+    font-size: 10px; padding: 1px 8px; border-radius: 999px;
+    display: inline-block; font-weight: 600;
+  }
+  .day-events .ev-card .title { font-weight: 600; font-size: 13px; margin: 4px 0 4px; }
+  .day-events .ev-card .preview {
+    font-size: 11.5px; color: var(--muted); line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .day-events .ev-card.cat-macro      { border-left-color: #6366f1; }
+  .day-events .ev-card.cat-conference { border-left-color: #a855f7; }
+  .day-events .ev-card.cat-clinical   { border-left-color: #10b981; }
+  .day-events .ev-card.cat-earnings   { border-left-color: #f59e0b; }
+  .day-events .ev-card.cat-ir         { border-left-color: #14b8a6; }
+  .day-events .ev-card.cat-disclosure { border-left-color: #6b7280; }
+  .day-events .ev-card.cat-holiday    { border-left-color: #facc15; }
+  .day-events .ev-card.cat-other      { border-left-color: #94a3b8; }
   .detail .tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0; }
   .detail .tag { font-size: 10px; padding: 2px 6px; border-radius: 999px;
     background: var(--card); color: var(--muted); }
@@ -239,29 +274,6 @@
     background: transparent; border: none; color: var(--muted); font-size: 18px; cursor: pointer; }
   .detail a { color: var(--accent); }
 
-  /* ─── 선택한 날짜 이벤트 패널 ─────────────────────────────── */
-  .selected-day {
-    margin-top: 14px; padding: 12px 14px;
-    background: var(--card); border-radius: 8px;
-    border-left: 3px solid var(--accent);
-  }
-  .selected-day h3 { font-size: 13px; margin: 0 0 8px;
-    color: var(--accent); font-weight: 700; }
-  .selected-day .empty { font-size: 12.5px; color: var(--muted); margin: 0; }
-  .selected-day ul { list-style: none; margin: 0; padding: 0; }
-  .selected-day li {
-    display: flex; gap: 10px; padding: 6px 0;
-    font-size: 13px; border-bottom: 1px dashed var(--border);
-    cursor: pointer; align-items: center;
-  }
-  .selected-day li:last-child { border-bottom: none; }
-  .selected-day li:hover .ev-title { color: var(--accent); }
-  .selected-day .cat-dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 8px; }
-  .selected-day .cat-tag {
-    font-size: 10px; padding: 1px 7px; border-radius: 999px;
-    font-weight: 600; flex-shrink: 0;
-  }
-  .selected-day .ev-title { flex: 1; min-width: 0; }
 
   footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: 11px; }
 </style>
@@ -366,23 +378,27 @@
     <!-- cells filled by JS -->
   </div>
 
-  <div class="selected-day" id="selected-day" style="display:none">
-    <h3 id="selected-day-label">선택한 날짜</h3>
-    <ul id="selected-day-list"></ul>
-    <p class="empty" id="selected-day-empty" style="display:none">이 날은 등록된 이벤트가 없습니다.</p>
-  </div>
 
   <aside class="detail" id="detail">
     <button class="close" id="detail-close" aria-label="닫기">×</button>
-    <h3 id="detail-title">—</h3>
-    <div class="date" id="detail-date"></div>
-    <div class="desc" id="detail-desc"></div>
-    <div class="impact" id="detail-impact" style="display:none">
-      <div class="impact-head">💡 시장 영향 · 보는 법</div>
-      <div id="detail-impact-body"></div>
+
+    <div id="day-view" style="display:none">
+      <h3 id="day-title">—</h3>
+      <div class="day-events" id="day-events"></div>
     </div>
-    <div class="tags" id="detail-tags"></div>
-    <a id="detail-source" target="_blank" rel="noopener" style="display:none">원문 →</a>
+
+    <div id="event-view" style="display:none">
+      <button class="back" id="event-back" style="display:none">← 날짜로 돌아가기</button>
+      <h3 id="detail-title">—</h3>
+      <div class="date" id="detail-date"></div>
+      <div class="desc" id="detail-desc"></div>
+      <div class="impact" id="detail-impact" style="display:none">
+        <div class="impact-head">💡 시장 영향 · 보는 법</div>
+        <div id="detail-impact-body"></div>
+      </div>
+      <div class="tags" id="detail-tags"></div>
+      <a id="detail-source" target="_blank" rel="noopener" style="display:none">원문 →</a>
+    </div>
   </aside>
 
   <footer>
@@ -575,10 +591,15 @@ function render() {
       + (dateKey === selectedDate ? " selected" : "");
     cell.dataset.date = dateKey;
     cell.addEventListener("click", (ev) => {
-      // Ignore clicks on event chips (they have their own handlers via stopPropagation below)
-      selectedDate = (selectedDate === dateKey) ? null : dateKey;
+      // Toggle: clicking same selected date deselects and closes panel
+      if (selectedDate === dateKey) {
+        selectedDate = null;
+        document.getElementById("detail").classList.remove("open");
+      } else {
+        selectedDate = dateKey;
+        openDayDetail(dateKey);
+      }
       render();
-      renderSelectedDay();
     });
 
     const num = document.createElement("div");
@@ -612,50 +633,62 @@ function render() {
   }
 }
 
-function renderSelectedDay() {
-  const wrap = document.getElementById("selected-day");
-  const list = document.getElementById("selected-day-list");
-  const empty = document.getElementById("selected-day-empty");
-  const label = document.getElementById("selected-day-label");
-  if (!selectedDate) { wrap.style.display = "none"; return; }
-  wrap.style.display = "block";
-  const parts = selectedDate.split("-");
-  label.textContent = `📌 ${parseInt(parts[1])}월 ${parseInt(parts[2])}일 이벤트` +
-    (selectedDate === TODAY_ISO ? " (오늘)" : "");
+function openDayDetail(dateISO) {
+  const panel = document.getElementById("detail");
+  document.getElementById("event-view").style.display = "none";
+  document.getElementById("day-view").style.display = "block";
 
+  const parts = dateISO.split("-");
+  const isToday = dateISO === TODAY_ISO;
+  const d = new Date(dateISO + "T00:00:00+09:00");
+  const dow = ["일","월","화","수","목","금","토"][d.getDay()];
+  document.getElementById("day-title").textContent =
+    `${parseInt(parts[1])}월 ${parseInt(parts[2])}일 (${dow})` + (isToday ? " · 오늘" : "");
+
+  const wrap = document.getElementById("day-events");
+  wrap.innerHTML = "";
   const items = allEvents
-    .filter(e => e.date === selectedDate)
+    .filter(e => e.date === dateISO)
     .sort((a, b) => (b.importance || 2) - (a.importance || 2));
 
-  list.innerHTML = "";
   if (!items.length) {
-    empty.style.display = "block";
-    return;
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = "이 날은 등록된 이벤트가 없습니다.";
+    wrap.appendChild(empty);
+  } else {
+    for (const e of items) {
+      const card = document.createElement("div");
+      card.className = "ev-card cat-" + e.category;
+      card.addEventListener("click", () => openDetail(e, true));
+
+      const tag = document.createElement("span");
+      tag.className = "cat-tag ev cat-" + e.category;
+      tag.textContent = CATEGORY_LABEL[e.category] || e.category;
+      card.appendChild(tag);
+
+      const title = document.createElement("div");
+      title.className = "title";
+      title.textContent = e.title;
+      card.appendChild(title);
+
+      if (e.description) {
+        const preview = document.createElement("div");
+        preview.className = "preview";
+        preview.textContent = e.description;
+        card.appendChild(preview);
+      }
+      wrap.appendChild(card);
+    }
   }
-  empty.style.display = "none";
-  for (const e of items) {
-    const li = document.createElement("li");
-    li.addEventListener("click", () => openDetail(e));
-
-    const dot = document.createElement("span");
-    dot.className = "cat-dot cat-dot-" + e.category;
-
-    const tag = document.createElement("span");
-    tag.className = "cat-tag ev cat-" + e.category;
-    tag.textContent = CATEGORY_LABEL[e.category] || e.category;
-
-    const title = document.createElement("span");
-    title.className = "ev-title";
-    title.textContent = e.title;
-
-    li.appendChild(dot);
-    li.appendChild(tag);
-    li.appendChild(title);
-    list.appendChild(li);
-  }
+  panel.classList.add("open");
 }
 
-function openDetail(e) {
+function openDetail(e, fromDay = false) {
+  document.getElementById("day-view").style.display = "none";
+  document.getElementById("event-view").style.display = "block";
+  document.getElementById("event-back").style.display = fromDay ? "block" : "none";
+
   document.getElementById("detail-title").textContent = e.title;
   document.getElementById("detail-date").textContent =
     `${e.date} · ${CATEGORY_LABEL[e.category] || e.category}`;
@@ -681,8 +714,14 @@ function openDetail(e) {
   document.getElementById("detail").classList.add("open");
 }
 
-document.getElementById("detail-close").addEventListener("click",
-  () => document.getElementById("detail").classList.remove("open"));
+document.getElementById("detail-close").addEventListener("click", () => {
+  document.getElementById("detail").classList.remove("open");
+  selectedDate = null;
+  render();
+});
+document.getElementById("event-back").addEventListener("click", () => {
+  if (selectedDate) openDayDetail(selectedDate);
+});
 document.getElementById("prev-month").addEventListener("click", () => {
   cursor = new Date(cursor.getFullYear(), cursor.getMonth() - 1, 1);
   render();
