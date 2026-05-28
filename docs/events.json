@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-28T21:45:32.322772+09:00",
+  "generated_at": "2026-05-28T22:12:48.074209+09:00",
   "events": [
     {
       "date": "2026-05-28",
@@ -15,110 +15,6 @@
     },
     {
       "date": "2026-05-29",
-      "category": "conference",
-      "title": "ASCO 2026 (미국임상종양학회 연례총회)",
-      "description": "Chicago · 세계 최대 종양학 학회 (ASCO·ESMO 양대)",
-      "impact": "",
-      "related_codes": [
-        "196170",
-        "298380",
-        "174900",
-        "310210"
-      ],
-      "tags": [],
-      "source": "https://www.asco.org/annual-meeting/dates-know",
-      "importance": 3,
-      "_range": [
-        "2026-05-29",
-        "2026-06-02"
-      ],
-      "per_stock": {
-        "196170": "ALT-B4(히알루로니다제 기반 SC 제형) 활용한 파트너사 항암제 피하주사 데이터 — 적응증·파트너 확대 시 마일스톤·로열티 모멘텀. 자체 발표보다 파트너사 데이터에 연동되는 구조",
-        "298380": "이중항체 플랫폼(Grabody-T/B) 기반 항암 파이프라인 임상 업데이트·신규 파트너십 단서 여부",
-        "174900": "AT101(CD19 CAR-T) 등 항암 임상 데이터 — 고형암 확장 가능성·반응률",
-        "310210": "표적항암제(VRN 시리즈, EGFR 등) phase1 용량·객관적반응률(ORR)·안전성 신호"
-      }
-    },
-    {
-      "date": "2026-05-30",
-      "category": "conference",
-      "title": "ASCO 2026 (미국임상종양학회 연례총회)",
-      "description": "Chicago · 세계 최대 종양학 학회 (ASCO·ESMO 양대)",
-      "impact": "",
-      "related_codes": [
-        "196170",
-        "298380",
-        "174900",
-        "310210"
-      ],
-      "tags": [],
-      "source": "https://www.asco.org/annual-meeting/dates-know",
-      "importance": 3,
-      "_range": [
-        "2026-05-29",
-        "2026-06-02"
-      ],
-      "per_stock": {
-        "196170": "ALT-B4(히알루로니다제 기반 SC 제형) 활용한 파트너사 항암제 피하주사 데이터 — 적응증·파트너 확대 시 마일스톤·로열티 모멘텀. 자체 발표보다 파트너사 데이터에 연동되는 구조",
-        "298380": "이중항체 플랫폼(Grabody-T/B) 기반 항암 파이프라인 임상 업데이트·신규 파트너십 단서 여부",
-        "174900": "AT101(CD19 CAR-T) 등 항암 임상 데이터 — 고형암 확장 가능성·반응률",
-        "310210": "표적항암제(VRN 시리즈, EGFR 등) phase1 용량·객관적반응률(ORR)·안전성 신호"
-      }
-    },
-    {
-      "date": "2026-05-31",
-      "category": "conference",
-      "title": "ASCO 2026 (미국임상종양학회 연례총회)",
-      "description": "Chicago · 세계 최대 종양학 학회 (ASCO·ESMO 양대)",
-      "impact": "",
-      "related_codes": [
-        "196170",
-        "298380",
-        "174900",
-        "310210"
-      ],
-      "tags": [],
-      "source": "https://www.asco.org/annual-meeting/dates-know",
-      "importance": 3,
-      "_range": [
-        "2026-05-29",
-        "2026-06-02"
-      ],
-      "per_stock": {
-        "196170": "ALT-B4(히알루로니다제 기반 SC 제형) 활용한 파트너사 항암제 피하주사 데이터 — 적응증·파트너 확대 시 마일스톤·로열티 모멘텀. 자체 발표보다 파트너사 데이터에 연동되는 구조",
-        "298380": "이중항체 플랫폼(Grabody-T/B) 기반 항암 파이프라인 임상 업데이트·신규 파트너십 단서 여부",
-        "174900": "AT101(CD19 CAR-T) 등 항암 임상 데이터 — 고형암 확장 가능성·반응률",
-        "310210": "표적항암제(VRN 시리즈, EGFR 등) phase1 용량·객관적반응률(ORR)·안전성 신호"
-      }
-    },
-    {
-      "date": "2026-06-01",
-      "category": "conference",
-      "title": "ASCO 2026 (미국임상종양학회 연례총회)",
-      "description": "Chicago · 세계 최대 종양학 학회 (ASCO·ESMO 양대)",
-      "impact": "",
-      "related_codes": [
-        "196170",
-        "298380",
-        "174900",
-        "310210"
-      ],
-      "tags": [],
-      "source": "https://www.asco.org/annual-meeting/dates-know",
-      "importance": 3,
-      "_range": [
-        "2026-05-29",
-        "2026-06-02"
-      ],
-      "per_stock": {
-        "196170": "ALT-B4(히알루로니다제 기반 SC 제형) 활용한 파트너사 항암제 피하주사 데이터 — 적응증·파트너 확대 시 마일스톤·로열티 모멘텀. 자체 발표보다 파트너사 데이터에 연동되는 구조",
-        "298380": "이중항체 플랫폼(Grabody-T/B) 기반 항암 파이프라인 임상 업데이트·신규 파트너십 단서 여부",
-        "174900": "AT101(CD19 CAR-T) 등 항암 임상 데이터 — 고형암 확장 가능성·반응률",
-        "310210": "표적항암제(VRN 시리즈, EGFR 등) phase1 용량·객관적반응률(ORR)·안전성 신호"
-      }
-    },
-    {
-      "date": "2026-06-02",
       "category": "conference",
       "title": "ASCO 2026 (미국임상종양학회 연례총회)",
       "description": "Chicago · 세계 최대 종양학 학회 (ASCO·ESMO 양대)",
@@ -176,66 +72,6 @@
       }
     },
     {
-      "date": "2026-06-06",
-      "category": "conference",
-      "title": "ADA 2026 (미국당뇨병학회 연례학술대회)",
-      "description": "New Orleans · GLP-1/인크레틴 글로벌 최대 학회",
-      "impact": "",
-      "related_codes": [
-        "347850"
-      ],
-      "tags": [],
-      "source": "https://professional.diabetes.org/scientific-sessions",
-      "importance": 2,
-      "_range": [
-        "2026-06-05",
-        "2026-06-08"
-      ],
-      "per_stock": {
-        "347850": "GLP-1 기반 파이프라인(경구·장기지속형 펩타이드 포함) 관련 데이터·파트너십 단서 — 빅파마 경쟁 구도와 GLP-1 시장 확대/안전성 이슈가 밸류에이션에 직접 영향"
-      }
-    },
-    {
-      "date": "2026-06-07",
-      "category": "conference",
-      "title": "ADA 2026 (미국당뇨병학회 연례학술대회)",
-      "description": "New Orleans · GLP-1/인크레틴 글로벌 최대 학회",
-      "impact": "",
-      "related_codes": [
-        "347850"
-      ],
-      "tags": [],
-      "source": "https://professional.diabetes.org/scientific-sessions",
-      "importance": 2,
-      "_range": [
-        "2026-06-05",
-        "2026-06-08"
-      ],
-      "per_stock": {
-        "347850": "GLP-1 기반 파이프라인(경구·장기지속형 펩타이드 포함) 관련 데이터·파트너십 단서 — 빅파마 경쟁 구도와 GLP-1 시장 확대/안전성 이슈가 밸류에이션에 직접 영향"
-      }
-    },
-    {
-      "date": "2026-06-08",
-      "category": "conference",
-      "title": "ADA 2026 (미국당뇨병학회 연례학술대회)",
-      "description": "New Orleans · GLP-1/인크레틴 글로벌 최대 학회",
-      "impact": "",
-      "related_codes": [
-        "347850"
-      ],
-      "tags": [],
-      "source": "https://professional.diabetes.org/scientific-sessions",
-      "importance": 2,
-      "_range": [
-        "2026-06-05",
-        "2026-06-08"
-      ],
-      "per_stock": {
-        "347850": "GLP-1 기반 파이프라인(경구·장기지속형 펩타이드 포함) 관련 데이터·파트너십 단서 — 빅파마 경쟁 구도와 GLP-1 시장 확대/안전성 이슈가 밸류에이션에 직접 영향"
-      }
-    },
-    {
       "date": "2026-06-10",
       "category": "macro",
       "title": "미 5월 CPI 발표",
@@ -268,87 +104,6 @@
         "174900": "AT101(CD19 CAR-T) 혈액암(B세포 림프종/백혈병) 임상 데이터 — 반응률·반응 지속성. abstract 채택 여부가 사전 모멘텀",
         "166480": "혈액질환 적응증 줄기세포 치료제 발표 여부 — 주력이 ALS(뉴로나타-알)라 혈액학 연관성은 제한적, 발표 없으면 영향 미미"
       }
-    },
-    {
-      "date": "2026-06-12",
-      "category": "conference",
-      "title": "EHA 2026 (유럽혈액학회 연례총회)",
-      "description": "Stockholm · 유럽 최대 혈액학 학회 (EHA·ASH 양대)",
-      "impact": "",
-      "related_codes": [
-        "174900",
-        "166480"
-      ],
-      "tags": [],
-      "source": "https://ehaweb.org/connect-network/eha2026-congress",
-      "importance": 2,
-      "_range": [
-        "2026-06-11",
-        "2026-06-14"
-      ],
-      "per_stock": {
-        "174900": "AT101(CD19 CAR-T) 혈액암(B세포 림프종/백혈병) 임상 데이터 — 반응률·반응 지속성. abstract 채택 여부가 사전 모멘텀",
-        "166480": "혈액질환 적응증 줄기세포 치료제 발표 여부 — 주력이 ALS(뉴로나타-알)라 혈액학 연관성은 제한적, 발표 없으면 영향 미미"
-      }
-    },
-    {
-      "date": "2026-06-13",
-      "category": "conference",
-      "title": "EHA 2026 (유럽혈액학회 연례총회)",
-      "description": "Stockholm · 유럽 최대 혈액학 학회 (EHA·ASH 양대)",
-      "impact": "",
-      "related_codes": [
-        "174900",
-        "166480"
-      ],
-      "tags": [],
-      "source": "https://ehaweb.org/connect-network/eha2026-congress",
-      "importance": 2,
-      "_range": [
-        "2026-06-11",
-        "2026-06-14"
-      ],
-      "per_stock": {
-        "174900": "AT101(CD19 CAR-T) 혈액암(B세포 림프종/백혈병) 임상 데이터 — 반응률·반응 지속성. abstract 채택 여부가 사전 모멘텀",
-        "166480": "혈액질환 적응증 줄기세포 치료제 발표 여부 — 주력이 ALS(뉴로나타-알)라 혈액학 연관성은 제한적, 발표 없으면 영향 미미"
-      }
-    },
-    {
-      "date": "2026-06-14",
-      "category": "conference",
-      "title": "EHA 2026 (유럽혈액학회 연례총회)",
-      "description": "Stockholm · 유럽 최대 혈액학 학회 (EHA·ASH 양대)",
-      "impact": "",
-      "related_codes": [
-        "174900",
-        "166480"
-      ],
-      "tags": [],
-      "source": "https://ehaweb.org/connect-network/eha2026-congress",
-      "importance": 2,
-      "_range": [
-        "2026-06-11",
-        "2026-06-14"
-      ],
-      "per_stock": {
-        "174900": "AT101(CD19 CAR-T) 혈액암(B세포 림프종/백혈병) 임상 데이터 — 반응률·반응 지속성. abstract 채택 여부가 사전 모멘텀",
-        "166480": "혈액질환 적응증 줄기세포 치료제 발표 여부 — 주력이 ALS(뉴로나타-알)라 혈액학 연관성은 제한적, 발표 없으면 영향 미미"
-      }
-    },
-    {
-      "date": "2026-06-16",
-      "category": "macro",
-      "title": "FOMC 정례회의 (성명·점도표)",
-      "description": "둘째 날 14:00 ET (한국 18일 03:00) 성명 발표 + Powell 기자회견 14:30 ET. 6월은 경제전망 (SEP) + 점도표 (Dot Plot) 동반.",
-      "impact": "📁 보유 영향\n• 코스닥 바이오 (알테오젠·보로노이·에이비엘바이오 등) — 금리 민감도 최고. 점도표 인하 시사면 수혜, 지연 시사면 약세\n• SK하이닉스·한미반도체·현대차 — 달러 방향(환차익 vs IT 수요)으로 갈림\n• CPI(6/10)·고용(6/5) 합산 결과가 이 회의 분위기를 좌우\n",
-      "related_codes": [],
-      "tags": [],
-      "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
-      "importance": 3,
-      "_range": [
-        "2026-06-16",
-        "2026-06-17"
-      ]
     },
     {
       "date": "2026-06-17",
@@ -430,21 +185,6 @@
       }
     },
     {
-      "date": "2026-07-28",
-      "category": "macro",
-      "title": "FOMC 정례회의 (성명)",
-      "description": "성명 발표 + Powell 기자회견. 7월은 경제전망/점도표 없음 (1월·4월·7월·10월은 일반 회의).",
-      "impact": "📁 보유 영향\n• 점도표 없는 일반 회의 — 6월 대비 변동성 작음\n• 코스닥 바이오 금리 민감도 / 반도체·현대차 환율 영향은 동일\n",
-      "related_codes": [],
-      "tags": [],
-      "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
-      "importance": 2,
-      "_range": [
-        "2026-07-28",
-        "2026-07-29"
-      ]
-    },
-    {
       "date": "2026-07-29",
       "category": "macro",
       "title": "FOMC 정례회의 (성명)",
@@ -489,21 +229,6 @@
         "042700": "엔비디아 GPU 출하 가이던스 → HBM 본딩 장비 수요 연동",
         "005930": "HBM·메모리 수요 + 파운드리 코멘트"
       }
-    },
-    {
-      "date": "2026-09-15",
-      "category": "macro",
-      "title": "FOMC 정례회의 (성명·점도표)",
-      "description": "9월은 경제전망(SEP) + 점도표 동반. 4분기 정책 방향 시그널.",
-      "impact": "📁 보유 영향\n• 연내 추가 인하 확정 시점이라 변동성 큼. 코스닥 바이오 민감도 최고\n• 추석 연휴(9/24~) 직전 — 9/17(목) 한국 시초 갭으로 반영\n",
-      "related_codes": [],
-      "tags": [],
-      "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
-      "importance": 3,
-      "_range": [
-        "2026-09-15",
-        "2026-09-16"
-      ]
     },
     {
       "date": "2026-09-16",
@@ -591,125 +316,6 @@
       }
     },
     {
-      "date": "2026-10-24",
-      "category": "conference",
-      "title": "ESMO 2026 (유럽종양학회 연례총회)",
-      "description": "Madrid · 유럽 최대 종양학 학회 (ASCO·ESMO 양대)",
-      "impact": "",
-      "related_codes": [
-        "196170",
-        "298380",
-        "174900",
-        "310210"
-      ],
-      "tags": [],
-      "source": "https://www.esmo.org/meeting-calendar/esmo-congress-2026",
-      "importance": 3,
-      "_range": [
-        "2026-10-23",
-        "2026-10-27"
-      ],
-      "per_stock": {
-        "196170": "ALT-B4 SC 제형 파트너사 후속 데이터 — ASCO 대비 적응증 진전 여부",
-        "298380": "이중항체(Grabody) 후속 데이터 또는 신규 파트너십 단서",
-        "174900": "AT101 등 항암 적응증 임상 업데이트",
-        "310210": "표적항암제 confirmation 데이터 — phase 진전·후속 코호트 결과"
-      }
-    },
-    {
-      "date": "2026-10-25",
-      "category": "conference",
-      "title": "ESMO 2026 (유럽종양학회 연례총회)",
-      "description": "Madrid · 유럽 최대 종양학 학회 (ASCO·ESMO 양대)",
-      "impact": "",
-      "related_codes": [
-        "196170",
-        "298380",
-        "174900",
-        "310210"
-      ],
-      "tags": [],
-      "source": "https://www.esmo.org/meeting-calendar/esmo-congress-2026",
-      "importance": 3,
-      "_range": [
-        "2026-10-23",
-        "2026-10-27"
-      ],
-      "per_stock": {
-        "196170": "ALT-B4 SC 제형 파트너사 후속 데이터 — ASCO 대비 적응증 진전 여부",
-        "298380": "이중항체(Grabody) 후속 데이터 또는 신규 파트너십 단서",
-        "174900": "AT101 등 항암 적응증 임상 업데이트",
-        "310210": "표적항암제 confirmation 데이터 — phase 진전·후속 코호트 결과"
-      }
-    },
-    {
-      "date": "2026-10-26",
-      "category": "conference",
-      "title": "ESMO 2026 (유럽종양학회 연례총회)",
-      "description": "Madrid · 유럽 최대 종양학 학회 (ASCO·ESMO 양대)",
-      "impact": "",
-      "related_codes": [
-        "196170",
-        "298380",
-        "174900",
-        "310210"
-      ],
-      "tags": [],
-      "source": "https://www.esmo.org/meeting-calendar/esmo-congress-2026",
-      "importance": 3,
-      "_range": [
-        "2026-10-23",
-        "2026-10-27"
-      ],
-      "per_stock": {
-        "196170": "ALT-B4 SC 제형 파트너사 후속 데이터 — ASCO 대비 적응증 진전 여부",
-        "298380": "이중항체(Grabody) 후속 데이터 또는 신규 파트너십 단서",
-        "174900": "AT101 등 항암 적응증 임상 업데이트",
-        "310210": "표적항암제 confirmation 데이터 — phase 진전·후속 코호트 결과"
-      }
-    },
-    {
-      "date": "2026-10-27",
-      "category": "conference",
-      "title": "ESMO 2026 (유럽종양학회 연례총회)",
-      "description": "Madrid · 유럽 최대 종양학 학회 (ASCO·ESMO 양대)",
-      "impact": "",
-      "related_codes": [
-        "196170",
-        "298380",
-        "174900",
-        "310210"
-      ],
-      "tags": [],
-      "source": "https://www.esmo.org/meeting-calendar/esmo-congress-2026",
-      "importance": 3,
-      "_range": [
-        "2026-10-23",
-        "2026-10-27"
-      ],
-      "per_stock": {
-        "196170": "ALT-B4 SC 제형 파트너사 후속 데이터 — ASCO 대비 적응증 진전 여부",
-        "298380": "이중항체(Grabody) 후속 데이터 또는 신규 파트너십 단서",
-        "174900": "AT101 등 항암 적응증 임상 업데이트",
-        "310210": "표적항암제 confirmation 데이터 — phase 진전·후속 코호트 결과"
-      }
-    },
-    {
-      "date": "2026-10-27",
-      "category": "macro",
-      "title": "FOMC 정례회의 (성명)",
-      "description": "10월은 일반 회의 (점도표 없음). 11월 미 중간선거 직전 — 정치적 중립 발언 톤 가능성.",
-      "impact": "📁 보유 영향\n• 일반 회의 + 미 중간선거(11/3) 직전 → 변동성 평소보다 작을 가능성\n• 코스닥 바이오 / 반도체·현대차 민감도는 동일\n",
-      "related_codes": [],
-      "tags": [],
-      "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
-      "importance": 2,
-      "_range": [
-        "2026-10-27",
-        "2026-10-28"
-      ]
-    },
-    {
       "date": "2026-10-28",
       "category": "macro",
       "title": "FOMC 정례회의 (성명)",
@@ -722,21 +328,6 @@
       "_range": [
         "2026-10-27",
         "2026-10-28"
-      ]
-    },
-    {
-      "date": "2026-12-08",
-      "category": "macro",
-      "title": "FOMC 정례회의 (성명·점도표)",
-      "description": "12월은 경제전망(SEP) + 점도표 동반. 한 해 마지막 회의 + 2027년 정책 가이드라인 시그널.",
-      "impact": "📁 보유 영향\n• 차년도(2027) 정책 경로 첫 시그널. 코스닥 바이오 민감도 최고\n• 연말 양도세 대주주 매도 등 수급과 겹쳐 변동 가능\n",
-      "related_codes": [],
-      "tags": [],
-      "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
-      "importance": 3,
-      "_range": [
-        "2026-12-08",
-        "2026-12-09"
       ]
     },
     {
@@ -756,72 +347,6 @@
     },
     {
       "date": "2026-12-12",
-      "category": "conference",
-      "title": "ASH 2026 (미국혈액학회 연례총회)",
-      "description": "New Orleans · 글로벌 최대 혈액학 학회 (제68회, EHA·ASH 양대)",
-      "impact": "",
-      "related_codes": [
-        "174900",
-        "166480"
-      ],
-      "tags": [],
-      "source": "https://www.hematology.org/meetings/annual-meeting",
-      "importance": 3,
-      "_range": [
-        "2026-12-12",
-        "2026-12-15"
-      ],
-      "per_stock": {
-        "174900": "AT101(CD19 CAR-T) 후속 데이터 — oral presentation 채택 시 임팩트 큼",
-        "166480": "혈액질환 적응증 데이터 발표 여부 (주력 ALS 외 확장) — 없으면 영향 제한적"
-      }
-    },
-    {
-      "date": "2026-12-13",
-      "category": "conference",
-      "title": "ASH 2026 (미국혈액학회 연례총회)",
-      "description": "New Orleans · 글로벌 최대 혈액학 학회 (제68회, EHA·ASH 양대)",
-      "impact": "",
-      "related_codes": [
-        "174900",
-        "166480"
-      ],
-      "tags": [],
-      "source": "https://www.hematology.org/meetings/annual-meeting",
-      "importance": 3,
-      "_range": [
-        "2026-12-12",
-        "2026-12-15"
-      ],
-      "per_stock": {
-        "174900": "AT101(CD19 CAR-T) 후속 데이터 — oral presentation 채택 시 임팩트 큼",
-        "166480": "혈액질환 적응증 데이터 발표 여부 (주력 ALS 외 확장) — 없으면 영향 제한적"
-      }
-    },
-    {
-      "date": "2026-12-14",
-      "category": "conference",
-      "title": "ASH 2026 (미국혈액학회 연례총회)",
-      "description": "New Orleans · 글로벌 최대 혈액학 학회 (제68회, EHA·ASH 양대)",
-      "impact": "",
-      "related_codes": [
-        "174900",
-        "166480"
-      ],
-      "tags": [],
-      "source": "https://www.hematology.org/meetings/annual-meeting",
-      "importance": 3,
-      "_range": [
-        "2026-12-12",
-        "2026-12-15"
-      ],
-      "per_stock": {
-        "174900": "AT101(CD19 CAR-T) 후속 데이터 — oral presentation 채택 시 임팩트 큼",
-        "166480": "혈액질환 적응증 데이터 발표 여부 (주력 ALS 외 확장) — 없으면 영향 제한적"
-      }
-    },
-    {
-      "date": "2026-12-15",
       "category": "conference",
       "title": "ASH 2026 (미국혈액학회 연례총회)",
       "description": "New Orleans · 글로벌 최대 혈액학 학회 (제68회, EHA·ASH 양대)",

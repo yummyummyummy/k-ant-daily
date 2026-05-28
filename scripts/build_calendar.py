@@ -36,14 +36,14 @@ def _load_yaml_events() -> list[dict]:
     for e in raw:
         if "date_range" in e:
             start, end = e["date_range"]
-            current = datetime.strptime(start, "%Y-%m-%d").date()
-            last = datetime.strptime(end, "%Y-%m-%d").date()
-            while current <= last:
-                copy = {k: v for k, v in e.items() if k != "date_range"}
-                copy["date"] = current.isoformat()
-                copy["_range"] = [start, end]
-                out.append(copy)
-                current += timedelta(days=1)
+            # 다일 이벤트는 매일 펼치지 않고 단 1개로 접는다 (캘린더 도배 방지).
+            # 거시(FOMC 등)는 결정/발표가 마지막 날 → 마지막 날 기준,
+            # 그 외(학회 등)는 시작일 기준. `_range` 는 기간 라벨/결과 타이밍용으로 유지.
+            anchor = end if e.get("category") == "macro" else start
+            copy = {k: v for k, v in e.items() if k != "date_range"}
+            copy["date"] = anchor
+            copy["_range"] = [start, end]
+            out.append(copy)
         elif "date" in e:
             out.append(dict(e))
     return out

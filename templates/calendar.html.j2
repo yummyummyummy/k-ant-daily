@@ -674,6 +674,14 @@ function itemWatch(item) {
   if (item.code && item.e.per_stock) return item.e.per_stock[item.code] || "";
   return "";
 }
+// 다일 이벤트 기간 라벨 "M/D~M/D" (단일일이면 ""). 시작일/마지막일 anchor 무관.
+function spanText(e) {
+  if (e._range && e._range[0] !== e._range[1]) {
+    const f = iso => { const p = iso.split("-"); return `${parseInt(p[1])}/${parseInt(p[2])}`; };
+    return `${f(e._range[0])}~${f(e._range[1])}`;
+  }
+  return "";
+}
 
 // 캘린더 칩 — 종목 특정이면 종목명 굵게 앞에 "종목 · 이벤트", 시장 전체면 이벤트명만.
 function fillChip(evEl, item) {
@@ -691,9 +699,10 @@ function fillChip(evEl, item) {
   }
   const nm = document.createElement("span");
   nm.className = "ev-name";
-  nm.textContent = e.title;
+  const span = spanText(e);
+  nm.textContent = e.title + (span ? ` (${span})` : "");
   evEl.appendChild(nm);
-  evEl.title = (stock ? stock + " · " : "") + e.title;
+  evEl.title = (stock ? stock + " · " : "") + nm.textContent;
 }
 
 const OUTCOME_CLS = { positive: "", negative: "neg", neutral: "neu", asexpected: "neu" };
@@ -807,14 +816,8 @@ function renderHoldingDates() {
     const code = ph.dataset.code;
     const relevant = allEvents
       .filter(e => e.date >= TODAY_ISO)
-      .filter(e => {
-        // Specific: event lists this stock
-        if (e.related_codes && e.related_codes.length > 0) {
-          return e.related_codes.includes(code);
-        }
-        // Universal: macro / holiday apply to all stocks
-        return e.category === "macro" || e.category === "holiday";
-      })
+      // 이 종목에만 해당하는 이벤트만 (FOMC·CPI·휴장 등 전체 공통 이벤트 제외)
+      .filter(e => e.related_codes && e.related_codes.includes(code))
       .sort((a, b) => a.date.localeCompare(b.date));
 
     // De-dupe by title (date_range expands to per-day entries — collapse same title to first occurrence)
@@ -850,7 +853,8 @@ function renderHoldingDates() {
 
       const title = document.createElement("span");
       title.className = "ev-title";
-      title.textContent = e.title;
+      const sp = spanText(e);
+      title.textContent = e.title + (sp ? ` (${sp})` : "");
 
       li.appendChild(when);
       li.appendChild(dot);
@@ -1089,15 +1093,17 @@ function renderWeekDetail() {
     tag.textContent = CATEGORY_LABEL[e.category] || e.category;
     top.appendChild(tag);
     const stock = itemStockName(item);
+    const span = spanText(e);
+    const titleText = e.title + (span ? ` (${span})` : "");
     if (stock) {
       const stEl = document.createElement("span");
       stEl.className = "title";
-      stEl.innerHTML = `<span class="ev-block-stock">${escapeHtml(stock)}</span> <span style="opacity:.6">— ${escapeHtml(e.title)}</span>`;
+      stEl.innerHTML = `<span class="ev-block-stock">${escapeHtml(stock)}</span> <span style="opacity:.6">— ${escapeHtml(titleText)}</span>`;
       top.appendChild(stEl);
     } else {
       const title2 = document.createElement("span");
       title2.className = "title";
-      title2.textContent = e.title;
+      title2.textContent = titleText;
       top.appendChild(title2);
     }
     block.appendChild(top);
@@ -1199,9 +1205,12 @@ function openDetail(item, fromDay = false) {
   document.getElementById("event-back").style.display = fromDay ? "block" : "none";
 
   const stock = itemStockName(item);
-  document.getElementById("detail-title").textContent = stock ? `${stock} — ${e.title}` : e.title;
+  const span = spanText(e);
+  document.getElementById("detail-title").textContent =
+    (stock ? `${stock} — ${e.title}` : e.title) + (span ? ` (${span})` : "");
+  const dateLabel = span ? `${e._range[0]}~${e._range[1]}` : `${e.date}${e.time ? " " + e.time : ""}`;
   document.getElementById("detail-date").textContent =
-    `${e.date}${e.time ? " " + e.time : ""} · ${CATEGORY_LABEL[e.category] || e.category}`;
+    `${dateLabel} · ${CATEGORY_LABEL[e.category] || e.category}`;
   currentDetailItem = item;
   currentDetailFromDay = fromDay;
 
