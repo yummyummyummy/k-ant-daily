@@ -217,6 +217,54 @@ events:
     source: "https://www.bls.gov/schedule/news_release/cpi.htm"
     importance: 3
 
+  # ─── 글로벌 피어 실적 (보유 종목 섹터 forward 가늠자) ──────────────
+  # 우리 보유 종목은 아니지만, 발표일이 확정돼 있고 해당 섹터의 선행 지표라
+  # related_codes 로 연결. per_stock 에 "이 발표에서 우리 종목 관점 뭘 보는지".
+  - date: "2026-06-24"
+    category: "earnings"
+    title: "마이크론 FY26 3분기 실적 (미 장 마감 후)"
+    description: "美 메모리 3사 중 가장 먼저 발표 — DRAM/NAND 업황·HBM 수요·가이던스가 한국 메모리주 선행 지표."
+    related_codes: ["005930", "000660", "042700"]
+    per_stock:
+      "005930": "DRAM/NAND 가격·재고 사이클 + 데이터센터 수요 코멘트 — 삼성 메모리 업황 가늠자"
+      "000660": "HBM 수요·가격 가이던스 — SK하이닉스 HBM 모멘텀에 직결"
+      "042700": "메모리 capex 방향 → HBM 본더 수요 간접 신호"
+    source: "https://investors.micron.com/"
+    importance: 3
+
+  - date: "2026-07-22"
+    category: "earnings"
+    title: "테슬라 2026 2분기 실적 (미 장 마감 후)"
+    description: "글로벌 EV 수요·가격·마진 — 전기차 섹터 심리 가늠자."
+    related_codes: ["005380"]
+    per_stock:
+      "005380": "EV 수요·가격 경쟁 강도 — 현대차 전기차 전략·마진에 심리적 영향 (직접 경쟁보다 섹터 sentiment)"
+    source: "https://ir.tesla.com/"
+    importance: 2
+
+  - date: "2026-08-26"
+    category: "earnings"
+    title: "엔비디아 FY27 2분기 실적 (미 장 마감 후)"
+    description: "AI 반도체 수요의 핵심 지표 — 데이터센터·HBM 수요 가이던스가 한국 메모리주 최대 변수."
+    related_codes: ["000660", "042700", "005930"]
+    per_stock:
+      "000660": "데이터센터 GPU 수요·HBM 공급 코멘트 — SK하이닉스 HBM 매출 직결 핵심 이벤트"
+      "042700": "엔비디아 GPU 출하 가이던스 → HBM 본딩 장비 수요 연동"
+      "005930": "HBM·메모리 수요 + 파운드리 코멘트"
+    source: "https://investor.nvidia.com/"
+    importance: 3
+
+  # ─── 보유 종목 월간 지표 (forward, 발표일 규칙적) ─────────────────
+  - date: "2026-07-01"
+    category: "earnings"
+    title: "현대차 6월 판매실적"
+    description: "매월 1일경 발표 — 국내/미국/유럽/신흥국 판매대수. 월간 펀더멘털 체크포인트."
+    related_codes: ["005380"]
+    per_stock:
+      "005380": "미국·유럽 판매 추세 + 친환경차(HEV/EV) 비중 — 분기 실적 선행 지표"
+    source: "https://www.hyundai.com/worldwide/ko/company/ir"
+    importance: 2
+
   # ─── 바이오 학회 2026 ────────────────────────────────────────
   # 보유 바이오: 알테오젠(196170), 에이비엘바이오(298380), 앱클론(174900),
   # 보로노이(310210), 큐리옥스(445680), 코아스템켐온(166480), 셀리드(299660)
