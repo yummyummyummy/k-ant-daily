@@ -93,6 +93,25 @@ WebFetch 또는 WebSearch 로 확정 일자 확인 후 추가. 추측 금지.
 
 글로벌 피어 실적일은 WebSearch 로 확정일 확인 ("Nvidia/Micron/Tesla earnings date"). 한국 종목 실적일은 미확정이면 넣지 말 것 — 추측 금지.
 
+#### 2-6. 종목별 매핑된 산업·학술 학회 (매년 일정 재확인)
+이미 events.yml 에 등록된 매핑 — 매년 날짜만 WebSearch 로 갱신:
+- 반도체 (005930·000660·042700): Hot Chips(8월), CES(1월). HBM 관련 GTC 등
+- 넥스트칩 (396270): AutoSens Europe(9월) — ADAS 비전
+- 전력기기 (267260·010120): CIGRE Paris Session(격년 짝수해 8월)
+- 조선 (009540): Posidonia(격년 짝수해 6월), Gastech(9월, LNG)
+- 건설/플랜트 (028050): ADIPEC(11월), Gastech(9월)
+- 카지노 (034230): G2E(9~10월)
+- 바이오 종양 (196170·298380·174900·310210): ASCO·ESMO, SITC(11월, 면역항암)
+- 바이오 혈액 (174900·166480): EHA·ASH
+- 디앤디파마텍 (347850): ADA(6월)·EASD(9월) — GLP-1
+- 셀리드 (299660): World Vaccine Congress(10월), SITC
+- 큐리옥스 (445680): CYTO(6월, ISAC) — Laminar Wash/NIST 표준화
+
+학회 촉매가 약한 종목: 한국금융지주(증권), KODEX(ETF) — 실적/거래대금/지수 추종이라 학회 없음. 카카오는 ifkakao(가을) 일정 공개되면 추가.
+
+#### 2-7. 종목별 이벤트 레이더 (`watch_queries`, 있으면)
+`stocks.yml` 에 `watch_queries` 가 있는 종목은 그 검색어를 WebSearch 로 돌려 "남이 우리 기술을 쓴/표준화한" 류 간접 신호를 탐지. **구체적 미래 날짜(발표·워크숍·결과공개)가 나오면** events.yml 에 forward 이벤트로, 사후 신호(논문·표준 발표·채택 사례)는 종목 뉴스 컨텍스트로만 (캘린더 X).
+
 #### 추가 시 schema
 ```yaml
 - date: "2026-06-04"        # 다일은 date_range: ["2026-06-04", "2026-06-08"]

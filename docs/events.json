@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-28T22:12:48.074209+09:00",
+  "generated_at": "2026-05-28T22:24:55.515432+09:00",
   "events": [
     {
       "date": "2026-05-28",
@@ -40,6 +40,26 @@
       }
     },
     {
+      "date": "2026-06-01",
+      "category": "conference",
+      "title": "Posidonia 2026 (국제 해운 박람회)",
+      "description": "Athens · 세계 최대 해운 박람회 (격년, 짝수해)",
+      "impact": "",
+      "related_codes": [
+        "009540"
+      ],
+      "tags": [],
+      "source": "https://posidonia-events.com/",
+      "importance": 2,
+      "_range": [
+        "2026-06-01",
+        "2026-06-05"
+      ],
+      "per_stock": {
+        "009540": "글로벌 선사 발주 분위기 + LNG·암모니아 등 친환경 추진 선박 수요 — 수주 모멘텀 가늠자"
+      }
+    },
+    {
       "date": "2026-06-05",
       "category": "macro",
       "title": "미 5월 고용보고서 (비농업고용·실업률)",
@@ -69,6 +89,26 @@
       ],
       "per_stock": {
         "347850": "GLP-1 기반 파이프라인(경구·장기지속형 펩타이드 포함) 관련 데이터·파트너십 단서 — 빅파마 경쟁 구도와 GLP-1 시장 확대/안전성 이슈가 밸류에이션에 직접 영향"
+      }
+    },
+    {
+      "date": "2026-06-06",
+      "category": "conference",
+      "title": "CYTO 2026 (국제세포분석학회 연례총회)",
+      "description": "West Palm Beach · 유세포분석(flow cytometry) 최대 학회 (ISAC)",
+      "impact": "",
+      "related_codes": [
+        "445680"
+      ],
+      "tags": [],
+      "source": "https://www.cytoconference.org/",
+      "importance": 2,
+      "_range": [
+        "2026-06-06",
+        "2026-06-10"
+      ],
+      "per_stock": {
+        "445680": "Laminar Wash 기반 표준화 연구·NIST Flow Cytometry Standards Consortium 결과 발표 여부 — 채택 확산·레퍼런스 확보가 장비 매출 모멘텀"
       }
     },
     {
@@ -211,6 +251,52 @@
       "importance": 2
     },
     {
+      "date": "2026-08-23",
+      "category": "conference",
+      "title": "Hot Chips 2026 (고성능 칩 심포지엄)",
+      "description": "Stanford · 차세대 프로세서·메모리·AI 가속기 기술 발표 무대",
+      "impact": "",
+      "related_codes": [
+        "000660",
+        "005930",
+        "042700"
+      ],
+      "tags": [],
+      "source": "https://hotchips.org/",
+      "importance": 2,
+      "_range": [
+        "2026-08-23",
+        "2026-08-25"
+      ],
+      "per_stock": {
+        "000660": "차세대 HBM(HBM4 등) 로드맵·대역폭 경쟁 — SK하이닉스 HBM 리더십 확인 포인트",
+        "005930": "HBM·메모리 기술 + AI 가속기 메모리 트렌드",
+        "042700": "HBM 적층·본딩 수요 방향 (TC본더 수혜 연동)"
+      }
+    },
+    {
+      "date": "2026-08-23",
+      "category": "conference",
+      "title": "CIGRE Paris Session 2026 (국제 전력망 학회)",
+      "description": "Paris · 세계 최대 전력시스템 학회 (격년). 그리드 기술·투자 트렌드 집결",
+      "impact": "",
+      "related_codes": [
+        "267260",
+        "010120"
+      ],
+      "tags": [],
+      "source": "https://session.cigre.org/",
+      "importance": 2,
+      "_range": [
+        "2026-08-23",
+        "2026-08-28"
+      ],
+      "per_stock": {
+        "267260": "초고압 변압기·HVDC 등 전력망 기술 트렌드 — 북미/유럽 그리드 투자 수요 단서",
+        "010120": "전력기기·그리드 자동화 트렌드 — 글로벌 전력 인프라 capex 방향"
+      }
+    },
+    {
       "date": "2026-08-26",
       "category": "earnings",
       "title": "엔비디아 FY27 2분기 실적 (미 장 마감 후)",
@@ -231,6 +317,28 @@
       }
     },
     {
+      "date": "2026-09-14",
+      "category": "conference",
+      "title": "Gastech 2026 (국제 가스·LNG 컨퍼런스)",
+      "description": "Bangkok · 세계 최대 가스·LNG·수소 컨퍼런스. 발주 파이프라인의 장",
+      "impact": "",
+      "related_codes": [
+        "009540",
+        "028050"
+      ],
+      "tags": [],
+      "source": "https://www.gastechevent.com/",
+      "importance": 2,
+      "_range": [
+        "2026-09-14",
+        "2026-09-17"
+      ],
+      "per_stock": {
+        "009540": "LNG선·LNG 추진선 발주 분위기 — LNG 인프라 capex가 수주로 연결",
+        "028050": "LNG·가스 플랜트 EPC 발주 파이프라인 — 중동/북미 프로젝트 단서"
+      }
+    },
+    {
       "date": "2026-09-16",
       "category": "macro",
       "title": "FOMC 정례회의 (성명·점도표)",
@@ -244,6 +352,26 @@
         "2026-09-15",
         "2026-09-16"
       ]
+    },
+    {
+      "date": "2026-09-22",
+      "category": "conference",
+      "title": "AutoSens Europe 2026 (ADAS/자율주행 센싱)",
+      "description": "Barcelona · ADAS·자율주행 인식기술 핵심 컨퍼런스",
+      "impact": "",
+      "related_codes": [
+        "396270"
+      ],
+      "tags": [],
+      "source": "https://auto-sens.com/europe/",
+      "importance": 2,
+      "_range": [
+        "2026-09-22",
+        "2026-09-24"
+      ],
+      "per_stock": {
+        "396270": "ADAS/자율주행 비전 SoC 트렌드 — Apache 시리즈 등 자사 칩 채택·수주 단서"
+      }
     },
     {
       "date": "2026-09-24",
@@ -268,6 +396,46 @@
       "importance": 2
     },
     {
+      "date": "2026-09-28",
+      "category": "conference",
+      "title": "G2E 2026 (글로벌 게이밍 엑스포)",
+      "description": "Las Vegas · 북미 최대 카지노·게이밍 산업 박람회",
+      "impact": "",
+      "related_codes": [
+        "034230"
+      ],
+      "tags": [],
+      "source": "https://www.globalgamingexpo.com/",
+      "importance": 2,
+      "_range": [
+        "2026-09-28",
+        "2026-10-01"
+      ],
+      "per_stock": {
+        "034230": "글로벌 카지노 업황·신규 기기/테크 트렌드 — 한국 복합리조트 업황 sentiment (직접 실적보다 심리)"
+      }
+    },
+    {
+      "date": "2026-09-28",
+      "category": "conference",
+      "title": "EASD 2026 (유럽당뇨병학회 연례총회)",
+      "description": "Milan · 유럽 최대 당뇨병 학회 (제62회). GLP-1/인크레틴 데이터 집결",
+      "impact": "",
+      "related_codes": [
+        "347850"
+      ],
+      "tags": [],
+      "source": "https://www.easd.org/annual-meeting/easd-2026/",
+      "importance": 2,
+      "_range": [
+        "2026-09-28",
+        "2026-10-02"
+      ],
+      "per_stock": {
+        "347850": "GLP-1·인크레틴 차세대 데이터(경구·장기지속형) — 디앤디 파이프라인 경쟁 구도·시장 확대 단서"
+      }
+    },
+    {
       "date": "2026-10-05",
       "category": "holiday",
       "title": "개천절 대체휴장 (월)",
@@ -288,6 +456,26 @@
       "tags": [],
       "source": "https://www.calendarlabs.com/krx-market-holidays-2026/",
       "importance": 2
+    },
+    {
+      "date": "2026-10-19",
+      "category": "conference",
+      "title": "World Vaccine Congress Europe 2026",
+      "description": "Amsterdam · 백신 산업 글로벌 컨퍼런스",
+      "impact": "",
+      "related_codes": [
+        "299660"
+      ],
+      "tags": [],
+      "source": "https://www.terrapinn.com/conference/world-vaccine-congress-europe/index.stm",
+      "importance": 2,
+      "_range": [
+        "2026-10-19",
+        "2026-10-21"
+      ],
+      "per_stock": {
+        "299660": "백신·면역치료 플랫폼 데이터 — 셀리드 항암 백신/면역항암(BVAC) 파이프라인 관련 발표 여부"
+      }
     },
     {
       "date": "2026-10-23",
@@ -329,6 +517,50 @@
         "2026-10-27",
         "2026-10-28"
       ]
+    },
+    {
+      "date": "2026-11-02",
+      "category": "conference",
+      "title": "ADIPEC 2026 (아부다비 국제 석유·에너지)",
+      "description": "Abu Dhabi · 세계 최대 에너지 산업 전시·컨퍼런스. 중동 발주의 장",
+      "impact": "",
+      "related_codes": [
+        "028050"
+      ],
+      "tags": [],
+      "source": "https://www.adipec.com/",
+      "importance": 2,
+      "_range": [
+        "2026-11-02",
+        "2026-11-05"
+      ],
+      "per_stock": {
+        "028050": "중동 석유·가스 플랜트 발주 파이프라인 — 사우디/UAE 프로젝트가 수주로 직결"
+      }
+    },
+    {
+      "date": "2026-11-04",
+      "category": "conference",
+      "title": "SITC 2026 (미국면역항암학회 연례총회)",
+      "description": "Phoenix · 면역항암(immuno-oncology) 최대 학회 (제41회)",
+      "impact": "",
+      "related_codes": [
+        "298380",
+        "174900",
+        "299660"
+      ],
+      "tags": [],
+      "source": "https://www.sitcancer.org/2026/home",
+      "importance": 2,
+      "_range": [
+        "2026-11-04",
+        "2026-11-08"
+      ],
+      "per_stock": {
+        "298380": "이중항체 면역항암 데이터(Grabody-T 등) — 면역관문 병용 단서",
+        "174900": "CAR-T·면역세포치료 고형암 확장 데이터",
+        "299660": "항암 백신/면역항암(BVAC) 데이터 발표 여부"
+      }
     },
     {
       "date": "2026-12-09",
