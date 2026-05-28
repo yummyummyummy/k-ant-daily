@@ -513,7 +513,7 @@
 
   <header class="top">
     <h1>k-ant-daily</h1>
-    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 14:48 KST 생성</span>
+    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 16:01 KST 생성</span>
   </header>  <div class="coffee">
     <span class="icon">☕</span>
     <div class="line">
@@ -766,7 +766,7 @@
   </aside>
 
   <footer>
-    2026-05-28 14:48 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
+    2026-05-28 16:01 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
   </footer>
 </div>
 
@@ -826,9 +826,7 @@ function stockNames(e) {
   return e.related_codes.map(c => STOCK_NAMES[c] || c).filter(Boolean);
 }
 function stockTag(e) {
-  const names = stockNames(e);
-  if (!names.length) return "";
-  return names.length === 1 ? names[0] : `${names[0]} 외 ${names.length - 1}`;
+  return stockNames(e).join("·");
 }
 
 // 캘린더 칩 내용 — 종목 특정이면 종목명 굵게 앞에, 이벤트 제목은 보조.

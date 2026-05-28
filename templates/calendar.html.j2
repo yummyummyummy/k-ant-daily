@@ -658,9 +658,7 @@ function stockNames(e) {
   return e.related_codes.map(c => STOCK_NAMES[c] || c).filter(Boolean);
 }
 function stockTag(e) {
-  const names = stockNames(e);
-  if (!names.length) return "";
-  return names.length === 1 ? names[0] : `${names[0]} 외 ${names.length - 1}`;
+  return stockNames(e).join("·");
 }
 
 // 캘린더 칩 내용 — 종목 특정이면 종목명 굵게 앞에, 이벤트 제목은 보조.
