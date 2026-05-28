@@ -83,6 +83,9 @@ def _normalize(event: dict) -> dict | None:
     # Optional: per-stock watch points. {code: "이 종목에서 봐야 할 핵심"}
     if event.get("per_stock"):
         out["per_stock"] = {str(k): v for k, v in event["per_stock"].items()}
+    # Optional: news-search keyword for per-stock "관련 뉴스" links.
+    if event.get("search_term"):
+        out["search_term"] = event["search_term"]
     return out
 
 
@@ -108,6 +111,8 @@ def _dedupe(events: list[dict]) -> list[dict]:
                 existing["result"] = e["result"]
             if e.get("per_stock"):
                 existing.setdefault("per_stock", {}).update(e["per_stock"])
+            if e.get("search_term") and not existing.get("search_term"):
+                existing["search_term"] = e["search_term"]
         else:
             seen[key] = e
     return list(seen.values())

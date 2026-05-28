@@ -13,7 +13,9 @@
 #   impact        선택. "보는 법" — 결과에 따른 시장/보유종목 영향 시나리오
 #   related_codes 선택. 관련 보유종목 KRX 코드 배열
 #   tags          선택. 검색/필터용
-#   source        선택. 원문 링크
+#   source        선택. 행사·기관 공식 링크 (보조)
+#   search_term   선택. 종목 특정 이벤트의 "종목명 + 키워드" 네이버 뉴스 검색용 키워드
+#                 (예: ASCO→"ASCO", Hot Chips→"HBM"). 상세 패널의 "📰 관련 뉴스" 링크 생성
 #   importance    선택 1~3. 3=헤더에 강조
 #   time          선택. "HH:MM" (KST) — 결과/발표가 나오는 시각. 지나면 UI가 "결과 집계 중" 표시
 #   result        선택. 이벤트 종료 후 agent 가 채움:
@@ -391,6 +393,7 @@ events:
   - date: "2026-06-24"
     category: "earnings"
     title: "마이크론 FY26 3분기 실적 (미 장 마감 후)"
+    search_term: "마이크론"
     description: "美 메모리 3사 중 가장 먼저 발표 — DRAM/NAND 업황·HBM 수요·가이던스가 한국 메모리주 선행 지표."
     related_codes: ["005930", "000660", "042700"]
     per_stock:
@@ -403,6 +406,7 @@ events:
   - date: "2026-07-22"
     category: "earnings"
     title: "테슬라 2026 2분기 실적 (미 장 마감 후)"
+    search_term: "전기차"
     description: "글로벌 EV 수요·가격·마진 — 전기차 섹터 심리 가늠자."
     related_codes: ["005380"]
     per_stock:
@@ -413,6 +417,7 @@ events:
   - date: "2026-08-26"
     category: "earnings"
     title: "엔비디아 FY27 2분기 실적 (미 장 마감 후)"
+    search_term: "엔비디아"
     description: "AI 반도체 수요의 핵심 지표 — 데이터센터·HBM 수요 가이던스가 한국 메모리주 최대 변수."
     related_codes: ["000660", "042700", "005930"]
     per_stock:
@@ -426,6 +431,7 @@ events:
   - date: "2026-07-01"
     category: "earnings"
     title: "현대차 6월 판매실적"
+    search_term: "판매실적"
     description: "매월 1일경 발표 — 국내/미국/유럽/신흥국 판매대수. 월간 펀더멘털 체크포인트."
     related_codes: ["005380"]
     per_stock:
@@ -440,6 +446,7 @@ events:
   - date_range: ["2026-05-29", "2026-06-02"]
     category: "conference"
     title: "ASCO 2026 (미국임상종양학회 연례총회)"
+    search_term: "ASCO"
     description: "Chicago · 세계 최대 종양학 학회 (ASCO·ESMO 양대)"
     related_codes: ["196170", "298380", "174900", "310210"]
     per_stock:
@@ -453,6 +460,7 @@ events:
   - date_range: ["2026-06-05", "2026-06-08"]
     category: "conference"
     title: "ADA 2026 (미국당뇨병학회 연례학술대회)"
+    search_term: "ADA"
     description: "New Orleans · GLP-1/인크레틴 글로벌 최대 학회"
     related_codes: ["347850"]
     per_stock:
@@ -463,6 +471,7 @@ events:
   - date_range: ["2026-06-11", "2026-06-14"]
     category: "conference"
     title: "EHA 2026 (유럽혈액학회 연례총회)"
+    search_term: "EHA"
     description: "Stockholm · 유럽 최대 혈액학 학회 (EHA·ASH 양대)"
     related_codes: ["174900", "166480"]
     per_stock:
@@ -474,6 +483,7 @@ events:
   - date_range: ["2026-10-23", "2026-10-27"]
     category: "conference"
     title: "ESMO 2026 (유럽종양학회 연례총회)"
+    search_term: "ESMO"
     description: "Madrid · 유럽 최대 종양학 학회 (ASCO·ESMO 양대)"
     related_codes: ["196170", "298380", "174900", "310210"]
     per_stock:
@@ -487,6 +497,7 @@ events:
   - date_range: ["2026-12-12", "2026-12-15"]
     category: "conference"
     title: "ASH 2026 (미국혈액학회 연례총회)"
+    search_term: "ASH"
     description: "New Orleans · 글로벌 최대 혈액학 학회 (제68회, EHA·ASH 양대)"
     related_codes: ["174900", "166480"]
     per_stock:
@@ -499,6 +510,7 @@ events:
   - date_range: ["2026-06-01", "2026-06-05"]
     category: "conference"
     title: "Posidonia 2026 (국제 해운 박람회)"
+    search_term: "수주"
     description: "Athens · 세계 최대 해운 박람회 (격년, 짝수해)"
     related_codes: ["009540"]
     per_stock:
@@ -509,6 +521,7 @@ events:
   - date_range: ["2026-06-06", "2026-06-10"]
     category: "conference"
     title: "CYTO 2026 (국제세포분석학회 연례총회)"
+    search_term: "CYTO"
     description: "West Palm Beach · 유세포분석(flow cytometry) 최대 학회 (ISAC)"
     related_codes: ["445680"]
     per_stock:
@@ -519,6 +532,7 @@ events:
   - date_range: ["2026-08-23", "2026-08-25"]
     category: "conference"
     title: "Hot Chips 2026 (고성능 칩 심포지엄)"
+    search_term: "HBM"
     description: "Stanford · 차세대 프로세서·메모리·AI 가속기 기술 발표 무대"
     related_codes: ["000660", "005930", "042700"]
     per_stock:
@@ -531,6 +545,7 @@ events:
   - date_range: ["2026-08-23", "2026-08-28"]
     category: "conference"
     title: "CIGRE Paris Session 2026 (국제 전력망 학회)"
+    search_term: "CIGRE"
     description: "Paris · 세계 최대 전력시스템 학회 (격년). 그리드 기술·투자 트렌드 집결"
     related_codes: ["267260", "010120"]
     per_stock:
@@ -542,6 +557,7 @@ events:
   - date_range: ["2026-09-14", "2026-09-17"]
     category: "conference"
     title: "Gastech 2026 (국제 가스·LNG 컨퍼런스)"
+    search_term: "LNG"
     description: "Bangkok · 세계 최대 가스·LNG·수소 컨퍼런스. 발주 파이프라인의 장"
     related_codes: ["009540", "028050"]
     per_stock:
@@ -553,6 +569,7 @@ events:
   - date_range: ["2026-09-22", "2026-09-24"]
     category: "conference"
     title: "AutoSens Europe 2026 (ADAS/자율주행 센싱)"
+    search_term: "ADAS"
     description: "Barcelona · ADAS·자율주행 인식기술 핵심 컨퍼런스"
     related_codes: ["396270"]
     per_stock:
@@ -563,6 +580,7 @@ events:
   - date_range: ["2026-09-28", "2026-10-01"]
     category: "conference"
     title: "G2E 2026 (글로벌 게이밍 엑스포)"
+    search_term: "카지노"
     description: "Las Vegas · 북미 최대 카지노·게이밍 산업 박람회"
     related_codes: ["034230"]
     per_stock:
@@ -573,6 +591,7 @@ events:
   - date_range: ["2026-09-28", "2026-10-02"]
     category: "conference"
     title: "EASD 2026 (유럽당뇨병학회 연례총회)"
+    search_term: "EASD"
     description: "Milan · 유럽 최대 당뇨병 학회 (제62회). GLP-1/인크레틴 데이터 집결"
     related_codes: ["347850"]
     per_stock:
@@ -583,6 +602,7 @@ events:
   - date_range: ["2026-10-19", "2026-10-21"]
     category: "conference"
     title: "World Vaccine Congress Europe 2026"
+    search_term: "백신"
     description: "Amsterdam · 백신 산업 글로벌 컨퍼런스"
     related_codes: ["299660"]
     per_stock:
@@ -593,6 +613,7 @@ events:
   - date_range: ["2026-11-02", "2026-11-05"]
     category: "conference"
     title: "ADIPEC 2026 (아부다비 국제 석유·에너지)"
+    search_term: "수주"
     description: "Abu Dhabi · 세계 최대 에너지 산업 전시·컨퍼런스. 중동 발주의 장"
     related_codes: ["028050"]
     per_stock:
@@ -603,6 +624,7 @@ events:
   - date_range: ["2026-11-04", "2026-11-08"]
     category: "conference"
     title: "SITC 2026 (미국면역항암학회 연례총회)"
+    search_term: "SITC"
     description: "Phoenix · 면역항암(immuno-oncology) 최대 학회 (제41회)"
     related_codes: ["298380", "174900", "299660"]
     per_stock:

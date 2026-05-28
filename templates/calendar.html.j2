@@ -437,6 +437,8 @@
   .detail .close { position: absolute; top: 14px; right: 16px;
     background: transparent; border: none; color: var(--muted); font-size: 18px; cursor: pointer; }
   .detail a { color: var(--accent); }
+  #detail-stocknews, #detail-source { font-size: 13px; margin-top: 10px; text-decoration: none; font-weight: 600; }
+  #detail-source { font-weight: 400; font-size: 12px; color: var(--muted); }
 
 
   footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: 11px; }
@@ -594,6 +596,7 @@
         <div id="detail-impact-body"></div>
       </div>
       <div class="tags" id="detail-tags"></div>
+      <a id="detail-stocknews" target="_blank" rel="noopener" style="display:none"></a>
       <a id="detail-source" target="_blank" rel="noopener" style="display:none">원문 →</a>
     </div>
   </aside>
@@ -674,6 +677,18 @@ function itemWatch(item) {
   if (item.code && item.e.per_stock) return item.e.per_stock[item.code] || "";
   return "";
 }
+// 종목 + 이벤트 키워드 네이버 뉴스 검색 — "실제 이 종목과 밀접한" 원문 링크.
+function newsSearchUrl(stockName, term) {
+  const q = encodeURIComponent(`${stockName} ${term || ""}`.trim());
+  return `https://search.naver.com/search.naver?where=news&query=${q}`;
+}
+function itemNewsLink(item) {
+  if (!item.code) return null;
+  const name = itemStockName(item);
+  const term = item.e.search_term || "";
+  return { url: newsSearchUrl(name, term), label: `📰 ${name} 관련 뉴스` };
+}
+
 // 다일 이벤트 기간 라벨 "M/D~M/D" (단일일이면 ""). 시작일/마지막일 anchor 무관.
 function spanText(e) {
   if (e._range && e._range[0] !== e._range[1]) {
@@ -1132,13 +1147,21 @@ function renderWeekDetail() {
       block.appendChild(desc);
     }
 
+    const nlink = itemNewsLink(item);
+    if (nlink) {
+      const a = document.createElement("a");
+      a.className = "src"; a.href = nlink.url; a.target = "_blank"; a.rel = "noopener";
+      a.textContent = nlink.label + " →";
+      a.style.cssText = "display:inline-block; margin-right:14px;";
+      block.appendChild(a);
+    }
     if (e.source) {
       const src = document.createElement("a");
       src.className = "src";
       src.href = e.source;
       src.target = "_blank";
       src.rel = "noopener";
-      src.textContent = "원문 →";
+      src.textContent = item.code ? "행사·공식 자료 →" : "원문 →";
       block.appendChild(src);
     }
 
@@ -1251,9 +1274,18 @@ function openDetail(item, fromDay = false) {
     span.textContent = t;
     tagsEl.appendChild(span);
   }
+  const snews = document.getElementById("detail-stocknews");
+  const link = itemNewsLink(item);
+  if (link) {
+    snews.href = link.url; snews.textContent = link.label + " →"; snews.style.display = "block";
+  } else { snews.style.display = "none"; }
+
   const src = document.getElementById("detail-source");
-  if (e.source) { src.href = e.source; src.style.display = "inline"; }
-  else { src.style.display = "none"; }
+  if (e.source) {
+    src.href = e.source;
+    src.textContent = item.code ? "행사·공식 자료 →" : "원문 →";
+    src.style.display = "block";
+  } else { src.style.display = "none"; }
   document.getElementById("detail").classList.add("open");
 }
 
