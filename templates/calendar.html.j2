@@ -15,6 +15,41 @@
   }
   .wrap { max-width: 1200px; margin: 0 auto; padding: 20px 16px 80px; }
 
+  /* ─── 최상단 sticky 지수 마키 ─────────────────────────────── */
+  .ticker {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+    overflow: hidden; padding: 8px 0;
+    font-size: 12.5px; font-feature-settings: "tnum";
+  }
+  .ticker-track {
+    display: flex; gap: 36px; white-space: nowrap;
+    animation: ticker-scroll 35s linear infinite;
+    width: max-content;
+  }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+  .ticker-item { display: inline-flex; gap: 5px; align-items: baseline; }
+  .ticker-item .label { font-weight: 700; color: var(--muted); }
+  .ticker-item .val { font-weight: 600; }
+  .ticker-item .chg { font-weight: 600; }
+  .ticker-item .live-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #16a34a; display: inline-block;
+    animation: live-pulse 2s ease-in-out infinite;
+  }
+  @keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track { animation: none; }
+    .ticker-item .live-dot { animation: none; }
+  }
+
   header.top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px;
     margin-bottom: 8px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
   header.top h1 { font-size: 20px; margin: 0; font-weight: 700; }
@@ -358,6 +393,25 @@
 </style>
 </head>
 <body>
+
+<div class="ticker" id="ticker">
+  <div class="ticker-track" id="ticker-track">
+    <!-- items duplicated once for seamless scroll loop; both copies updated together -->
+    <span class="ticker-item" data-ticker="KOSPI"><span class="label">KOSPI</span><span class="val">—</span><span class="chg neu">—</span></span>
+    <span class="ticker-item" data-ticker="KOSDAQ"><span class="label">KOSDAQ</span><span class="val">—</span><span class="chg neu">—</span></span>
+    <span class="ticker-item" data-ticker="USDKRW"><span class="label">USD/KRW</span><span class="val">—</span><span class="chg neu">—</span></span>
+    <span class="ticker-item" data-ticker="BTC"><span class="label">BTC</span><span class="val">—</span><span class="chg neu">—</span></span>
+    <span class="ticker-item" data-ticker="ETH"><span class="label">ETH</span><span class="val">—</span><span class="chg neu">—</span></span>
+    <span class="ticker-item"><span class="live-dot"></span><span class="label" id="ticker-stamp">실시간</span></span>
+    <span class="ticker-item" data-ticker="KOSPI"><span class="label">KOSPI</span><span class="val">—</span><span class="chg neu">—</span></span>
+    <span class="ticker-item" data-ticker="KOSDAQ"><span class="label">KOSDAQ</span><span class="val">—</span><span class="chg neu">—</span></span>
+    <span class="ticker-item" data-ticker="USDKRW"><span class="label">USD/KRW</span><span class="val">—</span><span class="chg neu">—</span></span>
+    <span class="ticker-item" data-ticker="BTC"><span class="label">BTC</span><span class="val">—</span><span class="chg neu">—</span></span>
+    <span class="ticker-item" data-ticker="ETH"><span class="label">ETH</span><span class="val">—</span><span class="chg neu">—</span></span>
+    <span class="ticker-item"><span class="live-dot"></span><span class="label">실시간</span></span>
+  </div>
+</div>
+
 <div class="wrap">
 
   <header class="top">
@@ -500,6 +554,10 @@
 <script>
 const EVENTS_URL = "events.json";
 const TODAY_ISO = {{ summary.today_iso|tojson }};
+const WORKER_BASE = "https://k-ant-daily-quotes.yummyummyummy.workers.dev";
+const TICKER_POLL_MS = 60000;   // 60s — KRX indices + FX + crypto (24/7 OK)
+const QUOTE_POLL_MS  = 60000;   // 60s — holdings (Worker edge-caches 30s)
+const TICKER_ITEMS = ["KOSPI", "KOSDAQ", "USDKRW", "BTC", "ETH"];
 const CATEGORY_LABEL = {
   macro: "거시", conference: "학회", clinical: "바이오 임상",
   earnings: "실적", ir: "IR/주총", disclosure: "공시",
@@ -1039,6 +1097,118 @@ for (const btn of document.querySelectorAll("#cat-filters button")) {
 }
 
 loadEvents();
+
+// ─────────────────────────────────────────────────────────────────
+// 실시간 시세 폴링 — 상단 마키 (지수/FX/암호화폐) + 보유종목 카드
+// Worker (k-ant-daily-quotes.yummyummyummy.workers.dev) 가 edge-cache
+// 와 Naver/Upbit 프록시 담당. 30~60s 캐시 적중 시 upstream 호출 없음.
+// ─────────────────────────────────────────────────────────────────
+
+function fmtNum(n, decimals) {
+  return Number(n).toLocaleString("ko-KR", {
+    minimumFractionDigits: decimals, maximumFractionDigits: decimals,
+  });
+}
+function signedPct(n) {
+  const s = n > 0 ? "+" : "";
+  return `${s}${Number(n).toFixed(2)}%`;
+}
+function dirCls(direction) {
+  return direction === "up" ? "pos" : direction === "down" ? "neg" : "neu";
+}
+
+async function pollTicker() {
+  try {
+    const url = `${WORKER_BASE}/ticker?items=${TICKER_ITEMS.join(",")}`;
+    const r = await fetch(url, { cache: "no-store" });
+    if (!r.ok) return;
+    const data = await r.json();
+    for (const key of TICKER_ITEMS) {
+      const info = data[key];
+      if (!info) continue;
+      // 마키 듀얼 복사 — 같은 data-ticker 두 군데 모두 업데이트
+      for (const el of document.querySelectorAll(`.ticker-item[data-ticker="${key}"]`)) {
+        const valEl = el.querySelector(".val");
+        const chgEl = el.querySelector(".chg");
+        if (valEl) valEl.textContent = info.value;
+        if (chgEl) {
+          chgEl.textContent = info.change_pct || info.change_abs || "";
+          chgEl.className = "chg " + dirCls(info.direction);
+        }
+      }
+    }
+    const stamp = document.getElementById("ticker-stamp");
+    if (stamp) {
+      const now = new Date();
+      stamp.textContent = "실시간 · " + String(now.getHours()).padStart(2,"0") + ":" + String(now.getMinutes()).padStart(2,"0");
+    }
+  } catch (e) { /* silent — next tick retries */ }
+}
+
+async function pollQuotes() {
+  const cards = document.querySelectorAll(".stock[data-code]");
+  if (!cards.length) return;
+  const codes = Array.from(cards).map(c => c.dataset.code);
+  try {
+    const url = `${WORKER_BASE}/quote?codes=${codes.join(",")}`;
+    const r = await fetch(url, { cache: "no-store" });
+    if (!r.ok) return;
+    const data = await r.json();
+    const order = [];
+    for (const card of cards) {
+      const code = card.dataset.code;
+      const q = data[code];
+      if (!q) continue;
+      const priceEl = card.querySelector(".stock-price .now");
+      const chgEl   = card.querySelector(".stock-price .chg");
+      if (priceEl) priceEl.textContent = fmtNum(q.price, 0);
+      if (chgEl) {
+        chgEl.textContent = signedPct(q.change_pct);
+        chgEl.className = "chg " + dirCls(q.direction);
+      }
+      // Track for coffee banner refresh
+      order.push({ card, pct: q.change_pct, direction: q.direction });
+    }
+    updateCoffeeBanner(order);
+  } catch (e) { /* silent */ }
+}
+
+// Recompute "오늘 커피" winner from live quotes — same logic as render.py.
+function updateCoffeeBanner(quotes) {
+  let best = null, bestPct = 0;
+  for (const x of quotes) {
+    if (x.pct > bestPct) { bestPct = x.pct; best = x; }
+  }
+  const coffee = document.querySelector(".coffee");
+  if (!coffee) return;
+  const line = coffee.querySelector(".line");
+  if (!line) return;
+  if (!best) {
+    coffee.classList.add("empty");
+    line.innerHTML = "오늘 상승 종목 없음 — 자비롭게 본인 커피 마시는 날";
+    return;
+  }
+  const card = best.card;
+  const name = card.querySelector(".stock-name")?.textContent || "";
+  const ownerChips = Array.from(card.querySelectorAll(".owner-chip")).map(c => c.textContent.trim());
+  if (!ownerChips.length) return;
+  // 첫 owner = leader (render.py 가 leader 를 가나다 첫번째로 두지 않지만 가나다 정렬 기준)
+  const primary = ownerChips.sort()[0];
+  const extra = ownerChips.length - 1;
+  coffee.classList.remove("empty");
+  line.innerHTML = `
+    <span class="stock-name">${name}</span>
+    <span class="pct">${signedPct(best.pct)}</span>
+    <span class="arrow">→</span>
+    <span class="winner">${primary}님이 오늘 커피!</span>
+    ${extra > 0 ? `<span class="extra">(공동보유 +${extra}명)</span>` : ""}
+  `;
+}
+
+pollTicker();
+pollQuotes();
+setInterval(pollTicker, TICKER_POLL_MS);
+setInterval(pollQuotes, QUOTE_POLL_MS);
 </script>
 </body>
 </html>
