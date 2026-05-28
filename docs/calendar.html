@@ -514,7 +514,7 @@
 
   <header class="top">
     <h1>k-ant-daily</h1>
-    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 17:38 KST 생성</span>
+    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 21:07 KST 생성</span>
   </header>  <div class="coffee">
     <span class="icon">☕</span>
     <div class="line">
@@ -767,7 +767,7 @@
   </aside>
 
   <footer>
-    2026-05-28 17:38 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
+    2026-05-28 21:07 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
   </footer>
 </div>
 
@@ -1285,7 +1285,9 @@ function renderWeekDetail() {
       while (bw.firstChild) block.appendChild(bw.firstChild);
     }
 
-    if (e.description) {
+    // 종목 아이템은 주목 포인트가 본문이라 generic 이벤트 description 생략 (반복 방지).
+    // 시장 전체 이벤트, 또는 주목 포인트 없는 경우에만 description 노출.
+    if (e.description && !(item.code && itemWatch(item))) {
       const desc = document.createElement("div");
       desc.className = "desc";
       desc.textContent = e.description;
@@ -1397,7 +1399,8 @@ function openDetail(item, fromDay = false) {
     impactWrap.style.display = "none";
   }
 
-  document.getElementById("detail-desc").textContent = e.description || "";
+  const showDesc = !(item.code && itemWatch(item));
+  document.getElementById("detail-desc").textContent = showDesc ? (e.description || "") : "";
 
   const tagsEl = document.getElementById("detail-tags");
   tagsEl.innerHTML = "";

@@ -224,7 +224,7 @@ events:
   - date_range: ["2026-05-29", "2026-06-02"]
     category: "conference"
     title: "ASCO 2026 (미국임상종양학회 연례총회)"
-    description: "Chicago, McCormick Place. 세계 최대 종양학 학회. abstract 채택 시 사전 기대감, Late-Breaking(LBA)·phase3 데이터가 주가 임팩트 최대 (긍정 +20~50% / 부정 -30~50%)."
+    description: "Chicago · 세계 최대 종양학 학회 (ASCO·ESMO 양대)"
     related_codes: ["196170", "298380", "174900", "310210"]
     per_stock:
       "196170": "ALT-B4(히알루로니다제 기반 SC 제형) 활용한 파트너사 항암제 피하주사 데이터 — 적응증·파트너 확대 시 마일스톤·로열티 모멘텀. 자체 발표보다 파트너사 데이터에 연동되는 구조"
@@ -237,7 +237,7 @@ events:
   - date_range: ["2026-06-05", "2026-06-08"]
     category: "conference"
     title: "ADA 2026 (미국당뇨병학회 연례학술대회)"
-    description: "New Orleans. GLP-1/인크레틴 기반 치료제 글로벌 최대 학회. Lilly·Novo 등 빅파마 신규 데이터 + 차세대 작용제 결과가 섹터 방향 결정."
+    description: "New Orleans · GLP-1/인크레틴 글로벌 최대 학회"
     related_codes: ["347850"]
     per_stock:
       "347850": "GLP-1 기반 파이프라인(경구·장기지속형 펩타이드 포함) 관련 데이터·파트너십 단서 — 빅파마 경쟁 구도와 GLP-1 시장 확대/안전성 이슈가 밸류에이션에 직접 영향"
@@ -247,7 +247,7 @@ events:
   - date_range: ["2026-06-11", "2026-06-14"]
     category: "conference"
     title: "EHA 2026 (유럽혈액학회 연례총회)"
-    description: "Stockholm. 유럽 최대 혈액학 학회 (ASH와 양대). CAR-T·이중특이항체 분야 활발. 6/10 CPI~6/16 FOMC 사이라 매크로 노이즈와 겹침."
+    description: "Stockholm · 유럽 최대 혈액학 학회 (EHA·ASH 양대)"
     related_codes: ["174900", "166480"]
     per_stock:
       "174900": "AT101(CD19 CAR-T) 혈액암(B세포 림프종/백혈병) 임상 데이터 — 반응률·반응 지속성. abstract 채택 여부가 사전 모멘텀"
@@ -258,7 +258,7 @@ events:
   - date_range: ["2026-10-23", "2026-10-27"]
     category: "conference"
     title: "ESMO 2026 (유럽종양학회 연례총회)"
-    description: "Madrid, IFEMA. ASCO와 양대 종양학 학회. ASCO 후속/추가 분석 데이터가 주로 발표. 10/27-28 FOMC·11/3 미 중간선거와 겹쳐 매크로 노이즈 큼."
+    description: "Madrid · 유럽 최대 종양학 학회 (ASCO·ESMO 양대)"
     related_codes: ["196170", "298380", "174900", "310210"]
     per_stock:
       "196170": "ALT-B4 SC 제형 파트너사 후속 데이터 — ASCO 대비 적응증 진전 여부"
@@ -271,7 +271,7 @@ events:
   - date_range: ["2026-12-12", "2026-12-15"]
     category: "conference"
     title: "ASH 2026 (미국혈액학회 연례총회)"
-    description: "New Orleans. 제68회. 글로벌 최대 혈액학 학회 (한 해 가장 큰 혈액 readout). oral presentation 채택 시 poster보다 임팩트 큼. 12/8-9 FOMC 직후·12/25 휴장 직전 연말 수급과 겹침."
+    description: "New Orleans · 글로벌 최대 혈액학 학회 (제68회, EHA·ASH 양대)"
     related_codes: ["174900", "166480"]
     per_stock:
       "174900": "AT101(CD19 CAR-T) 후속 데이터 — oral presentation 채택 시 임팩트 큼"
