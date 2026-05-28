@@ -197,13 +197,24 @@
   .today-card.cat-other      { border-left-color: #94a3b8; }
 
   /* ─── Calendar ─────────────────────────────────────────────── */
-  .cal-nav { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .cal-nav { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
   .cal-nav button {
     background: var(--card); border: 1px solid var(--border); color: var(--fg);
     padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;
   }
   .cal-nav button:hover { background: var(--bg); }
-  .cal-nav .month-label { font-size: 16px; font-weight: 600; }
+  .cal-nav .period-label { font-size: 16px; font-weight: 600; font-feature-settings: "tnum"; }
+  .view-toggle {
+    display: inline-flex; gap: 0; background: var(--card);
+    border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+  }
+  .view-toggle button {
+    border: none; background: transparent; padding: 6px 14px; font-size: 12.5px;
+    cursor: pointer; color: var(--muted); border-radius: 0;
+  }
+  .view-toggle button.active { background: var(--accent); color: white; }
+  .view-toggle button + button { border-left: 1px solid var(--border); }
+  .view-toggle button.active + button { border-left-color: transparent; }
 
   .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
   .filters button {
@@ -216,6 +227,15 @@
     background: var(--border); border: 1px solid var(--border); border-radius: 6px;
     overflow: hidden; }
   .grid > * { min-width: 0; }
+  /* 주간 모드: 셀이 더 길어서 이벤트 여러 개 한눈에 */
+  .grid.week .cell { min-height: 220px; }
+  .grid.week .cell .ev {
+    white-space: normal; line-height: 1.35; padding: 4px 6px; font-size: 11px;
+  }
+  /* 주간 모드 셀 클릭 가능 강조 */
+  .grid.week .cell:not(.dim) { cursor: pointer; }
+  .grid.week .cell:not(.dim):hover { background: rgba(15, 118, 110, 0.04); }
+  .grid.week .cell.today:not(.dim):hover { background: rgba(15, 118, 110, 0.12); }
   .grid .dow { background: var(--card); padding: 6px 8px; font-size: 11px;
     color: var(--muted); text-align: center; font-weight: 500; }
   .grid .dow.sat { color: var(--neg); }
@@ -259,6 +279,63 @@
     .ev.cat-holiday    { color: #fef08a; }
     .ev.cat-other      { color: #cbd5e1; }
   }
+
+  /* ─── 주간 모드 — 선택된 날짜 디테일 (하단 인라인) ────────────── */
+  .week-detail { margin-top: 18px; }
+  .week-detail .head {
+    display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px;
+    padding-bottom: 8px; border-bottom: 2px solid var(--accent);
+  }
+  .week-detail .head h3 {
+    margin: 0; font-size: 17px; font-weight: 700; color: var(--accent);
+  }
+  .week-detail .head .count { color: var(--muted); font-size: 12px; font-feature-settings: "tnum"; }
+  .week-detail .empty {
+    text-align: center; color: var(--muted); font-size: 13px;
+    padding: 32px 12px; background: var(--card); border-radius: 6px;
+  }
+  .week-detail .ev-block {
+    background: var(--card); border-radius: 8px;
+    padding: 14px 18px; margin-bottom: 12px;
+    border-left: 4px solid var(--accent);
+  }
+  .week-detail .ev-block.cat-macro      { border-left-color: #6366f1; }
+  .week-detail .ev-block.cat-conference { border-left-color: #a855f7; }
+  .week-detail .ev-block.cat-clinical   { border-left-color: #10b981; }
+  .week-detail .ev-block.cat-earnings   { border-left-color: #f59e0b; }
+  .week-detail .ev-block.cat-ir         { border-left-color: #14b8a6; }
+  .week-detail .ev-block.cat-disclosure { border-left-color: #6b7280; }
+  .week-detail .ev-block.cat-holiday    { border-left-color: #facc15; }
+  .week-detail .ev-block.cat-other      { border-left-color: #94a3b8; }
+  .week-detail .ev-block .top {
+    display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 6px;
+  }
+  .week-detail .ev-block .top .cat-tag {
+    font-size: 10px; padding: 2px 8px; border-radius: 999px; font-weight: 600;
+  }
+  .week-detail .ev-block .title { font-weight: 700; font-size: 15px; }
+  .week-detail .ev-block .desc {
+    font-size: 13px; color: var(--fg); margin: 6px 0 10px;
+  }
+  .week-detail .ev-block .impact-card {
+    background: var(--bg); border-radius: 6px; padding: 10px 12px;
+    border-left: 2px solid var(--accent); font-size: 12px; line-height: 1.65;
+    white-space: pre-wrap; margin: 8px 0;
+  }
+  .week-detail .ev-block .impact-head {
+    font-size: 10px; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;
+  }
+  .week-detail .ev-block .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+  .week-detail .ev-block .tag {
+    font-size: 10px; padding: 2px 6px; border-radius: 999px;
+    background: var(--bg); color: var(--muted);
+  }
+  .week-detail .ev-block .src {
+    display: inline-block; margin-top: 8px; color: var(--accent);
+    font-size: 11px; text-decoration: none;
+  }
+  .week-detail .ev-block .src:hover { text-decoration: underline; }
 
   /* ─── Event detail side panel ──────────────────────────────── */
   .detail {
@@ -331,7 +408,7 @@
 
   <header class="top">
     <h1>k-ant-daily</h1>
-    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 09:47 KST 생성</span>
+    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 09:56 KST 생성</span>
   </header>  <div class="coffee">
     <span class="icon">☕</span>
     <div class="line">
@@ -532,9 +609,13 @@
   </div>
 
   <div class="cal-nav">
-    <button id="prev-month">‹ 이전</button>
-    <span class="month-label" id="month-label">—</span>
-    <button id="next-month">다음 ›</button>
+    <div class="view-toggle" id="view-toggle">
+      <button data-view="month" class="active">월간</button>
+      <button data-view="week">주간</button>
+    </div>
+    <button id="prev-period">‹ 이전</button>
+    <span class="period-label" id="period-label">—</span>
+    <button id="next-period">다음 ›</button>
     <button id="today-btn" style="margin-left:auto">오늘</button>
   </div>
 
@@ -543,6 +624,14 @@
     <div class="dow">수</div><div class="dow">목</div><div class="dow">금</div>
     <div class="dow sat">토</div>
     <!-- cells filled by JS -->
+  </div>
+
+  <div class="week-detail" id="week-detail" style="display:none">
+    <div class="head">
+      <h3 id="week-detail-title">—</h3>
+      <span class="count" id="week-detail-count"></span>
+    </div>
+    <div id="week-detail-body"></div>
   </div>
 
 
@@ -569,7 +658,7 @@
   </aside>
 
   <footer>
-    2026-05-28 09:47 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
+    2026-05-28 09:56 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
   </footer>
 </div>
 
@@ -585,8 +674,16 @@ const CATEGORY_LABEL = {
 let allEvents = [];
 let activeCat = "all";
 let selectedDate = null;   // ISO string of the user-clicked date
+let view = "month";        // "month" | "week"
 const today = new Date(TODAY_ISO + "T00:00:00+09:00");
-let cursor = new Date(today.getFullYear(), today.getMonth(), 1);
+let cursor = new Date(today.getFullYear(), today.getMonth(), 1);  // month cursor
+let weekCursor = startOfWeek(today);  // sunday of the visible week
+
+function startOfWeek(d) {
+  const x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  x.setDate(x.getDate() - x.getDay());  // back up to Sunday
+  return x;
+}
 
 function fmtDate(d) {
   const y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,"0"), dd = String(d.getDate()).padStart(2,"0");
@@ -712,8 +809,16 @@ function visibleEvents() {
 }
 
 function render() {
+  if (view === "week") return renderWeek();
+  renderMonth();
+}
+
+function renderMonth() {
   const y = cursor.getFullYear(), m = cursor.getMonth();
-  document.getElementById("month-label").textContent = `${y}년 ${m+1}월`;
+  document.getElementById("period-label").textContent = `${y}년 ${m+1}월`;
+
+  const grid = document.getElementById("grid");
+  grid.classList.remove("week");
 
   const first = new Date(y, m, 1);
   const startWeekday = first.getDay();      // 0 = Sun
@@ -744,7 +849,6 @@ function render() {
     (byDate[e.date] ||= []).push(e);
   }
 
-  const grid = document.getElementById("grid");
   // Remove old cells (keep first 7 dow headers)
   while (grid.children.length > 7) grid.removeChild(grid.lastChild);
 
@@ -757,15 +861,9 @@ function render() {
       + (dateKey === todayKey ? " today" : "")
       + (dateKey === selectedDate ? " selected" : "");
     cell.dataset.date = dateKey;
-    cell.addEventListener("click", (ev) => {
-      // Toggle: clicking same selected date deselects and closes panel
-      if (selectedDate === dateKey) {
-        selectedDate = null;
-        document.getElementById("detail").classList.remove("open");
-      } else {
-        selectedDate = dateKey;
-        openDayDetail(dateKey);
-      }
+    cell.addEventListener("click", () => {
+      // Month view: just toggle visual selection (no side panel auto-open per user spec).
+      selectedDate = (selectedDate === dateKey) ? null : dateKey;
       render();
     });
 
@@ -797,6 +895,153 @@ function render() {
       cell.appendChild(more);
     }
     grid.appendChild(cell);
+  }
+}
+
+function renderWeek() {
+  const grid = document.getElementById("grid");
+  grid.classList.add("week");
+
+  const start = new Date(weekCursor.getFullYear(), weekCursor.getMonth(), weekCursor.getDate());
+  const end = new Date(start);
+  end.setDate(end.getDate() + 6);
+
+  const fmt = (d) => `${d.getMonth()+1}월 ${d.getDate()}일`;
+  document.getElementById("period-label").textContent = `${fmt(start)} ~ ${fmt(end)}`;
+
+  const events = visibleEvents();
+  const byDate = {};
+  for (const e of events) (byDate[e.date] ||= []).push(e);
+
+  while (grid.children.length > 7) grid.removeChild(grid.lastChild);
+
+  const todayKey = fmtDate(today);
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(start);
+    d.setDate(d.getDate() + i);
+    const dateKey = fmtDate(d);
+    const cell = document.createElement("div");
+    cell.className = "cell"
+      + (dateKey === todayKey ? " today" : "")
+      + (dateKey === selectedDate ? " selected" : "");
+    cell.dataset.date = dateKey;
+    cell.addEventListener("click", () => {
+      selectedDate = (selectedDate === dateKey) ? null : dateKey;
+      render();
+      renderWeekDetail();
+    });
+
+    const num = document.createElement("div");
+    num.className = "day-num";
+    num.textContent = d.getDate();
+    cell.appendChild(num);
+
+    const dayEvents = byDate[dateKey] || [];
+    for (const e of dayEvents) {
+      const evEl = document.createElement("div");
+      evEl.className = "ev cat-" + e.category;
+      evEl.textContent = e.title;
+      evEl.title = e.title;
+      // Click anywhere on chip = select that date and show details below.
+      // (We intentionally don't open the side panel in week mode — details are inline.)
+      cell.appendChild(evEl);
+    }
+    grid.appendChild(cell);
+  }
+}
+
+function renderWeekDetail() {
+  const wrap = document.getElementById("week-detail");
+  const body = document.getElementById("week-detail-body");
+  const title = document.getElementById("week-detail-title");
+  const count = document.getElementById("week-detail-count");
+
+  if (view !== "week" || !selectedDate) {
+    wrap.style.display = "none";
+    return;
+  }
+  wrap.style.display = "block";
+
+  const parts = selectedDate.split("-");
+  const d = new Date(selectedDate + "T00:00:00+09:00");
+  const dow = ["일","월","화","수","목","금","토"][d.getDay()];
+  title.textContent = `${parseInt(parts[1])}월 ${parseInt(parts[2])}일 (${dow})`
+    + (selectedDate === TODAY_ISO ? " · 오늘" : "");
+
+  const items = allEvents
+    .filter(e => e.date === selectedDate)
+    .sort((a, b) => (b.importance || 2) - (a.importance || 2));
+
+  count.textContent = items.length ? `${items.length}건` : "";
+  body.innerHTML = "";
+
+  if (!items.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = "이 날은 등록된 이벤트가 없습니다.";
+    body.appendChild(empty);
+    return;
+  }
+
+  for (const e of items) {
+    const block = document.createElement("div");
+    block.className = "ev-block cat-" + e.category;
+
+    const top = document.createElement("div");
+    top.className = "top";
+    const tag = document.createElement("span");
+    tag.className = "cat-tag ev cat-" + e.category;
+    tag.textContent = CATEGORY_LABEL[e.category] || e.category;
+    const title2 = document.createElement("span");
+    title2.className = "title";
+    title2.textContent = e.title;
+    top.appendChild(tag);
+    top.appendChild(title2);
+    block.appendChild(top);
+
+    if (e.description) {
+      const desc = document.createElement("div");
+      desc.className = "desc";
+      desc.textContent = e.description;
+      block.appendChild(desc);
+    }
+
+    if (e.impact) {
+      const impact = document.createElement("div");
+      impact.className = "impact-card";
+      const head = document.createElement("div");
+      head.className = "impact-head";
+      head.textContent = "💡 시장 영향 · 보는 법";
+      const body2 = document.createElement("div");
+      body2.textContent = e.impact;
+      impact.appendChild(head);
+      impact.appendChild(body2);
+      block.appendChild(impact);
+    }
+
+    if (e.tags && e.tags.length) {
+      const tagsWrap = document.createElement("div");
+      tagsWrap.className = "tags";
+      for (const t of e.tags) {
+        const ts = document.createElement("span");
+        ts.className = "tag";
+        ts.textContent = t;
+        tagsWrap.appendChild(ts);
+      }
+      block.appendChild(tagsWrap);
+    }
+
+    if (e.source) {
+      const src = document.createElement("a");
+      src.className = "src";
+      src.href = e.source;
+      src.target = "_blank";
+      src.rel = "noopener";
+      src.textContent = "원문 →";
+      block.appendChild(src);
+    }
+
+    body.appendChild(block);
   }
 }
 
@@ -889,18 +1134,65 @@ document.getElementById("detail-close").addEventListener("click", () => {
 document.getElementById("event-back").addEventListener("click", () => {
   if (selectedDate) openDayDetail(selectedDate);
 });
-document.getElementById("prev-month").addEventListener("click", () => {
-  cursor = new Date(cursor.getFullYear(), cursor.getMonth() - 1, 1);
+document.getElementById("prev-period").addEventListener("click", () => {
+  if (view === "week") {
+    weekCursor = new Date(weekCursor); weekCursor.setDate(weekCursor.getDate() - 7);
+  } else {
+    cursor = new Date(cursor.getFullYear(), cursor.getMonth() - 1, 1);
+  }
   render();
 });
-document.getElementById("next-month").addEventListener("click", () => {
-  cursor = new Date(cursor.getFullYear(), cursor.getMonth() + 1, 1);
+document.getElementById("next-period").addEventListener("click", () => {
+  if (view === "week") {
+    weekCursor = new Date(weekCursor); weekCursor.setDate(weekCursor.getDate() + 7);
+  } else {
+    cursor = new Date(cursor.getFullYear(), cursor.getMonth() + 1, 1);
+  }
   render();
 });
 document.getElementById("today-btn").addEventListener("click", () => {
-  cursor = new Date(today.getFullYear(), today.getMonth(), 1);
-  render();
+  if (view === "week") {
+    weekCursor = startOfWeek(today);
+    selectedDate = TODAY_ISO;
+    render();
+    renderWeekDetail();
+  } else {
+    cursor = new Date(today.getFullYear(), today.getMonth(), 1);
+    selectedDate = null;
+    render();
+  }
 });
+
+// 월/주 토글
+for (const btn of document.querySelectorAll("#view-toggle button")) {
+  btn.addEventListener("click", () => {
+    if (btn.dataset.view === view) return;
+    for (const b of document.querySelectorAll("#view-toggle button")) b.classList.remove("active");
+    btn.classList.add("active");
+    view = btn.dataset.view;
+
+    if (view === "week") {
+      // Anchor week to selected date if any, else to today, else to first day of month cursor
+      const anchor = selectedDate ? new Date(selectedDate + "T00:00:00+09:00")
+                  : (cursor ? new Date(cursor) : today);
+      weekCursor = startOfWeek(anchor.getTime() <= today.getTime() ? today : anchor);
+      // Default-select today if within visible week, else first day of week
+      if (!selectedDate) {
+        const inWeek = TODAY_ISO >= fmtDate(weekCursor)
+                    && TODAY_ISO <= fmtDate(new Date(weekCursor.getTime() + 6*86400000));
+        selectedDate = inWeek ? TODAY_ISO : fmtDate(weekCursor);
+      }
+      // Close the side panel (week uses inline detail)
+      document.getElementById("detail").classList.remove("open");
+    } else {
+      // Returning to month — anchor cursor on selected date or current week
+      const anchor = selectedDate ? new Date(selectedDate + "T00:00:00+09:00") : weekCursor;
+      cursor = new Date(anchor.getFullYear(), anchor.getMonth(), 1);
+    }
+    render();
+    renderWeekDetail();
+  });
+}
 for (const btn of document.querySelectorAll("#cat-filters button")) {
   btn.addEventListener("click", () => {
     for (const b of document.querySelectorAll("#cat-filters button")) b.classList.remove("active");
