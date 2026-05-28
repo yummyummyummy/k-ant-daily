@@ -464,7 +464,7 @@
 
   <header class="top">
     <h1>k-ant-daily</h1>
-    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 10:34 KST 생성</span>
+    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 11:18 KST 생성</span>
   </header>  <div class="coffee">
     <span class="icon">☕</span>
     <div class="line">
@@ -480,6 +480,45 @@
     </div>
     <div class="today-cards" id="today-cards"></div>
   </section>
+
+  <h2>월간 이벤트 캘린더</h2>
+
+  <div class="filters" id="cat-filters">
+    <button data-cat="all" class="active">전체</button>
+    <button data-cat="clinical">바이오 임상</button>
+    <button data-cat="conference">학회</button>
+    <button data-cat="macro">거시</button>
+    <button data-cat="earnings">실적</button>
+    <button data-cat="ir">IR/주총</button>
+    <button data-cat="disclosure">공시</button>
+    <button data-cat="holiday">휴장</button>
+  </div>
+
+  <div class="cal-nav">
+    <div class="view-toggle" id="view-toggle">
+      <button data-view="month">월간</button>
+      <button data-view="week" class="active">주간</button>
+    </div>
+    <button id="prev-period">‹ 이전</button>
+    <span class="period-label" id="period-label">—</span>
+    <button id="next-period">다음 ›</button>
+    <button id="today-btn" style="margin-left:auto">오늘</button>
+  </div>
+
+  <div class="grid" id="grid">
+    <div class="dow sun">일</div><div class="dow">월</div><div class="dow">화</div>
+    <div class="dow">수</div><div class="dow">목</div><div class="dow">금</div>
+    <div class="dow sat">토</div>
+    <!-- cells filled by JS -->
+  </div>
+
+  <div class="week-detail" id="week-detail" style="display:none">
+    <div class="head">
+      <h3 id="week-detail-title">—</h3>
+      <span class="count" id="week-detail-count"></span>
+    </div>
+    <div id="week-detail-body"></div>
+  </div>
 
   <h2>오늘 보유종목 (21개)</h2>
   <div class="holdings">    <div class="stock" data-code="009540">
@@ -652,45 +691,6 @@
       </div>      <div class="stock-dates" data-code="005380"></div>
     </div>  </div>
 
-  <h2>월간 이벤트 캘린더</h2>
-
-  <div class="filters" id="cat-filters">
-    <button data-cat="all" class="active">전체</button>
-    <button data-cat="clinical">바이오 임상</button>
-    <button data-cat="conference">학회</button>
-    <button data-cat="macro">거시</button>
-    <button data-cat="earnings">실적</button>
-    <button data-cat="ir">IR/주총</button>
-    <button data-cat="disclosure">공시</button>
-    <button data-cat="holiday">휴장</button>
-  </div>
-
-  <div class="cal-nav">
-    <div class="view-toggle" id="view-toggle">
-      <button data-view="month">월간</button>
-      <button data-view="week" class="active">주간</button>
-    </div>
-    <button id="prev-period">‹ 이전</button>
-    <span class="period-label" id="period-label">—</span>
-    <button id="next-period">다음 ›</button>
-    <button id="today-btn" style="margin-left:auto">오늘</button>
-  </div>
-
-  <div class="grid" id="grid">
-    <div class="dow sun">일</div><div class="dow">월</div><div class="dow">화</div>
-    <div class="dow">수</div><div class="dow">목</div><div class="dow">금</div>
-    <div class="dow sat">토</div>
-    <!-- cells filled by JS -->
-  </div>
-
-  <div class="week-detail" id="week-detail" style="display:none">
-    <div class="head">
-      <h3 id="week-detail-title">—</h3>
-      <span class="count" id="week-detail-count"></span>
-    </div>
-    <div id="week-detail-body"></div>
-  </div>
-
 
   <aside class="detail" id="detail">
     <button class="close" id="detail-close" aria-label="닫기">×</button>
@@ -715,7 +715,7 @@
   </aside>
 
   <footer>
-    2026-05-28 10:34 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
+    2026-05-28 11:18 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
   </footer>
 </div>
 

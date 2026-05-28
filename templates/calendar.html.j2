@@ -453,37 +453,6 @@
     <div class="today-cards" id="today-cards"></div>
   </section>
 
-  <h2>오늘 보유종목 ({{ stocks|length }}개)</h2>
-  <div class="holdings">
-    {%- for s in stocks %}
-    <div class="stock" data-code="{{ s.code }}">
-      <div class="stock-head">
-        <span class="stock-name">{{ s.name }}</span>
-        <span class="stock-code">{{ s.code }} · {{ s.market }}</span>
-      </div>
-      {%- if s.quote.price %}
-      <div class="stock-price">
-        <span class="now">{{ s.quote.price }}</span>
-        {%- if s.quote.change_pct %}
-        <span class="chg {{ s.quote.cls }}">{{ s.quote.change_pct }}</span>
-        {%- endif %}
-      </div>
-      {%- endif %}
-      {%- if s.owners %}
-      <div class="stock-owners">
-        {%- for o in s.owners %}<span class="owner-chip">{{ o }}</span>{%- endfor %}
-      </div>
-      {%- endif %}
-      {%- if s.lead_news %}
-      <div class="stock-news">
-        <a href="{{ s.lead_news.url }}" target="_blank" rel="noopener">{{ s.lead_news.title }}</a>
-      </div>
-      {%- endif %}
-      <div class="stock-dates" data-code="{{ s.code }}"></div>
-    </div>
-    {%- endfor %}
-  </div>
-
   <h2>월간 이벤트 캘린더</h2>
 
   <div class="filters" id="cat-filters">
@@ -521,6 +490,37 @@
       <span class="count" id="week-detail-count"></span>
     </div>
     <div id="week-detail-body"></div>
+  </div>
+
+  <h2>오늘 보유종목 ({{ stocks|length }}개)</h2>
+  <div class="holdings">
+    {%- for s in stocks %}
+    <div class="stock" data-code="{{ s.code }}">
+      <div class="stock-head">
+        <span class="stock-name">{{ s.name }}</span>
+        <span class="stock-code">{{ s.code }} · {{ s.market }}</span>
+      </div>
+      {%- if s.quote.price %}
+      <div class="stock-price">
+        <span class="now">{{ s.quote.price }}</span>
+        {%- if s.quote.change_pct %}
+        <span class="chg {{ s.quote.cls }}">{{ s.quote.change_pct }}</span>
+        {%- endif %}
+      </div>
+      {%- endif %}
+      {%- if s.owners %}
+      <div class="stock-owners">
+        {%- for o in s.owners %}<span class="owner-chip">{{ o }}</span>{%- endfor %}
+      </div>
+      {%- endif %}
+      {%- if s.lead_news %}
+      <div class="stock-news">
+        <a href="{{ s.lead_news.url }}" target="_blank" rel="noopener">{{ s.lead_news.title }}</a>
+      </div>
+      {%- endif %}
+      <div class="stock-dates" data-code="{{ s.code }}"></div>
+    </div>
+    {%- endfor %}
   </div>
 
 
