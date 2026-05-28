@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-28T22:24:55.515432+09:00",
+  "generated_at": "2026-05-28T22:37:27.615812+09:00",
   "events": [
     {
       "date": "2026-05-28",
@@ -125,6 +125,17 @@
     },
     {
       "date": "2026-06-11",
+      "category": "macro",
+      "title": "선물·옵션 동시만기일 (분기)",
+      "description": "KOSPI200 선물·옵션 동시만기 (분기 2번째 목요일). 만기 수급 변동성.",
+      "impact": "📁 보유 영향\n• 만기 전후 프로그램 매매·수급 변동성 — 대형주(삼성전자·SK하이닉스·현대차) 수급 영향\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "",
+      "importance": 2
+    },
+    {
+      "date": "2026-06-11",
       "category": "conference",
       "title": "EHA 2026 (유럽혈액학회 연례총회)",
       "description": "Stockholm · 유럽 최대 혈액학 학회 (EHA·ASH 양대)",
@@ -179,6 +190,18 @@
         "000660": "HBM 수요·가격 가이던스 — SK하이닉스 HBM 모멘텀에 직결",
         "042700": "메모리 capex 방향 → HBM 본더 수요 간접 신호"
       }
+    },
+    {
+      "date": "2026-06-25",
+      "category": "macro",
+      "title": "미 5월 PCE 물가 (개인소비지출)",
+      "description": "Fed 가 가장 중시하는 물가지표. 8:30 ET (한국 21:30).",
+      "impact": "📁 보유 영향\n• Core PCE 가 인하 경로 좌우 — 코스닥 바이오 금리 민감도 최고\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bea.gov/news/schedule",
+      "importance": 2,
+      "time": "21:30"
     },
     {
       "date": "2026-07-01",
@@ -238,6 +261,18 @@
         "2026-07-28",
         "2026-07-29"
       ]
+    },
+    {
+      "date": "2026-07-30",
+      "category": "macro",
+      "title": "미 6월 PCE 물가 (개인소비지출)",
+      "description": "Fed 선호 물가지표. 7/28-29 FOMC 직후 발표.",
+      "impact": "📁 보유 영향\n• FOMC 직후라 정책 경로 재확인. 코스닥 바이오 금리 민감\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bea.gov/news/schedule",
+      "importance": 2,
+      "time": "21:30"
     },
     {
       "date": "2026-08-17",
@@ -315,6 +350,40 @@
         "042700": "엔비디아 GPU 출하 가이던스 → HBM 본딩 장비 수요 연동",
         "005930": "HBM·메모리 수요 + 파운드리 코멘트"
       }
+    },
+    {
+      "date": "2026-08-27",
+      "category": "macro",
+      "title": "한은 금통위 (통화정책방향 결정)",
+      "description": "기준금리 결정. 10:00 결정문 + 총재 기자회견. (같은 주 잭슨홀과 겹침)",
+      "impact": "📁 보유 영향\n• 한국금융지주(채권 평가손익)·삼성E&A(금리 인하 시 수주 우호)\n• 현대차·SK하이닉스·한미반도체 — 원화 환율 방향. 코스닥 바이오는 미 금리(FOMC) 우선\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bok.or.kr/portal/singl/crncyPolicyDrcMtg/listYear.do?mtgSe=A&menuNo=200755",
+      "importance": 3,
+      "time": "10:00"
+    },
+    {
+      "date": "2026-08-28",
+      "category": "macro",
+      "title": "잭슨홀 경제정책 심포지엄 (의장 연설)",
+      "description": "Fed 캔자스시티 연은 주최(8/27~29). 통상 금요일 의장 연설에서 정책 기조 시그널 — 변동성 이벤트.",
+      "impact": "📁 보유 영향\n• Fed 의장 연설 톤(매파/비둘기)이 글로벌 위험자산 방향 — 코스닥 바이오 가장 민감\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.kansascityfed.org/research/jackson-hole-economic-symposium/",
+      "importance": 3
+    },
+    {
+      "date": "2026-09-10",
+      "category": "macro",
+      "title": "선물·옵션 동시만기일 (분기)",
+      "description": "KOSPI200 선물·옵션 동시만기 (분기 2번째 목요일).",
+      "impact": "📁 보유 영향\n• 만기 수급 변동성 — 대형주 수급 영향\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "",
+      "importance": 2
     },
     {
       "date": "2026-09-14",
@@ -478,6 +547,18 @@
       }
     },
     {
+      "date": "2026-10-22",
+      "category": "macro",
+      "title": "한은 금통위 (통화정책방향 결정)",
+      "description": "기준금리 결정. 10:00 결정문 + 총재 기자회견.",
+      "impact": "📁 보유 영향\n• 한국금융지주·삼성E&A — 금리 민감. 현대차·반도체 — 환율. 코스닥 바이오는 미 금리 우선\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bok.or.kr/portal/singl/crncyPolicyDrcMtg/listYear.do?mtgSe=A&menuNo=200755",
+      "importance": 3,
+      "time": "10:00"
+    },
+    {
       "date": "2026-10-23",
       "category": "conference",
       "title": "ESMO 2026 (유럽종양학회 연례총회)",
@@ -563,6 +644,18 @@
       }
     },
     {
+      "date": "2026-11-26",
+      "category": "macro",
+      "title": "한은 금통위 (통화정책방향 결정)",
+      "description": "기준금리 결정. 올해 마지막 금통위 — 차년도 정책 시그널.",
+      "impact": "📁 보유 영향\n• 한국금융지주·삼성E&A — 금리 민감. 현대차·반도체 — 환율. 코스닥 바이오는 미 금리 우선\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bok.or.kr/portal/singl/crncyPolicyDrcMtg/listYear.do?mtgSe=A&menuNo=200755",
+      "importance": 3,
+      "time": "10:00"
+    },
+    {
       "date": "2026-12-09",
       "category": "macro",
       "title": "FOMC 정례회의 (성명·점도표)",
@@ -576,6 +669,17 @@
         "2026-12-08",
         "2026-12-09"
       ]
+    },
+    {
+      "date": "2026-12-10",
+      "category": "macro",
+      "title": "선물·옵션 동시만기일 (분기)",
+      "description": "KOSPI200 선물·옵션 동시만기 (분기 2번째 목요일). 연말 수급과 겹침.",
+      "impact": "📁 보유 영향\n• 만기 + 연말 배당·양도세 수급 — 변동성 큰 구간\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "",
+      "importance": 2
     },
     {
       "date": "2026-12-12",
