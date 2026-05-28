@@ -191,6 +191,10 @@ events:
       • 코스닥 바이오는 한국 금리보다 미국 금리(FOMC) 우선
     source: "https://www.bok.or.kr/portal/singl/crncyPolicyDrcMtg/listYear.do?mtgSe=A&menuNo=200755"
     importance: 3
+    result:
+      outcome: negative
+      summary: "금통위 매파 기조 — 시장이 기대한 추가 인하 시그널 없이 금리 인상 가능성까지 시사. 코스피 장중 7800선까지 급락 후 개인 4조 순매수에 8185로 회복. 코스닥은 -2.54% 마감."
+      filled_at: "2026-05-28"
 
   # ─── 미국 경제지표 ────────────────────────────────────────────
   - date: "2026-06-05"

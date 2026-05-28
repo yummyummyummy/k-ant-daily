@@ -3,18 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2026-05-27 장 마감 후 뉴스 · k-ant-daily</title>
-<meta name="description" content="삼전닉스 레버리지 상장에 코스피 8228, 유가 급락">
-<link rel="canonical" href="https://yummyummyummy.github.io/k-ant-daily/digest.html">
-
-<meta property="og:type" content="article">
-<meta property="og:title" content="2026-05-27 장 마감 후 뉴스">
-<meta property="og:description" content="삼전닉스 레버리지 상장에 코스피 8228, 유가 급락">
-<meta property="og:url" content="https://yummyummyummy.github.io/k-ant-daily/digest.html">
-<meta property="og:locale" content="ko_KR">
-<meta property="og:site_name" content="k-ant-daily">
-<meta property="og:image" content="https://yummyummyummy.github.io/k-ant-daily/og-image.png">
-
+<title>2026-05-28 포스트마켓 다이제스트 · k-ant-daily</title>
+<meta name="robots" content="noindex">
 <style>
 :root {
     --fg: #0f172a;
@@ -65,455 +55,54 @@
       background: rgba(250, 204, 21, 0.22);
       color: var(--fg);
     }
-  }  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-      "Pretendard", "Noto Sans KR", sans-serif;
-    line-height: 1.6; font-size: 16px;
-    -webkit-text-size-adjust: 100%;
-  }
-  main { max-width: 720px; margin: 0 auto; padding: 24px 20px 64px; }
-
-  header h1 { font-size: 24px; margin: 0 0 6px; }
-  header time { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; }
-  header nav { margin-top: 4px; }
-  header nav a { color: var(--accent); text-decoration: none; font-size: 14px; }
-  header .next-brief { color: var(--muted); font-size: 12px; margin-top: 6px; }
-
-  section { margin-top: 28px; }
-  section h2 {
-    font-size: 16px; margin: 0 0 12px;
-    border-left: 3px solid var(--accent); padding-left: 8px;
-  }
-
-  /* Generic news list — used by 한국 마감 후 / 매크로 / 미국 시초 헤드라인 / 공시 */
-  .news-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
-  .news-list li {
-    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-    padding: 10px 14px; display: flex; gap: 10px; align-items: flex-start;
-  }
-  .news-list .dot {
-    flex: 0 0 6px; width: 6px; height: 6px; border-radius: 50%;
-    margin-top: 8px; background: var(--neu);
-  }
-  .news-list .dot.positive { background: var(--pos); }
-  .news-list .dot.negative { background: var(--neg); }
-  .news-list .body { flex: 1; min-width: 0; }
-  .news-list .headline { font-size: 14px; line-height: 1.4; color: var(--fg); }
-  .news-list .headline a { color: var(--fg); text-decoration: none; }
-  .news-list .headline a:hover { color: var(--accent); }
-  .news-list .summary { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
-  .news-list .meta { font-size: 11px; color: var(--muted); margin-top: 4px; display: flex; gap: 8px; }
-  .news-list .meta .time-ago { color: var(--accent); font-weight: 600; }
-  .news-list .impact-chip {
-    font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px;
-    background: var(--neu-bg); color: var(--neu); white-space: nowrap;
-  }
-  .news-list .impact-chip.positive { background: var(--pos-bg); color: var(--pos); }
-  .news-list .impact-chip.negative { background: var(--neg-bg); color: var(--neg); }
-
-  /* 미국 시초 — 인덱스 + 프록시 종목 그리드 */
-  .us-tape { display: flex; flex-direction: column; gap: 10px; }
-  .us-tape .row {
-    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-    padding: 10px 14px;
-  }
-  .us-tape .row-title { font-size: 11px; color: var(--muted); font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
-  .us-tape .items { display: flex; flex-wrap: wrap; gap: 14px; font-variant-numeric: tabular-nums; }
-  .us-tape .item { font-size: 13px; }
-  .us-tape .item .name { color: var(--muted); margin-right: 4px; font-weight: 600; }
-  .us-tape .item .value { color: var(--fg); font-weight: 700; }
-  .us-tape .item .pct.up   { color: var(--pos); margin-left: 4px; }
-  .us-tape .item .pct.down { color: var(--neg); margin-left: 4px; }
-  .us-tape .item .pct.flat { color: var(--muted); margin-left: 4px; }
-
-  .empty-state { color: var(--muted); font-size: 13px; padding: 12px; text-align: center;
-    background: var(--card); border: 1px dashed var(--border); border-radius: 8px; }
-
-  footer { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--border);
-    color: var(--muted); font-size: 12px; text-align: center; }
-  .live-indicator { font-size: 12px; color: var(--muted); margin-left: 8px; }
-  .live-indicator.live { color: var(--pos); }
-
-  /* 다음 장 목표 배너 — 장 없는 기간에만 노출 */
-  .resolution-box {
-    margin-top: 20px;
-    background: var(--card); border: 1px solid var(--border);
-    border-top: 3px solid var(--accent);
-    border-radius: 10px; padding: 20px 22px;
-  }
-  .resolution-box .res-header {
-    display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap;
-  }
-  .resolution-box .res-title {
-    font-size: 13px; font-weight: 800; text-transform: uppercase;
-    letter-spacing: 0.06em; color: var(--accent);
-  }
-  .resolution-box .res-target {
-    font-size: 32px; font-weight: 900; font-variant-numeric: tabular-nums;
-    color: var(--fg); line-height: 1;
-  }
-  .resolution-box .res-target span { font-size: 16px; color: var(--muted); font-weight: 500; }
-  .resolution-box .res-basis {
-    font-size: 13px; color: var(--muted); margin-bottom: 16px; line-height: 1.5;
-  }
-  .resolution-box .res-basis strong { color: var(--fg); }
-  .resolution-box .res-plan {
-    list-style: none; padding: 0; margin: 0;
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .resolution-box .res-plan li {
-    display: grid; grid-template-columns: auto 1fr;
-    gap: 10px 12px; font-size: 13px; line-height: 1.5;
-  }
-  .resolution-box .res-plan .num {
-    font-size: 11px; font-weight: 800; color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 12%, transparent);
-    border-radius: 4px; padding: 2px 6px; white-space: nowrap;
-    align-self: start; margin-top: 1px;
-  }
-  .resolution-box .res-plan .rule { font-weight: 700; color: var(--fg); }
-  .resolution-box .res-plan .why { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .resolution-box .res-reopen {
-    margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border);
-    font-size: 12px; color: var(--muted);
-  }
-  .resolution-box .res-reopen strong { color: var(--fg); }
+  }  body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+    background: var(--bg); color: var(--fg); margin: 0; line-height: 1.6; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 20px 16px 80px; }
+  header.top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+  header.top h1 { font-size: 20px; margin: 0; }
+  header.top .meta { font-size: 12px; color: var(--muted); }
+  header.top a.calendar-link { margin-left: auto; font-size: 13px; color: var(--accent); text-decoration: none; }
+  h2 { font-size: 16px; margin: 24px 0 10px; }
+  .section { background: var(--card); border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; }
+  .section h3 { margin: 0 0 8px; font-size: 14px; color: var(--accent); }
+  .section ul { margin: 0; padding-left: 18px; }
+  .section li { margin: 4px 0; font-size: 14px; }
+  .highlights { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+  .hl { border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; background: var(--bg); }
+  .hl .kind { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .hl .title { font-weight: 600; font-size: 13px; margin: 4px 0 2px; }
+  .hl .detail { font-size: 12px; color: var(--muted); }
+  .hl a { color: var(--accent); font-size: 11px; text-decoration: none; }
+  .upcoming ul { list-style: none; padding: 0; margin: 0; }
+  .upcoming li { display: flex; gap: 12px; padding: 4px 0; border-bottom: 1px dashed var(--border); font-size: 13px; }
+  .upcoming li:last-child { border-bottom: none; }
+  .upcoming .when { color: var(--muted); flex: 0 0 90px; font-feature-settings: "tnum"; }
+  footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: 11px; }
 </style>
 </head>
-<body data-date="2026-05-27">
-<main>
-  <header>
-    <nav><a href="archive.html">📋 예측</a> · <a href="game.html?room=RT3NTBNDM">🎲 국장 예측</a></nav>
-    <h1>🌙 장 마감 후 뉴스</h1>
-    <time>2026-05-27 23:00 KST 발행<span class="live-indicator" id="live-indicator"></span></time>
-<div class="next-brief">다음 브리핑 — 2026-05-28 07:30</div>  </header>
+<body>
+<div class="wrap">
 
-
-  <section>
-    <h2>🇰🇷 한국 장 마감 후</h2>
-    <ul class="news-list">
-      <li>
-        <span class="dot positive"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://n.news.naver.com/mnews/article/008/0005363690" target="_blank" rel="noopener">삼전닉스 레버리지 ETF 상장 첫날 — 10조 유입, ETF 시총 500조 돌파</a>
-          </div>
-<div class="summary">삼성전자·SK하이닉스 단일종목 레버리지 ETF 14종 상장. 하이닉스 레버리지 20%대 급등, 삼성전자 +6.86%·하이닉스 +10.48% 최고가 경신. 코스피 장중 8400 돌파 후 8228 마감(+2.25%).</div>          <div class="meta">
-<span class="impact-chip positive">호재</span><span>머니투데이</span><span class="time-ago">4시간 전</span>          </div>
-        </div>
-      </li>
-      <li>
-        <span class="dot negative"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://n.news.naver.com/mnews/article/011/0004625130" target="_blank" rel="noopener">반도체 독주 양극화 심화 — 코스피 최고치에도 종목 10개 중 9개 하락</a>
-          </div>
-<div class="summary">삼성전자·SK하이닉스 시총이 코스피 전체의 절반 이상 차지. 코스닥은 -3.36% 급락 마감. 반도체 소부장·전력기기주는 오히려 약세.</div>          <div class="meta">
-<span class="impact-chip negative">악재</span><span>서울경제</span><span class="time-ago">4시간 전</span>          </div>
-        </div>
-      </li>
-      <li>
-        <span class="dot negative"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://n.news.naver.com/mnews/article/005/0001851451" target="_blank" rel="noopener">카카오 CPO 홍민택 퇴사 — 카톡 개편 주도한 핵심 인물</a>
-          </div>
-<div class="summary">카카오톡 대대적 개편을 이끈 홍민택 CPO가 퇴사. 카톡 개편 논란 이후 불거진 내부 갈등이 배경으로 추정.</div>          <div class="meta">
-<span class="impact-chip negative">악재</span><span>한국일보</span><span class="time-ago">55분 전</span>          </div>
-        </div>
-      </li>
-      <li>
-        <span class="dot neutral"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://n.news.naver.com/mnews/article/011/0004625134" target="_blank" rel="noopener">RIA 해외주식 양도세 100% 감면 마감 초읽기 — 28일 오전까지 매도해야</a>
-          </div>
-<div class="summary">국내시장복귀계좌(RIA) 100% 감면 혜택 5/31 마감. 미국 주식은 결제일(T+1) 감안 28일 오전 8~9시까지 매도 필요. 잔고 2조원 육박.</div>          <div class="meta">
-<span class="impact-chip neutral">중립</span><span>서울경제</span><span class="time-ago">2시간 전</span>          </div>
-        </div>
-      </li>
-      <li>
-        <span class="dot positive"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://n.news.naver.com/mnews/article/215/0001253525" target="_blank" rel="noopener">AI 인프라 수혜 — SI 업종 상한가 행진 (삼성SDS 등)</a>
-          </div>
-<div class="summary">AI 인프라 투자 경쟁 가속에 시스템통합(SI) 업체들 상한가 기록. 반도체 이후 AI 수혜 2차 파급 기대감 확산.</div>          <div class="meta">
-<span class="impact-chip positive">호재</span><span>한국경제TV</span><span class="time-ago">2시간 전</span>          </div>
-        </div>
-      </li>
-      <li>
-        <span class="dot negative"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://n.news.naver.com/mnews/article/052/0002358769" target="_blank" rel="noopener">삼성전자 성과급 격차 100배 논란 — 주주 무효소송 예고</a>
-          </div>
-<div class="summary">메모리 부문 사상 최대 성과급 지급 후 부서간 격차 100배 달하며 내부 갈등 확대. 주주측 무효소송 예고.</div>          <div class="meta">
-<span class="impact-chip negative">악재</span><span>YTN</span><span class="time-ago">23분 전</span>          </div>
-        </div>
-      </li>
-      <li>
-        <span class="dot neutral"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://n.news.naver.com/mnews/article/008/0005363692" target="_blank" rel="noopener">중복상장 금지 제도 시행 논란 — 전면 금지 vs 유연 적용 양분</a>
-          </div>
-<div class="summary">금융당국·거래소 추진 중복상장 금지 앞두고 이해관계자 의견 대립. 중소기업·지주사 예외 허용 여부가 쟁점.</div>          <div class="meta">
-<span class="impact-chip neutral">중립</span><span>머니투데이</span><span class="time-ago">4시간 전</span>          </div>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>🇺🇸 미국 장 (시초)</h2>
-    <div class="us-tape">
-      <div class="row">
-        <div class="row-title">주요 지수</div>
-        <div class="items">
-          <span class="item">
-            <span class="name">S&amp;P 500</span>
-            <span class="value">7,524.78</span>
-            <span class="pct up">+0.07%</span>
-          </span>
-          <span class="item">
-            <span class="name">NASDAQ</span>
-            <span class="value">26,661.16</span>
-            <span class="pct up">+0.02%</span>
-          </span>
-          <span class="item">
-            <span class="name">SOX</span>
-            <span class="value">12,736.73</span>
-            <span class="pct down">-1.09%</span>
-          </span>
-          <span class="item">
-            <span class="name">VIX</span>
-            <span class="value">17.01</span>
-            <span class="pct neutral">0.00%</span>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-title">간밤 프록시 종목</div>
-        <div class="items">
-          <span class="item">
-            <span class="name">MU</span>
-            <span class="value">925.25</span>
-            <span class="pct up">+1.15%</span>
-          </span>
-          <span class="item">
-            <span class="name">NVDA</span>
-            <span class="value">210.99</span>
-            <span class="pct down">-1.38%</span>
-          </span>
-          <span class="item">
-            <span class="name">GEV</span>
-            <span class="value">1,043.78</span>
-            <span class="pct down">-2.74%</span>
-          </span>
-          <span class="item">
-            <span class="name">ETN</span>
-            <span class="value">402.89</span>
-            <span class="pct down">-0.52%</span>
-          </span>
-          <span class="item">
-            <span class="name">XBI</span>
-            <span class="value">135.77</span>
-            <span class="pct up">+1.86%</span>
-          </span>
-          <span class="item">
-            <span class="name">AMAT</span>
-            <span class="value">448.15</span>
-            <span class="pct down">-1.51%</span>
-          </span>
-          <span class="item">
-            <span class="name">META</span>
-            <span class="value">611.59</span>
-            <span class="pct up">+0.19%</span>
-          </span>
-        </div>
-      </div>
-    </div>
-    <ul class="news-list" style="margin-top:10px">
-      <li>
-        <span class="dot positive"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://www.cnbc.com/2026/05/26/micron-stock-trillion-market-cap.html" target="_blank" rel="noopener">마이크론 시총 1조달러 돌파 — UBS 목표가 3배 상향($1,625)</a>
-          </div>
-<div class="summary">AI 수요 폭증으로 HBM 비중 급등. UBS가 장기 공급 계약 근거로 목표가를 $535→$1,625로 3배 인상. 전일 +19% 급등 후 오늘은 소폭 조정 +1.15%.</div>          <div class="meta">
-<span class="impact-chip positive">호재</span><span>CNBC</span>          </div>
-        </div>
-      </li>
-      <li>
-        <span class="dot neutral"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-may-26-213651632.html" target="_blank" rel="noopener">S&amp;P 500·나스닥 전일 사상 최고치 경신 후 보합세</a>
-          </div>
-<div class="summary">전일 S&amp;P 500 +0.61%(7,519), 나스닥 +1.19% 신고가 기록. 오늘은 세일즈포스·시놉시스 실적 대기 속 관망.</div>          <div class="meta">
-<span class="impact-chip neutral">중립</span><span>Yahoo Finance</span>          </div>
-        </div>
-      </li>
-      <li>
-        <span class="dot negative"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://www.fool.com/investing/2026/05/25/uh-oh-fed-meeting-minutes-shift-in-monetary-policy/" target="_blank" rel="noopener">Fed FOMC 의사록 — 긴축 편향 전환 시사, 금리인상 가능성 열어</a>
-          </div>
-<div class="summary">4월 회의에서 4명 반대표. 인플레이션 지속시 금리인상 적절하다는 의견 다수. 완화 편향 제거 선호 참가자 많아 매파적 전환 뚜렷.</div>          <div class="meta">
-<span class="impact-chip negative">악재</span><span>Motley Fool</span>          </div>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>🌏 글로벌 매크로</h2>
-    <ul class="news-list">
-      <li>
-        <span class="dot positive"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://www.fxstreet.com/news/6-fall-in-one-day-wti-oil-price-tumbles-on-hopes-of-hormuz-reopening-202605250700" target="_blank" rel="noopener">WTI $89.58 급락(-4.59%) — 미-이란 합의 기대에 호르무즈 재개 전망</a>
-          </div>
-<div class="summary">트럼프 &#39;이란과 합의 대부분 완료&#39; 발언에 호르무즈 해협 재개통 기대감. UAE OPEC 탈퇴(5/1) 이후 공급 불확실성 속에서도 유가 급락.</div>          <div class="meta">
-<span class="impact-chip positive">호재</span><span>FXStreet</span><span class="time-ago">2시간 전</span>          </div>
-        </div>
-      </li>
-      <li>
-        <span class="dot negative"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm" target="_blank" rel="noopener">Fed 매파 전환 — 인플레이션 지속시 금리인상 가능, 4명 반대표</a>
-          </div>
-<div class="summary">FOMC 4월 의사록에서 다수 참가자가 완화 편향 제거 선호. 글로벌 에너지 가격 상승에 따른 인플레이션 우려가 배경. 주요국 중앙은행들도 긴축 전환 검토.</div>          <div class="meta">
-<span class="impact-chip negative">악재</span><span>Federal Reserve</span><span class="time-ago">3시간 전</span>          </div>
-        </div>
-      </li>
-      <li>
-        <span class="dot neutral"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://tradingeconomics.com/commodity/crude-oil" target="_blank" rel="noopener">금 $4,453(-1.05%) — 위험자산 선호 전환에 차익실현</a>
-          </div>
-<div class="summary">증시 신고가 행진 속 안전자산 수요 감소. 달러인덱스 99.09(-0.06%)도 소폭 약세.</div>          <div class="meta">
-<span class="impact-chip neutral">중립</span><span>Trading Economics</span><span class="time-ago">1시간 전</span>          </div>
-        </div>
-      </li>
-      <li>
-        <span class="dot neutral"></span>
-        <div class="body">
-          <div class="headline">
-<a href="https://tradingeconomics.com/commodity/brent-crude-oil" target="_blank" rel="noopener">비트코인 $75,018(-1.07%) — 증시 랠리에도 차익실현 매물</a>
-          </div>
-<div class="summary">원화 기준 1.108억원(-1.45%). 증시 신고가 행진 속에서도 암호화폐는 소폭 하락.</div>          <div class="meta">
-<span class="impact-chip neutral">중립</span><span>Upbit</span><span class="time-ago">1시간 전</span>          </div>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>💼 포트폴리오 시간외 공시</h2>
-    <ul class="news-list">
-      <li>
-        <span class="dot positive"></span>
-        <div class="body">
-          <div class="headline">
-            <strong>코아스템켐온</strong> —
-<a href="https://n.news.naver.com/mnews/article/293/0000085318" target="_blank" rel="noopener">ALS 치료제 &#39;뉴로나타-알주&#39; 품목허가 변경 승인</a>
-          </div>
-          <div class="meta">
-<span class="impact-chip positive">호재</span><span class="time-ago">1일 전</span>          </div>
-        </div>
-      </li>
-      <li>
-        <span class="dot positive"></span>
-        <div class="body">
-          <div class="headline">
-            <strong>HD한국조선해양</strong> —
-<a href="https://n.news.naver.com/mnews/article/056/0012189222" target="_blank" rel="noopener">HD현대중공업, 스웨덴 쇄빙전용선 사업 본격화 + KDDX 2차 입찰 참여</a>
-          </div>
-          <div class="meta">
-<span class="impact-chip positive">호재</span><span class="time-ago">46분 전</span>          </div>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-
-  <footer>k-ant-daily · <a href="https://github.com/yummyummyummy/keyword-stock-daily" target="_blank" rel="noopener">GitHub</a></footer>
-</main>
-
-<script>
-  /* US ticker live polling — page is meant to be left open between 23:00
-     KST and the next briefing, so refresh indices + proxy prices every 60s
-     using the existing Worker /ticker endpoint. */
-  const TICKER_API = "https://k-ant-daily-quotes.yummyummyummy.workers.dev/ticker";
-  const POLL_MS = 60_000;
-
-  function kstNow() {
-    const utc = Date.now() + new Date().getTimezoneOffset() * 60_000;
-    return new Date(utc + 9 * 60 * 60_000);
-  }
-  function setIndicator(state, text) {
-    const el = document.getElementById("live-indicator");
-    if (!el) return;
-    el.classList.remove("live");
-    if (state === "live") el.classList.add("live");
-    el.textContent = text;
-  }
-  function fmtKstTime(d) {
-    return ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
-  }
-
-  // Map index/proxy DOM by .name → element so we can update value+pct in place.
-  function indexUsTape() {
-    const out = {};
-    document.querySelectorAll(".us-tape .item").forEach((el) => {
-      const name = el.querySelector(".name")?.textContent.trim();
-      if (name) out[name] = el;
-    });
-    return out;
-  }
-
-  async function refreshUsTape() {
-    if (!TICKER_API) return;
-    const map = indexUsTape();
-    const symbols = Object.keys(map);
-    if (!symbols.length) return;
-    try {
-      const url = TICKER_API + "?items=" + encodeURIComponent(symbols.join(","));
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) return;
-      const data = await res.json();
-      let applied = 0;
-      Object.entries(data).forEach(([name, q]) => {
-        const el = map[name];
-        if (!el || !q) return;
-        const valEl = el.querySelector(".value");
-        const pctEl = el.querySelector(".pct");
-        if (valEl && q.value) valEl.textContent = q.value;
-        if (pctEl) {
-          pctEl.classList.remove("up", "down", "flat");
-          pctEl.classList.add(q.direction || "flat");
-          if (q.change_pct) pctEl.textContent = q.change_pct;
-        }
-        applied += 1;
-      });
-      if (applied > 0) setIndicator("live", "🟢 Live · " + fmtKstTime(kstNow()));
-    } catch {
-      /* silent */
-    }
-  }
-
-  if (TICKER_API) {
-    refreshUsTape();
-    setInterval(refreshUsTape, POLL_MS);
-  }
-</script>
+  <header class="top">
+    <h1>포스트마켓 다이제스트</h1>
+    <span class="meta">2026-05-28 · 2026-05-28 23:06 KST 생성</span>
+    <a class="calendar-link" href="calendar.html">캘린더 보기 →</a>
+  </header>  <div class="section">
+    <h3>한 줄 요약</h3>
+    <p style="margin:0; font-size:14px;">매파 금통위 + 미·이란 공습 겹악재에 코스피 장중 7800선 급락 → 개인 4조 순매수로 8185 회복, 코스닥은 -2.54% 마감</p>
+  </div>  <div class="section">
+    <h3>🇰🇷 한국 장 마감 후 (15:30~)</h3>    <ul><li>국민연금 기금운용위, 국내주식 목표비중 14.9% → 20.8%로 대폭 상향 결정 — 수백조원 매도 폭탄 우려 일단 해소, 다만 실제 보유비중(추정 23~25%)은 여전히 초과 상태라 '추가 매도 불씨 남아' 지적 (19:00 파이낸셜뉴스·조선비즈·이데일리)</li><li>젠슨 황 엔비디아 CEO, 다음 주 방한 확인 — LG·네이버 등과 연쇄 회동 예정, '제2 깐부회동' 기대감 (19:30~ 매일경제·이데일리·MBN 등 일제 보도)</li><li>코리아밸류업 지수 정기변경 발표 — HD현대중공업·SK스퀘어·에이피알 등 20개 종목 편입, 현대로템·효성중공업 편출 (17:00 한국거래소)</li><li>삼성전기·LG이노텍, AI 반도체 기판 수급 부족으로 주가 급등세 — '삼전닉스' 이외의 AI 수혜주로 부각 (21:00 한국경제·서울경제)</li><li>코스피 마감: 8,185.29 (-0.53%) — 장중 7,800선까지 급락 후 개인 약 4조원 순매수로 회복. 코스닥 1,104.36 (-2.54%) 약세 마감</li>    </ul>  </div>  <div class="section">
+    <h3>🇺🇸 미국 장중 (현지 시간 09:30~)</h3>    <ul><li>S&P 500 7,521 (보합), 나스닥 26,658 (-0.06%), 다우 50,539 (-0.22%) — 개장 직후 소폭 약세 출발 (10:00 ET 기준, 종가 아님)</li><li>필라델피아 반도체지수(SOX) 12,529 (-1.36%) — 마이크론(MU) -2.1%, AMAT -1.8% 약세. 엔비디아(NVDA)는 보합권 (+0.3%)</li><li>미국 바이오 ETF XBI 133.72 (-0.57%), IBB 소폭 약세 — 보유 바이오 종목 야간 프록시 부진</li><li>미 10년물 국채 수익률 4.48% (+0.04%p) — 금리 상승 압력 지속</li>    </ul>  </div>  <div class="section">
+    <h3>🌏 글로벌 매크로</h3>    <ul><li>한은 금통위, 매파 기조 유지 — 시장이 기대한 추가 인하 시그널 없이 오히려 금리 인상 가능성 시사. 코스피 장중 4%대 급락 촉발 요인 (10:00 한은)</li><li>미·이란 군사 긴장 고조 — 미국의 이란 군사시설 공습 보도에 중동 불확실성 확대. 전일 WTI +2.3% 급등 ($90.72), 금일 장중 소폭 되돌림 ($90.59, -1.6%)</li><li>금 가격 $4,462 (+1.30%) — 지정학 리스크 + 금리 불확실성에 안전자산 수요</li><li>원/달러 환율 1,501.30원 (+0.70원) — 소폭 약세, 1,500원대 공방 지속</li><li>달러인덱스 99.18 (-0.03%) — 보합권</li><li>비트코인 72,887달러 (-1.96%), 국내 1.079억원 (-1.51%) — 위험자산 회피 흐름</li>    </ul>  </div>  <div class="section">
+    <h3>📁 포트폴리오 공시 (시간외)</h3>    <ul><li>보로노이(310210): VRN11 호주 1/2상 임상시험계획 변경 승인 — 치료경험 없는 환자까지 확대 (13:57 이데일리·머니투데이). 장중 +2.13% 마감</li><li>한미반도체(042700): 주식선물·옵션 2단계 가격제한폭 확대요건 도달 (하락). 장중 -8.31% 급락 — '어닝쇼크 착시' 후 HBM 수주 기대와 차익실현 혼재</li><li>SK하이닉스(000660): 중간(분기)배당락 기준가격 안내 (5/27). +2.05% 상승 마감 — 장중 최고가 경신 후 차익실현으로 되밀림</li><li>삼성E&A(028050): 투자판단 관련 주요경영사항 정정공시·IR 개최 (5/26). 장중 -0.97% 소폭 하락</li>    </ul>  </div>  <h2>주요 헤드라인</h2>
+  <div class="highlights">    <div class="hl"><div class="kind">macro</div>      <div class="title">금통위 매파 기조 → 코스피 장중 7800선 급락</div><div class="detail">한은이 추가 인하는커녕 금리 인상 가능성까지 시사. 코스피 -4%대 급락 후 개인 4조원 순매수로 8185 회복. 코스닥은 -2.54% 약세 마감.</div>    </div>    <div class="hl"><div class="kind">macro</div>      <div class="title">국민연금 국내주식 목표비중 20.8%로 상향</div><div class="detail">기존 14.9%에서 대폭 상향해 수백조원 매도 폭탄 우려 일단 해소. 다만 실제 보유비중이 여전히 초과 상태.</div>    </div>    <div class="hl"><div class="kind">stock</div>      <div class="title">젠슨 황 다음 주 방한 — '깐부회동 시즌2' 기대감</div><div class="detail">엔비디아 CEO가 LG·네이버 등과 연쇄 회동 예정. 반도체 협력 확대 기대.</div>    </div>    <div class="hl"><div class="kind">stock</div>      <div class="title">한미반도체 -8.31% 급락, 가격제한폭 확대요건 도달</div><div class="detail">반도체 소부장 차익실현 가속. HBM 수주 기대감은 유효하나 단기 변동성 확대.</div>    </div>    <div class="hl"><div class="kind">stock</div>      <div class="title">보로노이 VRN11 호주 임상 확대 승인</div><div class="detail">치료경험 없는 환자까지 1/2상 확대. ASCO(5/29~) 직전 모멘텀.</div>    </div>  </div>  <h2>내일 / 이번 주 주목</h2>
+  <div class="section upcoming">
+    <ul>      <li><span class="when">2026-05-29</span><span>ASCO 2026 개막 (미국임상종양학회, ~6/2) <small style="color:var(--muted)">(conference)</small></span></li>      <li><span class="when">2026-06-01</span><span>Posidonia 2026 개막 (국제 해운 박람회, ~6/5) <small style="color:var(--muted)">(conference)</small></span></li>      <li><span class="when">2026-06-05</span><span>미 5월 고용보고서 (NFP·실업률, 21:30 KST) <small style="color:var(--muted)">(macro)</small></span></li>      <li><span class="when">2026-06-05</span><span>ADA 2026 개막 (미국당뇨병학회, ~6/8) <small style="color:var(--muted)">(conference)</small></span></li>      <li><span class="when">2026-06-06</span><span>CYTO 2026 개막 (국제세포분석학회, ~6/10) <small style="color:var(--muted)">(conference)</small></span></li>      <li><span class="when">2026-06-10</span><span>미 5월 CPI 발표 (21:30 KST) <small style="color:var(--muted)">(macro)</small></span></li>    </ul>
+  </div>
+  <footer>
+    2026-05-28 23:06 KST 생성 · <a href="calendar.html" style="color:var(--muted)">캘린더</a>
+  </footer>
+</div>
 </body>
 </html>
