@@ -96,18 +96,20 @@
     border-radius: 10px; border: 1px solid rgba(245,158,11,0.32);
     display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
   }
-  .coffee .icon { font-size: 22px; }
-  .coffee .line { flex: 1; min-width: 200px; }
-  .coffee .who { font-size: 15px; font-weight: 700; color: var(--fg); }
-  .coffee .who .crown { color: #f59e0b; margin-right: 2px; }
-  .coffee .who .extra { font-size: 11px; color: var(--muted); font-weight: 500; margin-left: 4px; }
-  .coffee .detail {
-    font-size: 12px; color: var(--muted); margin-top: 2px;
-    font-feature-settings: "tnum";
+  .coffee .icon { font-size: 24px; }
+  .coffee .line {
+    flex: 1; min-width: 200px; display: flex; flex-wrap: wrap;
+    align-items: baseline; gap: 8px;
+    font-size: 15px; font-weight: 700; color: var(--fg);
   }
-  .coffee .detail .pct { color: var(--pos); font-weight: 700; }
+  .coffee .stock-name { font-weight: 800; }
+  .coffee .pct { color: var(--pos); font-weight: 800; font-feature-settings: "tnum"; }
+  .coffee .arrow { color: var(--muted); font-weight: 500; opacity: 0.7; }
+  .coffee .winner { color: var(--fg); }
+  .coffee .crown { color: #f59e0b; margin-right: 2px; }
+  .coffee .extra { font-size: 11px; color: var(--muted); font-weight: 500; }
   .coffee.empty { background: var(--card); border-color: var(--border); }
-  .coffee.empty .who { color: var(--muted); font-weight: 500; }
+  .coffee.empty .line { color: var(--muted); font-weight: 500; }
 
   /* ─── Today's events hero ──────────────────────────────────── */
   .today-section { display: none; margin: 6px 0 24px; }
@@ -367,17 +369,17 @@
   <div class="coffee">
     <span class="icon">☕</span>
     <div class="line">
-      <div class="who">
-        {%- if summary.top_gainer.is_leader %}<span class="crown">👑</span>{% endif %}{{ summary.top_gainer.primary }}님이 오늘 커피!
-        {%- if summary.top_gainer.extra > 0 %}<span class="extra">(+{{ summary.top_gainer.extra }}명 공동보유)</span>{% endif %}
-      </div>
-      <div class="detail">{{ summary.top_gainer.stock }} <span class="pct">{{ summary.top_gainer.change_pct }}</span></div>
+      <span class="stock-name">{{ summary.top_gainer.stock }}</span>
+      <span class="pct">{{ summary.top_gainer.change_pct }}</span>
+      <span class="arrow">→</span>
+      <span class="winner">{% if summary.top_gainer.is_leader %}<span class="crown">👑</span>{% endif %}{{ summary.top_gainer.primary }}님이 오늘 커피!</span>
+      {%- if summary.top_gainer.extra > 0 %}<span class="extra">(공동보유 +{{ summary.top_gainer.extra }}명)</span>{% endif %}
     </div>
   </div>
   {%- else %}
   <div class="coffee empty">
     <span class="icon">☕</span>
-    <div class="line"><div class="who">오늘 상승 종목 없음 — 자비롭게 본인 커피 마시는 날</div></div>
+    <div class="line">오늘 상승 종목 없음 — 자비롭게 본인 커피 마시는 날</div>
   </div>
   {%- endif %}
 
@@ -443,8 +445,8 @@
 
   <div class="cal-nav">
     <div class="view-toggle" id="view-toggle">
-      <button data-view="month" class="active">월간</button>
-      <button data-view="week">주간</button>
+      <button data-view="month">월간</button>
+      <button data-view="week" class="active">주간</button>
     </div>
     <button id="prev-period">‹ 이전</button>
     <span class="period-label" id="period-label">—</span>
@@ -506,8 +508,8 @@ const CATEGORY_LABEL = {
 
 let allEvents = [];
 let activeCat = "all";
-let selectedDate = null;   // ISO string of the user-clicked date
-let view = "month";        // "month" | "week"
+let selectedDate = TODAY_ISO;  // default-select today so week-detail shows on load
+let view = "week";             // "month" | "week" — week is default
 const today = new Date(TODAY_ISO + "T00:00:00+09:00");
 let cursor = new Date(today.getFullYear(), today.getMonth(), 1);  // month cursor
 let weekCursor = startOfWeek(today);  // sunday of the visible week
@@ -534,6 +536,7 @@ async function loadEvents() {
   renderToday();
   renderHoldingDates();
   render();
+  renderWeekDetail();
 }
 
 function shortDate(iso) {

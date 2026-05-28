@@ -144,18 +144,20 @@
     border-radius: 10px; border: 1px solid rgba(245,158,11,0.32);
     display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
   }
-  .coffee .icon { font-size: 22px; }
-  .coffee .line { flex: 1; min-width: 200px; }
-  .coffee .who { font-size: 15px; font-weight: 700; color: var(--fg); }
-  .coffee .who .crown { color: #f59e0b; margin-right: 2px; }
-  .coffee .who .extra { font-size: 11px; color: var(--muted); font-weight: 500; margin-left: 4px; }
-  .coffee .detail {
-    font-size: 12px; color: var(--muted); margin-top: 2px;
-    font-feature-settings: "tnum";
+  .coffee .icon { font-size: 24px; }
+  .coffee .line {
+    flex: 1; min-width: 200px; display: flex; flex-wrap: wrap;
+    align-items: baseline; gap: 8px;
+    font-size: 15px; font-weight: 700; color: var(--fg);
   }
-  .coffee .detail .pct { color: var(--pos); font-weight: 700; }
+  .coffee .stock-name { font-weight: 800; }
+  .coffee .pct { color: var(--pos); font-weight: 800; font-feature-settings: "tnum"; }
+  .coffee .arrow { color: var(--muted); font-weight: 500; opacity: 0.7; }
+  .coffee .winner { color: var(--fg); }
+  .coffee .crown { color: #f59e0b; margin-right: 2px; }
+  .coffee .extra { font-size: 11px; color: var(--muted); font-weight: 500; }
   .coffee.empty { background: var(--card); border-color: var(--border); }
-  .coffee.empty .who { color: var(--muted); font-weight: 500; }
+  .coffee.empty .line { color: var(--muted); font-weight: 500; }
 
   /* ─── Today's events hero ──────────────────────────────────── */
   .today-section { display: none; margin: 6px 0 24px; }
@@ -408,13 +410,14 @@
 
   <header class="top">
     <h1>k-ant-daily</h1>
-    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 09:56 KST 생성</span>
+    <span class="meta">2026년 05월 28일 (Thu) · 2026-05-28 10:05 KST 생성</span>
   </header>  <div class="coffee">
     <span class="icon">☕</span>
     <div class="line">
-      <div class="who">오병호님이 오늘 커피!      </div>
-      <div class="detail">디앤디파마텍 <span class="pct">+30.00</span></div>
-    </div>
+      <span class="stock-name">디앤디파마텍</span>
+      <span class="pct">+30.00</span>
+      <span class="arrow">→</span>
+      <span class="winner">오병호님이 오늘 커피!</span>    </div>
   </div>  <div class="macro">    <span><b>FX</b> </span>    <span><b>FX</b> </span>    <span><b>BTC</b>  <span class="neg">-1.96%</span></span>    <span><b>ETH</b>  <span class="neg">-2.38%</span></span>  </div>
   <section class="today-section" id="today-section">
     <div class="head">
@@ -610,8 +613,8 @@
 
   <div class="cal-nav">
     <div class="view-toggle" id="view-toggle">
-      <button data-view="month" class="active">월간</button>
-      <button data-view="week">주간</button>
+      <button data-view="month">월간</button>
+      <button data-view="week" class="active">주간</button>
     </div>
     <button id="prev-period">‹ 이전</button>
     <span class="period-label" id="period-label">—</span>
@@ -658,7 +661,7 @@
   </aside>
 
   <footer>
-    2026-05-28 09:56 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
+    2026-05-28 10:05 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
   </footer>
 </div>
 
@@ -673,8 +676,8 @@ const CATEGORY_LABEL = {
 
 let allEvents = [];
 let activeCat = "all";
-let selectedDate = null;   // ISO string of the user-clicked date
-let view = "month";        // "month" | "week"
+let selectedDate = TODAY_ISO;  // default-select today so week-detail shows on load
+let view = "week";             // "month" | "week" — week is default
 const today = new Date(TODAY_ISO + "T00:00:00+09:00");
 let cursor = new Date(today.getFullYear(), today.getMonth(), 1);  // month cursor
 let weekCursor = startOfWeek(today);  // sunday of the visible week
@@ -701,6 +704,7 @@ async function loadEvents() {
   renderToday();
   renderHoldingDates();
   render();
+  renderWeekDetail();
 }
 
 function shortDate(iso) {
