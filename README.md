@@ -70,13 +70,15 @@
 
 ## 카카오톡 대화 관심종목 추출
 
-카카오톡 대화방에서 내보낸 `.txt` 파일을 로컬에서 분석해 관심종목 후보를 뽑는다. 원문 대화는 민감하므로 `kakao_exports/` 아래에 두며, 이 폴더는 gitignore 처리돼 GitHub 에 올라가지 않는다.
+카카오톡 대화방에서 내보낸 `.txt` 또는 `.csv` 파일을 로컬에서 분석해 관심종목 후보를 뽑는다. 원문 대화는 민감하므로 `kakao_exports/` 아래에 두며, 이 폴더는 gitignore 처리돼 GitHub 에 올라가지 않는다.
 
 ```bash
 mkdir -p kakao_exports
-# 카카오톡에서 "대화 내용 내보내기"로 받은 txt 파일을 kakao_exports/ 아래에 저장
+# 카카오톡에서 "대화 내용 내보내기"로 받은 txt/csv 파일을 kakao_exports/ 아래에 저장
 
 .venv/bin/python scripts/extract_kakao_watchlist.py kakao_exports/chat.txt
+# 또는
+.venv/bin/python scripts/extract_kakao_watchlist.py kakao_exports/chat.csv
 ```
 
 산출물:
@@ -87,6 +89,7 @@ mkdir -p kakao_exports
 매칭 기준:
 - `stocks.yml` 의 종목명/코드는 자동 인식
 - `watchlist_aliases.yml` 의 대화방 별칭을 함께 인식 (`삼전`, `하닉`, `알테` 등)
+- `샵검색: #종목명 주가` 같은 명시적 검색어는 코드가 없어도 신규 후보로 기록
 - 투자 문맥 키워드 (`매수`, `추매`, `실적`, `공시`, `임상`, `급등` 등) 가 있으면 신뢰도 가중
 - 언급 횟수, 언급한 사람 수, 최근 언급일, 투자 문맥 비율을 합쳐 `confidence` 계산
 

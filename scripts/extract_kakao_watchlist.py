@@ -29,6 +29,8 @@ MOBILE_MSG_RE = re.compile(
     r"(?P<speaker>[^:]+)\s*:\s*(?P<text>.*)$"
 )
 CODE_RE = re.compile(r"(?<!\d)(\d{6})(?!\d)")
+SHOP_SEARCH_RE = re.compile(r"#(?P<query>[^#\n\r]+)")
+SHOP_SUFFIX_RE = re.compile(r"\s*(주가|종목|뉴스|공시|실적|시세|전망)\s*$", re.IGNORECASE)
 
 INVESTMENT_KEYWORDS = {
     "주식", "종목", "주가", "시총", "상장", "코스피", "코스닥", "나스닥",
@@ -71,6 +73,9 @@ def parse_date(text: str) -> str | None:
 
 
 def parse_kakao(path: Path) -> list[Message]:
+    if path.suffix.lower() == ".csv":
+        return parse_kakao_csv(path)
+
     messages: list[Message] = []
     current_date: str | None = None
 
@@ -99,6 +104,26 @@ def parse_kakao(path: Path) -> list[Message]:
         if messages:
             messages[-1].text += "\n" + line.strip()
 
+    return messages
+
+
+def parse_kakao_csv(path: Path) -> list[Message]:
+    messages: list[Message] = []
+    with path.open(encoding="utf-8-sig", errors="replace", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            text = (row.get("Message") or "").strip()
+            speaker = (row.get("User") or "").strip()
+            raw_date = (row.get("Date") or "").strip()
+            if not text or not speaker:
+                continue
+            date = None
+            if raw_date:
+                try:
+                    date = datetime.strptime(raw_date[:19], "%Y-%m-%d %H:%M:%S").strftime("%Y-%m-%d")
+                except ValueError:
+                    date = raw_date[:10] if re.match(r"\d{4}-\d{2}-\d{2}", raw_date) else None
+            messages.append(Message(date, speaker, text))
     return messages
 
 
@@ -138,6 +163,16 @@ def load_universe(stocks_path: Path, aliases_path: Path) -> list[Stock]:
     return sorted(merged.values(), key=lambda s: (s.name, s.code))
 
 
+def alias_norm_index(universe: list[Stock]) -> dict[str, str]:
+    index: dict[str, str] = {}
+    for stock in universe:
+        for alias in stock.aliases | {stock.name, stock.code}:
+            norm = normalize(alias)
+            if norm:
+                index[norm] = stock.code
+    return index
+
+
 def has_investment_context(text: str) -> bool:
     low = text.lower()
     return any(k.lower() in low for k in INVESTMENT_KEYWORDS)
@@ -169,6 +204,18 @@ def matched_aliases(stock: Stock, text: str, norm_text: str) -> set[str]:
     return found
 
 
+def shop_search_terms(text: str) -> list[str]:
+    terms = []
+    for m in SHOP_SEARCH_RE.finditer(text):
+        raw = m.group("query").strip()
+        raw = raw.splitlines()[0].strip()
+        raw = SHOP_SUFFIX_RE.sub("", raw).strip()
+        raw = re.sub(r"\s+", " ", raw)
+        if 2 <= len(normalize(raw)) <= 30:
+            terms.append(raw)
+    return terms
+
+
 def score_candidate(mentions: int, speakers: int, context_hits: int, recent_days: int | None) -> float:
     mention_score = min(0.30, math.log1p(mentions) / 10)
     speaker_score = min(0.18, speakers * 0.045)
@@ -194,14 +241,17 @@ def analyze(messages: list[Message], universe: list[Stock], today: datetime) -> 
         "last_mentioned": None,
         "examples": [],
     })
+    norm_to_code = alias_norm_index(universe)
 
     for msg in messages:
         norm_text = normalize(msg.text)
         context = has_investment_context(msg.text)
+        matched_codes: set[str] = set()
         for stock in universe:
             aliases = matched_aliases(stock, msg.text, norm_text)
             if not aliases:
                 continue
+            matched_codes.add(stock.code)
             row = stats[stock.code]
             row["stock"] = stock
             row["mentions"] += 1
@@ -212,6 +262,30 @@ def analyze(messages: list[Message], universe: list[Stock], today: datetime) -> 
                 row["first_mentioned"] = min(filter(None, [row["first_mentioned"], msg.date])) if row["first_mentioned"] else msg.date
                 row["last_mentioned"] = max(filter(None, [row["last_mentioned"], msg.date])) if row["last_mentioned"] else msg.date
             if len(row["examples"]) < 3 and context:
+                sample = re.sub(r"\s+", " ", msg.text).strip()
+                row["examples"].append(sample[:120])
+
+        for term in shop_search_terms(msg.text):
+            norm_term = normalize(term)
+            if norm_term in norm_to_code and norm_to_code[norm_term] in matched_codes:
+                continue
+            key = norm_to_code.get(norm_term) or f"CHAT:{norm_term}"
+            if key in matched_codes:
+                continue
+            if key.startswith("CHAT:"):
+                stock = Stock(code="", name=term, aliases={term}, source="chat_hashtag")
+            else:
+                stock = next((s for s in universe if s.code == key), Stock(code=key, name=term, source="alias"))
+            row = stats[key]
+            row["stock"] = stock
+            row["mentions"] += 1
+            row["speakers"][msg.speaker] += 1
+            row["aliases"].update([term])
+            row["context_hits"] += 1
+            if msg.date:
+                row["first_mentioned"] = min(filter(None, [row["first_mentioned"], msg.date])) if row["first_mentioned"] else msg.date
+                row["last_mentioned"] = max(filter(None, [row["last_mentioned"], msg.date])) if row["last_mentioned"] else msg.date
+            if len(row["examples"]) < 3:
                 sample = re.sub(r"\s+", " ", msg.text).strip()
                 row["examples"].append(sample[:120])
 
@@ -227,8 +301,9 @@ def analyze(messages: list[Message], universe: list[Stock], today: datetime) -> 
                 pass
         confidence = score_candidate(row["mentions"], len(row["speakers"]), row["context_hits"], recent_days)
         out.append({
-            "code": code,
+            "code": stock.code,
             "name": stock.name,
+            "source": stock.source,
             "mentions": row["mentions"],
             "context_mentions": row["context_hits"],
             "speakers": sorted(row["speakers"], key=lambda s: (-row["speakers"][s], s)),
@@ -266,7 +341,7 @@ def write_outputs(candidates: list[dict], output: Path) -> None:
     csv_path = output.with_suffix(".csv")
     with csv_path.open("w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=[
-            "code", "name", "mentions", "context_mentions", "speakers",
+            "code", "name", "source", "mentions", "context_mentions", "speakers",
             "last_mentioned", "confidence", "matched_aliases",
         ])
         writer.writeheader()
@@ -274,6 +349,7 @@ def write_outputs(candidates: list[dict], output: Path) -> None:
             writer.writerow({
                 "code": row["code"],
                 "name": row["name"],
+                "source": row["source"],
                 "mentions": row["mentions"],
                 "context_mentions": row["context_mentions"],
                 "speakers": ", ".join(row["speakers"]),
