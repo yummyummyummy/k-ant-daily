@@ -68,17 +68,60 @@
 
 ---
 
+## 카카오톡 대화 관심종목 추출
+
+카카오톡 대화방에서 내보낸 `.txt` 파일을 로컬에서 분석해 관심종목 후보를 뽑는다. 원문 대화는 민감하므로 `kakao_exports/` 아래에 두며, 이 폴더는 gitignore 처리돼 GitHub 에 올라가지 않는다.
+
+```bash
+mkdir -p kakao_exports
+# 카카오톡에서 "대화 내용 내보내기"로 받은 txt 파일을 kakao_exports/ 아래에 저장
+
+.venv/bin/python scripts/extract_kakao_watchlist.py kakao_exports/chat.txt
+```
+
+산출물:
+- `.tmp/kakao_watchlist.yml` — 사람이 읽고 승인하기 좋은 후보 목록
+- `.tmp/kakao_watchlist.json` — 다른 스크립트 연동용
+- `.tmp/kakao_watchlist.csv` — 스프레드시트 확인용
+
+매칭 기준:
+- `stocks.yml` 의 종목명/코드는 자동 인식
+- `watchlist_aliases.yml` 의 대화방 별칭을 함께 인식 (`삼전`, `하닉`, `알테` 등)
+- 투자 문맥 키워드 (`매수`, `추매`, `실적`, `공시`, `임상`, `급등` 등) 가 있으면 신뢰도 가중
+- 언급 횟수, 언급한 사람 수, 최근 언급일, 투자 문맥 비율을 합쳐 `confidence` 계산
+
+새 후보나 별칭을 더 잡고 싶으면 `watchlist_aliases.yml` 에 추가:
+
+```yaml
+stocks:
+  - code: "373220"
+    name: "LG에너지솔루션"
+    aliases: ["엘지엔솔", "엔솔", "LG엔솔"]
+```
+
+신뢰도 기준으로 걸러보기:
+
+```bash
+.venv/bin/python scripts/extract_kakao_watchlist.py kakao_exports/chat.txt --min-confidence 0.6
+```
+
+후보를 실제 보유종목으로 반영할 때는 `.tmp/kakao_watchlist.yml` 을 보고 사람이 확인한 뒤 `stocks.yml` 에 직접 추가한다.
+
+---
+
 ## 디렉터리 구조
 
 ```
 k-ant-daily/
 ├── stocks.yml                          # 종목 + owners + leader (+ clinical_sponsor + dart_corp_code)
 ├── events.yml                          # 수동 큐레이션 이벤트
+├── watchlist_aliases.yml               # 카카오톡 관심종목 추출용 종목 별칭
 ├── scripts/
 │   ├── fetch_news.py                   # Naver/Upbit → .tmp/news.json
 │   ├── fetch_clinical_trials.py        # ClinicalTrials.gov v2 → .tmp/events_clinical.json
 │   ├── fetch_dart.py                   # DART OpenAPI → .tmp/events_dart.json
 │   ├── build_calendar.py               # 머지 → docs/events.json
+│   ├── extract_kakao_watchlist.py       # 카카오톡 export txt → .tmp/kakao_watchlist.*
 │   ├── render.py                       # → docs/calendar.html + index.html (또는 --digest)
 │   ├── pending_results.py              # 결과 대기 이벤트 개수 (check-results gate)
 │   └── launchd/                        # macOS 로컬 스케줄
@@ -101,6 +144,7 @@ k-ant-daily/
 │   ├── YYYY-MM-DD.html / .summary.json # legacy, 새로 생성 안 함
 │   └── accuracy/                       # legacy 보존
 └── .tmp/                               # 런타임 scratch (gitignored)
+└── kakao_exports/                      # 카카오톡 원문 export (gitignored)
 ```
 
 ---
