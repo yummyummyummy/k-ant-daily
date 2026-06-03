@@ -71,6 +71,13 @@
     font-feature-settings: "tnum"; }
   .stock-price .now { font-size: 18px; font-weight: 700; }
   .stock-price .chg { font-size: 13px; font-weight: 600; }
+  .market-closed {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 6px; padding: 4px 8px; border-radius: 6px;
+    background: rgba(250,204,21,0.18); color: #854d0e;
+    font-size: 12px; font-weight: 700;
+  }
+  .stock.market-closed-card .stock-price { display: none; }
   .pos { color: var(--pos); }
   .neg { color: var(--neg); }
   .neu { color: var(--neu); }
@@ -468,7 +475,7 @@
 
   <header class="top">
     <h1>k-ant-daily</h1>
-    <span class="meta">{{ summary.today }} · {{ summary.generated_label }}</span>
+    <span class="meta"><span id="today-label">{{ summary.today }}</span> · {{ summary.generated_label }}</span>
   </header>
 
   {%- if summary.top_gainer %}
@@ -560,6 +567,7 @@
         {%- endif %}
       </div>
       {%- endif %}
+      <div class="market-closed" hidden>휴장일</div>
       {%- if s.owners %}
       <div class="stock-owners">
         {%- for o in s.owners %}<span class="owner-chip">{{ o }}</span>{%- endfor %}
@@ -608,7 +616,23 @@
 
 <script>
 const EVENTS_URL = "events.json";
-const TODAY_ISO = {{ summary.today_iso|tojson }};
+function kstNow() {
+  const now = new Date();
+  return new Date(now.toLocaleString("en-US", { timeZone: "Asia/Seoul" }));
+}
+function pad2(n) {
+  return String(n).padStart(2, "0");
+}
+function kstTodayISO() {
+  const d = kstNow();
+  return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+}
+function kstTodayLabel() {
+  const d = kstNow();
+  const dow = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][d.getDay()];
+  return `${d.getFullYear()}년 ${pad2(d.getMonth() + 1)}월 ${pad2(d.getDate())}일 (${dow})`;
+}
+const TODAY_ISO = kstTodayISO();
 const STOCK_NAMES = {{ stock_names|tojson }};
 const WORKER_BASE = "https://k-ant-daily-quotes.yummyummyummy.workers.dev";
 const TICKER_POLL_MS = 60000;   // 60s — KRX indices + FX + crypto (24/7 OK)
@@ -628,9 +652,14 @@ let liveQuotes = {};           // code -> { change_pct:number, direction }  (fro
 let liveIndices = {};          // "KOSPI"/"KOSDAQ" -> { change_pct:string, direction }  (from /ticker)
 let currentDetailItem = null;  // {e, code} shown in side panel (for live refresh)
 let currentDetailFromDay = false;
+let eventsLoaded = false;
 const today = new Date(TODAY_ISO + "T00:00:00+09:00");
 let cursor = new Date(today.getFullYear(), today.getMonth(), 1);  // month cursor
 let weekCursor = startOfWeek(today);  // sunday of the visible week
+let marketClosedToday = isWeekend(today);
+
+const todayLabel = document.getElementById("today-label");
+if (todayLabel) todayLabel.textContent = kstTodayLabel();
 
 function startOfWeek(d) {
   const x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -641,6 +670,35 @@ function startOfWeek(d) {
 function fmtDate(d) {
   const y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,"0"), dd = String(d.getDate()).padStart(2,"0");
   return `${y}-${m}-${dd}`;
+}
+
+function isWeekend(d) {
+  const day = d.getDay();
+  return day === 0 || day === 6;
+}
+
+function todayHolidayEvent() {
+  return allEvents.find(e => e.date === TODAY_ISO && e.category === "holiday");
+}
+
+function refreshMarketClosedState() {
+  marketClosedToday = isWeekend(today) || Boolean(todayHolidayEvent());
+  document.querySelectorAll(".stock[data-code]").forEach(card => {
+    const closed = card.querySelector(".market-closed");
+    card.classList.toggle("market-closed-card", marketClosedToday);
+    if (closed) {
+      const holiday = todayHolidayEvent();
+      closed.textContent = holiday ? `휴장일 · ${holiday.title}` : "휴장일";
+      closed.hidden = !marketClosedToday;
+    }
+  });
+
+  const coffee = document.querySelector(".coffee");
+  const line = coffee?.querySelector(".line");
+  if (marketClosedToday && coffee && line) {
+    coffee.classList.add("empty");
+    line.innerHTML = "휴장일 — 오늘은 보유종목 시세 갱신 없음";
+  }
 }
 
 // 결과가 알려지는 시각 — 다일 이벤트는 마지막 날, time 없으면 그날 23:59 KST.
@@ -811,10 +869,13 @@ async function loadEvents() {
   } catch (e) {
     allEvents = [];
   }
+  eventsLoaded = true;
+  refreshMarketClosedState();
   renderToday();
   renderHoldingDates();
   render();
   renderWeekDetail();
+  if (!marketClosedToday) pollQuotes();
 }
 
 function shortDate(iso) {
@@ -1419,6 +1480,11 @@ async function pollTicker() {
 }
 
 async function pollQuotes() {
+  if (!eventsLoaded) return;
+  if (marketClosedToday) {
+    refreshMarketClosedState();
+    return;
+  }
   const cards = document.querySelectorAll(".stock[data-code]");
   if (!cards.length) return;
   const codes = Array.from(cards).map(c => c.dataset.code);

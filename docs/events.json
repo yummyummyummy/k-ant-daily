@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-02T09:25:06.914044+09:00",
+  "generated_at": "2026-06-03T20:35:38.403885+09:00",
   "events": [
     {
       "date": "2026-05-28",
@@ -93,6 +93,17 @@
       "tags": [],
       "source": "https://www.motie.go.kr/",
       "importance": 1
+    },
+    {
+      "date": "2026-06-03",
+      "category": "holiday",
+      "title": "제9회 전국동시지방선거 휴장",
+      "description": "지방선거일 공휴일 지정에 따라 KRX 증권·파생상품·일반상품 시장 휴장.",
+      "impact": "📊 보는 법\n• 국내 주식·ETF·ETN 거래 없음. 전일 또는 다음 거래일 시세가 보유종목 카드에 반영될 수 있어 휴장 표시 우선\n• 휴장 중 미국 시장·환율·반도체 지수 움직임은 다음 거래일 한국 개장에 갭으로 반영\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://en.yna.co.kr/view/AEN20260520003800320",
+      "importance": 3
     },
     {
       "date": "2026-06-03",
@@ -294,6 +305,17 @@
       "source": "https://www.bok.or.kr/portal/singl/crncyPolicyDrcMtg/listYear.do?mtgSe=A&menuNo=200755",
       "importance": 3,
       "time": "10:00"
+    },
+    {
+      "date": "2026-07-17",
+      "category": "holiday",
+      "title": "제헌절 휴장",
+      "description": "제헌절 공휴일 재지정에 따라 KRX 증권·파생상품·일반상품 시장 휴장.",
+      "impact": "📊 보는 법\n• 국내 주식·ETF·ETN 거래 없음. 휴장 중 글로벌 시장 움직임은 다음 거래일에 반영\n• 7월 FOMC(7/28~29) 전 금리·환율 흐름과 함께 갭 변동 가능성 체크\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://en.yna.co.kr/view/AEN20260520003800320",
+      "importance": 2
     },
     {
       "date": "2026-07-22",
