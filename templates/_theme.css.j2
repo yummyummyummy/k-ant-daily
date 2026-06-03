@@ -1,7 +1,5 @@
 {#- Shared theme tokens + universal reset. Include inside <style>…</style>.
-    Single source of truth for colors, so the four public pages (report /
-    accuracy / accuracy_day / archive) stay visually aligned. Unused tokens
-    on any given page are harmless; they just aren't referenced. -#}
+    Single source of truth for the calendar and digest pages. -#}
   :root {
     --fg: #0f172a;
     --muted: #64748b;
@@ -34,9 +32,7 @@
   }
   * { box-sizing: border-box; }
 
-  /* 하이라이터 — macro.summary · rationale 등 agent 가 `**...**` 로 감싼 구절이
-     이 스타일로 렌더된다. 장중 변동성 핵심 변수나 주요 예측 문구를 시각적으로
-     부각하는 용도. 내용은 `highlight` Jinja 필터가 생성. */
+  /* 하이라이터 — digest / calendar 문구에서 중요한 구절을 부각하는 용도. */
   mark.driver {
     background: rgba(250, 204, 21, 0.35);
     color: inherit;

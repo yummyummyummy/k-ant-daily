@@ -10,12 +10,11 @@
 
 ## 컨셉
 
-이전 버전은 "오늘 장 예측" 서비스였지만, 현재는 **캘린더 + 트래킹** 으로 전환:
+현재 서비스는 **캘린더 + 보유종목 트래킹** 에 집중한다:
 
-- ❌ 매일 종목별 매수/매도 추천 → 안 함
-- ❌ 예측 검증, 정확도 통계, 베팅 게임 → 모두 제거
 - ✅ **월간 이벤트 캘린더** — FOMC, 학회, 보유종목 임상 일정, KRX 휴장일 등
 - ✅ **보유종목 일일 트래킹** — 매일 아침 시세/뉴스/공시 갱신
+- ❌ 매수/매도 추천, 베팅, 예측 검증은 제공하지 않음
 
 ---
 
@@ -133,7 +132,7 @@ k-ant-daily/
 │   ├── digest.html.j2                  # 포스트마켓
 │   └── _theme.css.j2                   # 공통 색상/리셋
 ├── worker/                             # Cloudflare Worker (시세/뉴스 프록시)
-│   ├── src/index.js                    # /quote · /ticker · /stock-news · /nxt-quotes
+│   ├── src/index.js                    # /quote · /ticker · /stock-news
 │   └── wrangler.toml
 ├── .claude/commands/
 │   ├── daily-report.md                 # 아침 갱신 스킬
@@ -144,9 +143,8 @@ k-ant-daily/
 │   ├── digest.html                     # 포스트마켓
 │   ├── events.json                     # 캘린더 데이터
 │   ├── index.html                      # JS 라우터
-│   ├── YYYY-MM-DD.html / .summary.json # legacy, 새로 생성 안 함
-│   └── accuracy/                       # legacy 보존
-└── .tmp/                               # 런타임 scratch (gitignored)
+│   └── og-image.png                    # 공유 이미지
+├── .tmp/                               # 런타임 scratch (gitignored)
 └── kakao_exports/                      # 카카오톡 원문 export (gitignored)
 ```
 
@@ -262,7 +260,6 @@ wrangler deploy
 - `GET /quote?codes=005930,000660,...` — 종목 시세 (30s edge 캐시)
 - `GET /ticker?items=KOSPI,KOSDAQ,USDKRW,BTC,ETH` — 지표·FX·암호화폐
 - `GET /stock-news?codes=...` — 종목별 뉴스 (5분 edge 캐시)
-- `GET /nxt-quotes?codes=...` — NXT 대체거래 등락률 (2분 edge 캐시)
 
 상세: [worker/README.md](worker/README.md).
 
@@ -306,9 +303,3 @@ scripts/launchd/run-codex-command.sh "$PWD" "$PWD/.claude/commands/daily-report.
 
 - **투자 권유 아님.** 일정 트래킹 도구일 뿐, 매매 의견 / 가치평가 / 추천 없음.
 - 친구 실명·보유 내역이 공개 `docs/` 에 노출됨. 민감하면 private 리포지토리 사용.
-
----
-
-## 이전 버전 (Legacy)
-
-`docs/YYYY-MM-DD.html`, `docs/YYYY-MM-DD.summary.json`, `docs/accuracy/`, `docs/promoted_rules.md` 등은 이전 예측 컨셉의 산출물 — 보존만 하고 새로 생성 안 함.

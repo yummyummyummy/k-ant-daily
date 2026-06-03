@@ -5,6 +5,8 @@
 //
 // GET /quote?codes=005930,000660,...
 //   → { "005930": {price, change, change_pct, direction, name, ts}, ... }
+// GET /ticker?items=KOSPI,KOSDAQ,USDKRW,BTC,ETH
+//   → { "KOSPI": {value, change_abs, change_pct, direction}, ... }
 // GET /stock-news?codes=005930,000660,...
 //   → { "005930": {news: [{title, url, source, published_at}], latest_at}, ... }
 //
@@ -314,100 +316,6 @@ async function fetchAllStockNews(codes) {
   return out;
 }
 
-// ─────────────────────────────────────────────────────────────────────
-// NXT (대체거래소) quotes — surfaces the pre-open (08:00-09:00) gap so the
-// browser can adjust the 07:30 briefing's recommendation when NXT shows a
-// meaningfully different direction. Data source: Naver 's three NXT sise
-// list pages (상승·하락·시총). Scrape all three, merge by stock code.
-// ─────────────────────────────────────────────────────────────────────
-
-// Paginated NXT market-cap listings cover all ~644 NXT-listed stocks
-// (KOSPI ~359 / KOSDAQ ~285 as of 2026-04). The rise/fall pages are subsets
-// of the same rows and redundant now that we paginate market_sum.
-const NXT_PAGES = (() => {
-  const urls = [];
-  for (let p = 1; p <= 8; p++) urls.push(`https://finance.naver.com/sise/nxt_sise_market_sum.naver?sosok=0&page=${p}`);
-  for (let p = 1; p <= 6; p++) urls.push(`https://finance.naver.com/sise/nxt_sise_market_sum.naver?sosok=1&page=${p}`);
-  return urls;
-})();
-
-async function fetchNxtPage(url) {
-  const res = await fetch(url, {
-    headers: {
-      "User-Agent": UA,
-      "Referer": "https://finance.naver.com/",
-      "Accept": "text/html,application/xhtml+xml",
-      "Accept-Language": "ko-KR,ko;q=0.9",
-    },
-    cf: { cacheTtl: 120, cacheEverything: true },  // 2-min edge cache
-  });
-  if (!res.ok) return {};
-  const buf = await res.arrayBuffer();
-  const html = new TextDecoder("euc-kr").decode(buf);
-
-  // Each row carries (rank, name, currentPrice, 상승/하락, absChange, pct%, ...).
-  // We pull code from the `code=XXXXXX` href and read the current price +
-  // pct directly from positional text cells after stripping tags.
-  const out = {};
-  const rowRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/g;
-  let m;
-  while ((m = rowRegex.exec(html)) !== null) {
-    const body = m[1];
-    const codeMatch = body.match(/code=(\d{6})/);
-    if (!codeMatch) continue;
-    const code = codeMatch[1];
-    // Strip tags, split into non-empty cells.
-    const text = body.replace(/<[^>]+>/g, "|");
-    const cells = text.split("|").map((s) => s.trim()).filter(Boolean);
-    if (cells.length < 6) continue;
-    // Layout: [rank, name, price, direction(상승/하락/보합), absChange, "+X.XX%", ...]
-    // Find first %-cell (등락률) and the price is 3 positions before it.
-    let pctIdx = -1;
-    for (let i = 0; i < cells.length; i++) {
-      if (/^[+-]?\d+\.\d+%$/.test(cells[i])) { pctIdx = i; break; }
-    }
-    if (pctIdx < 3) continue;
-    const pctStr   = cells[pctIdx];
-    const price    = cells[pctIdx - 3];
-    const absStr   = cells[pctIdx - 1];
-    if (!/^[\d,]+$/.test(price)) continue;
-    const direction = cells[pctIdx - 2];  // 상승/하락/보합
-    const pctNum = parseFloat(pctStr.replace("%", ""));
-    if (isNaN(pctNum)) continue;
-    const absNum = parseFloat(absStr.replace(/,/g, ""));
-    const priceNum = parseFloat(price.replace(/,/g, ""));
-    // Naver's fall page renders pct/abs without explicit "-" prefix but marks
-    // direction as "하락"; normalize the sign.
-    const sign = direction === "하락" ? -1 : 1;
-    const signedPct    = sign * Math.abs(pctNum);
-    const signedChange = sign * Math.abs(isNaN(absNum) ? 0 : absNum);
-    const dirCode = direction === "상승" ? "up"
-                  : direction === "하락" ? "down"
-                  : "flat";
-    if (!out[code]) {
-      // `price` is numeric so the client's fmtPrice (Number.toLocaleString)
-      // works on it the same way it does for /quote responses — NXT becomes
-      // a drop-in source for coffee-section updates during its session hours.
-      out[code] = {
-        price: isNaN(priceNum) ? null : priceNum,
-        change: signedChange,
-        change_pct: signedPct,
-        direction: dirCode,
-      };
-    }
-  }
-  return out;
-}
-
-async function fetchAllNxtQuotes(codes) {
-  const pages = await Promise.all(NXT_PAGES.map((u) => fetchNxtPage(u).catch(() => ({}))));
-  const merged = {};
-  for (const page of pages) Object.assign(merged, page);
-  const out = {};
-  for (const code of codes) out[code] = merged[code] || null;
-  return out;
-}
-
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -449,51 +357,6 @@ export default {
         headers: {
           "Content-Type": "application/json; charset=utf-8",
           "Cache-Control": `public, max-age=${CACHE_TTL}`,
-          "X-Cache": "MISS",
-          ...CORS_HEADERS,
-        },
-      });
-      ctx.waitUntil(cache.put(cacheKey, resp.clone()));
-      return resp;
-    }
-
-    // NXT (대체거래소) pre-open / session quotes — serves the browser's
-    // 08:00-15:30 NXT polling to adjust the 07:30 briefing's recommendations.
-    if (url.pathname === "/nxt-quotes") {
-      const raw = url.searchParams.get("codes") || "";
-      const codes = raw
-        .split(",")
-        .map((c) => c.trim())
-        .filter((c) => /^\d{6}$/.test(c))
-        .slice(0, MAX_CODES);
-      if (!codes.length) {
-        return json({ error: "missing or invalid ?codes=005930,000660" }, 400);
-      }
-      const sorted = [...codes].sort().join(",");
-      const cacheKey = new Request(`https://cache.k-ant-daily/nxt-quotes?codes=${sorted}`, { method: "GET" });
-      const cache = caches.default;
-      const cached = await cache.match(cacheKey);
-      if (cached) {
-        const body = await cached.text();
-        return new Response(body, {
-          status: 200,
-          headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            "Cache-Control": "public, max-age=120",
-            "X-Cache": "HIT",
-            ...CORS_HEADERS,
-          },
-        });
-      }
-      let data;
-      try { data = await fetchAllNxtQuotes(codes); }
-      catch (e) { return json({ error: "upstream failed", detail: e.message }, 502); }
-      const body = JSON.stringify(data);
-      const resp = new Response(body, {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          "Cache-Control": "public, max-age=120",
           "X-Cache": "MISS",
           ...CORS_HEADERS,
         },

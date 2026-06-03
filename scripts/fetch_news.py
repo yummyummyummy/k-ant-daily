@@ -231,9 +231,7 @@ def fetch_market_indices() -> dict:
     Returns structured entries:
       {"KOSPI":    {"value": "6,219.09", "change_abs": "+27.17",
                    "change_pct": "+0.44%", "direction": "up"},
-       "KOSDAQ":   {...}, "KOSPI200": {...}}
-
-    Also keeps the legacy flat `<NAME>_change` string for backward compat."""
+       "KOSDAQ":   {...}, "KOSPI200": {...}}"""
     soup = _get("https://finance.naver.com/sise/")
     result: dict = {}
     mapping = [
@@ -270,8 +268,6 @@ def fetch_market_indices() -> dict:
             "change_pct": parsed["pct"],
             "direction": parsed["direction"],
         }
-        # Legacy keys — kept so existing summary.json authors that referenced them don't break.
-        result[f"{name}_change"] = raw_change
     return result
 
 
@@ -542,8 +538,6 @@ def main() -> int:
         }
         if stock.get("owners"):
             entry["owners"] = stock["owners"]
-        elif stock.get("owner"):
-            entry["owners"] = [stock["owner"]]  # backward compat
         if stock.get("overnight_proxy"):
             entry["overnight_signal"] = compute_overnight_signal(stock["overnight_proxy"], proxy_changes)
         try:

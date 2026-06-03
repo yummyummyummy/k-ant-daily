@@ -1,6 +1,6 @@
 # k-ant-daily-quotes (Cloudflare Worker)
 
-실시간 주가 프록시 Worker. Naver Finance의 realtime polling endpoint를 스크랩해서 CORS 포함 JSON으로 돌려준다. GitHub Pages의 정적 브리핑 페이지에서 브라우저가 직접 호출한다.
+실시간 시세/뉴스 프록시 Worker. Naver Finance, Naver MarketIndex, Upbit public API를 CORS 포함 JSON으로 돌려준다. GitHub Pages의 정적 캘린더 페이지에서 브라우저가 직접 호출한다.
 
 ## 배포
 
@@ -19,15 +19,7 @@ wrangler deploy
 ```
 
 배포되면 출력에 URL이 표시됨 — 예: `https://k-ant-daily-quotes.<your-subdomain>.workers.dev`.
-
-그 URL을 루트 저장소의 [docs/index.html](../docs/index.html) 안에 있는 상수 `QUOTE_API` 로 붙여넣어야 한다. 템플릿에서도 수정:
-
-```js
-// templates/report.html.j2 안의 QUOTE_API 상수
-const QUOTE_API = "https://k-ant-daily-quotes.<your-subdomain>.workers.dev/quote";
-```
-
-그 후 `.venv/bin/python scripts/render.py .tmp/summary.json && git commit && git push` 하면 Pages에 새 URL이 반영된다.
+Worker URL이 바뀌면 [templates/calendar.html.j2](../templates/calendar.html.j2)의 `WORKER_BASE` 상수를 수정하고 `scripts/render.py`를 다시 실행한다.
 
 ## 엔드포인트
 
@@ -56,6 +48,14 @@ const QUOTE_API = "https://k-ant-daily-quotes.<your-subdomain>.workers.dev/quote
 
 응답은 **edge에서 30초 캐시**됨. 동일 코드셋에 대한 반복 요청은 Naver로 업스트림 호출 없이 즉시 반환.
 
+### `GET /ticker?items=KOSPI,KOSDAQ,USDKRW,BTC,ETH`
+
+상단 마키용 지수·환율·암호화폐 데이터. 각 item은 `{value, change_abs, change_pct, direction}` 형태로 반환된다. 응답은 30초 캐시.
+
+### `GET /stock-news?codes=005930,000660,...`
+
+종목별 최신 뉴스 탭을 스크랩해 `{news, latest_at}` 형태로 반환한다. 응답은 5분 캐시.
+
 ### `GET /health`
 
 헬스체크. `{"ok": true, "service": "k-ant-daily-quotes"}`.
@@ -68,16 +68,13 @@ Cloudflare Workers 무료 플랜: 100k 요청/일. 예상 트래픽:
 
 걱정 수준 아님.
 
-## Legacy (제거됨)
-
-이전 컨셉의 친구 베팅 게임 (`/game/*` 라우트 + D1 `k-ant-game` 데이터베이스 + cron 트리거) 은 제거됨. 기존 D1 데이터베이스가 Cloudflare 계정에 남아있다면 `wrangler d1 delete k-ant-game` 으로 삭제 가능 (또는 그대로 둬도 비용 없음).
-
 ## 로컬 개발
 
 ```bash
 cd worker
 wrangler dev    # http://localhost:8787
 curl "http://localhost:8787/quote?codes=005930,000660"
+curl "http://localhost:8787/ticker?items=KOSPI,KOSDAQ,USDKRW,BTC,ETH"
 ```
 
 ## 관측·디버깅

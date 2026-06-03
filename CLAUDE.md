@@ -96,7 +96,7 @@ templates/
   digest.html.j2               # 포스트마켓 다이제스트
   _theme.css.j2                # 공통 색상/리셋
 worker/
-  src/index.js                 # /quote · /ticker · /stock-news · /nxt-quotes
+  src/index.js                 # /quote · /ticker · /stock-news
 .claude/commands/
   daily-report.md              # 아침 갱신 스킬 (이벤트 큐레이션 규칙)
   post-market-digest.md        # 23:00 다이제스트 스킬
@@ -202,7 +202,6 @@ Wrapper safety: briefing/digest 는 `git reset --hard origin/main` before execut
 - `GET /quote?codes=...` — 종목 시세 (30s edge 캐시)
 - `GET /ticker?items=KOSPI,KOSDAQ,USDKRW,BTC,ETH` — 지표/FX/암호화폐
 - `GET /stock-news?codes=...` — 종목별 뉴스 (5분 edge 캐시)
-- `GET /nxt-quotes?codes=...` — NXT 대체거래 등락률 (2분 edge 캐시)
 
 ## Important Notes
 
@@ -210,9 +209,3 @@ Wrapper safety: briefing/digest 는 `git reset --hard origin/main` before execut
 - `.tmp/` 는 gitignore — 영구 데이터 없음
 - 친구 실명이 공개 HTML 에 노출됨. 민감하면 private repo
 - 투자 권유 아님 — 일정 트래킹 도구
-
-## Legacy (보존만)
-
-이전 예측 컨셉의 산출물은 git history 와 `docs/` 에 남아있음:
-- `docs/YYYY-MM-DD.html` / `.summary.json`, `docs/accuracy/`, `docs/promoted_rules.md`, `docs/archive.html`, `docs/accuracy.html`
-- 새 컨셉에서 생성 안 함. 시간 지나면 분리 archive 로 옮길 예정

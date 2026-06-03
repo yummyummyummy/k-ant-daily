@@ -11,7 +11,7 @@ LOGS="$HOME/Library/Logs/k-ant-daily"
 
 mkdir -p "$DST" "$LOGS"
 
-# Clean up legacy agents from the prior prediction/review concept.
+# Clean up removed agents from older installs.
 for legacy in com.yummyummyummy.k-ant-daily.refresh \
               com.yummyummyummy.k-ant-daily.nxt-snapshot \
               com.yummyummyummy.k-ant-daily.review; do
