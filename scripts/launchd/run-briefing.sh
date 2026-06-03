@@ -1,6 +1,6 @@
 #!/bin/bash
 # Daily pre-market briefing (07:30 KST weekdays).
-# Wraps `claude /daily-report` for launchd-scheduled execution.
+# Wraps Codex CLI for launchd-scheduled execution.
 set -u
 
 REPO="/Users/woong/projects/k-ant-daily"
@@ -27,10 +27,7 @@ if [ ! -x .venv/bin/python ]; then
 fi
 .venv/bin/pip install -q -r requirements.txt
 
-# Run Claude Code in non-interactive mode with /daily-report.
-# --dangerously-skip-permissions: auto-approve all tool calls (required for unattended).
-# --print: non-interactive stdout mode.
-claude --dangerously-skip-permissions --print "/daily-report"
+scripts/launchd/run-codex-command.sh "$REPO" "$REPO/.claude/commands/daily-report.md" "daily-report"
 STATUS=$?
 
 echo "=== exit status: $STATUS @ $(date) ==="

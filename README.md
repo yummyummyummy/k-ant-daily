@@ -164,7 +164,7 @@ k-ant-daily/
 
 발표성 이벤트 (FOMC·CPI·고용·금통위·학회 등) 가 끝나면 결과를 두 갈래로 반영:
 - **A. 시장 반응 (즉시·무료)**: 클라이언트가 이벤트 `time` 경과 즉시 관련 종목/지수의 당일 등락률을 "📈 시장 반응 (자동)" 으로 표시. 이미 폴링 중인 시세 데이터 사용, LLM 불필요
-- **B. 질적 결과 (~30분)**: `/check-results` 가 30분 주기로 방금 끝난 이벤트의 실제 결과(금리 동결/인하, 수치 beat/miss 등)를 WebSearch 로 조사해 `result` 채움. `pending_results.py` 가 게이트 — 결과 대기 이벤트 없으면 Claude 안 부름 (사용량 0)
+- **B. 질적 결과 (~30분)**: `/check-results` 가 30분 주기로 방금 끝난 이벤트의 실제 결과(금리 동결/인하, 수치 beat/miss 등)를 WebSearch 로 조사해 `result` 채움. `pending_results.py` 가 게이트 — 결과 대기 이벤트 없으면 Codex 안 부름 (사용량 0)
 
 `/daily-report` 의 내부 흐름:
 1. `fetch_news.py` + `fetch_clinical_trials.py` + `fetch_dart.py` 병렬 실행
@@ -190,7 +190,7 @@ k-ant-daily/
 - `com.yummyummyummy.k-ant-daily.digest`        — 매일 **23:00 KST**
 - `com.yummyummyummy.k-ant-daily.check-results` — **30분 주기** (이벤트 결과 반영, cheap-gated)
 
-Wrapper 가 `git reset --hard origin/main` 으로 동기화 후 `claude --dangerously-skip-permissions --print "/daily-report"` (또는 digest) 실행.
+Wrapper 가 `git reset --hard origin/main` 으로 동기화 후 ChatGPT 계정으로 로그인된 Codex CLI (`codex exec`) 를 실행한다. 룰북은 기존 [.claude/commands/](.claude/commands/) 파일을 그대로 재사용한다.
 
 ⚠️ **주의**: wrapper 가 매 실행마다 git reset 을 수행하므로 push 안 한 로컬 변경은 다음 실행 시 모두 날아감.
 
@@ -284,9 +284,9 @@ python scripts/render.py            # → docs/calendar.html + docs/index.html
 python scripts/render.py --digest   # → docs/digest.html (.tmp/digest.json 필요)
 ```
 
-Claude CLI 로 자동화 (production 과 동일):
+Codex CLI 로 자동화 (production 과 동일):
 ```bash
-claude --dangerously-skip-permissions --print "/daily-report"
+scripts/launchd/run-codex-command.sh "$PWD" "$PWD/.claude/commands/daily-report.md" "daily-report"
 ```
 
 ---
@@ -294,7 +294,7 @@ claude --dangerously-skip-permissions --print "/daily-report"
 ## 요구사항
 
 - **Python 3.11+** — `requirements.txt` (requests · beautifulsoup4 · PyYAML · Jinja2 · yfinance · feedparser · lxml)
-- **Claude Code CLI** — `claude -p` non-interactive 모드
+- **Codex CLI** — ChatGPT 계정 로그인 + `codex exec` non-interactive 모드
 - **macOS** (launchd) — 또는 cron 등으로 대체
 - **Cloudflare Workers 무료 플랜** — 시세/뉴스 프록시
 - **GitHub Pages** — `main` 브랜치 `docs/` 자동 배포

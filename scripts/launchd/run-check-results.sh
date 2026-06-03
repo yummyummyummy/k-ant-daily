@@ -1,7 +1,7 @@
 #!/bin/bash
 # Intraday result-check — fills `result` for just-passed events.
 # Fires every 30 min (launchd StartInterval). Cheap-gates so off-event ticks
-# cost nothing: only invokes Claude when an event result is actually due.
+# cost nothing: only invokes Codex when an event result is actually due.
 set -u
 
 REPO="/Users/woong/projects/k-ant-daily"
@@ -22,7 +22,7 @@ if [ -n "$(git status --porcelain)" ]; then
     exit 0
 fi
 
-# 3. Only now do the heavier path (this run will use Claude usage).
+# 3. Only now do the heavier path (this run will use Codex usage).
 TS="$(date +%Y-%m-%d_%H%M%S)"
 LOG="$LOG_DIR/check-results-$TS.log"
 exec >"$LOG" 2>&1
@@ -35,7 +35,7 @@ PENDING="$(.venv/bin/python scripts/pending_results.py 2>/dev/null || echo 0)"
 if [ "$PENDING" -eq 0 ] 2>/dev/null; then echo "nothing pending after sync"; exit 0; fi
 
 .venv/bin/pip install -q -r requirements.txt
-claude --dangerously-skip-permissions --print "/check-results"
+scripts/launchd/run-codex-command.sh "$REPO" "$REPO/.claude/commands/check-results.md" "check-results"
 STATUS=$?
 echo "=== exit status: $STATUS @ $(date) ==="
 exit $STATUS

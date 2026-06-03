@@ -1,6 +1,6 @@
 #!/bin/bash
 # Post-market digest (23:00 KST daily — both weekdays + weekends).
-# Wraps `claude /post-market-digest` for launchd-scheduled execution.
+# Wraps Codex CLI for launchd-scheduled execution.
 set -u
 
 REPO="/Users/woong/projects/k-ant-daily"
@@ -25,7 +25,7 @@ if [ ! -x .venv/bin/python ]; then
 fi
 .venv/bin/pip install -q -r requirements.txt
 
-claude --dangerously-skip-permissions --print "/post-market-digest"
+scripts/launchd/run-codex-command.sh "$REPO" "$REPO/.claude/commands/post-market-digest.md" "post-market-digest"
 STATUS=$?
 
 echo "=== exit status: $STATUS @ $(date) ==="

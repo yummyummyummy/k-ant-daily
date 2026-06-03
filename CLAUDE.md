@@ -1,7 +1,7 @@
 # CLAUDE.md — k-ant-daily
 
 친구 그룹의 한국 주식 포트폴리오 기반 **월간 이벤트 캘린더 + 일일 보유종목 트래커**.
-GitHub Pages 정적 사이트 + Claude Code CLI 에이전트 + Cloudflare Worker (시세 프록시).
+GitHub Pages 정적 사이트 + Codex CLI 에이전트 + Cloudflare Worker (시세 프록시).
 
 ## 컨셉
 
@@ -75,7 +75,7 @@ For multi-step tasks, state a brief plan:
 - **Cloudflare Worker** — `worker/src/index.js`, 시세 CORS 프록시 (Naver/Upbit)
 - **GitHub Pages** — static deploy from `docs/`
 - **macOS launchd** — `scripts/launchd/`
-- **Claude Code CLI** — `claude --dangerously-skip-permissions --print "/daily-report"` non-interactive 실행
+- **Codex CLI** — ChatGPT 계정 로그인 기반 `codex exec` non-interactive 실행
 
 ## Directory Structure
 
@@ -190,9 +190,9 @@ Install launchd agents: `./scripts/launchd/install.sh` (one-time).
 Logs: `~/Library/Logs/k-ant-daily/`.
 
 세 LaunchAgents:
-- `briefing` (07:30 평일) — `run-briefing.sh` → `claude /daily-report`
-- `digest` (23:00 매일) — `run-digest.sh` → `claude /post-market-digest`
-- `check-results` (30분 주기) — `run-check-results.sh` → `claude /check-results` (cheap-gated)
+- `briefing` (07:30 평일) — `run-briefing.sh` → `codex exec` + `.claude/commands/daily-report.md`
+- `digest` (23:00 매일) — `run-digest.sh` → `codex exec` + `.claude/commands/post-market-digest.md`
+- `check-results` (30분 주기) — `run-check-results.sh` → `codex exec` + `.claude/commands/check-results.md` (cheap-gated)
 
 Wrapper safety: briefing/digest 는 `git reset --hard origin/main` before execution (**push 안 된 로컬 변경 보호 안 됨**). check-results 는 dirty 트리면 reset 안 하고 skip.
 
