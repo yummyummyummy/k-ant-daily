@@ -642,7 +642,7 @@ const STOCK_NAMES = {{ stock_names|tojson }};
 const WORKER_BASE = "https://k-ant-daily-quotes.yummyummyummy.workers.dev";
 const TICKER_POLL_MS = 60000;   // 60s — KRX indices + FX + crypto (24/7 OK)
 const QUOTE_POLL_MS  = 60000;   // 60s — holdings (Worker edge-caches 30s)
-const MARKET_OPEN_MINUTES = 9 * 60;
+const MARKET_OPEN_MINUTES = 8 * 60; // NXT starts at 08:00 KST
 const TICKER_ITEMS = ["KOSPI", "KOSDAQ", "USDKRW", "BTC", "ETH"];
 const CATEGORY_LABEL = {
   macro: "거시", conference: "학회", clinical: "바이오 임상",
@@ -716,7 +716,7 @@ function refreshHoldingsAvailabilityState() {
         ? "국내 주식시장이 열리지 않아 오늘 보유종목 시세 갱신을 표시하지 않습니다."
         : "주말에는 국내 주식시장이 열리지 않아 오늘 보유종목 시세 갱신을 표시하지 않습니다.";
     } else {
-      desc.textContent = "정규장 시작 전입니다. 09:00 KST 이후 보유종목 시세 갱신을 표시합니다.";
+      desc.textContent = "NXT 거래 시작 전입니다. 08:00 KST 이후 보유종목 시세 갱신을 표시합니다.";
     }
   }
 
