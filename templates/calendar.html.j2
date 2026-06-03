@@ -71,13 +71,15 @@
     font-feature-settings: "tnum"; }
   .stock-price .now { font-size: 18px; font-weight: 700; }
   .stock-price .chg { font-size: 13px; font-weight: 600; }
-  .market-closed {
-    display: inline-flex; align-items: center; gap: 6px;
-    margin-top: 6px; padding: 4px 8px; border-radius: 6px;
-    background: rgba(250,204,21,0.18); color: #854d0e;
-    font-size: 12px; font-weight: 700;
+  .market-closed-banner {
+    display: none;
+    margin: 0 0 12px; padding: 12px 14px;
+    border: 1px solid rgba(250,204,21,0.45); border-radius: 8px;
+    background: rgba(250,204,21,0.16); color: #854d0e;
   }
-  .stock.market-closed-card .stock-price { display: none; }
+  .market-closed-banner.visible { display: block; }
+  .market-closed-banner .title { font-size: 14px; font-weight: 800; }
+  .market-closed-banner .desc { margin-top: 2px; font-size: 12px; opacity: 0.85; }
   .pos { color: var(--pos); }
   .neg { color: var(--neg); }
   .neu { color: var(--neu); }
@@ -552,6 +554,10 @@
   </div>
 
   <h2>오늘 보유종목 ({{ stocks|length }}개)</h2>
+  <div class="market-closed-banner" id="market-closed-banner">
+    <div class="title" id="market-closed-title">휴장일</div>
+    <div class="desc" id="market-closed-desc">국내 주식시장이 열리지 않아 오늘 보유종목 시세 갱신을 표시하지 않습니다.</div>
+  </div>
   <div class="holdings">
     {%- for s in stocks %}
     <div class="stock" data-code="{{ s.code }}">
@@ -567,7 +573,6 @@
         {%- endif %}
       </div>
       {%- endif %}
-      <div class="market-closed" hidden>휴장일</div>
       {%- if s.owners %}
       <div class="stock-owners">
         {%- for o in s.owners %}<span class="owner-chip">{{ o }}</span>{%- endfor %}
@@ -683,15 +688,20 @@ function todayHolidayEvent() {
 
 function refreshMarketClosedState() {
   marketClosedToday = isWeekend(today) || Boolean(todayHolidayEvent());
-  document.querySelectorAll(".stock[data-code]").forEach(card => {
-    const closed = card.querySelector(".market-closed");
-    card.classList.toggle("market-closed-card", marketClosedToday);
-    if (closed) {
-      const holiday = todayHolidayEvent();
-      closed.textContent = holiday ? `휴장일 · ${holiday.title}` : "휴장일";
-      closed.hidden = !marketClosedToday;
-    }
-  });
+  const holiday = todayHolidayEvent();
+  const banner = document.getElementById("market-closed-banner");
+  const title = document.getElementById("market-closed-title");
+  const desc = document.getElementById("market-closed-desc");
+  const holdings = document.querySelector(".holdings");
+
+  if (holdings) holdings.style.display = marketClosedToday ? "none" : "";
+  if (banner) banner.classList.toggle("visible", marketClosedToday);
+  if (title) title.textContent = holiday ? `휴장일 · ${holiday.title}` : "휴장일";
+  if (desc) {
+    desc.textContent = holiday
+      ? "국내 주식시장이 열리지 않아 오늘 보유종목 시세 갱신을 표시하지 않습니다."
+      : "주말에는 국내 주식시장이 열리지 않아 오늘 보유종목 시세 갱신을 표시하지 않습니다.";
+  }
 
   const coffee = document.querySelector(".coffee");
   const line = coffee?.querySelector(".line");
