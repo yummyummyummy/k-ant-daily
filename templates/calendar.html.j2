@@ -658,6 +658,7 @@ let liveIndices = {};          // "KOSPI"/"KOSDAQ" -> { change_pct:string, direc
 let currentDetailItem = null;  // {e, code} shown in side panel (for live refresh)
 let currentDetailFromDay = false;
 let eventsLoaded = false;
+let quotePollTimer = null;
 const today = new Date(TODAY_ISO + "T00:00:00+09:00");
 let cursor = new Date(today.getFullYear(), today.getMonth(), 1);  // month cursor
 let weekCursor = startOfWeek(today);  // sunday of the visible week
@@ -885,7 +886,7 @@ async function loadEvents() {
   renderHoldingDates();
   render();
   renderWeekDetail();
-  if (!marketClosedToday) pollQuotes();
+  startQuotePollingIfOpen();
 }
 
 function shortDate(iso) {
@@ -1524,6 +1525,12 @@ async function pollQuotes() {
   } catch (e) { /* silent */ }
 }
 
+function startQuotePollingIfOpen() {
+  if (quotePollTimer || marketClosedToday) return;
+  pollQuotes();
+  quotePollTimer = setInterval(pollQuotes, QUOTE_POLL_MS);
+}
+
 // 폴링으로 시세가 갱신되면 열려있는 상세(주간 디테일 / 사이드 패널)의 시장반응을 다시 그림.
 function refreshOpenDetails() {
   if (view === "week" && selectedDate) renderWeekDetail();
@@ -1567,9 +1574,7 @@ function updateCoffeeBanner(quotes) {
 }
 
 pollTicker();
-pollQuotes();
 setInterval(pollTicker, TICKER_POLL_MS);
-setInterval(pollQuotes, QUOTE_POLL_MS);
 </script>
 </body>
 </html>

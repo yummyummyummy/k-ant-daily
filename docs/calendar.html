@@ -525,7 +525,7 @@
 
   <header class="top">
     <h1>k-ant-daily</h1>
-    <span class="meta"><span id="today-label">2026년 06월 03일 (Wed)</span> · 2026-06-03 21:10 KST 생성</span>
+    <span class="meta"><span id="today-label">2026년 06월 03일 (Wed)</span> · 2026-06-03 21:49 KST 생성</span>
   </header>  <div class="coffee">
     <span class="icon">☕</span>
     <div class="line">
@@ -783,7 +783,7 @@
   </aside>
 
   <footer>
-    2026-06-03 21:10 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
+    2026-06-03 21:49 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
   </footer>
 </div>
 
@@ -826,6 +826,7 @@ let liveIndices = {};          // "KOSPI"/"KOSDAQ" -> { change_pct:string, direc
 let currentDetailItem = null;  // {e, code} shown in side panel (for live refresh)
 let currentDetailFromDay = false;
 let eventsLoaded = false;
+let quotePollTimer = null;
 const today = new Date(TODAY_ISO + "T00:00:00+09:00");
 let cursor = new Date(today.getFullYear(), today.getMonth(), 1);  // month cursor
 let weekCursor = startOfWeek(today);  // sunday of the visible week
@@ -1053,7 +1054,7 @@ async function loadEvents() {
   renderHoldingDates();
   render();
   renderWeekDetail();
-  if (!marketClosedToday) pollQuotes();
+  startQuotePollingIfOpen();
 }
 
 function shortDate(iso) {
@@ -1692,6 +1693,12 @@ async function pollQuotes() {
   } catch (e) { /* silent */ }
 }
 
+function startQuotePollingIfOpen() {
+  if (quotePollTimer || marketClosedToday) return;
+  pollQuotes();
+  quotePollTimer = setInterval(pollQuotes, QUOTE_POLL_MS);
+}
+
 // 폴링으로 시세가 갱신되면 열려있는 상세(주간 디테일 / 사이드 패널)의 시장반응을 다시 그림.
 function refreshOpenDetails() {
   if (view === "week" && selectedDate) renderWeekDetail();
@@ -1735,9 +1742,7 @@ function updateCoffeeBanner(quotes) {
 }
 
 pollTicker();
-pollQuotes();
 setInterval(pollTicker, TICKER_POLL_MS);
-setInterval(pollQuotes, QUOTE_POLL_MS);
 </script>
 </body>
 </html>
