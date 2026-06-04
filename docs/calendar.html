@@ -263,13 +263,6 @@
   .view-toggle button + button { border-left: 1px solid var(--border); }
   .view-toggle button.active + button { border-left-color: transparent; }
 
-  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-  .filters button {
-    background: transparent; border: 1px solid var(--border); color: var(--muted);
-    padding: 3px 10px; border-radius: 999px; cursor: pointer; font-size: 11px;
-  }
-  .filters button.active { background: var(--accent); color: white; border-color: var(--accent); }
-
   .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px;
     background: var(--border); border: 1px solid var(--border); border-radius: 6px;
     overflow: hidden; }
@@ -571,7 +564,7 @@
 
   <header class="top">
     <h1>k-ant-daily</h1>
-    <span class="meta"><span id="today-label">2026년 06월 04일 (Thu)</span> · 2026-06-04 15:22 KST 생성</span>
+    <span class="meta"><span id="today-label">2026년 06월 04일 (Thu)</span> · 2026-06-04 16:51 KST 생성</span>
   </header>  <div class="coffee">
     <span class="icon">☕</span>
     <div class="line">
@@ -589,17 +582,6 @@
   </section>
 
   <h2>월간 이벤트 캘린더</h2>
-
-  <div class="filters" id="cat-filters">
-    <button data-cat="all" class="active">전체</button>
-    <button data-cat="clinical">바이오 임상</button>
-    <button data-cat="conference">학회</button>
-    <button data-cat="macro">거시</button>
-    <button data-cat="earnings">실적</button>
-    <button data-cat="ir">IR/주총</button>
-    <button data-cat="disclosure">공시</button>
-    <button data-cat="holiday">휴장</button>
-  </div>
 
   <div class="cal-nav">
     <div class="view-toggle" id="view-toggle">
@@ -832,7 +814,7 @@
   </aside>
 
   <footer>
-    2026-06-04 15:22 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
+    2026-06-04 16:51 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
   </footer>
 </div>
 
@@ -868,7 +850,6 @@ const CATEGORY_LABEL = {
 };
 
 let allEvents = [];
-let activeCat = "all";
 let selectedDate = TODAY_ISO;  // default-select today so week-detail shows on load
 let view = "week";             // "month" | "week" — week is default
 let liveQuotes = {};           // code -> { change_pct:number, direction }  (from /quote poll)
@@ -1231,9 +1212,7 @@ function renderToday() {
 }
 
 function visibleEvents() {
-  const upcoming = allEvents.filter(e => e.date >= TODAY_ISO);
-  if (activeCat === "all") return upcoming;
-  return upcoming.filter(e => e.category === activeCat);
+  return allEvents.filter(e => e.date >= TODAY_ISO);
 }
 
 function visibleEventsForDate(dateISO) {
@@ -1750,15 +1729,6 @@ for (const btn of document.querySelectorAll("#view-toggle button")) {
     renderWeekDetail();
   });
 }
-for (const btn of document.querySelectorAll("#cat-filters button")) {
-  btn.addEventListener("click", () => {
-    for (const b of document.querySelectorAll("#cat-filters button")) b.classList.remove("active");
-    btn.classList.add("active");
-    activeCat = btn.dataset.cat;
-    render();
-  });
-}
-
 loadEvents();
 
 // ─────────────────────────────────────────────────────────────────
