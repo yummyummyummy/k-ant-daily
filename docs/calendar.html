@@ -202,8 +202,7 @@
   .coffee.empty .line { color: var(--muted); font-weight: 500; }
 
   /* ─── Today's events hero ──────────────────────────────────── */
-  .today-section { display: none; margin: 6px 0 24px; }
-  .today-section.has-events { display: block; }
+  .today-section { display: block; margin: 6px 0 24px; }
   .today-section .head {
     display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px;
   }
@@ -229,6 +228,10 @@
     font-size: 12px; color: var(--muted); line-height: 1.55;
     display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  .today-empty {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 14px; color: var(--muted); font-size: 13px; text-align: center;
   }
   /* per-category border accent */
   .today-card.cat-macro      { border-left-color: #6366f1; }
@@ -568,7 +571,7 @@
 
   <header class="top">
     <h1>k-ant-daily</h1>
-    <span class="meta"><span id="today-label">2026년 06월 04일 (Thu)</span> · 2026-06-04 14:50 KST 생성</span>
+    <span class="meta"><span id="today-label">2026년 06월 04일 (Thu)</span> · 2026-06-04 15:22 KST 생성</span>
   </header>  <div class="coffee">
     <span class="icon">☕</span>
     <div class="line">
@@ -829,7 +832,7 @@
   </aside>
 
   <footer>
-    2026-06-04 14:50 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
+    2026-06-04 15:22 KST 생성 · GitHub Pages · 친구들 보유종목 트래커
   </footer>
 </div>
 
@@ -1196,12 +1199,15 @@ function renderToday() {
       .sort((a, b) => (b.importance || 2) - (a.importance || 2))
   );
   wrap.innerHTML = "";
+  section.classList.toggle("has-events", todays.length > 0);
+  document.getElementById("today-count").textContent = `${todays.length}건`;
   if (!todays.length) {
-    section.classList.remove("has-events");
+    const empty = document.createElement("div");
+    empty.className = "today-empty";
+    empty.textContent = "오늘 예정된 이벤트가 없습니다.";
+    wrap.appendChild(empty);
     return;
   }
-  section.classList.add("has-events");
-  document.getElementById("today-count").textContent = `${todays.length}건`;
   for (const item of todays) {
     const e = item.e;
     const card = document.createElement("div");
@@ -1225,8 +1231,14 @@ function renderToday() {
 }
 
 function visibleEvents() {
-  if (activeCat === "all") return allEvents;
-  return allEvents.filter(e => e.category === activeCat);
+  const upcoming = allEvents.filter(e => e.date >= TODAY_ISO);
+  if (activeCat === "all") return upcoming;
+  return upcoming.filter(e => e.category === activeCat);
+}
+
+function visibleEventsForDate(dateISO) {
+  if (dateISO < TODAY_ISO) return [];
+  return visibleEvents().filter(e => e.date === dateISO);
 }
 
 function render() {
@@ -1463,8 +1475,7 @@ function renderWeekDetail() {
   title.textContent = `${parseInt(parts[1])}월 ${parseInt(parts[2])}일 (${dow})`
     + (selectedDate === TODAY_ISO ? " · 오늘" : "");
 
-  const dayEvents = allEvents
-    .filter(e => e.date === selectedDate)
+  const dayEvents = visibleEventsForDate(selectedDate)
     .sort((a, b) => (b.importance || 2) - (a.importance || 2));
   const items = expandToItems(dayEvents);
 
@@ -1567,8 +1578,7 @@ function openDayDetail(dateISO) {
 
   const wrap = document.getElementById("day-events");
   wrap.innerHTML = "";
-  const dayEvents = allEvents
-    .filter(e => e.date === dateISO)
+  const dayEvents = visibleEventsForDate(dateISO)
     .sort((a, b) => (b.importance || 2) - (a.importance || 2));
   const items = expandToItems(dayEvents);
 
