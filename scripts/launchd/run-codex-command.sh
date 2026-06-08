@@ -49,4 +49,5 @@ Important automation requirements:
     --cd "$REPO" \
     --sandbox danger-full-access \
     --dangerously-bypass-approvals-and-sandbox \
+    -- \
     "$PROMPT"
