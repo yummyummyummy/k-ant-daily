@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-03T22:25:13.705720+09:00",
+  "generated_at": "2026-06-08T12:35:29.879760+09:00",
   "events": [
     {
       "date": "2026-05-28",
@@ -57,6 +57,11 @@
       "tags": [],
       "source": "https://www.hyundai.com/worldwide/ko/company/ir",
       "importance": 2,
+      "result": {
+        "outcome": "negative",
+        "summary": "5월 글로벌 판매는 32만5,473대로 전년 대비 -7.7%; 국내 -23.1%, 해외 -4.6%. 회사 월간 지표는 부진했지만 당일 시장은 반도체·AI 기대가 우세.",
+        "filled_at": "2026-06-08"
+      },
       "per_stock": {
         "005380": "미국·유럽 판매 추세 + 친환경차(HEV/EV) 비중 — 분기 실적 선행 지표"
       },
@@ -92,7 +97,29 @@
       "related_codes": [],
       "tags": [],
       "source": "https://www.motie.go.kr/",
-      "importance": 1
+      "importance": 1,
+      "result": {
+        "outcome": "positive",
+        "summary": "5월 수출은 전년 대비 +53.2%로 월간 사상 최대인 877.5억달러, 반도체 수출은 +169.4%. 코스피는 반도체·AI 기대가 더해져 6/1 사상 최고권으로 상승.",
+        "filled_at": "2026-06-08"
+      }
+    },
+    {
+      "date": "2026-06-02",
+      "category": "macro",
+      "title": "한국 5월 소비자물가(CPI) 발표",
+      "description": "통계청 발표. 물가 추세가 한은 금리 경로 — 6/16 FOMC, 7/16 금통위 인풋.",
+      "impact": "📁 보유 영향\n• 한국금융지주(금리 경로)·현대차·반도체(원화 환율). 코스닥 바이오는 미 CPI 우선\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://mods.go.kr/menu.es?mid=b70203020000",
+      "importance": 2,
+      "time": "08:00",
+      "result": {
+        "outcome": "negative",
+        "summary": "5월 CPI는 전월 대비 +0.5%, 전년 대비 +3.1%; 식료품·에너지 제외 지수는 전년 대비 +2.5%. 물가 부담으로 한은 금리 경로와 원화에 부담 요인.",
+        "filled_at": "2026-06-08"
+      }
     },
     {
       "date": "2026-06-03",
@@ -106,18 +133,6 @@
       "importance": 3
     },
     {
-      "date": "2026-06-03",
-      "category": "macro",
-      "title": "한국 5월 소비자물가(CPI) 발표",
-      "description": "통계청 08:00 발표. 물가 추세가 한은 금리 경로 — 6/16 FOMC, 7/16 금통위 인풋.",
-      "impact": "📁 보유 영향\n• 한국금융지주(금리 경로)·현대차·반도체(원화 환율). 코스닥 바이오는 미 CPI 우선\n",
-      "related_codes": [],
-      "tags": [],
-      "source": "https://mods.go.kr/menu.es?mid=b70203020000",
-      "importance": 2,
-      "time": "08:00"
-    },
-    {
       "date": "2026-06-05",
       "category": "macro",
       "title": "미 5월 고용보고서 (비농업고용·실업률)",
@@ -127,7 +142,12 @@
       "tags": [],
       "source": "https://www.bls.gov/schedule/news_release/empsit.htm",
       "importance": 3,
-      "time": "21:30"
+      "time": "21:30",
+      "result": {
+        "outcome": "negative",
+        "summary": "5월 비농업고용은 +17.2만명으로 컨센서스를 크게 상회하고 실업률은 4.3% 유지. 금리 상승 부담으로 S&P500 -2.6%, 나스닥 -4.2% 마감.",
+        "filled_at": "2026-06-08"
+      }
     },
     {
       "date": "2026-06-05",
@@ -233,6 +253,18 @@
       ]
     },
     {
+      "date": "2026-06-23",
+      "category": "macro",
+      "title": "MSCI 2026 Annual Market Classification Review",
+      "description": "MSCI가 2026년 연례 시장분류 리뷰 결과를 발표. 한국 시장 접근성·분류 관련 코멘트와 외국인 수급 민감 이벤트.",
+      "impact": "📁 보유 영향\n• 대형주·ETF(삼성전자·SK하이닉스·현대차·KODEX 코스닥150 레버리지) 외국인 수급 민감\n• 지수 편입·분류 자체보다 한국 시장 접근성 코멘트와 후속 리밸런싱 수급 확인\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://app2.msci.com/webapp/index_ann/DocGet?format=html&lang=en&pub_key=VoI3hwU52Pg%3D",
+      "importance": 2,
+      "time": "23:30"
+    },
+    {
       "date": "2026-06-24",
       "category": "earnings",
       "title": "마이크론 FY26 3분기 실적 (미 장 마감 후)",
@@ -281,6 +313,41 @@
         "005380": "미국·유럽 판매 추세 + 친환경차(HEV/EV) 비중 — 분기 실적 선행 지표"
       },
       "search_term": "판매실적"
+    },
+    {
+      "date": "2026-07-01",
+      "category": "macro",
+      "title": "한국 6월 수출입동향",
+      "description": "산업통상자원부 매월 1일 발표. 반도체·자동차·조선 업종별 수출 증감이 관련주 심리에 영향.",
+      "impact": "📁 보유 영향\n• 반도체(삼성전자·SK하이닉스) 수출액 — 메모리 업황 체크. 조선(HD한국조선해양) 수주 반영. 자동차(현대차) 수출 대수.\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.motie.go.kr/",
+      "importance": 1
+    },
+    {
+      "date": "2026-07-02",
+      "category": "macro",
+      "title": "미 6월 고용보고서 (비농업고용·실업률)",
+      "description": "8:30 AM ET (한국 21:30) 발표. 비농업고용(NFP) + 실업률 + 시간당 임금. 7/14 CPI, 7/28-29 FOMC 전 핵심 고용 데이터.",
+      "impact": "📁 보유 영향\n• CPI(7/14)와 함께 7/28-29 FOMC 방향을 좌우\n• 코스닥 바이오 금리 민감도 최고. 반도체·현대차는 달러·금리 동시 영향\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bls.gov/schedule/news_release/empsit.htm",
+      "importance": 3,
+      "time": "21:30"
+    },
+    {
+      "date": "2026-07-02",
+      "category": "macro",
+      "title": "한국 6월 소비자물가(CPI) 발표",
+      "description": "통계청 08:00 발표. 7/16 금통위 전 마지막 월간 물가 지표.",
+      "impact": "📁 보유 영향\n• 한국금융지주(금리 경로)·현대차·반도체(원화 환율). 코스닥 바이오는 미 CPI 우선\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://mods.go.kr/cpiOaSchdlView.es?mid=b70203020000",
+      "importance": 2,
+      "time": "08:00"
     },
     {
       "date": "2026-07-14",
