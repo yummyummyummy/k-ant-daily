@@ -45,9 +45,8 @@ Important automation requirements:
 - Commit and push the required changes when the command spec asks for it.
 - Keep the final response concise."
 
-"$CODEX_BIN" --search exec \
+"$CODEX_BIN" --search --ask-for-approval never exec \
     --cd "$REPO" \
     --sandbox danger-full-access \
-    --ask-for-approval never \
     --dangerously-bypass-approvals-and-sandbox \
     "$PROMPT"
