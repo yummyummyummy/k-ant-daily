@@ -453,6 +453,21 @@ events:
     source: "https://investors.micron.com/"
     importance: 3
 
+  - date: "2026-07-10"
+    category: "earnings"
+    title: "TSMC 6월 매출 발표"
+    time: "14:30"
+    search_term: "TSMC 매출"
+    description: "TSMC가 대만 시간 13:30에 6월 월간 매출을 발표. 파운드리·AI 반도체 수요의 월간 선행 지표."
+    related_codes: ["005930", "000660", "042700", "396270"]
+    per_stock:
+      "005930": "파운드리·첨단공정 수요와 AI 반도체 공급망 온도 — 삼성 파운드리·메모리 심리 동시 영향"
+      "000660": "AI 가속기 출하 흐름이 HBM 수요와 연결되는지 확인"
+      "042700": "첨단 패키징·AI 반도체 투자 지속 여부 — HBM 본더 수요의 간접 선행 지표"
+      "396270": "차량용·엣지 반도체 업황보다 전반적 반도체 위험선호에 영향"
+    source: "https://investor.tsmc.com/english/financial-calendar"
+    importance: 2
+
   - date: "2026-07-22"
     category: "earnings"
     title: "테슬라 2026 2분기 실적 (미 장 마감 후)"
@@ -555,6 +570,17 @@ events:
     source: "https://www.hyundai.com/worldwide/ko/company/ir"
     importance: 2
 
+  - date: "2026-07-02"
+    category: "earnings"
+    title: "파라다이스 6월 카지노 매출"
+    search_term: "카지노 매출"
+    description: "매월 초 공시되는 카지노 월간 매출. 드롭액·테이블 매출·머신 매출이 외국인 카지노 수요를 보여주는 정기 지표."
+    related_codes: ["034230"]
+    per_stock:
+      "034230": "중국 VIP·일본 FIT 회복세가 6월에도 이어지는지 확인 — 2분기 실적의 월간 선행 지표"
+    source: "https://dart.fss.or.kr/"
+    importance: 2
+
   # ─── 바이오 학회 2026 ────────────────────────────────────────
   # 보유 바이오: 알테오젠(196170), 에이비엘바이오(298380), 앱클론(174900),
   # 보로노이(310210), 큐리옥스(445680), 코아스템켐온(166480), 셀리드(299660)
@@ -633,6 +659,10 @@ events:
       "009540": "글로벌 선사 발주 분위기 + LNG·암모니아 등 친환경 추진 선박 수요 — 수주 모멘텀 가늠자"
     source: "https://posidonia-events.com/"
     importance: 2
+    result:
+      outcome: positive
+      summary: "HD현대중공업·HD한국조선해양은 Posidonia 2026에서 LR와 LNG 운반선 하이브리드 전기추진 공동개발을 추진하고, MSR 적용 대형 자동차운반선 개념설계 기본인증을 받음. 조선업 행사는 친환경·차세대 선박 기술 확인 성격으로 긍정적."
+      filled_at: "2026-06-09"
 
   - date_range: ["2026-06-06", "2026-06-10"]
     category: "conference"
