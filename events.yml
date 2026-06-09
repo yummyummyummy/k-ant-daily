@@ -249,6 +249,18 @@ events:
     source: "https://www.bls.gov/schedule/news_release/empsit.htm"
     importance: 3
 
+  - date: "2026-08-07"
+    category: "macro"
+    title: "미 7월 고용보고서 (비농업고용·실업률)"
+    description: "8:30 AM ET (한국 21:30) 발표. 비농업고용(NFP) + 실업률 + 시간당 임금. 8/12 CPI, 8/27~29 잭슨홀 전 핵심 고용 데이터."
+    time: "21:30"
+    impact: |
+      📁 보유 영향
+      • CPI(8/12)와 함께 잭슨홀 전 금리 경로를 좌우
+      • 코스닥 바이오 금리 민감도 최고. 반도체·현대차는 달러·금리 동시 영향
+    source: "https://www.bls.gov/schedule/news_release/empsit.htm"
+    importance: 3
+
   - date: "2026-06-10"
     category: "macro"
     title: "미 5월 CPI 발표"
@@ -598,6 +610,10 @@ events:
       "310210": "표적항암제(VRN 시리즈, EGFR 등) phase1 용량·객관적반응률(ORR)·안전성 신호"
     source: "https://www.asco.org/annual-meeting/dates-know"
     importance: 3
+    result:
+      outcome: positive
+      summary: "보로노이는 ASCO 2026에서 VRN11·VRN10 업데이트를 공개. VRN11 뇌전이 데이터와 VRN10 HER2 변이 고형암 중간 결과가 확인됐고, 6/9 보로노이 주가는 +3.04%."
+      filled_at: "2026-06-10"
 
   - date_range: ["2026-06-05", "2026-06-08"]
     category: "conference"
