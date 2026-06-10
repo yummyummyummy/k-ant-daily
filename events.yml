@@ -272,6 +272,10 @@ events:
       • Hot이면 코스닥 바이오 하락 폭 최대, 반도체는 달러로 일부 상쇄
     source: "https://www.bls.gov/schedule/news_release/cpi.htm"
     importance: 3
+    result:
+      outcome: negative
+      summary: "5월 CPI는 전월 대비 +0.5%, 전년 대비 +4.2%; 에너지 +23.5%가 헤드라인 상승을 주도. 미 증시는 인플레 부담으로 주요 지수가 1% 이상 하락하며 위험자산에 부담."
+      filled_at: "2026-06-11"
 
   # ─── 미 CPI 2026 하반기 (확정일, BLS 스케줄) ─────────────────────
   - date: "2026-07-14"
