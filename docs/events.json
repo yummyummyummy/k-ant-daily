@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T07:32:23.667306+09:00",
+  "generated_at": "2026-06-12T07:32:09.276066+09:00",
   "events": [
     {
       "date": "2026-05-28",
@@ -497,6 +497,30 @@
       "time": "21:30"
     },
     {
+      "date": "2026-08-10",
+      "category": "earnings",
+      "title": "TSMC 7월 매출 발표",
+      "description": "TSMC가 대만 시간 13:30에 7월 월간 매출을 발표. 파운드리·AI 반도체 수요의 월간 선행 지표.",
+      "impact": "",
+      "related_codes": [
+        "005930",
+        "000660",
+        "042700",
+        "396270"
+      ],
+      "tags": [],
+      "source": "https://investor.tsmc.com/english/financial-calendar",
+      "importance": 2,
+      "time": "14:30",
+      "per_stock": {
+        "005930": "파운드리·첨단공정 수요와 AI 반도체 공급망 온도 — 삼성 파운드리·메모리 심리 동시 영향",
+        "000660": "AI 가속기 출하 흐름이 HBM 수요와 연결되는지 확인",
+        "042700": "첨단 패키징·AI 반도체 투자 지속 여부 — HBM 본더 수요의 간접 선행 지표",
+        "396270": "차량용·엣지 반도체 업황보다 전반적 반도체 위험선호에 영향"
+      },
+      "search_term": "TSMC 매출"
+    },
+    {
       "date": "2026-08-12",
       "category": "macro",
       "title": "미 7월 CPI 발표",
@@ -589,6 +613,18 @@
       "search_term": "엔비디아"
     },
     {
+      "date": "2026-08-26",
+      "category": "macro",
+      "title": "미 7월 PCE 물가 (개인소비지출)",
+      "description": "Fed 선호 물가지표. 8/27~29 잭슨홀 직전 발표.",
+      "impact": "📁 보유 영향\n• 잭슨홀 직전 물가 확인 — 코스닥 바이오 금리 민감도 최고\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bea.gov/news/schedule",
+      "importance": 2,
+      "time": "21:30"
+    },
+    {
       "date": "2026-08-27",
       "category": "macro",
       "title": "한은 금통위 (통화정책방향 결정)",
@@ -610,6 +646,18 @@
       "tags": [],
       "source": "https://www.kansascityfed.org/research/jackson-hole-economic-symposium/",
       "importance": 3
+    },
+    {
+      "date": "2026-09-04",
+      "category": "macro",
+      "title": "미 8월 고용보고서 (비농업고용·실업률)",
+      "description": "8:30 AM ET (한국 21:30) 발표. 비농업고용(NFP) + 실업률 + 시간당 임금. 9/11 CPI, 9/15-16 FOMC 전 핵심 고용 데이터.",
+      "impact": "📁 보유 영향\n• 9월 CPI와 함께 9/15-16 FOMC 점도표 방향을 좌우\n• 코스닥 바이오 금리 민감도 최고. 반도체·현대차는 달러·금리 동시 영향\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bls.gov/schedule/news_release/empsit.htm",
+      "importance": 3,
+      "time": "21:30"
     },
     {
       "date": "2026-09-10",
