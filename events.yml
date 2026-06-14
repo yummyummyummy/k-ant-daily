@@ -597,6 +597,17 @@ events:
     source: "https://mods.go.kr/cpiOaSchdlView.es?mid=b70203020000"
     importance: 2
 
+  - date: "2026-08-04"
+    category: "macro"
+    title: "한국 7월 소비자물가(CPI) 발표"
+    time: "08:00"
+    description: "통계청 08:00 발표. 8/27 금통위 전 월간 물가 지표."
+    impact: |
+      📁 보유 영향
+      • 한국금융지주(금리 경로)·현대차·반도체(원화 환율). 코스닥 바이오는 미 CPI 우선
+    source: "https://mods.go.kr/menu.es?mid=b70203020000"
+    importance: 2
+
   # ─── 보유 종목 월간 지표 (forward, 발표일 규칙적) ─────────────────
   - date: "2026-06-01"
     category: "earnings"
@@ -667,6 +678,10 @@ events:
       "347850": "GLP-1 기반 파이프라인(경구·장기지속형 펩타이드 포함) 관련 데이터·파트너십 단서 — 빅파마 경쟁 구도와 GLP-1 시장 확대/안전성 이슈가 밸류에이션에 직접 영향"
     source: "https://professional.diabetes.org/scientific-sessions"
     importance: 2
+    result:
+      outcome: negative
+      summary: "ADA 2026은 GLP-1·인크레틴 치료제 중심으로 진행됐으나 디앤디파마텍의 직접 ADA 발표는 확인되지 않음. 6/12 디앤디파마텍은 -7.31%로 마감해 학회 후 주가 반응은 부담."
+      filled_at: "2026-06-15"
 
   - date_range: ["2026-06-11", "2026-06-14"]
     category: "conference"
@@ -732,6 +747,10 @@ events:
       "445680": "Laminar Wash 기반 표준화 연구·NIST Flow Cytometry Standards Consortium 결과 발표 여부 — 채택 확산·레퍼런스 확보가 장비 매출 모멘텀"
     source: "https://www.cytoconference.org/"
     importance: 2
+    result:
+      outcome: positive
+      summary: "큐리옥스는 CYTO 2026에서 Pluto 워크스테이션 자동화 소프트웨어와 NIST 주도 재현성 데이터를 공개. 키움증권은 수작업 대비 변동계수 개선을 근거로 표준화 가능성을 긍정적으로 평가했으나, 6/12 주가는 -0.72%로 약보합."
+      filled_at: "2026-06-15"
 
   - date_range: ["2026-08-23", "2026-08-25"]
     category: "conference"
