@@ -437,6 +437,17 @@ events:
     source: "https://www.bea.gov/news/schedule"
     importance: 2
 
+  - date: "2026-09-30"
+    category: "macro"
+    title: "미 8월 PCE 물가 (개인소비지출)"
+    time: "21:30"
+    description: "Fed 선호 물가지표. 8:30 ET (한국 21:30)."
+    impact: |
+      📁 보유 영향
+      • 9월 FOMC 이후 물가 재확인 — 코스닥 바이오 금리 민감도 높고, 반도체·현대차는 달러 방향도 함께 확인
+    source: "https://www.bea.gov/news/schedule"
+    importance: 2
+
   # ─── 잭슨홀 (Fed 정책 시그널) ───────────────────────────────────
   - date: "2026-08-28"
     category: "macro"
@@ -513,6 +524,21 @@ events:
     time: "14:30"
     search_term: "TSMC 매출"
     description: "TSMC가 대만 시간 13:30에 7월 월간 매출을 발표. 파운드리·AI 반도체 수요의 월간 선행 지표."
+    related_codes: ["005930", "000660", "042700", "396270"]
+    per_stock:
+      "005930": "파운드리·첨단공정 수요와 AI 반도체 공급망 온도 — 삼성 파운드리·메모리 심리 동시 영향"
+      "000660": "AI 가속기 출하 흐름이 HBM 수요와 연결되는지 확인"
+      "042700": "첨단 패키징·AI 반도체 투자 지속 여부 — HBM 본더 수요의 간접 선행 지표"
+      "396270": "차량용·엣지 반도체 업황보다 전반적 반도체 위험선호에 영향"
+    source: "https://investor.tsmc.com/english/financial-calendar"
+    importance: 2
+
+  - date: "2026-09-10"
+    category: "earnings"
+    title: "TSMC 8월 매출 발표"
+    time: "14:30"
+    search_term: "TSMC 매출"
+    description: "TSMC가 대만 시간 13:30에 8월 월간 매출을 발표. 파운드리·AI 반도체 수요의 월간 선행 지표."
     related_codes: ["005930", "000660", "042700", "396270"]
     per_stock:
       "005930": "파운드리·첨단공정 수요와 AI 반도체 공급망 온도 — 삼성 파운드리·메모리 심리 동시 영향"
@@ -608,6 +634,27 @@ events:
     source: "https://mods.go.kr/menu.es?mid=b70203020000"
     importance: 2
 
+  - date: "2026-09-01"
+    category: "macro"
+    title: "한국 8월 수출입동향"
+    description: "산업통상자원부 매월 1일 발표. 반도체·자동차·조선 업종별 수출 증감이 관련주 심리에 영향."
+    impact: |
+      📁 보유 영향
+      • 반도체(삼성전자·SK하이닉스) 수출액 — 메모리 업황 체크. 조선(HD한국조선해양) 수주 반영. 자동차(현대차) 수출 대수.
+    source: "https://www.motie.go.kr/"
+    importance: 1
+
+  - date: "2026-09-02"
+    category: "macro"
+    title: "한국 8월 소비자물가(CPI) 발표"
+    time: "08:00"
+    description: "국가데이터처 08:00 발표. 10/22 금통위 전 월간 물가 지표."
+    impact: |
+      📁 보유 영향
+      • 한국금융지주(금리 경로)·현대차·반도체(원화 환율). 코스닥 바이오는 미 CPI 우선
+    source: "https://mods.go.kr/menu.es?mid=a20301000000"
+    importance: 2
+
   # ─── 보유 종목 월간 지표 (forward, 발표일 규칙적) ─────────────────
   - date: "2026-06-01"
     category: "earnings"
@@ -694,6 +741,10 @@ events:
       "166480": "혈액질환 적응증 줄기세포 치료제 발표 여부 — 주력이 ALS(뉴로나타-알)라 혈액학 연관성은 제한적, 발표 없으면 영향 미미"
     source: "https://ehaweb.org/connect-network/eha2026-congress"
     importance: 2
+    result:
+      outcome: neutral
+      summary: "EHA 2026은 6/11~14 스톡홀름에서 종료. 앱클론·코아스템켐온의 직접 EHA 2026 발표는 확인되지 않았고, 앱클론 6/15 상승은 HLX22 관련 회사 소식 영향으로 학회 결과와 분리해 봐야 함."
+      filled_at: "2026-06-16"
 
   - date_range: ["2026-10-23", "2026-10-27"]
     category: "conference"
