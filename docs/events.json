@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T07:32:20.875030+09:00",
+  "generated_at": "2026-06-17T07:32:21.230275+09:00",
   "events": [
     {
       "date": "2026-05-28",
@@ -498,6 +498,51 @@
       "source": "https://www.bea.gov/news/schedule",
       "importance": 2,
       "time": "21:30"
+    },
+    {
+      "date": "2026-08-01",
+      "category": "macro",
+      "title": "한국 7월 수출입동향",
+      "description": "산업통상자원부 매월 1일 발표. 반도체·자동차·조선 업종별 수출 증감이 관련주 심리에 영향.",
+      "impact": "📁 보유 영향\n• 반도체(삼성전자·SK하이닉스) 수출액 — 메모리 업황 체크. 조선(HD한국조선해양) 수주 반영. 자동차(현대차) 수출 대수.\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.motie.go.kr/",
+      "importance": 1
+    },
+    {
+      "date": "2026-08-03",
+      "category": "earnings",
+      "title": "현대차 7월 판매실적",
+      "description": "매월 1일경 발표 — 국내/미국/유럽/신흥국 판매대수. 월간 펀더멘털 체크포인트.",
+      "impact": "",
+      "related_codes": [
+        "005380"
+      ],
+      "tags": [],
+      "source": "https://www.hyundai.com/worldwide/ko/company/ir",
+      "importance": 2,
+      "per_stock": {
+        "005380": "미국·유럽 판매 추세 + 친환경차(HEV/EV) 비중 — 3분기 실적의 첫 월간 선행 지표"
+      },
+      "search_term": "판매실적"
+    },
+    {
+      "date": "2026-08-03",
+      "category": "earnings",
+      "title": "파라다이스 7월 카지노 매출",
+      "description": "매월 초 공시되는 카지노 월간 매출. 드롭액·테이블 매출·머신 매출이 외국인 카지노 수요를 보여주는 정기 지표.",
+      "impact": "",
+      "related_codes": [
+        "034230"
+      ],
+      "tags": [],
+      "source": "https://dart.fss.or.kr/",
+      "importance": 2,
+      "per_stock": {
+        "034230": "중국 VIP·일본 FIT 회복세와 휴가철 방문객 흐름 확인 — 3분기 실적의 첫 월간 선행 지표"
+      },
+      "search_term": "카지노 매출"
     },
     {
       "date": "2026-08-04",
@@ -1001,6 +1046,18 @@
       ]
     },
     {
+      "date": "2026-10-29",
+      "category": "macro",
+      "title": "미 9월 PCE 물가 (개인소비지출)",
+      "description": "Fed 선호 물가지표. 8:30 ET (한국 21:30). 10/27-28 FOMC 직후 발표.",
+      "impact": "📁 보유 영향\n• FOMC 직후 물가 재확인 — 코스닥 바이오 금리 민감도 높고, 반도체·현대차는 달러 방향도 함께 확인\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bea.gov/news/schedule",
+      "importance": 2,
+      "time": "21:30"
+    },
+    {
       "date": "2026-11-02",
       "category": "conference",
       "title": "ADIPEC 2026 (아부다비 국제 석유·에너지)",
@@ -1057,6 +1114,18 @@
       "source": "https://www.bls.gov/schedule/news_release/cpi.htm",
       "importance": 3,
       "time": "21:30"
+    },
+    {
+      "date": "2026-11-25",
+      "category": "macro",
+      "title": "미 10월 PCE 물가 (개인소비지출)",
+      "description": "Fed 선호 물가지표. 8:30 ET (한국 22:30). 12/8-9 FOMC 전 마지막 PCE 확인.",
+      "impact": "📁 보유 영향\n• 12월 FOMC 점도표 전 물가 입력값 — 코스닥 바이오 금리 민감도 높고, 반도체·현대차는 달러 방향도 함께 확인\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bea.gov/news/schedule",
+      "importance": 2,
+      "time": "22:30"
     },
     {
       "date": "2026-11-26",
@@ -1130,6 +1199,18 @@
         "166480": "혈액질환 적응증 데이터 발표 여부 (주력 ALS 외 확장) — 없으면 영향 제한적"
       },
       "search_term": "ASH"
+    },
+    {
+      "date": "2026-12-23",
+      "category": "macro",
+      "title": "미 11월 PCE 물가 (개인소비지출)",
+      "description": "Fed 선호 물가지표. 8:30 ET (한국 22:30). 연말 정책 경로 재확인.",
+      "impact": "📁 보유 영향\n• 연말 금리·달러 방향 확인 — 코스닥 바이오 금리 민감도 높고, 반도체·현대차는 환율 영향도 함께 확인\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.bea.gov/news/schedule",
+      "importance": 2,
+      "time": "22:30"
     },
     {
       "date": "2026-12-25",
