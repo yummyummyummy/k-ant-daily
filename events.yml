@@ -585,17 +585,6 @@ events:
     source: "https://investor.tsmc.com/english/financial-calendar"
     importance: 2
 
-  - date: "2026-07-22"
-    category: "earnings"
-    title: "테슬라 2026 2분기 실적 (미 장 마감 후)"
-    search_term: "전기차"
-    description: "글로벌 EV 수요·가격·마진 — 전기차 섹터 심리 가늠자."
-    related_codes: ["005380"]
-    per_stock:
-      "005380": "EV 수요·가격 경쟁 강도 — 현대차 전기차 전략·마진에 심리적 영향 (직접 경쟁보다 섹터 sentiment)"
-    source: "https://ir.tesla.com/"
-    importance: 2
-
   - date: "2026-08-26"
     category: "earnings"
     title: "엔비디아 FY27 2분기 실적 (미 장 마감 후)"
