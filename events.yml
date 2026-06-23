@@ -277,6 +277,30 @@ events:
     source: "https://www.bls.gov/schedule/news_release/empsit.htm"
     importance: 3
 
+  - date: "2026-10-02"
+    category: "macro"
+    title: "미 9월 고용보고서 (비농업고용·실업률)"
+    description: "8:30 AM ET (한국 21:30) 발표. 비농업고용(NFP) + 실업률 + 시간당 임금. 10/14 CPI, 10/27-28 FOMC 전 핵심 고용 데이터."
+    time: "21:30"
+    impact: |
+      📁 보유 영향
+      • 9월 CPI와 함께 10/27-28 FOMC 전 금리·달러 방향을 좌우
+      • 코스닥 바이오 금리 민감도 최고. 반도체·현대차는 달러·금리 동시 영향
+    source: "https://www.bls.gov/schedule/news_release/empsit.htm"
+    importance: 3
+
+  - date: "2026-11-06"
+    category: "macro"
+    title: "미 10월 고용보고서 (비농업고용·실업률)"
+    description: "8:30 AM ET (한국 22:30) 발표. 비농업고용(NFP) + 실업률 + 시간당 임금. 11/10 CPI, 12/8-9 FOMC 전 핵심 고용 데이터."
+    time: "22:30"
+    impact: |
+      📁 보유 영향
+      • 10월 CPI와 함께 12월 FOMC 점도표 전 고용·물가 조합을 확인
+      • 코스닥 바이오 금리 민감도 최고. 반도체·현대차는 달러·금리 동시 영향
+    source: "https://www.bls.gov/schedule/news_release/empsit.htm"
+    importance: 3
+
   - date: "2026-06-10"
     category: "macro"
     title: "미 5월 CPI 발표"
@@ -576,6 +600,51 @@ events:
     time: "14:30"
     search_term: "TSMC 매출"
     description: "TSMC가 대만 시간 13:30에 8월 월간 매출을 발표. 파운드리·AI 반도체 수요의 월간 선행 지표."
+    related_codes: ["005930", "000660", "042700", "396270"]
+    per_stock:
+      "005930": "파운드리·첨단공정 수요와 AI 반도체 공급망 온도 — 삼성 파운드리·메모리 심리 동시 영향"
+      "000660": "AI 가속기 출하 흐름이 HBM 수요와 연결되는지 확인"
+      "042700": "첨단 패키징·AI 반도체 투자 지속 여부 — HBM 본더 수요의 간접 선행 지표"
+      "396270": "차량용·엣지 반도체 업황보다 전반적 반도체 위험선호에 영향"
+    source: "https://investor.tsmc.com/english/financial-calendar"
+    importance: 2
+
+  - date: "2026-10-08"
+    category: "earnings"
+    title: "TSMC 9월 매출 발표"
+    time: "14:30"
+    search_term: "TSMC 매출"
+    description: "TSMC가 대만 시간 13:30에 9월 월간 매출을 발표. 파운드리·AI 반도체 수요의 월간 선행 지표."
+    related_codes: ["005930", "000660", "042700", "396270"]
+    per_stock:
+      "005930": "파운드리·첨단공정 수요와 AI 반도체 공급망 온도 — 삼성 파운드리·메모리 심리 동시 영향"
+      "000660": "AI 가속기 출하 흐름이 HBM 수요와 연결되는지 확인"
+      "042700": "첨단 패키징·AI 반도체 투자 지속 여부 — HBM 본더 수요의 간접 선행 지표"
+      "396270": "차량용·엣지 반도체 업황보다 전반적 반도체 위험선호에 영향"
+    source: "https://investor.tsmc.com/english/financial-calendar"
+    importance: 2
+
+  - date: "2026-11-10"
+    category: "earnings"
+    title: "TSMC 10월 매출 발표"
+    time: "14:30"
+    search_term: "TSMC 매출"
+    description: "TSMC가 대만 시간 13:30에 10월 월간 매출을 발표. 파운드리·AI 반도체 수요의 월간 선행 지표."
+    related_codes: ["005930", "000660", "042700", "396270"]
+    per_stock:
+      "005930": "파운드리·첨단공정 수요와 AI 반도체 공급망 온도 — 삼성 파운드리·메모리 심리 동시 영향"
+      "000660": "AI 가속기 출하 흐름이 HBM 수요와 연결되는지 확인"
+      "042700": "첨단 패키징·AI 반도체 투자 지속 여부 — HBM 본더 수요의 간접 선행 지표"
+      "396270": "차량용·엣지 반도체 업황보다 전반적 반도체 위험선호에 영향"
+    source: "https://investor.tsmc.com/english/financial-calendar"
+    importance: 2
+
+  - date: "2026-12-10"
+    category: "earnings"
+    title: "TSMC 11월 매출 발표"
+    time: "14:30"
+    search_term: "TSMC 매출"
+    description: "TSMC가 대만 시간 13:30에 11월 월간 매출을 발표. 파운드리·AI 반도체 수요의 월간 선행 지표."
     related_codes: ["005930", "000660", "042700", "396270"]
     per_stock:
       "005930": "파운드리·첨단공정 수요와 AI 반도체 공급망 온도 — 삼성 파운드리·메모리 심리 동시 영향"
