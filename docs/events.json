@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T10:38:20.334977+09:00",
+  "generated_at": "2026-06-24T08:23:55.257294+09:00",
   "events": [
     {
       "date": "2026-05-28",
@@ -297,7 +297,12 @@
       "tags": [],
       "source": "https://app2.msci.com/webapp/index_ann/DocGet?format=html&lang=en&pub_key=VoI3hwU52Pg%3D",
       "importance": 2,
-      "time": "23:30"
+      "time": "23:30",
+      "result": {
+        "outcome": "negative",
+        "summary": "MSCI는 한국 시장 접근성 개선을 계속 관찰하겠다고 밝혔고 선진시장 재분류 절차로 넘기지 않음. 6/23 코스피는 반도체 대형주 급락과 MSCI 기대 약화가 겹치며 -9.99% 마감.",
+        "filled_at": "2026-06-24"
+      }
     },
     {
       "date": "2026-06-24",

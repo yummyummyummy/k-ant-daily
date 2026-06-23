@@ -442,6 +442,10 @@ events:
       • 지수 편입·분류 자체보다 한국 시장 접근성 코멘트와 후속 리밸런싱 수급 확인
     source: "https://app2.msci.com/webapp/index_ann/DocGet?format=html&lang=en&pub_key=VoI3hwU52Pg%3D"
     importance: 2
+    result:
+      outcome: negative
+      summary: "MSCI는 한국 시장 접근성 개선을 계속 관찰하겠다고 밝혔고 선진시장 재분류 절차로 넘기지 않음. 6/23 코스피는 반도체 대형주 급락과 MSCI 기대 약화가 겹치며 -9.99% 마감."
+      filled_at: "2026-06-24"
 
   - date: "2026-07-30"
     category: "macro"
