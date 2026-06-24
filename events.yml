@@ -567,6 +567,10 @@ events:
       "042700": "메모리 capex 방향 → HBM 본더 수요 간접 신호"
     source: "https://investors.micron.com/"
     importance: 3
+    result:
+      outcome: positive
+      summary: "마이크론 FY26 3분기 매출 414.6억달러, 조정 EPS 25.11달러로 컨센서스를 상회했고 FY4분기 가이던스도 시장 기대를 웃돎. AI 메모리 수요 확인으로 시간외 주가가 10% 이상 상승하며 한국 반도체 심리에 우호적."
+      filled_at: "2026-06-25"
 
   - date: "2026-07-10"
     category: "earnings"
