@@ -430,6 +430,10 @@ events:
       • Core PCE 가 인하 경로 좌우 — 코스닥 바이오 금리 민감도 최고
     source: "https://www.bea.gov/news/schedule"
     importance: 2
+    result:
+      outcome: asexpected
+      summary: "5월 헤드라인 PCE는 전월 대비 +0.4%, 전년 대비 +4.1%; 근원 PCE는 전월 대비 +0.3%, 전년 대비 +3.4%로 대체로 예상에 부합. 미 증시는 장초반 마이크론 실적 효과와 물가 지표를 함께 소화하며 반도체는 강세, 대형 기술주는 종목별로 엇갈림."
+      filled_at: "2026-06-25"
 
   - date: "2026-06-23"
     category: "macro"
