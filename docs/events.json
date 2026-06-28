@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T08:32:58.362288+09:00",
+  "generated_at": "2026-06-29T07:31:49.385430+09:00",
   "events": [
     {
       "date": "2026-05-28",
@@ -463,6 +463,29 @@
       "source": "https://www.bok.or.kr/portal/singl/crncyPolicyDrcMtg/listYear.do?mtgSe=A&menuNo=200755",
       "importance": 3,
       "time": "10:00"
+    },
+    {
+      "date": "2026-07-16",
+      "category": "earnings",
+      "title": "TSMC 2026년 2분기 실적 컨퍼런스콜",
+      "description": "TSMC가 2026년 2분기 실적 컨퍼런스콜을 진행. 첨단공정·AI 반도체 수요와 3분기 가이던스가 반도체 공급망 선행 지표.",
+      "impact": "",
+      "related_codes": [
+        "005930",
+        "000660",
+        "042700",
+        "396270"
+      ],
+      "tags": [],
+      "source": "https://investor.tsmc.com/english/financial-calendar",
+      "importance": 3,
+      "per_stock": {
+        "005930": "첨단공정·파운드리 가동률과 AI 고객 수요 코멘트 — 삼성 파운드리 경쟁 환경과 메모리 심리 동시 확인",
+        "000660": "AI 가속기 출하·CoWoS 병목 코멘트가 HBM 수요 지속성 판단에 연결",
+        "042700": "첨단 패키징 투자와 AI 반도체 증설 톤 — HBM 본더·패키징 장비 수요의 간접 신호",
+        "396270": "차량용·엣지 반도체보다 전체 반도체 투자심리와 파운드리 업황 변화를 확인"
+      },
+      "search_term": "TSMC 실적"
     },
     {
       "date": "2026-07-17",
