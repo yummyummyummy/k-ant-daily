@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-29T07:31:49.385430+09:00",
+  "generated_at": "2026-06-30T07:31:59.471695+09:00",
   "events": [
     {
       "date": "2026-05-28",
@@ -629,6 +629,17 @@
       "source": "https://www.bls.gov/schedule/news_release/cpi.htm",
       "importance": 3,
       "time": "21:30"
+    },
+    {
+      "date": "2026-08-12",
+      "category": "macro",
+      "title": "MSCI 2026년 8월 정기변경 발표",
+      "description": "MSCI 2026년 8월 지수 정기변경 발표일. 변경 사항은 2026-09-01 장부터 적용.",
+      "impact": "📁 보유 영향\n• 대형주·ETF(삼성전자·SK하이닉스·현대차·KODEX 코스닥150 레버리지) 외국인 패시브 수급 민감\n• 편입·편출 후보가 확인되면 8월 말 리밸런싱 수급을 별도 체크\n",
+      "related_codes": [],
+      "tags": [],
+      "source": "https://www.msci.com/eqb/pressreleases/archive/ir_dates.pdf",
+      "importance": 2
     },
     {
       "date": "2026-08-17",
