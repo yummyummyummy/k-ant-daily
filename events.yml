@@ -729,6 +729,10 @@ events:
     importance: 1
     result:
       outcome: positive
+      summary: "6월 수출은 전년 대비 +70.9%인 1,022.5억달러로 월간 기준 역대 최대, 반도체 수출은 448.2억달러. 코스피는 당일 -2.04%로 마감했고, 장 마감 후 원/달러 환율은 1,550원대에 표시."
+      filled_at: "2026-07-01"
+    result:
+      outcome: positive
       summary: "5월 수출은 전년 대비 +53.2%로 월간 사상 최대인 877.5억달러, 반도체 수출은 +169.4%. 코스피는 반도체·AI 기대가 더해져 6/1 사상 최고권으로 상승."
       filled_at: "2026-06-08"
 
@@ -836,6 +840,10 @@ events:
       "005380": "미국·유럽 판매 추세 + 친환경차(HEV/EV) 비중 — 분기 실적 선행 지표"
     source: "https://www.hyundai.com/worldwide/ko/company/ir"
     importance: 2
+    result:
+      outcome: negative
+      summary: "6월 글로벌 판매는 33만8,313대로 전년 대비 -5.9%; 국내 5만8,232대(-6.2%), 해외 28만81대(-5.8%). 공시는 장 마감 후 게시됐고 현대차 관련 뉴스는 같은 수치를 보도."
+      filled_at: "2026-07-01"
 
   - date: "2026-08-03"
     category: "earnings"
