@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-01T23:08:27.443511+09:00",
+  "generated_at": "2026-07-02T09:43:44.871651+09:00",
   "events": [
     {
       "date": "2026-05-28",
@@ -378,7 +378,12 @@
       "related_codes": [],
       "tags": [],
       "source": "https://www.motie.go.kr/",
-      "importance": 1
+      "importance": 1,
+      "result": {
+        "outcome": "positive",
+        "summary": "6월 수출은 전년 대비 +70.9%인 1,022.5억달러로 월간 기준 역대 최대, 반도체 수출은 448.2억달러. 코스피는 당일 -2.04%로 마감했고, 장 마감 후 원/달러 환율은 1,550원대에 표시.",
+        "filled_at": "2026-07-01"
+      }
     },
     {
       "date": "2026-07-02",
@@ -402,7 +407,12 @@
       "tags": [],
       "source": "https://mods.go.kr/cpiOaSchdlView.es?mid=b70203020000",
       "importance": 2,
-      "time": "08:00"
+      "time": "08:00",
+      "result": {
+        "outcome": "negative",
+        "summary": "6월 CPI는 전년 대비 +3.2%, 전월 대비 +0.1%; 근원 CPI는 전년 대비 +2.5%. 물가가 3%대를 이어가며 7/16 금통위 금리 부담 요인으로 반영.",
+        "filled_at": "2026-07-02"
+      }
     },
     {
       "date": "2026-07-02",
@@ -420,6 +430,28 @@
         "034230": "중국 VIP·일본 FIT 회복세가 6월에도 이어지는지 확인 — 2분기 실적의 월간 선행 지표"
       },
       "search_term": "카지노 매출"
+    },
+    {
+      "date": "2026-07-07",
+      "category": "earnings",
+      "title": "삼성전자 2026년 2분기 잠정실적 발표",
+      "description": "삼성전자가 2분기 매출·영업이익 잠정치를 발표. 메모리·파운드리 업황과 AI 반도체 수요가 국내 반도체 수급의 핵심 확인 지표.",
+      "impact": "",
+      "related_codes": [
+        "005930",
+        "000660",
+        "042700"
+      ],
+      "tags": [],
+      "source": "https://www.samsung.com/global/ir/ir-events-presentations/events/",
+      "importance": 3,
+      "time": "08:40",
+      "per_stock": {
+        "005930": "DS 부문 회복 폭과 HBM·파운드리 실적 기여를 확인 — 2분기 본실적 콜 전 핵심 숫자",
+        "000660": "삼성 메모리 실적이 DRAM/HBM 가격 사이클과 SK하이닉스 상대 밸류에이션에 미치는 영향 확인",
+        "042700": "HBM·첨단패키징 투자 지속성을 가늠하는 반도체 capex 심리 지표"
+      },
+      "search_term": "삼성전자 잠정실적"
     },
     {
       "date": "2026-07-10",
@@ -523,6 +555,24 @@
       "tags": [],
       "source": "https://en.yna.co.kr/view/AEN20260520003800320",
       "importance": 2
+    },
+    {
+      "date": "2026-07-21",
+      "category": "earnings",
+      "title": "GM 2026년 2분기 실적 컨퍼런스콜",
+      "description": "General Motors가 2분기 실적 컨퍼런스콜을 진행. 북미 자동차 수요·가격·재고 흐름이 현대차의 글로벌 피어 지표.",
+      "impact": "",
+      "related_codes": [
+        "005380"
+      ],
+      "tags": [],
+      "source": "https://investor.gm.com/",
+      "importance": 2,
+      "time": "21:30",
+      "per_stock": {
+        "005380": "북미 판매·인센티브·재고 코멘트 확인 — 현대차 미국 판매와 마진 환경을 비교할 피어 지표"
+      },
+      "search_term": "GM 실적"
     },
     {
       "date": "2026-07-29",
